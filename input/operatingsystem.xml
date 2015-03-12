@@ -2,6 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="../transforms/pp2html.xsl?>
 
 <PP xmlns="http://common-criteria.rhcloud.com/ns/cc" name="General Purpose Operating System">
+  <MUSTFIX>blah</MUSTFIX>
   <PPReference title="PP Reference" id="XXXXX">
     <ReferenceTable>
       <PPTitle>Protection Profile for General Purpose Operating System</PPTitle>
@@ -2000,6 +2001,64 @@ functionality (such as these)
         </f-component>
       </subsection>
 
+      <subsection title="Security Management (FMT)" id="fmt">
+        <f-component id="fmt_mof.1" name="Management of security functions behaviour">
+          <f-element id="fmt_mof.1.1">
+            <title>
+	      The TSF shall restrict the ability to modify the behaviour of the functions password based user authentication to [assignment: rules that need to be satisfied for other users to perform the operations] by allowing those users to specify rules for acceptable passwords that: 
+	      <ul>
+		<li>allow for uppercase characters, lowercase characters, digits, and special characters to be used in passwords </li>
+		<li>define a minimum password length of 8 characters or more (at least up to 15 character</li>
+
+		<li>define that passwords must have at least one digit and one special character </li>
+		<li>reject passwords used by the same user before up to a history of at least 6 passwords</li>
+	      </ul>
+      	    </title>
+            <aactivity>
+	      FIXME
+      	    </aactivity>
+      	  </f-element>
+        </f-component>
+
+
+        <f-component id="fmt_smf_rmt.1" name="Remote Management Capabilities">
+          <f-element id="fmt_smf_rmt.1.1">
+            <title>
+	      The OS shall 
+	      <selectables linebreak="yes">
+		<selectable>not allow remote management</selectable>
+		<selectable>
+		  allow management functions also to be performed from a remote IT entity using a trusted channel established in accordance with the requirements stated in <linkref linkend="FTP_ITC.1"/>.
+		</selectable>
+	      </selectables>
+	      .
+      	    </title>
+            <aactivity>
+	      FIXME
+      	    </aactivity>
+      	  </f-element>
+        </f-component>
+
+
+      </subsection>
+
+      <subsection title="Trusted Path/Channels (FTP)" id="ftp">
+        <f-component id="ftp_itc.1" name="Inter-TSF trusted channel">
+          <f-element id=".1.1">
+            <title>
+	      The TSF shall provide a communication channel between itself and another trusted IT product that is logically distinct from other communication channels and provides assured identification of its end points and protection of the channel data from modification or and disclosure using the following mechanisms: Cryptographically-protected communication channel using 
+	      [selection: i.]SSH as defined in RFCs 4251, 4252, 4253, and 4254 with a combination of the following cipher suites defined there: • 3DES-CBC, AES256-CBC, AES128-CBC, [selection: AES192-CBC,] for encryption; • [selection:] for integrity • DIFFIE-HELLMAN-GROUP14-SHA1, [selection:] for key exchange • SSH-DSS, SSH-RSA, [selection:] for public key encryption; 
+              ii. TLS as defined in RFC 5246 using X.509 certificates and supporting the following cipher suites defined there: • TLS_RSA_WITH_AES_128_CBC_SHA • TLS_RSA_WITH_AES_256_CBC_SHA [selection: •]none • TLS_RSA_WITH_AES_128_CBC_SHA256 • TLS_RSA_WITH_AES_256_CBC_SHA256 • TLS_DH_DSS_WITH_AES_128_CBC_SHA • TLS_DH_RSA_WITH_AES_128_CBC_SHA • TLS_DHE_DSS_WITH_AES_128_CBC_SHA • TLS_DHE_RSA_WITH_AES_128_CBC_SHA • TLS_DH_DSS_WITH_AES_256_CBC_SHA • TLS_DH_RSA_WITH_AES_256_CBC_SHA • TLS_DHE_DSS_WITH_AES_256_CBC_SHA • TLS_DHE_RSA_WITH_AES_256_CBC_SHA • TLS_DH_DSS_WITH_AES_128_CBC_SHA256 • TLS_DH_RSA_WITH_AES_128_CBC_SHA256 • TLS_DHE_DSS_WITH_AES_128_CBC_SHA256 • TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 • TLS_DH_DSS_WITH_AES_256_CBC_SHA256 • TLS_DH_RSA_WITH_AES_256_CBC_SHA256 • TLS_DHE_DSS_WITH_AES_256_CBC_SHA256 • TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 • TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 • TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 • TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256 • TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384; IPSEC protocol ESP as defined in RFC 4303 using the cryptographic algorithms: • AES-CBC-128, AES-CBC-256 (both specified by RFC 3602), [selection:] for ESP encryption; • [selection:] for ESP authentication and authentication header protection; • [selection,] for key negotiation and SA establishment; • DH Groups 14 (2048-bit MODP), and [selection:] for use in IKE key establishment; • [selection:] algorithm for Peer Authentication;
+
+      	    </title>
+            <aactivity>
+	      FIXME
+      	    </aactivity>
+      	  </f-element>
+        </f-component>
+      </subsection>
+
+
       <subsection title="User Data Protection (FDP)" id="fdp">
         <f-component id="fdp_dar_ext.1" name="Encryption Of Sensitive Application Data">
           <f-element id="fdp_dar_ext.1.1">
@@ -2034,6 +2093,18 @@ functionality (such as these)
       </subsection>
 
       <subsection title="Audit Data Generation (FAU)" id="fau">
+        <f-component  name="Action in case of possible audit data loss" id="fau_stg.1">
+          <f-element id="fau_stg.1.1">
+            <title>
+      	    </title>
+            <aactivity>
+      
+      	    </aactivity>
+      	  </f-element>
+        </f-component>
+
+
+
         <f-component id="fau_gen.1" name="Audit Data Generation">
           <f-element id="fau_gen.1.1">
             <title>
@@ -2104,6 +2175,7 @@ functionality (such as these)
 	      FIXME
       	    </aactivity>
       	  </f-element>
+        </f-component>
 
         <f-component id="FIA_PK_EXT.1" name="Public key based authentication">
           <f-element id="FIA_PK_EXT.1.1">
@@ -2118,13 +2190,12 @@ functionality (such as these)
 	      to support authentication for [selection:] connections.
       	    </title>
             <aactivity>
-      
+	      FIXME
       	    </aactivity>
       	  </f-element>
         </f-component>
 
 
-        </f-component>
 
         <f-component id="fia_x509_ext.1" name="X.509 Certificate Validation">
           <f-element id="fia_x509_ext.1.1">

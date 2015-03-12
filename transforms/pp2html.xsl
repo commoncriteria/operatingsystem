@@ -11,6 +11,7 @@
   <!-- release variable, overridden to "final" for release versions -->
   <xsl:param name="release" select="'draft'"/>
 
+
   <xsl:param name="appendicize" select="''"/>
 
 
@@ -21,8 +22,11 @@
   <!-- Put all common templates into ppcommons.xsl -->
   <!-- They can be redefined/overridden  -->
   <xsl:include href="ppcommons.xsl"/>
-  
+
+
   <xsl:template match="/cc:PP">
+    <xsl:apply-templates select="//cc:MUSTFIX" />
+
     <html xmlns="http://www.w3.org/1999/xhtml">
       <head>
         <script type="text/javascript">
@@ -850,6 +854,8 @@
       <xsl:apply-templates/>
     </span>
   </xsl:template>
+
+
 
 
 </xsl:stylesheet>

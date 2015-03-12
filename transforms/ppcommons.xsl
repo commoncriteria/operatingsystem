@@ -64,8 +64,19 @@
       <xsl:apply-templates />
     </div>
   </xsl:template>
+
+
+
+  <xsl:template match="cc:MUSTFIX">
+    <xsl:if test="$release!='draft'"> 
+      <xsl:message terminate="yes">
+	Must fix elements must be fixed before a release version can be generated:
+	<xsl:value-of select="text()"/>
+      </xsl:message>
+    </xsl:if>
+  </xsl:template>
   
-  <!-- No comments! -->
+  <!-- Eat all comments! -->
   <xsl:template match="comment()"/>
     
   <xsl:template match="@*|node()">
