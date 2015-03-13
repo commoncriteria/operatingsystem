@@ -25,7 +25,7 @@
 
 
   <xsl:template match="/cc:PP">
-    <xsl:apply-templates select="//cc:MUSTFIX" />
+    <xsl:apply-templates select="//cc:inline-comment" />
 
     <html xmlns="http://www.w3.org/1999/xhtml">
       <head>
@@ -120,7 +120,7 @@
 						border:2px solid  #888888; border-radius:3px; 
 						display: block; 
       }
-      .comment-aa { background-color: green; color: white; };
+      .comment-aa { background-color: beige; color: green; };
       div.subaact       { margin-left: 0%; margin-top: 1em;  }
       div.aacthidden    { margin-left: 0%; margin-top: 1em; margin-bottom: 1em; }    
       div.optional-appendicies { display: none; }

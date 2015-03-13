@@ -65,27 +65,27 @@
     </div>
   </xsl:template>
 
-  <!-- MUST FIX COMMENTS -->
-  <xsl:template match="cc:MUSTFIX">
-    <xsl:if test="$release!='draft'"> 
+  <xsl:template match="cc:inline-comment[@level='critical']">
+    <xsl:if test="$release!='draft'">
       <xsl:message terminate="yes">
-	Must fix elements must be fixed before a release version can be generated:
-	<xsl:value-of select="text()"/>
+    	Must fix elements must be fixed before a release version can be generated:
+    	<xsl:value-of select="text()"/>
       </xsl:message>
     </xsl:if>
   </xsl:template>
 
   <xsl:template match="cc:inline-comment">
+
     <xsl:choose>
       <xsl:when test="@linebreak='yes'">
 	<xsl:element name="div">
-	  <xsl:attribute name="class">comment-<xsl:value-of select="@class"/></xsl:attribute>
+	  <xsl:attribute name="style">background-color: beige; color:<xsl:value-of select="@color"/></xsl:attribute>
 	  <xsl:value-of select="text()"/>
 	</xsl:element>
       </xsl:when>
       <xsl:otherwise>
 	<xsl:element name="span">
-	  <xsl:attribute name="class">comment-<xsl:value-of select="@class"/></xsl:attribute>
+	  <xsl:attribute name="style">background-color: beige; color:<xsl:value-of select="@color"/></xsl:attribute>
 	  <xsl:value-of select="text()"/>
 	</xsl:element>
       </xsl:otherwise>
