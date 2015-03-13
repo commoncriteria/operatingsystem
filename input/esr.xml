@@ -15,46 +15,66 @@
 	</intro>
 
     <section title="Background and Purpose" id="purpose">
-	This section sets the context for not only the ESR, but what is expected of
+	<!-- This section sets the context for not only the ESR, but what is expected of
 	the resulting Protection Profile (PP). The intent is that the remaining
 	sections provide succinct statements that highlight the relevant aspects to
 	be addressed by the Technical Community (TC) constructing the PP. Here, the
 	authors provide a narrative that introduces the reader to the problem being
 	solved, and presents key aspects that support or guide the TC, and may
 	elaborate on subtleties not apparent in the “bulleted” high level
-	statements.
+	statements.-->
+	An operating system is software that manages computer hardware and software
+	resources and provides common services for application programs.  The hardware
+	it manages may be physical or virtual.
+	<p/>
+	The document describes the high-level security requirements for a
+	general-purpose operating system (OS).  The requirements are targeted at
+	mitigating well-defined threats.  Furthermore, the ESR establishes a scope
+	that informs development of the requirements, based on use cases and
+	environmental assumptions.  In addition to stating what properties an OS
+	must minimally exhibit, the ESR also describes functionality that vendors
+	should consider as an extension, but goes beyond the expected minimal
+	baseline. 
+	<p/>
+	This scoping enables delivery of an effective set of security functional
+	requirements in the PP, as well as the evaluation activities
+	performed during the course of evaluation. It ensures that
+	objective and repeatable evaluation activities can be captured in the PP
+	while still delivering a PP in a timely manner. Another factor is to
+	ensure the security functionality prescribed is realistic and 
+	can be achieved by commercially-available products.  
 	</section>
 
     <section title="Use Cases" id="usecases">
-	This section is intended to provide the initial scope/bound of the security
+	<i>This section is intended to provide the initial scope/bound of the security
 	problem by providing the reader with concise statements regarding the
 	scenarios in which the technology is being used. The intended usage
 	presented here should lay the groundwork for the identifying the resources
 	to be protected, and what threats must be considered in the drafting of the
 	Essential Security Requirements (ESR) and for the TC to consider when
-	writing the PP.  
+	writing the PP.  </i>
 	</section>
 
     <section title="Resources to be protected" id="resourcesprotected">
-	This section is intended to provide the initial scope/bound of the security
+	<i>This section is intended to provide the initial scope/bound of the security
 	problem by providing the reader with concise statements regarding the
 	scenarios in which the technology is being used. The intended usage
 	presented here should lay the groundwork for the identifying the resources
 	to be protected, and what threats must be considered in the drafting of the
 	Essential Security Requirements (ESR) and for the TC to consider when
-	writing the PP.  
+	writing the PP.  </i>
 	</section>
 
     <section title="Attacker access" id="attackeraccess">
-	Here the author provides the threat paths that the requirements need to
+	<i>Here the author provides the threat paths that the requirements need to
 	address and mitigate. This includes the type of access an attacker may have
 	to target. This would include whether there is a concern regarding remote
 	or local access to the target, or whether there are special concerns
-	regarding physical access.
+	regarding physical access.</i>
 	</section>
 
     <section title="Essential Security Requirements" id="requirements">
-	This is where the authors present an initial set of English requirements
+	<i>This is where the authors present an initial set of English requirements
 	that specify security functionality, rather than design and/or
 	implementation characteristics. These requirements will provide the
 	foundation for which the detailed set of requirements is derived. It is
@@ -66,13 +86,31 @@
 	security functional requirements. The goal is that there is enough
 	information contained here, as well as the other sections of this document,
 	to provide the TC enough information to ensure they have an understanding
-	of what is minimally required in breath.
+	of what is minimally required in breath.</i>
 	</section>
 
-    <section title="Assumption (optional)" id="assumptions">
-	Simply put, this section presents the aspects of the product and its
+    <section title="Assumptions" id="assumptions">
+	<!--Simply put, this section presents the aspects of the product and its
 	intended environment that can be assumed to hold true. This will provide
-	additional scope on the resulting PP.
+	additional scope on the resulting PP. -->
+	The following assumptions are made for the operating system product and
+	its operational environmental:
+	<ul>
+	<li>The OS implements some functionality upon which its security functionality depends, but which does
+	not require evaluation.  Examples include network time synchronization, process scheduling, and virtual
+	memory management (to include process separation).
+	</li>
+	<li>The OS may or may not be enrolled in management services, depending on its capabilities and
+	its operational configuration.   
+	</li>
+	<li>The OS may or may not be bound to directory services, depending on its
+	capabilities and its operational configuration.  When it is not bound to
+	directory services, the OS provides login for only a single user (or a very
+	limited number of users).
+	</li>
+	<li>The administrator is not malicious in nature.
+	</li>
+	</ul>
 	</section>
 
 
