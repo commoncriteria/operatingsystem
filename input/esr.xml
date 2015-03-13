@@ -74,7 +74,8 @@
 	</section>
 
     <section title="Essential Security Requirements" id="requirements">
-	<i>This is where the authors present an initial set of English requirements
+
+        <i>This is where the authors present an initial set of English requirements
 	that specify security functionality, rather than design and/or
 	implementation characteristics. These requirements will provide the
 	foundation for which the detailed set of requirements is derived. It is
@@ -86,7 +87,53 @@
 	security functional requirements. The goal is that there is enough
 	information contained here, as well as the other sections of this document,
 	to provide the TC enough information to ensure they have an understanding
-	of what is minimally required in breath.</i>
+	of what is minimally required in breath. </i>
+
+
+
+	<p>
+	  The following are the essential security requirements that are expected 
+	  to be implemented by any operating system that is compliant with the 
+	  General Purpose Operating System PP. 
+	</p>
+
+	<p>The Operating System shall:
+	<ul>
+	  <li>
+	    implement best-practice anti-exploitation features to include ASLR, 
+	    Stack Canaries/Cookies, and Data Execution Protection to protect 
+	    itself and its applications.
+	  </li>
+	  <li>
+	    provide the following cryptographic services:
+	    <ul>
+	      <li>Asymmetric key generation</li>
+	      <li>Symmetric key encryption and decryption </li>
+	      <li>Deterministic random bit generation (DRBG)</li>
+	      <li>Cryptographic hashing </li>
+	      <li>Cryptographic signing</li>
+	      <li>Keyed-hash message authentication</li>
+	      <li>TLS support</li>
+	    </ul>
+	  </li>
+	  <li>
+	    provide a trusted update mechanism to update itself, applications, and,
+	    optionally, firmware for the platform it runs on.
+	  </li>
+	  <li>
+	    provide strong authentication mechanisms.
+	  </li>
+	  <li>
+	    leverage trusted or secure boot process.
+	  </li>
+	  <li>
+	    use good auditing and provide mechanism for secure transmission of audit data.
+	  </li>
+	  <li>
+	    provide mechanisms for management by user, enterprise, or other.
+	  </li>
+	</ul>
+	</p>
 	</section>
 
     <section title="Assumptions" id="assumptions">
@@ -110,9 +157,14 @@
 	operational choice.  When it is not bound to directory services, the OS
 	provides login for only a single user, or a very limited number of users.
 	</li>
+	<li>
+	</li>
+
 	<li>Administrators are not malicious in nature.
 	</li>
 	<li>Users are not malicious in nature.
+	</li>
+	<li>Installed software is not developed to be malicious.
 	</li>
 	</ul>
 	</section>

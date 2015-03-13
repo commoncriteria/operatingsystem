@@ -75,7 +75,6 @@
   </xsl:template>
 
   <xsl:template match="cc:inline-comment">
-
     <xsl:choose>
       <xsl:when test="@linebreak='yes'">
 	<xsl:element name="div">
