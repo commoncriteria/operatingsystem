@@ -32,7 +32,10 @@ version="1.0">
 						box-shadow: 2px 2px 2px #888888;
   						text-align:center; vertical-align:middle; 
 						font-family: arial, helvetica, sans-serif; 
-	}
+	  }
+	  ul,ol             { margin-bottom: 0.5em; margin-top: 0.5em; }
+	  li                { margin-bottom: 0.5em; margin-top: 0.25em; }
+
       
   </style>
   </head>
