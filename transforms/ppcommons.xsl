@@ -65,8 +65,7 @@
     </div>
   </xsl:template>
 
-
-
+  <!-- MUST FIX COMMENTS -->
   <xsl:template match="cc:MUSTFIX">
     <xsl:if test="$release!='draft'"> 
       <xsl:message terminate="yes">
@@ -74,6 +73,24 @@
 	<xsl:value-of select="text()"/>
       </xsl:message>
     </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="cc:inline-comment">
+    <xsl:choose>
+      <xsl:when test="@linebreak='yes'">
+	<xsl:element name="div">
+	  <xsl:attribute name="class">comment-<xsl:value-of select="@class"/></xsl:attribute>
+	  <xsl:value-of select="text()"/>
+	</xsl:element>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:element name="span">
+	  <xsl:attribute name="class">comment-<xsl:value-of select="@class"/></xsl:attribute>
+	  <xsl:value-of select="text()"/>
+	</xsl:element>
+      </xsl:otherwise>
+    </xsl:choose>
+
   </xsl:template>
   
   <!-- Eat all comments! -->

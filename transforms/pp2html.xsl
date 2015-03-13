@@ -120,6 +120,7 @@
 						border:2px solid  #888888; border-radius:3px; 
 						display: block; 
       }
+      .comment-aa { background-color: green; color: white; };
       div.subaact       { margin-left: 0%; margin-top: 1em;  }
       div.aacthidden    { margin-left: 0%; margin-top: 1em; margin-bottom: 1em; }    
       div.optional-appendicies { display: none; }
