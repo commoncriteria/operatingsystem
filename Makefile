@@ -29,6 +29,9 @@ simplified: $(SIMPLIFIED)
 $(SIMPLIFIED): $(TRANS)/pp2simplified.xsl $(PP_XML)
 	xsltproc --stringparam release final -o $(SIMPLIFIED) $(TRANS)/pp2simplified.xsl $(PP_XML)
 
+spellcheck:
+	hunspell -d en_GB -H -p schema/Dictionary.txt input/*.xml
+
 schema/operatingsystem.rnc: schema/operatingsystem.rng
 	trang -I rng -O rnc  schema/operatingsystem.rng schema/operatingsystem.rnc
 
