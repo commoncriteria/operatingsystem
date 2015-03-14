@@ -1,4 +1,4 @@
-operatingsystem
+Operating System
 ===============
 
-Brainstorming Area for Protection Profile for Operating Systems
+Protection Profile for Operating Systems
