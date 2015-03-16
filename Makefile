@@ -17,10 +17,10 @@ spellcheck: $(ESR_HTML) $(PP_HTML)
 	hunspell -l -H -p validators/Dictionary.txt $(PP_HTML) ) | sort
 #	hunspell -l -d en_GB -H -p validators/Dictionary.txt input/cc.xml
 
-spellcheck-esr:
+spellcheck-esr: $(ESR_HTML)
 	hunspell -l -H -p validators/Dictionary.txt $(ESR_HTML)	
 
-spellcheck-os:
+spellcheck-os:  $(PP_HTML)
 	hunspell -l -H -p validators/Dictionary.txt $(PP_HTML)
 
 
