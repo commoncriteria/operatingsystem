@@ -12,11 +12,16 @@ PP_RELEASE_HTML=$(OUT)/operatingsystem-release.html
 all: $(TABLE) $(SIMPLIFIED) $(PP_HTML) $(ESR_HTML)
 
 spellcheck: $(ESR_HTML) $(PP_HTML)
-	( hunspell -l -H -p validators/Dictionary.txt $(ESR_HTML) &&\
+	( 
+	hunspell -l -H -p validators/Dictionary.txt $(ESR_HTML) &&\
 	hunspell -l -H -p validators/Dictionary.txt $(PP_HTML) ) | sort
 #	hunspell -l -d en_GB -H -p validators/Dictionary.txt input/cc.xml
 
+spellcheck-esr:
+	hunspell -l -H -p validators/Dictionary.txt $(ESR_HTML)	
 
+spellcheck-os:
+	hunspell -l -H -p validators/Dictionary.txt $(PP_HTML)
 
 
 pp:$(PP_HTML)
