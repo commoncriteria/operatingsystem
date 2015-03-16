@@ -11,6 +11,14 @@ PP_OP_HTML=$(OUT)/operatingsystem-optionsappendix.html
 PP_RELEASE_HTML=$(OUT)/operatingsystem-release.html
 all: $(TABLE) $(SIMPLIFIED) $(PP_HTML) $(ESR_HTML)
 
+spellcheck: $(ESR_HTML) $(PP_HTML)
+	( hunspell -l -H -p validators/Dictionary.txt $(ESR_HTML) &&\
+	hunspell -l -H -p validators/Dictionary.txt $(PP_HTML) ) | sort
+#	hunspell -l -d en_GB -H -p validators/Dictionary.txt input/cc.xml
+
+
+
+
 pp:$(PP_HTML)
 $(PP_HTML):  $(TRANS)/pp2html.xsl $(PP_XML)
 	xsltproc -o $(PP_HTML) $(TRANS)/pp2html.xsl $(PP_XML)
@@ -28,9 +36,6 @@ $(TABLE): $(TRANS)/pp2table.xsl $(PP_XML)
 simplified: $(SIMPLIFIED)
 $(SIMPLIFIED): $(TRANS)/pp2simplified.xsl $(PP_XML)
 	xsltproc --stringparam release final -o $(SIMPLIFIED) $(TRANS)/pp2simplified.xsl $(PP_XML)
-
-spellcheck:
-	hunspell -d en_GB -H -p schema/Dictionary.txt input/*.xml
 
 schema/operatingsystem.rnc: schema/operatingsystem.rng
 	trang -I rng -O rnc  schema/operatingsystem.rng schema/operatingsystem.rnc
