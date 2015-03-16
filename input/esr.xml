@@ -5,7 +5,7 @@
 
 	<intro>
 		<esrtitle>Operating System Fundamentals</esrtitle>
-		<maintainer>National Information Assurance Partnership and Communications-Electronics Security Group</maintainer>
+		<maintainer>National Information Assurance Partnership (US) and Communications-Electronics Security Group (UK)</maintainer>
 		<identifier>42</identifier>
 		<version>0.1</version>
 		<status>draft</status>
@@ -24,27 +24,33 @@
 	elaborate on subtleties not apparent in the “bulleted” high level
 	statements.-->
 	An operating system is software that manages computer hardware and software
-	resources and provides common services for application programs.  The hardware
-	it manages may be physical or virtual.
+	resources, and provides common services for application programs.  The hardware
+	it manages may be physical or virtual.  
 	<p/>
-	The document describes the high-level security requirements for a
-	general-purpose operating system (OS).  The requirements are targeted at
-	mitigating well-defined threats.  Furthermore, the ESR establishes a scope
-	that informs development of the requirements, based on use cases and
-	environmental assumptions.  In addition to stating what properties an OS
-	must minimally exhibit, the ESR also describes functionality that vendors
-	should consider as extensions that go beyond the expected minimal
-	baseline. 
+	This essential security requirements (ESR) document outlines the high-level
+	security requirements for a general-purpose operating system (OS), which will
+	be expressed in a Common Criteria Protection Profile (PP).  These
+	requirements address threats within a scope established by use cases and
+	environment assumptions.  In addition to stating what properties an OS must
+	minimally exhibit, this document also identifies functionality that vendors
+	should consider as extensions that go beyond the expected minimal baseline,
+	and which may be appropriate in more-specific use cases. 
 	<p/>
-	This scoping enables delivery of an effective set of security functional
-	requirements in the PP, as well as the evaluation activities
-	performed during the course of evaluation. It ensures that
-	objective and repeatable evaluation activities can be captured in the PP
-	while still delivering a PP in a timely manner. Another factor is to
-	ensure that the security functionality prescribed is realistic and 
-	can be achieved by commercially-available products. Finally, the 
-	evaluation must be able to be executed in a manner that tracks
-	with industry's release of operating system products.
+	The security functionality must be realistic and achievable by
+	commercially-available products.  The resulting PP will also include objective and
+	repeatable evaluation activities, so that evaluations can be executed in a
+	manner that tracks with industry's release of operating system products.
+	<p/>
+	With regard to evaluation scope, the operating system itself is composed of the
+	software that is delivered to the end user in the operating system product.
+	This typically includes a kernel and drivers that run with elevated
+	privileges, common software libraries, and a great deal of application
+	software which runs with varying levels of privileges.  Many of these
+	applications provide security services and are an essential part of the
+	operating system product.  However, applications which are covered by
+	more-specific Protection Profiles should not be claimed to be evaluated as
+	part of the OS evaluation, even when it is necessary to evaluate some of
+	their functionality as it relates to their role as part of the OS.
 	</section>
 
     <section title="Use Cases" id="usecases">
@@ -67,11 +73,22 @@
 	</section>
 
     <section title="Resources to be protected" id="resourcesprotected">
-      <p>
-	Platform resources that are managed by the OS to include network interfaces.
-	Sensitive data that by necessity must be stored in non-volatile memory, whether owned by the application or consumed from the Operational Environment.
-	All resources that compromise the OS itself.
-      </p>
+	<p>
+	<ul>	
+	<li>Platform hardware resources managed by the OS to include network
+	interfaces, microphones, and storage media. Uncontrolled access to these
+	resources would undermine the system security.
+	</li>
+	<li>Sensitive user data (e.g. home directories).</li>
+	<li>Sensitive system data (e.g. account information, audit files, configuration files).
+	</li>
+	<li>Resources that compromise the OS itself, upon which its integrity
+	depends.  This includes files such as the kernel and its drivers,
+	privileged applications which provide services to other applications, and
+	shared software libraries.
+	</li>
+	</ul>	
+	</p>
 	<!-- <i>This section is intended to provide the initial scope/bound of the security -->
 	<!-- problem by providing the reader with concise statements regarding the -->
 	<!-- scenarios in which the technology is being used. The intended usage -->
@@ -82,12 +99,38 @@
 	</section>
 
     <section title="Attacker access" id="attackeraccess">
-      <ul>
-	<li>An attacker has an arbitrary amount of time to analyze the behavior of the OS, its interaction with its platform, and the data it transmits over the network.</li>
-
-	<li> An attacker is able to acquire their own copy of the target OS and study its behavior on a platform that they own.</li>
-      </ul>
-
+	The following assumptions are made about attackers' ability to develop
+	attacks:
+	<ul>
+	<li>An attacker has an arbitrary amount of time to analyze the behavior of
+	the OS, its interaction with its platform, and the data it transmits over
+	the network.</li>
+	<li>An attacker is able to acquire their own copy of the target OS and
+	study its behavior on a platform that they control.</li>
+	</ul>
+	<p/>
+	The attacker is expected to engage in the following general classes of attack:
+	<!-- added in order to allow for rather direct flow to Threats section in PP -->
+	<ul>
+	<li>Network eavesdropping, in which an attacker may monitor and gain access
+	to data exchanged between the OS and other endpoints.</li>
+	<li>Network attack, in which an attacker may initiate malicious communications with the
+	OS or alter communications between the OS and other endpoints.</li>
+	<li>Local attack, in which an attacker has gained the ability to execute code on the system,
+	which may be leveraged to escalate privilege or access data without authorization.
+	</li>
+	<li>Limited physical access, in which an attacker may attempt to access
+	data on the system by virtue of being physically present for a limited
+	period of time.  This limited physical access does not include attacks in
+	which the attacker could disassemble the system to gain access to its
+	storage media or manipulate the OS's underlying platform.  Systems such as laptops,
+	for which limited physical access may not always be a realistic assumption, should
+	apply additional protections which are provided by products evaluated against other
+	Protection Profiles (e.g. FDE cPP).
+	</li>
+	<li>Persistence, in which an attacker has already exploited the system and wishes
+	to maintain presence on the system.</li>
+	</ul>
     </section>
 
     <section title="Essential Security Requirements" id="requirements">
@@ -109,15 +152,11 @@
 
 
 	<p>
-	  The following are the essential security requirements that are expected 
-	  to be implemented by any operating system that is compliant with the 
-	  General Purpose Operating System PP. 
-	</p>
-
-	<p>The Operating System shall:
+	  The following are the essential security requirements expected 
+	  to be implemented by an operating system within the established scope:
 	<ul>
 	  <li>
-	    implement best-practice anti-exploitation features to include ASLR, 
+	    implement anti-exploitation features to include ASLR, 
 	    Stack Canaries/Cookies, and Data Execution Protection to protect 
 	    itself and its applications.
 	  </li>
@@ -144,10 +183,14 @@
 	    leverage trusted or secure boot process.
 	  </li>
 	  <li>
-	    use good auditing and provide mechanism for secure transmission of audit data.
+	    audit security-relevant events and provide mechanism for secure transmission of audit data.
 	  </li>
 	  <li>
-	    provide mechanisms for management by user, enterprise, or other.
+	    provide mechanisms for management by the user and enterprise, to include optionally binding to:
+		<ul>
+		<li>directory servers, which provide support for multi-user login and sophisticated password policies</li>
+		<li>management servers, which provide support for applying enterprise security policies</li>
+		</ul>
 	  </li>
 	</ul>
 	</p>
@@ -160,23 +203,22 @@
 	The following assumptions are made for the operating system product and
 	its operational environmental:
 	<ul>
-        <li> The platform is physically protected. The hardware that the OS 
-	manages is secured by an adequate number of defensive measures that make physical
-	attacks impractical.
+    <li>The underlying platform is physically protected, to a large extent. The hardware that the OS 
+	manages is secured by defensive measures that make physical
+	attacks impractical for most attackers.  At the same time, casual passersby might
+	attempt to trivially access the system.
 	</li>
 	<li>The OS implements some security-relevant functionality which does
 	not require evaluation. Examples include network time synchronization, process scheduling, and virtual
 	memory management (to include process separation).
 	</li>
-	<li>The capability of the OS to be managed by the enterprise is optional.
-	Enterprise management does not increase or decrease overall risk exposure.
-	Enterprise management, if supported, represents an operational choice.
-	</li>
-	<li>The capability of the OS to bind to directory services is optional.
-	Binding to directory services does not increase or decrease overall risk
-	exposure.  Binding to directory services, if supported, represents an
-	operational choice.  When it is not bound to directory services, the OS
-	provides login for only a single user, or a very limited number of users.
+	<li>Depending on configuration and capability, the OS may or may not be:
+	<ul>
+	<li>configuration-managed by the enterprise</li>
+	<li>bound to directory services to support multi-user login</li>
+	These do not fundamentally increase or decrease overall risk
+	exposure, and represent operational choices.
+	</ul>
 	</li>
 	<li>The OS runs application software developed by a third-party.
 	The applications are not intentionally developed to be malicious, but can
@@ -187,9 +229,10 @@
 	the platform is connected to other entities.
 	Other entities on the network are not inherently trustable.
 	</li>
-
 	<li>Administrators are not malicious in nature.</li>
-	<li>Users are not malicious in nature.</li>
+	<li>Users are not malicious in nature. Their behavior may not always be
+	conscientious, but their intention is not to intentionally betray system
+	security.</li>
 	</ul>
 	</section>
 
