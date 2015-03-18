@@ -330,7 +330,8 @@
         <assumption id="A.PLATFORM">
           <description>The <abbr linkend="TOE"/> relies upon a trustworthy computing platform for
             its execution. This includes the underlying platform and whatever runtime environment
-            it provides to the <abbr linkend="TOE"/>. This underlying runtime environment is out of scope of this PP</description>
+            it provides to the <abbr linkend="TOE"/>. This underlying runtime environment is out of scope of this PP. 
+            Only vendor supplied install images should be used when building and deploying an operating system.</description>
           <objective-refer ref="OE.PLATFORM">
             <rationale>The operational environment objective OE.PLATFORM is realized through
 			  A.PLATFORM.</rationale>
@@ -447,6 +448,31 @@
           <component-refer ref="fcs_dtls_ext.1"/>
           <component-refer ref="fcs_rbg_ext.1"/>
         </SO>
+        
+        <SO id="O.HARDWARE_CONTROL">
+          <description>To address the issue of direct memory attacks, the TOE will provide a mechinusum to control external 
+            conectivity that is present due to
+          underlying hardware (E.G., the abiltiy to disable FireWire ports)</description>
+          <component-refer ref="x"/>
+        </SO>        
+        
+        <SO id="O.SECURE_AUTHENTICATION">
+          <description>To ensure that devices,users, and sevices can authenticate to other services or endpoints, the OS will provide
+          secure and robust authentication mechanicums. Leverging this platform behaviour relies upon only using documented and supported APIs</description>
+          <component-refer ref="x"/>
+        </SO>                
+        
+        <SO id="O.APPLICATION_WHITELISTING">
+          <description>The operating system will provide the ability to control application execution within the os exection environment via a whitelist. The
+           os will also provide a mechanisum to configure this whitelist.</description>
+          <component-refer ref="x"/>
+        </SO> 
+        
+        <SO id="O.MALICIOUS_CODE_DETECTION">
+          <description>To address the issue of malicious code gaining execution within the os, the operating system will provide the ability to detect, isolate, and defeat malicious code which has gained execution on it</description>
+          <component-refer ref="x"/>
+        </SO>         
+        
       </SOs>
     </section>
     <section title="Security Objectives for the Operational Environment"
@@ -454,13 +480,16 @@
       environment assist the <abbr linkend="TOE"/> in correctly providing its security
       functionality. These track with the assumptions about the environment. <SOEs>
         <SOE id="OE.PLATFORM">
-          <description>The <abbr linkend="TOE"/> relies upon a </description>
+          <description>The <abbr linkend="TOE"/> relies on being installed on trusted hardware</description>
         </SOE>
         <SOE id="OE.PROPER_USER">
           <description>
 	    The user of the OS is not willfully negligent or hostile,
             and uses the software within compliance of the applied enterprise security
             policy.
+            
+            Standard user accounts will be provisioned in accordance with the least privilge model. Users requiring higher levels of access
+            should have a seperate account dedicated for that use.
 	  </description>
         </SOE>
         <SOE id="OE.PROPER_ADMIN">
