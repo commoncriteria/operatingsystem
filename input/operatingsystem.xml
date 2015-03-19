@@ -96,8 +96,7 @@
           <entry>
             <term><abbr title="Application">app</abbr></term>
             <description>Software that runs on a platform and performs tasks on behalf of
-              the user or owner of the platform, as well as its supporting documentation. The 
-              terms <i>TOE</i> and <i>OS</i> are interchangeable in this document.
+              the user or owner of the platform, as well as its supporting documentation.
               </description>
           </entry>
           <entry>
@@ -127,7 +126,8 @@
           <entry>
             <term><abbr title="Operating System">OS</abbr></term>
             <description>Software that manages hardware resources and provides services for
-              applications.</description>
+              applications.
+              The terms <i>TOE</i> and <i>OS</i> are interchangeable in this document.</description>
           </entry>
           <entry>
             <term><abbr title="Personally Identifiable Information">PII</abbr></term>
@@ -169,14 +169,52 @@
     </section>
     <section title="Use Cases" id="usecases">Requirements in this Protection Profile are designed to
       address the security problem in the following use cases. These use cases are intentionally
-      very broad, as many specific use cases exist for application software. Many applications may
-      be used in combinations of these broad use cases, and evaluation against Extended
-	  Packages of this PP, when available, may be most appropriate for some application types. 
-	  <usecases>
-            <usecase title="Content Creation" id="contentcreation">
-              <description></description>
-            </usecase>
-	  </usecases>
+      very broad, as many specific use cases exist for an operating system. An operating system's functionality may be extended by multiple
+      different applications running on top of it. However, these are out of scope of this PP.
+      <usecases>
+        <usecase title="Application Execution" id="applicationexecution">
+          <description>The operating system allows software developed for its architecture to execute within the confines of its specifications</description>
+        </usecase>
+        
+        <usecase title="Enterprise Controlled Environments" id="enterprisecontrolledenvironments">
+          <description>The operating system should provide the ability for an enterprise to remotely deploy configuration and manage the OS</description>
+        </usecase>
+
+        <!-- not sure these belong here?
+        <usecase title="Hardware Control" id="hardwarecontorl">
+          <description>The operating system should provide an abstraction layer between host hardware and applications running within its execution environment</description>
+        </usecase>
+        
+        <usecase title="Secure Encryption Primitives" id="secureencryptionprimiteves">
+          <description>The operating system should provide an API to its own encryption primitives that applications can use</description>
+        </usecase>
+        
+        <usecase title="Secure Authentication" id="secureauthentication">
+          <description>The operating system should provide methods for users,services, and devices to securly authenticate to other endpoints or services</description>
+        </usecase>
+        
+        <usecase title="Platform Integrity" id="platformintegrity">
+          <description>The operating stysem should contiue to operaty securly despite potentila comporomise of an application or component within the platform. 
+            The operating system should also provide the abiltiy to restrict application capabilities.</description>
+        </usecase>
+        
+        <usecase title="Application Whitelisting" id="applicationwhitelisting">
+          <description>The oeprating system should provide the ability to control application execution on the device via a whitelist.</description>
+        </usecase>
+        
+        <usecase title="Malicious Code Detection" id="maliciouscodedetection">
+          <description>The operating system should provide the ability to detect, isolate, and defeat malicious code which has gained execution on it</description>
+        </usecase>
+        
+        <usecase title="Enterprise Deployments" id="enterprisedeployments">
+          <description>The operating system will provide a secure mechanisum to allow an enterprise to securely configure and manage devices</description>
+        </usecase>
+        -->
+
+        <usecase title="A-N-OTHER" id="another">
+          <description>probably more...fixme</description>
+        </usecase>        
+      </usecases>
     </section>
   </chapter>
   <chapter title="Conformance Claims" id="ccl">
@@ -223,7 +261,7 @@
         <threat id="T.NETWORK_ATTACK">
           <description>An attacker is positioned on a communications channel or elsewhere on the
             network infrastructure. Attackers may engage in communications with the OS
-            software or alter communications between the OS software and other endpoints in
+            or alter communications between the OS and other endpoints in
             order to compromise it.</description>
           <objective-refer ref="O.PROTECTED_COMMS">
             <rationale>The threat T.NETWORK_ATTACK is countered by O.PROTECTED_COMMS as this
@@ -268,6 +306,16 @@
 			attack by other software on the platform.</rationale>
           </objective-refer>
         </threat>
+        
+        <!-- update to include an object here -->
+        <threat id="T.DIRECT_MEMORY_ATTACK">
+          <description>An attacker may try to access sensitive data using a direct memory attack (E.G., via FireWire).</description>
+          <objective-refer ref="O.PROTECTED_STORAGE">
+            <rationale>The objective xxxxx protects against unauthorized attempts to access
+              physical memory used by the <abbr linkend="TOE"/>.</rationale>
+          </objective-refer>
+        </threat>        
+        
         <threat id="T.PHYSICAL_ACCESS">
           <description>An attacker may try to access sensitive data at rest.</description>
           <objective-refer ref="O.PROTECTED_STORAGE">
@@ -282,7 +330,8 @@
         <assumption id="A.PLATFORM">
           <description>The <abbr linkend="TOE"/> relies upon a trustworthy computing platform for
             its execution. This includes the underlying platform and whatever runtime environment
-            it provides to the <abbr linkend="TOE"/>.</description>
+            it provides to the <abbr linkend="TOE"/>. This underlying runtime environment is out of scope of this PP. 
+            Only vendor supplied install images should be used when building and deploying an operating system.</description>
           <objective-refer ref="OE.PLATFORM">
             <rationale>The operational environment objective OE.PLATFORM is realized through
 			  A.PLATFORM.</rationale>
@@ -307,9 +356,20 @@
 			is realized through A.PROPER_ADMIN.</rationale>
           </objective-refer>
         </assumption>
+        
+        <!-- update to include the OE and The A reference-->
+        <assumption id="A.LEAST_PRIVILEGE">
+          <description>The testing of the TOE should be undertaken using a standard user account with standard user privilegs</description>
+          <objective-refer ref="OE.LEAST_PRIVILEGE">
+            <rationale>Testing the OS as a least privilege user account ensures that the security controls required cannot be bypassed in normal deployment
+              scenarios. This objective is realized through A.LEAST_PRIVILEGE.</rationale>
+          </objective-refer>
+        </assumption>        
+        
       </assumptions>
     </section>
     <section title="Organizational Security Policies" id="OSPs">
+    <!-- not sure why this is commented out? -->
     <!--   <OSPs>
         <OSP id="P.ENTERPRISE">
           <description>The configuration of the OS software must be capable of adhering to
@@ -388,6 +448,31 @@
           <component-refer ref="fcs_dtls_ext.1"/>
           <component-refer ref="fcs_rbg_ext.1"/>
         </SO>
+        
+        <SO id="O.HARDWARE_CONTROL">
+          <description>To address the issue of direct memory attacks, the TOE will provide a mechinusum to control external 
+            conectivity that is present due to
+          underlying hardware (E.G., the abiltiy to disable FireWire ports)</description>
+          <component-refer ref="x"/>
+        </SO>        
+        
+        <SO id="O.SECURE_AUTHENTICATION">
+          <description>To ensure that devices,users, and sevices can authenticate to other services or endpoints, the OS will provide
+          secure and robust authentication mechanicums. Leverging this platform behaviour relies upon only using documented and supported APIs</description>
+          <component-refer ref="x"/>
+        </SO>                
+        
+        <SO id="O.APPLICATION_WHITELISTING">
+          <description>The operating system will provide the ability to control application execution within the os exection environment via a whitelist. The
+           os will also provide a mechanisum to configure this whitelist.</description>
+          <component-refer ref="x"/>
+        </SO> 
+        
+        <SO id="O.MALICIOUS_CODE_DETECTION">
+          <description>To address the issue of malicious code gaining execution within the os, the operating system will provide the ability to detect, isolate, and defeat malicious code which has gained execution on it</description>
+          <component-refer ref="x"/>
+        </SO>         
+        
       </SOs>
     </section>
     <section title="Security Objectives for the Operational Environment"
@@ -395,13 +480,16 @@
       environment assist the <abbr linkend="TOE"/> in correctly providing its security
       functionality. These track with the assumptions about the environment. <SOEs>
         <SOE id="OE.PLATFORM">
-          <description>The <abbr linkend="TOE"/> relies upon a </description>
+          <description>The <abbr linkend="TOE"/> relies on being installed on trusted hardware</description>
         </SOE>
         <SOE id="OE.PROPER_USER">
           <description>
 	    The user of the OS is not willfully negligent or hostile,
             and uses the software within compliance of the applied enterprise security
             policy.
+            
+            Standard user accounts will be provisioned in accordance with the least privilge model. Users requiring higher levels of access
+            should have a seperate account dedicated for that use.
 	  </description>
         </SOE>
         <SOE id="OE.PROPER_ADMIN">
