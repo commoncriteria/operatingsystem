@@ -172,18 +172,16 @@
       very broad, as many specific use cases exist for an operating system. An operating system's functionality may be extended by multiple
       different applications running on top of it. However, these are out of scope of this PP.
       <usecases>
-        <usecase title="Application Execution" id="applicationexecution">
-          <description>The operating system allows software developed for its architecture to execute within the confines of its specifications</description>
+        <usecase title="End User Devices" id="enduserdevices">
+          <description>The OS should provide a platform to end user devices such as desktops, laptops and tablets. 
+            These devices may optionally be bound to a directory server or managment server.</description>
         </usecase>
-        
-        <usecase title="Enterprise Controlled Environments" id="enterprisecontrolledenvironments">
-          <description>The operating system should provide the ability for an enterprise to remotely deploy configuration and manage the OS</description>
+        <usecase title="Server Systems" id="serversystems">
+          <description>The OS should provide a platform to provide server side services, either on physical or virtual hardware</description>
         </usecase>
-        
-        <usecase title="A-N-OTHER" id="another">
-          <description>probably more...fixme</description>
-        </usecase>   
-        
+        <usecase title="Cloud Systems" id="cloudsystems">
+          <description>The OS should provide a platform for providing cloud services running on virtual hardware</description>
+        </usecase>
       </usecases>
     </section>
   </chapter>
@@ -277,8 +275,8 @@
           </objective-refer>
         </threat>
          
-        <threat id="T.PHYSICAL_ACCESS">
-          <description>An attacker may try to access sensitive data at rest.</description>
+        <threat id="T.LIMITED_PHYSICAL_ACCESS">
+          <description>An attacker may attempt to access data on the system while having a limited amount of time with the physical device</description>
           <objective-refer ref="O.PROTECTED_STORAGE">
             <rationale>The objective O.PROTECTED_STORAGE protects against unauthorized attempts to access
               physical storage used by the <abbr linkend="TOE"/>.</rationale>
@@ -318,30 +316,20 @@
           </objective-refer>
         </assumption>
         
-        <!-- update to include the OE and The A reference-->
-        <assumption id="A.LEAST_PRIVILEGE">
-          <description>The testing of the TOE should be undertaken using a standard user account with standard user privilegs</description>
-          <objective-refer ref="OE.LEAST_PRIVILEGE">
-            <rationale>Testing the OS as a least privilege user account ensures that the security controls required cannot be bypassed in normal deployment
-              scenarios. This objective is realized through A.LEAST_PRIVILEGE.</rationale>
-          </objective-refer>
-        </assumption>        
-        
       </assumptions>
     </section>
     <section title="Organizational Security Policies" id="OSPs">
-    <!-- not sure why this is commented out? -->
-    <!--   <OSPs>
+   <OSPs>
         <OSP id="P.ENTERPRISE">
-          <description>The configuration of the OS software must be capable of adhering to
-            the enterprise security policy.</description>
+          <description>If the OS is bound to a directory or management server, the configuration of the OS software 
+            must be capable of adhering to the enterprise security policies distributed by them.</description>
           <objective-refer ref="O.MANAGEMENT">
             <rationale>The organizational security policy P.ENTERPRISE is enforced through the
               objective O.MANAGEMENT as this objective represents how the enterprise and user assert
               management over the <abbr linkend="TOE"/>.</rationale>
           </objective-refer>
         </OSP>
-      </OSPs> -->
+      </OSPs>
     </section>
   </chapter>
   <chapter title="Security Objectives" id="obj">
@@ -382,7 +370,7 @@
               linkend="TOE"/>s provide consistent and supported interfaces for their
             security-relevant configuration and maintenance. This includes the deployment of
             applications and application updates through the use of platform-supported deployment
-            mechanisms and formats, as well as providing mechanisms for configuration.</description>
+            mechanisms and formats, as well as providing mechanisms for configuration and application execution control.</description>
           <component-refer ref="fmt_smf.1"/>
           <component-refer ref="fpt_idv_ext.1"/>
           <component-refer ref="fpt_tud_ext.1.5"/>
@@ -408,32 +396,7 @@
           <component-refer ref="fcs_tlsc_ext.1"/>
           <component-refer ref="fcs_dtls_ext.1"/>
           <component-refer ref="fcs_rbg_ext.1"/>
-        </SO>
-        
-        <SO id="O.HARDWARE_CONTROL">
-          <description>To address the issue of direct memory attacks, the TOE will provide a mechinusum to control external 
-            conectivity that is present due to
-          underlying hardware (E.G., the abiltiy to disable FireWire ports)</description>
-          <component-refer ref="x"/>
         </SO>        
-        
-        <SO id="O.SECURE_AUTHENTICATION">
-          <description>To ensure that devices,users, and sevices can authenticate to other services or endpoints, the OS will provide
-          secure and robust authentication mechanicums. Leverging this platform behaviour relies upon only using documented and supported APIs</description>
-          <component-refer ref="x"/>
-        </SO>                
-        
-        <SO id="O.APPLICATION_WHITELISTING">
-          <description>The operating system will provide the ability to control application execution within the os exection environment via a whitelist. The
-           os will also provide a mechanisum to configure this whitelist.</description>
-          <component-refer ref="x"/>
-        </SO> 
-        
-        <SO id="O.MALICIOUS_CODE_DETECTION">
-          <description>To address the issue of malicious code gaining execution within the os, the operating system will provide the ability to detect, isolate, and defeat malicious code which has gained execution on it</description>
-          <component-refer ref="x"/>
-        </SO>         
-        
       </SOs>
     </section>
     <section title="Security Objectives for the Operational Environment"
