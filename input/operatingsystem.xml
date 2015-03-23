@@ -290,7 +290,7 @@
           <description>The <abbr linkend="TOE"/> relies upon a trustworthy computing platform for
             its execution. This includes the underlying platform and whatever runtime environment
             it provides to the <abbr linkend="TOE"/>. This underlying runtime environment is out of scope of this PP. 
-            Only vendor supplied install images should be used when building and deploying an operating system.</description>
+          </description>
           <objective-refer ref="OE.PLATFORM">
             <rationale>The operational environment objective OE.PLATFORM is realized through
 			  A.PLATFORM.</rationale>
@@ -976,7 +976,7 @@
                 derive the keying material DKM, and compare hashes or MAC tags generated from 
                 these values.
                 <br />
-                If key confirmation is supported, the TSF shall perform the above for each implemented 
+                If key confirmation is supported, the OS shall perform the above for each implemented 
                 approved MAC algorithm.
                 <br />
                 <b>Validity Test</b><p/>
@@ -1202,7 +1202,7 @@ functionality (such as these)
 			The evaluator checks the AGD documents to determine that any configuration that 
 			is required to be done to configure the functionality for the required modes
 			and key sizes is present. The evaluator shall perform all of the 
-			following tests for each algorithm implemented by the TSF and used to
+			following tests for each algorithm implemented by the OS and used to
 			satisfy the requirements of this PP:
 			<br/>
               <b>AES-CBC Known Answer Tests</b>
@@ -1540,7 +1540,7 @@ functionality (such as these)
               in the <abbr linkend="ST"/>.
             <br/>
             For each of the supported parameter sets, the evaluator shall compose 15 sets of test data.
-			Each set shall consist of a key and message data.  The evaluator shall have the TSF generate
+			Each set shall consist of a key and message data.  The evaluator shall have the OS generate
 			HMAC tags for these sets of test data.  The resulting MAC tags shall be compared to the 
 			result of generating HMAC tags with the same key and IV using a known-good implementation.
             </aactivity>
@@ -2007,7 +2007,7 @@ functionality (such as these)
         <f-component id="fmt_mof.1" name="Management of security functions behavior">
           <f-element id="fmt_mof.1.1">
             <title>
-	      The TSF shall restrict the ability to modify the behavior of the functions password based user authentication to [assignment: rules that need to be satisfied for other users to perform the operations] by allowing those users to specify rules for acceptable passwords that: 
+	      The OS shall restrict the ability to modify the behavior of the functions password based user authentication to [assignment: rules that need to be satisfied for other users to perform the operations] by allowing those users to specify rules for acceptable passwords that: 
 	      <ul>
 		<li>allow for uppercase characters, lowercase characters, digits, and special characters to be used in passwords </li>
 		<li>define a minimum password length of 8 characters or more (at least up to 15 character</li>
@@ -2048,7 +2048,7 @@ functionality (such as these)
         <f-component id="ftp_itc.1" name="Inter-TSF trusted channel">
           <f-element id=".1.1">
             <title>
-	      The TSF shall provide a communication channel between itself and another trusted IT product that is logically distinct from other communication channels and provides assured identification of its end points and protection of the channel data from modification or and disclosure using the following mechanisms: Cryptographically-protected communication channel using 
+	      The OS shall provide a communication channel between itself and another trusted IT product that is logically distinct from other communication channels and provides assured identification of its end points and protection of the channel data from modification or and disclosure using the following mechanisms: Cryptographically-protected communication channel using 
 	      [selection: i.]SSH as defined in RFCs 4251, 4252, 4253, and 4254 with a combination of the following cipher suites defined there: • 3DES-CBC, AES256-CBC, AES128-CBC, [selection: AES192-CBC,] for encryption; • [selection:] for integrity • DIFFIE-HELLMAN-GROUP14-SHA1, [selection:] for key exchange • SSH-DSS, SSH-RSA, [selection:] for public key encryption; 
               ii. TLS as defined in RFC 5246 using X.509 certificates and supporting the following cipher suites defined there: • TLS_RSA_WITH_AES_128_CBC_SHA • TLS_RSA_WITH_AES_256_CBC_SHA [selection: •]none • TLS_RSA_WITH_AES_128_CBC_SHA256 • TLS_RSA_WITH_AES_256_CBC_SHA256 • TLS_DH_DSS_WITH_AES_128_CBC_SHA • TLS_DH_RSA_WITH_AES_128_CBC_SHA • TLS_DHE_DSS_WITH_AES_128_CBC_SHA • TLS_DHE_RSA_WITH_AES_128_CBC_SHA • TLS_DH_DSS_WITH_AES_256_CBC_SHA • TLS_DH_RSA_WITH_AES_256_CBC_SHA • TLS_DHE_DSS_WITH_AES_256_CBC_SHA • TLS_DHE_RSA_WITH_AES_256_CBC_SHA • TLS_DH_DSS_WITH_AES_128_CBC_SHA256 • TLS_DH_RSA_WITH_AES_128_CBC_SHA256 • TLS_DHE_DSS_WITH_AES_128_CBC_SHA256 • TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 • TLS_DH_DSS_WITH_AES_256_CBC_SHA256 • TLS_DH_RSA_WITH_AES_256_CBC_SHA256 • TLS_DHE_DSS_WITH_AES_256_CBC_SHA256 • TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 • TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 • TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 • TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256 • TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384; IPSEC protocol ESP as defined in RFC 4303 using the cryptographic algorithms: • AES-CBC-128, AES-CBC-256 (both specified by RFC 3602), [selection:] for ESP encryption; • [selection:] for ESP authentication and authentication header protection; • [selection,] for key negotiation and SA establishment; • DH Groups 14 (2048-bit MODP), and [selection:] for use in IKE key establishment; • [selection:] algorithm for Peer Authentication;
 
@@ -2060,6 +2060,146 @@ functionality (such as these)
         </f-component>
       </subsection>
 
+      <subsection title="Protection of the TSF (FPT)" id="fpt">
+
+        <f-component id="fpt_aex_ext.1" name="Anti-Exploitation Capabilities">
+          <f-element id="fpt_aex_ext.1.1">
+            <title> The OS shall not request to map memory at an explicit address
+              except for <assignable>list of explicit exceptions</assignable>.
+              <note role="application"> Requesting a memory mapping at an explicit address
+                subverts address space layout randomization (<abbr linkend="ASLR"/>). </note>
+            </title>
+            <aactivity> The evaluator shall ensure that the <abbr linkend="TSS"/> 
+              describes the compiler flags used to enable <abbr linkend="ASLR"/> when the
+              OS modules are compiled. The evaluator shall perform either a static or dynamic
+              analysis to determine that no memory mappings are placed at an explicit and
+              consistent address. The method of doing so varies per platform. 
+            </aactivity>
+          </f-element>
+          <f-element id="fpt_aex_ext.1.2">
+            <title>
+              The OS shall 
+              <selectables linebreak="yes">
+                <selectable> 
+                  not allocate any memory region with both write and execute permissions 
+                </selectable>
+                <selectable>
+                  allocate memory regions with write and execute permissions for only
+                  <assignable> list of functions performing just-in-time compilation</assignable>
+                </selectable>
+              </selectables>
+              .
+            </title>
+            <note role="application"> Requesting a memory mapping with both write and execute
+              permissions subverts the platform protection provided by <abbr linkend="DEP"/>. 
+              If the OS performs no just-in-time compiling, then the first selection must be chosen.
+            </note>
+            <aactivity> 
+              The evaluator shall verify that no memory mapping requests are made with write and execute permissions.
+              The method of doing so varies per platform.
+            </aactivity>
+          </f-element>
+          <f-element id="fpt_aex_ext.1.3">
+            <title>The OS shall be compiled with stack-based buffer overflow protection
+              enabled.</title>
+            <aactivity>The evaluator shall ensure that the <abbr linkend="TSS"/> section of the <abbr linkend="ST"/>
+              describes the compiler flag used to enable stack-based buffer overflow protection in
+              the OS. The evaluator shall perform a static analysis to verify that
+              stack-based buffer overflow protection is present. The method of doing so varies per
+              platform.
+            </aactivity>
+          </f-element>
+        </f-component>
+        <f-component id="fpt_tud_ext.1" name="Integrity for Installation and Update">
+          <!-- TO DO: Cite references. -->
+          <f-element id="fpt_tud_ext.1.1">
+            <title>The OS shallprovide the ability to check for updates and patches to the application software. </title>
+            <note role="application">This requirement is about the ability to "check" for updates.
+              The actual installation of any updates is covered by A-N-OTHER-REQUIRMENT. This requirement
+              is intended to ensure that the OS can check for updates provided by the vendor,
+              as updates provided by another source may contain malicious code.
+            </note>
+            <aactivity>
+	      The evaluator shall check for an update using procedures described in the documentation
+	      and verify that the OS does not issue an error.
+	      If it is updated or if it reports that no update is available this requirement is considered to be met.
+            </aactivity>
+          </f-element>
+
+          <f-element id="fpt_tud_ext.1.3">
+            <title>The OS shall provide update packages such that their removal results in the deletion 
+              of all traces of the update, with the exception of configuration settings, output
+              files, and audit/log events.</title>
+            <aactivity>
+	      The evaluator shall record the path of every file on the entire 
+	      filesystem prior to installation of the OS update, and 
+	      then install and run the update.
+	      Afterwards, the evaluator shall then uninstall the update, and
+	      compare the resulting filesystem to the initial record to verify 
+	      that no files, other than configuration,
+	      output, and audit/log files, have been added to the filesystem.
+            </aactivity>
+          </f-element>
+          <f-element id="fpt_tud_ext.1.4">
+            <title> The OS shall provide a mechanisum to download, modify, replace or update its own binary
+              code. </title>
+            <aactivity>The evaluator shall verify that the OS's executable files are
+              cam be updated by the OS supplied mechanisum. The evaluator shall complete the following test:
+              <testlist>
+                <test>The evaluator shall check the OS files before and after running the vendor supplied OS update
+                  mechanisum. The evaluator shall verify that OS core files have been sucsessfully updated after running
+                  the update mechanisum.
+                </test>
+              </testlist>
+            </aactivity>
+          </f-element>
+          <f-element id="fpt_tud_ext.1.5">
+            <title>The OS shall provide the ability to query the current version of the OS software.
+            </title>
+            <aactivity>The evaluator shall query the OS for the current version of the OS
+              according to the operational user guidance (AGD_OPE.1) and shall verify that the
+              current version matches that of the documented and installed version.
+            </aactivity>
+          </f-element>
+          <f-element id="fpt_tud_ext.1.6">
+            <title>
+			  The OS installation package and its updates shall be digitally signed 
+			  such that the OS can cryptographically verify them prior to installation.
+            </title>
+            <note role="application">The specifics of the verification of installation packages
+			  and updates involves requirements on the platform (and not the
+              application), so these are not fully specified here. </note>
+            <aactivity>
+			  The evaluator shall verify that the TSS identifies how the OS
+			  installation package and updates to it  
+			  are signed by an authorized source. The definition of an
+			  authorized source must be contained in the TSS.
+			  The evaluator shall also ensure that the TSS (or the operational
+			  guidance) describes how candidate updates are obtained.
+            </aactivity>
+          </f-element>
+        </f-component>
+        <f-component id="fpt_lib_ext.1" name="Use of Third Party Libraries">
+          <f-element id="fpt_lib_ext.1.1">
+            <title> The OS shall be packaged with only
+	      <assignable>list of third-party libraries</assignable>. 
+	    </title>
+        <note role="application"> 
+	     The intention of this requirement is for the evaluator to discover and document whether the 
+         OS is including unnecessary or unexpected third-party libraries.  This includes
+		 adware libraries which could present a privacy threat, as well as ensuring
+		 documentation of such libraries in case vulnerabilities are later discovered.
+        </note>
+      <aactivity> 
+	      The evaluator shall install the OS and survey its installation directory for 
+          dynamic libraries. 
+          The evaluator shall verify that libraries found to be packaged with or employed by the 
+          application are limited to those in the assignment.
+	    </aactivity>
+          </f-element>
+        </f-component>
+        
+      </subsection>
 
       <subsection title="User Data Protection (FDP)" id="fdp">
         <f-component id="fdp_dar_ext.1" name="Encryption Of Sensitive Application Data">
@@ -2110,7 +2250,7 @@ functionality (such as these)
         <f-component id="fau_gen.1" name="Audit Data Generation">
           <f-element id="fau_gen.1.1">
             <title>
-	      The TSF shall be able to generate an audit record of the following auditable events: 
+	      The OS shall be able to generate an audit record of the following auditable events: 
 	      <ul>
 		<li> Start-up and shutdown of the audit functions; </li>
 		<li> All auditable events for the not specified level of audit; and </li>
@@ -2128,7 +2268,7 @@ functionality (such as these)
 
           <f-element id="fau_gen.1.2">
             <title>
-	      The TSF shall record within each audit record at least the following information: 
+	      The OS shall record within each audit record at least the following information: 
 	      <ul>
 		<li> Date and time of the event, type of event, subject identity (if applicable), and outcome (success or failure) of the event; and </li>
 		<li> for all management SFRs included in the Security Target: the identity of the user that performed/attempted to perform the management operation, an identification of what was managed and the indication what the administrative user has changed as part of the management operation, and </li>
@@ -2161,7 +2301,7 @@ functionality (such as these)
         <f-component id="FIA_AFL.1" name="Authentication failure handling">
           <f-element id="FIA_AFL.1.1">
             <title>
-	      The TSF shall detect when an administrator-configurable positive integer within a range of acceptable values of unsuccessful authentication attempts for the authentication method password based authentication <assignable>other authentication method or none</assignable> occur related to <assignable>list of authentication events</assignable>.
+	      The OS shall detect when an administrator-configurable positive integer within a range of acceptable values of unsuccessful authentication attempts for the authentication method password based authentication <assignable>other authentication method or none</assignable> occur related to <assignable>list of authentication events</assignable>.
       	    </title>
             <aactivity>
 	      FIXME
@@ -2170,7 +2310,7 @@ functionality (such as these)
 
           <f-element id="FIA_AFL.1.2">
             <title>
-	      When the defined number of unsuccessful authentication attempts has been met, the TSF shall: <assignable>list of actions</assignable>.
+	      When the defined number of unsuccessful authentication attempts has been met, the OS shall: <assignable>list of actions</assignable>.
 
       	    </title>
             <aactivity>
@@ -2182,7 +2322,7 @@ functionality (such as these)
         <f-component id="FIA_PK_EXT.1" name="Public key based authentication">
           <f-element id="FIA_PK_EXT.1.1">
             <title>
-	      The TSF shall use 
+	      The OS shall use 
 	      <selectables> 
 		<selectable><assignable>certificate format standard</assignable></selectable>
 		<selectable>
