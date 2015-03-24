@@ -2013,15 +2013,59 @@ functionality (such as these)
 	      The OS shall restrict the ability to modify the behavior of the functions password based user authentication to [assignment: rules that need to be satisfied for other users to perform the operations] by allowing those users to specify rules for acceptable passwords that: 
 	      <ul>
 		<li>allow for uppercase characters, lowercase characters, digits, and special characters to be used in passwords </li>
-		<li>define a minimum password length of 8 characters or more (at least up to 15 character</li>
+		<li>define a minimum password length of 8 characters or more (at least up to 15 characters)</li>
 
 		<li>define that passwords must have at least one digit and one special character </li>
 		<li>reject passwords used by the same user before up to a history of at least 6 passwords</li>
 	      </ul>
       	    </title>
             <aactivity>
-	      FIXME
-      	    </aactivity>
+              The evaluator shall configure the OS to require passwords contain:
+              <li>Upper case letters</li>
+              <li>Lower case letters</li>
+              <li>Numbers</li>
+              <li>Special Characters</li>
+              The evaluator shall configure the OS to require passwords of length 8 characters or more.
+              <testlist>
+                <test>
+                  The evaluator will attempt to set the following passwords for a user account:
+                    <li>password</li>
+                    <li>Password</li>
+                    <li>123456</li>
+                    <li>!@#$%^</li>
+                  The evaluator will ensure that none of these passwords are accepted by the OS due to 
+                  the requirments for upper and lower case letters, numbers, special characters, password length, and password history.
+                </test>
+                <test>
+                  The evaluator will attempt to set the following passwords for a user account:
+                    <li>Eight12!</li>
+                    <li>Nine1234!</li>
+                  The evaluator will ensure that these passwords are accepted by the OS for the user as they meet the requirments
+                  for upper and lower case letters, numbers, special characters, password length, and password history.
+                </test>
+                <test>
+                  The evaluator will set a specific user's password to the following passwords in order
+                  <li>Eight12!</li>
+                  <li>Eight23!</li>
+                  <li>Eight34!</li>
+                  <li>Eight45!</li>
+                  <li>Eight56!</li>
+                  <li>Eight67!</li>
+                </test>
+                The evaluator will then attempt to reset the password of that user to the following passwords:
+                <li>Eight12!</li>
+                <li>Eight23!</li>
+                <li>Eight34!</li>
+                <li>Eight45!</li>
+                <li>Eight56!</li>
+                <li>Eight67!</li>
+                the evaluator will ensure that none of these passwords are accepted due to the password history constrait of
+                not reusing the last six passwords.
+                <br />
+                Other tests are performed in conjunction with the Assurance Activity listed for 
+                <linkref linkend="FCS_TLSC_EXT.1"/>.
+              </testlist>
+            </aactivity>
       	  </f-element>
         </f-component>
 
