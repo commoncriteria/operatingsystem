@@ -2302,104 +2302,86 @@ functionality (such as these)
       <subsection title="Audit Data Generation (FAU)" id="fau">
         <f-component  name="Action in case of possible audit data loss" id="fau_stg.1">
           <f-element id="fau_stg.1.1">
-            <title>The TSF shall protect the stored audit records in the audit trail from
-              unauthorised deletion. 
+            <title>
+              The TSF shall protect the stored audit records in the audit trail from unauthorised deletion. 
       	    </title>
             <aactivity>
-      The evaluator shall ensure that a standard priviledged user is unable to delete (or modify) the system's security and
-      authentication logs.
+              The evaluator shall ensure that a standard priviledged user is unable to delete (or modify) the system's security and
+              authentication logs.
       	    </aactivity>
       	  </f-element>
         </f-component>
-
-
-
-<f-component id="fau_gen.1" name="Audit Data Generation">
-  <f-element id="fau_gen.1.1">
-    <title>
-      The OS shall be able to generate an audit record of the following auditable events: 
-      <ul>
-        <li> Start-up and shutdown of the audit functions; </li>
-        <li> All auditable events for the not specified level of audit; and </li>
-        <li> all modifications to the set of events being audited; </li>
-        <li> all user authentication attempts; </li>
-        <li> all denied accesses to objects for which the access control policy defined in the OSPP base applies; </li>
-        <li> explicit modifications of access rights to objects covered by the access control policies; and  </li>
-        <li> other specifically defined auditable events as defined in the table in FAU_GEN.1.2.</li>
-      </ul>
-    </title>
-    <aactivity>
-      The evaluator shall ensure that the following tests result in a positive outcome.
-       <test>The evaluator shall turn off and then turn on the test system. The evaluator shall then
-       ensure that logging events have been written to the system logging service to denote that the logging
-       service was stopped before power off, and started again while the system turned on</test>
-      <test>The evaluator shall generate auditable events on the system while monitoring the event log.
-      The evaluator shall ensure that each auditable event write an event to the system logging service</test>
-      <test>The evaluator shall authenitcate to the test system using a known account. The evaluator shall 
-      ensure that the authentication event has been written to the system logging service</test>
-      <test>The evaluator shall try to access an object which has been deneid as per the OSPP base policy.
-      The evaluator shall ensure that the access dendied event has been written to the system logging service</test>
-      <test>The evaulator shall make a modifucation to the access rights of an object covered by the access control 
-      policyies. The evaluator shall ensure that the access right change event has been written to the system logging service</test>
-      <test>The evaluator will exhaustively generate all the events listed within the FAU_GEN.1.2 table. The evaluator
-      shall enusre that all events have been written to the system logging service</test>
-    </aactivity>
-	  </f-element>
-    <f-element id="fau_gen.1.2">
-      <title>
-        The OS shall record within each audit record at least the following information: 
-        <ul>
-          <li> Date and time of the event, type of event, subject identity (if applicable), and outcome (success or failure) of the event; and </li>
-          <li> for all management SFRs included in the Security Target: the identity of the user that performed/attempted to perform the management operation, an identification of what was managed and the indication what the administrative user has changed as part of the management operation, and </li>
-          <li> For each audit event type, based on the auditable event definitions of the functional components included in the following table: </li>
-        </ul>
-      </title>
-      <aactivity>
-        The evaluator will ensure that all logged events written to the system logging service contain the following information:
-        <ul>
-          <li>Date and time of when the event happend</li>
-          <li>The type of evemt</li>
-          <li>Subject identity (if applicable)</li>
-          <li>The outcome of the event (Success or failure)</li>
-          <li>The identity of the user which caused the event</li>
-          <li>What has now been modified on the system due to the event</li>
-        </ul>
-      </aactivity>
-  </f-element>
-	</f-component>
-</subsection>
-
-
-
-
-      <!-- <subsection title="()" id=""> -->
-      <!--   <f-component id=".1" name=""> -->
-      <!--     <f-element id=".1.1"> -->
-      <!--       <title> -->
-      <!-- 	    </title> -->
-      <!--       <aactivity> -->
-      <!-- 	      -->
-      <!-- 	    </aactivity> -->
-      <!-- 	  </f-element> -->
-      <!--   </f-component> -->
-      <!-- </subsection> -->
+        
+        <f-component id="fau_gen.1" name="Audit Data Generation">
+          <f-element id="fau_gen.1.1">
+            <title>
+              The OS shall be able to generate an audit record of the following auditable events: 
+              <ul>
+                <li> Start-up and shutdown of the audit functions; </li>
+                <li> All auditable events for the not specified level of audit; and </li>
+                <li> all modifications to the set of events being audited; </li>
+                <li> all user authentication attempts; </li>
+                <li> all denied accesses to objects for which the access control policy defined in the OSPP base applies; </li>
+                <li> explicit modifications of access rights to objects covered by the access control policies; and  </li>
+                <li> other specifically defined auditable events as defined in the table in FAU_GEN.1.2.</li>
+              </ul>
+            </title>
+            <aactivity>
+              The evaluator shall ensure that the following tests result in a positive outcome.
+               <test>The evaluator shall turn off and then turn on the test system. The evaluator shall then
+               ensure that logging events have been written to the system logging service to denote that the logging
+               service was stopped before power off, and started again while the system turned on</test>
+              <test>The evaluator shall generate auditable events on the system while monitoring the event log.
+              The evaluator shall ensure that each auditable event write an event to the system logging service</test>
+              <test>The evaluator shall authenitcate to the test system using a known account. The evaluator shall 
+              ensure that the authentication event has been written to the system logging service</test>
+              <test>The evaluator shall try to access an object which has been deneid as per the OSPP base policy.
+              The evaluator shall ensure that the access dendied event has been written to the system logging service</test>
+              <test>The evaulator shall make a modifucation to the access rights of an object covered by the access control 
+              policyies. The evaluator shall ensure that the access right change event has been written to the system logging service</test>
+              <test>The evaluator will exhaustively generate all the events listed within the FAU_GEN.1.2 table. The evaluator
+              shall enusre that all events have been written to the system logging service</test>
+            </aactivity>
+        	  </f-element>
+            <f-element id="fau_gen.1.2">
+              <title>
+                The OS shall record within each audit record at least the following information: 
+                <ul>
+                  <li> Date and time of the event, type of event, subject identity (if applicable), and outcome (success or failure) of the event; and </li>
+                  <li> for all management SFRs included in the Security Target: the identity of the user that performed/attempted to perform the management operation, an identification of what was managed and the indication what the administrative user has changed as part of the management operation, and </li>
+                  <li> For each audit event type, based on the auditable event definitions of the functional components included in the following table: </li>
+                </ul>
+              </title>
+              <aactivity>
+                The evaluator will ensure that all logged events written to the system logging service contain the following information:
+                <ul>
+                  <li>Date and time of when the event happend</li>
+                  <li>The type of evemt</li>
+                  <li>Subject identity (if applicable)</li>
+                  <li>The outcome of the event (Success or failure)</li>
+                  <li>The identity of the user which caused the event</li>
+                  <li>What has now been modified on the system due to the event</li>
+                </ul>
+              </aactivity>
+          </f-element>
+        	</f-component>
+        </subsection>
 
       <subsection title="Identification and Authentication (FIA)" id="fia">
         <f-component id="FIA_AFL.1" name="Authentication failure handling">
           <f-element id="FIA_AFL.1.1">
             <title>
-	      The OS shall detect when an administrator-configurable positive integer within a range of acceptable values of unsuccessful authentication attempts for the authentication method password based authentication <assignable>other authentication method or none</assignable> occur related to <assignable>list of authentication events</assignable>.
+                The OS shall detect when an administrator-configurable positive integer within a range of acceptable values of unsuccessful authentication attempts for the authentication method password based authentication <assignable>other authentication method or none</assignable> occur related to <assignable>list of authentication events</assignable>.
       	    </title>
             <aactivity>
-	      The evaluator shall ensure that after attempting to authenticate with a known bad password that an event is logged in the security
-	      event log of the OS. The method of how these events are logged varies depending on platfom.
+        	      The evaluator shall ensure that after attempting to authenticate with a known bad password that an event is logged in the security
+        	      event log of the OS. The method of how these events are logged varies depending on platfom.
       	    </aactivity>
       	  </f-element>
 
           <f-element id="FIA_AFL.1.2">
             <title>
-	      When the defined number of unsuccessful authentication attempts has been met, the OS shall: <assignable>list of actions</assignable>.
-
+                When the defined number of unsuccessful authentication attempts has been met, the OS shall: <assignable>list of actions</assignable>.
       	    </title>
             <aactivity>
                 The evaluator shall attempt to authenticate repeadadly to the system with a known bad password. Once the defined number of failed
@@ -2412,23 +2394,19 @@ functionality (such as these)
         <f-component id="FIA_PK_EXT.1" name="Public key based authentication">
           <f-element id="FIA_PK_EXT.1.1">
             <title>
-	      The OS shall use 
-	      <selectables> 
-		<selectable><assignable>certificate format standard</assignable></selectable>
-		<selectable>
-		  public key cryptography as defined by <assignable></assignable> 
-		</selectable>
-	      </selectables>
-	      to support authentication for [selection:] connections.
-      	    </title>
+	             The OS shall use 
+      	       <selectables> 
+      		        <selectable><assignable>certificate format standard</assignable></selectable>
+      		        <selectable>public key cryptography as defined by <assignable></assignable></selectable>
+      	       </selectables>
+      	       to support authentication for [selection:] connections.
+            </title>
             <aactivity>
-	      FIXME
+	             FIXME
       	    </aactivity>
       	  </f-element>
         </f-component>
-
-
-
+        
         <f-component id="fia_x509_ext.1" name="X.509 Certificate Validation">
           <f-element id="fia_x509_ext.1.1">
             <title>
@@ -2564,7 +2542,6 @@ functionality (such as these)
             </aactivity>
           </f-element>
 
-
           <f-element id="fia_x509_ext.1.2">
             <title>
               The OS shall only treat a certificate as a CA certificate if the 
@@ -2601,6 +2578,7 @@ functionality (such as these)
             </aactivity>
           </f-element>
         </f-component>
+        
         <f-component id="fia_x509_ext.2" name="X.509 Certificate Authentication">
           <f-element id="fia_x509_ext.2.1">
             <title>
