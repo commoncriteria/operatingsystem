@@ -2077,8 +2077,6 @@ functionality (such as these)
             </aactivity>
       	  </f-element>
         </f-component>
-
-
         <f-component id="fmt_smf_rmt.1" name="Remote Management Capabilities">
           <f-element id="fmt_smf_rmt.1.1">
             <title>
@@ -2096,9 +2094,15 @@ functionality (such as these)
               the remote managment terminal and the host OS are carried out over a secure chanel.
       	    </aactivity>
       	  </f-element>
+          <f-element id="fmt_smf_ext.1.1">
+            <title>The OS shall provide the ability to query the current version of the OS software.
+            </title>
+            <aactivity>The evaluator shall query the OS for the current version of the OS
+              according to the operational user guidance (AGD_OPE.1) and shall verify that the
+              current version matches that of the documented and installed version.
+            </aactivity>
+          </f-element>          
         </f-component>
-
-
       </subsection>
 
       <subsection title="Trusted Path/Channels (FTP)" id="ftp">
@@ -2190,19 +2194,17 @@ functionality (such as these)
 	      If it is updated or if it reports that no update is available this requirement is considered to be met.
             </aactivity>
           </f-element>
-
-          <f-element id="fpt_tud_ext.1.3">
-            <title>The OS shall provide update packages such that their removal results in the deletion 
-              of all traces of the update, with the exception of configuration settings, output
-              files, and audit/log events.</title>
+          <f-element id="fpt_tud_ext.1.2">
+            <title>The OS shallprovide the ability to check for updates and patches to the OS software itself. </title>
+            <note role="application">This requirement is about the ability to "check" for updates.
+              The actual installation of any updates is covered by A-N-OTHER-REQUIRMENT. This requirement
+              is intended to ensure that the OS can check for updates provided by the vendor,
+              as updates provided by another source may contain malicious code.
+            </note>
             <aactivity>
-	      The evaluator shall record the path of every file on the entire 
-	      filesystem prior to installation of the OS update, and 
-	      then install and run the update.
-	      Afterwards, the evaluator shall then uninstall the update, and
-	      compare the resulting filesystem to the initial record to verify 
-	      that no files, other than configuration,
-	      output, and audit/log files, have been added to the filesystem.
+              The evaluator shall check for an update using procedures described in the documentation
+              and verify that the OS does not issue an error.
+              If it is updated or if it reports that no update is available this requirement is considered to be met.
             </aactivity>
           </f-element>
           <f-element id="fpt_tud_ext.1.4">
@@ -2216,14 +2218,6 @@ functionality (such as these)
                   the update mechanisum.
                 </test>
               </testlist>
-            </aactivity>
-          </f-element>
-          <f-element id="fpt_tud_ext.1.5">
-            <title>The OS shall provide the ability to query the current version of the OS software.
-            </title>
-            <aactivity>The evaluator shall query the OS for the current version of the OS
-              according to the operational user guidance (AGD_OPE.1) and shall verify that the
-              current version matches that of the documented and installed version.
             </aactivity>
           </f-element>
           <f-element id="fpt_tud_ext.1.6">
@@ -2261,6 +2255,24 @@ functionality (such as these)
           The evaluator shall verify that libraries found to be packaged with or employed by the 
           application are limited to those in the assignment.
 	    </aactivity>
+          </f-element>
+          <f-element id="fpt_aex_ext.1.5">
+            <title>The OS shall implement access controls to prohibit a user with standard user privileges from 
+              modifying core OS components</title>
+            <aactivity>The evaluator will ensure that all the following tests result in a negative outcome 
+              (I.E., the action results in the OS denying the evaluator permission to complete the action):
+              <ul>
+                <li>The evaluator shall attempt to modify core kernel code</li>
+                <li>The evaluator shall attempt to modify shared libraries that are used throughout the system</li>
+                <li>The evaluator shall attempt to modify files owned by another user on the filesystem</li>
+                <li>The evaluator shall attempt to remove security controls pushed via an administrator</li>
+                <li>A-N-OTHER TESTS?</li>
+              </ul>
+            </aactivity>
+            <note role="application">: Core OS components are those components which provide the 
+              base functionality and security controls for the OS. They include, but are not 
+              limited to the kernel, shared libraries, security controls, and security audit logs.
+            </note>
           </f-element>
         </f-component>
         
@@ -2300,17 +2312,6 @@ functionality (such as these)
       </subsection>
 
       <subsection title="Audit Data Generation (FAU)" id="fau">
-        <f-component  name="Action in case of possible audit data loss" id="fau_stg.1">
-          <f-element id="fau_stg.1.1">
-            <title>
-              The TSF shall protect the stored audit records in the audit trail from unauthorised deletion. 
-      	    </title>
-            <aactivity>
-              The evaluator shall ensure that a standard priviledged user is unable to delete (or modify) the system's security and
-              authentication logs.
-      	    </aactivity>
-      	  </f-element>
-        </f-component>
         
         <f-component id="fau_gen.1" name="Audit Data Generation">
           <f-element id="fau_gen.1.1">
