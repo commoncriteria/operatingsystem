@@ -2256,25 +2256,30 @@ functionality (such as these)
           application are limited to those in the assignment.
 	    </aactivity>
           </f-element>
-          <f-element id="fpt_aex_ext.1.5">
-            <title>The OS shall implement access controls to prohibit a user with standard user privileges from 
-              modifying core OS components</title>
-            <aactivity>The evaluator will ensure that all the following tests result in a negative outcome 
-              (I.E., the action results in the OS denying the evaluator permission to complete the action):
-              <ul>
-                <li>The evaluator shall attempt to modify core kernel code</li>
-                <li>The evaluator shall attempt to modify shared libraries that are used throughout the system</li>
-                <li>The evaluator shall attempt to modify files owned by another user on the filesystem</li>
-                <li>The evaluator shall attempt to remove security controls pushed via an administrator</li>
-                <li>A-N-OTHER TESTS?</li>
-              </ul>
-            </aactivity>
-            <note role="application">: Core OS components are those components which provide the 
-              base functionality and security controls for the OS. They include, but are not 
-              limited to the kernel, shared libraries, security controls, and security audit logs.
-            </note>
-          </f-element>
         </f-component>
+        <f-element id="fpt_acf_ext.1">
+          <title>
+              The OS shall implement access controls to prohibit unpriviledged subjects from modifying core OS
+              componets including shared libraries, security controls, security audit logs, 
+                <selectables>
+                    <selectable>other components</selectable>
+                </selectables>
+          </title>
+          <aactivity>The evaluator will ensure that all the following tests result in a negative outcome 
+            (I.E., the action results in the OS denying the evaluator permission to complete the action):
+            <ul>
+              <li>The evaluator shall attempt to modify core kernel code</li>
+              <li>The evaluator shall attempt to modify shared libraries that are used throughout the system</li>
+              <li>The evaluator shall attempt to modify files owned by another user on the filesystem</li>
+              <li>The evaluator shall attempt to remove security controls deployed to the system via an administrator</li>
+              <li>A-N-OTHER TESTS?</li>
+            </ul>
+          </aactivity>
+          <note role="application">: Core OS components are those components which provide the 
+            base functionality and security controls for the OS. They include, but are not 
+            limited to the kernel, shared libraries, security controls, and security audit logs.
+          </note>
+        </f-element>
         
       </subsection>
 
