@@ -2282,6 +2282,98 @@ functionality (such as these)
             </note>
           </f-element>
         </f-component>
+        <f-component id="fpt_php_ext.1" name="External Interface Controls ">
+          <f-element id="fpt_acf_ext.1.1">
+            <title>
+              The OS shall implement a method to control which external interfaces are enabled or disabled. The OS must allow
+              the WiFi, Bluetooth, NFC, USB, FireWire and 
+              <selectables>
+                <selectable>other components</selectable>
+              </selectables>
+              to be disabled via policy.
+            </title>
+            <aactivity>The evaluator will ensure that the following tests (where applicable) succeed:
+              <ul>
+                <li>
+                     The evaluator shall connect to a Wireless network and then disable the WiFi network interface from
+                     within the OS. The evaluator will ensure that the WiFi connection is termiated and that there are no
+                     Wireless eminations from the device.
+                </li>
+                <li>
+                      The evaulator shall pair, and connect, a Bluetooth device to the OS and then disable the Bluetooth
+                      interface within the OS. The evaluator will ensure that the Bluetooth connection is termianted and that there
+                      are no Bluetooth eminations from the device.
+                </li>
+                <li>
+                      The evaulator shall pair, and connect, an NFC device to the OS and then disable the NFC
+                      interface within the OS. The evaluator will ensure that the NFC connection is termianted and that there
+                      are no NFC eminations from the device.
+                </li>
+                <li>
+                       The evaluator shall connect a USB device to the OS and then disable the USB interface within the OS. The
+                       evaluator will ensure that the USB device no longer functions within the OS.
+                </li>
+                <li>
+                      The evaluator shall connect a FireWire device to the OS and then disable the FireWire interface within the OS. The
+                      evaluator will ensure that the FireWire device no longer functions within the OS.                      
+                </li>
+                <li>A-N-OTHER TESTS?</li>
+              </ul>
+            </aactivity>
+            <note role="application">: Different hardware platforms will present different external interfaces. The selection
+              of tests to run against an OS will very depending on the hardware the OS is running on. However, where an OS supports
+              an external interface type (E.G., FireWire) it is important that the OS also offers the ability to disalbe that interface.
+            </note>
+          </f-element>
+        </f-component>        
+        <f-component id="fpt_srp_ext.1" name="Software Restriction Policies">
+          <f-element id="fpt_acf_ext.1.1">
+            <title>
+              The OS shall implement execution controls to control what executable code is allowed to run on the OS. 
+              The OS shall implement these controls in such a way that the following logic can be used:
+              <ul>
+                <li>Executable file path</li>
+                <li>Executable file digital signature</li>
+                <li>Executable version</li>
+              </ul>
+              <selectables>
+                <selectable>other components</selectable>
+              </selectables>
+              to configure what code can be executed.
+            </title>
+            <aactivity>The evaluator will ensure that all the following tests result in a negative outcome 
+              (I.E., the action results in the OS denying the evaluator permission to complete the action):
+              <ul>
+                <li>
+                    The evaluator shall configure the OS to only allow code execution from the core OS directories.
+                    The evaluator will then attempt to execute code from a directory that is not in the allowed whitelist.
+                    The evaluator will ensure that the code they attempted to execute has not been executed
+                </li>
+                <li>
+                    The evaluator shall configure the OS to only allow code that has been signed by the OS vendor to execute.
+                    The evaluator will then attempt to execute code signed by another digital authortiy.
+                    The evaluator will ensure that the code they attempted to execute has not been executed.
+                </li>
+                <li>
+                    The evaluator shall configure the OS to only allow code that has been signed by the OS vendor to execute.
+                    The evaluator will then attempt to execute code not signed by a digital authority.
+                    The evaluator will ensure that the code they attempted to execute has not been executed.
+                </li>
+                <li>
+                    The evaluator shall configure the OS to allow execution of a specific application based on version.
+                    The evaluator will then attempt to execute an older version of the application.
+                    The evaluator will ensure that the code they attempted to execute has not been executed.
+                </li>
+                <li>A-N-OTHER TESTS?</li>
+              </ul>
+            </aactivity>
+            <note role="application">: While there are two types of execution control, black and white listing, this requirment
+              only covers the testing of white listing executable code as it has been found that black listing is both too hard to
+              maintain and can easily be worked around. The whiltelist should allow execution of items on the list and deny execution
+              of everything else.
+            </note>
+          </f-element>
+        </f-component>      
       </subsection>
 
       <subsection title="User Data Protection (FDP)" id="fdp">
