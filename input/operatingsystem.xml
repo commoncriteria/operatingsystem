@@ -2285,12 +2285,20 @@ functionality (such as these)
         <f-component id="fpt_php_ext.1" name="External Interface Controls ">
           <f-element id="fpt_acf_ext.1.1">
             <title>
-              The OS shall implement a method to control which external interfaces are enabled or disabled. The OS must allow
-              the WiFi, Bluetooth, NFC, USB, FireWire and 
-              <selectables>
-                <selectable>other components</selectable>
-              </selectables>
-              to be disabled via policy.
+              The OS shall be able to constrain the set of ports (physical and logical) and services exposed to untrusted networks and devices and any exposed software is robust to malicious attack.
+              Physical ports include, but are not limited to the following:
+              <ul>
+                  <li>WiFi</li>
+                  <li>Bluetooth</li>
+                  <li>NFC</li>
+                  <li>USB</li>
+                  <li>FireWire</li>
+                  <li>
+                    <selectables>
+                      <selectable>other components</selectable>
+                    </selectables>
+                  </li>
+              </ul>
             </title>
             <aactivity>The evaluator will ensure that the following tests (where applicable) succeed:
               <ul>
@@ -2329,17 +2337,19 @@ functionality (such as these)
         <f-component id="fpt_srp_ext.1" name="Software Restriction Policies">
           <f-element id="fpt_acf_ext.1.1">
             <title>
-              The OS shall implement execution controls to control what executable code is allowed to run on the OS. 
-              The OS shall implement these controls in such a way that the following logic can be used:
+              The OS shall implement capabilities and extensions that allow an administrator to create rules to allow executable code to 
+              run based on unique identities of the executable.
+              The OS shall implement these controls in such a way that the following identities can be used to allow execution:
               <ul>
                 <li>Executable file path</li>
                 <li>Executable file digital signature</li>
                 <li>Executable version</li>
+                <li>
+                  <selectables>
+                    <selectable>other components</selectable>
+                  </selectables>
+                </li>
               </ul>
-              <selectables>
-                <selectable>other components</selectable>
-              </selectables>
-              to configure what code can be executed.
             </title>
             <aactivity>The evaluator will ensure that all the following tests result in a negative outcome 
               (I.E., the action results in the OS denying the evaluator permission to complete the action):
