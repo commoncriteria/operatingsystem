@@ -212,6 +212,8 @@
                 <xsl:value-of select="cc:subject" />
               </td>
             </tr>
+	    <xsl:text>
+	    </xsl:text>
           </xsl:for-each>
         </table>
         <h2>Contents</h2>
@@ -287,6 +289,8 @@
             <xsl:apply-templates select="cc:description" />
           </td>
         </tr>
+	<xsl:text>
+	</xsl:text>
       </xsl:for-each>
     </table>
   </xsl:template>
@@ -303,6 +307,8 @@
         <th>Identifier</th>
         <th>Title</th>
       </tr>
+      <xsl:text>
+      </xsl:text>
       <xsl:for-each select="cc:entry">
         <tr>
           <td>
@@ -317,6 +323,9 @@
             <xsl:apply-templates select="cc:description" />
           </td>
         </tr>
+	<xsl:text>
+	</xsl:text>
+
       </xsl:for-each>
     </table>
   </xsl:template>
@@ -336,6 +345,8 @@
             <xsl:apply-templates select="cc:description" />
           </td>
         </tr>
+	<xsl:text>
+	</xsl:text>
       </xsl:for-each>
     </table>
   </xsl:template>
@@ -478,6 +489,8 @@
             </xsl:for-each>
           </td>
         </tr>
+	<xsl:text>
+	</xsl:text>
       </xsl:for-each>
     </table>
   </xsl:template>
@@ -488,6 +501,8 @@
         <td>SFR ID</td>
         <td>NIST SP 800-53 Controls</td>
       </tr>
+      <xsl:text>
+      </xsl:text>
       <xsl:for-each select="(//cc:f-element)">
         <tr>
           <td>
@@ -502,6 +517,8 @@
             </xsl:for-each>
           </td>
         </tr>
+	<xsl:text>
+	</xsl:text>
       </xsl:for-each>
     </table>
   </xsl:template>

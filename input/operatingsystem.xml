@@ -174,7 +174,7 @@
       <usecases>
         <usecase title="End User Devices" id="enduserdevices">
           <description>The OS should provide a platform to end user devices such as desktops, laptops and tablets. 
-            These devices may optionally be bound to a directory server or managment server.</description>
+            These devices may optionally be bound to a directory server or management server.</description>
         </usecase>
         <usecase title="Server Systems" id="serversystems">
           <description>The OS should provide a platform to provide server side services, either on physical or virtual hardware</description>
@@ -411,9 +411,9 @@
 	    The user of the OS is not willfully negligent or hostile,
             and uses the software within compliance of the applied enterprise security
             policy.
-            
-            Standard user accounts will be provisioned in accordance with the least privilge model. Users requiring higher levels of access
-            should have a seperate account dedicated for that use.
+            Standard user accounts will be provisioned in accordance with the least privilege model. 
+	    Users requiring higher levels of access
+            should have a separate account dedicated for that use.
 	  </description>
         </SOE>
         <SOE id="OE.PROPER_ADMIN">
@@ -592,9 +592,9 @@
             <note role="application">
             </note>
             <aactivity>
-              The evaluator shall ensure that the OS is capable of generating asymetric keys using inbuilt APIs. 
+              The evaluator shall ensure that the OS is capable of generating asymmetric keys using inbuilt APIs. 
               The method of doing so varies per platform, but the evaluator shall ensure that public/private key pairs
-              can be genreated and the key information can be extracted.
+              can be generated and the key information can be extracted.
             </aactivity>
           </f-element>
         </f-component>
@@ -950,11 +950,11 @@
               using the following Function and Validity tests. These validation tests for each key agreement 
               scheme verify that a TOE has implemented the components of the key agreement scheme 
               according to the specifications in the Recommendation. These components include the 
-              calculation of the DLC primitives (the shared secret value Z) and the calculation of the 
+              calculation of the discrete logarithm cryptography (DLC) primitives (the shared secret value Z) and the calculation of the 
               derived keying material (DKM) via the Key Derivation Function (KDF). If key confirmation 
               is supported, the evaluator shall also verify that the components of key confirmation have 
               been implemented correctly, using the test procedures described below. This includes the 
-              parsing of the DKM, the generation of MACdata and the calculation of MACtag.
+              parsing of the DKM, the generation of MAC data and the calculation of MAC tag.
               <br />
               <indent>
                 <b>Function Test</b><p/>
@@ -989,13 +989,13 @@
                 SP800-56A key agreement implementation to determine which errors the TOE should 
                 be able to recognize. The evaluator generates a set of 24 (FFC) or 30 (ECC) test vectors 
                 consisting of data sets including domain parameter values or NIST approved curves, the 
-                evaluator’s public keys, the TOE’s public/private key pairs, MACTag, and any inputs 
+                evaluator’s public keys, the TOE’s public/private key pairs, MAC tag, and any inputs 
                 used in the KDF, such as the other info and TOE id fields.
                 <br />
                 The evaluator shall inject an error in some of the test vectors to test that the TOE 
                 recognizes invalid key agreement results caused by the following fields being incorrect: 
                 the shared secret value Z, the DKM, the other information field OI, the data to be 
-                MACed, or the generated MACTag. If the TOE contains the full or partial (only ECC) 
+                MAC'd, or the generated MAC tag. If the TOE contains the full or partial (only ECC) 
                 public key validation, the evaluator will also individually inject errors in both parties’ 
                 static public keys, both parties’ ephemeral public keys and the TOE’s static private key 
                 to assure the TOE detects errors in the public key validation function and/or the partial 
@@ -1025,11 +1025,11 @@
                 is supported, and for each supported mask generation function if KTS-OAEP is 
                 supported), the tester shall generate 10 sets of test vectors. Each test vector shall 
                 include the RSA public key, the plaintext keying material, any additional input 
-                parameters if applicable, the MacKey and MacTag if key confirmation is 
+                parameters if applicable, the MAC key and MAC tag if key confirmation is 
                 incorporated, and the outputted ciphertext. For each test vector, the evaluator shall 
                 perform a key establishment encryption operation on the TOE with the same inputs 
-                (in cases where key confirmation is incorporated, the test shall use the MacKey from 
-                the test vector instead of the randomly generated MacKey used in normal operation) 
+                (in cases where key confirmation is incorporated, the test shall use the MAC key from 
+                the test vector instead of the randomly generated MAC key used in normal operation) 
                 and ensure that the outputted ciphertext is equivalent to the ciphertext in the test 
                 vector.
               </indent>
@@ -1045,14 +1045,14 @@
                 confirmation if supported, for each supported key confirmation MAC function if key 
                 confirmation is supported, and for each supported mask generation function if KTS-OAEP is 
                 supported), the tester shall generate 10 sets of test vectors. Each test vector 
-                shall include the RSA private key, the plaintext keying material (KeyData), any 
-                additional input parameters if applicable, the MacTag in cases where key 
+                shall include the RSA private key, the plaintext keying material, any 
+                additional input parameters if applicable, the MAC tag in cases where key 
                 confirmation is incorporated, and the outputted ciphertext. For each test vector, the 
                 evaluator shall perform the key establishment decryption operation on the TOE and 
-                ensure that the outputted plaintext keying material (KeyData) is equivalent to the 
+                ensure that the outputted plaintext keying material is equivalent to the 
                 plaintext keying material in the test vector. In cases where key confirmation is 
                 incorporated, the evaluator shall perform the key confirmation steps and ensure that 
-                the outputted MacTag is equivalent to the MacTag in the test vector.
+                the outputted MAC tag is equivalent to the MAC tag in the test vector.
               </indent>
               <br />
               The evaluator shall ensure that the TSS describes how the TOE handles decryption errors. In 
@@ -1702,7 +1702,7 @@ functionality (such as these)
                     </test>
                     <test>
                       Send an garbled message from the Server after the Server has issued the 
-                      ChangeCipherSpec message and verify that the client denies the connection.
+                      Change Cipher Spec message and verify that the client denies the connection.
                     </test>
                   </testlist>
                 </test>
@@ -2038,7 +2038,7 @@ functionality (such as these)
                       <li>!@#$%^</li>
                     </ul>
                   The evaluator will ensure that none of these passwords are accepted by the OS due to 
-                  the requirments for upper and lower case letters, numbers, special characters, password length, and password history.
+                  the requirements for upper and lower case letters, numbers, special characters, password length, and password history.
                 </test>
                 <test>
                   The evaluator will attempt to set the following passwords for a user account:
@@ -2046,7 +2046,7 @@ functionality (such as these)
                       <li>Eight12!</li>
                       <li>Nine1234!</li>
                     </ul>
-                  The evaluator will ensure that these passwords are accepted by the OS for the user as they meet the requirments
+                  The evaluator will ensure that these passwords are accepted by the OS for the user as they meet the requirements
                   for upper and lower case letters, numbers, special characters, password length, and password history.
                 </test>
                 <test>
@@ -2068,7 +2068,7 @@ functionality (such as these)
                     <li>Eight56!</li>
                     <li>Eight67!</li>
                   </ul>
-                  the evaluator will ensure that none of these passwords are accepted due to the password history constrait of
+                  the evaluator will ensure that none of these passwords are accepted due to the password history constraint of
                   not reusing the last six passwords.
                 </test>
               </testlist>
@@ -2090,8 +2090,8 @@ functionality (such as these)
 	      .
       	    </title>
             <aactivity>
-              The evaluator will ensure that remote managment capabilities (if selected) are in accordance with <linkref linkend="FTP_ITC.1"/> and that all communications between
-              the remote managment terminal and the host OS are carried out over a secure chanel.
+              The evaluator will ensure that remote management capabilities (if selected) are in accordance with <linkref linkend="FTP_ITC.1"/> and that all communications between
+              the remote management terminal and the host OS are carried out over a secure channel.
       	    </aactivity>
       	  </f-element>
           <f-element id="fmt_smf_rmt.1.2">
@@ -2115,7 +2115,7 @@ functionality (such as these)
 
       	    </title>
             <aactivity>
-	      FIXME
+  <inline-comment color='blue' linebreak='yes'> Add some assurance activities </inline-comment>
       	    </aactivity>
       	  </f-element>
         </f-component>
@@ -2182,9 +2182,9 @@ functionality (such as these)
         <f-component id="fpt_tud_ext.1" name="Integrity for Installation and Update">
           <!-- TO DO: Cite references. -->
           <f-element id="fpt_tud_ext.1.1">
-            <title>The OS shallprovide the ability to check for updates and patches to the application software. </title>
+            <title>The OS shall provide the ability to check for updates and patches to the application software. </title>
             <note role="application">This requirement is about the ability to "check" for updates.
-              The actual installation of any updates is covered by A-N-OTHER-REQUIRMENT. This requirement
+              The actual installation of any updates is covered by <inline-comment color='blue'>A-N-OTHER-REQUIREMENT</inline-comment>. This requirement
               is intended to ensure that the OS can check for updates provided by the vendor,
               as updates provided by another source may contain malicious code.
             </note>
@@ -2195,9 +2195,9 @@ functionality (such as these)
             </aactivity>
           </f-element>
           <f-element id="fpt_tud_ext.1.2">
-            <title>The OS shallprovide the ability to check for updates and patches to the OS software itself. </title>
+            <title>The OS shall provide the ability to check for updates and patches to the OS software itself. </title>
             <note role="application">This requirement is about the ability to "check" for updates.
-              The actual installation of any updates is covered by A-N-OTHER-REQUIRMENT. This requirement
+              The actual installation of any updates is covered by <inline-comment color='blue'>A-N-OTHER-REQUIREMENT</inline-comment>. This requirement
               is intended to ensure that the OS can check for updates provided by the vendor,
               as updates provided by another source may contain malicious code.
             </note>
@@ -2208,14 +2208,14 @@ functionality (such as these)
             </aactivity>
           </f-element>
           <f-element id="fpt_tud_ext.1.4">
-            <title> The OS shall provide a mechanisum to download, modify, replace or update its own binary
+            <title> The OS shall provide a mechanism to download, modify, replace or update its own binary
               code. </title>
             <aactivity>The evaluator shall verify that the OS's executable files are
-              cam be updated by the OS supplied mechanisum. The evaluator shall complete the following test:
+              cam be updated by the OS supplied mechanism. The evaluator shall complete the following test:
               <testlist>
                 <test>The evaluator shall check the OS files before and after running the vendor supplied OS update
-                  mechanisum. The evaluator shall verify that OS core files have been sucsessfully updated after running
-                  the update mechanisum.
+                  mechanism. The evaluator shall verify that OS core files have been successfully updated after running
+                  the update mechanism.
                 </test>
               </testlist>
             </aactivity>
@@ -2260,8 +2260,8 @@ functionality (such as these)
         <f-component id="fpt_acf_ext.1" name="Access controls">
           <f-element id="fpt_acf_ext.1.1">
             <title>
-                The OS shall implement access controls to prohibit unpriviledged subjects from modifying core OS
-                componets including: 
+                The OS shall implement access controls to prohibit unprivileged subjects from modifying core OS
+                components including: 
                 <ul>
                   <li>Shared libraries</li>
                   <li>Security controls</li>
@@ -2311,18 +2311,18 @@ functionality (such as these)
               <ul>
                 <li>
                      The evaluator shall connect to a Wireless network and then disable the WiFi network interface from
-                     within the OS. The evaluator will ensure that the WiFi connection is termiated and that there are no
-                     Wireless eminations from the device.
+                     within the OS. The evaluator will ensure that the WiFi connection is terminated and that there are no
+                     Wireless emanations from the device.
                 </li>
                 <li>
-                      The evaulator shall pair, and connect, a Bluetooth device to the OS and then disable the Bluetooth
-                      interface within the OS. The evaluator will ensure that the Bluetooth connection is termianted and that there
-                      are no Bluetooth eminations from the device.
+                      The evaluator shall pair, and connect, a Bluetooth device to the OS and then disable the Bluetooth
+                      interface within the OS. The evaluator will ensure that the Bluetooth connection is terminated and that there
+                      are no Bluetooth emanations from the device.
                 </li>
                 <li>
-                      The evaulator shall pair, and connect, an NFC device to the OS and then disable the NFC
-                      interface within the OS. The evaluator will ensure that the NFC connection is termianted and that there
-                      are no NFC eminations from the device.
+                      The evaluator shall pair, and connect, an NFC device to the OS and then disable the NFC
+                      interface within the OS. The evaluator will ensure that the NFC connection is terminated and that there
+                      are no NFC emanations from the device.
                 </li>
                 <li>
                        The evaluator shall connect a USB device to the OS and then disable the USB interface within the OS. The
@@ -2337,7 +2337,7 @@ functionality (such as these)
             </aactivity>
             <note role="application">: Different hardware platforms will present different external interfaces. The selection
               of tests to run against an OS will very depending on the hardware the OS is running on. However, where an OS supports
-              an external interface type (E.G., FireWire) it is important that the OS also offers the ability to disalbe that interface.
+              an external interface type (E.G., FireWire) it is important that the OS also offers the ability to disable that interface.
             </note>
           </f-element>
         </f-component>        
@@ -2368,7 +2368,7 @@ functionality (such as these)
                 </li>
                 <li>
                     The evaluator shall configure the OS to only allow code that has been signed by the OS vendor to execute.
-                    The evaluator will then attempt to execute code signed by another digital authortiy.
+                    The evaluator will then attempt to execute code signed by another digital authority.
                     The evaluator will ensure that the code they attempted to execute has not been executed.
                 </li>
                 <li>
@@ -2384,9 +2384,9 @@ functionality (such as these)
                 <li>A-N-OTHER TESTS?</li>
               </ul>
             </aactivity>
-            <note role="application">: While there are two types of execution control, black and white listing, this requirment
+            <note role="application">: While there are two types of execution control, black and white listing, this requirement
               only covers the testing of white listing executable code as it has been found that black listing is both too hard to
-              maintain and can easily be bypassed. The whiltelist should only allow execution of items on the list and deny execution
+              maintain and can easily be bypassed. The whitelist should only allow execution of items on the list and deny execution
               of everything else.
             </note>
           </f-element>
@@ -2449,14 +2449,14 @@ functionality (such as these)
                service was stopped before power off, and started again while the system turned on</test>
               <test>The evaluator shall generate auditable events on the system while monitoring the event log.
               The evaluator shall ensure that each auditable event write an event to the system logging service</test>
-              <test>The evaluator shall authenitcate to the test system using a known account. The evaluator shall 
+              <test>The evaluator shall authenticate to the test system using a known account. The evaluator shall 
               ensure that the authentication event has been written to the system logging service</test>
-              <test>The evaluator shall try to access an object which has been deneid as per the OSPP base policy.
-              The evaluator shall ensure that the access dendied event has been written to the system logging service</test>
-              <test>The evaulator shall make a modifucation to the access rights of an object covered by the access control 
-              policyies. The evaluator shall ensure that the access right change event has been written to the system logging service</test>
+              <test>The evaluator shall try to access an object which has been denied as per the OSPP base policy.
+              The evaluator shall ensure that the access denied event has been written to the system logging service</test>
+              <test>The evaluator shall make a modification to the access rights of an object covered by the access control 
+              policies. The evaluator shall ensure that the access right change event has been written to the system logging service</test>
               <test>The evaluator will exhaustively generate all the events listed within the FAU_GEN.1.2 table. The evaluator
-              shall enusre that all events have been written to the system logging service</test>
+              shall ensure that all events have been written to the system logging service</test>
             </aactivity>
         	  </f-element>
             <f-element id="fau_gen.1.2">
@@ -2471,8 +2471,8 @@ functionality (such as these)
               <aactivity>
                 The evaluator will ensure that all logged events written to the system logging service contain the following information:
                 <ul>
-                  <li>Date and time of when the event happend</li>
-                  <li>The type of evemt</li>
+                  <li>Date and time of when the event occurred</li>
+                  <li>The type of event</li>
                   <li>Subject identity (if applicable)</li>
                   <li>The outcome of the event (Success or failure)</li>
                   <li>The identity of the user which caused the event</li>
@@ -2491,7 +2491,7 @@ functionality (such as these)
       	    </title>
             <aactivity>
         	      The evaluator shall ensure that after attempting to authenticate with a known bad password that an event is logged in the security
-        	      event log of the OS. The method of how these events are logged varies depending on platfom.
+        	      event log of the OS. The method of how these events are logged varies depending on platform.
       	    </aactivity>
       	  </f-element>
 
@@ -2500,9 +2500,9 @@ functionality (such as these)
                 When the defined number of unsuccessful authentication attempts has been met, the OS shall: <assignable>list of actions</assignable>.
       	    </title>
             <aactivity>
-                The evaluator shall attempt to authenticate repeadadly to the system with a known bad password. Once the defined number of failed
-                authenitcation attemps has been reached the evaluator shall ensure that the account that was being used for testing has been
-                locked out and that an event has been logged to the securit event log detailing that the account has been locked out.
+                The evaluator shall attempt to authenticate repeatedly to the system with a known bad password. Once the defined number of failed
+                authentication attempts has been reached the evaluator shall ensure that the account that was being used for testing has been
+                locked out and that an event has been logged to the security event log detailing that the account has been locked out.
       	    </aactivity>
       	  </f-element>
         </f-component>
@@ -2518,7 +2518,7 @@ functionality (such as these)
       	       to support authentication for [selection:] connections.
             </title>
             <aactivity>
-	             FIXME
+  <inline-comment color='blue' linebreak='yes'> Add some assurance activities </inline-comment>
       	    </aactivity>
       	  </f-element>
         </f-component>
@@ -2806,8 +2806,8 @@ functionality (such as these)
               categorization of interfaces as SFR-non-interfering.</title>
           </a-element>
           <a-element id="ADV_FSP.1.4C">
-            <title>The tracing shall demonstrate that the SFRs trace to <abbr title="TSF Interface"
-                >TSFI</abbr>s in the functional specification.</title>
+            <title>The tracing shall demonstrate that the SFRs trace to 
+	    <abbr title="TSF Interface">TSFI</abbr>s in the functional specification.</title>
           </a-element>
           <h4>Evaluator action elements:</h4>
           <a-element id="ADV_FSP.1.1E">
@@ -3329,7 +3329,7 @@ functionality (such as these)
   More specifically, all entropy source health tests and their rationale
   will be documented. This will include a description of the health tests,
   the rate and conditions under which each health test is performed
-  (e.g., at startup, continuously, or on-demand), the expected results
+  (e.g., at start, continuously, or on-demand), the expected results
   for each health test, and rationale indicating why each test is
   believed to be appropriate for detecting one or more failures in the
   entropy source.
@@ -3398,24 +3398,12 @@ functionality (such as these)
         <description>Application Programming Interface</description>
       </entry>
        <entry>
-        <term>APK</term>
-        <description>Android Application Package</description>
-      </entry>
-       <entry>
-        <term>APPX</term>
-         <description>Windows Store Application Package</description>
-      </entry>
-       <entry>
         <term>API</term>
         <description>Application Programming Interface</description>
       </entry>
       <entry>
         <term>ASLR</term>
         <description>Address Space Layout Randomization</description>
-      </entry>
-       <entry>
-        <term>BAR</term>
-         <description>Blackberry Application Package</description>
       </entry>
        <entry>
         <term>BIOS</term>
@@ -3461,10 +3449,6 @@ functionality (such as these)
       <entry>
         <term>DHE</term>
         <description>Diffie-Hellman Ephemeral</description>
-      </entry>
-      <entry>
-        <term>DMG</term>
-        <description>Apple Disk Image</description>
       </entry>
       <entry>
         <term>DNS</term>
@@ -3585,10 +3569,6 @@ functionality (such as these)
       <entry>
         <term>MIME</term>
         <description>Multi-purpose Internet Mail Extensions</description>
-      </entry>
-      <entry>
-        <term>MSI</term>
-        <description>Microsoft Installer</description>
       </entry>
       <entry>
         <term>NFC</term>
