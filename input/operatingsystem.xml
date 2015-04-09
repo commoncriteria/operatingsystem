@@ -2145,10 +2145,160 @@ functionality (such as these)
         <f-component id="ftp_itc.1" name="Inter-TSF trusted channel">
           <f-element id="ftp_itc.1.1">
             <title>
-	      The OS shall provide a communication channel between itself and another trusted IT product that is logically distinct from other communication channels and provides assured identification of its end points and protection of the channel data from modification or and disclosure using the following mechanisms: Cryptographically-protected communication channel using 
-	      [selection: i.]SSH as defined in RFCs 4251, 4252, 4253, and 4254 with a combination of the following cipher suites defined there: • 3DES-CBC, AES256-CBC, AES128-CBC, [selection: AES192-CBC,] for encryption; • [selection:] for integrity • DIFFIE-HELLMAN-GROUP14-SHA1, [selection:] for key exchange • SSH-DSS, SSH-RSA, [selection:] for public key encryption; 
-              ii. TLS as defined in RFC 5246 using X.509 certificates and supporting the following cipher suites defined there: • TLS_RSA_WITH_AES_128_CBC_SHA • TLS_RSA_WITH_AES_256_CBC_SHA [selection: •]none • TLS_RSA_WITH_AES_128_CBC_SHA256 • TLS_RSA_WITH_AES_256_CBC_SHA256 • TLS_DH_DSS_WITH_AES_128_CBC_SHA • TLS_DH_RSA_WITH_AES_128_CBC_SHA • TLS_DHE_DSS_WITH_AES_128_CBC_SHA • TLS_DHE_RSA_WITH_AES_128_CBC_SHA • TLS_DH_DSS_WITH_AES_256_CBC_SHA • TLS_DH_RSA_WITH_AES_256_CBC_SHA • TLS_DHE_DSS_WITH_AES_256_CBC_SHA • TLS_DHE_RSA_WITH_AES_256_CBC_SHA • TLS_DH_DSS_WITH_AES_128_CBC_SHA256 • TLS_DH_RSA_WITH_AES_128_CBC_SHA256 • TLS_DHE_DSS_WITH_AES_128_CBC_SHA256 • TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 • TLS_DH_DSS_WITH_AES_256_CBC_SHA256 • TLS_DH_RSA_WITH_AES_256_CBC_SHA256 • TLS_DHE_DSS_WITH_AES_256_CBC_SHA256 • TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 • TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 • TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 • TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256 • TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384; IPSEC protocol ESP as defined in RFC 4303 using the cryptographic algorithms: • AES-CBC-128, AES-CBC-256 (both specified by RFC 3602), [selection:] for ESP encryption; • [selection:] for ESP authentication and authentication header protection; • [selection,] for key negotiation and SA establishment; • DH Groups 14 (2048-bit MODP), and [selection:] for use in IKE key establishment; • [selection:] algorithm for Peer Authentication;
 
+              The OS shall provide a communication channel between itself and another trusted IT product that is logically 
+              distinct from other communication channels and provides assured identification of its end points and protection 
+              of the channel data from modification or and disclosure using the following mechanisms: 
+              
+              Cryptographically-protected communication channel using
+              <li>
+              <selectables>
+                <selectable>
+                  SSH as defined in RFCs 4251, 4252, 4253, and 4254 with a combination of the following cipher suites defined there: 
+                  <ul>
+                    <li>for encryption:
+                     <ul>
+                       <li>3DES-CBC</li>
+                       <li>AES256-CBC</li>
+                       <li>AES128-CBC</li>
+                       <li>
+                         <selectables>
+                           <selectable>AES192-CBC</selectable>
+                         </selectables>
+                       </li>
+                     </ul>
+                    </li>
+                  
+                    <li>for integrity:
+                      <ul>
+                        <li>
+                          <selectables>
+                            <selectable></selectable>
+                          </selectables>
+                        </li>
+                      </ul>
+                    </li>
+                  
+                    <li>for key exchange:
+                      <ul>
+                        <li>DIFFIE-HELLMAN-GROUP14-SHA1</li>
+                        <li>
+                          <selectables>
+                            <selectable></selectable>
+                          </selectables>
+                        </li>
+                      </ul>
+                    </li>
+                  
+                    <li>for public key encryption:
+                      <ul>
+                        <li>SSH-DSS</li>
+                        <li>SSH-RSA</li>
+                        <li>
+                          <selectables>
+                            <selectable></selectable>
+                          </selectables>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </selectable>
+                  
+                <selectable>
+                  TLS as defined in RFC 5246 using X.509 certificates and supporting the following cipher suites defined there:
+                  <ul>
+                    <li>TLS_RSA_WITH_AES_128_CBC_SHA</li>
+                    <li>TLS_RSA_WITH_AES_256_CBC_SHA</li> 
+                    <li>TLS_RSA_WITH_AES_128_CBC_SHA256</li> 
+                    <li>TLS_RSA_WITH_AES_256_CBC_SHA256</li> 
+                    <li>TLS_DH_DSS_WITH_AES_128_CBC_SHA</li>  
+                    <li>TLS_DH_RSA_WITH_AES_128_CBC_SHA</li>  
+                    <li>TLS_DHE_DSS_WITH_AES_128_CBC_SHA</li>  
+                    <li>TLS_DHE_RSA_WITH_AES_128_CBC_SHA</li>  
+                    <li>TLS_DH_DSS_WITH_AES_256_CBC_SHA</li>  
+                    <li>TLS_DH_RSA_WITH_AES_256_CBC_SHA</li>  
+                    <li>TLS_DHE_DSS_WITH_AES_256_CBC_SHA</li>  
+                    <li>TLS_DHE_RSA_WITH_AES_256_CBC_SHA</li>  
+                    <li>TLS_DH_DSS_WITH_AES_128_CBC_SHA256</li>  
+                    <li>TLS_DH_RSA_WITH_AES_128_CBC_SHA256</li>  
+                    <li>TLS_DHE_DSS_WITH_AES_128_CBC_SHA256</li>  
+                    <li>TLS_DHE_RSA_WITH_AES_128_CBC_SHA256</li>  
+                    <li>TLS_DH_DSS_WITH_AES_256_CBC_SHA256</li>  
+                    <li>TLS_DH_RSA_WITH_AES_256_CBC_SHA256</li>  
+                    <li>TLS_DHE_DSS_WITH_AES_256_CBC_SHA256</li>  
+                    <li>TLS_DHE_RSA_WITH_AES_256_CBC_SHA256</li>  
+                    <li>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256</li>  
+                    <li>TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384</li>  
+                    <li>TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256</li>  
+                    <li>TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384</li>
+                    <li>
+                      <selectables>
+                        <selectable></selectable>
+                      </selectables>
+                    </li>
+                  </ul>
+                </selectable>
+                
+                <selectable>
+                  IPSEC protocol ESP as defined in RFC 4303 using the cryptographic algorithms:
+                  <ul>
+                    <li>for ESP encryption:
+                      <ul>
+                        <li>AES-CBC-128 (specified by RFC 3602)</li>
+                        <li>AES-CBC-256 (specified by RFC 3602)</li> 
+                        <li>
+                          <selectables>
+                            <selectable></selectable>
+                          </selectables>
+                          </li>
+                      </ul> 
+                    </li>
+                  
+                  <li>for ESP authentication and authentication header protection:
+                    <ul>
+                      <li>
+                        <selectables>
+                          <selectable></selectable>
+                        </selectables>
+                      </li> 
+                    </ul>
+                  </li> 
+
+                  <li>for key negotiation and SA establishment:
+                    <ul>
+                      <li>
+                        <selectables>
+                          <selectable></selectable>>
+                        </selectables>
+                      </li> 
+                    </ul>
+                  </li>
+                  
+                  <li>for use in IKE key establishment:
+                     <ul>
+                       <li>DH Groups 14 (2048-bit MODP)</li>
+                       <li>
+                         <selectables>
+                           <selectable></selectable>
+                         </selectables>
+                       </li> 
+                     </ul>
+                  </li>
+                    
+                  <li>algorithm for Peer Authentication:
+                  <ul>
+                    <li>
+                      <selectables>
+                        <selectable></selectable>
+                      </selectables>
+                    </li> 
+                    </ul>
+                  </li>
+                </ul>
+                </selectable>
+                
+              </selectables>
+              </li>
       	    </title>
             <aactivity>
   <inline-comment color='blue' linebreak='yes'> Add some assurance activities </inline-comment>
