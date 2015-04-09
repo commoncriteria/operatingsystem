@@ -32,7 +32,14 @@
                         Pick an attribute other than id to refer to the linked element. Transform 
                         them more intelligently. Better yet, use standard markup with tool support. 
                       -->
-    <section title="Overview" id="ppoverview"></section>
+    <section title="Overview" id="ppoverview">
+      The scope of this Protection Profile (PP) is to describe the security functionality of operating systems in terms of [CC] 
+      and to define functional and assurance requirements for such products.
+      The operating system is the layer of software between the hardware and the applications.
+      As such, it is the bedrock for basic security within a computer system.
+      With an effective design that encourages strong security and facilitates best practices for applications,
+      threats from malware can be significantly reduced, though never completely eliminated.
+    </section>
     <section title="Terms" id="glossary">The following sections provide both Common Criteria and
       technology terms used in this Protection Profile. <subsection title="Common Criteria Terms"
         id="ccterms">
@@ -125,9 +132,11 @@
           </entry>
           <entry>
             <term><abbr title="Operating System">OS</abbr></term>
-            <description>Software that manages hardware resources and provides services for
+            <description>
+	      Software that manages physical and logical resources and provides services for
               applications.
-              The terms <i>TOE</i> and <i>OS</i> are interchangeable in this document.</description>
+              The terms <i>TOE</i> and <i>OS</i> are interchangeable in this document.
+	    </description>
           </entry>
           <entry>
             <term><abbr title="Personally Identifiable Information">PII</abbr></term>
@@ -164,7 +173,24 @@
         </glossary>
       </subsection></section>
     <section title="Compliant Targets of Evaluation" id="TOEdescription">
+
+      The requirements in this document apply to operating systems which run on standard computing.
+      Some application types are covered by more specific PPs, which may be expressed as Extended Packages of this PP.
+      Such applications are subject to the requirements of both this PP and the Extended Package that addresses their special functionality.
+      PPs for some particularly specialized applications may not be expressed as EPs at this time, though the requirements in this document should be seen as objectives for those highly specialized applications.
+
+Although the requirements in this document apply to a wide range of application software, consult guidance from the relevant national schemes to determine when formal Common Criteria evaluation is expected for a particular type of application. This may vary depending upon the nature of the security functionality of the application. 
+
 	 <subsection title="TOE Boundary" id="TOEboundary">
+	   <figure entity="images/Toe.png" 
+		   title="Figure 2: General TOE "
+		   id="toe" />
+
+The TOE boundary encompasses the kernel and drivers that run with elevated privileges, common software libraries,
+and some application software.
+The applications considered within the TOE are those that provide essential security services, many running with 
+elevated levels of privileges. 
+
 	 </subsection>
     </section>
     <section title="Use Cases" id="usecases">Requirements in this Protection Profile are designed to
