@@ -247,8 +247,8 @@ elevated levels of privileges.
     </cclaims>
   </chapter>
   <chapter title="Security Problem Definition" id="spd">The security problem is described in terms
-    of the threats that the <abbr linkend="TOE"/> is expected to address, assumptions about the
-    operational environment, and any organizational security policies that the <abbr linkend="TOE"/>
+    of the threats that the <abbr linkend="OS"/> is expected to address, assumptions about the
+    operational environment, and any organizational security policies that the <abbr linkend="OS"/>
     is expected to enforce.
     <section title="Threats" id="threats">
       <threats>
@@ -302,7 +302,7 @@ elevated levels of privileges.
         </threat>
          
         <threat id="T.LIMITED_PHYSICAL_ACCESS">
-          <description>An attacker may attempt to access data on the system while having a limited amount of time with the physical device</description>
+          <description>An attacker may attempt to access data on the OS while having a limited amount of time with the physical device</description>
           <objective-refer ref="O.PROTECTED_STORAGE">
             <rationale>The objective O.PROTECTED_STORAGE protects against unauthorized attempts to access
               physical storage used by the <abbr linkend="TOE"/>.</rationale>
@@ -313,9 +313,9 @@ elevated levels of privileges.
     <section title="Assumptions" id="assumptions">
       <assumptions>
         <assumption id="A.PLATFORM">
-          <description>The <abbr linkend="TOE"/> relies upon a trustworthy computing platform for
+          <description>The <abbr linkend="OS"/> relies upon a trustworthy computing platform for
             its execution. This includes the underlying platform and whatever runtime environment
-            it provides to the <abbr linkend="TOE"/>. This underlying runtime environment is out of scope of this PP. 
+            it provides to the <abbr linkend="OS"/>. This underlying runtime environment is out of scope of this PP. 
           </description>
           <objective-refer ref="OE.PLATFORM">
             <rationale>The operational environment objective OE.PLATFORM is realized through
@@ -362,7 +362,7 @@ elevated levels of privileges.
     <section title="Security Objectives for the TOE" id="SecurityObjectivesTOE">
       <SOs>
         <SO id="O.INTEGRITY">
-		  <description>Conformant <abbr linkend="TOE"/>s ensure the integrity
+		  <description>Conformant <abbr linkend="OS"/>s ensure the integrity
 		  of their installation and update packages, and also leverage
 		  execution environment-based mitigations. Software is seldom if ever
 		  shipped without errors, and the ability to deploy patches and updates
@@ -381,7 +381,7 @@ elevated levels of privileges.
           <component-refer ref="fpt_tud_ext.1"/>
         </SO>
         <SO id="O.QUALITY">
-          <description>To ensure quality of implementation, conformant <abbr linkend="TOE"/>s
+          <description>To ensure quality of implementation, conformant <abbr linkend="OS"/>s
             leverage services and <abbr linkend="API"/>s provided by the runtime environment rather
             than implementing their own versions of these services and APIs. This is especially
             important for cryptographic services and other complex operations such as file and media
@@ -393,7 +393,7 @@ elevated levels of privileges.
         </SO>
         <SO id="O.MANAGEMENT">
           <description>To facilitate management by users and the enterprise, conformant <abbr
-              linkend="TOE"/>s provide consistent and supported interfaces for their
+              linkend="OS"/>s provide consistent and supported interfaces for their
             security-relevant configuration and maintenance. This includes the deployment of
             applications and application updates through the use of platform-supported deployment
             mechanisms and formats, as well as providing mechanisms for configuration and application execution control.</description>
@@ -404,9 +404,9 @@ elevated levels of privileges.
         <SO id="O.PROTECTED_STORAGE">
           <description>
 	    To address the issue of loss of confidentiality of user data in the event of 
-	    loss of physical control of the storage medium, conformant <abbr linkend="TOE"/>s will 
+	    loss of physical control of the storage medium, conformant <abbr linkend="OS"/>s will 
 	    use data-at-rest protection. This involves encrypting data and keys stored by the 
-	    <abbr linkend="TOE"/> in order to prevent unauthorized access to this data.
+	    <abbr linkend="OS"/> in order to prevent unauthorized access to this data.
           </description>
           <component-refer ref="fdp_dar_ext.1"/>
           <component-refer ref="fcs_sto_ext.1"/>
@@ -414,7 +414,7 @@ elevated levels of privileges.
         </SO>
         <SO id="O.PROTECTED_COMMS">
           <description> To address both passive (eavesdropping) and active (packet modification)
-            network attack threats, conformant <abbr linkend="TOE"/>s will use a trusted channel for
+            network attack threats, conformant <abbr linkend="OS"/>s will use a trusted channel for
             sensitive data. Sensitive data includes cryptographic keys, passwords, and any other
             data specific to the OS that should not be exposed outside of the OS. 
           </description>
@@ -427,14 +427,14 @@ elevated levels of privileges.
     </section>
     <section title="Security Objectives for the Operational Environment"
       id="SecurityObjectivesTOEorEnvironment">The following security objectives for the operational
-      environment assist the <abbr linkend="TOE"/> in correctly providing its security
+      environment assist the <abbr linkend="OS"/> in correctly providing its security
       functionality. These track with the assumptions about the environment. <SOEs>
         <SOE id="OE.PLATFORM">
-          <description>The <abbr linkend="TOE"/> relies on being installed on trusted hardware</description>
+          <description>The <abbr linkend="OS"/> relies on being installed on trusted hardware</description>
         </SOE>
         <SOE id="OE.PROPER_USER">
           <description>
-	    The user of the OS is not willfully negligent or hostile,
+            The user of the <abbr linkend="OS"/> is not willfully negligent or hostile,
             and uses the software within compliance of the applied enterprise security
             policy.
             Standard user accounts will be provisioned in accordance with the least privilege model. 
@@ -444,7 +444,7 @@ elevated levels of privileges.
         </SOE>
         <SOE id="OE.PROPER_ADMIN">
           <description>
-	    The administrator of the OS is not careless, willfully
+            The administrator of the <abbr linkend="OS"/> is not careless, willfully
             negligent or hostile, and administers the OS within compliance of the applied
             enterprise security policy.
 	  </description>
@@ -455,7 +455,7 @@ elevated levels of privileges.
       <InsertSPDCorrespondence/></section>
   </chapter>
   <chapter title="Security Requirements" id="req">This chapter describes the security requirements
-    which have to be fulfilled by the <abbr linkend="TOE"/>. Those requirements comprise functional
+    which have to be fulfilled by the <abbr linkend="OS"/>. Those requirements comprise functional
     components from Part 2 and assurance components from Part 3 of <cite linkend="bibCC"/>. The
     following notations are used: <ul>
       <li>
@@ -1876,6 +1876,18 @@ functionality (such as these)
                   evaluator then shall delete one of the CA certificates, and show that the
                   connection fails.
                 </test>
+                <test>
+                  The evaluator shall demonstrate that a peer using a certificate which has been
+                  revoked results in an authentication failure.
+                </test>
+                <test>
+                   The evaluator shall demonstrate that a peer using a certifcate which has passed its
+                   expiration date results in an authentication failure.
+                </test>
+                <test>
+                  the evaluator shall demonstrate that a peer using a certificate which does not have a valid
+                  identifier shall result in an authentication failure.
+                </test>
               </testlist>
             </aactivity>
           </f-element>
@@ -2133,7 +2145,7 @@ functionality (such as these)
 
       <subsection title="Trusted Path/Channels (FTP)" id="ftp">
         <f-component id="ftp_itc.1" name="Inter-TSF trusted channel">
-          <f-element id=".1.1">
+          <f-element id="ftp_itc.1.1">
             <title>
 	      The OS shall provide a communication channel between itself and another trusted IT product that is logically distinct from other communication channels and provides assured identification of its end points and protection of the channel data from modification or and disclosure using the following mechanisms: Cryptographically-protected communication channel using 
 	      [selection: i.]SSH as defined in RFCs 4251, 4252, 4253, and 4254 with a combination of the following cipher suites defined there: • 3DES-CBC, AES256-CBC, AES128-CBC, [selection: AES192-CBC,] for encryption; • [selection:] for integrity • DIFFIE-HELLMAN-GROUP14-SHA1, [selection:] for key exchange • SSH-DSS, SSH-RSA, [selection:] for public key encryption; 
@@ -2210,7 +2222,7 @@ functionality (such as these)
           <f-element id="fpt_tud_ext.1.1">
             <title>The OS shall provide the ability to check for updates and patches to the application software. </title>
             <note role="application">This requirement is about the ability to "check" for updates.
-              The actual installation of any updates is covered by <inline-comment color='blue'>A-N-OTHER-REQUIREMENT</inline-comment>. This requirement
+              The actual installation of any updates is covered by <linkref linkend="FPT_TUD_EXT.1.4"/>. This requirement
               is intended to ensure that the OS can check for updates provided by the vendor,
               as updates provided by another source may contain malicious code.
             </note>
@@ -2223,7 +2235,7 @@ functionality (such as these)
           <f-element id="fpt_tud_ext.1.2">
             <title>The OS shall provide the ability to check for updates and patches to the OS software itself. </title>
             <note role="application">This requirement is about the ability to "check" for updates.
-              The actual installation of any updates is covered by <inline-comment color='blue'>A-N-OTHER-REQUIREMENT</inline-comment>. This requirement
+              The actual installation of any updates is covered by <linkref linkend="FPT_TUD_EXT.1.4"/>. This requirement
               is intended to ensure that the OS can check for updates provided by the vendor,
               as updates provided by another source may contain malicious code.
             </note>
@@ -2236,8 +2248,8 @@ functionality (such as these)
           <f-element id="fpt_tud_ext.1.4">
             <title> The OS shall provide a mechanism to download, modify, replace or update its own binary
               code. </title>
-            <aactivity>The evaluator shall verify that the OS's executable files are
-              cam be updated by the OS supplied mechanism. The evaluator shall complete the following test:
+            <aactivity>The evaluator shall verify that the OS's executable files
+              can be updated by the OS supplied mechanism. The evaluator shall complete the following test:
               <testlist>
                 <test>The evaluator shall check the OS files before and after running the vendor supplied OS update
                   mechanism. The evaluator shall verify that OS core files have been successfully updated after running
@@ -2306,7 +2318,7 @@ functionality (such as these)
                 <li>The evaluator shall attempt to modify shared libraries that are used throughout the system</li>
                 <li>The evaluator shall attempt to modify files owned by another user on the filesystem</li>
                 <li>The evaluator shall attempt to remove security controls deployed to the system via an administrator</li>
-                <li>A-N-OTHER TESTS?</li>
+                <li> <inline-comment color='blue' linebreak='yes'> Add some more assurance tests </inline-comment></li>
               </ul>
             </aactivity>
             <note role="application">: Core OS components are those components which provide the 
@@ -2358,7 +2370,7 @@ functionality (such as these)
                       The evaluator shall connect a FireWire device to the OS and then disable the FireWire interface within the OS. The
                       evaluator will ensure that the FireWire device no longer functions within the OS.                      
                 </li>
-                <li>A-N-OTHER TESTS?</li>
+                <li> <inline-comment color='blue' linebreak='yes'> Add some assurance activities </inline-comment></li>
               </ul>
             </aactivity>
             <note role="application">: Different hardware platforms will present different external interfaces. The selection
@@ -2407,7 +2419,7 @@ functionality (such as these)
                     The evaluator will then attempt to execute an older version of the application.
                     The evaluator will ensure that the code they attempted to execute has not been executed.
                 </li>
-                <li>A-N-OTHER TESTS?</li>
+                <li> <inline-comment color='blue' linebreak='yes'> Add some assurance activities </inline-comment></li>
               </ul>
             </aactivity>
             <note role="application">: While there are two types of execution control, black and white listing, this requirement
