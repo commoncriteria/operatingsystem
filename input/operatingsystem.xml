@@ -40,9 +40,10 @@
       With an effective design that encourages strong security and facilitates best practices for applications,
       threats from malware can be significantly reduced, though never completely eliminated.
     </section>
-    <section title="Terms" id="glossary">The following sections provide both Common Criteria and
-      technology terms used in this Protection Profile. <subsection title="Common Criteria Terms"
-        id="ccterms">
+    <section title="Terms" id="glossary">
+The following sections provide both Common Criteria and
+technology terms used in this Protection Profile. 
+      <subsection title="Common Criteria Terms" id="ccterms">
         <glossary>
           <entry>
             <term><abbr title="Common Criteria">CC</abbr></term> 
@@ -177,7 +178,7 @@
 The requirements in this document apply to operating systems which run on commodity 
 computing hardware.
 The systems can be end user or server in purpose and 
-the hardware on which they run can be physical or virtual.
+the hardware on which they run can either be physical or virtual in nature.
 
 	 <subsection title="TOE Boundary" id="TOEboundary">
 	   <figure entity="images/Toe.png" 
@@ -251,10 +252,13 @@ elevated levels of privileges.
     <section title="Threats" id="threats">
       <threats>
         <threat id="T.NETWORK_ATTACK">
-          <description>An attacker is positioned on a communications channel or elsewhere on the
-            network infrastructure. Attackers may engage in communications with the OS
-            or alter communications between the OS and other endpoints in
-            order to compromise it.</description>
+          <description>
+An attacker is positioned on a communications channel or elsewhere on the
+network infrastructure. 
+Attackers may engage in communications with applications and services running on or part 
+of the OS with the intent of compromise. 
+Engagement may consist of altering exisiting legimate communications
+	  </description>
           <objective-refer ref="O.PROTECTED_COMMS">
             <rationale>The threat T.NETWORK_ATTACK is countered by O.PROTECTED_COMMS as this
               provides for integrity of transmitted data.</rationale>
@@ -270,9 +274,12 @@ elevated levels of privileges.
           </objective-refer>
         </threat>
         <threat id="T.NETWORK_EAVESDROP">
-          <description>An attacker is positioned on a communications channel or elsewhere on the
-            network infrastructure. Attackers may monitor and gain access to data exchanged between
-            the OS and other endpoints.</description>
+          <description>
+An attacker is positioned on a communications channel or elsewhere on the
+network infrastructure. 
+Attackers may monitor and gain access to data exchanged between
+applications and services that are running on or part of the OS.
+	  </description>
           <objective-refer ref="O.PROTECTED_COMMS">
             <rationale>The threat T.NETWORK_EAVESDROP is countered by O.PROTECTED_COMMS as this
               provides for confidentiality of transmitted data.</rationale>
@@ -288,10 +295,11 @@ elevated levels of privileges.
           </objective-refer>
         </threat>
         <threat id="T.LOCAL_ATTACK">
-          <description>An attacker can act through unprivileged software on the same computing
-            platform on which the OS executes. Attackers may provide maliciously formatted
-            input to the OS in the form of files or other local
-            communications.</description>
+          <description>
+An attacker may compromise unprivileged applications running on the OS.
+The compromised application may provide maliciously formatted input to the the OS 
+through a variety of channels including unprivileged system calls and messaging via the filesystem.
+	  </description>
           <objective-refer ref="O.QUALITY">
 			<rationale>The objective O.QUALITY protects against the use of
 			mechanisms that weaken the <abbr linkend="TOE"/> with regard to
@@ -300,7 +308,10 @@ elevated levels of privileges.
         </threat>
          
         <threat id="T.LIMITED_PHYSICAL_ACCESS">
-          <description>An attacker may attempt to access data on the OS while having a limited amount of time with the physical device</description>
+          <description>
+An attacker may attempt to access data on the OS while having a 
+limited amount of time with the physical device.
+	  </description>
           <objective-refer ref="O.PROTECTED_STORAGE">
             <rationale>The objective O.PROTECTED_STORAGE protects against unauthorized attempts to access
               physical storage used by the <abbr linkend="TOE"/>.</rationale>
@@ -311,19 +322,22 @@ elevated levels of privileges.
     <section title="Assumptions" id="assumptions">
       <assumptions>
         <assumption id="A.PLATFORM">
-          <description>The <abbr linkend="OS"/> relies upon a trustworthy computing platform for
-            its execution. This includes the underlying platform and whatever runtime environment
-            it provides to the <abbr linkend="OS"/>. This underlying runtime environment is out of scope of this PP. 
+          <description>
+The <abbr linkend="OS"/> relies upon a trustworthy computing platform for
+its execution. 
+This underlying runtime environment is out of scope of this PP. 
           </description>
           <objective-refer ref="OE.PLATFORM">
-            <rationale>The operational environment objective OE.PLATFORM is realized through
-			  A.PLATFORM.</rationale>
+            <rationale>
+The operational environment objective OE.PLATFORM is realized through
+			  A.PLATFORM.
+</rationale>
           </objective-refer>
         </assumption>
         <assumption id="A.PROPER_USER">
           <description>
-	    The user of the OS software is not willfully negligent or hostile,
-            and uses the software in compliance with the applied enterprise security policy.
+The user of the OS is not willfully negligent or hostile,
+and uses the software in compliance with the applied enterprise security policy.
 	  </description>
           <objective-refer ref="OE.PROPER_USER">
             <rationale>The operational environment objective OE.PROPER_USER 
@@ -331,9 +345,11 @@ elevated levels of privileges.
           </objective-refer>
         </assumption>
         <assumption id="A.PROPER_ADMIN">
-          <description>The administrator of the OS software is not careless, willfully
-            negligent or hostile, and administers the software within compliance of the applied
-            enterprise security policy.</description>
+          <description>
+The administrator of the OS is not careless, willfully
+negligent or hostile, and administers the OS within
+compliance of the applied enterprise security policy.
+	  </description>
           <objective-refer ref="OE.PROPER_ADMIN">
             <rationale>The operational environment objective OE.PROPER_ADMIN 
 			is realized through A.PROPER_ADMIN.</rationale>
@@ -360,37 +376,33 @@ elevated levels of privileges.
     <section title="Security Objectives for the TOE" id="SecurityObjectivesTOE">
       <SOs>
         <SO id="O.INTEGRITY">
-		  <description>Conformant <abbr linkend="OS"/>s ensure the integrity
-		  of their installation and update packages, and also leverage
-		  execution environment-based mitigations. Software is seldom if ever
-		  shipped without errors, and the ability to deploy patches and updates
-		  to fielded software with integrity is critical to enterprise network
-		  security. Processor manufacturers, compiler developers, execution
-		  environment vendors, and operating system vendors have developed
-		  execution environment-based mitigations that increase the cost to
-		  attackers by adding complexity to the task of compromising systems.
-		  Application software can often take advantage of these mechanisms by
-		  using <abbr linkend="API"/>s provided by the runtime environment or by
-		  enabling the mechanism through compiler or linker
-		  options.</description>
+		  <description>
+Conformant <abbr linkend="OS"/>s ensure the integrity
+of their installation and update packages, and also leverage
+execution environment-based mitigations. Software is seldom if ever
+shipped without errors, and the ability to deploy patches and updates
+to fielded software with integrity is critical to enterprise network
+security. 
+Conformant <abbr linkend="OS"/>s provide execution environment-based mitigations 
+that increase the cost to attackers by adding complexity to 
+the task of compromising systems.
+		  </description>
           <component-refer ref="fdp_dec_ext.1"/>
           <component-refer ref="fmt_cfg_ext.1"/>
           <component-refer ref="fpt_aex_ext.1"/>
           <component-refer ref="fpt_tud_ext.1"/>
         </SO>
         <SO id="O.QUALITY">
-          <description>To ensure quality of implementation, conformant <abbr linkend="OS"/>s
-            leverage services and <abbr linkend="API"/>s provided by the runtime environment rather
-            than implementing their own versions of these services and APIs. This is especially
-            important for cryptographic services and other complex operations such as file and media
-            parsing. Leveraging this platform behavior relies upon using only documented and supported APIs.
+          <description>
+	    <inline-comment> Fill out or remove </inline-comment>
           </description>
           <component-refer ref="fmt_mec_ext.1"/>
           <component-refer ref="fpt_api_ext.1"/>
           <component-refer ref="fpt_lib_ext.1"/>
         </SO>
         <SO id="O.MANAGEMENT">
-          <description>To facilitate management by users and the enterprise, conformant <abbr
+          <description>
+To facilitate management by users and the enterprise, conformant <abbr
               linkend="OS"/>s provide consistent and supported interfaces for their
             security-relevant configuration and maintenance. This includes the deployment of
             applications and application updates through the use of platform-supported deployment
@@ -402,8 +414,9 @@ elevated levels of privileges.
         <SO id="O.PROTECTED_STORAGE">
           <description>
 	    To address the issue of loss of confidentiality of user data in the event of 
-	    loss of physical control of the storage medium, conformant <abbr linkend="OS"/>s will 
-	    use data-at-rest protection. This involves encrypting data and keys stored by the 
+	    loss of physical control of the storage medium, conformant <abbr linkend="OS"/>s 
+	    use and provide data-at-rest protection. 
+	    This involves encrypting data and keys stored by the 
 	    <abbr linkend="OS"/> in order to prevent unauthorized access to this data.
           </description>
           <component-refer ref="fdp_dar_ext.1"/>
@@ -411,10 +424,12 @@ elevated levels of privileges.
           <component-refer ref="fcs_rbg_ext.1"/>
         </SO>
         <SO id="O.PROTECTED_COMMS">
-          <description> To address both passive (eavesdropping) and active (packet modification)
-            network attack threats, conformant <abbr linkend="OS"/>s will use a trusted channel for
-            sensitive data. Sensitive data includes cryptographic keys, passwords, and any other
-            data specific to the OS that should not be exposed outside of the OS. 
+          <description> 
+To address both passive (eavesdropping) and active (packet modification)
+network attack threats, conformant <abbr linkend="OS"/>s provide mechanisms to create
+trusted channels for sensitive data. 
+Sensitive data includes cryptographic keys, passwords, and any other
+data specific to the platform that should not be exposed outside of the platform.
           </description>
           <component-refer ref="ftp_dit_ext.1"/>
           <component-refer ref="fcs_tlsc_ext.1"/>
@@ -435,7 +450,7 @@ elevated levels of privileges.
             The user of the <abbr linkend="OS"/> is not willfully negligent or hostile,
             and uses the software within compliance of the applied enterprise security
             policy.
-            Standard user accounts will be provisioned in accordance with the least privilege model. 
+            Standard user accounts are provisioned in accordance with the least privilege model. 
 	    Users requiring higher levels of access
             should have a separate account dedicated for that use.
 	  </description>
@@ -2680,18 +2695,18 @@ functionality (such as these)
                 </test>
                 <test>
                   The evaluator shall modify any byte in the first eight bytes of the certificate 
-                  and demonstrate that the certificate fails to validate. (The certificate will fail 
+                  and demonstrate that the certificate fails to validate. (The certificate should fail 
                   to parse correctly.)
                 </test>
                 <test>
                   The evaluator shall modify any byte in the last byte of the certificate and 
                   demonstrate that the certificate fails to validate. (The signature on the 
-                  certificate will not validate.)
+                  certificate should not validate.)
                 </test>
                 <test>
                   The evaluator shall modify any byte in the public key of the certificate and 
                   demonstrate that the certificate fails to validate. (The signature on the 
-                  certificate will not validate.)
+                  certificate should not validate.)
                 </test>
               </testlist> 
             </aactivity>
@@ -3366,7 +3381,7 @@ functionality (such as these)
 
 <section id="entropyhealthtesting" title="Health Testing">
   More specifically, all entropy source health tests and their rationale
-  will be documented. This will include a description of the health tests,
+  will be documented. This includes a description of the health tests,
   the rate and conditions under which each health test is performed
   (e.g., at start, continuously, or on-demand), the expected results
   for each health test, and rationale indicating why each test is
