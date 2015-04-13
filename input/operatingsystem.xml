@@ -187,7 +187,7 @@ the hardware on which they run can either be physical or virtual in nature.
 
 The TOE boundary encompasses the kernel and drivers that run with elevated privileges, common software libraries,
 and some application software.
-The applications considered within the TOE are those that provide essential security services, many running with 
+The applications considered within the TOE are those that provide essential security services, many, but not all, running with 
 elevated levels of privileges. 
 
 	 </subsection>
@@ -205,7 +205,7 @@ elevated levels of privileges.
           <description>The OS should provide a platform to provide server side services, either on physical or virtual hardware</description>
         </usecase>
         <usecase title="Cloud Systems" id="cloudsystems">
-          <description>The OS should provide a platform for providing cloud services running on virtual hardware</description>
+          <description>The OS should provide a platform for providing cloud services running on physical or virtual hardware</description>
         </usecase>
       </usecases>
     </section>
@@ -301,9 +301,9 @@ The compromised application may provide maliciously formatted input to the the O
 through a variety of channels including unprivileged system calls and messaging via the filesystem.
 	  </description>
           <objective-refer ref="O.QUALITY">
-			<rationale>The objective O.QUALITY protects against the use of
-			mechanisms that weaken the <abbr linkend="TOE"/> with regard to
-			attack by other software on the platform.</rationale>
+	    <rationale>The objective O.QUALITY protects against the use of
+	    mechanisms that weaken the <abbr linkend="TOE"/> with regard to
+	    attack by other software on the platform.</rationale>
           </objective-refer>
         </threat>
          
@@ -494,7 +494,7 @@ data specific to the platform that should not be exposed outside of the platform
         <f-component id="fcs_rbg_ext.1" name="Random Bit Generation Services">
           <f-element id="fcs_rbg_ext.1.1">
             <title> 
-	      The OS shall implement DRBG functionality for its cryptographic operations. 
+	      The OS shall implement <abbr linkend="DRBG"/> functionality for its cryptographic operations. 
 	    </title>
             <note role="application">
 	      In this requirement, cryptographic
@@ -3228,7 +3228,7 @@ functionality (such as these)
               This also includes the configuration of the
               cryptographic engine to be used. The cryptographic algorithms implemented by this
               engine are those specified by this PP and used by the cryptographic protocols being
-              evaluated (IPsec, TLS, SSH). The test plan identifies high-level test objectives
+              evaluated (IPsec, TLS). The test plan identifies high-level test objectives
               as well as the test procedures to be followed to achieve those objectives. These
               procedures include expected results. 
               <br/>
@@ -3719,10 +3719,6 @@ functionality (such as these)
       <entry>
         <term>SP</term>
         <description>Special Publication</description>
-      </entry>
-      <entry>
-        <term>SSH</term>
-        <description>Secure Shell</description>
       </entry>
       <entry>
         <term>SWID</term>
