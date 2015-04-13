@@ -2264,15 +2264,13 @@ functionality (such as these)
 			  such that the OS can cryptographically verify them prior to installation.
             </title>
             <note role="application">The specifics of the verification of installation packages
-			  and updates involves requirements on the platform (and not the
-              application), so these are not fully specified here. </note>
+			  and updates differs per platform and are not fully specified here. </note>
             <aactivity>
-			  The evaluator shall verify that the TSS identifies how the OS
-			  installation package and updates to it  
-			  are signed by an authorized source. The definition of an
-			  authorized source must be contained in the TSS.
-			  The evaluator shall also ensure that the TSS (or the operational
-			  guidance) describes how candidate updates are obtained.
+      			  The evaluator shall download an update from the OS vendor's website.
+      			  The evaluator shall ensure that the update has a digital signature belonging to the vendor.
+      			  The evaluator shall modify the downloaded file in such a way that the digital signature is no longer valid.
+      			  The evaluator shall then attempt to install the modified file. 
+      			  The evaluator will ensure that the OS does not install the modified update.
             </aactivity>
           </f-element>
         </f-component>
