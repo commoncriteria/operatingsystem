@@ -2333,6 +2333,10 @@ The evaluator shall verify that libraries found to be packaged with the OS are l
                   </li>
               </ul>
             </title>
+            <note role="application">: Different hardware platforms will present different external interfaces. The selection
+              of tests to run against an OS will very depending on the hardware the OS is running on. However, where an OS supports
+              an external interface type (E.G., FireWire) it is important that the OS also offers the ability to disable that interface.
+            </note>
             <aactivity>The evaluator will ensure that the following tests (where applicable) succeed:
               <ul>
                 <li>
@@ -2361,10 +2365,6 @@ The evaluator shall verify that libraries found to be packaged with the OS are l
                 <li> <inline-comment color='blue' linebreak='yes'> Add some assurance activities </inline-comment></li>
               </ul>
             </aactivity>
-            <note role="application">: Different hardware platforms will present different external interfaces. The selection
-              of tests to run against an OS will very depending on the hardware the OS is running on. However, where an OS supports
-              an external interface type (E.G., FireWire) it is important that the OS also offers the ability to disable that interface.
-            </note>
           </f-element>
         </f-component>        
         <f-component id="fpt_srp_ext.1" name="Software Restriction Policies">
@@ -2384,6 +2384,11 @@ The evaluator shall verify that libraries found to be packaged with the OS are l
                 </li>
               </ul>
             </title>
+            <note role="application">: While there are two types of execution control, black and white listing, this requirement
+              only covers the testing of white listing executable code as it has been found that black listing is both too hard to
+              maintain and can easily be bypassed. The whitelist should only allow execution of items on the list and deny execution
+              of everything else.
+            </note>
             <aactivity>The evaluator will ensure that all the following tests result in a negative outcome 
               (I.E., the action results in the OS denying the evaluator permission to complete the action):
               <ul>
@@ -2405,11 +2410,6 @@ The evaluator shall verify that libraries found to be packaged with the OS are l
                 <li> <inline-comment color='blue' linebreak='yes'> Add some assurance activities </inline-comment></li>
               </ul>
             </aactivity>
-            <note role="application">: While there are two types of execution control, black and white listing, this requirement
-              only covers the testing of white listing executable code as it has been found that black listing is both too hard to
-              maintain and can easily be bypassed. The whitelist should only allow execution of items on the list and deny execution
-              of everything else.
-            </note>
           </f-element>
         </f-component>      
       </subsection>
