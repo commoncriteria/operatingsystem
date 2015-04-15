@@ -616,20 +616,6 @@ data specific to the platform that should not be exposed outside of the platform
           </f-element>
         </f-component>
 
-        <f-component id="fcs_ckm_ext.1" name="Cryptographic Key Generation Services">
-          <f-element id="fcs_ckm_ext.1.1">
-            <title>The OS shall implement asymmetric key generation.
-            </title>
-            <note role="application">
-            </note>
-            <aactivity>
-              The evaluator shall ensure that the OS is capable of generating asymmetric keys using inbuilt APIs. 
-              The method of doing so varies per platform, but the evaluator shall ensure that public/private key pairs
-              can be generated and the key information can be extracted.
-            </aactivity>
-          </f-element>
-        </f-component>
-
 <!-- Just in case we need this.  I suspect we do not.
 
         <f-component id="fcs_ckm_ext.4" name="Cryptographic Key Zeroization">
@@ -1588,17 +1574,32 @@ functionality (such as these)
             <note role="application">This requirement ensures that persistent credentials (secret 
               keys, PKI private keys, or passwords) are stored securely when not in use.  
               <br/>
-              If <i>implement functionality to securely store</i> credentials is selected, then the
-              following requirements must be included in the <abbr linkend="ST"/>: <linkref linkend="FCS_COP.1(1)"/>.
+              The following requirements must be included in the <abbr linkend="ST"/>: <linkref linkend="FCS_COP.1(1)"/>.
               If other cryptographic operations are used to implement the secure storage of credentials, 
               the corresponding requirements must be included in the ST.
             </note>
             <aactivity>The evaluator shall check the TSS to ensure that it lists all persistent 
-              credentials (secret keys, PKI private keys, or passwords) needed to meet the 
-              requirements in the <abbr linkend="ST"/>. For each of these items, the evaluator shall 
-              confirm that the TSS lists for what purpose it is used, and how it is stored. 
+              credential types (secret keys, PKI private keys, or passwords) used by the OS and that
+              storage of these meet the requirements in the <abbr linkend="ST"/>. For each of these items, the evaluator shall 
+              confirm that the TSS lists for what purpose it can be used, and how it is stored. 
               <br/>
-.
+
+              <testlist>
+                <test>The evaluators shall create a new user account on the system with a credential. The evaluator
+                  shall ensure that the user can access their own credentials for authentication
+                </test>
+                <test>
+                  The evaluators shall create a second user account on the system with a credential. The evaluator
+                  shall then attempt to access the first user's credential from the second user's session. The
+                  evaluator shall ensure that the second user is unable to access the first user's credential.
+                </test>
+                <test>
+                  The evaluator shall then re-log into the systen with the first user. The evaluator then shall
+                  attempt to access the second user's credential from the first user's session. The
+                  evaluator shall ensure that the first user is unable to access the second user's credential.
+                </test>
+              </testlist>
+
             </aactivity>
           </f-element>
         </f-component>
@@ -2298,6 +2299,10 @@ The evaluator shall verify that libraries found to be packaged with the OS are l
                   </li>
                 </ul>
             </title>
+            <note role="application">: Core OS components are those components which provide the 
+              base functionality and security controls for the OS. They include, but are not 
+              limited to the kernel, shared libraries, security controls, and security audit logs.
+            </note>
             <aactivity>The evaluator will ensure that all the following tests result in a negative outcome 
               (I.E., the action results in the OS denying the evaluator permission to complete the action):
               <ul>
@@ -2308,10 +2313,7 @@ The evaluator shall verify that libraries found to be packaged with the OS are l
                 <li> <inline-comment color='blue' linebreak='yes'> Add some more assurance tests </inline-comment></li>
               </ul>
             </aactivity>
-            <note role="application">: Core OS components are those components which provide the 
-              base functionality and security controls for the OS. They include, but are not 
-              limited to the kernel, shared libraries, security controls, and security audit logs.
-            </note>
+           
           </f-element>
         </f-component>
         <f-component id="fpt_php_ext.1" name="External Interface Controls ">
@@ -2332,6 +2334,10 @@ The evaluator shall verify that libraries found to be packaged with the OS are l
                   </li>
               </ul>
             </title>
+            <note role="application">: Different hardware platforms will present different external interfaces. The selection
+              of tests to run against an OS will very depending on the hardware the OS is running on. However, where an OS supports
+              an external interface type (E.G., FireWire) it is important that the OS also offers the ability to disable that interface.
+            </note>
             <aactivity>The evaluator will ensure that the following tests (where applicable) succeed:
               <ul>
                 <li>
@@ -2360,10 +2366,6 @@ The evaluator shall verify that libraries found to be packaged with the OS are l
                 <li> <inline-comment color='blue' linebreak='yes'> Add some assurance activities </inline-comment></li>
               </ul>
             </aactivity>
-            <note role="application">: Different hardware platforms will present different external interfaces. The selection
-              of tests to run against an OS will very depending on the hardware the OS is running on. However, where an OS supports
-              an external interface type (E.G., FireWire) it is important that the OS also offers the ability to disable that interface.
-            </note>
           </f-element>
         </f-component>        
         <f-component id="fpt_srp_ext.1" name="Software Restriction Policies">
@@ -2383,6 +2385,11 @@ The evaluator shall verify that libraries found to be packaged with the OS are l
                 </li>
               </ul>
             </title>
+            <note role="application">: While there are two types of execution control, black and white listing, this requirement
+              only covers the testing of white listing executable code as it has been found that black listing is both too hard to
+              maintain and can easily be bypassed. The whitelist should only allow execution of items on the list and deny execution
+              of everything else.
+            </note>
             <aactivity>The evaluator will ensure that all the following tests result in a negative outcome 
               (I.E., the action results in the OS denying the evaluator permission to complete the action):
               <ul>
@@ -2404,11 +2411,6 @@ The evaluator shall verify that libraries found to be packaged with the OS are l
                 <li> <inline-comment color='blue' linebreak='yes'> Add some assurance activities </inline-comment></li>
               </ul>
             </aactivity>
-            <note role="application">: While there are two types of execution control, black and white listing, this requirement
-              only covers the testing of white listing executable code as it has been found that black listing is both too hard to
-              maintain and can easily be bypassed. The whitelist should only allow execution of items on the list and deny execution
-              of everything else.
-            </note>
           </f-element>
         </f-component>      
       </subsection>
