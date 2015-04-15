@@ -378,10 +378,10 @@ compliance of the applied enterprise security policy.
         <SO id="O.INTEGRITY">
 		  <description>
 Conformant <abbr linkend="OS"/>s ensure the integrity
-of their installation and update packages, and also leverage
-execution environment-based mitigations. Software is seldom if ever
-shipped without errors, and the ability to deploy patches and updates
-to fielded software with integrity is critical to enterprise network
+of their update packages. 
+<abbr linkend="OS"/>s are seldom if ever shipped without errors, 
+and the ability to deploy patches and updates
+with integrity is critical to enterprise network
 security. 
 Conformant <abbr linkend="OS"/>s provide execution environment-based mitigations 
 that increase the cost to attackers by adding complexity to 
@@ -2253,17 +2253,15 @@ functionality (such as these)
           </f-element>
           <f-element id="fpt_tud_ext.1.5">
             <title>
-			  The OS installation package and its updates shall be digitally signed 
-			  such that the OS can cryptographically verify them prior to installation.
+Updates to the OS shall be digitally signed 
+such that their integrity can be cryptographically verified before they are applied.
             </title>
-            <note role="application">The specifics of the verification of installation packages
-			  and updates differs per platform and are not fully specified here. </note>
             <aactivity>
-      			  The evaluator shall download an update from the OS vendor's website.
-      			  The evaluator shall ensure that the update has a digital signature belonging to the vendor.
-      			  The evaluator shall modify the downloaded file in such a way that the digital signature is no longer valid.
-      			  The evaluator shall then attempt to install the modified file. 
-      			  The evaluator will ensure that the OS does not install the modified update.
+      	      The evaluator shall download an update from the OS vendor's website.
+      	      The evaluator shall ensure that the update has a digital signature belonging to the vendor.
+      	      The evaluator shall modify the downloaded update in such a way that the digital signature is no longer valid.
+      	      The evaluator shall then attempt to apply the modified update.
+      	      The evaluator will ensure that the OS does not appy the modified update.
             </aactivity>
           </f-element>
         </f-component>
@@ -2418,34 +2416,21 @@ The evaluator shall verify that libraries found to be packaged with the OS are l
       <subsection title="User Data Protection (FDP)" id="fdp">
         <f-component id="fdp_dar_ext.1" name="Encryption Of Sensitive Application Data">
           <f-element id="fdp_dar_ext.1.1">
-            <title>The OS shall implement functionality to encrypt sensitive data in non-volatile memory.
+            <title>
+The OS shall provide functionality to applications for the purposes of encrypting sensitive data to non-volatile memory.
             </title>
-            <note role="application">
-               The evaluation is required against the 
-              <a href="https://www.niap-ccevs.org/pp/"><i>Application Software Protection Profile Extended Package: File Encryption</i></a>.
-			  <br/>
-              Any file that may potentially contain sensitive data (to include temporary files)
-              shall be protected.  The only exception is if the user intentionally exports the sensitive data
-              to non-protected files. 
-	    </note>
-            <!-- this language is intentionally different from the MDPP's FDP_DAR -->
-            <aactivity>The evaluator shall inventory the filesystem locations where the OS
-			  may write data.  The evaluator shall run the OS and attempt to store sensitive data.
-              The evaluator shall then inspect those areas of the filesystem to note where
-			  data was stored (if any), and determine whether it has been encrypted. 
-              <br/>
-              If <b>not store any sensitive data</b> is selected, the evaluator shall inspect the TSS and
-              ensure that it describes how sensitive data cannot be written to non-volatile memory.  The evaluator
-              shall also ensure that this is consistent with the filesystem test above.
-			  <br/>
-			  If <b>implement functionality to encrypt sensitive data</b> is selected, then
-              evaluation is required against the 
-              <b><i>Application Software Protection Profile Extended Package: File Encryption</i></b>. The evaluator
-              shall ensure that such evaluation is underway.
-              <br/>
+            <note role="application"></note>
+            <aactivity>
+The evaluator shall inspect provided documentation to ensure that there exists APIs 
+that allow applications to encrypt sensitive data.
+The evaluator shall then develop an application that uses the provided mechanism.
+The evaluator shall then run the application, and inspect the unit of non-volatile memory
+where the data was stored to ensure that it is not in clear text.
             </aactivity>
           </f-element>
         </f-component>
+
+
         <f-component id="fdp_ifc_ext.1" name="Information flow control ">
           <f-element id="fdp_ifc_ext.1.1">
             <title>
@@ -2475,8 +2460,7 @@ The evaluator shall verify that libraries found to be packaged with the OS are l
               The OS shall be able to generate an audit record of the following auditable events: 
               <ul>
                 <li> Start-up and shutdown of the audit functions; </li>
-                <li> All modifications to the set of events being audited; </li>
-		<li> all attempts to modify the audit configuration; </li>
+		<li> All attempts to modify the audit configuration; </li>
                 <li> all user authentication attempts; </li>
                 <li> all denied accesses to objects for which the access control policy defined in the OSPP base applies; </li>
                 <li> explicit modifications of access rights to objects covered by the access control policies; and  </li>
@@ -3328,7 +3312,7 @@ The evaluator shall verify that libraries found to be packaged with the OS are l
   that some testing is necessary in order to determine the amount of
   min-entropy in each output.
   <br/>
-  For third party provided entropy sources, in which the TOE vendor
+  For third-party provided entropy sources, in which the TOE vendor
   has limited access to the design and raw entropy data of the source, the
   documentation will indicate an estimate of the amount of min-entropy
   obtained from this third-party source.  It is acceptable for the vendor
@@ -3437,10 +3421,6 @@ The evaluator shall verify that libraries found to be packaged with the OS are l
         <term>API</term>
         <description>Application Programming Interface</description>
       </entry>
-       <entry>
-        <term>API</term>
-        <description>Application Programming Interface</description>
-      </entry>
       <entry>
         <term>ASLR</term>
         <description>Address Space Layout Randomization</description>
@@ -3493,10 +3473,6 @@ The evaluator shall verify that libraries found to be packaged with the OS are l
       <entry>
         <term>DNS</term>
         <description>Domain Name System</description>
-      </entry>
-      <entry>
-        <term>DPAPI</term>
-        <description>Data Protection Application Programming Interface</description>
       </entry>
       <entry>
         <term>DRBG</term>
