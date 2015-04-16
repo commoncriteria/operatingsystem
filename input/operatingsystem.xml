@@ -2278,7 +2278,6 @@ such that their integrity can be cryptographically verified before they are appl
                 <li>The evaluator shall attempt to modify shared libraries that are used throughout the system</li>
                 <li>The evaluator shall attempt to modify files owned by another user on the filesystem</li>
                 <li>The evaluator shall attempt to remove security controls deployed to the system via an administrator</li>
-                <li> <inline-comment color='blue' linebreak='yes'> Add some more assurance tests </inline-comment></li>
               </ul>
             </aactivity>
            
@@ -2331,7 +2330,9 @@ such that their integrity can be cryptographically verified before they are appl
                       The evaluator shall connect a FireWire device to the OS and then disable the FireWire interface within the OS. The
                       evaluator will ensure that the FireWire device no longer functions within the OS.                      
                 </li>
-                <li> <inline-comment color='blue' linebreak='yes'> Add some assurance activities </inline-comment></li>
+                <li> If any additional components have been listed in the selection, the evaluator shall connect each component to the OS and then disable the 
+                  component interface within the OS. The evaluator will ensure that the component device no longer functions within the OS.
+                </li>
               </ul>
             </aactivity>
           </f-element>
@@ -2346,6 +2347,7 @@ such that their integrity can be cryptographically verified before they are appl
                 <li>Executable file path</li>
                 <li>Executable file digital signature</li>
                 <li>Executable version</li>
+                <li>Executable hash</li>
                 <li>
                   <selectables>
                     <selectable>other components</selectable>
@@ -2376,7 +2378,11 @@ such that their integrity can be cryptographically verified before they are appl
                     The evaluator will then attempt to execute an older version of the application.
                     The evaluator will ensure that the code they attempted to execute has not been executed.
                 </li>
-                <li> <inline-comment color='blue' linebreak='yes'> Add some assurance activities </inline-comment></li>
+                <li>
+                  The evaluator shall configure the OS to allow execution of a specific application based on the application hash.
+                  The evaluator will modify the application in such a way that the application hash is changed.
+                  The evaluator will ensure that the code they attempted to execute has not been executed.
+                </li>
               </ul>
             </aactivity>
           </f-element>
