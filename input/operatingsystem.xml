@@ -2213,7 +2213,7 @@ functionality (such as these)
           <f-element id="fpt_tud_ext.1.2">
             <title>The OS shall provide the ability to check for updates and patches to the OS software itself. </title>
             <note role="application">This requirement is about the ability to "check" for updates.
-              The actual installation of any updates is covered by <linkref linkend="FPT_TUD_EXT.1.4"/>. This requirement
+              The actual installation of any updates is covered by <linkref linkend="FPT_TUD_EXT.1.3"/>. This requirement
               is intended to ensure that the OS can check for updates provided by the vendor,
               as updates provided by another source may contain malicious code.
             </note>
@@ -2223,23 +2223,11 @@ functionality (such as these)
               If it is updated or if it reports that no update is available this requirement is considered to be met.
             </aactivity>
           </f-element>
-          <f-element id="fpt_tud_ext.1.4">
-            <title> The OS shall provide a mechanism to download, modify, replace or update its own binary
-              code. </title>
-            <aactivity>The evaluator shall verify that the OS's executable files
-              can be updated by the OS supplied mechanism. The evaluator shall complete the following test:
-              <testlist>
-                <test>The evaluator shall check the OS files before and after running the vendor supplied OS update
-                  mechanism. The evaluator shall verify that OS core files have been successfully updated after running
-                  the update mechanism.
-                </test>
-              </testlist>
-            </aactivity>
-          </f-element>
-          <f-element id="fpt_tud_ext.1.5">
+
+          <f-element id="fpt_tud_ext.1.3">
             <title>
-Updates to the OS shall be digitally signed 
-such that their integrity can be cryptographically verified before they are applied.
+              The OS shall provide the ability for updates to the OS to be digitally signed 
+              such that their integrity can be cryptographically verified before they are applied.
             </title>
             <aactivity>
       	      The evaluator shall download an update from the OS vendor's website.
@@ -2249,6 +2237,21 @@ such that their integrity can be cryptographically verified before they are appl
       	      The evaluator will ensure that the OS does not appy the modified update.
             </aactivity>
           </f-element>
+          
+          <f-element id="fpt_tud_ext.1.4">
+            <title>
+              The OS shall provide the ability for updates to applications on the OS to be digitally signed 
+              such that their integrity can be cryptographically verified before they are applied.
+            </title>
+            <aactivity>
+              The evaluator shall download an update from the application vendor's website.
+              The evaluator shall ensure that the update has a digital signature belonging to the vendor.
+              The evaluator shall modify the downloaded update in such a way that the digital signature is no longer valid.
+              The evaluator shall then attempt to apply the modified update.
+              The evaluator will ensure that the OS does not appy the modified update.
+            </aactivity>
+          </f-element>          
+          
         </f-component>
 
         <f-component id="fpt_acf_ext.1" name="Access controls">
@@ -2338,7 +2341,7 @@ such that their integrity can be cryptographically verified before they are appl
           </f-element>
         </f-component>        
         <f-component id="fpt_srp_ext.1" name="Software Restriction Policies">
-          <f-element id="fpt_acf_ext.1.1">
+          <f-element id="fpt_srp_ext.1.1">
             <title>
               The OS shall implement capabilities and extensions that allow an administrator to create rules to allow executable code to 
               run based on unique identities of the executable.
@@ -2390,23 +2393,6 @@ such that their integrity can be cryptographically verified before they are appl
       </subsection>
 
       <subsection title="User Data Protection (FDP)" id="fdp">
-        <f-component id="fdp_dar_ext.1" name="Encryption Of Sensitive Application Data">
-          <f-element id="fdp_dar_ext.1.1">
-            <title>
-The OS shall provide functionality to applications for the purposes of encrypting sensitive data to non-volatile memory.
-            </title>
-            <note role="application"></note>
-            <aactivity>
-The evaluator shall inspect provided documentation to ensure that there exists APIs 
-that allow applications to encrypt sensitive data.
-The evaluator shall then acquire or develop an application that uses the provided mechanism.
-The evaluator shall then run the application, and inspect the unit of non-volatile memory
-where the data was stored to ensure that it is not in clear text.
-            </aactivity>
-          </f-element>
-        </f-component>
-
-
         <f-component id="fdp_ifc_ext.1" name="Information flow control ">
           <f-element id="fdp_ifc_ext.1.1">
             <title>
