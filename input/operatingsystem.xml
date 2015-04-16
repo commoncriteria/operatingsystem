@@ -2423,7 +2423,7 @@ The OS shall provide functionality to applications for the purposes of encryptin
             <aactivity>
 The evaluator shall inspect provided documentation to ensure that there exists APIs 
 that allow applications to encrypt sensitive data.
-The evaluator shall then develop an application that uses the provided mechanism.
+The evaluator shall then acquire or develop an application that uses the provided mechanism.
 The evaluator shall then run the application, and inspect the unit of non-volatile memory
 where the data was stored to ensure that it is not in clear text.
             </aactivity>
@@ -2531,22 +2531,6 @@ where the data was stored to ensure that it is not in clear text.
       	  </f-element>
         </f-component>
 
-        <f-component id="FIA_PK_EXT.1" name="Public key based authentication">
-          <f-element id="FIA_PK_EXT.1.1">
-            <title>
-	             The OS shall use 
-      	       <selectables> 
-      		        <selectable><assignable>certificate format standard</assignable></selectable>
-      		        <selectable>public key cryptography as defined by <assignable></assignable></selectable>
-      	       </selectables>
-      	       to support authentication for [selection:] connections.
-            </title>
-            <aactivity>
-  <inline-comment color='blue' linebreak='yes'> Add some assurance activities </inline-comment>
-      	    </aactivity>
-      	  </f-element>
-        </f-component>
-        
         <f-component id="fia_x509_ext.1" name="X.509 Certificate Validation">
           <f-element id="fia_x509_ext.1.1">
             <title>
@@ -2723,28 +2707,22 @@ where the data was stored to ensure that it is not in clear text.
           <f-element id="fia_x509_ext.2.1">
             <title>
               The OS shall use X.509v3 certificates as defined by RFC 5280 to support 
-              authentication for 
-              <selectables>
-                 <selectable>
-                  HTTPS
-                </selectable>
-                <selectable>
-                  TLS
-                </selectable>
-                <selectable>
-                  DTLS
-                </selectable>
-              </selectables>. 
+              authentication for TLS connections. 
             </title>
-            <note role="application">
-              The <abbr linkend="ST"/> author's selection shall match the selection in 
-              <linkref linkend="FTP_DIT_EXT.1.1"/>.
-            </note>
-            <!-- 
             <aactivity>
-              Currently no AAs available.
+The evaluator shall then acquire or develop an application that uses the OS TLS mechanism with an X.509v3 certificate.
+The evaluator shall then run the application and ensure that the provided certificate is used to authenticate the connection.
             </aactivity>
-            -->
+          </f-element>
+          <f-element id="fia_x509_ext.2.2">
+            <title>
+              The OS shall use X.509v3 certificates as defined by RFC 5280 to support 
+              authentication for DTLS connections. 
+            </title>
+            <aactivity>
+The evaluator shall then acquire or develop an application that uses the OS DTLS mechanism with an X.509v3 certificate.
+The evaluator shall then run the application and ensure that the provided certificate is used to authenticate the connection.
+            </aactivity>
           </f-element>
         </f-component>
       </subsection>
