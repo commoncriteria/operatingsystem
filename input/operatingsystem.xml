@@ -28,17 +28,14 @@
     </entry>
   </RevisionHistory>
   <chapter title="Introduction" id="int">
-    <!-- TO DO: Distinguish citations from cross-references. Mark up each appropriately. 
-                        Pick an attribute other than id to refer to the linked element. Transform 
-                        them more intelligently. Better yet, use standard markup with tool support. 
-                      -->
     <section title="Overview" id="ppoverview"> The scope of this Protection Profile (PP) is to
-      describe the security functionality of operating systems in terms of [CC] and to define
-      functional and assurance requirements for such products. The operating system is the layer of
-      software between the hardware and the applications. As such, it is the bedrock for basic
-      security within a computer system. With an effective design that encourages strong security
-      and facilitates best practices for applications, threats from malware can be significantly
-      reduced, though never completely eliminated. </section>
+      describe the security functionality of operating systems in terms of <cite linkend="bibCC"/>
+      and to define functional and assurance requirements for such products. The operating system is
+      the layer of software between the hardware and the applications. As such, it is the bedrock
+      for basic security within a computer system. With an effective design that encourages strong
+      security and facilitates best practices for applications, threats from malware can be
+      significantly reduced, though never completely eliminated. 
+    </section>
     <section title="Terms" id="glossary"> The following sections provide both Common Criteria and
       technology terms used in this Protection Profile. <subsection title="Common Criteria Terms"
         id="ccterms">
@@ -167,12 +164,14 @@
     <section title="Compliant Targets of Evaluation" id="TOEdescription"> The requirements in this
       document apply to operating systems which run on commodity computing hardware. The systems can
       be end user or server in purpose and the hardware on which they run can either be physical or
-      virtual in nature. <subsection title="TOE Boundary" id="TOEboundary">
-        <figure entity="images/Toe.png" title="Figure 2: General TOE " id="toe"/> The TOE boundary
-        encompasses the kernel and drivers that run with elevated privileges, common software
-        libraries, and some application software. The applications considered within the TOE are
-        those that provide essential security services, many, but not all, running with elevated
-        levels of privileges. </subsection>
+      virtual in nature. 
+      <subsection title="TOE Boundary" id="TOEboundary">
+        The TOE boundary encompasses the kernel and drivers that run with elevated privileges, common
+        software libraries, and some application software. The applications considered within the TOE
+        are those that provide essential security services, many, but not all, running with elevated
+        levels of privileges. 
+        <figure entity="images/Toe.png" title="Figure 2: General TOE " id="toe"/> 
+      </subsection>
     </section>
     <section title="Use Cases" id="usecases">Requirements in this Protection Profile are designed to
       address the security problem in the following use cases. These use cases are intentionally
@@ -186,11 +185,11 @@
         </usecase>
         <usecase title="Server Systems" id="serversystems">
           <description>The OS should provide a platform to provide server side services, either on
-            physical or virtual hardware</description>
+            physical or virtual hardware.</description>
         </usecase>
         <usecase title="Cloud Systems" id="cloudsystems">
           <description>The OS should provide a platform for providing cloud services running on
-            physical or virtual hardware</description>
+            physical or virtual hardware.</description>
         </usecase>
       </usecases>
     </section>
@@ -278,7 +277,8 @@
               the <abbr linkend="TOE"/> with regard to attack by other software on the
               platform.</rationale>
           </objective-refer>
-        </threat> <threat id="T.LIMITED_PHYSICAL_ACCESS">
+        </threat>
+        <threat id="T.LIMITED_PHYSICAL_ACCESS">
           <description> An attacker may attempt to access data on the OS while having a limited
             amount of time with the physical device. </description>
           <objective-refer ref="O.PROTECTED_STORAGE">
@@ -313,7 +313,8 @@
             <rationale>The operational environment objective OE.PROPER_ADMIN is realized through
               A.PROPER_ADMIN.</rationale>
           </objective-refer>
-        </assumption> </assumptions>
+        </assumption>
+      </assumptions>
     </section>
     <section title="Organizational Security Policies" id="OSPs">
       <OSPs>
@@ -334,9 +335,9 @@
     <section title="Security Objectives for the TOE" id="SecurityObjectivesTOE">
       <SOs>
         <SO id="O.ACCOUNTABILITY">
-          <description> Conformant <abbr linkend="OS"/>s ensure that information exists
-            that allows administrators to discover unintentional issues with the configuration
-            and operation of the operating system.</description>
+          <description> Conformant <abbr linkend="OS"/>s ensure that information exists that allows
+            administrators to discover unintentional issues with the configuration and operation of
+            the operating system.</description>
           <component-refer ref="fau_gen.1"/>
         </SO>
         <SO id="O.INTEGRITY">
@@ -358,9 +359,8 @@
           <description> The OS vendor should implement a security development lifecycle (SDL) to
             help reduce the number of security related issues their OS contains. This SDL should
             help directly with the issues described in O.INTEGRITY as the vendor should proactively
-            be searching for, and resolving security related issues within their 
-	    <abbr linkend="OS"/>. 
-          </description>
+            be searching for, and resolving security related issues within their <abbr linkend="OS"
+            />. </description>
         </SO>
         <SO id="O.MANAGEMENT">
           <description> To facilitate management by users and the enterprise, conformant <abbr
@@ -368,8 +368,7 @@
             security-relevant configuration and maintenance. This includes the deployment of
             applications and application updates through the use of platform-supported deployment
             mechanisms and formats, as well as providing mechanisms for configuration and
-            application execution control.
-          </description>
+            application execution control. </description>
           <component-refer ref="fmt_mof.1.1"/>
           <component-refer ref="fmt_smf_rmt.1.1"/>
           <component-refer ref="fpt_php_ext.1"/>
@@ -615,7 +614,7 @@
           </f-element>
         </f-component>
 -->
-          <f-component id="fcs_ckm.1" name="Cryptographic Key Generation">
+        <f-component id="fcs_ckm.1" name="Cryptographic Key Generation">
           <f-element id="fcs_ckm.1.1">
             <title> The OS shall generate asymmetric cryptographic keys in accordance with a
               specified cryptographic key generation algorithm <selectables linebreak="yes">
@@ -792,11 +791,11 @@
                 <selectable> No other schemes </selectable>
               </selectables>. </title>
             <note role="application"> The ST author shall select all key establishment schemes used
-              for the selected cryptographic protocols. FCS_TLSC_EXT.1 requires ciphersuites that
-              use RSA-based key establishment schemes. <br/> The RSA-based key establishment schemes
-              are described in Section 9 of NIST SP 800-56B; however, Section 9 relies on
-              implementation of other sections in SP 800-56B. If the TOE acts as a receiver in the
-              RSA key establishment scheme, the TOE does not need to implement RSA key generation.
+              for the selected cryptographic protocols. <linkref linkend="FCS_TLSC_EXT.1"/> requires
+              ciphersuites that use RSA-based key establishment schemes. <br/> The RSA-based key
+              establishment schemes are described in Section 9 of NIST SP 800-56B; however, Section 9
+              relies on implementation of other sections in SP 800-56B. If the TOE acts as a receiver
+              in the RSA key establishment scheme, the TOE does not need to implement RSA key generation.
               <br/> The elliptic curves used for the key establishment scheme shall correlate with
               the curves specified in <linkref linkend="FCS_CKM.1.1"/>. Elliptic curve-based schemes
               will be required for products entering evaluation after July 1, 2015. <br/> The domain
@@ -1739,8 +1738,8 @@ functionality (such as these)
           </f-element>
         </f-component>
       </subsection>
-      <subsection title="Protection of the TSF (FPT)" id="fpt"> <f-component id="fpt_aex_ext.1"
-          name="Anti-Exploitation Capabilities">
+      <subsection title="Protection of the TSF (FPT)" id="fpt">
+        <f-component id="fpt_aex_ext.1" name="Anti-Exploitation Capabilities">
           <f-element id="fpt_aex_ext.1.1">
             <title> The OS shall not request to map memory at an explicit address except for
                 <assignable>list of explicit exceptions</assignable>. <note role="application">
@@ -1812,7 +1811,8 @@ functionality (such as these)
               documentation and verify that the OS does not issue an error. If it is updated or if
               it reports that no update is available this requirement is considered to be met.
             </aactivity>
-          </f-element> <f-element id="fpt_tud_ext.1.3">
+          </f-element>
+          <f-element id="fpt_tud_ext.1.3">
             <title> The OS shall provide the ability for updates to the OS to be digitally signed
               such that their integrity can be cryptographically verified before they are applied. </title>
             <aactivity> The evaluator shall download an update from the OS vendor's website. The
@@ -1821,7 +1821,8 @@ functionality (such as these)
               digital signature is no longer valid. The evaluator shall then attempt to apply the
               modified update. The evaluator will ensure that the OS does not appy the modified
               update. </aactivity>
-          </f-element> <f-element id="fpt_tud_ext.1.4">
+          </f-element>
+          <f-element id="fpt_tud_ext.1.4">
             <title> The OS shall provide the ability for updates to applications on the OS to be
               digitally signed such that their integrity can be cryptographically verified before
               they are applied. </title>
@@ -1831,7 +1832,9 @@ functionality (such as these)
               digital signature is no longer valid. The evaluator shall then attempt to apply the
               modified update. The evaluator will ensure that the OS does not appy the modified
               update. </aactivity>
-          </f-element> </f-component> <f-component id="fpt_acf_ext.1" name="Access controls">
+          </f-element>
+        </f-component>
+        <f-component id="fpt_acf_ext.1" name="Access controls">
           <f-element id="fpt_acf_ext.1.1">
             <title> The OS shall implement access controls to prohibit unprivileged subjects from
               modifying core OS components including: <ul>
@@ -1859,7 +1862,8 @@ functionality (such as these)
                 <li>The evaluator shall attempt to remove security controls deployed to the system
                   via an administrator</li>
               </ul>
-            </aactivity> </f-element>
+            </aactivity>
+          </f-element>
         </f-component>
         <f-component id="fpt_php_ext.1" name="External Interface Controls ">
           <f-element id="fpt_php_ext.1.1">
@@ -1977,8 +1981,8 @@ functionality (such as these)
           </f-element>
         </f-component>
       </subsection>
-      <subsection title="Audit Data Generation (FAU)" id="fau"> <f-component id="fau_gen.1"
-          name="Audit Data Generation">
+      <subsection title="Audit Data Generation (FAU)" id="fau">
+        <f-component id="fau_gen.1" name="Audit Data Generation">
           <f-element id="fau_gen.1.1">
             <title> The OS shall be able to generate an audit record of the following auditable
               events: <ul>
@@ -2047,7 +2051,8 @@ functionality (such as these)
             <aactivity> The evaluator shall ensure that after attempting to authenticate with a
               known bad password that an event is logged in the security event log of the OS. The
               method of how these events are logged varies depending on platform. </aactivity>
-          </f-element> <f-element id="FIA_AFL.1.2">
+          </f-element>
+          <f-element id="FIA_AFL.1.2">
             <title> When the defined number of unsuccessful authentication attempts has been met,
               the OS shall: <assignable>list of actions</assignable>. </title>
             <aactivity> The evaluator shall attempt to authenticate repeatedly to the system with a
@@ -2056,7 +2061,8 @@ functionality (such as these)
               has been locked out and that an event has been logged to the security event log
               detailing that the account has been locked out. </aactivity>
           </f-element>
-        </f-component> <f-component id="fia_x509_ext.1" name="X.509 Certificate Validation">
+        </f-component>
+        <f-component id="fia_x509_ext.1" name="X.509 Certificate Validation">
           <f-element id="fia_x509_ext.1.1">
             <title> The OS shall implement functionality to validate certificates in accordance with
               the following rules: <ul>
@@ -2142,7 +2148,8 @@ functionality (such as these)
                   certificate should not validate.) </test>
               </testlist>
             </aactivity>
-          </f-element> <f-element id="fia_x509_ext.1.2">
+          </f-element>
+          <f-element id="fia_x509_ext.1.2">
             <title> The OS shall only treat a certificate as a CA certificate if the
               basicConstraints extension is present and the CA flag is set to TRUE. </title>
             <note role="application"> This requirement applies to certificates that are used and
@@ -2166,7 +2173,8 @@ functionality (such as these)
               </testlist>
             </aactivity>
           </f-element>
-        </f-component> <f-component id="fia_x509_ext.2" name="X.509 Certificate Authentication">
+        </f-component>
+        <f-component id="fia_x509_ext.2" name="X.509 Certificate Authentication">
           <f-element id="fia_x509_ext.2.1">
             <title> The OS shall use X.509v3 certificates as defined by RFC 5280 to support
               authentication for TLS connections. </title>
