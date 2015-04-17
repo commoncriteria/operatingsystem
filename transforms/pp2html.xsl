@@ -435,6 +435,11 @@
 	  Addressed by: 
 	  <span class="SOlist"> 
 	    <xsl:for-each select="cc:component-refer">
+	      <xsl:variable name="referId" select="@ref" />
+	      <xsl:if test="not(//*[@id=$referId])">
+		<xsl:message> MISSING REFERENCE <xsl:value-of select="$referId"/>
+		</xsl:message>
+	      </xsl:if>
 	      <xsl:element name="a"> <!-- Add a link to the actual section -->
 		<xsl:attribute name="href">
 		  <xsl:text>#</xsl:text>
