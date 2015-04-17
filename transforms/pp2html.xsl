@@ -437,7 +437,7 @@
 	    <xsl:for-each select="cc:component-refer">
 	      <xsl:variable name="referId" select="@ref" />
 	      <xsl:if test="not(//*[@id=$referId])">
-		<xsl:message> MISSING REFERENCE <xsl:value-of select="$referId"/>
+		<xsl:message> Missing target for component-refer with id:<xsl:value-of select="$referId"/>
 		</xsl:message>
 	      </xsl:if>
 	      <xsl:element name="a"> <!-- Add a link to the actual section -->
@@ -794,8 +794,19 @@
   </xsl:template>
 
   <xsl:template match="cc:linkref">
+<!--
+    <xsl:variable name="linkId" select="@linkend" />
+    <xsl:if test="not(//*[@id=$linkId])">
+      <xsl:message> Missing target for component-refer with id:<xsl:value-of select="$linkId"/>
+      </xsl:message>
+    </xsl:if>
+-->
     <xsl:variable name="linkend" select="@linkend" />
     <a class="linkref" href="#{$linkend}"><xsl:value-of select="$linkend" /></a>
+
+
+
+
   </xsl:template>
 
   <xsl:template match="cc:secref">
