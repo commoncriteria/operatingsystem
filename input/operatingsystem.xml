@@ -235,7 +235,7 @@
           <description> An attacker is positioned on a communications channel or elsewhere on the
             network infrastructure. Attackers may engage in communications with applications and
             services running on or part of the OS with the intent of compromise. Engagement may
-            consist of altering existing legitimate communications </description>
+            consist of altering existing legitimate communications.</description>
           <objective-refer ref="O.PROTECTED_COMMS">
             <rationale>The threat T.NETWORK_ATTACK is countered by O.PROTECTED_COMMS as this
               provides for integrity of transmitted data.</rationale>
@@ -405,7 +405,7 @@
       These track with the assumptions about the environment. <SOEs>
         <SOE id="OE.PLATFORM">
           <description>The <abbr linkend="OS"/> relies on being installed on trusted
-            hardware</description>
+            hardware.</description>
         </SOE>
         <SOE id="OE.PROPER_USER">
           <description> The user of the <abbr linkend="OS"/> is not willfully negligent or hostile,
@@ -1726,7 +1726,7 @@ functionality (such as these)
 	<f-component id="fmt_smf.1" name="Specification of Management Functions">
 	  <f-element id="fmt_smf.1.1">
 	    <title> 
-	      The OS shall be capable of performing the following management functions:
+	      The TSF shall be capable of performing the following management functions:
 	      <management-function-set>
 		<manager>Administrator</manager>
 		<manager>User</manager>
@@ -1740,9 +1740,37 @@ functionality (such as these)
 		<management-function x="Administrator,User"> ffff </management-function>
 		<management-function o="Administrator"> gggg </management-function>
 	      </management-function-set>
+
+
+              <selectables linebreak="yes">
+                <selectable>password policy:
+                  <ul>
+                    <li>minimum password length</li>
+                    <li>minimum password complexity</li>
+                    <li>minimum password history</li>
+                  </ul> 
+                </selectable>
+                <selectable>enable/disable screen lock</selectable>
+                <selectable>enable/disable transmission of any operating system state (e.g. crashdump)
+                  information</selectable>
+                <selectable><assignable>list of other management functions to be provided by the 
+                  TSF</assignable></selectable>
+            </selectables>.
+
 	    </title>
+            <aactivity>
+                 The evaluator shall verify that every management function mandated by the PP is
+                 described in the operational guidance and that the description contains the information
+                 required to perform the management duties associated with the management function.
+                 The evaluator shall test the operating system's ability to provide the management
+                 functions by configuring the operating system and testing each option selected
+                 from above. The evaluator is expected to test these functions in all the ways in which
+                 the ST and guidance documentation state the configuration can be managed.
+            </aactivity>
 	  </f-element>
 	</f-component>
+
+
         <f-component id="fmt_smf_rmt.1" name="Remote Management Capabilities">
           <f-element id="fmt_smf_rmt.1.1">
             <title> The OS shall <selectables linebreak="yes">
