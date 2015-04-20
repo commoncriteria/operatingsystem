@@ -889,7 +889,47 @@
     </span>
   </xsl:template>
 
+  <xsl:template match="cc:management-function-set">
+    <table xmlns="http://common-criteria.rhcloud.com/ns/cc">
+      <tr class="header">
+	<ul>
+	  <li> X: Mandatory</li>
+	  <li> O: Optional</li>
+	</ul>
+	<td>Management Function</td>
+	<xsl:apply-templates select="./cc:manager"/>
+      </tr>
+      <xsl:apply-templates select="./cc:management-function"/>
+    </table>
+  </xsl:template>
 
+  <xsl:template match="cc:manager">
+    <td><xsl:apply-templates/></td>
+  </xsl:template>
+
+  <xsl:template match="cc:management-function">
+    <tr><td><xsl:apply-templates/></td>
+    <xsl:variable name="mandatory" select="@x" />
+    <xsl:variable name="optional" select="@o" />
+
+    <xsl:for-each select="../cc:manager">
+      <td>
+	
+      <xsl:choose>
+	<!-- This could break if one keyword contains another keyword i.e. car & card. Capitalizing the first
+	     letter should fix this
+	-->
+	<xsl:when test="contains($mandatory,text())"> X </xsl:when>
+	<xsl:when test="contains($optional,text())"> O </xsl:when>
+      </xsl:choose>
+<!--
+		<manager>User</manager>
+		<management-function><r r="Administrator"/>aaaa</management-function>
+-->
+      </td>
+    </xsl:for-each>
+    </tr>
+  </xsl:template>
 
 
 </xsl:stylesheet>
