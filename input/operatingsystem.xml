@@ -1730,32 +1730,24 @@ functionality (such as these)
 	      <management-function-set>
 		<manager>Administrator</manager>
 		<manager>User</manager>
-		<management-function o="User,Administrator">
-		  And it's going to do this and that and the other thing and so on...
+		<management-function x="Administrator">
+		  Define password policy based on:
+		  <ul>
+		    <li> minimum password length.</li>
+		    <li> password complexity.</li>
+                    <li> password history</li>
+		  </ul>
 		</management-function>
-		<management-function o="Administrator" x="User"> bbbb </management-function> <!---->
-		<management-function o="Administrator"> cccc </management-function>
-		<management-function x="Administrator"> dddd </management-function>
-		<management-function o="Administrator,User"> eeee </management-function>
-		<management-function x="Administrator,User"> ffff </management-function>
-		<management-function o="Administrator"> gggg </management-function>
+		<management-function x="Administrator">
+		  Enable/disable screen lock
+		</management-function> 
+		<management-function x="Administrator" o="User"> 
+		  Enable/disable transmission of any operating system state (e.g. crashdump) information
+		</management-function>
+		<management-function x="Administrator" o="User">
+		  <assignable>list of other management functions to be provided by the TSF</assignable>
+		</management-function>
 	      </management-function-set>
-
-
-              <selectables linebreak="yes">
-                <selectable>password policy:
-                  <ul>
-                    <li>minimum password length</li>
-                    <li>minimum password complexity</li>
-                    <li>minimum password history</li>
-                  </ul> 
-                </selectable>
-                <selectable>enable/disable screen lock</selectable>
-                <selectable>enable/disable transmission of any operating system state (e.g. crashdump)
-                  information</selectable>
-                <selectable><assignable>list of other management functions to be provided by the 
-                  TSF</assignable></selectable>
-            </selectables>.
 
 	    </title>
             <aactivity>

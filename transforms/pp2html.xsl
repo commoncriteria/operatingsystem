@@ -890,7 +890,7 @@
   </xsl:template>
 
   <xsl:template match="cc:management-function-set">
-    <table xmlns="http://common-criteria.rhcloud.com/ns/cc">
+    <table style="width: 100%;" xmlns="http://common-criteria.rhcloud.com/ns/cc">
       <tr class="header">
 	<ul>
 	  <li> X: Mandatory</li>
