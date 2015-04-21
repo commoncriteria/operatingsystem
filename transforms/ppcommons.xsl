@@ -124,18 +124,19 @@
 
   <xsl:template match="cc:management-function">
     <tr><td><xsl:apply-templates/></td>
-    <xsl:variable name="mandatory" select="@x" />
-    <xsl:variable name="optional" select="@o" />
+    <xsl:variable name="mandatory" select="concat(',', @x, ',')" />
+    <xsl:variable name="optional" select="concat(',', @o, ',')" />
 
     <xsl:for-each select="../cc:manager">
       <td>
 	
       <xsl:choose>
-	<!-- This could break if one keyword contains another keyword i.e. car & card. Capitalizing the first
-	     letter should fix this
+	<!-- 
+	     Adding these commas helps delimit values such that values
+	     containing other values will not cause false positives.
 	-->
-	<xsl:when test="contains($mandatory,text())"> X </xsl:when>
-	<xsl:when test="contains($optional,text())"> O </xsl:when>
+	<xsl:when test="contains($mandatory,concat(',', text(), ','))"> X </xsl:when>
+	<xsl:when test="contains($optional,concat(',', text(), ','))"> O </xsl:when>
       </xsl:choose>
 <!--
 		<manager>User</manager>
