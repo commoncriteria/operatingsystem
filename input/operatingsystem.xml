@@ -445,22 +445,25 @@
     <section title="Security Functional Requirements" id="SFRs">The Security Functional Requirements
       included in this section are derived from Part 2 of the Common Criteria for Information
       Technology Security Evaluation, Version 3.1, Revision 4, with additional extended functional
-      components. <subsection title="Cryptographic Support (FCS)" id="fcs">
+      components. 
+      <subsection title="Cryptographic Support (FCS)" id="fcs">
         <f-component id="fcs_rbg_ext.1" name="Random Bit Generation">
           <f-element id="fcs_rbg_ext.1.1">
-            <title> The OS shall perform all deterministic random bit generation (DRBG) services in
-              accordance with <selectables atleastone="yes" linebreak="yes">
-                <selectable>NIST Special Publication 800-90A using <selectables>
-                    <selectable>Hash_DRBG (any)</selectable>
-                    <selectable>HMAC_DRBG (any)</selectable>
-                    <selectable>CTR_DRBG (AES)</selectable>
-                  </selectables>
-                </selectable>
+            <title> 
+	      The OS shall perform all deterministic random bit generation (DRBG) services in
+              accordance with 
+	      <selectables atleastone="yes" linebreak="yes">
+		<selectable>NIST Special Publication 800-90A using 
+		<selectables>
+		  <selectable>Hash_DRBG (any)</selectable>
+		  <selectable>HMAC_DRBG (any)</selectable>
+		  <selectable>CTR_DRBG (AES)</selectable>
+		</selectables>
+		</selectable>
                 <selectable>FIPS Pub 140-2 Annex C: X9.31 Appendix 2.4 using AES</selectable>
-              </selectables>. </title>
-            <note role="application">This requirement shall be included in <abbr linkend="ST"/>s in
-              which <i>implement DRBG functionality</i> is chosen in <linkref
-                linkend="FCS_RBG_EXT.1.1"/>. The <abbr linkend="ST"/> author should select the
+		</selectables>. 
+	    </title>
+            <note role="application">The <abbr linkend="ST"/> author should select the
               standard to which the RBG services comply (either SP 800-90A or FIPS 140-2 Annex C).
               <br/> SP 800-90A contains three different methods of generating random numbers; each
               of these, in turn, depends on underlying cryptographic primitives (hash
@@ -1534,10 +1537,8 @@ functionality (such as these)
               RFC 5280. Certificate validity shall be tested in accordance with testing performed
               for <linkref linkend="FIA_X509_EXT.1"/>. <br/> For <abbr
                 title="Transport Layer Security">TLS</abbr> connections, this channel shall not be
-              established if the peer certificate is invalid. The HTTPS protocol (<linkref
-                linkend="FCS_HTTPS_EXT.1"/>) requires different behavior, though HTTPS is
-              implemented over <abbr title="Transport Layer Security">TLS</abbr>. This element
-              addresses non-HTTPS <abbr title="Transport Layer Security">TLS</abbr> connections. </note>
+              established if the peer certificate is invalid.
+	    </note>
             <aactivity> The evaluator shall use <abbr title="Transport Layer Security">TLS</abbr> as
               a function to verify that the validation rules in <linkref linkend="FIA_X509_EXT.1.1"
               /> are adhered to and shall perform the following additional test: <testlist>
@@ -1778,6 +1779,9 @@ functionality (such as these)
           </f-element>
         </f-component>
       </subsection>
+      <subsection title="Inter-TSF Trusted Channel"
+
+
       <subsection title="Protection of the TSF (FPT)" id="fpt">
         <f-component id="fpt_aex_ext.1" name="Anti-Exploitation Capabilities">
           <f-element id="fpt_aex_ext.1.1">
