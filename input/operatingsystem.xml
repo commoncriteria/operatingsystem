@@ -112,6 +112,14 @@
             <description>Data that establishes the identity of a user, e.g. a cryptographic key or
               password.</description>
           </entry>
+	  <entry>
+	    <term><abbr title="Data At Rest">DAR</abbr> Protection</term>
+	    <description>
+	      Countermeasures that prevent attackers, even those with physical access, 
+	      from extracting data from non-volatile memory. 
+	      Common techniques include data encryption and wiping.
+	    </description>
+	  </entry>
           <entry>
             <term><abbr title="Data Execution Prevention">DEP</abbr></term>
             <description>An anti-exploitation feature of modern operating systems executing on
@@ -173,11 +181,11 @@
         <figure entity="images/Toe.png" title="Figure 2: General TOE " id="toe"/> 
       </subsection>
       <subsection title="TOE Platform" id="TOEplatform">
-	The TOE platform itself needs to be secured from malicious alteration; 
-	however, the exact countermeasures to ensure this, whether it be Data-At-Risk encryption or
-	a secured physical boundary.
-	
-
+	The TOE platform itself needs to be secured from malicious modification; 
+	however, the exact countermeasures to ensure this, whether it be <abbr linkend="DAR"/> protection or
+	a secured physical boundary, are left to be determined by policy or the accountability officer.
+	As such, the selected countermeasures are outside the TOE boundary and 
+	should undergo separated evaluation commiserate with the level of protection expected of them.
       </subsection>
     </section>
     <section title="Use Cases" id="usecases">Requirements in this Protection Profile are designed to
@@ -1676,7 +1684,7 @@ functionality (such as these)
         <f-component id="fmt_mof.1" name="Management of security functions behavior">
           <f-element id="fmt_mof.1.1">
             <title> The OS shall restrict the ability to modify the behavior of the functions
-              password based user authentication to <assignable> rules that need to be satisfied for
+              password-based user authentication to <assignable> rules that need to be satisfied for
                 other users to perform the operations </assignable> by allowing those users to
               specify rules for acceptable passwords that: <ul>
                 <li>allow for uppercase characters, lowercase characters, digits, and special
@@ -1730,6 +1738,19 @@ functionality (such as these)
               </testlist> Other tests are performed in conjunction with the Assurance Activity
               listed for <linkref linkend="FCS_TLSC_EXT.1"/>. </aactivity>
           </f-element>
+
+          <f-element id="fmt_mof.1.2">
+            <title> 
+	      The OS shall restrict the ability to modify the <abbr linkend="DAR"/> protection configuration 
+	      to 
+	      <assignable> rules that need to be satisfied for
+              users to configure <abbr linkend="DAR"/> </assignable> 
+	      by allowing those users to
+	      specify conditions underwhich <abbr linkend="DAR"/> encryption/decryption and wiping shall occur.
+            </title>
+            <aactivity>
+	    </aactivity>
+	  </f-element>
         </f-component>
 	<f-component id="fmt_smf.1" name="Specification of Management Functions">
 	  <f-element id="fmt_smf.1.1">
@@ -1752,9 +1773,11 @@ functionality (such as these)
 		<management-function x="Administrator" o="User"> 
 		  Enable/disable transmission of any operating system state (e.g. crashdump) information
 		</management-function>
-		<management-function x="Administrator" o="User">
-		  <assignable>list of other management functions to be provided by the TSF</assignable>
+		<management-function x="Administrator"> 
+		  Configure <abbr linkend="DAR"/> locking/unlocking and wiping behavior
 		</management-function>
+		<management-function x="Administrator" o="User">
+		<assignable>list of other management functions to be provided by the TSF</assignable>		</management-function>
 	      </management-function-set>
 
 	    </title>
