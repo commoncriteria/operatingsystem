@@ -366,6 +366,7 @@
           <component-refer ref="fpt_acf_ext.1"/>
           <component-refer ref="fpt_srp_ext.1"/>
           <component-refer ref="fia_x509_ext.2"/>
+          <component-refer ref="fpt_tst_ext.1"/>
         </SO>
         <SO id="O.MANAGEMENT">
           <description> To facilitate management by users and the enterprise, conformant <abbr
@@ -1850,8 +1851,20 @@ functionality (such as these)
               that stack-based buffer overflow protection is present. 
 	    </aactivity>
           </f-element>
-          <f-element id="fpt_aex_ext.1.4">
-            <title>The OS shall only load trusted signed code during the boot process </title>
+        </f-component>
+        <f-component id="fpt_tst_ext.1" name="Boot Integrity">
+          <f-element id="fpt_tst_ext.1.1">
+            <title>The OS shall verify the integrity of the bootchain up through the OS kernel and 
+              <selectables linebreak="yes">
+                <selectable>all executable code stored in mutable media</selectable>
+                <selectable><assignable>list of other executable code</assignable></selectable>
+                <selectable>no other executable code</selectable>
+              </selectables> prior to its execution through the use of
+              <selectables linebreak="yes">
+                <selectable>a digital signature using a hardware-protected asymmetric key</selectable>
+                <selectable>a hardware-protected hash</selectable>
+              </selectables>
+            </title>
             <aactivity>The evaluator shall ensure that the <abbr linkend="TSS"/> only loads
               executable code that has been signed by a trusted digital certificate. The evaluator
               shall ensure that only code signed by the Platform Key (PK) or by other trusted Key
