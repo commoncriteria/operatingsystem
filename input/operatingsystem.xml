@@ -374,7 +374,7 @@
             applications and application updates through the use of platform-supported deployment
             mechanisms and formats, as well as providing mechanisms for configuration and
             application execution control. </description>
-          <component-refer ref="fmt_mof.1.1"/>
+          <component-refer ref="fmt_mof_ext.1.1"/>
           <component-refer ref="fmt_smf_rmt.1.1"/>
           <component-refer ref="fpt_php_ext.1"/>
         </SO>
@@ -1665,8 +1665,7 @@ functionality (such as these)
           </f-element>
         </f-component>
       </subsection>
-      <subsection title="Security Management (FMT)" id="fmt">
-        <f-component id="fmt_mof.1" name="Management of security functions behavior">
+<!--
           <f-element id="fmt_mof.1.1">
             <title> The OS shall restrict the ability to modify the behavior of the functions
               password-based user authentication to <assignable> rules that need to be satisfied for
@@ -1737,37 +1736,55 @@ functionality (such as these)
 	    </aactivity>
 	  </f-element>
         </f-component>
-	<f-component id="fmt_smf.1" name="Specification of Management Functions">
-	  <f-element id="fmt_smf.1.1">
+-->
+      <subsection title="Security Management (FMT)" id="fmt">
+        <f-component id="fmt_mof.1" name="Management of security functions behavior">
+	  <f-element id="fmt_mof_ext.1.1">
 	    <title> 
 	      The TSF shall be capable of performing the following management functions:
 	      <management-function-set>
 		<manager>Administrator</manager>
 		<manager>User</manager>
-		<management-function x="Administrator">
-		  Define password policy based on:
-		  <ul>
-		    <li> minimum password length.</li>
-		    <li> password complexity.</li>
-                    <li> password history</li>
-		  </ul>
+		<management-function admin="O">
+		  Configure minimum password length
 		</management-function>
-		<management-function x="Administrator">
+		<management-function admin="O" user="O">
+                  Configure password complexity through 
+                  <selectables> 
+                    <selectable>minimum number of uppercase characters</selectable>
+                    <selectable>minimum number of lowercase characters</selectable>
+                    <selectable>minimum number of special characters</selectable>
+                  </selectables> 
+		</management-function>
+		<management-function admin="O" user="O">
+                  Configure password history
+		</management-function>
+		<management-function>
 		  Enable/disable screen lock
 		</management-function> 
-		<management-function x="Administrator" o="User"> 
-		  Enable/disable transmission of any operating system state (e.g. crashdump) information
+		<management-function>
+		  Configure screen lock inactivity timeout
+		</management-function> 
+		<management-function> 
+		  Enable/disable transmission of crashdump information
 		</management-function>
-		<management-function x="Administrator"> 
-		  Configure <abbr linkend="DAR"/> locking/unlocking and wiping behavior
+		<management-function> 
+		  Enable/disable <abbr linkend="DAR"/> protection
 		</management-function>
-		<management-function x="Administrator" o="User">
-		<assignable>list of other management functions to be provided by the TSF</assignable>		</management-function>
+		<management-function> 
+		  Configure address of directory server to which to bind
+		</management-function>
+		<management-function> 
+		  Configure address of remote management server from which to receive management settings
+		</management-function>
+		<management-function>
+		<assignable>list of other management functions to be provided by the TSF</assignable>
+                </management-function>
 	      </management-function-set>
 
 	    </title>
             <aactivity>
-                 The evaluator shall verify that every management function mandated by the PP is
+                 The evaluator shall verify that every management function captured in the ST is
                  described in the operational guidance and that the description contains the information
                  required to perform the management duties associated with the management function.
                  The evaluator shall test the operating system's ability to provide the management

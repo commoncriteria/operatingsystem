@@ -124,26 +124,24 @@
 
   <xsl:template match="cc:management-function">
     <tr><td><xsl:apply-templates/></td>
-    <xsl:variable name="mandatory" select="concat(',', @x, ',')" />
-    <xsl:variable name="optional" select="concat(',', @o, ',')" />
+    <td>
+    <xsl:choose>
+     <xsl:when test="@admin">
+       <xsl:value-of select="@admin"/>
+     </xsl:when>
+     <xsl:otherwise>O</xsl:otherwise>
+    </xsl:choose>
+    </td>
 
-    <xsl:for-each select="../cc:manager">
-      <td>
-	
-      <xsl:choose>
-	<!-- 
-	     Adding these commas helps delimit values such that values
-	     containing other values will not cause false positives.
-	-->
-	<xsl:when test="contains($mandatory,concat(',', text(), ','))"> X </xsl:when>
-	<xsl:when test="contains($optional,concat(',', text(), ','))"> O </xsl:when>
-      </xsl:choose>
-<!--
-		<manager>User</manager>
-		<management-function><r r="Administrator"/>aaaa</management-function>
--->
-      </td>
-    </xsl:for-each>
+    <td>
+    <xsl:choose>
+     <xsl:when test="@user">
+       <xsl:value-of select="@user"/>
+     </xsl:when>
+     <xsl:otherwise>O</xsl:otherwise>
+    </xsl:choose>
+    </td>
+
     </tr>
   </xsl:template>
 
