@@ -6,7 +6,7 @@
   <!-- <inline-comment color='blue' linebreak='yes'> Hello World QQQQ </inline-comment> -->
   <PPReference title="PP Reference" id="XXXXX">
     <ReferenceTable>
-      <PPTitle>Protection Profile for General Purpose Operating System</PPTitle>
+      <PPTitle>Protection Profile for General Purpose Operating Systems</PPTitle>
       <PPVersion>4.0</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
       <PPPubDate>2015-06-01</PPPubDate>
@@ -269,10 +269,6 @@
             <rationale>The threat T.NETWORK_EAVESDROP is countered by O.PROTECTED_COMMS as this
               provides for confidentiality of transmitted data.</rationale>
           </objective-refer>
-          <objective-refer ref="O.QUALITY">
-            <rationale>The objective O.QUALITY ensures use of mechanisms that provide protection
-              against network-based attack.</rationale>
-          </objective-refer>
           <objective-refer ref="O.MANAGEMENT">
             <rationale>The threat T.NETWORK_EAVESDROP is countered by O.MANAGEMENT as this provides
               for the ability to configure the OS to protect the confidentiality of its transmitted
@@ -284,8 +280,8 @@
             compromised application may provide maliciously formatted input to the the OS through a
             variety of channels including unprivileged system calls and messaging via the
             filesystem. </description>
-          <objective-refer ref="O.QUALITY">
-            <rationale>The objective O.QUALITY protects against the use of mechanisms that weaken
+          <objective-refer ref="O.INTEGRITY">
+            <rationale>The objective O.INTEGRITY protects against the use of mechanisms that weaken
               the <abbr linkend="TOE"/> with regard to attack by other software on the
               platform.</rationale>
           </objective-refer>
@@ -1739,10 +1735,14 @@ functionality (such as these)
         </f-component>
 -->
       <subsection title="Security Management (FMT)" id="fmt">
-        <f-component id="fmt_mof.1" name="Management of security functions behavior">
+        <f-component id="fmt_mof_ext.1" name="Management of security functions behavior">
 	  <f-element id="fmt_mof_ext.1.1">
 	    <title> 
 	      The TSF shall be capable of performing the following management functions:
+              <ul>
+                <li> X: Mandatory</li>
+                <li> O: Optional</li>
+              </ul>
 	      <management-function-set>
 		<manager>Administrator</manager>
 		<manager>User</manager>

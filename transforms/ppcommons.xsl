@@ -107,10 +107,6 @@
   <xsl:template match="cc:management-function-set">
     <table style="width: 100%;" xmlns="http://common-criteria.rhcloud.com/ns/cc">
       <tr class="header">
-	<ul>
-	  <li> X: Mandatory</li>
-	  <li> O: Optional</li>
-	</ul>
 	<td>Management Function</td>
 	<xsl:apply-templates select="./cc:manager"/>
       </tr>
