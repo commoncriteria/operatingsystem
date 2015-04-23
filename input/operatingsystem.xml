@@ -168,23 +168,21 @@
           </entry>
         </glossary>
       </subsection></section>
-    <section title="Compliant Targets of Evaluation" id="TOEdescription"> The requirements in this
-      document apply to operating systems which run on commodity computing hardware. The systems can
-      be end user or server in purpose and the hardware on which they run can either be physical or
-      virtual in nature. 
+    <section title="Compliant Targets of Evaluation" id="TOEdescription">
       <subsection title="TOE Boundary" id="TOEboundary">
-        The TOE boundary encompasses the kernel and drivers that run with elevated privileges, common
+        The TOE boundary encompasses the OS kernel and its drivers, common
         software libraries, and some application software. The applications considered within the TOE
-        are those that provide essential security services, many, but not all, running with elevated
-        levels of privileges. 
+        are those that provide essential security services, many of which run with elevated
+        privileges.  Applications which are covered by more-specific Protection Profiles cannot 
+        claim evaluation as part of the OS evaluation, even when it is necessary to evaluate 
+        some of their functionality as it relates to their role as part of the OS.
         <figure entity="images/Toe.png" title="Figure 2: General TOE " id="toe"/> 
       </subsection>
       <subsection title="TOE Platform" id="TOEplatform">
-	The TOE platform itself needs to be secured from malicious modification; 
-	however, the exact countermeasures to ensure this, whether it be <abbr linkend="DAR"/> protection or
-	a secured physical boundary, are left to be determined by policy or the accountability officer.
-	As such, the selected countermeasures are outside the TOE boundary and 
-	should undergo separated evaluation commiserate with the level of protection expected of them.
+	The TOE platform, which consists of the physical or virtual hardware on which the TOE executes,
+        is outside the scope of evaluation.  At the same time, the security of the TOE relies upon it.
+        Other hardware components which independently run their own software and are
+        relevant to overall system security are also outside the scope of evaluation.
       </subsection>
     </section>
     <section title="Use Cases" id="usecases">Requirements in this Protection Profile are designed to
@@ -355,7 +353,7 @@
           <component-refer ref="fau_gen.1"/>
         </SO>
         <SO id="O.INTEGRITY">
-          <description> Conformant <abbr linkend="OS"/>s ensure the integrity of their update
+          <description>Conformant <abbr linkend="OS"/>s ensure the integrity of their update
             packages. <abbr linkend="OS"/>s are seldom if ever shipped without errors, and the
             ability to deploy patches and updates with integrity is critical to enterprise network
             security. Conformant <abbr linkend="OS"/>s provide execution environment-based
@@ -371,7 +369,7 @@
         </SO>
         <SO id="O.MANAGEMENT">
           <description> To facilitate management by users and the enterprise, conformant <abbr
-              linkend="OS"/>s provide consistent and supported interfaces for their
+              linkend="OS"/>es provide consistent and supported interfaces for their
             security-relevant configuration and maintenance. This includes the deployment of
             applications and application updates through the use of platform-supported deployment
             mechanisms and formats, as well as providing mechanisms for configuration and
@@ -381,10 +379,10 @@
           <component-refer ref="fpt_php_ext.1"/>
         </SO>
         <SO id="O.PROTECTED_STORAGE">
-          <description> To address the issue of loss of confidentiality of user data in the event of
-            loss of physical control of the storage medium, conformant <abbr linkend="OS"/>s use and
-            provide data-at-rest protection. This involves encrypting data and keys stored by the
-              <abbr linkend="OS"/> in order to prevent unauthorized access to this data. </description>
+          <description> To address the issue of loss of confidentiality of credentials in the event of
+            loss of physical control of the storage medium, conformant <abbr linkend="OS"/>es 
+            provide data-at-rest protection for credentials. 
+          </description>
           <component-refer ref="fcs_sto_ext.1"/>
           <component-refer ref="fcs_rbg_ext.1"/>
           <component-refer ref="fcs_cop.1.1(1)"/>
