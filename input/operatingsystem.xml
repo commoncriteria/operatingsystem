@@ -1809,16 +1809,18 @@ functionality (such as these)
           </f-element>
           <f-element id="fpt_aex_ext.1.2" status="objective">
             <title> The OS shall <selectables linebreak="yes">
-                <selectable> not allocate any memory region with both write and execute permissions </selectable>
-                <selectable> allocate memory regions with write and execute permissions for only
-                    <assignable> list of functions performing just-in-time compilation</assignable>
+                <selectable>not permit allocation of any memory region with both write and 
+                execute permissions</selectable>
+                <selectable>permit allocation of memory regions with write and execute permissions for only
+                    <assignable>list of exceptions</assignable>
                 </selectable>
-              </selectables> . </title>
-            <note role="application"> Requesting a memory mapping with both write and execute
+              </selectables>. </title>
+            <note role="application">Requesting a memory mapping with both write and execute
               permissions subverts the platform protection provided by <abbr linkend="DEP"/>. If the
-              OS performs no just-in-time compiling, then the first selection must be chosen. </note>
+              OS provides no exceptions (such as for just-in-time compilation), then the first 
+              selection must be chosen. </note>
             <aactivity> 
-	      The evaluator shall verify that no memory mapping requests are made with
+	      The evaluator shall verify that no memory mapping requests can be made with
               write and execute permissions.
             </aactivity>
           </f-element>
