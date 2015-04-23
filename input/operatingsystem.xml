@@ -22,19 +22,18 @@
 
   <RevisionHistory role="draft">
     <entry>
-      <version>v .1</version>
-      <date>2014-01-08</date>
-      <subject>Initial draft commit</subject>
+      <version>v .3</version>
+      <date>2015-04-23</date>
+      <subject>First draft for comment</subject>
     </entry>
   </RevisionHistory>
   <chapter title="Introduction" id="int">
     <section title="Overview" id="ppoverview"> The scope of this Protection Profile (PP) is to
       describe the security functionality of operating systems in terms of <cite linkend="bibCC"/>
-      and to define functional and assurance requirements for such products. The operating system is
-      the layer of software between the hardware and the applications. As such, it is the bedrock
-      for basic security within a computer system. With an effective design that encourages strong
-      security and facilitates best practices for applications, threats from malware can be
-      significantly reduced, though never completely eliminated. 
+      and to define functional and assurance requirements for such products.
+      An operating system is software that manages computer hardware and software
+      resources, and provides common services for application programs. The hardware
+      it manages may be physical or virtual.
     </section>
     <section title="Terms" id="glossary"> The following sections provide both Common Criteria and
       technology terms used in this Protection Profile. <subsection title="Common Criteria Terms"
@@ -369,13 +368,6 @@
           <component-refer ref="fpt_acf_ext.1"/>
           <component-refer ref="fpt_srp_ext.1"/>
           <component-refer ref="fia_x509_ext.2"/>
-        </SO>
-        <SO id="O.QUALITY">
-          <description> The OS vendor should implement a security development lifecycle (SDL) to
-            help reduce the number of security related issues their OS contains. This SDL should
-            help directly with the issues described in O.INTEGRITY as the vendor should proactively
-            be searching for, and resolving security related issues within their <abbr linkend="OS"
-            />. </description>
         </SO>
         <SO id="O.MANAGEMENT">
           <description> To facilitate management by users and the enterprise, conformant <abbr
@@ -1325,17 +1317,12 @@ functionality (such as these)
         </f-component>
         <f-component id="fcs_sto_ext.1" name="Storage of Secrets">
           <f-element id="fcs_sto_ext.1.1">
-            <title>The OS shall implement functionality to securely store credentials to
-              non-volatile memory. </title>
-            <note role="application">This requirement ensures that persistent credentials (secret
-              keys, PKI private keys, or passwords) are stored securely when not in use. <br/> The
-              following requirements must be included in the <abbr linkend="ST"/>: <linkref
-                linkend="FCS_COP.1(1)"/>. If other cryptographic operations are used to implement
-              the secure storage of credentials, the corresponding requirements must be included in
-              the ST. </note>
+            <title>The OS shall implement functionality to store credentials to non-volatile memory
+            and provide interfaces to applications to invoke this functionality.
+            </title>
             <aactivity>The evaluator shall check the TSS to ensure that it lists all persistent
-              credential types (secret keys, PKI private keys, or passwords) used by the OS and that
-              storage of these meet the requirements in the <abbr linkend="ST"/>. For each of these
+              credential types (secret keys, PKI private keys, or passwords) for which the OS provides
+              a storage capability.  For each of these
               items, the evaluator shall confirm that the TSS lists for what purpose it can be used,
               and how it is stored. <br/>
               <testlist>
