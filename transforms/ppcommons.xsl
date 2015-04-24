@@ -8,23 +8,6 @@
   <xsl:variable name="lower" select="'abcdefghijklmnopqrstuvwxyz'" />
   <xsl:variable name="upper" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
 
-  <xsl:template name="OSabbrev2name">
-    <xsl:param name="osname" />
-    <xsl:choose>
-      <xsl:when test="$osname='windows'">Windows</xsl:when>
-      <xsl:when test="$osname='blackberry'">BlackBerry</xsl:when>
-      <xsl:when test="$osname='ios'">iOS</xsl:when>
-      <xsl:when test="$osname='android'">Android</xsl:when>
-      <xsl:when test="$osname='linux'">Linux</xsl:when>
-      <xsl:when test="$osname='OS X'">Mac OS X</xsl:when>
-      <xsl:when test="$osname='z/OS'">z/OS</xsl:when>
-      <xsl:when test="$osname='Solaris'">Solaris</xsl:when>
-      <xsl:otherwise>
-	Undefined operating system platform
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:template>
-
   <xsl:template match="cc:linkref">
     <xsl:variable name="linkend" select="translate(@linkend,$lower,$upper)" />
     <xsl:variable name="linkendlower" select="translate(@linkend,$upper,$lower)" />
