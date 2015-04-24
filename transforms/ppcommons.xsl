@@ -27,6 +27,15 @@
 
   <xsl:template match="cc:linkref">
     <xsl:variable name="linkend" select="translate(@linkend,$lower,$upper)" />
+    <xsl:variable name="linkendlower" select="translate(@linkend,$upper,$lower)" />
+
+    <xsl:if test="not(//*[@id=$linkendlower])">
+      <xsl:message>
+    	Broken linked element at 
+	<xsl:value-of select="$linkend"/>
+      </xsl:message>
+    </xsl:if>
+    <xsl:value-of select="text()"/>
     <a class="linkref" href="#{$linkend}"><xsl:value-of select="$linkend" /></a>
   </xsl:template>
 
