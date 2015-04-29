@@ -1738,11 +1738,15 @@ functionality (such as these)
         <f-component id="fmt_mof_ext.1" name="Management of security functions behavior">
 	  <f-element id="fmt_mof_ext.1.1">
 	    <title> 
-	      The TSF shall be capable of performing the following management functions:
+	      The TSF shall be capable of performing the following management functions, 
+		controlled by the user or administrator as shown:
               <ul>
                 <li> X: Mandatory</li>
                 <li> O: Optional</li>
               </ul>
+		<!-- NB: the transform will auto-fill "O" for both admin
+			admin and user.  If you override it (with whatever
+			character you specify in the attribute text), it will change. -->
 	      <management-function-set>
 		<manager>Administrator</manager>
 		<manager>User</manager>
@@ -1757,15 +1761,31 @@ functionality (such as these)
                     <selectable>minimum number of special characters</selectable>
                   </selectables> 
 		</management-function>
-		<management-function admin="O" user="O">
-                  Configure password history
-		</management-function>
 		<management-function>
 		  Enable/disable screen lock
 		</management-function> 
 		<management-function>
 		  Configure screen lock inactivity timeout
 		</management-function> 
+		<management-function>
+		  Configure remote connection inactivity timeout
+		</management-function> 
+		<management-function>
+		  Enable/disable unauthenticated logon
+		</management-function> 
+		<management-function>
+		  Configure lockout policy for unsuccessful authentication attempts through
+		<selectables>
+		<selectable>timeouts between attempts</selectable>
+		<selectable>limiting number of attempts during a time period</selectable>
+		</selectables>
+		</management-function> 
+		<management-function> 
+		  Configure application firewall
+		</management-function>
+		<management-function> 
+		  Configure traffic-filtering firewall
+		</management-function>
 		<management-function> 
 		  Enable/disable transmission of crashdump information
 		</management-function>
@@ -1777,6 +1797,12 @@ functionality (such as these)
 		</management-function>
 		<management-function> 
 		  Configure address of remote management server from which to receive management settings
+		</management-function>
+		<management-function> 
+		  Configure address of audit/logging server to which to send audit/logging records
+		</management-function>
+		<management-function> 
+		  Configure address of network time server
 		</management-function>
 		<management-function>
 		<assignable>list of other management functions to be provided by the TSF</assignable>
