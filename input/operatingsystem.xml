@@ -543,6 +543,37 @@
               </testlist>
             </aactivity>
           </f-element>
+        
+          <f-element id="fcs_rbg_ext.1.2">
+            <selection-depends req="fcs_rbg_ext.1.1"/>
+            <title>The OS shall be seeded by an entropy source that accumulates
+              entropy from a platform-based DRBG and <selectables linebreak="yes">
+                <selectable>a software-based noise source</selectable>
+                <selectable>no other noise source</selectable>
+              </selectables> with a minimum of <selectables linebreak="yes">
+                <selectable>128 bits</selectable>
+                <selectable>256 bits</selectable>
+              </selectables> of entropy at least equal to the greatest security strength (according
+              to NIST SP 800-57) of the keys and hashes that it will generate.
+            </title>
+            <note role="application">For the first
+              selection in this requirement, the <abbr linkend="ST"/> author selects 'software-based noise source' if 
+              any additional noise sources are used as input to the DRBG.
+              <br />In the second selection in this requirement, the <abbr linkend="ST"/> author selects the 
+              appropriate number of bits of entropy that corresponds to the greatest security 
+              strength of the algorithms included in the <abbr linkend="ST"/>. Security strength is defined in Tables 
+              2 and 3 of NIST SP 800-57A. For example, if the implementation includes 2048-bit RSA 
+              (security strength of 112 bits), AES 128 (security strength 128 bits), and 
+              HMAC-SHA-256 (security strength 256 bits), then the <abbr linkend="ST"/> author would select 256 bits.
+            </note>
+            <aactivity>Documentation shall be produced - and the evaluator shall perform the
+              activities - in accordance with <appref linkend="entropyappendix"/> and
+              the <a href="https://www.niap-ccevs.org/Documents_and_Guidance/ccevs/Entropy%20Documentation%20and%20Assessment%20Clarification.pdf">
+              Clarification to the Entropy Documentation and Assessment Annex</a>.
+              <br />In the future, specific statistical testing (in line with NIST SP 800-90B) will 
+              be required to verify the entropy estimates.
+            </aactivity>
+          </f-element>
         </f-component>
         <!-- Just in case we need this.  I suspect we do not.
 
@@ -1579,7 +1610,7 @@ functionality (such as these)
             </aactivity>
           </f-element>
           <f-element id="fcs_tlsc_ext.1.5">
-            <title> The OS shall present the supported Elliptic Curves Extension in the Client Hello
+            <title> The OS shall present the Supported Elliptic Curves Extension in the Client Hello
               with the following NIST curves: <selectables>
                 <selectable>secp256r1</selectable>
                 <selectable>secp384r1</selectable>
@@ -2031,45 +2062,50 @@ functionality (such as these)
         <f-component id="fpt_srp_ext.1" name="Software Restriction Policies">
           <f-element id="fpt_srp_ext.1.1">
             <title> The OS shall implement capabilities and extensions that allow an administrator
-              to create rules to allow executable code to run based on unique identities of the
-              executable. The OS shall implement these controls in such a way that the following
-              identities can be used to allow execution: <ul>
-                <li>Executable file path</li>
-                <li>Executable file digital signature</li>
-                <li>Executable version</li>
-                <li>Executable hash</li>
-                <li>
-                  <selectables>
-                    <selectable>other components</selectable>
-                  </selectables>
-                </li>
-              </ul>
+              to create rules to allow executable programs to run based on 
+              <selectables linebreak="yes">
+                <selectable>Executable file path</selectable>
+                <selectable>Executable file digital signature</selectable>
+                <selectable>Executable version</selectable>
+                <selectable>Executable hash</selectable>
+                <selectable>other components</selectable>
+              </selectables>
             </title>
-            <note role="application">: While there are two types of execution control, black and
+            <note role="application">There are two types of execution control, black and
               white listing, this requirement only covers the testing of white listing executable
-              code as it has been found that black listing is both too hard to maintain and can
-              easily be bypassed. The whitelist should only allow execution of items on the list and
-              deny execution of everything else. </note>
+              programs. The whitelist mechanism should only allow execution of items on the list and
+              deny execution of everything else.
+            </note>
             <aactivity>The evaluator will ensure that all the following tests result in a negative
               outcome (I.E., the action results in the OS denying the evaluator permission to
-              complete the action): <ul>
-                <li> The evaluator shall configure the OS to only allow code execution from the core
+              complete the action): 
+              <testlist>
+                <test>
+                  The evaluator shall configure the OS to only allow code execution from the core
                   OS directories. The evaluator will then attempt to execute code from a directory
                   that is not in the allowed whitelist. The evaluator will ensure that the code they
-                  attempted to execute has not been executed </li>
-                <li> The evaluator shall configure the OS to only allow code that has been signed by
+                  attempted to execute has not been executed.
+                </test>
+                <test>
+                  The evaluator shall configure the OS to only allow code that has been signed by
                   the OS vendor to execute. The evaluator will then attempt to execute code signed
                   by another digital authority. The evaluator will ensure that the code they
-                  attempted to execute has not been executed. </li>
-                <li> The evaluator shall configure the OS to allow execution of a specific
+                  attempted to execute has not been executed.
+                </test>
+                <test>
+                  The evaluator shall configure the OS to allow execution of a specific
                   application based on version. The evaluator will then attempt to execute an older
                   version of the application. The evaluator will ensure that the code they attempted
-                  to execute has not been executed. </li>
-                <li> The evaluator shall configure the OS to allow execution of a specific
+                  to execute has not been executed.
+                </test>
+                <test>
+                  The evaluator shall configure the OS to allow execution of a specific
                   application based on the application hash. The evaluator will modify the
                   application in such a way that the application hash is changed. The evaluator will
-                  ensure that the code they attempted to execute has not been executed. </li>
-              </ul>
+                  ensure that the code they attempted to execute has not been executed.
+                </test>
+              </testlist>
+              
             </aactivity>
           </f-element>
         </f-component>
@@ -2160,8 +2196,8 @@ functionality (such as these)
               authentication method password based authentication <assignable>other authentication
                 method or none</assignable> occur related to <assignable>list of authentication
                 events</assignable>. </title>
-            <aactivity> The evaluator shall ensure that after attempting to authenticate with a
-              known bad password that an event is logged in the security event log of the OS. The
+            <aactivity> The evaluator shall ensure that after attempting to authenticate with
+              an incorrect password that an event is logged by the OS. The
               method of how these events are logged varies depending on platform. </aactivity>
           </f-element>
           <f-element id="FIA_AFL.1.2">
