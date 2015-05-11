@@ -1963,7 +1963,8 @@ functionality (such as these)
                 linkend="FPT_TUD_EXT.1.3"/>. This requirement is intended to ensure that the OS can
               check for updates provided by the vendor, as updates provided by another source may
               contain malicious code. </note>
-            <aactivity> The evaluator shall check for an update using procedures described in the
+            <aactivity> 
+              The evaluator shall check for an update using procedures described in the
               documentation and verify that the OS does not issue an error. If it is updated or if
               it reports that no update is available this requirement is considered to be met.
             </aactivity>
@@ -1971,23 +1972,47 @@ functionality (such as these)
           <f-element id="fpt_tud_ext.1.3">
             <title> The OS shall provide the ability for updates to the OS to be digitally signed
               such that their integrity can be cryptographically verified before they are applied. </title>
-            <aactivity> The evaluator shall download an update from the OS vendor's website. The
-              evaluator shall ensure that the update has a digital signature belonging to the
-              vendor. The evaluator shall modify the downloaded update in such a way that the
-              digital signature is no longer valid. The evaluator shall then attempt to apply the
-              modified update. The evaluator will ensure that the OS does not apply the modified
-              update. </aactivity>
+            <aactivity> 
+              <testlist>
+                <test>
+                  The evaluator shall download an update from the OS vendor's website. The
+                  evaluator shall ensure that the update has a digital signature belonging to the
+                  vendor. The evaluator shall modify the downloaded update in such a way that the
+                  digital signature is no longer valid. The evaluator shall then attempt to install the
+                  modified update. The evaluator will ensure that the OS does not install the modified
+                  update.
+                </test>
+                <test>
+                  The evaluator shall download an update from the OS vendor's website. The
+                  evaluator shall ensure that the update has a digital signature belonging to the
+                  vendor. The evaluator shall then attempt to install the update. The evaluator will 
+                  ensure that the OS successfully installs the update.
+                </test>                
+              </testlist>
+            </aactivity>
           </f-element>
           <f-element id="fpt_tud_ext.1.4">
             <title> The OS shall provide the ability for updates to applications on the OS to be
               digitally signed such that their integrity can be cryptographically verified before
               they are applied. </title>
-            <aactivity> The evaluator shall download an update from the application vendor's
-              website. The evaluator shall ensure that the update has a digital signature belonging
-              to the vendor. The evaluator shall modify the downloaded update in such a way that the
-              digital signature is no longer valid. The evaluator shall then attempt to apply the
-              modified update. The evaluator will ensure that the OS does not apply the modified
-              update. </aactivity>
+            <aactivity>
+              <testlist>
+                <test>
+                  The evaluator shall download an update from the application vendor's
+                  website. The evaluator shall ensure that the update has a digital signature belonging
+                  to the vendor. The evaluator shall modify the downloaded update in such a way that the
+                  digital signature is no longer valid. The evaluator shall then attempt to install the
+                  modified update. The evaluator will ensure that the OS does not install the modified
+                  update.
+                </test>
+                <test>
+                  The evaluator shall download an update from the application vendor's
+                  website. The evaluator shall ensure that the update has a digital signature belonging
+                  to the vendor. The evaluator shall then attempt to install the update. 
+                  The evaluator will ensure that the OS successfully installs the update.
+                </test>                
+              </testlist>
+            </aactivity>
           </f-element>
         </f-component>
         <f-component id="fpt_acf_ext.1" name="Access controls">
