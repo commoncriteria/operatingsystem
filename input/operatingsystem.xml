@@ -2124,9 +2124,21 @@ functionality (such as these)
                 <test>
                   The evaluator shall configure the OS to only allow code execution from the core
                   OS directories. The evaluator will then attempt to execute code from a directory
-                  that is not in the allowed whitelist. The evaluator will ensure that the code they
+                  that is in the allowed list. The evaluator will ensure that the code they
+                  attempted to execute has been executed.
+                </test>                
+                <test>
+                  The evaluator shall configure the OS to only allow code execution from the core
+                  OS directories. The evaluator will then attempt to execute code from a directory
+                  that is not in the allowed list. The evaluator will ensure that the code they
                   attempted to execute has not been executed.
                 </test>
+                <test>
+                  The evaluator shall configure the OS to only allow code that has been signed by
+                  the OS vendor to execute. The evaluator will then attempt to execute code signed
+                  by the OS vendor. The evaluator will ensure that the code they
+                  attempted to execute has been executed.
+                </test>                
                 <test>
                   The evaluator shall configure the OS to only allow code that has been signed by
                   the OS vendor to execute. The evaluator will then attempt to execute code signed
@@ -2135,14 +2147,27 @@ functionality (such as these)
                 </test>
                 <test>
                   The evaluator shall configure the OS to allow execution of a specific
+                  application based on version. The evaluator will then attempt to execute the same
+                  version of the application. The evaluator will ensure that the code they attempted
+                  to execute has been executed.
+                </test>                
+                <test>
+                  The evaluator shall configure the OS to allow execution of a specific
                   application based on version. The evaluator will then attempt to execute an older
                   version of the application. The evaluator will ensure that the code they attempted
                   to execute has not been executed.
                 </test>
                 <test>
-                  The evaluator shall configure the OS to allow execution of a specific
-                  application based on the application hash. The evaluator will modify the
-                  application in such a way that the application hash is changed. The evaluator will
+                  The evaluator shall configure the OS to allow execution based on the hash of the application
+                  executable. The evaluator will then attempt to execute 
+                  the application with the matching hash. The evaluator will
+                  ensure that the code they attempted to execute has been executed.
+                </test>
+                <test>
+                  The evaluator shall configure the OS to allow execution based on the hash of the application
+                  executable. The evaluator will modify the
+                  application in such a way that the application hash is changed. The evaluator 
+                  will then attempt to execute the application with the matching hash. The evaluator will
                   ensure that the code they attempted to execute has not been executed.
                 </test>
               </testlist>
