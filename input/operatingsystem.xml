@@ -1409,7 +1409,7 @@ functionality (such as these)
                 <selectable>TLS_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</selectable>
                 <selectable>TLS_RSA_WITH_AES_256_CBC_SHA as defined in RFC 5246</selectable>
                 <selectable>TLS_RSA_WITH_AES_256_CBC_SHA256 as defined in RFC 5246</selectable>
-                <selectable>no other ciphersuite</selectable>
+                <selectable>no other cipher suite</selectable>
               </selectables> . </title>
             <note role="application">The cipher suites to be tested in the evaluated configuration
               are limited by this requirement. The <abbr title="Security Target" linkend="ST">ST
@@ -1439,9 +1439,9 @@ functionality (such as these)
                     >TLS</abbr> connection using each of the cipher suites specified by the
                   requirement. This connection may be established as part of the establishment of a
                   higher-level protocol, e.g., as part of an EAP session. It is sufficient to
-                  observe the successful negotiation of a ciphersuite to satisfy the intent of the
+                  observe the successful negotiation of a cipher suite to satisfy the intent of the
                   test; it is not necessary to examine the characteristics of the encrypted traffic
-                  in an attempt to discern the ciphersuite being used (for example, that the
+                  in an attempt to discern the cipher suite being used (for example, that the
                   cryptographic algorithm is 128-bit AES and not 256-bit AES). </test>
                 <test> The evaluator shall attempt to establish the connection using a server with a
                   server certificate that contains the Server Authentication purpose in the
@@ -1452,13 +1452,13 @@ functionality (such as these)
                   except for the extendedKeyUsage field. </test>
                 <test> The evaluator shall send a server certificate in the <abbr
                     title="Transport Layer Security">TLS</abbr> connection that does not match the
-                  server-selected ciphersuite (for example, send a ECDSA certificate while using the
-                  TLS_RSA_WITH_AES_128_CBC_SHA ciphersuite or send a RSA certificate while using one
+                  server-selected cipher suite (for example, send a ECDSA certificate while using the
+                  TLS_RSA_WITH_AES_128_CBC_SHA cipher suite or send a RSA certificate while using one
                   of the ECDSA cipher suites.) The evaluator shall verify that the <abbr
                     title="Target of Evaluation" linkend="TOE">TOE</abbr> disconnects after
                   receiving the server’s Certificate handshake message. </test>
                 <test> The evaluator shall configure the server to select the
-                  TLS_NULL_WITH_NULL_NULL ciphersuite and verify that the client denies the
+                  TLS_NULL_WITH_NULL_NULL cipher suite and verify that the client denies the
                   connection. </test>
                 <test> The evaluator shall perform the following modifications to the traffic: <testlist>
                     <test> Change the <abbr title="Transport Layer Security">TLS</abbr> version
@@ -1468,10 +1468,10 @@ functionality (such as these)
                       connection. </test>
                     <test> Modify at least one byte in the server’s nonce in the Server Hello
                       handshake message, and verify that the client rejects the Server Key Exchange
-                      handshake message (if using a DHE or ECDHE ciphersuite) or that the server
+                      handshake message (if using a DHE or ECDHE cipher suite) or that the server
                       denies the client’s Finished handshake message. </test>
-                    <test> Modify the server’s selected ciphersuite in the Server Hello handshake
-                      message to be a ciphersuite not presented in the Client Hello handshake
+                    <test> Modify the server’s selected cipher suite in the Server Hello handshake
+                      message to be a cipher suite not presented in the Client Hello handshake
                       message. The evaluator shall verify that the client rejects the connection
                       after receiving the Server Hello. </test>
                     <test> Modify the signature block in the Server’s Key Exchange handshake
