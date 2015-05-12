@@ -2028,7 +2028,7 @@ functionality (such as these)
                 </li>
               </ul>
             </title>
-            <note role="application">: Core OS components are those components which provide the
+            <note role="application"> Core OS components are those components which provide the
               base functionality and security controls for the OS. They include, but are not limited
               to the kernel, shared libraries, security controls, and security audit logs. </note>
             <aactivity>The evaluator will ensure that all the following tests result in a negative
@@ -2043,6 +2043,44 @@ functionality (such as these)
               </ul>
             </aactivity>
           </f-element>
+          <f-element id="fpt_acf_ext.1.2">
+            <title> The OS shall implement access controls to prohibit standard privileged subjects from
+              modifying components owned by other subjects including: <ul>
+                <li>Files</li>
+                <li>
+                  <selectables>
+                    <selectable>Other components</selectable>
+                  </selectables>
+                </li>
+              </ul>
+            </title>
+            <note role="application"> Components owned by one user in a multi user system should be protected from
+            modification by another user in that system.</note>
+            <aactivity>
+              The evaluator shall create two new user accounts on the system with different credentials.
+              
+              <ul>
+                <li>
+                  The evaluator shall authenticate to the system as the first user and create a file within their user directory. The evaluator shall then
+                  log off the system and re-authenticate with the second user's credentials. The evaluator shall then attempt to modify the file created in the
+                  first user's home directory. The evaluator shall ensure that the modification is denied.
+                </li>
+                <li>
+                  The evaluator shall authenticate to the system as the first user and create a file within their user directory. The evaluator shall then
+                  log off the system and re-authenticate with the second user's credentials. The evaluator shall then attempt to delete the file created in the
+                  first user's home directory. The evaluator shall ensure that the deletion is denied.
+                </li>
+                <li>
+                  The evaluator shall authenticate to the system as the first user and attempt to modify the file created in their home directory.
+                  The evaluator shall ensure that the modification of the file is accepted.
+                </li>       
+                <li>
+                  The evaluator shall authenticate to the system as the first user and attempt to delete the file created in their home directory.
+                  The evaluator shall ensure that the deletion of the file is accepted.
+                </li>                  
+              </ul>
+            </aactivity>
+          </f-element>          
         </f-component>
         <f-component id="fpt_php_ext.1" name="External Interface Controls ">
           <f-element id="fpt_php_ext.1.1">
