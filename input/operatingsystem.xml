@@ -2236,34 +2236,61 @@ functionality (such as these)
             <title> The OS shall be able to generate an audit record of the following auditable
               events: 
               <ul>
-                <li> Start-up and shutdown of the audit functions; </li>
-		            <li> All auditable events for the "not specified" level of audit; and</li>
+                <li>Successful and unsuccessful authentication attempts;</li>
+                <li>Privileged activities or other system level access;</li>
+                <li>Successful and unsuccessful attempts to access, modify, or delete security objects;</li>
+                <li>Modification of user's group membership;</li>
+                <li>Start-up and shutdown of the audit functions; </li>
+		            <li>All auditable events for the "not specified" level of audit; and</li>
                 <li> <assignable>other specifically defined auditable events</assignable>.</li>
               </ul>
             </title>
             <aactivity> The evaluator shall ensure that the following tests result in a positive
               outcome. 
               <testlist>
+                <test>The evaluator shall authenticate to the test system using a known account. The
+                  evaluator shall ensure that the successful authentication event has been written to the system
+                  logging service.
+                </test>
+                <test>The evaluator shall authenticate to the test system using a known bad account. The
+                  evaluator shall ensure that the unsuccessful authentication event has been written to the system
+                  logging service.
+                </test>
+                
+                <test>The evaluator shall try to escalate their standard user account's privilege via the provided API. 
+                  The evaluator shall ensure that the unsuccessful privilege escalation event has been written to the system
+                  logging service
+                </test>
+                
+                <test>The evaluator shall try to access an object which requires privileged access from a standard
+                  user account. The evaluator shall ensure that the unsuccessful access event has been written to the system
+                  logging service.
+                </test>
+                <test>The evaluator shall try to modify an object which requires privileged access from a standard
+                  user account. The evaluator shall ensure that the unsuccessful modification event has been written to the system
+                  logging service.
+                </test>
+                <test>The evaluator shall try to delete an object which requires privileged access from a standard
+                  user account. The evaluator shall ensure that the unsuccessful deletion event has been written to the system
+                  logging service.
+                </test>
+                
+                <test>The evaluator shall try and modify their standard user's group membership to include a privileged group. 
+                  The evaluator shall ensure that the unsuccessful user group change event has been written to the system logging service. 
+                </test>
+                <test>The evaluator shall try and modify their standard user's group membership to include a non-privileged group. 
+                  The evaluator shall ensure that the successful user group change event has been written to the system logging service. 
+                </test>                
+
                 <test>The evaluator shall turn off and then turn on the test system. The
                   evaluator shall then ensure that logging events have been written to the system
                   logging service to denote that the logging service was stopped before power off, and
-                  started again while the system turned on
+                  started again while the system turned on.
                 </test>
+                            
                 <test>The evaluator shall generate auditable events on the system while monitoring the
                   event log. The evaluator shall ensure that each auditable event write an event to
-                  the system logging service
-                </test>
-                <test>The evaluator shall authenticate to the test system using a known account. The
-                  evaluator shall ensure that the authentication event has been written to the system
-                  logging service
-                </test>
-                <test>The evaluator shall try to access an object which has been denied as per the
-                  OSPP base policy. The evaluator shall ensure that the access denied event has been
-                  written to the system logging service
-                </test>
-                <test>The evaluator shall make a modification to the access rights of an object
-                  covered by the access control policies. The evaluator shall ensure that the access
-                  right change event has been written to the system logging service
+                  the system logging service.
                 </test>
               </testlist>
             </aactivity>
