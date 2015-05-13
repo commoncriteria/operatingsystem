@@ -2968,6 +2968,65 @@ functionality (such as these)
           </a-element>
         </a-component>
       </subsection>
+      <subsection id="ava" title="Class AVA: Vulnerability Assessment">For the first generation of
+        this protection profile, the evaluation lab is expected to survey open sources to discover
+        what vulnerabilities have been discovered in these types of products. In most cases, these
+        vulnerabilities will require sophistication beyond that of a basic attacker. Until
+        penetration tools are created and uniformly distributed to the evaluation labs, the
+        evaluator will not be expected to test for these vulnerabilities in the <abbr linkend="TOE"
+        />. The labs will be expected to comment on the likelihood of these vulnerabilities given
+        the documentation provided by the vendor. This information will be used in the development
+        of penetration testing tools and for the development of future protection profiles.
+        <a-component id="ava_van.1" name="Vulnerability Survey (AVA_VAN.1)">
+          <h4>Developer action elements:</h4>
+          <a-element id="ava_van.1.1d">
+            <title>The developer shall provide the <abbr linkend="TOE"/> for testing.</title>
+          </a-element>
+          <h4>Content and presentation elements:</h4>
+          <a-element id="ava_van.1.1c">
+            <title>The <abbr linkend="TOE"/> shall be suitable for testing.</title>
+            <note role="application">Suitability for testing means not being obfuscated or
+              packaged in such a way as to disrupt either static or dyanmic analysis by the
+              evaluator.</note>
+          </a-element>
+          <h4>Evaluator action elements:</h4>
+          <a-element id="ava_van.1.1e">
+            <title>The evaluator shall confirm that the information provided meets all requirements
+              for content and presentation of evidence.</title>
+          </a-element>
+          <a-element id="ava_van.1.2e">
+            <title>The evaluator shall perform a search of public domain sources to identify
+              potential vulnerabilities in the <abbr linkend="TOE"/>.</title>
+            <note role="application">Public domain sources include the Common Vulnerabilities 
+              and Exposures (CVE) dictionary for publicly-known vulnerabilities.  Public domain
+              sources also include sites which provide free checking of files for viruses.</note>
+            <!-- their Usage statement does not permit us to mention VirusTotal by name without permission -->
+          </a-element>
+          <a-element id="ava_van.1.3e">
+            <title>The evaluator shall conduct penetration testing, based on the identified
+              potential vulnerabilities, to determine that the <abbr linkend="TOE"/> is resistant to
+              attacks performed by an attacker possessing Basic attack potential.</title>
+            <aactivity>The evaluator shall generate a report to document their
+              findings with respect to this requirement. This report could physically be part of the
+              overall test report mentioned in ATE_IND, or a separate document. The evaluator
+              performs a search of public information to find vulnerabilities that have been found
+              in similar applications with a particular focus on network protocols the application
+              uses and document formats it parses. 
+              The evaluator shall also run a virus scanner with the most current virus 
+              definitions against the application files and verify that no files are flagged as malicious.
+              The evaluator documents the sources consulted and
+              the vulnerabilities found in the report. 
+              <br/>
+              For each vulnerability found, the evaluator
+              either provides a rationale with respect to its non-applicability, or the evaluator
+              formulates a test (using the guidelines provided in ATE_IND) to confirm the
+              vulnerability, if suitable. Suitability is determined by assessing the attack vector
+              needed to take advantage of the vulnerability. If exploiting the vulnerability
+              requires expert skills and an electron microscope, for instance, then a test would not
+              be suitable and an appropriate justification would be formulated.</aactivity>
+          </a-element>
+        </a-component>
+      </subsection>      
     </section>
   </chapter>
 
