@@ -1686,7 +1686,12 @@ functionality (such as these)
         </f-component>
         <f-component id="fcs_dtls_ext.1" name="DTLS Implementation">
           <f-element id="fcs_dtls_ext.1.1">
-            <title>The OS shall implement the DTLS protocol in accordance with DTLS 1.2 (RFC 6347). </title>
+            <title>The OS shall implement the DTLS protocol in accordance with 
+              <selectables>
+                <selectable>DTLS 1.0 (RFC 4347)</selectable>
+                <selectable>DTLS 1.2 (RFC 6347)</selectable>
+              </selectables>
+              . </title>
             <aactivity>
               <testlist>
                 <test> The evaluator shall attempt to establish a connection with a DTLS server,
@@ -1799,55 +1804,56 @@ functionality (such as these)
 		<manager>Administrator</manager>
 		<manager>User</manager>
 		<management-function admin="O">
-		  Configure minimum password length
-		</management-function>
-		<management-function admin="O" user="O">
-                  Configure password complexity through 
-                  <selectables> 
-                    <selectable>minimum number of uppercase characters</selectable>
-                    <selectable>minimum number of lowercase characters</selectable>
-                    <selectable>minimum number of special characters</selectable>
-                  </selectables> 
+		  configure minimum password length
 		</management-function>
 		<management-function>
-		  Enable/disable screen lock
+			configure minimum number of special characters in password
+		</management-function>
+		<management-function>
+			configure minimum number of numeric characters in password
+		</management-function>
+		<management-function>
+			configure minimum number of uppercase characters in password
+		</management-function>
+		<management-function>
+			configure minimum number of lowercase characters in password
+		</management-function>
+		<management-function user="X">
+		  enable/disable screen lock
+		</management-function> 
+		<management-function user="X">
+		  configure screen lock inactivity timeout
 		</management-function> 
 		<management-function>
-		  Configure screen lock inactivity timeout
+		  configure remote connection inactivity timeout
 		</management-function> 
 		<management-function>
-		  Configure remote connection inactivity timeout
+		  enable/disable unauthenticated logon
 		</management-function> 
 		<management-function>
-		  Enable/disable unauthenticated logon
-		</management-function> 
-		<management-function>
-		  Configure lockout policy for unsuccessful authentication attempts through
+		  configure lockout policy for unsuccessful authentication attempts through
 		<selectables>
 		<selectable>timeouts between attempts</selectable>
 		<selectable>limiting number of attempts during a time period</selectable>
 		</selectables>
 		</management-function> 
 		<management-function> 
-		  Configure software firewall
+		  configure software firewall
 		</management-function>
 		<management-function> 
-		  Enable/disable transmission of error reporting information
+		  enable/disable <abbr linkend="DAR"/> protection
 		</management-function>
 		<management-function> 
-		  Enable/disable <abbr linkend="DAR"/> protection
+		  configure name/address of directory server to bind with
 		</management-function>
 		<management-function> 
-		  Configure name/address of directory server to bind with
+		  configure name/address of remote management server from which to receive management settings
 		</management-function>
 		<management-function> 
-		  Configure name/address of remote management server from which to receive management settings
+		  configure name/address of audit/logging server to which to send audit/logging records
 		</management-function>
 		<management-function> 
-		  Configure name/address of audit/logging server to which to send audit/logging records
-		</management-function>
-		<management-function> 
-		  Configure name/address of network time server
+		  configure name/address of network time server
 		</management-function>
 		<management-function>
 		<assignable>list of other management functions to be provided by the TSF</assignable>
@@ -2022,6 +2028,7 @@ functionality (such as these)
           <f-element id="fpt_acf_ext.1.1">
             <title> The OS shall implement access controls to prohibit unprivileged subjects from
               modifying core OS components including: <ul>
+                <li>Core OS components</li>
                 <li>Shared libraries</li>
                 <li>Security controls</li>
                 <li>Security audit logs</li>
@@ -2038,7 +2045,7 @@ functionality (such as these)
             <aactivity>The evaluator will ensure that all the following tests result in a negative
               outcome (I.E., the action results in the OS denying the evaluator permission to
               complete the action): <testlist>
-                <test>The evaluator shall attempt to modify core kernel code</test>
+                <test>The evaluator shall attempt to modify core OS components</test>
                 <test>The evaluator shall attempt to modify shared libraries that are used throughout
                   the system</test>
                 <test>The evaluator shall attempt to remove security controls deployed to the system
@@ -2262,6 +2269,11 @@ functionality (such as these)
                   evaluator shall ensure that the unsuccessful authentication event has been written to the system
                   logging service.
                 </test>
+                <test>The evaluator shall repeatedly authenticate to the test system using a known bad account. The
+                  evaluator shall ensure that after the authentication limit as chosen in <linkref linkend="FIA_AFL.1.1"/>
+                  is reached an events detailing the actions applied as specified in <linkref linkend="FIA_AFL.1.2"/> has been written to the system
+                  logging service.
+                </test>
                 
                 <test>The evaluator shall try to escalate their standard user account's privilege via the provided API. 
                   The evaluator shall ensure that the unsuccessful privilege escalation event has been written to the system
@@ -2306,7 +2318,8 @@ functionality (such as these)
 	           <ul>
               <li>
                   Date and time of the event, type of event, subject identity (if applicable), 
-          	      and outcome (success or failure) of the event; and 
+          	      and outcome (success or failure) of the event, the identify of the user which caused the event,
+          	      what has changed on the system due to the event; and 
               </li>
           	  <li>
           		    For each audit event type, based on the auditable event
@@ -2975,6 +2988,65 @@ functionality (such as these)
           </a-element>
         </a-component>
       </subsection>
+      <subsection id="ava" title="Class AVA: Vulnerability Assessment">For the first generation of
+        this protection profile, the evaluation lab is expected to survey open sources to discover
+        what vulnerabilities have been discovered in these types of products. In most cases, these
+        vulnerabilities will require sophistication beyond that of a basic attacker. Until
+        penetration tools are created and uniformly distributed to the evaluation labs, the
+        evaluator will not be expected to test for these vulnerabilities in the <abbr linkend="TOE"
+        />. The labs will be expected to comment on the likelihood of these vulnerabilities given
+        the documentation provided by the vendor. This information will be used in the development
+        of penetration testing tools and for the development of future protection profiles.
+        <a-component id="ava_van.1" name="Vulnerability Survey (AVA_VAN.1)">
+          <h4>Developer action elements:</h4>
+          <a-element id="ava_van.1.1d">
+            <title>The developer shall provide the <abbr linkend="TOE"/> for testing.</title>
+          </a-element>
+          <h4>Content and presentation elements:</h4>
+          <a-element id="ava_van.1.1c">
+            <title>The <abbr linkend="TOE"/> shall be suitable for testing.</title>
+            <note role="application">Suitability for testing means not being obfuscated or
+              packaged in such a way as to disrupt either static or dynamic analysis by the
+              evaluator.</note>
+          </a-element>
+          <h4>Evaluator action elements:</h4>
+          <a-element id="ava_van.1.1e">
+            <title>The evaluator shall confirm that the information provided meets all requirements
+              for content and presentation of evidence.</title>
+          </a-element>
+          <a-element id="ava_van.1.2e">
+            <title>The evaluator shall perform a search of public domain sources to identify
+              potential vulnerabilities in the <abbr linkend="TOE"/>.</title>
+            <note role="application">Public domain sources include the Common Vulnerabilities 
+              and Exposures (CVE) dictionary for publicly-known vulnerabilities.  Public domain
+              sources also include sites which provide free checking of files for viruses.</note>
+            <!-- their Usage statement does not permit us to mention VirusTotal by name without permission -->
+          </a-element>
+          <a-element id="ava_van.1.3e">
+            <title>The evaluator shall conduct penetration testing, based on the identified
+              potential vulnerabilities, to determine that the <abbr linkend="TOE"/> is resistant to
+              attacks performed by an attacker possessing Basic attack potential.</title>
+            <aactivity>The evaluator shall generate a report to document their
+              findings with respect to this requirement. This report could physically be part of the
+              overall test report mentioned in ATE_IND, or a separate document. The evaluator
+              performs a search of public information to find vulnerabilities that have been found
+              in similar applications with a particular focus on network protocols the application
+              uses and document formats it parses. 
+              The evaluator shall also run a virus scanner with the most current virus 
+              definitions against the application files and verify that no files are flagged as malicious.
+              The evaluator documents the sources consulted and
+              the vulnerabilities found in the report. 
+              <br/>
+              For each vulnerability found, the evaluator
+              either provides a rationale with respect to its non-applicability, or the evaluator
+              formulates a test (using the guidelines provided in ATE_IND) to confirm the
+              vulnerability, if suitable. Suitability is determined by assessing the attack vector
+              needed to take advantage of the vulnerability. If exploiting the vulnerability
+              requires expert skills and an electron microscope, for instance, then a test would not
+              be suitable and an appropriate justification would be formulated.</aactivity>
+          </a-element>
+        </a-component>
+      </subsection>      
     </section>
   </chapter>
 
