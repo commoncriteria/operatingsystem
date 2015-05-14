@@ -175,12 +175,6 @@
               of a function call, and checks that the value is the same at the end of the function
               call. This is also referred to as Stack Guard, or Stack Canaries.</description>
           </entry>
-          <entry>
-            <term>Vendor</term>
-            <description>An entity that sells application software. For purposes of this document,
-              vendors and developers are the same. Vendors are responsible for maintaining and
-              updating application software.</description>
-          </entry>
         </glossary>
       </subsection></section>
     <section title="Compliant Targets of Evaluation" id="TOEdescription">
@@ -1859,7 +1853,7 @@ functionality (such as these)
 		</selectables>
 		</management-function> 
 		<management-function> 
-		  configure software firewall
+		  configure host-based firewall
 		</management-function>
 		<management-function> 
 		  enable/disable <abbr linkend="DAR"/> protection
@@ -1973,7 +1967,7 @@ functionality (such as these)
         <f-component id="fpt_tud_ext.1" name="Integrity for Installation and Update">
           <!-- TO DO: Cite references. -->
           <f-element id="fpt_tud_ext.1.1">
-            <title>The OS shall provide the ability to check for updates and patches to the
+            <title>The OS shall provide the ability to check for updates to 
               application software. </title>
             <note role="application">This requirement is about the ability to "check" for updates.
               The actual installation of any updates is covered by <linkref
@@ -1986,7 +1980,7 @@ functionality (such as these)
             </aactivity>
           </f-element>
           <f-element id="fpt_tud_ext.1.2">
-            <title>The OS shall provide the ability to check for updates and patches to the OS
+            <title>The OS shall provide the ability to check for updates to the OS
               software itself. </title>
             <note role="application">This requirement is about the ability to "check" for updates.
               The actual installation of any updates is covered by <linkref
@@ -2000,8 +1994,8 @@ functionality (such as these)
             </aactivity>
           </f-element>
           <f-element id="fpt_tud_ext.1.3">
-            <title> The OS shall provide the ability for updates to the OS to be digitally signed
-              such that their integrity can be cryptographically verified before they are applied. </title>
+            <title> The OS shall cryptographically verify updates to itself using a digital
+              signature prior to installation.</title>
             <aactivity> 
               <testlist>
                 <test>
@@ -2291,8 +2285,8 @@ functionality (such as these)
                   logging service.
                 </test>
                 <test>The evaluator shall repeatedly authenticate to the test system using a known bad account. The
-                  evaluator shall ensure that after the authentication limit as chosen in <linkref linkend="FIA_AFL.1.1"/>
-                  is reached an events detailing the actions applied as specified in <linkref linkend="FIA_AFL.1.2"/> has been written to the system
+                  evaluator shall ensure that after the authentication limit as chosen in <linkref linkend="fia_afl.1.1"/>
+                  is reached an events detailing the actions applied as specified in <linkref linkend="fia_afl.1.2"/> has been written to the system
                   logging service.
                 </test>
                 
@@ -2365,8 +2359,8 @@ functionality (such as these)
         </f-component>
       </subsection>
       <subsection title="Identification and Authentication (FIA)" id="fia">
-        <f-component id="FIA_AFL.1" name="Authentication failure handling">
-          <f-element id="FIA_AFL.1.1">
+        <f-component id="fia_afl.1" name="Authentication failure handling">
+          <f-element id="fia_afl.1.1">
             <title> The OS shall detect when an administrator-configurable positive integer within a
               range of acceptable values of unsuccessful authentication attempts for the
               authentication method password based authentication <assignable>other authentication
@@ -2376,7 +2370,7 @@ functionality (such as these)
               an incorrect password that an event is logged by the OS. The
               method of how these events are logged varies depending on platform. </aactivity>
           </f-element>
-          <f-element id="FIA_AFL.1.2">
+          <f-element id="fia_afl.1.2">
             <title> When the defined number of unsuccessful authentication attempts for an account has been met,
               the OS shall: <assignable>list of actions</assignable>. </title>
             <aactivity> The evaluator shall attempt to authenticate repeatedly to the system with a
