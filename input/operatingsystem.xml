@@ -2262,14 +2262,19 @@ functionality (such as these)
             <title> The OS shall be able to generate an audit record of the following auditable
               events: 
               <ul>
-                <li>Successful and unsuccessful authentication attempts;</li>
-                <li>Privileged activities or other system level access;</li>
-                <li>Successful and unsuccessful attempts to access, modify, or delete security objects;</li>
-                <li>Modification of user's group membership;</li>
-                <li>Start-up and shutdown of the audit functions; </li>
-		            <li>All auditable events for the "not specified" level of audit; and</li>
-                <li> <assignable>other specifically defined auditable events</assignable>.</li>
-              </ul>
+                <li>Authentication events (Success/Failure);</li>
+                <li>File object events (Successful and unsuccessful attempts to create, access, modify, or delete security objects);</li>
+                <li>User and Group management events (Successful and unsuccessful add, delete, modify, suspend, lock events);</li>
+                <li>Use of privileged/special rights events (Successful and unsuccessful security, audit, and configuration changes);</li>
+                <li>Administrator or root-level access events (Success/Failure);</li>
+                <li>Privilege or role escalation events (Success/Failure);</li>
+                <li>Audit and log data access events(Success/Failure)</li>
+                <li>System reboot, restart, and shutdown events (Success/Failure)</li>
+                <li>All auditable events for the "not specified" level of audit; and</li>
+                <li> 
+                  <assignable>other specifically defined auditable events</assignable>.
+                </li>
+              </ul>               
             </title>
             <aactivity> The evaluator shall ensure that the following tests result in a positive
               outcome. 
@@ -2287,12 +2292,11 @@ functionality (such as these)
                   is reached an events detailing the actions applied as specified in <linkref linkend="fia_afl.1.2"/> has been written to the system
                   logging service.
                 </test>
-                
-                <test>The evaluator shall try to escalate their standard user account's privilege via the provided API. 
-                  The evaluator shall ensure that the unsuccessful privilege escalation event has been written to the system
-                  logging service
+
+                <test>The evaluator shall try to create an object which requires privileged access from a standard
+                  user account. The evaluator shall ensure that the unsuccessful creation event has been written to the system
+                  logging service.
                 </test>
-                
                 <test>The evaluator shall try to access an object which requires privileged access from a standard
                   user account. The evaluator shall ensure that the unsuccessful access event has been written to the system
                   logging service.
@@ -2306,12 +2310,39 @@ functionality (such as these)
                   logging service.
                 </test>
                 
+                <test>The evaluator shall try and add a standard user to the system. 
+                  The evaluator shall ensure that the unsuccessful user adding event has been written to the system logging service. 
+                </test>     
+                <test>The evaluator shall try and delete a standard user to the system. 
+                  The evaluator shall ensure that the unsuccessful user deletion event has been written to the system logging service. 
+                </test>  
+                <test>The evaluator shall try and modify their standard user's group membership to include a non-privileged group. 
+                  The evaluator shall ensure that the successful user group change event has been written to the system logging service. 
+                </test>  
                 <test>The evaluator shall try and modify their standard user's group membership to include a privileged group. 
                   The evaluator shall ensure that the unsuccessful user group change event has been written to the system logging service. 
                 </test>
-                <test>The evaluator shall try and modify their standard user's group membership to include a non-privileged group. 
-                  The evaluator shall ensure that the successful user group change event has been written to the system logging service. 
-                </test>                
+                <test>The evaluator shall try and suspend a standard user's account on the system. 
+                  The evaluator shall ensure that the unsuccessful suspend request event has been written to the system logging service. 
+                </test>                 
+                <test>The evaluator shall try and lock a standard user's account on the system. 
+                  The evaluator shall ensure that the unsuccessful lock request event has been written to the system logging service. 
+                </test> 
+                
+                <li>The evaluator shall authenticate to the system with an administrator/root account. The evaluator shall ensure
+                that the successful authentication event is written to the system logging service.</li>
+                
+                <test>The evaluator shall try to escalate their standard user account's privilege via the provided API. 
+                  The evaluator shall ensure that the unsuccessful privilege escalation event has been written to the system
+                  logging service
+                </test>
+                
+                <test>The evaluator shall try to modify the security configuration of the system. The evaluator shall ensure 
+                  that the unsuccessful security configuration request event has been written to the system logging service. 
+                </test>
+                <test>The evaluator shall try to modify the audit configuration of the system. The evaluator shall ensure 
+                  that the unsuccessful audit configuration request event has been written to the system logging service. 
+                </test>                  
 
                 <test>The evaluator shall turn off and then turn on the test system. The
                   evaluator shall then ensure that logging events have been written to the system
