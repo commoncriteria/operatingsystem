@@ -1317,16 +1317,19 @@ functionality (such as these)
           name="Cryptographic Operation - Keyed-Hash Message Authentication">
           <f-element id="fcs_cop.1.1(4)">
             <title>The OS shall perform keyed-hash message authentication in accordance with a
-              specified cryptographic algorithm <ul>
-                <li>HMAC-SHA-256</li>
-              </ul> and <selectables linebreak="yes">
+              specified cryptographic algorithm
+	      <selectables linebreak="yes">
                 <selectable>SHA-1</selectable>
+		<selectable>SHA-256</selectable>
                 <selectable>SHA-384</selectable>
                 <selectable>SHA-512</selectable>
                 <selectable>no other algorithms</selectable>
-              </selectables> with key sizes <assignable>key size (in bits) used in HMAC</assignable>
-              and message digest sizes 256 and <selectables>
+              </selectables> 
+	      with key sizes <assignable>key size (in bits) used in HMAC</assignable>
+              and message digest sizes 
+	      <selectables>
                 <selectable>160</selectable>
+                <selectable>256</selectable>
                 <selectable>384</selectable>
                 <selectable>512</selectable>
                 <selectable>no other size</selectable>
@@ -1339,8 +1342,9 @@ functionality (such as these)
 	      The hash selection must support the message digest size selection.
 	      The hash selection should be consistent with the overall strength of the 
 	      algorithm used for <linkref linkend="FCS_COP.1(1)"/>. 
-	      HMAC-SHA256 is required in order to comply with the
-              required cipher suites in <linkref linkend="FCS_TLSC_EXT.1"/>. 
+	      Though HMAC with SHA-256 (HMAC-SHA-256) is listed as a selectable cipher suite
+	      in this requirement, <linkref linkend="FCS_TLSC_EXT.1"/> effectively makes its 
+	      implementation mandatory for compliant OSes.
 	    </note>
             <aactivity>The evaluator shall perform the following activities based on the selections
               in the <abbr linkend="ST"/>. <br/> For each of the supported parameter sets, the
