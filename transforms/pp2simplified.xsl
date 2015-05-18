@@ -115,12 +115,12 @@ xmlns:xhtml="http://www.w3.org/1999/xhtml">
     	</style>
 
 		<head>
-			<title>Requirements for Vetting Mobile Apps from the Protection Profile for Application Software</title>
+			<title>Requirements from the <i><xsl:apply-templates select="cc:PPReference/cc:ReferenceTable/cc:PPTitle"/></i></title>
 		</head>
 		<body>
 		<h1 class="title">
-			Requirements for Vetting Mobile Apps from the
-			<br/><i>Protection Profile for Application Software</i>
+			Requirements from the
+			<br/><i><xsl:apply-templates select="cc:PPReference/cc:ReferenceTable/cc:PPTitle"/></i>
 		</h1>
 		<div class="center">
 			<img src="images/niaplogo.png" />
@@ -153,23 +153,17 @@ xmlns:xhtml="http://www.w3.org/1999/xhtml">
 		</div>
 		<h2>Introduction</h2>
 		<div class="intro">
-			<b>Purpose.</b> This document presents functional and
-			assurance requirements found in the <i>Protection Profile for Application
-			Software</i> which are appropriate for vetting mobile application software
-			("apps") <b>outside</b> formal Common Criteria (ISO/IEC 15408) evaluations.  Common
+			<b>Purpose.</b> This document presents simplified view of the functional and
+			assurance requirements found in the 
+			<i><xsl:apply-templates select="cc:PPReference/cc:ReferenceTable/cc:PPTitle"/></i>.
+			Common
 			Criteria evaluation, facilitated in the U.S. by the National Information
 			Assurance Partnership (NIAP), is required for IA and IA-enabled products in
-			National Security Systems according to CNSS Policy #11. Such evaluations, including
-			those for mobile apps, must use the complete
-			Protection Profile.  However, even apps without IA functionality may
-			impose some security risks, and concern about these risks has motivated the
-			vetting of such apps in government and industry.  
-			<p/>
-			<b>Using this document.</b> This representation of the Protection Profile includes:
+			National Security Systems according to CNSS Policy #11. 
+			This representation of the Protection Profile includes:
 			<ul> 
 			<li><a href="#SFRs"><i>Security Functional Requirements</i></a> for use in evaluation.  These are featured without the formal
-			Assurance Activities specified in the Protection Profile, as evaluation methods may vary
-			outside the formal Common Criteria. 
+			Assurance Activities specified in the Protection Profile, to assist the reader who is interested only in the requirements.
 			<p/> It also includes, in
 			tables shown later, particular types of security functional requirements that are not strictly required in all cases.
 			These are:</li>
@@ -182,18 +176,11 @@ xmlns:xhtml="http://www.w3.org/1999/xhtml">
 				</ul>
 			
 			<p/>
-			<li><a href="#SARs"><i>Security Assurance Requirements</i></a> which are still practical without the close developer cooperation
-			expected during a formal Common Criteria evaluation.  The security assurance requirements are a carefully-chosen subset
-			from the Protection Profile.</li>
+			<li><a href="#SARs"><i>Security Assurance Requirements</i></a> which relate to developer support for the product under evaluation,
+			development processes, and other non-functionality security relevant requirements.</li>
+
 			</ul>
 			<p/>
-			In addition to providing these security requirements for vetting
-			apps, this document provides a basis for discussion and consideration
-			of the vetting provided by commercially-available app stores.  
-			This document does not imply to Authorizing Officials that the vetting provided by 
-			commercially-available app stores is either adequate or inadequate for the context in which they
-			must weigh risks.  Rather, it is intended to help inform and support decision-making with regard to
-			investment in app vetting processes.
 			<p/>
 		</div>
 			<br/>
@@ -210,7 +197,7 @@ xmlns:xhtml="http://www.w3.org/1999/xhtml">
 				Security Assurance Requirements
 			</div>
 			<table>
-			<xsl:apply-templates select="//cc:a-element[@id='alc_cmc.1.1c' or @id='ate_ind.1.2e' or @id='ava_van.1.1c' or @id='ava_van.1.2e']"/>
+			<xsl:apply-templates select="//cc:a-element"/>
 			</table>
 	
 			<div class="tabletitle" id="selbasedSFRs">
