@@ -2149,22 +2149,21 @@ functionality (such as these)
         </f-component>
         <f-component id="fpt_srp_ext.1" name="Software Restriction Policies">
           <f-element id="fpt_srp_ext.1.1">
-            <title> The OS shall implement capabilities and extensions that allow an administrator
-              to create rules to allow executable programs to run based on 
+            <title> The OS shall restrict execution to only programs which match an administrator-specified:
               <selectables linebreak="yes">
-                <selectable>Executable file path</selectable>
-                <selectable>Executable file digital signature</selectable>
-                <selectable>Executable version</selectable>
-                <selectable>Executable hash</selectable>
+                <selectable>file path</selectable>
+                <selectable>file digital signature</selectable>
+                <selectable>version</selectable>
+                <selectable>hash</selectable>
                 <selectable><assignable>other characteristics</assignable></selectable>
               </selectables>
             </title>
-            <note role="application">There are two types of execution control, allow and 
-              deny listing, this requirement only covers the testing of allow listing of executable
-              programs. The allow list mechanism should only allow execution of items on the list and
-              deny execution of everything else.
+            <note role="application">
+              The mechanism should only allow execution of items in the selection and
+              deny execution of everything else. Specification of file path could be at a low 
+              level of granularity such as a volume.
             </note>
-            <aactivity>The evaluator will ensure that all the following tests result in a negative
+            <aactivity>For each selection specified in the ST, the evaluator will ensure that the corresponding tests result in a negative
               outcome (I.E., the action results in the OS denying the evaluator permission to
               complete the action): 
               <testlist>
