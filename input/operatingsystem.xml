@@ -7,7 +7,7 @@
   <PPReference title="PP Reference" id="XXXXX">
     <ReferenceTable>
       <PPTitle>Protection Profile for General Purpose Operating Systems</PPTitle>
-      <PPVersion>4.0</PPVersion>
+      <PPVersion>4.0-DRAFT</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
       <PPPubDate>2015-06-01</PPPubDate>
       <PPCertificationID>unassigned</PPCertificationID>
@@ -22,7 +22,7 @@
 
   <RevisionHistory role="draft">
     <entry>
-      <version>v .3</version>
+      <version>Round 1</version>
       <date>2015-04-23</date>
       <subject>First draft for comment</subject>
     </entry>
@@ -1846,7 +1846,7 @@ functionality (such as these)
 		<management-function user="X">
 		  enable/disable screen lock
 		</management-function> 
-		<management-function user="X">
+		<management-function user="O">
 		  configure screen lock inactivity timeout
 		</management-function> 
 		<management-function>
@@ -1897,32 +1897,6 @@ functionality (such as these)
             </aactivity>
 	  </f-element>
 	</f-component>
-        <f-component id="ftp_trp.1" name="Trusted Path">
-          <f-element id="ftp_trp.1.1">
-            <title> The OS shall provide a communication path between itself and remote users that is logically 
-              distinct from other communication paths and provides assured identification of its endpoints
-              and protection of the communicated data from modification and disclosure.
-            </title>
-          </f-element>
-          <f-element id="ftp_trp.1.2">
-            <title> The OS shall permit 
-              <selectables>
-                <selectable>the TSF</selectable>
-                <selectable>a management server</selectable>
-              </selectables>
-              to initiate communication via the trusted path.
-            </title>
-          </f-element>
-          <f-element id="ftp_trp.1.3">
-            <title> The OS shall require use of the trusted path for all remote administrative actions.
-            </title>
-          </f-element>
-          <aactivity> The evaluator will ensure that remote management capabilities
-              are in accordance with <linkref linkend="FTP_ITC_EXT.1"/> and that all communications
-              between the remote management terminal and the host OS are carried out over a secure
-              channel.
-          </aactivity>
-        </f-component>
       </subsection>
 
       <subsection title="Protection of the TSF (FPT)" id="fpt">
@@ -2066,7 +2040,7 @@ functionality (such as these)
                 <li>System configuration files</li>
                 <li>
                   <selectables>
-                    <selectable>Other components</selectable>
+                    <selectable>other components</selectable>
                   </selectables>
                 </li>
               </ul>
@@ -2084,18 +2058,19 @@ functionality (such as these)
             </aactivity>
           </f-element>
           <f-element id="fpt_acf_ext.1.2">
-            <title> The OS shall implement access controls which prohibit standard privileged subjects from
-              modifying components owned by other subjects including: <ul>
-                <li>Files</li>
+            <title> The OS shall implement access controls which prohibit unprivileged subjects from
+              modifying components owned by other subjects including:<ul>
+                <li>files</li>
                 <li>
                   <selectables>
-                    <selectable>Other components</selectable>
+                    <selectable>other components</selectable>
                   </selectables>
                 </li>
               </ul>
             </title>
-            <note role="application"> Components owned by one user in a multi user system should be protected from
-            modification by another user in that system.</note>
+            <note role="application">Components owned by one user in a multi user system should be protected from
+            modification by another user in that system.  Achieving such an access control
+            policy may depend upon system configuration.</note>
             <aactivity>
               The evaluator shall create two new user accounts on the system with different credentials.
               
@@ -2132,7 +2107,7 @@ functionality (such as these)
                 <selectable>NFC</selectable>
                 <selectable>USB</selectable>
                 <selectable>FireWire</selectable>
-                <selectable>Other components</selectable>
+                <selectable><assignable>list of other ports</assignable></selectable>
               </selectables>
             </title>
             <note role="application">: Different hardware platforms will present different external
@@ -2181,7 +2156,7 @@ functionality (such as these)
                 <selectable>Executable file digital signature</selectable>
                 <selectable>Executable version</selectable>
                 <selectable>Executable hash</selectable>
-                <selectable>other components</selectable>
+                <selectable><assignable>other characteristics</assignable></selectable>
               </selectables>
             </title>
             <note role="application">There are two types of execution control, allow and 
@@ -2604,6 +2579,32 @@ functionality (such as these)
 	    </title>
 	  </f-element>
 	</f-component>
+     <f-component id="ftp_trp.1" name="Trusted Path">
+          <f-element id="ftp_trp.1.1">
+            <title> The OS shall provide a communication path between itself and remote users that is logically 
+              distinct from other communication paths and provides assured identification of its endpoints
+              and protection of the communicated data from modification and disclosure.
+            </title>
+          </f-element>
+          <f-element id="ftp_trp.1.2">
+            <title> The OS shall permit 
+              <selectables>
+                <selectable>the TSF</selectable>
+                <selectable>a management server</selectable>
+              </selectables>
+              to initiate communication via the trusted path.
+            </title>
+          </f-element>
+          <f-element id="ftp_trp.1.3">
+            <title> The OS shall require use of the trusted path for all remote administrative actions.
+            </title>
+          </f-element>
+          <aactivity> The evaluator will ensure that remote management capabilities
+              are in accordance with <linkref linkend="FTP_ITC_EXT.1"/> and that all communications
+              between the remote management terminal and the host OS are carried out over a secure
+              channel.
+          </aactivity>
+        </f-component>
       </subsection>
     </section>
     <section title="Security Assurance Requirements" id="SARs">The Security Objectives for the <abbr
