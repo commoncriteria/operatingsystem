@@ -381,7 +381,7 @@
             mechanisms and formats, as well as providing mechanisms for configuration and
             application execution control. </description>
           <component-refer ref="fmt_mof_ext.1.1"/>
-          <component-refer ref="fmt_smf_rmt.1.1"/>
+          <component-refer ref="ftp_trp.1"/>
           <component-refer ref="fpt_php_ext.1"/>
         </SO>
         <SO id="O.PROTECTED_STORAGE">
@@ -1897,19 +1897,31 @@ functionality (such as these)
             </aactivity>
 	  </f-element>
 	</f-component>
-        <f-component id="fmt_smf_rmt.1" name="Remote Management Capabilities">
-          <f-element id="fmt_smf_rmt.1.1">
-            <title> The OS shall <selectables linebreak="yes">
-                <selectable>not allow remote management</selectable>
-                <selectable> allow management functions also to be performed from a remote IT entity
-                  using a trusted channel established in accordance with the requirements stated in
-                    <linkref linkend="FTP_ITC_EXT.1"/>. </selectable>
-              </selectables> . </title>
-            <aactivity> The evaluator will ensure that remote management capabilities (if selected)
+        <f-component id="ftp_trp.1" name="Trusted Path">
+          <f-element id="ftp_trp.1.1">
+            <title> The OS shall provide a communication path between itself and remote users that is logically 
+              distinct from other communication paths and provides assured identification of its endpoints
+              and protection of the communicated data from modification and disclosure.
+            </title>
+          </f-element>
+          <f-element id="ftp_trp.1.2">
+            <title> The OS shall permit 
+              <selectables>
+                <selectable>the TSF</selectable>
+                <selectable>a management server</selectable>
+              </selectables>
+              to initiate communication via the trusted path.
+            </title>
+          </f-element>
+          <f-element id="ftp_trp.1.3">
+            <title> The OS shall require use of the trusted path for all remote administrative actions.
+            </title>
+          </f-element>
+          <aactivity> The evaluator will ensure that remote management capabilities
               are in accordance with <linkref linkend="FTP_ITC_EXT.1"/> and that all communications
               between the remote management terminal and the host OS are carried out over a secure
-              channel. </aactivity>
-          </f-element>
+              channel.
+          </aactivity>
         </f-component>
       </subsection>
 
@@ -1928,13 +1940,9 @@ functionality (such as these)
 	    </aactivity>
           </f-element>
           <f-element id="fpt_aex_ext.1.2" status="objective">
-            <title> The OS shall <selectables linebreak="yes">
-                <selectable>not permit allocation of any memory region with both write and 
-                execute permissions</selectable>
-                <selectable>permit allocation of memory regions with write and execute permissions for only
-                    <assignable>list of exceptions</assignable>
-                </selectable>
-              </selectables>. </title>
+            <title> The OS shall prevent allocation of any memory region with both write and 
+                execute permissions except for <assignable>list of exceptions</assignable>.
+            </title>
             <note role="application">Requesting a memory mapping with both write and execute
               permissions subverts the platform protection provided by <abbr linkend="DEP"/>. If the
               OS provides no exceptions (such as for just-in-time compilation), then the first 
@@ -1945,12 +1953,10 @@ functionality (such as these)
             </aactivity>
           </f-element>
           <f-element id="fpt_aex_ext.1.3">
-            <title>The OS shall be compiled with stack-based buffer overflow protection
-              enabled.</title>
+            <title>The OS shall implement stack-based buffer overflow protections.</title>
             <aactivity>The evaluator shall ensure that the <abbr linkend="TSS"/> section of the
-                <abbr linkend="ST"/> describes the linker flag used to enable stack-based buffer
-              overflow protection in the OS. The evaluator shall perform a static analysis to verify
-              that stack-based buffer overflow protection is present. 
+                <abbr linkend="ST"/> describes how kernel stacks, and the userspace stacks of security-relevant
+               OS userspace processes, implement stack-based buffer overflow protections. 
 	    </aactivity>
           </f-element>
         </f-component>
@@ -2026,14 +2032,14 @@ functionality (such as these)
             </aactivity>
           </f-element>
           <f-element id="fpt_tud_ext.1.4">
-            <title> The OS shall provide the ability for updates to applications on the OS to be
-              digitally signed such that their integrity can be cryptographically verified before
-              they are applied. </title>
+            <title> The OS shall provide the ability to cryptographically verify the integrity of updates to applications 
+              using a digital signature prior to installation.</title>
             <aactivity>
               <testlist>
                 <test>
-                  The evaluator shall download an update from the application vendor's
-                  website. The evaluator shall ensure that the update has a digital signature belonging
+                  The evaluator shall initiate an update to an application.  This may vary depending on the application,
+		  but it could be through the application vendor's website or a commercial app store.
+                  The evaluator shall ensure that the update has a digital signature belonging
                   to the vendor. The evaluator shall modify the downloaded update in such a way that the
                   digital signature is no longer valid. The evaluator shall then attempt to install the
                   modified update. The evaluator will ensure that the OS does not install the modified
@@ -2051,8 +2057,8 @@ functionality (such as these)
         </f-component>
         <f-component id="fpt_acf_ext.1" name="Access controls">
           <f-element id="fpt_acf_ext.1.1">
-            <title> The OS shall implement access controls to prohibit unprivileged subjects from
-              modifying system components including: <ul>
+            <title> The OS shall implement access controls which prohibit unprivileged subjects from
+              modifying: <ul>
                 <li>Boot loader</li>
                 <li>Kernel drivers/modules</li>
                 <li>Security audit logs</li>
@@ -2065,10 +2071,7 @@ functionality (such as these)
                 </li>
               </ul>
             </title>
-            <note role="application">System components are those components which provide the
-              base functionality and security controls for the OS. They include, but are not limited
-              to the boot loader, kernel drivers/modules, security audit logs, shared libraries, and system configuration files. </note>
-            <aactivity>The evaluator will ensure that all the following tests result in a negative
+            <aactivity>The evaluator will ensure that the following tests result in a negative
               outcome (I.E., the action results in the OS denying the evaluator permission to
               complete the action): 
 			       <testlist>
@@ -2081,7 +2084,7 @@ functionality (such as these)
             </aactivity>
           </f-element>
           <f-element id="fpt_acf_ext.1.2">
-            <title> The OS shall implement access controls to prohibit standard privileged subjects from
+            <title> The OS shall implement access controls which prohibit standard privileged subjects from
               modifying components owned by other subjects including: <ul>
                 <li>Files</li>
                 <li>
@@ -2277,8 +2280,8 @@ functionality (such as these)
                 <li>Administrator or root-level access events (Success/Failure);</li>
                 <li>Privilege or role escalation events (Success/Failure);</li>
                 <selectables linebreak='yes'>>
-                  <selectable>File object events (Successful and unsuccessful attempts to create, access, modify, or delete security objects)</selectable>
-                  <selectable>User and Group management events (Successful and unsuccessful add, delete, modify, suspend, lock events)</selectable>
+                  <selectable>File and object events (Successful and unsuccessful attempts to create, access, delete, modify, modify permissions)</selectable>
+                  <selectable>User and Group management events (Successful and unsuccessful add, delete, modify, suspend, lock)</selectable>
                   <selectable>Audit and log data access events (Success/Failure)</selectable>
                   <selectable>System reboot, restart, and shutdown events (Success/Failure)</selectable>
                   <selectable>All auditable events for the "minimal" level of audit; and</selectable>
