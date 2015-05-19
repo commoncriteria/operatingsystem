@@ -2598,48 +2598,43 @@ functionality (such as these)
             <title> The OS shall require use of the trusted path for all remote administrative actions.
             </title>
           </f-element>
-          <aactivity> The evaluator will ensure that remote management capabilities
-              are in accordance with <linkref linkend="FTP_ITC_EXT.1"/> and that all communications
-              between the remote management terminal and the host OS are carried out over a secure
-              channel.
-          </aactivity>
-         <note role="application">
-           This requirement ensures that authorized remote administrators initiate all communication
-           with the TOE via a trusted path, and that all communication with the TOE by remote administrators 
-           is performed over this path. The data passed in this trusted communication channel are encrypted as 
-           defined in <linkref linkend="ftp_itc_ext.1"/>.
-         </note>
+           <note role="application">
+             This requirement ensures that authorized remote administrators initiate all communication
+             with the TOE via a trusted path, and that all communication with the TOE by remote administrators 
+             is performed over this path. The data passed in this trusted communication channel are encrypted as 
+             defined in <linkref linkend="FTP_ITC_EXT.1"/>.
+           </note>
+           <aactivity>
+             The evaluator shall examine the TSS to determine that the methods of remote OS administration
+             are indicated, along with how those communications are protected. The evaluator shall also
+             confirm that all protocols listed in the TSS in support of OS administration are consistent with those
+             specified in the requirement, and are included in the requirements in the ST. The evaluator shall
+             confirm that the operational guidance contains instructions for establishing the remote
+             administrative sessions for each supported method. The evaluator shall also perform the following
+             tests:
+             <testlist>
+               <test>
+                 The evaluators shall ensure that communications using each remote administration method is 
+                 tested during the course of the evaluation, setting up the connections as described in the 
+                 operational guidance and ensuring that communication is successful.
+               </test>
+               <test>
+                 For each method of remote administration supported, the evaluator shall
+                 follow the operational guidance to ensure that there is no available interface that can be
+                 used by a remote user to establish a remote administrative sessions without invoking the
+                 trusted path.
+               </test>
+               <test>
+                 The evaluator shall ensure, for each method of remote administration, the
+                 channel data is not sent in plaintext.
+               </test>
+               <test>
+                 The evaluator shall ensure, for each method of remote administration,
+                 modification of the channel data is detected by the OS.
+               </test>
+             </testlist>
+           </aactivity>       
         </f-component>
-        <aactivity>
-          The evaluator shall examine the TSS to determine that the methods of remote TOE administration
-          are indicated, along with how those communications are protected. The evaluator shall also
-          confirm that all protocols listed in the TSS in support of TOE administration are consistent with those
-          specified in the requirement, and are included in the requirements in the ST. The evaluator shall
-          confirm that the operational guidance contains instructions for establishing the remote
-          administrative sessions for each supported method. The evaluator shall also perform the following
-          tests:
-          <testlist>
-            <test>
-              The evaluators shall ensure that communications using each remote administration method is 
-              tested during the course of the evaluation, setting up the connections as described in the 
-              operational guidance and ensuring that communication is successful.
-            </test>
-            <test>
-              For each method of remote administration supported, the evaluator shall
-              follow the operational guidance to ensure that there is no available interface that can be
-              used by a remote user to establish a remote administrative sessions without invoking the
-              trusted path.
-            </test>
-            <test>
-              The evaluator shall ensure, for each method of remote administration, the
-              channel data is not sent in plaintext.
-            </test>
-            <test>
-              The evaluator shall ensure, for each method of remote administration,
-              modification of the channel data is detected by the TOE.
-            </test>
-          </testlist>
-        </aactivity>
       </subsection>
     </section>
     <section title="Security Assurance Requirements" id="SARs">The Security Objectives for the <abbr
