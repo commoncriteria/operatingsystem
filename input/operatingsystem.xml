@@ -1451,62 +1451,84 @@ functionality (such as these)
                 linkend="FCS_TLSC_EXT.1.5"/> is required. <br/> If <i>implement TLS 1.2 (RFC
                 5246)</i> is selected, then <linkref linkend="FCS_CKM.2.1"/>, <linkref
                 linkend="FCS_COP.1.1(1)"/>, <linkref linkend="FCS_COP.1.1(2)"/>, <linkref
-                linkend="FCS_COP.1.1(3)"/>, and <linkref linkend="FCS_COP.1.1(4)"/> are required. </note>
-            <aactivity> The evaluator shall check the description of the implementation of this
+                linkend="FCS_COP.1.1(3)"/>, and <linkref linkend="FCS_COP.1.1(4)"/> are required. 
+            </note>
+            <aactivity>
+              The evaluator shall check the description of the implementation of this
               protocol in the <abbr title="TOE Summary Specification" linkend="TSS">TSS</abbr> to
               ensure that the cipher suites supported are specified. The evaluator shall check the
                 <abbr title="TOE Summary Specification" linkend="TSS">TSS</abbr> to ensure that the
               cipher suites specified include those listed for this component. The evaluator shall
               also check the operational guidance to ensure that it contains instructions on
-              configuring the <abbr title="Target of Evaluation" linkend="TOE">TOE</abbr> so that
+              configuring the OS so that
               TLS conforms to the description in the <abbr title="TOE Summary Specification"
-                linkend="TSS">TSS</abbr>. The evaluator shall also perform the following tests: <testlist>
-                <test> The evaluator shall establish a <abbr title="Transport Layer Security"
-                    >TLS</abbr> connection using each of the cipher suites specified by the
+                linkend="TSS">TSS</abbr>. The evaluator shall also perform the following tests: 
+              <testlist>
+                <test> 
+                  The evaluator shall establish a <abbr title="Transport Layer Security">TLS</abbr> connection 
+                  using each of the cipher suites specified by the
                   requirement. This connection may be established as part of the establishment of a
                   higher-level protocol, e.g., as part of an EAP session. It is sufficient to
                   observe the successful negotiation of a cipher suite to satisfy the intent of the
                   test; it is not necessary to examine the characteristics of the encrypted traffic
                   in an attempt to discern the cipher suite being used (for example, that the
-                  cryptographic algorithm is 128-bit AES and not 256-bit AES). </test>
-                <test> The evaluator shall attempt to establish the connection using a server with a
+                  cryptographic algorithm is 128-bit AES and not 256-bit AES). 
+                </test>
+                <test> 
+                  The evaluator shall attempt to establish the connection using a server with a
                   server certificate that contains the Server Authentication purpose in the
                   extendedKeyUsage field and verify that a connection is established. The evaluator
                   will then verify that the client rejects an otherwise valid server certificate
                   that lacks the Server Authentication purpose in the extendedKeyUsage field and a
                   connection is not established. Ideally, the two certificates should be identical
-                  except for the extendedKeyUsage field. </test>
-                <test> The evaluator shall send a server certificate in the <abbr
-                    title="Transport Layer Security">TLS</abbr> connection that does not match the
-                  server-selected cipher suite (for example, send a ECDSA certificate while using the
+                  except for the extendedKeyUsage field. 
+                </test>
+                <test> 
+                  The evaluator shall send a server certificate in the <abbr title="Transport Layer Security">TLS</abbr> connection 
+                  that does not match the server-selected cipher suite (for example, send a ECDSA certificate while using the
                   TLS_RSA_WITH_AES_128_CBC_SHA cipher suite or send a RSA certificate while using one
-                  of the ECDSA cipher suites.) The evaluator shall verify that the <abbr
-                    title="Target of Evaluation" linkend="TOE">TOE</abbr> disconnects after
-                  receiving the server’s Certificate handshake message. </test>
-                <test> The evaluator shall configure the server to select the
+                  of the ECDSA cipher suites.) The evaluator shall verify that the OS disconnects after
+                  receiving the server’s Certificate handshake message. 
+                </test>
+                <test> 
+                  The evaluator shall configure the server to select the
                   TLS_NULL_WITH_NULL_NULL cipher suite and verify that the client denies the
-                  connection. </test>
-                <test> The evaluator shall perform the following modifications to the traffic: <testlist>
-                    <test> Change the <abbr title="Transport Layer Security">TLS</abbr> version
-                      selected by the server in the Server Hello to a non-supported <abbr
-                        title="Transport Layer Security">TLS</abbr> version (for example 1.3
+                  connection. 
+                </test>
+                <test> 
+                  The evaluator shall perform the following modifications to the traffic: 
+                  <testlist>
+                    <test> 
+                      Change the <abbr title="Transport Layer Security">TLS</abbr> version
+                      selected by the server in the Server Hello to a non-supported <abbr 
+                      title="Transport Layer Security">TLS</abbr> version (for example 1.3
                       represented by the two bytes 03 04) and verify that the client rejects the
-                      connection. </test>
-                    <test> Modify at least one byte in the server’s nonce in the Server Hello
+                      connection. 
+                    </test>
+                    <test>
+                      Modify at least one byte in the server’s nonce in the Server Hello
                       handshake message, and verify that the client rejects the Server Key Exchange
                       handshake message (if using a DHE or ECDHE cipher suite) or that the server
-                      denies the client’s Finished handshake message. </test>
-                    <test> Modify the server’s selected cipher suite in the Server Hello handshake
+                      denies the client’s Finished handshake message. 
+                    </test>
+                    <test>
+                      Modify the server’s selected cipher suite in the Server Hello handshake
                       message to be a cipher suite not presented in the Client Hello handshake
                       message. The evaluator shall verify that the client rejects the connection
-                      after receiving the Server Hello. </test>
-                    <test> Modify the signature block in the Server’s Key Exchange handshake
+                      after receiving the Server Hello.
+                    </test>
+                    <test>
+                      Modify the signature block in the Server’s Key Exchange handshake
                       message, and verify that the client rejects the connection after receiving the
-                      Server Key Exchange message. </test>
-                    <test> Modify a byte in the Server Finished handshake message, and verify that
+                      Server Key Exchange message.
+                    </test>
+                    <test> 
+                      Modify a byte in the Server Finished handshake message, and verify that
                       the client sends a fatal alert upon receipt and does not send any application
-                      data. </test>
-                    <test> Send a garbled message from the Server after the Server has issued the
+                      data. 
+                    </test>
+                    <test>
+                      Send a garbled message from the Server after the Server has issued the
                       Change Cipher Spec message and verify that the client denies the connection.
                     </test>
                   </testlist>
@@ -1535,67 +1557,91 @@ functionality (such as these)
               discouraged as against best practices but may be implemented. Finally, the client
               should avoid constructing reference identifiers using wildcards. However, if the
               presented identifiers include wildcards, the client must follow the best practices
-              regarding matching; these best practices are captured in the assurance activity. </note>
-            <aactivity> The evaluator shall ensure that the <abbr title="TOE Summary Specification"
+              regarding matching; these best practices are captured in the assurance activity. 
+            </note>
+            <aactivity> 
+              The evaluator shall ensure that the <abbr title="TOE Summary Specification"
                 linkend="TSS">TSS</abbr> describes the client’s method of establishing all reference
               identifiers from the application-configured reference identifier, including which
               types of reference identifiers are supported (e.g. Common Name, DNS Name, URI Name,
               Service Name, or other application-specific Subject Alternative Names) and whether IP
               addresses and wildcards are supported. The evaluator shall ensure that this
               description identifies whether and the manner in which certificate pinning is
-              supported or used by the <abbr title="Target of Evaluation" linkend="TOE">TOE</abbr>.
+              supported or used by the OS.
               <br/> The evaluator shall verify that the AGD guidance includes instructions for
               setting the reference identifier to be used for the purposes of certificate validation
               in <abbr title="Transport Layer Security">TLS</abbr>. <br/> The evaluator shall
               configure the reference identifier according to the AGD guidance and perform the
-              following tests during a <abbr title="Transport Layer Security">TLS</abbr> connection: <testlist>
+              following tests during a <abbr title="Transport Layer Security">TLS</abbr> connection: 
+              <testlist>
                 <test> The evaluator shall present a server certificate that does not contain an
                   identifier in either the Subject Alternative Name (SAN) or Common Name (CN) that
                   matches the reference identifier. The evaluator shall verify that the connection
-                  fails. </test>
-                <test> The evaluator shall present a server certificate that contains a CN that
+                  fails. 
+                </test>
+                <test> 
+                  The evaluator shall present a server certificate that contains a CN that
                   matches the reference identifier, contains the SAN extension, but does not contain
                   an identifier in the SAN that matches the reference identifier. The evaluator
                   shall verify that the connection fails. The evaluator shall repeat this test for
-                  each supported SAN type. </test>
-                <test> The evaluator shall present a server certificate that contains a CN that
+                  each supported SAN type. 
+                </test>
+                <test> 
+                  The evaluator shall present a server certificate that contains a CN that
                   matches the reference identifier and does not contain the SAN extension. The
-                  evaluator shall verify that the connection succeeds. </test>
-                <test> The evaluator shall present a server certificate that contains a CN that does
+                  evaluator shall verify that the connection succeeds. 
+                </test>
+                <test> 
+                  The evaluator shall present a server certificate that contains a CN that does
                   not match the reference identifier but does contain an identifier in the SAN that
-                  matches. The evaluator shall verify that the connection succeeds. </test>
-                <test> The evaluator shall perform the following wildcard tests with each supported
-                  type of reference identifier: <testlist>
-                    <test>The evaluator shall present a server certificate containing a wildcard
+                  matches. The evaluator shall verify that the connection succeeds. 
+                </test>
+                <test> 
+                  The evaluator shall perform the following wildcard tests with each supported
+                  type of reference identifier: 
+                  <testlist>
+                    <test>
+                      The evaluator shall present a server certificate containing a wildcard
                       that is not in the left-most label of the presented identifier (e.g.
-                      foo.*.example.com) and verify that the connection fails. </test>
-                    <test> The evaluator shall present a server certificate containing a wildcard in
+                      foo.*.example.com) and verify that the connection fails. 
+                    </test>
+                    <test>
+                      The evaluator shall present a server certificate containing a wildcard in
                       the left-most label but not preceding the public suffix (e.g. *.example.com).
                       The evaluator shall configure the reference identifier with a single left-most
                       label (e.g. foo.example.com) and verify that the connection succeeds. The
                       evaluator shall configure the reference identifier without a left-most label
                       as in the certificate (e.g. example.com) and verify that the connection fails.
                       The evaluator shall configure the reference identifier with two left-most
-                      labels (e.g. bar.foo.example.com) and verify that the connection fails. </test>
-                    <test> The evaluator shall present a server certificate containing a wildcard in
+                      labels (e.g. bar.foo.example.com) and verify that the connection fails. 
+                    </test>
+                    <test> 
+                      The evaluator shall present a server certificate containing a wildcard in
                       the left-most label immediately preceding the public suffix (e.g. *.com). The
                       evaluator shall configure the reference identifier with a single left-most
                       label (e.g. foo.com) and verify that the connection fails. The evaluator shall
                       configure the reference identifier with two left-most labels (e.g.
-                      bar.foo.com) and verify that the connection fails. </test>
-                  </testlist></test>
-                <test> [conditional] If URI or Service name reference identifiers are supported, the
+                      bar.foo.com) and verify that the connection fails. 
+                    </test>
+                  </testlist>
+                </test>
+                <test> 
+                  [conditional] If URI or Service name reference identifiers are supported, the
                   evaluator shall configure the <abbr title="Domain Name System">DNS</abbr> name and
                   the service identifier. The evaluator shall present a server certificate
                   containing the correct <abbr title="Domain Name System">DNS</abbr> name and
                   service identifier in the URIName or SRVName fields of the SAN and verify that the
                   connection succeeds. The evaluator shall repeat this test with the wrong service
                   identifier (but correct <abbr title="Domain Name System">DNS</abbr> name) and
-                  verify that the connection fails. </test>
-                <test> [conditional] If pinned certificates are supported the evaluator shall
+                  verify that the connection fails. 
+                </test>
+                <test> 
+                  [conditional] If pinned certificates are supported the evaluator shall
                   present a certificate that does not match the pinned certificate and verify that
-                  the connection fails. </test>
-              </testlist></aactivity>
+                  the connection fails. 
+                </test>
+              </testlist>
+            </aactivity>
           </f-element>
           <f-element id="fcs_tlsc_ext.1.3">
             <title>The OS shall only establish a trusted channel if the peer certificate is valid. </title>
@@ -1670,8 +1716,7 @@ functionality (such as these)
               <br/>
               The evaluator shall configure the server to perform an ECDHE key exchange
               message in the <abbr title="Transport Layer Security">TLS</abbr> connection using
-              a non-supported ECDHE curve (for example, P-192) and shall verify that the <abbr
-              title="Target of Evaluation" linkend="TOE">TOE</abbr> disconnects after
+              a non-supported ECDHE curve (for example, P-192) and shall verify that the OS disconnects after
               receiving the server's Key Exchange handshake message. 
             </aactivity>
           </f-element>
@@ -1700,8 +1745,7 @@ functionality (such as these)
                 title="Transport Layer Security">TLS</abbr> connection that is not supported
                 according to the Client’s HashAlgorithm enumeration within the
                 signature_algorithms extension (for example, send a certificate with a SHA-1
-                signature). The evaluator shall verify that the <abbr title="Target of Evaluation"
-                linkend="TOE">TOE</abbr> disconnects after receiving the server’s Certificate
+                signature). The evaluator shall verify that the OS disconnects after receiving the server’s Certificate
                 handshake message.
             </aactivity>
           </f-element>
