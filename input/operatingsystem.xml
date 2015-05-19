@@ -342,7 +342,7 @@
           <objective-refer ref="O.MANAGEMENT">
             <rationale>The organizational security policy P.ENTERPRISE is enforced through the
               objective O.MANAGEMENT as this objective represents how the enterprise and user assert
-              management over the <abbr linkend="TOE"/>.</rationale>
+              management over the <abbr linkend="OS"/>.</rationale>
           </objective-refer>
         </OSP>
       </OSPs>
@@ -692,23 +692,23 @@
                 linkend="FCS_CKM.2.1"/> and selected cryptographic protocols must match the
               selection. When key generation is used for entity authentication, the public key is
               expected to be associated with an X.509v3 certificate. <br/> If the <abbr
-                linkend="TOE"/> acts as a receiver in the RSA key establishment scheme, the <abbr
-                linkend="TOE"/> does not need to implement RSA key generation. <br/> The ANSI
+                linkend="OS"/> acts as a receiver in the RSA key establishment scheme, the <abbr
+                linkend="OS"/> does not need to implement RSA key generation. <br/> The ANSI
               X9.31-1998 option will be removed from the selection in a future publication of this
               document. Presently, the selection is not exclusively limited to the FIPS PUB 186-4
               options in order to allow industry some further time to complete the transition to the
               modern FIPS PUB 186-4 standard. </note>
             <aactivity> The evaluator shall ensure that the <abbr linkend="TSS"/> identifies the key
-              sizes supported by the <abbr linkend="TOE"/>. If the <abbr linkend="ST"/> specifies
+              sizes supported by the <abbr linkend="OS"/>. If the <abbr linkend="ST"/> specifies
               more than one scheme, the evaluator shall examine the <abbr linkend="TSS"/> to verify
               that it identifies the usage for each scheme. <br/> The evaluator shall verify that
-              the AGD guidance instructs the administrator how to configure the <abbr linkend="TOE"
+              the AGD guidance instructs the administrator how to configure the <abbr linkend="OS"
               /> to use the selected key generation scheme(s) and key size(s) for all uses defined
               in this PP. <br/> Assurance Activity Note: The following tests may require the
               developer to provide access to a developer environment that provides the evaluator
               with tools that are typically available to end-users of the OS. <br/>
               <b>Key Generation for FIPS PUB 186-4 RSA Schemes</b><p/> The evaluator shall verify
-              the implementation of RSA Key Generation by the <abbr linkend="TOE"/> using the Key
+              the implementation of RSA Key Generation by the <abbr linkend="OS"/> using the Key
               Generation test. This test verifies the ability of the <abbr linkend="TSF"/> to
               correctly produce values for the key components including the public verification
               exponent e, the private prime factors p and q, the public modulus n and the
@@ -756,14 +756,14 @@
               evaluator shall ensure that the <abbr linkend="TSS"/> contains the following
               information: <ul>
                 <li> The <abbr linkend="TSS"/> shall list all sections of the standard to which the
-                    <abbr linkend="TOE"/> complies;</li>
+                    <abbr linkend="OS"/> complies;</li>
                 <li> For each applicable section listed in the <abbr linkend="TSS"/>, for all
                   statements that are not "shall" (that is, "shall not", "should", and "should not")
-                  , if the <abbr linkend="TOE"/> implements such options it shall be described in
+                  , if the <abbr linkend="OS"/> implements such options it shall be described in
                   the <abbr linkend="TSS"/>. If the included functionality is indicated as "shall
                   not" or "should not" in the standard, the <abbr linkend="TSS"/> shall provide a
                   rationale for why this will not adversely affect the security policy implemented
-                  by the <abbr linkend="TOE"/>; </li>
+                  by the <abbr linkend="OS"/>; </li>
                 <li> For each applicable section of Appendix B, any omission of functionality
                   related to "shall" or “should” statements shall be described. </li>
               </ul>
@@ -781,7 +781,7 @@
               a set of 10 PASS/FAIL values. <br/>
               <b>Key Generation for Finite-Field Cryptography (FFC)</b><p/> The evaluator shall
               verify the implementation of the Parameters Generation and the Key Generation for FFC
-              by the <abbr linkend="TOE"/> using the Parameter Generation and Key Generation test.
+              by the <abbr linkend="OS"/> using the Parameter Generation and Key Generation test.
               This test verifies the ability of the <abbr linkend="TSF"/> to correctly produce
               values for the field prime p, the cryptographic prime q (dividing p-1), the
               cryptographic group generator g, and the calculation of the private key x and public
@@ -837,8 +837,8 @@
               for the selected cryptographic protocols. <linkref linkend="FCS_TLSC_EXT.1"/> requires
               cipher suites that use RSA-based key establishment schemes. <br/> The RSA-based key
               establishment schemes are described in Section 9 of NIST SP 800-56B; however, Section 9
-              relies on implementation of other sections in SP 800-56B. If the TOE acts as a receiver
-              in the RSA key establishment scheme, the TOE does not need to implement RSA key generation.
+              relies on implementation of other sections in SP 800-56B. If the OS acts as a receiver
+              in the RSA key establishment scheme, the OS does not need to implement RSA key generation.
               <br/> The elliptic curves used for the key establishment scheme shall correlate with
               the curves specified in <linkref linkend="FCS_CKM.1.1"/>. <br/> 
 	      The domain parameters used for the finite field-based key establishment scheme are specified by
@@ -847,15 +847,15 @@
               correspond to the key generation schemes identified in FCS_CKM.1.1. If the ST
               specifies more than one scheme, the evaluator shall examine the TSS to verify that it
               identifies the usage for each scheme. <br/> The evaluator shall verify that the AGD
-              guidance instructs the administrator how to configure the TOE to use the selected key
+              guidance instructs the administrator how to configure the OS to use the selected key
               establishment scheme(s). <br/> Assurance Activity Note: The following tests require
               the developer to provide access to a test platform that provides the evaluator with
               tools that are typically not found on factory products. <br/>
               <b>Key Establishment Schemes</b><p/> The evaluator shall verify the implementation of
-              the key establishment schemes supported by the TOE using the applicable tests below. <br/>
-              <b>SP800-56A Key Establishment Schemes</b><p/> The evaluator shall verify a TOE's
+              the key establishment schemes supported by the OS using the applicable tests below. <br/>
+              <b>SP800-56A Key Establishment Schemes</b><p/> The evaluator shall verify the OS's
               implementation of SP800-56A key agreement schemes using the following Function and
-              Validity tests. These validation tests for each key agreement scheme verify that a TOE
+              Validity tests. These validation tests for each key agreement scheme verify that the OS
               has implemented the components of the key agreement scheme according to the
               specifications in the Recommendation. These components include the calculation of the
               discrete logarithm cryptography (DLC) primitives (the shared secret value Z) and the
@@ -865,54 +865,54 @@
               procedures described below. This includes the parsing of the DKM, the generation of
               MAC data and the calculation of MAC tag. <br/>
               <indent>
-                <b>Function Test</b><p/> The Function test verifies the ability of the TOE to
+                <b>Function Test</b><p/> The Function test verifies the ability of the OS to
                 implement the key agreement schemes correctly. To conduct this test the evaluator
-                shall generate or obtain test vectors from a known good implementation of the TOE
+                shall generate or obtain test vectors from a known good implementation of the OS's
                 supported schemes. For each supported key agreement scheme-key agreement role
                 combination, KDF type, and, if supported, key confirmation role- key confirmation
                 type combination, the tester shall generate 10 sets of test vectors. The data set
                 consists of one set of domain parameter values (FFC) or the NIST approved curve
                 (ECC) per 10 sets of public keys. These keys are static, ephemeral or both depending
                 on the scheme being tested. <br/> The evaluator shall obtain the DKM, the
-                corresponding TOE’s public keys (static and/or ephemeral), the MAC tag(s), and any
-                inputs used in the KDF, such as the Other Information field OI and TOE id fields.
-                <br/> If the TOE does not use a KDF defined in SP 800-56A, the evaluator shall
+                corresponding OS's public keys (static and/or ephemeral), the MAC tag(s), and any
+                inputs used in the KDF, such as the Other Information field OI and OS id fields.
+                <br/> If the OS does not use a KDF defined in SP 800-56A, the evaluator shall
                 obtain only the public keys and the hashed value of the shared secret. <br/> The
                 evaluator shall verify the correctness of the TSF’s implementation of a given scheme
                 by using a known good implementation to calculate the shared secret value, derive
                 the keying material DKM, and compare hashes or MAC tags generated from these values.
                 <br/> If key confirmation is supported, the OS shall perform the above for each
                 implemented approved MAC algorithm. <br/>
-                <b>Validity Test</b><p/> The Validity test verifies the ability of the TOE to
+                <b>Validity Test</b><p/> The Validity test verifies the ability of the OS to
                 recognize another party’s valid and invalid key agreement results with or without
                 key confirmation. To conduct this test, the evaluator shall obtain a list of the
                 supporting cryptographic functions included in the SP800-56A key agreement
-                implementation to determine which errors the TOE should be able to recognize. The
+                implementation to determine which errors the OS should be able to recognize. The
                 evaluator generates a set of 24 (FFC) or 30 (ECC) test vectors consisting of data
                 sets including domain parameter values or NIST approved curves, the evaluator’s
-                public keys, the TOE’s public/private key pairs, MAC tag, and any inputs used in the
-                KDF, such as the other info and TOE id fields. <br/> The evaluator shall inject an
-                error in some of the test vectors to test that the TOE recognizes invalid key
+                public keys, the OS’s public/private key pairs, MAC tag, and any inputs used in the
+                KDF, such as the other info and OS id fields. <br/> The evaluator shall inject an
+                error in some of the test vectors to test that the OS recognizes invalid key
                 agreement results caused by the following fields being incorrect: the shared secret
                 value Z, the DKM, the other information field OI, the data to be MAC'd, or the
-                generated MAC tag. If the TOE contains the full or partial (only ECC) public key
+                generated MAC tag. If the OS contains the full or partial (only ECC) public key
                 validation, the evaluator will also individually inject errors in both parties’
-                static public keys, both parties’ ephemeral public keys and the TOE’s static private
-                key to assure the TOE detects errors in the public key validation function and/or
+                static public keys, both parties’ ephemeral public keys and the OS’s static private
+                key to assure the OS detects errors in the public key validation function and/or
                 the partial key validation function (in ECC only). At least two of the test vectors
                 shall remain unmodified and therefore should result in valid key agreement results
-                (they should pass). <br/> The TOE shall use these modified test vectors to emulate
+                (they should pass). <br/> The OS shall use these modified test vectors to emulate
                 the key agreement scheme using the corresponding parameters. The evaluator shall
-                compare the TOE’s results with the results using a known good implementation
-                verifying that the TOE detects these errors. <br/>
+                compare the OS’s results with the results using a known good implementation
+                verifying that the OS detects these errors. <br/>
               </indent>
               <b>SP800-56B Key Establishment Schemes</b><p/> The evaluator shall verify that the TSS
-              describes whether the TOE acts as a sender, a recipient, or both for RSA-based key
-              establishment schemes. <br/> If the TOE acts as a sender, the following assurance
-              activity shall be performed to ensure the proper operation of every TOE supported
+              describes whether the OS acts as a sender, a recipient, or both for RSA-based key
+              establishment schemes. <br/> If the OS acts as a sender, the following assurance
+              activity shall be performed to ensure the proper operation of every OS supported
               combination of RSA-based key establishment scheme: <br/>
               <indent> To conduct this test the evaluator shall generate or obtain test vectors from
-                a known good implementation of the TOE supported schemes. For each combination of
+                a known good implementation of the OS's supported schemes. For each combination of
                 supported key establishment scheme and its options (with or without key confirmation
                 if supported, for each supported key confirmation MAC function if key confirmation
                 is supported, and for each supported mask generation function if KTS-OAEP is
@@ -920,16 +920,16 @@
                 shall include the RSA public key, the plaintext keying material, any additional
                 input parameters if applicable, the MAC key and MAC tag if key confirmation is
                 incorporated, and the outputted ciphertext. For each test vector, the evaluator
-                shall perform a key establishment encryption operation on the TOE with the same
+                shall perform a key establishment encryption operation on the OS with the same
                 inputs (in cases where key confirmation is incorporated, the test shall use the MAC
                 key from the test vector instead of the randomly generated MAC key used in normal
                 operation) and ensure that the outputted ciphertext is equivalent to the ciphertext
                 in the test vector. </indent>
-              <br/> If the TOE acts as a receiver, the following assurance activities shall be
-              performed to ensure the proper operation of every TOE supported combination of
+              <br/> If the OS acts as a receiver, the following assurance activities shall be
+              performed to ensure the proper operation of every OS supported combination of
               RSA-based key establishment scheme: <br/>
               <indent> To conduct this test the evaluator shall generate or obtain test vectors from
-                a known good implementation of the TOE supported schemes. For each combination of
+                a known good implementation of the OS's supported schemes. For each combination of
                 supported key establishment scheme and its options (with our without key
                 confirmation if supported, for each supported key confirmation MAC function if key
                 confirmation is supported, and for each supported mask generation function if
@@ -937,13 +937,13 @@
                 vector shall include the RSA private key, the plaintext keying material, any
                 additional input parameters if applicable, the MAC tag in cases where key
                 confirmation is incorporated, and the outputted ciphertext. For each test vector,
-                the evaluator shall perform the key establishment decryption operation on the TOE
+                the evaluator shall perform the key establishment decryption operation on the OS
                 and ensure that the outputted plaintext keying material is equivalent to the
                 plaintext keying material in the test vector. In cases where key confirmation is
                 incorporated, the evaluator shall perform the key confirmation steps and ensure that
                 the outputted MAC tag is equivalent to the MAC tag in the test vector. </indent>
-              <br/> The evaluator shall ensure that the TSS describes how the TOE handles decryption
-              errors. In accordance with NIST Special Publication 800-56B, the TOE must not reveal
+              <br/> The evaluator shall ensure that the TSS describes how the OS handles decryption
+              errors. In accordance with NIST Special Publication 800-56B, the OS must not reveal
               the particular error that occurred, either through the contents of any outputted or
               logged error message or through timing variations. If KTS-OAEP is supported, the
               evaluator shall create separate contrived ciphertext values that trigger each of the
@@ -1294,20 +1294,20 @@ functionality (such as these)
                   evaluator shall obtain in response a set of 10 PASS/FAIL values. </test>
               </testlist> RSA Signature Algorithm Tests <testlist>
                 <test>Signature Generation Test. The evaluator shall verify the implementation of
-                  RSA Signature Generation by the <abbr linkend="TOE"/> using the Signature
+                  RSA Signature Generation by the <abbr linkend="OS"/> using the Signature
                   Generation Test. To conduct this test the evaluator must generate or obtain 10
                   messages from a trusted reference implementation for each modulus size/SHA
                   combination supported by the <abbr linkend="TSF"/>. The evaluator shall have the
-                    <abbr linkend="TOE"/> use their private key and modulus value to sign these
+                    <abbr linkend="OS"/> use their private key and modulus value to sign these
                   messages. The evaluator shall verify the correctness of the <abbr linkend="TSF"
                   />’s signature using a known good implementation and the associated public keys to
                   verify the signatures. </test>
                 <test>Signature Verification Test. The evaluator shall perform the Signature
-                  Verification test to verify the ability of the <abbr linkend="TOE"/> to recognize
+                  Verification test to verify the ability of the <abbr linkend="OS"/> to recognize
                   another party’s valid and invalid signatures. The evaluator shall inject errors
                   into the test vectors produced during the Signature Verification Test by
                   introducing errors in some of the public keys, e, messages, IR format, and/or
-                  signatures. The <abbr linkend="TOE"/> attempts to verify the signatures and
+                  signatures. The <abbr linkend="OS"/> attempts to verify the signatures and
                   returns success or failure. </test>
               </testlist>
             </aactivity>
@@ -2455,7 +2455,7 @@ functionality (such as these)
                   shall then delete one of the certificates, and show that the function fails. </test>
                 <test> The evaluator shall demonstrate that validating an expired certificate
                   results in the function failing. </test>
-                <test> The evaluator shall test that the <abbr linkend="TOE"/> can properly handle
+                <test> The evaluator shall test that the <abbr linkend="OS"/> can properly handle
                   revoked certificates-–conditional on whether CRL or OCSP is selected; if both are
                   selected, then a test shall be performed for each method. The evaluator shall test
                   revocation of the node certificate and revocation of the intermediate CA
@@ -2494,13 +2494,13 @@ functionality (such as these)
               certificates: the node certificate to be tested, two Intermediate CAs, and the
               self-signed Root CA. <testlist>
                 <test> The evaluator shall construct a certificate path, such that the certificate
-                  of the CA issuing the <abbr linkend="TOE"/>'s certificate does not contain the
+                  of the CA issuing the <abbr linkend="OS"/>'s certificate does not contain the
                   basicConstraints extension. The validation of the certificate path fails. </test>
                 <test> The evaluator shall construct a certificate path, such that the certificate
-                  of the CA issuing the <abbr linkend="TOE"/>'s certificate has the CA flag in the
+                  of the CA issuing the <abbr linkend="OS"/>'s certificate has the CA flag in the
                   basicConstraints extension not set. The validation of the certificate path fails. </test>
                 <test> The evaluator shall construct a certificate path, such that the certificate
-                  of the CA issuing the <abbr linkend="TOE"/>'s certificate has the CA flag in the
+                  of the CA issuing the <abbr linkend="OS"/>'s certificate has the CA flag in the
                   basicConstraints extension set to TRUE. The validation of the certificate path
                   succeeds. </test>
               </testlist>
@@ -2532,7 +2532,7 @@ functionality (such as these)
 	    <f-element id="fta_tab.1.1" status="optional">
 	      <title>
 		Before establishing a user session, the TSF shall display an advisory
-		warning message regarding unauthorized use of the TOE.
+		warning message regarding unauthorized use of the OS.
 	      </title>
 	      <aactivity> 
 		The evaluator shall configure the OS, per instructions in the OS manual,
@@ -2635,7 +2635,7 @@ functionality (such as these)
       </subsection>
     </section>
     <section title="Security Assurance Requirements" id="SARs">The Security Objectives for the <abbr
-        linkend="TOE"/> in <secref linkend="req"/> were constructed to address threats identified in
+        linkend="OS"/> in <secref linkend="req"/> were constructed to address threats identified in
         <secref linkend="threats"/>. The Security Functional Requirements (<abbr linkend="SFR"/>s)
       in <secref linkend="SFRs"/> are a formal instantiation of the Security Objectives. The PP
       identifies the Security Assurance Requirements (<abbr linkend="SAR"/>s) to frame the extent to
@@ -2644,30 +2644,30 @@ functionality (such as these)
       that are required in evaluations against this PP. Individual Assurance Activities
       <!--(AAs). Never use these again --> to be performed are specified both in <secref
         linkend="req"/> as well as in this section. <br/> The general model for evaluation of <abbr
-        linkend="TOE"/>s against STs written to conform to this PP is as follows: <br/> After the
+        linkend="OS"/>s against STs written to conform to this PP is as follows: <br/> After the
         <abbr linkend="ST"/> has been approved for evaluation, the <abbr class="expanded"
         title="Information Technology Security Evaluation Facility">ITSEF</abbr> will obtain the
-        <abbr linkend="TOE"/>, supporting environmental IT, and the administrative/user guides for
-      the TOE. The ITSEF is expected to perform actions mandated by the Common Evaluation
+        <abbr linkend="OS"/>, supporting environmental IT, and the administrative/user guides for
+      the OS. The ITSEF is expected to perform actions mandated by the Common Evaluation
       Methodology (CEM) for the ASE and ALC SARs. The ITSEF also performs the Assurance Activities
       contained within <secref linkend="req"/>, which are intended to be an interpretation of the
       other CEM assurance requirements as they apply to the specific technology instantiated in the
-      TOE. The Assurance Activities that are captured in <secref linkend="req"/> also provide
-      clarification as to what the developer needs to provide to demonstrate the TOE is compliant
+      OS. The Assurance Activities that are captured in <secref linkend="req"/> also provide
+      clarification as to what the developer needs to provide to demonstrate the OS is compliant
       with the PP. <subsection title="Class ASE: Security Target" id="ase">As per ASE activities
         defined in <cite linkend="bibCEM"/>.</subsection>
       <subsection title="Class ADV: Development" id="adv">The information about the <abbr
-          linkend="TOE"/> is contained in the guidance documentation available to the end user as
+          linkend="OS"/> is contained in the guidance documentation available to the end user as
         well as the <abbr linkend="TSS"/> portion of the <abbr linkend="ST"/>. The <abbr
-          linkend="TOE"/> developer must concur with the description of the product that is
+          linkend="OS"/> developer must concur with the description of the product that is
         contained in the TSS as it relates to the functional requirements. The Assurance Activities
         contained in <secref linkend="SFRs"/> should provide the <abbr linkend="ST"/> authors with
         sufficient information to determine the appropriate content for the TSS section.
           <a-component id="adv_fsp.1" name="Basic Functional Specification (ADV_FSP.1)">The
           functional specification describes the <abbr title="TSF Interface">TSFI</abbr>s. It is not
           necessary to have a formal or complete specification of these interfaces. Additionally,
-          because <abbr linkend="TOE"/>s conforming to this PP will necessarily have interfaces to
-          the Operational Environment that are not directly invokable by <abbr linkend="TOE"/>
+          because <abbr linkend="OS"/>s conforming to this PP will necessarily have interfaces to
+          the Operational Environment that are not directly invokable by <abbr linkend="OS"/>
           users, there is little point specifying that such interfaces be described in and of
           themselves since only indirect testing of such interfaces may be possible. For this PP,
           the activities for this family should focus on understanding the interfaces presented in
@@ -2762,7 +2762,7 @@ functionality (such as these)
           </a-element>
           <a-element id="AGD_OPE.1.2C">
             <title>The operational user guidance shall describe, for each user role, how to use the
-              available interfaces provided by the <abbr linkend="TOE"/> in a secure manner.</title>
+              available interfaces provided by the <abbr linkend="OS"/> in a secure manner.</title>
           </a-element>
           <a-element id="AGD_OPE.1.3C">
             <title>The operational user guidance shall describe, for each user role, the available
@@ -2777,7 +2777,7 @@ functionality (such as these)
           </a-element>
           <a-element id="AGD_OPE.1.5C">
             <title>The operational user guidance shall identify all possible modes of operation of
-              the <abbr linkend="TOE"/> (including operation following failure or operational
+              the <abbr linkend="OS"/> (including operation following failure or operational
               error), their consequences, and implications for maintaining secure operation.</title>
           </a-element>
           <a-element id="AGD_OPE.1.6C">
@@ -2794,21 +2794,21 @@ functionality (such as these)
               for content and presentation of evidence. </title>
             <aactivity>Some of the contents of the operational guidance will be verified by the
               assurance activities in <secref linkend="SFRs"/> and evaluation of the <abbr
-                linkend="TOE"/> according to the <cite linkend="bibCEM"/>. The following additional
+                linkend="OS"/> according to the <cite linkend="bibCEM"/>. The following additional
               information is also required. If cryptographic functions are provided by the <abbr
-                linkend="TOE"/>, the operational guidance shall contain instructions for configuring
+                linkend="OS"/>, the operational guidance shall contain instructions for configuring
               the cryptographic engine associated with the evaluated configuration of the <abbr
-                linkend="TOE"/>. It shall provide a warning to the administrator that use of other
+                linkend="OS"/>. It shall provide a warning to the administrator that use of other
               cryptographic engines was not evaluated nor tested during the CC evaluation of the
-                <abbr linkend="TOE"/>. The documentation must describe the process for verifying
-              updates to the <abbr linkend="TOE"/> by verifying a digital signature – this may be
-              done by the <abbr linkend="TOE"/> or the underlying platform. The evaluator shall
+                <abbr linkend="OS"/>. The documentation must describe the process for verifying
+              updates to the <abbr linkend="OS"/> by verifying a digital signature – this may be
+              done by the <abbr linkend="OS"/> or the underlying platform. The evaluator shall
               verify that this process includes the following steps: Instructions for obtaining the
               update itself. This should include instructions for making the update accessible to
-              the <abbr linkend="TOE"/> (e.g., placement in a specific directory). Instructions for
+              the <abbr linkend="OS"/> (e.g., placement in a specific directory). Instructions for
               initiating the update process, as well as discerning whether the process was
               successful or unsuccessful. This includes generation of the hash/digital signature.
-              The <abbr linkend="TOE"/> will likely contain security functionality that does not
+              The <abbr linkend="OS"/> will likely contain security functionality that does not
               fall in the scope of evaluation under this PP. The operational guidance shall make it
               clear to an administrator which security functionality is covered by the evaluation
               activities. </aactivity>
@@ -2817,7 +2817,7 @@ functionality (such as these)
         <a-component id="agd_pre.1" name="Preparative Procedures (AGD_PRE.1)">
           <h4>Developer action elements:</h4>
           <a-element id="AGD_PRE.1.1D">
-            <title>The developer shall provide the <abbr linkend="TOE"/>, including its preparative
+            <title>The developer shall provide the <abbr linkend="OS"/>, including its preparative
               procedures.</title>
             <note role="application">As with the operational guidance, the developer should look to
               the assurance activities to determine the required content with respect to preparative
@@ -2826,12 +2826,12 @@ functionality (such as these)
           <h4>Content and presentation elements:</h4>
           <a-element id="AGD_PRE.1.1C">
             <title>The preparative procedures shall describe all the steps necessary for secure
-              acceptance of the delivered <abbr linkend="TOE"/> in accordance with the developer's
+              acceptance of the delivered <abbr linkend="OS"/> in accordance with the developer's
               delivery procedures.</title>
           </a-element>
           <a-element id="AGD_PRE.1.2C">
             <title>The preparative procedures shall describe all the steps necessary for secure
-              installation of the <abbr linkend="TOE"/> and for the secure preparation of the
+              installation of the <abbr linkend="OS"/> and for the secure preparation of the
               operational environment in accordance with the security objectives for the operational
               environment as described in the <abbr linkend="ST"/>.</title>
           </a-element>
@@ -2842,33 +2842,33 @@ functionality (such as these)
           </a-element>
           <a-element id="AGD_PRE.1.2E">
             <title>The evaluator shall apply the preparative procedures to confirm that the <abbr
-                linkend="TOE"/> can be prepared securely for operation.</title>
+                linkend="OS"/> can be prepared securely for operation.</title>
             <aactivity>As indicated in the introduction above, there are significant expectations
               with respect to the documentation—especially when configuring the operational
-              environment to support <abbr linkend="TOE"/> functional requirements. The evaluator
-              shall check to ensure that the guidance provided for the <abbr linkend="TOE"/>
-              adequately addresses all platforms claimed for the <abbr linkend="TOE"/> in the <abbr
+              environment to support <abbr linkend="OS"/> functional requirements. The evaluator
+              shall check to ensure that the guidance provided for the <abbr linkend="OS"/>
+              adequately addresses all platforms claimed for the <abbr linkend="OS"/> in the <abbr
                 linkend="ST"/>. </aactivity>
           </a-element>
         </a-component>
       </subsection>
       <subsection id="alc" title="Class ALC: Life-cycle Support"> At the assurance level provided
-        for TOEs conformant to this PP, life-cycle support is limited to end-user-visible aspects of
-        the life-cycle, rather than an examination of the TOE vendor’s development and configuration
+        for OSs conformant to this PP, life-cycle support is limited to end-user-visible aspects of
+        the life-cycle, rather than an examination of the OS vendor’s development and configuration
         management process. This is not meant to diminish the critical role that a developer’s
         practices play in contributing to the overall trustworthiness of a product; rather, it is a
         reflection on the information to be made available for evaluation at this assurance level.
           <a-component id="alc_cmc.1" name="Labeling of the TOE (ALC_CMC.1)">This component is
-          targeted at identifying the <abbr linkend="TOE"/> such that it can be distinguished from
+          targeted at identifying the <abbr linkend="OS"/> such that it can be distinguished from
           other products or versions from the same vendor and can be easily specified when being
           procured by an end user. <h4>Developer action elements:</h4>
           <a-element id="alc_cmc.1.1d">
-            <title>The developer shall provide the <abbr linkend="TOE"/> and a reference for the
-                <abbr linkend="TOE"/>.</title>
+            <title>The developer shall provide the <abbr linkend="OS"/> and a reference for the
+                <abbr linkend="OS"/>.</title>
           </a-element>
           <h4>Content and presentation elements:</h4>
           <a-element id="alc_cmc.1.1c">
-            <title>The <abbr linkend="TOE"/> shall be labeled with a unique reference.</title>
+            <title>The <abbr linkend="OS"/> shall be labeled with a unique reference.</title>
             <note role="application">Unique reference information includes: <ul>
                 <li>OS Name</li>
                 <li>OS Version</li>
@@ -2884,25 +2884,25 @@ functionality (such as these)
             <aactivity>The evaluator shall check the <abbr linkend="ST"/> to ensure that it contains
               an identifier (such as a product name/version number) that specifically identifies the
               version that meets the requirements of the <abbr linkend="ST"/>. Further, the
-              evaluator shall check the AGD guidance and <abbr linkend="TOE"/> samples received for
+              evaluator shall check the AGD guidance and <abbr linkend="OS"/> samples received for
               testing to ensure that the version number is consistent with that in the <abbr
                 linkend="ST"/>. If the vendor maintains a web site advertising the <abbr
-                linkend="TOE"/>, the evaluator shall examine the information on the web site to
+                linkend="OS"/>, the evaluator shall examine the information on the web site to
               ensure that the information in the <abbr linkend="ST"/> is sufficient to distinguish
               the product.</aactivity>
           </a-element>
         </a-component>
         <a-component id="alc_cms.1" name="TOE CM Coverage (ALC_CMS.1)">Given the scope of the <abbr
-            linkend="TOE"/> and its associated evaluation evidence requirements, this component’s
+            linkend="OS"/> and its associated evaluation evidence requirements, this component’s
           assurance activities are covered by the assurance activities listed for ALC_CMC.1.
             <h4>Developer action elements:</h4>
           <a-element id="alc_cms.1.1d">
-            <title>The developer shall provide a configuration list for the <abbr linkend="TOE"
+            <title>The developer shall provide a configuration list for the <abbr linkend="OS"
               />.</title>
           </a-element>
           <h4>Content and presentation elements:</h4>
           <a-element id="alc_cms.1.1c">
-            <title>The configuration list shall include the following: the <abbr linkend="TOE"/>
+            <title>The configuration list shall include the following: the <abbr linkend="OS"/>
               itself; and the evaluation evidence required by the SARs.</title>
           </a-element>
           <a-element id="alc_cms.1.2c">
@@ -2915,7 +2915,7 @@ functionality (such as these)
             <aactivity>The "evaluation evidence required by the SARs" in this PP is limited to the
               information in the <abbr linkend="ST"/> coupled with the guidance provided to
               administrators and users under the AGD requirements. By ensuring that the <abbr
-                linkend="TOE"/> is specifically identified and that this identification is
+                linkend="OS"/> is specifically identified and that this identification is
               consistent in the <abbr linkend="ST"/> and in the AGD guidance (as done in the
               assurance activity for ALC_CMC.1), the evaluator implicitly confirms the information
               required by this component. Life-cycle support is targeted aspects of the developer’s
@@ -2940,7 +2940,7 @@ functionality (such as these)
           </a-element>
         </a-component>
         <a-component id="alc_tsu_ext.1" name="Timely Security Updates"> This component requires the
-          TOE developer, in conjunction with any other necessary parties, to provide information as
+          OS developer, in conjunction with any other necessary parties, to provide information as
           to how the end-user devices are updated to address security issues in a timely manner. The
           documentation describes the process of providing updates to the public from the time a
           security flaw is reported/discovered, to the time an update is released. This description
@@ -2949,7 +2949,7 @@ functionality (such as these)
           before an update is made available to the public. <h4>Developer action elements:</h4>
           <a-element id="alc_tsu_ext.1.1d">
             <title>The developer shall provide a description in the TSS of how timely security
-              updates are made to the <abbr linkend="TOE"/>.</title>
+              updates are made to the <abbr linkend="OS"/>.</title>
             <note> Application developers must support updates to their products for purposes of
               fixing security vulnerabilities. </note>
           </a-element>
@@ -2960,23 +2960,23 @@ functionality (such as these)
           <h4>Content and presentation elements:</h4>
           <a-element id="alc_tsu_ext.1.1c">
             <title>The description shall include the process for creating and deploying security
-              updates for the <abbr linkend="TOE"/> software.</title>
+              updates for the <abbr linkend="OS"/> software.</title>
           </a-element>
           <a-element id="alc_tsu_ext.1.2c">
             <title>The description shall express the time window as the length of time, in days,
               between public disclosure of a vulnerability and the public availability of security
-              updates to the <abbr linkend="TOE"/>.</title>
+              updates to the <abbr linkend="OS"/>.</title>
           </a-element>
           <a-element id="alc_tsu_ext.1.3c">
             <title>The description shall include the mechanisms publicly available for reporting
-              security issues pertaining to the <abbr linkend="TOE"/>.</title>
+              security issues pertaining to the <abbr linkend="OS"/>.</title>
             <note> The reporting mechanism could include web sites, email addresses, as well as a
               means to protect the sensitive nature of the report (e.g., public keys that could be
               used to encrypt the details of a proof-of-concept exploit). </note>
           </a-element>
           <a-element id="alc_tsu_ext.1.4c">
             <title>The description shall include a comprehensive list of all third party libraries
-              required by, and packaged with, the <abbr linkend="TOE"/>.</title>
+              required by, and packaged with, the <abbr linkend="OS"/>.</title>
             <note> Developers must support updates to these third party libraries that they require.
               This support is essential in helping mitigate vulnerabilities publicly disclosed in
               these libraries. </note>
@@ -2988,16 +2988,16 @@ functionality (such as these)
             <aactivity> The evaluator shall verify that the TSS contains a description of the timely
               security update process used by the developer to create and deploy security updates.
               The evaluator shall verify that this description addresses the entire application. The
-              evaluator shall also verify that, in addition to the TOE developer’s process, any
+              evaluator shall also verify that, in addition to the OS developer’s process, any
               third-party processes are also addressed in the description. The evaluator shall also
               verify that each mechanism for deployment of security updates is described. <br/> The
               evaluator shall verify that, for each deployment mechanism described for the update
               process, the TSS lists a time between public disclosure of a vulnerability and public
-              availability of the security update to the TOE patching this vulnerability, to include
+              availability of the security update to the OS patching this vulnerability, to include
               any third-party or carrier delays in deployment. The evaluator shall verify that this
               time is expressed in a number or range of days. <br/> The evaluator shall verify that
               this description includes the publicly available mechanisms (including either an email
-              address or website) for reporting security issues related to the TOE. The evaluator
+              address or website) for reporting security issues related to the OS. The evaluator
               shall verify that the description of this mechanism includes a method for protecting
               the report either using a public key for encrypting email or a trusted channel for a
               website. </aactivity>
@@ -3018,17 +3018,17 @@ functionality (such as these)
           although some additional testing is specified for SARs in <secref linkend="SARs"/>. The
           Assurance Activities identify the additional testing activities associated with these
           components. The evaluator produces a test report documenting the plan for and results of
-          testing, as well as coverage arguments focused on the platform/<abbr linkend="TOE"/>
+          testing, as well as coverage arguments focused on the platform/<abbr linkend="OS"/>
           combinations that are claiming conformance to this PP. Given the scope of the <abbr
-            linkend="TOE"/> and its associated evaluation evidence requirements, this component’s
+            linkend="OS"/> and its associated evaluation evidence requirements, this component’s
           assurance activities are covered by the assurance activities listed for ALC_CMC.1.
             <h4>Developer action elements:</h4>
           <a-element id="ate_ind.1.1d">
-            <title>The developer shall provide the <abbr linkend="TOE"/> for testing.</title>
+            <title>The developer shall provide the <abbr linkend="OS"/> for testing.</title>
           </a-element>
           <h4>Content and presentation elements:</h4>
           <a-element id="ate_ind.1.1c">
-            <title>The <abbr linkend="TOE"/> shall be suitable for testing.</title>
+            <title>The <abbr linkend="OS"/> shall be suitable for testing.</title>
           </a-element>
           <h4>Evaluator action elements:</h4>
           <a-element id="ate_ind.1.1e">
@@ -3061,7 +3061,7 @@ functionality (such as these)
               of each platform either as part of a test or as a standard pre-test condition. This
               may include special test drivers or tools. For each driver or tool, an argument (not
               just an assertion) should be provided that the driver or tool will not adversely
-              affect the performance of the functionality by the <abbr linkend="TOE"/> and its
+              affect the performance of the functionality by the <abbr linkend="OS"/> and its
               platform. <br/> This also includes the configuration of the cryptographic engine to be
               used. The cryptographic algorithms implemented by this engine are those specified by
               this PP and used by the cryptographic protocols being evaluated (IPsec, TLS). The test
@@ -3081,18 +3081,18 @@ functionality (such as these)
         what vulnerabilities have been discovered in these types of products. In most cases, these
         vulnerabilities will require sophistication beyond that of a basic attacker. Until
         penetration tools are created and uniformly distributed to the evaluation labs, the
-        evaluator will not be expected to test for these vulnerabilities in the <abbr linkend="TOE"
+        evaluator will not be expected to test for these vulnerabilities in the <abbr linkend="OS"
         />. The labs will be expected to comment on the likelihood of these vulnerabilities given
         the documentation provided by the vendor. This information will be used in the development
         of penetration testing tools and for the development of future protection profiles.
         <a-component id="ava_van.1" name="Vulnerability Survey (AVA_VAN.1)">
           <h4>Developer action elements:</h4>
           <a-element id="ava_van.1.1d">
-            <title>The developer shall provide the <abbr linkend="TOE"/> for testing.</title>
+            <title>The developer shall provide the <abbr linkend="OS"/> for testing.</title>
           </a-element>
           <h4>Content and presentation elements:</h4>
           <a-element id="ava_van.1.1c">
-            <title>The <abbr linkend="TOE"/> shall be suitable for testing.</title>
+            <title>The <abbr linkend="OS"/> shall be suitable for testing.</title>
             <note role="application">Suitability for testing means not being obfuscated or
               packaged in such a way as to disrupt either static or dynamic analysis by the
               evaluator.</note>
@@ -3104,7 +3104,7 @@ functionality (such as these)
           </a-element>
           <a-element id="ava_van.1.2e">
             <title>The evaluator shall perform a search of public domain sources to identify
-              potential vulnerabilities in the <abbr linkend="TOE"/>.</title>
+              potential vulnerabilities in the <abbr linkend="OS"/>.</title>
             <note role="application">Public domain sources include the Common Vulnerabilities 
               and Exposures (CVE) dictionary for publicly-known vulnerabilities.  Public domain
               sources also include sites which provide free checking of files for viruses.</note>
@@ -3112,7 +3112,7 @@ functionality (such as these)
           </a-element>
           <a-element id="ava_van.1.3e">
             <title>The evaluator shall conduct penetration testing, based on the identified
-              potential vulnerabilities, to determine that the <abbr linkend="TOE"/> is resistant to
+              potential vulnerabilities, to determine that the <abbr linkend="OS"/> is resistant to
               attacks performed by an attacker possessing Basic attack potential.</title>
             <aactivity>The evaluator shall generate a report to document their
               findings with respect to this requirement. This report could physically be part of the
@@ -3139,11 +3139,11 @@ functionality (such as these)
   </chapter>
 
   <appendix title="Optional Requirements" id="optional"> As indicated in <secref linkend="ccl"/>,
-    the baseline requirements (those that must be performed by the <abbr linkend="TOE"/>) are
+    the baseline requirements (those that must be performed by the <abbr linkend="OS"/>) are
     contained in the body of this PP. Additionally, there are three other types of requirements
     specified in <appref linkend="optional"/>, <appref linkend="sel-based"/>, and <appref
       linkend="objective"/>. The first type (in this Appendix) are requirements that can be included
-    in the <abbr linkend="ST"/>, but are not required in order for a TOE to claim conformance to
+    in the <abbr linkend="ST"/>, but are not required in order for a OS to claim conformance to
     this PP. The second type (in <appref linkend="sel-based"/>) are requirements based on selections
     in the body of the PP: if certain selections are made, then additional requirements in that
     appendix must be included. The third type (in <appref linkend="objective"/> are components that
@@ -3154,7 +3154,7 @@ functionality (such as these)
     but are not listed (e.g., FMT-type requirements) are also included in the ST. </appendix>
 
   <appendix title="Selection-Based Requirements" id="sel-based"> As indicated in the introduction to
-    this PP, the baseline requirements (those that must be performed by the TOE or its underlying
+    this PP, the baseline requirements (those that must be performed by the OS or its underlying
     platform) are contained in the body of this PP. There are additional requirements based on
     selections in the body of the PP: if certain selections are made, then additional requirements
     below will need to be included. </appendix>
@@ -3163,11 +3163,11 @@ functionality (such as these)
     specify security functionality which also addresses threats. The requirements are not currently
     mandated in the body of this PP as they describe security functionality not yet widely-available
     in commercial technology. However, these requirements may be included in the ST such that the
-    TOE is still conformant to this PP, and it is expected that they be included as soon as
+    OS is still conformant to this PP, and it is expected that they be included as soon as
     possible. </appendix>
 
   <appendix title="Entropy Documentation and Assessment" id="entropyappendix"> This appendix
-    describes the required supplementary information for the entropy source used by the TOE. <br/>
+    describes the required supplementary information for the entropy source used by the OS. <br/>
     The documentation of the entropy source should be detailed enough that, after reading, the
     evaluator will thoroughly understand the entropy source and why it can be relied upon to provide
     sufficient entropy. This documentation should include multiple detailed sections: design
@@ -3191,9 +3191,9 @@ functionality (such as these)
     <section id="entropyjustification" title="Entropy Justification"> There should be a technical
       argument for where the unpredictability in the source comes from and why there is confidence
       in the entropy source delivering sufficient entropy for the uses made of the RBG output (by
-      this particular TOE). This argument will include a description of the expected min-entropy
+      this particular OS). This argument will include a description of the expected min-entropy
       rate (i.e. the minimum entropy (in bits) per bit or byte of source data) and explain that
-      sufficient entropy is going into the TOE randomizer seeding process. This discussion will be
+      sufficient entropy is going into the OS randomizer seeding process. This discussion will be
       part of a justification for why the entropy source can be relied upon to produce bits with
       entropy. <br/> The amount of information necessary to justify the expected min-entropy rate
       depends on the type of entropy source included in the product. <br/> For developer provided
@@ -3202,7 +3202,7 @@ functionality (such as these)
       rate determined from the statistical tests. While no particular statistical tests are required
       at this time, it is expected that some testing is necessary in order to determine the amount
       of min-entropy in each output. <br/> For third-party provided entropy sources, in which the
-      TOE vendor has limited access to the design and raw entropy data of the source, the
+      OS vendor has limited access to the design and raw entropy data of the source, the
       documentation will indicate an estimate of the amount of min-entropy obtained from this
       third-party source. It is acceptable for the vendor to “assume” an amount of min-entropy,
       however, this assumption must be clearly stated in the documentation provided. In particular,
