@@ -1638,15 +1638,11 @@ functionality (such as these)
               per <linkref linkend="FIA_X509_EXT.2.1"/> includes instructions for configuring the
               client-side certificates for <abbr title="Transport Layer Security">TLS</abbr> mutual
               authentication. <br/> The evaluator shall also perform the following test: 
-              
-              <testlist>
-                <test>
-                  Configure the server to require mutual authentication and then modify a
-                  byte in a CA field in the Server’s Certificate Request handshake message. The
-                  modified CA field must not be the CA used to sign the client’s certificate.
-                  The evaluator shall verify the connection is unsuccessful.
-                </test>
-              </testlist>
+              <br/>
+              Configure the server to require mutual authentication and then modify a
+              byte in a CA field in the Server’s Certificate Request handshake message. The
+              modified CA field must not be the CA used to sign the client’s certificate.
+              The evaluator shall verify the connection is unsuccessful.
             </aactivity>
           </f-element>
           <f-element id="fcs_tlsc_ext.1.5" status="sel-based">
@@ -1670,13 +1666,13 @@ functionality (such as these)
                 <abbr title="TOE Summary Specification" linkend="TSS">TSS</abbr> indicates that the
               supported Elliptic Curves Extension must be configured to meet the requirement, the
               evaluator shall verify that AGD guidance includes configuration of the supported
-              Elliptic Curves Extension. <br/> The evaluator shall also perform the following tests: <testlist>
-                <test> The evaluator shall configure the server to perform an ECDHE key exchange
-                  message in the <abbr title="Transport Layer Security">TLS</abbr> connection using
-                  a non-supported ECDHE curve (for example, P-192) and shall verify that the <abbr
-                    title="Target of Evaluation" linkend="TOE">TOE</abbr> disconnects after
-                  receiving the server's Key Exchange handshake message. </test>
-              </testlist>
+              Elliptic Curves Extension. <br/> The evaluator shall also perform the following test: 
+              <br/>
+              The evaluator shall configure the server to perform an ECDHE key exchange
+              message in the <abbr title="Transport Layer Security">TLS</abbr> connection using
+              a non-supported ECDHE curve (for example, P-192) and shall verify that the <abbr
+              title="Target of Evaluation" linkend="TOE">TOE</abbr> disconnects after
+              receiving the server's Key Exchange handshake message. 
             </aactivity>
           </f-element>
           <f-element id="fcs_tlsc_ext.1.6" status="objective">
@@ -1698,15 +1694,15 @@ functionality (such as these)
               signature_algorithm extension must be configured to meet the requirement, the
               evaluator shall verify that AGD guidance includes configuration of the
               signature_algorithm extension. <br/> The evaluator shall also perform the following
-              test: <testlist>
-                <test> The evaluator shall configure the server to send a certificate in the <abbr
-                    title="Transport Layer Security">TLS</abbr> connection that is not supported
-                  according to the Client’s HashAlgorithm enumeration within the
-                  signature_algorithms extension (for example, send a certificate with a SHA-1
-                  signature). The evaluator shall verify that the <abbr title="Target of Evaluation"
-                    linkend="TOE">TOE</abbr> disconnects after receiving the server’s Certificate
-                  handshake message. </test>
-              </testlist>
+              test:
+              <br/>
+                The evaluator shall configure the server to send a certificate in the <abbr
+                title="Transport Layer Security">TLS</abbr> connection that is not supported
+                according to the Client’s HashAlgorithm enumeration within the
+                signature_algorithms extension (for example, send a certificate with a SHA-1
+                signature). The evaluator shall verify that the <abbr title="Target of Evaluation"
+                linkend="TOE">TOE</abbr> disconnects after receiving the server’s Certificate
+                handshake message.
             </aactivity>
           </f-element>
         </f-component>
