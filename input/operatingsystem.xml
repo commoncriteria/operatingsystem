@@ -1853,6 +1853,49 @@ functionality (such as these)
 	  </f-element>
         </f-component>
 -->
+      <subsection title="User Data Protection (FDP)" id="fdp">
+        <f-component id="fdp_acf_ext.1" name="Access Controls for Protecting User Data">
+          <f-element id="fpt_acf_ext.1.1">
+            <title> The OS shall implement access controls which prohibit unprivileged subjects from
+              modifying components owned by other subjects including:<ul>
+                <li>files</li>
+                <li>
+                  <selectables>
+                    <selectable>other components</selectable>
+                  </selectables>
+                </li>
+              </ul>
+            </title>
+            <note role="application">Components owned by one user in a multi user system should be protected from
+            modification by another user in that system.  Achieving such an access control
+            policy may depend upon system configuration.</note>
+            <aactivity>
+              The evaluator shall create two new user accounts on the system with different credentials.
+              
+              <testlist>
+                <test>
+                  The evaluator shall authenticate to the system as the first user and create a file within their user directory. The evaluator shall then
+                  log off the system and re-authenticate with the second user's credentials. The evaluator shall then attempt to modify the file created in the
+                  first user's home directory. The evaluator shall ensure that the modification is denied.
+                </test>
+                <test>
+                  The evaluator shall authenticate to the system as the first user and create a file within their user directory. The evaluator shall then
+                  log off the system and re-authenticate with the second user's credentials. The evaluator shall then attempt to delete the file created in the
+                  first user's home directory. The evaluator shall ensure that the deletion is denied.
+                </test>
+                <test>
+                  The evaluator shall authenticate to the system as the first user and attempt to modify the file created in their home directory.
+                  The evaluator shall ensure that the modification of the file is accepted.
+                </test>       
+                <test>
+                  The evaluator shall authenticate to the system as the first user and attempt to delete the file created in their home directory.
+                  The evaluator shall ensure that the deletion of the file is accepted.
+                </test>                  
+              </testlist>
+            </aactivity>
+          </f-element>          
+        </f-component>
+      </subsection>
       <subsection title="Security Management (FMT)" id="fmt">
         <f-component id="fmt_mof_ext.1" name="Management of security functions behavior">
 	  <f-element id="fmt_mof_ext.1.1">
@@ -2150,45 +2193,6 @@ functionality (such as these)
               </testlist>
             </aactivity>
           </f-element>
-          <f-element id="fpt_acf_ext.1.2">
-            <title> The OS shall implement access controls which prohibit unprivileged subjects from
-              modifying components owned by other subjects including:<ul>
-                <li>files</li>
-                <li>
-                  <selectables>
-                    <selectable>other components</selectable>
-                  </selectables>
-                </li>
-              </ul>
-            </title>
-            <note role="application">Components owned by one user in a multi user system should be protected from
-            modification by another user in that system.  Achieving such an access control
-            policy may depend upon system configuration.</note>
-            <aactivity>
-              The evaluator shall create two new user accounts on the system with different credentials.
-              
-              <testlist>
-                <test>
-                  The evaluator shall authenticate to the system as the first user and create a file within their user directory. The evaluator shall then
-                  log off the system and re-authenticate with the second user's credentials. The evaluator shall then attempt to modify the file created in the
-                  first user's home directory. The evaluator shall ensure that the modification is denied.
-                </test>
-                <test>
-                  The evaluator shall authenticate to the system as the first user and create a file within their user directory. The evaluator shall then
-                  log off the system and re-authenticate with the second user's credentials. The evaluator shall then attempt to delete the file created in the
-                  first user's home directory. The evaluator shall ensure that the deletion is denied.
-                </test>
-                <test>
-                  The evaluator shall authenticate to the system as the first user and attempt to modify the file created in their home directory.
-                  The evaluator shall ensure that the modification of the file is accepted.
-                </test>       
-                <test>
-                  The evaluator shall authenticate to the system as the first user and attempt to delete the file created in their home directory.
-                  The evaluator shall ensure that the deletion of the file is accepted.
-                </test>                  
-              </testlist>
-            </aactivity>
-          </f-element>          
         </f-component>
         <f-component id="fpt_php_ext.1" name="External Interface Controls ">
           <f-element id="fpt_php_ext.1.1">
