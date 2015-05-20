@@ -2034,17 +2034,21 @@ functionality (such as these)
             <note role="application">
               The bootchain of the OS is the sequence of firmware and software,
               including ROM, bootloader(s), and kernel, which ultimately result in loading the kernel.
+              <br/>
               In order to meet this requirement, the hardware protection may be transitive in nature: a
               hardware-protected public key or hash may be used to verify the mutable bootloader code 
               which contains a key or hash used by the bootloader to verify the mutable OS kernel code,
               which contains a key or hash to verify the next layer of executable code, and so on.
+              <br/>
               The cryptographic mechanism used to verify the (initial) mutable executable code must be
               protected, such as being implemented in hardware or in read-only memory (ROM). If “all
               executable code in mutable media” is verified, implementation in hardware or in read-only
               memory is a natural logical consequence.
+              <br/>
               If all executable code (including bootloader(s), kernel, device drivers, pre-loaded applications, user-loaded
               applications, and libraries) is verified, “all executable code stored in mutable media” should
               be selected.
+              <br/>
               In the context of this requirement, "hardware-protected” means that a cryptographic value
               (for example, a public key or a hash) is immutably stored by the device hardware such that if
               the private key used to digitally sign the software is the manufacturer’s private key, the
