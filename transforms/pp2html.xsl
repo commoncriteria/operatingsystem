@@ -653,15 +653,6 @@
       </i>
     </div>
   </xsl:template>
-  <xsl:template match="cc:subaactivity">
-    <div class="subaact">
-      <i>
-        <b>For <xsl:call-template name="OSabbrev2name"><xsl:with-param name="osname" select="@platform" /></xsl:call-template>:
-	  </b>
-      </i>
-      <xsl:apply-templates />
-    </div>
-  </xsl:template>
 
   <xsl:template match="cc:indent">
     <div class="indent" style="margin-left:2em">
