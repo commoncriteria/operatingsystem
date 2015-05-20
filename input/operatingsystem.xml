@@ -1988,11 +1988,63 @@ functionality (such as these)
                 <selectable>a hardware-protected hash</selectable>
               </selectables>
             </title>
-            <aactivity>The evaluator shall ensure that the <abbr linkend="TSS"/> only loads
-              executable code that has been signed by a trusted digital certificate. The evaluator
-              shall ensure that only code signed by the Platform Key (PK) or by other trusted Key
-              Exchange Keys (KEK) is executed. The evaluator should ensure that both the PK and KEK
-              are protected in firmware. </aactivity>
+            <note role="application">
+              The bootchain of the OS is the sequence of firmware and software,
+              including ROM, bootloader(s), and kernel, which ultimately result in loading the kernel.
+              In order to meet this requirement, the hardware protection may be transitive in nature: a
+              hardware-protected public key or hash may be used to verify the mutable bootloader code 
+            </note>
+            <aactivity>
+              The evaluator shall verify that the TSS section of the ST includes a description of the boot
+              procedures, including a description of the entire bootchain, of the software for the TSF’s. 
+              The evaluator shall ensure that before loading the bootloader(s) for
+              the operating system and the kernel, all bootloaders and the kernel software itself is
+              cryptographically verified. For each additional category of executable code verified before
+              execution, the evaluator shall verify that the description in the TSS describes how that
+              software is cryptographically verified.
+              <br/>
+              The evaluator shall verify that the TSS contains a justification for the protection of the
+              cryptographic key or hash, preventing it from being modified by unverified or
+              unauthenticated software.
+              <br/>
+              The evaluator shall verify that the TSS contains a description of the
+              protection afforded to the mechanism performing the cryptographic verification.
+              <br/>
+              The evaluator shall verify that the TSS describes each auxiliary boot mode available on the
+              TOE during the boot procedures. The evaluator shall verify that, for each auxiliary boot
+              mode, a description of the cryptographic integrity of the executed code through the kernel is
+              verified before each execution.
+              <br/>
+              The evaluator shall perform the following tests:
+              <testlist>
+                <test>
+                   The evaluator shall perform actions to cause TSF software to load and observe that the
+                  integrity mechanism does not flag any executables as containing integrity errors and that the
+                  TOE properly boots.
+                  Assurance Activity Note: The following tests require the vendor to provide access to a test
+                  platform that provides the evaluator with tools that are typically not found on consumer
+                  Mobile Device products.Protection Profile for Mobile Device Fundamentals
+                </test>
+                <test>
+                  The evaluator shall modify a TSF executable that is integrity protected and cause that
+                  executable to be successfully loaded by the TSF. The evaluator observes that an integrity
+                  violation is triggered and the OS does not boot. (Care must be taken so that the integrity
+                  violation is determined to be the cause of the failure to load the module, and not the fact that
+                  the module was modified so that it was rendered unable to run because its format was
+                  corrupt).
+                </test>
+                <test>
+                  If the ST author indicates that the integrity verification is performed
+                  using a public key, the evaluator shall verify that the update mechanism includes a certificate
+                  validation according to <linkref linkend="FIA_X509_EXT.1"/>. The evaluator shall digitally sign the TSF
+                  executable with a certificate that does not have the Code Signing purpose in the
+                  extendedKeyUsage field and verify that an integrity violation is triggered. The evaluator
+                  shall repeat the test using a certificate that contains the Code Signing purpose and verify that
+                  the integrity verification succeeds. Ideally, the two certificates should be identical except for
+                  the extendedKeyUsage field.
+                </test>
+              </testlist>
+             </aactivity>
           </f-element>
         </f-component>
         <f-component id="fpt_tud_ext.1" name="Integrity for Installation and Update">
