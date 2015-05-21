@@ -2493,14 +2493,36 @@ functionality (such as these)
           </f-element>
           <f-element id="fia_afl.1.2">
             <title> When the defined number of unsuccessful authentication attempts for an account has been met,
-              the OS shall: <assignable>list of actions</assignable>. </title>
+              the OS shall: <assignable>list of actions</assignable>. 
+            </title>
             <aactivity> The evaluator shall attempt to authenticate repeatedly to the system with a
               known bad password. Once the defined number of failed authentication attempts has been
               reached the evaluator shall ensure that the account that was being used for testing
               has had the actions detailed in the assignment list above applied to it. The evaluator shall ensure that 
-              an event has been logged to the security event log detailing that the account has had these actions applied. </aactivity>
+              an event has been logged to the security event log detailing that the account has had these actions applied. 
+            </aactivity>
           </f-element>
         </f-component>
+        <f-component id="fia_uau.1" name="Timing of authentication">
+          <f-element id="fia_uau.1.1">
+            <title>The OS shall allow <assignable>list of TSF mediated actions</assignable> on 
+            behalf of the user to be performed before the user is authenticated.
+            </title>
+          </f-element>
+        </f-component>
+        <f-component id="fia_uid.1" name="Timing of authentication">
+          <f-element id="fia_uau.1.1">
+            <title>The OS shall allow <assignable>list of TSF mediated actions</assignable> on 
+            behalf of the user to be performed before the user is identified.
+            </title>
+          </f-element>
+          <f-element id="fia_uid.1.2">
+            <title>The TSF shall require each user to be successfully identified before allowing 
+            any other TSF-mediated actions on behalf of that user.
+            </title>
+          </f-element>
+        </f-component>
+
         <f-component id="fia_x509_ext.1" name="X.509 Certificate Validation">
           <f-element id="fia_x509_ext.1.1">
             <title> The OS shall implement functionality to validate certificates in accordance with
