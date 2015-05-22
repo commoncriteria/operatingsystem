@@ -632,7 +632,7 @@
     <xsl:if test="$appendicize!='on'">
       <xsl:if test="../@status='optional'">
 	<div class="statustag">
-          <p/><i><b>This is an optional requirement.  It may be required by Extended Packages of this Protection Profile.</b></i>
+          <p/><i><b>This is an optional requirement.</b></i>
 	</div>
       </xsl:if>
 

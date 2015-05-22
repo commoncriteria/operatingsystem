@@ -2003,8 +2003,9 @@ functionality (such as these)
             </title>
             <note role="application">Requesting a memory mapping with both write and execute
               permissions subverts the platform protection provided by <abbr linkend="DEP"/>. If the
-              OS provides no exceptions (such as for just-in-time compilation), then the first 
-              selection must be chosen. </note>
+              OS provides no exceptions (such as for just-in-time compilation), then "no exceptions"
+              should be indicated in the assignment.
+              </note>
             <aactivity> 
 	      The evaluator shall verify that no memory mapping requests can be made with
               write and execute permissions.
@@ -2262,9 +2263,10 @@ functionality (such as these)
               </selectables>
             </title>
             <note role="application">
-              The mechanism should only allow execution of items in the selection and
-              deny execution of everything else. Specification of file path could be at a low 
-              level of granularity such as a volume.
+              The assignment permits implementations which provide a low 
+              level of granularity such as a volume.  The restriction is only against direct execution of 
+              executable programs.  It does not forbid interpreters which may take data as an input, even if
+              this data can subsequently result in arbitrary computation.
             </note>
             <aactivity>For each selection specified in the ST, the evaluator will ensure that the corresponding tests result in a negative
               outcome (I.E., the action results in the OS denying the evaluator permission to
@@ -2509,15 +2511,20 @@ functionality (such as these)
             behalf of the user to be performed before the user is authenticated.
             </title>
           </f-element>
+          <f-element id="fia_uau.1.2">
+            <title>The OS shall require each user to be successfully authenticated before allowing 
+            any other TSF-mediated actions on behalf of that user.
+            </title>
+          </f-element>
         </f-component>
-        <f-component id="fia_uid.1" name="Timing of authentication">
+        <f-component id="fia_uid.1" name="Timing of identification">
           <f-element id="fia_uau.1.1">
             <title>The OS shall allow <assignable>list of TSF mediated actions</assignable> on 
             behalf of the user to be performed before the user is identified.
             </title>
           </f-element>
           <f-element id="fia_uid.1.2">
-            <title>The TSF shall require each user to be successfully identified before allowing 
+            <title>The OS shall require each user to be successfully identified before allowing 
             any other TSF-mediated actions on behalf of that user.
             </title>
           </f-element>
