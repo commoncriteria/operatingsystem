@@ -3285,7 +3285,7 @@ functionality (such as these)
     OS is still conformant to this PP, and it is expected that they be included as soon as
     possible. </appendix>
 
-  <appendix title="Dependency-Satisifed Requirements" id="satisfiedreqs"> This
+  <appendix title="Implicitly Satisfied Requirements" id="satisfiedreqs"> This
 	appendix lists requirements that should be considered satisfied by any product
 	successfully evaluated against this Protection Profile.  
 	However, these requirements are not featured explicitly as SFRs and should not be
@@ -3304,27 +3304,50 @@ functionality (such as these)
 	</tr>
 	<tr>
 	<td>FIA_UAU.1 - Timing of authentication</td>
-	<td>FIA_AFL.7 satisifes because...basically it's impossible to test unless this is satisfied</td>
+	<td>
+	  FIA_AFL.1 implicitly requires that the OS perform all necessary actions, 
+	  including those on behalf of the user who has not been authenticated, 
+	  in order to authenticate;
+	  therefore it is duplicative to include these actions as a 
+	  separate assignment and test.
+	</td>
 	</tr>
 	<tr>
 	<td>FIA_UID.1 - Timing of identification</td>
-	<td>FIA_AFL.7</td>
+	<td>
+	  FIA_AFL.1 implicitly requires that the OS perform all necessary actions, 
+	  including those on behalf of the user who has not been identified, 
+	  in order to authenticate;
+	  therefore it is duplicative to include these actions as a 
+	  separate assignment and test.
+	</td>
 	</tr>
 	<tr>
 	<td>FPT_STM.1 - Reliable time stamps</td>
-	<td>FAU_GEN.2 because ... how would an audit event be generated with correct time, unless there was time</td>
+	<td>
+	  FAU_GEN.1.2 implicitly requires that the OS associate timestamps with audit records;
+	  therefore it is duplicative to include a separate timestamp requirement.
+	</td>
 	</tr>
 	<tr>
 	<td>FTA_SSL.1 - TSF-initiated session locking</td>
-	<td>FMT_MOF_EXT.1 includes requirements for managing session locking</td>
+	<td>
+	  FMT_MOF_EXT.1 defines requirements for managing session locking;
+	  therefore, it is duplicative to include a separate session locking requirement.
+	</td>
 	</tr>
 	<tr>
 	<td>FTA_SSL.2 - User-initiated locking</td>
-	<td>FMT_MOF_EXT.1</td>
+	<td>
+	  FMT_MOF_EXT.1 defines requirements for user-initiated session locking;
+	  therefore, it is duplicative to include a separate session locking requirement.
+	</td>
 	</tr>
 	<tr>
 	<td>FMT_SMR.1 - Security roles</td>
-	<td>FMT_MOF_EXT.1</td>
+	<td>
+	  FMT_MOF_EXT.1 specifies 
+	</td>
 	</tr>
 	<tr>
 	<td>FAU_STG.1 - Protected audit trail storage</td>
