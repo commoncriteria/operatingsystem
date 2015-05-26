@@ -2366,7 +2366,7 @@ functionality (such as these)
                 <li>Use of privileged/special rights events (Successful and unsuccessful security, audit, and configuration changes);</li>
                 <li>Administrator or root-level access events (Success/Failure);</li>
                 <li>Privilege or role escalation events (Success/Failure);</li>
-                <selectables linebreak='yes'>>
+                <selectables linebreak='yes'>
                   <selectable>File and object events (Successful and unsuccessful attempts to create, access, delete, modify, modify permissions)</selectable>
                   <selectable>User and Group management events (Successful and unsuccessful add, delete, modify, suspend, lock)</selectable>
                   <selectable>Audit and log data access events (Success/Failure)</selectable>
@@ -2513,28 +2513,34 @@ functionality (such as these)
             </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fia_pk_ext.1" name="Public key based authentication">
-          <f-element id="fia_pk_ext.1.1">
+        
+        <f-component id="fia_uau_ext.1" name="Multiple Authentication Mechanisms">
+          <f-element id="fia_uau.ext.1.1">
             <title>
-              The TSF shall use
-              <selectables>
-                <selectable>X.509v3 certificates</selectable>
-                <selectable>public key cryptography</selectable>
+              The TSF shall provide the following authentication mechanisms
+              <selectables linebreak='yes'>
+                <selectable>Authentication based on user name and password</selectable>
+                <selectable>Authentication based on X.509 certificates</selectable>
               </selectables>
-              as defined by 
-              <assignable>
-                RFC5280 or other method for key management/key validation if no X.509v3 certificates are used
-              </assignable> 
-              to support authentication to the OS
+              to support user authentication.
             </title>
             <aactivity>
-              The evaluator shall generate X.509v3 certificate for a user with the Client Authentication Enhanced Key Usage field set. The evaluator shall
-              provision the OS with both the public and private parts of the X.509v3 certificate.
+              If user name and password authentication is selected, the evaluator shall configure the OS with a known user name and password.
               <testlist>
                 <test>
-                  The evaluator shall attempt to authenticate to the OS using the public part of the X.509v3 certificate. The evaluator shall ensure that the 
-                  authentication attempt is successful.
+                  The evaluator shall attempt to authenticate to the OS using the known user name and password. The evaluator shall ensure that the authentication attempt is successful.
                 </test>
+                <test>
+                  The evaluator shall attempt to authenticate to the OS using the known user name but an incorrect password. The evaluator shall ensure that the authentication attempt is unsuccessful.
+                </test>
+              </testlist>
+              If X.509 certificate authentication is selected, the evaluator shall generate a X.509v3 certificate for a user with the Client Authentication Enhanced Key Usage field set. The evaluator shall
+              provision the OS with both the public and private parts of the X.509v3 certificate.
+              <testlist>
+                 <test>
+                    The evaluator shall attempt to authenticate to the OS using the public part of the X.509v3 certificate. The evaluator shall ensure that the 
+                    authentication attempt is successful.
+                  </test>
                 <test>
                   The evaluator shall modify the public part of the X.509v3 certificate. The evaluator shall attempt to authenticate to the OS using this modified X.509v3 
                   certificate. The evaluator shall ensure that the authentication attempt is unsuccessful.
