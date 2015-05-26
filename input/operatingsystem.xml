@@ -2513,6 +2513,77 @@ functionality (such as these)
             </aactivity>
           </f-element>
         </f-component>
+        <f-component id="fia_pk_ext.1" name="Public key based authentication">
+          <f-element id="fia_pk_ext.1.1">
+            <title>
+              The TSF shall use
+              <selectables>
+                <selectable>X.509v3 certificates</selectable>
+                <selectable>public key cryptography</selectable>
+              </selectables>
+              as defined by 
+              <assignable>
+                RFC5280 or other method for key management/key validation if no X.509v3 certificates are used
+              </assignable> 
+              to support authentication for to the OS
+            </title>
+            <note role="application">
+              The ST author should select the protocols that are used
+              to implement administrative connectivity that also use public key based
+              authentication. It should be noted that if X.509v3 certificates are used, RFC
+              5280 defines certificate validation and certification path validation
+              requirements that must be implemented by the TOE as per this requirement.
+              Depending on the protocols selected, there may be additional protocol-specific
+              certificate-related requirements (and associated assurance activities) specified
+              (for instance, RFC 4945 for IPsec). These additional requirements are
+              specified in the requirements associated with that protocol.  
+            </note>
+            <note role="application">
+              If the OS contains preloaded certificates or public keys, this is acceptable as
+              long as the administrator can “disable” (e.g., revoke, delete) and enable their
+              use.
+            </note>
+            <aactivity>
+              The evaluator shall generate X.509v3 certificate for a user with the Client Authentication Enhanced Key Usage field set. The evaluator shall
+              provision the OS with both the public and private parts of the X.509v3 certificate.
+              <testlist>
+                <test>
+                  The evaluator shall attempt to authenticate to the OS using the public part of the X.509v3 certificate. The evaluator shall ensure that the 
+                  authentication attempt is successful.
+                </test>
+                <test>
+                  The evaluator shall modify the public part of the X.509v3 certificate. The evaluator shall attempt to authenticate to the OS using this modified X.509v3 
+                  certificate. The evaluator shall ensure that the authentication attempt is unsuccessful.
+                </test>
+              </testlist>
+            </aactivity>
+          </f-element>
+          <f-element id="fia_pk_ext.1.2">
+            <title>
+              The TSF shall store and protect certificates and/or public keys from
+              unauthorized deletion and modification.
+            </title>
+            <note role="application">
+              This applies to certificates and/or public keys that are used and
+              processed by the TSF. Certificates or public keys that are used and process by
+              other components in the Operational Environment (e.g., the RADIUS server)
+              are not intended to be covered by this element.
+            </note>
+            <aactivity>
+              The evaluator shall create two users on the OS. The evaluator will provision the first user with an X.509v3 Client Authentication certificate.
+              <testlist>
+                <test>The evaluator shall authenticate to the OS with the second user's credentials and attempt to delete the X.509v3 certificate that has been issued to the first user. The evaluator
+                shall ensure that this deletion attempt fails.</test>
+                <test>The evaluator shall authenticate to the OS with the second user's credentials and attempt to modify the X.509v3 certificate that has been issued to the first user. The evaluator
+                  shall ensure that this modify attempt fails.</test>
+                <test>The evaluator shall authenticate to the OS with the first user's X.509v3 certificate and attempt to modify the certificate that has been provisioned to them. The evaluator
+                  shall ensure that this modify attempt succeeds.</test>
+                <test>The evaluator shall authenticate to the OS with the first user's X.509v3 certificate and attempt to delete the certificate that has been provisioned to them. The evaluator
+                  shall ensure that this delete attempt succeeds.</test>
+              </testlist>
+            </aactivity>
+          </f-element>
+        </f-component>
 
         <f-component id="fia_x509_ext.1" name="X.509 Certificate Validation">
           <f-element id="fia_x509_ext.1.1">
