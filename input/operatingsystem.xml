@@ -232,7 +232,13 @@
           but it must not include any additional component (e.g. from CC Part 2 or 3 or a PP not
           conformant with this one, or extended by the <abbr linkend="ST"/>) not defined in this PP
           or a PP conformant to this one. See <secref linkend="TOEdescription"/> regarding
-          more-specific PPs that may extend this one. </description>
+          more-specific PPs that may extend this one. 
+          <br/>
+		  Some components in this Protection Profile have a dependency on
+		  other components.  In accordance with <cite linkend="bibCC"/> Part 1, <appref linkend="satisfiedreqs"/> 
+          includes justifications for those cases where the PP does not explicity contain the component
+		  upon which there is a dependency.
+        </description>
       </cclaim>
       <cclaim id="CC Conformance Claims">
         <description>This PP is conformant to Parts 2 (extended) and 3 (extended) of Common Criteria
@@ -2507,30 +2513,6 @@ functionality (such as these)
             </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fia_uau.1" name="Timing of authentication">
-          <f-element id="fia_uau.1.1">
-            <title>The OS shall allow <assignable>list of TSF mediated actions</assignable> on 
-            behalf of the user to be performed before the user is authenticated.
-            </title>
-          </f-element>
-          <f-element id="fia_uau.1.2">
-            <title>The OS shall require each user to be successfully authenticated before allowing 
-            any other TSF-mediated actions on behalf of that user.
-            </title>
-          </f-element>
-        </f-component>
-        <f-component id="fia_uid.1" name="Timing of identification">
-          <f-element id="fia_uau.1.1">
-            <title>The OS shall allow <assignable>list of TSF mediated actions</assignable> on 
-            behalf of the user to be performed before the user is identified.
-            </title>
-          </f-element>
-          <f-element id="fia_uid.1.2">
-            <title>The OS shall require each user to be successfully identified before allowing 
-            any other TSF-mediated actions on behalf of that user.
-            </title>
-          </f-element>
-        </f-component>
 
         <f-component id="fia_x509_ext.1" name="X.509 Certificate Validation">
           <f-element id="fia_x509_ext.1.1">
@@ -3296,12 +3278,65 @@ functionality (such as these)
     selections in the body of the PP: if certain selections are made, then additional requirements
     below will need to be included. </appendix>
 
-  <appendix title="Objective Requirements" id="objective"> This Annex includes requirements that
+  <appendix title="Objective Requirements" id="objective"> This appendix includes requirements that
     specify security functionality which also addresses threats. The requirements are not currently
     mandated in the body of this PP as they describe security functionality not yet widely-available
     in commercial technology. However, these requirements may be included in the ST such that the
     OS is still conformant to this PP, and it is expected that they be included as soon as
     possible. </appendix>
+
+  <appendix title="Dependency-Satisifed Requirements" id="satisfiedreqs"> This
+	appendix lists requirements that should be considered satisfied by any product
+	successfully evaluated against this Protection Profile.  
+	However, these requirements are not featured explicitly as SFRs and should not be
+	included in the <abbr linkend="ST"/>.  
+	They are not included as standalone SFRs because it would
+	increase the time, cost, and complexity of evaluation.  This approach is permitted
+	by <cite linkend="bibCC"/> Part 1, <b>8.2 Dependencies between components</b>.
+    <br/>
+	This information benefits systems engineering activities which call for inclusion of 
+	particular security controls.  Evaluation against the Protecton Profile
+	provides evidence that these controls are present and have been evaluated.
+    <table>
+	<tr class="header">
+	<td>Requirement</td>
+	<td>Rationale for Satisfaction</td>
+	</tr>
+	<tr>
+	<td>FIA_UAU.1 - Timing of authentication</td>
+	<td>FIA_AFL.7 satisifes because...basically it's impossible to test unless this is satisfied</td>
+	</tr>
+	<tr>
+	<td>FIA_UID.1 - Timing of identification</td>
+	<td>FIA_AFL.7</td>
+	</tr>
+	<tr>
+	<td>FPT_STM.1 - Reliable time stamps</td>
+	<td>FAU_GEN.2 because ... how would an audit event be generated with correct time, unless there was time</td>
+	</tr>
+	<tr>
+	<td>FTA_SSL.1 - TSF-initiated session locking</td>
+	<td>FMT_MOF_EXT.1 includes requirements for managing session locking</td>
+	</tr>
+	<tr>
+	<td>FTA_SSL.2 - User-initiated locking</td>
+	<td>FMT_MOF_EXT.1</td>
+	</tr>
+	<tr>
+	<td>FMT_SMR.1 - Security roles</td>
+	<td>FMT_MOF_EXT.1</td>
+	</tr>
+	<tr>
+	<td>FAU_STG.1 - Protected audit trail storage</td>
+	<td>FPT_ACF_EXT.1 explicitly satisfies this</td>
+	</tr>
+	<tr>
+	<td>FAU_GEN.2 - User identity association</td>
+	<td>FAU_GEN.1.2</td>
+	</tr>
+    </table>
+
+  </appendix>
 
   <appendix title="Entropy Documentation and Assessment" id="entropyappendix"> This appendix
     describes the required supplementary information for the entropy source used by the OS. <br/>
