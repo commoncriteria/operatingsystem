@@ -2492,13 +2492,21 @@ functionality (such as these)
       <subsection title="Identification and Authentication (FIA)" id="fia">
         <f-component id="fia_afl.1" name="Authentication failure handling">
           <f-element id="fia_afl.1.1">
-            <title> The OS shall detect when an administrator-configurable positive integer within a
-              range of acceptable values of unsuccessful authentication attempts for the
-              authentication method password based authentication <assignable>other authentication
-                method or none</assignable> occur related to <assignable>list of authentication
-                events</assignable>. </title>
+            
+            The OS shall detect when 
+            <selectables linebreak='yes'>
+              <selectable><assignable> a positive integer number</assignable></selectable> 
+              <selectable>an administrator configurable positive integer within a <assignable>range of acceptable values</assignable></selectable>
+            </selectables>
+            unsuccessful authentication attempts for 
+            <selectables linebreak="yes">
+              <selectable>authentication based on user name and password</selectable>
+              <selectable>authentication based on X.509 certificates</selectable>
+            </selectables>
+              occur related to <assignable>list of authentication events</assignable>. 
+
             <aactivity> The evaluator shall ensure that after attempting to authenticate with
-              an incorrect password that an event is logged by the OS. The
+              an incorrect password or certificate that an event is logged by the OS. The
               method of how these events are logged varies depending on platform. </aactivity>
           </f-element>
           <f-element id="fia_afl.1.2">
@@ -2519,8 +2527,8 @@ functionality (such as these)
             <title>
               The TSF shall provide the following authentication mechanisms
               <selectables linebreak='yes'>
-                <selectable>Authentication based on user name and password</selectable>
-                <selectable>Authentication based on X.509 certificates</selectable>
+                <selectable>authentication based on user name and password</selectable>
+                <selectable>authentication based on X.509 certificates</selectable>
               </selectables>
               to support user authentication.
             </title>
