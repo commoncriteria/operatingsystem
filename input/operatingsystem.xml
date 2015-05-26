@@ -2513,6 +2513,62 @@ functionality (such as these)
             </aactivity>
           </f-element>
         </f-component>
+        <f-component id="fia_pk_ext.1" name="Public key based authentication">
+          <f-element id="fia_pk_ext.1.1">
+            <title>
+              The TSF shall use
+              <selectables>
+                <selectable>X.509v3 certificates</selectable>
+                <selectable>public key cryptography</selectable>
+              </selectables>
+              as defined by 
+              <assignable>
+                RFC5280 or other method for key management/key validation if no X.509v3 certificates are used
+              </assignable> 
+              to support authentication for
+              <selectables>
+                <selectable>IPsec</selectable>
+                <selectable>TLS</selectable>
+                <selectable>SSH</selectable>
+                </selectables>
+              connections.
+            </title>
+            <note role="application">
+              The ST author should select the protocols that are used
+              to implement administrative connectivity that also use public key based
+              authentication. It should be noted that if X.509v3 certificates are used, RFC
+              5280 defines certificate validation and certification path validation
+              requirements that must be implemented by the TOE as per this requirement.
+              Depending on the protocols selected, there may be additional protocol-specific
+              certificate-related requirements (and associated assurance activities) specified
+              (for instance, RFC 4945 for IPsec). These additional requirements are
+              specified in the requirements associated with that protocol.  
+            </note>
+            <note role="application">
+              If the OS contains preloaded certificates or public keys, this is acceptable as
+              long as the administrator can “disable” (e.g., revoke, delete) and enable their
+              use.
+            </note>
+            <aactivity>
+              TODO
+            </aactivity>
+          </f-element>
+          <f-element id="fia_pk_ext.1.2">
+            <title>
+              The TSF shall store and protect certificates and/or public keys from
+              unauthorized deletion and modification.
+            </title>
+            <note role="application">
+              This applies to certificates and/or public keys that are used and
+              processed by the TSF. Certificates or public keys that are used and process by
+              other components in the Operational Environment (e.g., the RADIUS server)
+              are not intended to be covered by this element.
+            </note>
+            <aactivity>
+              TODO
+            </aactivity>
+          </f-element>
+        </f-component>
 
         <f-component id="fia_x509_ext.1" name="X.509 Certificate Validation">
           <f-element id="fia_x509_ext.1.1">
