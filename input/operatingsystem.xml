@@ -2525,13 +2525,7 @@ functionality (such as these)
               <assignable>
                 RFC5280 or other method for key management/key validation if no X.509v3 certificates are used
               </assignable> 
-              to support authentication for
-              <selectables>
-                <selectable>IPsec</selectable>
-                <selectable>TLS</selectable>
-                <selectable>SSH</selectable>
-                </selectables>
-              connections.
+              to support authentication for to the OS
             </title>
             <note role="application">
               The ST author should select the protocols that are used
@@ -2550,7 +2544,18 @@ functionality (such as these)
               use.
             </note>
             <aactivity>
-              TODO
+              The evaluator shall generate X.509v3 certificate for a user with the Client Authentication Enhanced Key Usage field set. The evaluator shall
+              provision the OS with both the public and private parts of the X.509v3 certificate.
+              <testlist>
+                <test>
+                  The evaluator shall attempt to authenticate to the OS using the public part of the X.509v3 certificate. The evaluator shall ensure that the 
+                  authentication attempt is successful.
+                </test>
+                <test>
+                  The evaluator shall modify the public part of the X.509v3 certificate. The evaluator shall attempt to authenticate to the OS using this modified X.509v3 
+                  certificate. The evaluator shall ensure that the authentication attempt is unsuccessful.
+                </test>
+              </testlist>
             </aactivity>
           </f-element>
           <f-element id="fia_pk_ext.1.2">
@@ -2565,7 +2570,17 @@ functionality (such as these)
               are not intended to be covered by this element.
             </note>
             <aactivity>
-              TODO
+              The evaluator shall create two users on the OS. The evaluator will provision the first user with an X.509v3 Client Authentication certificate.
+              <testlist>
+                <test>The evaluator shall authenticate to the OS with the second user's credentials and attempt to delete the X.509v3 certificate that has been issued to the first user. The evaluator
+                shall ensure that this deletion attempt fails.</test>
+                <test>The evaluator shall authenticate to the OS with the second user's credentials and attempt to modify the X.509v3 certificate that has been issued to the first user. The evaluator
+                  shall ensure that this modify attempt fails.</test>
+                <test>The evaluator shall authenticate to the OS with the first user's X.509v3 certificate and attempt to modify the certificate that has been provisioned to them. The evaluator
+                  shall ensure that this modify attempt succeeds.</test>
+                <test>The evaluator shall authenticate to the OS with the first user's X.509v3 certificate and attempt to delete the certificate that has been provisioned to them. The evaluator
+                  shall ensure that this delete attempt succeeds.</test>
+              </testlist>
             </aactivity>
           </f-element>
         </f-component>
