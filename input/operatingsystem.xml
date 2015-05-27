@@ -1990,8 +1990,8 @@ functionality (such as these)
       </subsection>
 
       <subsection title="Protection of the TSF (FPT)" id="fpt">
-        <f-component id="fpt_aex_ext.1" name="Anti-Exploitation Capabilities">
-          <f-element id="fpt_aex_ext.1.1">
+        <f-component id="fpt_aslr_ext.1" name="Address Space Layout Randomization">
+          <f-element id="fpt_aslr_ext.1.1">
             <title>The OS shall always randomize process, kernel, and module address space memory locations except for
                 <assignable>list of explicit exceptions</assignable>.
                 <note role="application">
@@ -2003,9 +2003,12 @@ functionality (such as these)
               linker flags used to enable <abbr linkend="ASLR"/> when the OS modules are compiled.
               The evaluator shall perform either a static or dynamic analysis to determine that no
               memory mappings are placed at an explicit and consistent address.
-	    </aactivity>
+	        </aactivity>
           </f-element>
-          <f-element id="fpt_aex_ext.1.2" status="objective">
+		 </f-component>
+
+        <f-component id="fpt_w^x_ext.1" name="Write XOR Execute Memory Pages">
+         <f-element id="fpt_w^x_ext.1.1" status="objective">
             <title> The OS shall prevent allocation of any memory region with both write and 
                 execute permissions except for <assignable>list of exceptions</assignable>.
             </title>
@@ -2019,12 +2022,14 @@ functionality (such as these)
               write and execute permissions.
             </aactivity>
           </f-element>
-          <f-element id="fpt_aex_ext.1.3">
+		 </f-component>
+         <f-component id="fpt_sbop_ext.1" name="Stack Buffer Overflow Protection">
+          <f-element id="fpt_sbop_ext.1.1">
             <title>The OS shall implement stack-based buffer overflow protections.</title>
             <aactivity>The evaluator shall ensure that the <abbr linkend="TSS"/> section of the
                 <abbr linkend="ST"/> describes how kernel stacks, and the userspace stacks of security-relevant
                OS userspace processes, implement stack-based buffer overflow protections. 
-	    </aactivity>
+            </aactivity>
           </f-element>
         </f-component>
         <f-component id="fpt_tst_ext.1" name="Boot Integrity">
@@ -2691,7 +2696,7 @@ functionality (such as these)
       </subsection>
 
       <subsection title="TOE Access (FTA)" id="fta">
-	  <f-component id="fta_tab.1" name="TOE access banners">
+	  <f-component id="fta_tab.1" name="Default TOE access banners">
 	    <f-element id="fta_tab.1.1" status="optional">
 	      <title>
 		Before establishing a user session, the TSF shall display an advisory
