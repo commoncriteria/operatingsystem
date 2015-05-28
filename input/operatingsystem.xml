@@ -61,7 +61,8 @@
           </entry>
           <entry>
             <term><abbr title="Target of Evaluation">TOE</abbr></term>
-            <description>The product under evaluation. In this case, application software and its
+            <description>The product under evaluation. In this case, the Operating System as described in section <linkref
+              linkend="TOE Boundary"/> and its
               supporting documentation.</description>
           </entry>
           <entry>
@@ -561,15 +562,20 @@
         
           <f-element id="fcs_rbg_ext.1.2">
             <selection-depends req="fcs_rbg_ext.1.1"/>
-            <title>The OS shall be seeded by an entropy source that accumulates
-              entropy from a platform-based DRBG and <selectables linebreak="yes">
+            <title>
+              The deterministic RBG used by the OS shall be seeded by an entropy source that
+              accumulates entropy from 
+              <selectables linebreak="yes">
                 <selectable>a software-based noise source</selectable>
-                <selectable>no other noise source</selectable>
-              </selectables> with a minimum of <selectables linebreak="yes">
+                <selectable>TSF-hardware-based noise source</selectable>
+              </selectables>
+              with a minimum of
+              <selectables linebreak="yes">
                 <selectable>128 bits</selectable>
                 <selectable>256 bits</selectable>
-              </selectables> of entropy at least equal to the greatest security strength (according
-              to NIST SP 800-57) of the keys and hashes that it will generate.
+              </selectables>
+              of entropy at least equal to the greatest security strength (according to NIST SP 800-57) 
+              of the keys and hashes that it will generate. 
             </title>
             <note role="application">For the first
               selection in this requirement, the <abbr linkend="ST"/> author selects 'software-based noise source' if 
