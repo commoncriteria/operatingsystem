@@ -1611,7 +1611,7 @@
             modification by another user in that system.  Achieving such an access control
             policy may depend upon system configuration.</note>
             <aactivity>
-              The evaluator shall create two new user accounts on the system with different credentials.
+              The evaluator shall create two new standard user user accounts on the system with different credentials.
               <testlist>
                 <test>
                   The evaluator shall authenticate to the system as the first user and create a file within their user directory. The evaluator shall then
@@ -1630,7 +1630,15 @@
                 <test>
                   The evaluator shall authenticate to the system as the first user and attempt to delete the file created in their home directory.
                   The evaluator shall ensure that the deletion of the file is accepted.
-                </test>                  
+                </test>
+                <test>
+                  If any other objects have been selected, the evaluator shall attempt to modify and delete them while authenticated to the system with a standard user that does not
+                  own the object being tested. The evaluator shall ensure that both the modification and deletion activities are denied.
+                </test>
+                <test>
+                  If any other objects have been selected, the evaluator shall attempt to modify and delete them while authenticated to the system with a standard user that
+                  owns the object being tested. The evaluator shall ensure that both the modification and deletion activities are denied.
+                </test>
               </testlist>
             </aactivity>
           </f-element>          
