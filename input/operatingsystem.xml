@@ -2248,11 +2248,30 @@
             <title> When the defined number of unsuccessful authentication attempts for an account has been met,
               the OS shall: <assignable>list of actions</assignable>. 
             </title>
-            <aactivity> The evaluator shall attempt to authenticate repeatedly to the system with a
-              known bad password. Once the defined number of failed authentication attempts has been
-              reached the evaluator shall ensure that the account that was being used for testing
-              has had the actions detailed in the assignment list above applied to it. The evaluator shall ensure that 
-              an event has been logged to the security event log detailing that the account has had these actions applied. 
+            <aactivity> 
+              <testlist>
+                <test>
+                  The evaluator shall attempt to authenticate repeatedly to the system with a
+                  known bad password. Once the defined number of failed authentication attempts has been
+                  reached the evaluator shall ensure that the account that was being used for testing
+                  has had the actions detailed in the assignment list above applied to it. The evaluator shall ensure that 
+                  an event has been logged to the security event log detailing that the account has had these actions applied. 
+                </test>
+                <test>
+                  The evaluator shall attempt to authenticate repeatedly to the system with a
+                  known bad certificate. Once the defined number of failed authentication attempts has been
+                  reached the evaluator shall ensure that the account that was being used for testing
+                  has had the actions detailed in the assignment list above applied to it. The evaluator shall ensure that 
+                  an event has been logged to the security event log detailing that the account has had these actions applied. 
+                </test>
+                <test>
+                  The evaluator shall attempt to authenticate repeatedly to the system using both a bad password and a bad certificate. 
+                  Once the defined number of failed authentication attempts has been
+                  reached the evaluator shall ensure that the account that was being used for testing
+                  has had the actions detailed in the assignment list above applied to it. The evaluator shall ensure that 
+                  an event has been logged to the security event log detailing that the account has had these actions applied. 
+                </test>
+              </testlist>
             </aactivity>
           </f-element>
         </f-component>        
