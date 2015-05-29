@@ -2443,107 +2443,107 @@
       </subsection>
 
       <subsection title="Trusted Path/Channels (FTP)" id="ftp">
-	<f-component id="ftp_itc_ext.1" name="Trusted channel communication">
-	  <f-element id="ftp_itc_ext.1.1">
-	    <title>
-	      The OS shall use 
-	      <selectables linebreak='yes'>
-  	      <selectable>TLS as conforming to <linkref linkend="FCS_TLSC_EXT.1"/></selectable>
-  	      <selectable>DTLS as conforming to <linkref linkend="FCS_DTLS_EXT.1"/></selectable>
-	        <selectable>IPsec as conforming to the IPsec VPN client Protection Profile</selectable>
-  	    </selectables>
-	      to provide a trusted communication path between itself and remote administrators that: 
-	      is logically distinct from other communication channels, 
-	      provides assured identification of its end points, 
-	      protects channel data from disclosure, 
-	      and detects modification of the channel data.
-	    </title>
-	    <note role="application">
-	      The intent of the mandatory portion of the above requirement is to use the
-	      cryptographic protocols identified in the requirement to establish and maintain a 
-	      trusted channel between the OS another trusted IT product.
-	      <br/>
-	      If the ST author selects IPsec, the TSF shall be validated against the “Protection
-	      Profile for IPsec Virtual Private Network (VPN) Clients.”  The ST author must
-	      include the security functional requirements for the trusted channel protocol selected in
-	      FTP_ITC_EXT.1 in the main body of the ST.
-	    </note>
-	    <aactivity>
-	      The evaluator shall configure the OS to communicate with another trusted IT 
-	      product.
-	      The evaluator shall ensure that the traffic conforms to the requirements defined
-	      by <linkref linkend="FCS_TLSC_EXT.1"/> or <linkref linkend="FCS_DTLS_EXT.1"/>.
-	    </aactivity>
-	  </f-element>
-	  <f-element id="ftp_itc_ext.1.2">
-	    <title>The OS shall initiate communication via the trusted channel for 
-	    administrative communication, configured enterprise connections, and software updates.
-	    </title>
-	    <aactivity>
-	      The evaluator shall monitor network traffic while the OS performs each of the
-	      following actions: administrative communication, configured enterprise connections, and software updates. 
-	      The evaluator shall ensure that for each session a trusted channel was established
-	      in conformance with <linkref linkend="FTP_ITC_EXT.1.1"/>.
-	    </aactivity>
-	  </f-element>
-	</f-component>
-     <f-component id="ftp_trp.1" name="Trusted Path">
-          <f-element id="ftp_trp.1.1">
-            <title> The OS shall provide a communication path between itself and remote users that is logically 
-              distinct from other communication paths and provides assured identification of its endpoints
-              and protection of the communicated data from modification and disclosure.
-            </title>
-          </f-element>
-          <f-element id="ftp_trp.1.2">
-            <title> The OS shall permit 
-              <selectables>
-                <selectable>the TSF</selectable>
-                <selectable>a management server</selectable>
-              </selectables>
-              to initiate communication via the trusted path.
-            </title>
-          </f-element>
-          <f-element id="ftp_trp.1.3">
-            <title> The OS shall require use of the trusted path for all remote administrative actions.
-            </title>
-            <note role="application">
-              This requirement ensures that authorized remote administrators initiate all communication
-              with the OS via a trusted path, and that all communication with the OS by remote administrators 
-              is performed over this path. The data passed in this trusted communication channel is encrypted as 
-              defined in <linkref linkend="FTP_ITC_EXT.1"/>.
-            </note>
-            <aactivity>
-              The evaluator shall examine the TSS to determine that the methods of remote OS administration
-              are indicated, along with how those communications are protected. The evaluator shall also
-              confirm that all protocols listed in the TSS in support of OS administration are consistent with those
-              specified in the requirement, and are included in the requirements in the ST. The evaluator shall
-              confirm that the operational guidance contains instructions for establishing the remote
-              administrative sessions for each supported method. The evaluator shall also perform the following
-              tests:
-              <testlist>
-                <test>
-                  The evaluators shall ensure that communications using each remote administration method is 
-                  tested during the course of the evaluation, setting up the connections as described in the 
-                  operational guidance and ensuring that communication is successful.
-                </test>
-                <test>
-                  For each method of remote administration supported, the evaluator shall
-                  follow the operational guidance to ensure that there is no available interface that can be
-                  used by a remote user to establish a remote administrative sessions without invoking the
-                  trusted path.
-                </test>
-                <test>
-                  The evaluator shall ensure, for each method of remote administration, the
-                  channel data is not sent in plaintext.
-                </test>
-                <test>
-                  The evaluator shall ensure, for each method of remote administration,
-                  modification of the channel data is detected by the OS.
-                </test>
-              </testlist>
-            </aactivity>              
-          </f-element>     
-        </f-component>
+      	<f-component id="ftp_itc_ext.1" name="Trusted channel communication">
+      	  <f-element id="ftp_itc_ext.1.1">
+      	    <title>
+      	      The OS shall use 
+      	      <selectables linebreak='yes'>
+        	      <selectable>TLS as conforming to <linkref linkend="FCS_TLSC_EXT.1"/></selectable>
+        	      <selectable>DTLS as conforming to <linkref linkend="FCS_DTLS_EXT.1"/></selectable>
+      	        <selectable>IPsec as conforming to the IPsec VPN client Protection Profile</selectable>
+        	    </selectables>
+      	      to provide a trusted communication path between itself and remote administrators that: 
+      	      is logically distinct from other communication channels, 
+      	      provides assured identification of its end points, 
+      	      protects channel data from disclosure, 
+      	      and detects modification of the channel data.
+      	    </title>
+      	    <note role="application">
+      	      The intent of the mandatory portion of the above requirement is to use the
+      	      cryptographic protocols identified in the requirement to establish and maintain a 
+      	      trusted channel between the OS another trusted IT product.
+      	      <br/>
+      	      If the ST author selects IPsec, the TSF shall be validated against the “Protection
+      	      Profile for IPsec Virtual Private Network (VPN) Clients.”  The ST author must
+      	      include the security functional requirements for the trusted channel protocol selected in
+      	      FTP_ITC_EXT.1 in the main body of the ST.
+      	    </note>
+      	    <aactivity>
+      	      The evaluator shall configure the OS to communicate with another trusted IT 
+      	      product.
+      	      The evaluator shall ensure that the traffic conforms to the requirements defined
+      	      by <linkref linkend="FCS_TLSC_EXT.1"/> or <linkref linkend="FCS_DTLS_EXT.1"/>.
+      	    </aactivity>
+      	  </f-element>
+      	  <f-element id="ftp_itc_ext.1.2">
+      	    <title>The OS shall initiate communication via the trusted channel for 
+      	    administrative communication, configured enterprise connections, and software updates.
+      	    </title>
+      	    <aactivity>
+      	      The evaluator shall monitor network traffic while the OS performs each of the
+      	      following actions: administrative communication, configured enterprise connections, and software updates. 
+      	      The evaluator shall ensure that for each session a trusted channel was established
+      	      in conformance with <linkref linkend="FTP_ITC_EXT.1.1"/>.
+      	    </aactivity>
+      	  </f-element>
+      	</f-component>
+        <f-component id="ftp_trp.1" name="Trusted Path">
+            <f-element id="ftp_trp.1.1">
+              <title> The OS shall provide a communication path between itself and remote users that is logically 
+                distinct from other communication paths and provides assured identification of its endpoints
+                and protection of the communicated data from modification and disclosure.
+              </title>
+            </f-element>
+            <f-element id="ftp_trp.1.2">
+              <title> The OS shall permit 
+                <selectables>
+                  <selectable>the TSF</selectable>
+                  <selectable>a management server</selectable>
+                </selectables>
+                to initiate communication via the trusted path.
+              </title>
+            </f-element>
+            <f-element id="ftp_trp.1.3">
+              <title> The OS shall require use of the trusted path for all remote administrative actions.
+              </title>
+              <note role="application">
+                This requirement ensures that authorized remote administrators initiate all communication
+                with the OS via a trusted path, and that all communication with the OS by remote administrators 
+                is performed over this path. The data passed in this trusted communication channel is encrypted as 
+                defined in <linkref linkend="FTP_ITC_EXT.1"/>.
+              </note>
+              <aactivity>
+                The evaluator shall examine the TSS to determine that the methods of remote OS administration
+                are indicated, along with how those communications are protected. The evaluator shall also
+                confirm that all protocols listed in the TSS in support of OS administration are consistent with those
+                specified in the requirement, and are included in the requirements in the ST. The evaluator shall
+                confirm that the operational guidance contains instructions for establishing the remote
+                administrative sessions for each supported method. The evaluator shall also perform the following
+                tests:
+                <testlist>
+                  <test>
+                    The evaluators shall ensure that communications using each remote administration method is 
+                    tested during the course of the evaluation, setting up the connections as described in the 
+                    operational guidance and ensuring that communication is successful.
+                  </test>
+                  <test>
+                    For each method of remote administration supported, the evaluator shall
+                    follow the operational guidance to ensure that there is no available interface that can be
+                    used by a remote user to establish a remote administrative sessions without invoking the
+                    trusted path.
+                  </test>
+                  <test>
+                    The evaluator shall ensure, for each method of remote administration, the
+                    channel data is not sent in plaintext.
+                  </test>
+                  <test>
+                    The evaluator shall ensure, for each method of remote administration,
+                    modification of the channel data is detected by the OS.
+                  </test>
+                </testlist>
+              </aactivity>              
+            </f-element>     
+          </f-component>
       </subsection>
     </section>
     <section title="Security Assurance Requirements" id="SARs">The Security Objectives for the <abbr
