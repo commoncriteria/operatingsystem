@@ -464,137 +464,7 @@
       Technology Security Evaluation, Version 3.1, Revision 4, with additional extended functional
       components. 
       <subsection title="Cryptographic Support (FCS)" id="fcs">
-        <f-component id="fcs_rbg_ext.1" name="Random Bit Generation">
-          <f-element id="fcs_rbg_ext.1.1">
-            <title> 
-	      The OS shall perform all deterministic random bit generation (DRBG) services in
-              accordance with 
-	      <selectables atleastone="yes" linebreak="yes">
-		<selectable>NIST Special Publication 800-90A using 
-		<selectables>
-		  <selectable>Hash_DRBG (any)</selectable>
-		  <selectable>HMAC_DRBG (any)</selectable>
-		  <selectable>CTR_DRBG (AES)</selectable>
-		</selectables>
-		</selectable>
-                <selectable>FIPS Pub 140-2 Annex C: X9.31 Appendix 2.4 using AES</selectable>
-		</selectables>. 
-	    </title>
-            <note role="application">The <abbr linkend="ST"/> author should select the
-              standard to which the RBG services comply (either SP 800-90A or FIPS 140-2 Annex C).
-              <br/> SP 800-90A contains three different methods of generating random numbers; each
-              of these, in turn, depends on underlying cryptographic primitives (hash
-              functions/ciphers). The <abbr linkend="ST"/> author will select the function used (if
-              SP 800-90A is selected), and include the specific underlying cryptographic primitives
-              used in the requirement or in the TSS. While any of the identified hash functions
-              (SHA-1, SHA-224, SHA-256, SHA-384, SHA-512) are allowed for Hash_DRBG or HMAC_DRBG,
-              only AES-based implementations for CTR_DRBG are allowed. <br/> Note that for FIPS Pub
-              140-2 Annex C, currently only the method described in NIST-Recommended Random Number
-              Generator Based on ANSI X9.31 Appendix A.2.4, Section 3 is valid. Use of this DRBG is
-              disallowed after 2015 per NIST SP 800-131A. The PP will be updated to reflect this;
-              however, developers should begin transitioning from this DRBG as soon as possible. </note>
-            <aactivity>The evaluator shall perform the following tests, depending on the standard to
-              which the RBG conforms. <br/> Implementations Conforming to FIPS 140-2 Annex C. <br/>
-              The reference for the tests contained in this section is The Random Number Generator
-              Validation System (RNGVS). The evaluators shall conduct the following two tests. Note
-              that the "expected values" are produced by a reference implementation of the algorithm
-              that is known to be correct. Proof of correctness is left to each Scheme. <testlist>
-                <test>The evaluators shall perform a Variable Seed Test. The evaluators shall
-                  provide a set of 128 (Seed, DT) pairs to the <abbr linkend="TSF"/> RBG function,
-                  each 128 bits. The evaluators shall also provide a key (of the length appropriate
-                  to the AES algorithm) that is constant for all 128 (Seed, DT) pairs. The DT value
-                  is incremented by 1 for each set. The seed values shall have no repeats within the
-                  set. The evaluators ensure that the values returned by the <abbr linkend="TSF"/>
-                  match the expected values. </test>
-                <test> The evaluators shall perform a Monte Carlo Test. For this test, they supply
-                  an initial Seed and DT value to the <abbr linkend="TSF"/> RBG function; each of
-                  these is 128 bits. The evaluators shall also provide a key (of the length
-                  appropriate to the AES algorithm) that is constant throughout the test. The
-                  evaluators then invoke the <abbr linkend="TSF"/> RBG 10,000 times, with the DT
-                  value being incremented by 1 on each iteration, and the new seed for the
-                  subsequent iteration produced as specified in NIST-Recommended Random Number
-                  Generator Based on ANSI X9.31 Appendix A.2.4 Using the 3-Key Triple DES and AES
-                  Algorithms, Section 3. The evaluators ensure that the 10,000th value produced
-                  matches the expected value. </test>
-              </testlist> Implementations Conforming to NIST Special Publication 800-90A <testlist>
-                <test> The evaluator shall perform 15 trials for the RNG implementation. If the RNG
-                  is configurable, the evaluator shall perform 15 trials for each configuration. The
-                  evaluator shall also confirm that the operational guidance contains appropriate
-                  instructions for configuring the RNG functionality. <br/> If the RNG has
-                  prediction resistance enabled, each trial consists of (1) instantiate DRBG, (2)
-                  generate the first block of random bits (3) generate a second block of random bits
-                  (4) uninstantiate. The evaluator verifies that the second block of random bits is
-                  the expected value. The evaluator shall generate eight input values for each
-                  trial. The first is a count (0 – 14). The next three are entropy input, nonce, and
-                  personalization string for the instantiate operation. The next two are additional
-                  input and entropy input for the first call to generate. The final two are
-                  additional input and entropy input for the second call to generate. These values
-                  are randomly generated. “generate one block of random bits” means to generate
-                  random bits with number of returned bits equal to the Output Block Length (as
-                  defined in NIST SP 800-90A). <br/> If the RNG does not have prediction resistance,
-                  each trial consists of (1) instantiate DRBG, (2) generate the first block of
-                  random bits (3) reseed, (4) generate a second block of random bits (5)
-                  uninstantiate. The evaluator verifies that the second block of random bits is the
-                  expected value. The evaluator shall generate eight input values for each trial.
-                  The first is a count (0 – 14). The next three are entropy input, nonce, and
-                  personalization string for the instantiate operation. The fifth value is
-                  additional input to the first call to generate. The sixth and seventh are
-                  additional input and entropy input to the call to reseed. The final value is
-                  additional input to the second generate call. <br/> The following paragraphs
-                  contain more information on some of the input values to be generated/selected by
-                  the evaluator. <br/>
-                  <b>Entropy input:</b> the length of the entropy input value must equal the seed
-                  length. <br/>
-                  <b>Nonce:</b> If a nonce is supported (CTR_DRBG with no Derivation Function does
-                  not use a nonce), the nonce bit length is one-half the seed length. <br/>
-                  <b>Personalization string:</b> The length of the personalization string must be
-                  less than or equal to seed length. If the implementation only supports one
-                  personalization string length, then the same length can be used for both values.
-                  If more than one string length is support, the evaluator shall use personalization
-                  strings of two different lengths. If the implementation does not use a
-                  personalization string, no value needs to be supplied. <br/>
-                  <b>Additional input:</b> the additional input bit lengths have the same defaults
-                  and restrictions as the personalization string lengths. </test>
-              </testlist>
-            </aactivity>
-          </f-element>
-        
-          <f-element id="fcs_rbg_ext.1.2">
-            <selection-depends req="fcs_rbg_ext.1.1"/>
-            <title>
-              The deterministic RBG used by the OS shall be seeded by an entropy source that
-              accumulates entropy from 
-              <selectables linebreak="yes">
-                <selectable>a software-based noise source</selectable>
-                <selectable>TSF-hardware-based noise source</selectable>
-              </selectables>
-              with a minimum of
-              <selectables linebreak="yes">
-                <selectable>128 bits</selectable>
-                <selectable>256 bits</selectable>
-              </selectables>
-              of entropy at least equal to the greatest security strength (according to NIST SP 800-57) 
-              of the keys and hashes that it will generate. 
-            </title>
-            <note role="application">For the first
-              selection in this requirement, the <abbr linkend="ST"/> author selects 'software-based noise source' if 
-              any additional noise sources are used as input to the DRBG.
-              <br />In the second selection in this requirement, the <abbr linkend="ST"/> author selects the 
-              appropriate number of bits of entropy that corresponds to the greatest security 
-              strength of the algorithms included in the <abbr linkend="ST"/>. Security strength is defined in Tables 
-              2 and 3 of NIST SP 800-57A. For example, if the implementation includes 2048-bit RSA 
-              (security strength of 112 bits), AES 128 (security strength 128 bits), and 
-              HMAC-SHA-256 (security strength 256 bits), then the <abbr linkend="ST"/> author would select 256 bits.
-            </note>
-            <aactivity>Documentation shall be produced - and the evaluator shall perform the
-              activities - in accordance with <appref linkend="entropyappendix"/> and
-              the <a href="https://www.niap-ccevs.org/Documents_and_Guidance/ccevs/Entropy%20Documentation%20and%20Assessment%20Clarification.pdf">
-              Clarification to the Entropy Documentation and Assessment Annex</a>.
-              <br />In the future, specific statistical testing (in line with NIST SP 800-90B) will 
-              be required to verify the entropy estimates.
-            </aactivity>
-          </f-element>
-        </f-component>
+
         <f-component id="fcs_ckm.1" name="Cryptographic Key Generation">
           <f-element id="fcs_ckm.1.1">
             <title> The OS shall generate asymmetric cryptographic keys in accordance with a
@@ -1189,6 +1059,167 @@
               tags with the same key and IV using a known-good implementation. </aactivity>
           </f-element>
         </f-component>
+        <f-component id="fcs_dtls_ext.1" name="DTLS Implementation">
+          <f-element id="fcs_dtls_ext.1.1">
+            <title>The OS shall implement the DTLS protocol in accordance with 
+              <selectables>
+                <selectable>DTLS 1.0 (RFC 4347)</selectable>
+                <selectable>DTLS 1.2 (RFC 6347)</selectable>
+              </selectables>.
+            </title>
+            <aactivity>
+              <testlist>
+                <test> The evaluator shall attempt to establish a connection with a DTLS server,
+                  observe the traffic with a packet analyzer, and verify that the connection
+                  succeeds and that the traffic is identified as DTLS. </test>
+                <br/> Other tests are performed in conjunction with the Assurance Activity listed
+                for <linkref linkend="FCS_TLSC_EXT.1"/>. </testlist>
+            </aactivity>
+          </f-element>
+          <f-element id="fcs_dtls_ext.1.2">
+            <title>The OS shall implement the requirements in TLS (<linkref linkend="FCS_TLSC_EXT.1"
+            />) for the DTLS implementation, except where variations are allowed according to DTLS
+              1.2 (RFC 6347). </title>
+            <note role="application"> Differences between DTLS 1.2 and TLS 1.2 are outlined in RFC
+              6347; otherwise the protocols are the same. In particular, for the applicable security
+              characteristics defined for the <abbr linkend="TSF"/>, the two protocols do not
+              differ. Therefore, all application notes and assurance activities that are listed for
+              <abbr title="Transport Layer Security">TLS</abbr> apply to the DTLS implementation. </note>
+            <aactivity> The evaluator shall perform the assurance activities listed for <linkref
+              linkend="FCS_TLSC_EXT.1"/>. </aactivity>
+          </f-element>
+        </f-component>
+        <f-component id="fcs_rbg_ext.1" name="Random Bit Generation">
+          <f-element id="fcs_rbg_ext.1.1">
+            <title> 
+              The OS shall perform all deterministic random bit generation (DRBG) services in
+              accordance with 
+              <selectables atleastone="yes" linebreak="yes">
+                <selectable>NIST Special Publication 800-90A using 
+                  <selectables>
+                    <selectable>Hash_DRBG (any)</selectable>
+                    <selectable>HMAC_DRBG (any)</selectable>
+                    <selectable>CTR_DRBG (AES)</selectable>
+                  </selectables>
+                </selectable>
+                <selectable>FIPS Pub 140-2 Annex C: X9.31 Appendix 2.4 using AES</selectable>
+              </selectables>. 
+            </title>
+            <note role="application">The <abbr linkend="ST"/> author should select the
+              standard to which the RBG services comply (either SP 800-90A or FIPS 140-2 Annex C).
+              <br/> SP 800-90A contains three different methods of generating random numbers; each
+              of these, in turn, depends on underlying cryptographic primitives (hash
+              functions/ciphers). The <abbr linkend="ST"/> author will select the function used (if
+              SP 800-90A is selected), and include the specific underlying cryptographic primitives
+              used in the requirement or in the TSS. While any of the identified hash functions
+              (SHA-1, SHA-224, SHA-256, SHA-384, SHA-512) are allowed for Hash_DRBG or HMAC_DRBG,
+              only AES-based implementations for CTR_DRBG are allowed. <br/> Note that for FIPS Pub
+              140-2 Annex C, currently only the method described in NIST-Recommended Random Number
+              Generator Based on ANSI X9.31 Appendix A.2.4, Section 3 is valid. Use of this DRBG is
+              disallowed after 2015 per NIST SP 800-131A. The PP will be updated to reflect this;
+              however, developers should begin transitioning from this DRBG as soon as possible. </note>
+            <aactivity>The evaluator shall perform the following tests, depending on the standard to
+              which the RBG conforms. <br/> Implementations Conforming to FIPS 140-2 Annex C. <br/>
+              The reference for the tests contained in this section is The Random Number Generator
+              Validation System (RNGVS). The evaluators shall conduct the following two tests. Note
+              that the "expected values" are produced by a reference implementation of the algorithm
+              that is known to be correct. Proof of correctness is left to each Scheme. <testlist>
+                <test>The evaluators shall perform a Variable Seed Test. The evaluators shall
+                  provide a set of 128 (Seed, DT) pairs to the <abbr linkend="TSF"/> RBG function,
+                  each 128 bits. The evaluators shall also provide a key (of the length appropriate
+                  to the AES algorithm) that is constant for all 128 (Seed, DT) pairs. The DT value
+                  is incremented by 1 for each set. The seed values shall have no repeats within the
+                  set. The evaluators ensure that the values returned by the <abbr linkend="TSF"/>
+                  match the expected values. </test>
+                <test> The evaluators shall perform a Monte Carlo Test. For this test, they supply
+                  an initial Seed and DT value to the <abbr linkend="TSF"/> RBG function; each of
+                  these is 128 bits. The evaluators shall also provide a key (of the length
+                  appropriate to the AES algorithm) that is constant throughout the test. The
+                  evaluators then invoke the <abbr linkend="TSF"/> RBG 10,000 times, with the DT
+                  value being incremented by 1 on each iteration, and the new seed for the
+                  subsequent iteration produced as specified in NIST-Recommended Random Number
+                  Generator Based on ANSI X9.31 Appendix A.2.4 Using the 3-Key Triple DES and AES
+                  Algorithms, Section 3. The evaluators ensure that the 10,000th value produced
+                  matches the expected value. </test>
+              </testlist> Implementations Conforming to NIST Special Publication 800-90A <testlist>
+                <test> The evaluator shall perform 15 trials for the RNG implementation. If the RNG
+                  is configurable, the evaluator shall perform 15 trials for each configuration. The
+                  evaluator shall also confirm that the operational guidance contains appropriate
+                  instructions for configuring the RNG functionality. <br/> If the RNG has
+                  prediction resistance enabled, each trial consists of (1) instantiate DRBG, (2)
+                  generate the first block of random bits (3) generate a second block of random bits
+                  (4) uninstantiate. The evaluator verifies that the second block of random bits is
+                  the expected value. The evaluator shall generate eight input values for each
+                  trial. The first is a count (0 – 14). The next three are entropy input, nonce, and
+                  personalization string for the instantiate operation. The next two are additional
+                  input and entropy input for the first call to generate. The final two are
+                  additional input and entropy input for the second call to generate. These values
+                  are randomly generated. “generate one block of random bits” means to generate
+                  random bits with number of returned bits equal to the Output Block Length (as
+                  defined in NIST SP 800-90A). <br/> If the RNG does not have prediction resistance,
+                  each trial consists of (1) instantiate DRBG, (2) generate the first block of
+                  random bits (3) reseed, (4) generate a second block of random bits (5)
+                  uninstantiate. The evaluator verifies that the second block of random bits is the
+                  expected value. The evaluator shall generate eight input values for each trial.
+                  The first is a count (0 – 14). The next three are entropy input, nonce, and
+                  personalization string for the instantiate operation. The fifth value is
+                  additional input to the first call to generate. The sixth and seventh are
+                  additional input and entropy input to the call to reseed. The final value is
+                  additional input to the second generate call. <br/> The following paragraphs
+                  contain more information on some of the input values to be generated/selected by
+                  the evaluator. <br/>
+                  <b>Entropy input:</b> the length of the entropy input value must equal the seed
+                  length. <br/>
+                  <b>Nonce:</b> If a nonce is supported (CTR_DRBG with no Derivation Function does
+                  not use a nonce), the nonce bit length is one-half the seed length. <br/>
+                  <b>Personalization string:</b> The length of the personalization string must be
+                  less than or equal to seed length. If the implementation only supports one
+                  personalization string length, then the same length can be used for both values.
+                  If more than one string length is support, the evaluator shall use personalization
+                  strings of two different lengths. If the implementation does not use a
+                  personalization string, no value needs to be supplied. <br/>
+                  <b>Additional input:</b> the additional input bit lengths have the same defaults
+                  and restrictions as the personalization string lengths. </test>
+              </testlist>
+            </aactivity>
+          </f-element>
+          
+          <f-element id="fcs_rbg_ext.1.2">
+            <selection-depends req="fcs_rbg_ext.1.1"/>
+            <title>
+              The deterministic RBG used by the OS shall be seeded by an entropy source that
+              accumulates entropy from 
+              <selectables linebreak="yes">
+                <selectable>a software-based noise source</selectable>
+                <selectable>TSF-hardware-based noise source</selectable>
+              </selectables>
+              with a minimum of
+              <selectables linebreak="yes">
+                <selectable>128 bits</selectable>
+                <selectable>256 bits</selectable>
+              </selectables>
+              of entropy at least equal to the greatest security strength (according to NIST SP 800-57) 
+              of the keys and hashes that it will generate. 
+            </title>
+            <note role="application">For the first
+              selection in this requirement, the <abbr linkend="ST"/> author selects 'software-based noise source' if 
+              any additional noise sources are used as input to the DRBG.
+              <br />In the second selection in this requirement, the <abbr linkend="ST"/> author selects the 
+              appropriate number of bits of entropy that corresponds to the greatest security 
+              strength of the algorithms included in the <abbr linkend="ST"/>. Security strength is defined in Tables 
+              2 and 3 of NIST SP 800-57A. For example, if the implementation includes 2048-bit RSA 
+              (security strength of 112 bits), AES 128 (security strength 128 bits), and 
+              HMAC-SHA-256 (security strength 256 bits), then the <abbr linkend="ST"/> author would select 256 bits.
+            </note>
+            <aactivity>Documentation shall be produced - and the evaluator shall perform the
+              activities - in accordance with <appref linkend="entropyappendix"/> and
+              the <a href="https://www.niap-ccevs.org/Documents_and_Guidance/ccevs/Entropy%20Documentation%20and%20Assessment%20Clarification.pdf">
+                Clarification to the Entropy Documentation and Assessment Annex</a>.
+              <br />In the future, specific statistical testing (in line with NIST SP 800-90B) will 
+              be required to verify the entropy estimates.
+            </aactivity>
+          </f-element>
+        </f-component>
         <f-component id="fcs_sto_ext.1" name="Storage of Secrets">
           <f-element id="fcs_sto_ext.1.1">
             <title>The OS shall implement functionality to store credentials to non-volatile memory
@@ -1561,36 +1592,6 @@
                 signature). The evaluator shall verify that the OS disconnects after receiving the server’s Certificate
                 handshake message.
             </aactivity>
-          </f-element>
-        </f-component>
-        <f-component id="fcs_dtls_ext.1" name="DTLS Implementation">
-          <f-element id="fcs_dtls_ext.1.1">
-            <title>The OS shall implement the DTLS protocol in accordance with 
-              <selectables>
-                <selectable>DTLS 1.0 (RFC 4347)</selectable>
-                <selectable>DTLS 1.2 (RFC 6347)</selectable>
-              </selectables>.
-            </title>
-            <aactivity>
-              <testlist>
-                <test> The evaluator shall attempt to establish a connection with a DTLS server,
-                  observe the traffic with a packet analyzer, and verify that the connection
-                  succeeds and that the traffic is identified as DTLS. </test>
-                <br/> Other tests are performed in conjunction with the Assurance Activity listed
-                for <linkref linkend="FCS_TLSC_EXT.1"/>. </testlist>
-            </aactivity>
-          </f-element>
-          <f-element id="fcs_dtls_ext.1.2">
-            <title>The OS shall implement the requirements in TLS (<linkref linkend="FCS_TLSC_EXT.1"
-              />) for the DTLS implementation, except where variations are allowed according to DTLS
-              1.2 (RFC 6347). </title>
-            <note role="application"> Differences between DTLS 1.2 and TLS 1.2 are outlined in RFC
-              6347; otherwise the protocols are the same. In particular, for the applicable security
-              characteristics defined for the <abbr linkend="TSF"/>, the two protocols do not
-              differ. Therefore, all application notes and assurance activities that are listed for
-                <abbr title="Transport Layer Security">TLS</abbr> apply to the DTLS implementation. </note>
-            <aactivity> The evaluator shall perform the assurance activities listed for <linkref
-                linkend="FCS_TLSC_EXT.1"/>. </aactivity>
           </f-element>
         </f-component>
       </subsection>
