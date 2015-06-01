@@ -1465,10 +1465,12 @@
               <br/> These requirements will be revisited as new <abbr
                 title="Transport Layer Security">TLS</abbr> versions are standardized by the IETF.
               <br/> If any cipher suites are selected using ECDHE, then <linkref
-                linkend="FCS_TLSC_EXT.1.5"/> is required. <br/> If <i>implement TLS 1.2 (RFC
-                5246)</i> is selected, then <linkref linkend="FCS_CKM.2.1"/>, <linkref
-                linkend="FCS_COP.1.1(1)"/>, <linkref linkend="FCS_COP.1.1(2)"/>, <linkref
-                linkend="FCS_COP.1.1(3)"/>, and <linkref linkend="FCS_COP.1.1(4)"/> are required. 
+                linkend="FCS_TLSC_EXT.1.5"/> is required. 
+	      <br/> 
+	      If <i>implement TLS 1.2 (RFC 5246)</i> is selected, then 
+	      <linkref linkend="FCS_CKM.2.1"/>,    <linkref linkend="FCS_COP.1.1(1)"/>, 
+	      <linkref linkend="FCS_COP.1.1(2)"/>, <linkref linkend="FCS_COP.1.1(3)"/>, and 
+	      <linkref linkend="FCS_COP.1.1(4)"/> are required. 
             </note>
             <aactivity>
               The evaluator shall check the description of the implementation of this
@@ -1709,9 +1711,7 @@
             </aactivity>
           </f-element>
           <f-element id="fcs_tlsc_ext.1.5" status="sel-based">
-	    <selection-depends req="fcs_cop.1(3)"/>
-	    <selection-depends req="fcs_ckm.1"/>
-	    <selection-depends req="fcs_ckm.2"/>
+	    <selection-depends req="fcs_tlsc_ext.1.1"/>
             <title> The OS shall present the Supported Elliptic Curves Extension in the Client Hello
               with the following NIST curves: <selectables>
                 <selectable>secp256r1</selectable>
