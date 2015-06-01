@@ -517,7 +517,7 @@
                 linkend="FCS_CKM.2.1"/> and selected cryptographic protocols must match the
               selection. When key generation is used for entity authentication, the public key is
               expected to be associated with an X.509v3 certificate. <br/> If the <abbr
-                linkend="OS"/> acts as a receiver in the RSA key establishment scheme, the <abbr
+                linkend="OS"/> acts only as a receiver in the RSA key establishment scheme, the <abbr
                 linkend="OS"/> does not need to implement RSA key generation. <br/> The ANSI
               X9.31-1998 option will be removed from the selection in a future publication of this
               document. Presently, the selection is not exclusively limited to the FIPS PUB 186-4
@@ -1399,7 +1399,10 @@
               credential types (secret keys, PKI private keys, or passwords) for which the OS provides
               a storage capability.  For each of these
               items, the evaluator shall confirm that the TSS lists for what purpose it can be used,
-              and how it is stored. <br/>
+              and how it is stored. 
+	      <br/>
+	      The evaluator shall also consult the developer documentation to verify that an interface
+	      exists for applications to securely store credentials.
             </aactivity>
           </f-element>
           <f-element id="fcs_sto_ext.1.2">
@@ -1847,7 +1850,7 @@
 	      <management-function-set>
 		<manager>Administrator</manager>
 		<manager>User</manager>
-		<management-function admin="O">
+		<management-function>
 		  configure minimum password length
 		</management-function>
 		<management-function>
@@ -1865,7 +1868,7 @@
 		<management-function user="X">
 		  enable/disable screen lock
 		</management-function> 
-		<management-function user="O">
+		<management-function>
 		  configure screen lock inactivity timeout
 		</management-function> 
 		<management-function>
@@ -1977,9 +1980,12 @@
             <note role="application">Different hardware platforms will present different external
               interfaces. The selection of tests to run against an OS will vary depending on the
               hardware the OS is running on. However, where an OS supports an external interface
-              type (E.G., FireWire) it is important that the OS also offers the ability to disable
+              type (e.g., FireWire) it is important that the OS also offers the ability to disable
               that interface. </note>
-            <aactivity>The evaluator will ensure that the following tests (where applicable)
+            <aactivity>
+	      The evaluator will install the OS onto a platform that has capabilities commiserate
+	      with the OS capabilities (e.g., a USB capable OS must be evaluated on a USB capable
+	      platform) and ensure that the following tests (where applicable)
               succeed: <testlist>
                 <test> The evaluator shall attempt to connect to a Wireless network and ensure that the OS successfully connects and allows network traffic to flow.</test>
                 <test> The evaluator shall connect to a Wireless network and then disable the WiFi
@@ -2102,7 +2108,8 @@
                 <selectable>all executable code stored in mutable media</selectable>
                 <selectable><assignable>list of other executable code</assignable></selectable>
                 <selectable>no other executable code</selectable>
-              </selectables> prior to its execution through the use of
+              </selectables> 
+	      prior to its execution through the use of
               <selectables linebreak="yes">
                 <selectable>a digital signature using a hardware-protected asymmetric key</selectable>
                 <selectable>a hardware-protected hash</selectable>
@@ -2259,8 +2266,9 @@
               should be indicated in the assignment.
             </note>
             <aactivity> 
-              The evaluator shall verify that no memory mapping requests can be made with
-              write and execute permissions.
+              The evaluator shall inspect the vendor-provided developer documentation and 
+	      verify that no memory-mapping can be made with
+              write and execute permissions except for the cases listed in the assignment.
             </aactivity>
           </f-element>
         </f-component>
