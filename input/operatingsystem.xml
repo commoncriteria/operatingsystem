@@ -116,7 +116,7 @@
             <term><abbr title="Critical Security Parameters">CSP</abbr></term>
             <description>
               Information that is either user or system defined and 
-              is used to operate a cryptography module in processing encryption functions including 
+              is used to operate a cryptographic module in processing encryption functions including 
               cryptographic keys and authentication data, such as passwords, the disclosure or modification 
               of which can compromise the security of a cryptographic module or the security of the 
               information protected by the module.
@@ -232,8 +232,7 @@
           <InsertAppendixExplainer/> The <abbr linkend="ST"/> may iterate any of these components,
           but it must not include any additional component (e.g. from CC Part 2 or 3 or a PP not
           conformant with this one, or extended by the <abbr linkend="ST"/>) not defined in this PP
-          or a PP conformant to this one. See <secref linkend="TOEdescription"/> regarding
-          more-specific PPs that may extend this one. 
+          or a PP conformant to this one. 
           <br/>
 		  Some components in this Protection Profile have a dependency on
 		  other components.  In accordance with <cite linkend="bibCC"/> Part 1, <appref linkend="satisfiedreqs"/> 
@@ -465,212 +464,6 @@
       Technology Security Evaluation, Version 3.1, Revision 4, with additional extended functional
       components. 
       <subsection title="Cryptographic Support (FCS)" id="fcs">
-        <f-component id="fcs_rbg_ext.1" name="Random Bit Generation">
-          <f-element id="fcs_rbg_ext.1.1">
-            <title> 
-	      The OS shall perform all deterministic random bit generation (DRBG) services in
-              accordance with 
-	      <selectables atleastone="yes" linebreak="yes">
-		<selectable>NIST Special Publication 800-90A using 
-		<selectables>
-		  <selectable>Hash_DRBG (any)</selectable>
-		  <selectable>HMAC_DRBG (any)</selectable>
-		  <selectable>CTR_DRBG (AES)</selectable>
-		</selectables>
-		</selectable>
-                <selectable>FIPS Pub 140-2 Annex C: X9.31 Appendix 2.4 using AES</selectable>
-		</selectables>. 
-	    </title>
-            <note role="application">The <abbr linkend="ST"/> author should select the
-              standard to which the RBG services comply (either SP 800-90A or FIPS 140-2 Annex C).
-              <br/> SP 800-90A contains three different methods of generating random numbers; each
-              of these, in turn, depends on underlying cryptographic primitives (hash
-              functions/ciphers). The <abbr linkend="ST"/> author will select the function used (if
-              SP 800-90A is selected), and include the specific underlying cryptographic primitives
-              used in the requirement or in the TSS. While any of the identified hash functions
-              (SHA-1, SHA-224, SHA-256, SHA-384, SHA-512) are allowed for Hash_DRBG or HMAC_DRBG,
-              only AES-based implementations for CTR_DRBG are allowed. <br/> Note that for FIPS Pub
-              140-2 Annex C, currently only the method described in NIST-Recommended Random Number
-              Generator based on ANSI X9.31 Appendix A.2.4, Section 3 is valid. Use of this DRBG is
-              disallowed after 2015 per NIST SP 800-131A. The PP will be updated to reflect this;
-              however, developers should begin transitioning from this DRBG as soon as possible. </note>
-            <aactivity>The evaluator shall perform the following tests, depending on the standard to
-              which the RBG conforms. <br/> Implementations Conforming to FIPS 140-2 Annex C. <br/>
-              The reference for the tests contained in this section is The Random Number Generator
-              Validation System (RNGVS). The evaluators shall conduct the following two tests. Note
-              that the "expected values" are produced by a reference implementation of the algorithm
-              that is known to be correct. Proof of correctness is left to each Scheme. <testlist>
-                <test>The evaluators shall perform a Variable Seed Test. The evaluators shall
-                  provide a set of 128 (Seed, DT) pairs to the <abbr linkend="TSF"/> RBG function,
-                  each 128 bits. The evaluators shall also provide a key (of the length appropriate
-                  to the AES algorithm) that is constant for all 128 (Seed, DT) pairs. The DT value
-                  is incremented by 1 for each set. The seed values shall have no repeats within the
-                  set. The evaluators ensure that the values returned by the <abbr linkend="TSF"/>
-                  match the expected values. </test>
-                <test> The evaluators shall perform a Monte Carlo Test. For this test, they supply
-                  an initial Seed and DT value to the <abbr linkend="TSF"/> RBG function; each of
-                  these is 128 bits. The evaluators shall also provide a key (of the length
-                  appropriate to the AES algorithm) that is constant throughout the test. The
-                  evaluators then invoke the <abbr linkend="TSF"/> RBG 10,000 times, with the DT
-                  value being incremented by 1 on each iteration, and the new seed for the
-                  subsequent iteration produced as specified in NIST-Recommended Random Number
-                  Generator based on ANSI X9.31 Appendix A.2.4 Using the 3-Key Triple DES and AES
-                  Algorithms, Section 3. The evaluators ensure that the 10,000th value produced
-                  matches the expected value. </test>
-              </testlist> Implementations Conforming to NIST Special Publication 800-90A <testlist>
-                <test> The evaluator shall perform 15 trials for the RNG implementation. If the RNG
-                  is configurable, the evaluator shall perform 15 trials for each configuration. The
-                  evaluator shall also confirm that the operational guidance contains appropriate
-                  instructions for configuring the RNG functionality. <br/> If the RNG has
-                  prediction resistance enabled, each trial consists of (1) instantiate DRBG, (2)
-                  generate the first block of random bits (3) generate a second block of random bits
-                  (4) uninstantiate. The evaluator verifies that the second block of random bits is
-                  the expected value. The evaluator shall generate eight input values for each
-                  trial. The first is a count (0 – 14). The next three are entropy input, nonce, and
-                  personalization string for the instantiate operation. The next two are additional
-                  input and entropy input for the first call to generate. The final two are
-                  additional input and entropy input for the second call to generate. These values
-                  are randomly generated. “generate one block of random bits” means to generate
-                  random bits with number of returned bits equal to the Output Block Length (as
-                  defined in NIST SP 800-90A). <br/> If the RNG does not have prediction resistance,
-                  each trial consists of (1) instantiate DRBG, (2) generate the first block of
-                  random bits (3) reseed, (4) generate a second block of random bits (5)
-                  uninstantiate. The evaluator verifies that the second block of random bits is the
-                  expected value. The evaluator shall generate eight input values for each trial.
-                  The first is a count (0 – 14). The next three are entropy input, nonce, and
-                  personalization string for the instantiate operation. The fifth value is
-                  additional input to the first call to generate. The sixth and seventh are
-                  additional input and entropy input to the call to reseed. The final value is
-                  additional input to the second generate call. <br/> The following paragraphs
-                  contain more information on some of the input values to be generated/selected by
-                  the evaluator. <br/>
-                  <b>Entropy input:</b> the length of the entropy input value must equal the seed
-                  length. <br/>
-                  <b>Nonce:</b> If a nonce is supported (CTR_DRBG with no Derivation Function does
-                  not use a nonce), the nonce bit length is one-half the seed length. <br/>
-                  <b>Personalization string:</b> The length of the personalization string must be
-                  less than or equal to seed length. If the implementation only supports one
-                  personalization string length, then the same length can be used for both values.
-                  If more than one string length is support, the evaluator shall use personalization
-                  strings of two different lengths. If the implementation does not use a
-                  personalization string, no value needs to be supplied. <br/>
-                  <b>Additional input:</b> the additional input bit lengths have the same defaults
-                  and restrictions as the personalization string lengths. </test>
-              </testlist>
-            </aactivity>
-          </f-element>
-        
-          <f-element id="fcs_rbg_ext.1.2">
-            <selection-depends req="fcs_rbg_ext.1.1"/>
-            <title>
-              The deterministic RBG used by the OS shall be seeded by an entropy source that
-              accumulates entropy from 
-              <selectables linebreak="yes">
-                <selectable>software-based noise sources</selectable>
-                <selectable>TSF-hardware-based noise source</selectable>
-              </selectables>
-              with a minimum of
-              <selectables linebreak="yes">
-                <selectable>128 bits</selectable>
-                <selectable>256 bits</selectable>
-              </selectables>
-              of entropy at least equal to the greatest security strength (according to NIST SP 800-57) 
-              of the keys and hashes that it will generate. 
-            </title>
-            <note role="application">For the first
-              selection in this requirement, the <abbr linkend="ST"/> author selects 'software-based noise source' if 
-              any additional noise sources are used as input to the DRBG.
-              <br />In the second selection in this requirement, the <abbr linkend="ST"/> author selects the 
-              appropriate number of bits of entropy that corresponds to the greatest security 
-              strength of the algorithms included in the <abbr linkend="ST"/>. Security strength is defined in Tables 
-              2 and 3 of NIST SP 800-57A. For example, if the implementation includes 2048-bit RSA 
-              (security strength of 112 bits), AES 128 (security strength 128 bits), and 
-              HMAC-SHA-256 (security strength 256 bits), then the <abbr linkend="ST"/> author would select 256 bits.
-            </note>
-            <aactivity>Documentation shall be produced - and the evaluator shall perform the
-              activities - in accordance with <appref linkend="entropyappendix"/> and
-              the <a href="https://www.niap-ccevs.org/Documents_and_Guidance/ccevs/Entropy%20Documentation%20and%20Assessment%20Clarification.pdf">
-              Clarification to the Entropy Documentation and Assessment Annex</a>.
-              <br />In the future, specific statistical testing (in line with NIST SP 800-90B) will 
-              be required to verify the entropy estimates.
-            </aactivity>
-          </f-element>
-        </f-component>
-        <!-- Just in case we need this.  I suspect we do not.
-
-        <f-component id="fcs_ckm_ext.4" name="Cryptographic Key Zeroization">
-          <f-element id="fcs_ckm_ext.4.1">
-            <title>The OS shall zeroize all plaintext secret and private cryptographic keys and
-			    cryptographic service providers when no longer required.
-            </title>
-			<note role="application">Any security related information (such as
-            keys, authentication data, and passwords) must be zeroized when no
-            longer in use to prevent the disclosure or modification of security
-            critical data.  The zeroization indicated above applies to each
-            intermediate storage area for plaintext key and cryptographic
-            service provider (CSP) (i.e., any storage, such as memory buffers,
-            that is included in the path of such data) upon the transfer of the
-            key/CSP to another location.
-            </note>
-            <aactivity>
-			  The evaluator shall check to ensure the TSS describes each of the
-			  secret keys (keys used for symmetric encryption) and private
-			  keys, as well as the CSPs used to generate key; when the keys are
-			  zeroized (for example, immediately after use, on system shutdown,
-			  etc.); and the type of zeroization procedure that is performed
-			  (overwrite with zeros, overwrite three times with random pattern,
-			  etc.). If different types of memory are used to store the
-			  materials to be protected, the evaluator shall check to ensure
-			  that the TSS describes the zeroization procedure in terms of the
-			  memory in which the data are stored (for example, "secret keys
-			  stored in volatile memory are zeroized by overwriting once with
-			  zeros, while secret keys stored on non-volatile storage are
-			  zeroized by overwriting three times with a random pattern that is
-			  changed before each write"). If a read-back is done to verify the
-			  zeroization, this shall be described as well.
-              <br/>
-			  For each key clearing situation described in the TSS the evaluator
-			  shall repeat the following test.
-              <testlist>￼￼￼￼
-			  <test>The evaluator shall utilize appropriate combinations of
-			  specialized operational environment and development tools
-			  (debuggers, simulators, etc.) for the TOE and instrumented TOE
-			  builds to test that keys are cleared correctly, including all
-			  intermediate copies of the key that may have been created
-			  internally by the TOE during normal cryptographic processing with
-			  that key.  Cryptographic TOE implementations in software shall be
-			  loaded and exercised under a debugger to perform such tests. The
-			  evaluator shall perform the following test for each key subject
-			  to clearing, including intermediate copies of keys that are
-			  persisted encrypted by the TOE:
-
-              <ul>
-                <li>Load the instrumented TOE build in a debugger.</li>
-                <li>Record the value of the key in the TOE subject to clearing.</li>
-                <li>Cause the TOE to perform a normal cryptographic processing with the key from #1.</li>
-                <li>Cause the TOE to clear the key.</li>
-                <li>Cause the TOE to stop the execution but not exit.</li>
-                <li>Cause the TOE to dump the entire memory footprint of the TOE into a binary file.</li>
-                <li>Search the content of the binary file created in #4 for instances of the known key value from #1.</li>
-              </ul>
-			  The test succeeds if no copies of the key from #1 are found in
-			  step #7 above and fails otherwise.  The evaluator shall perform
-			  this test on all keys, including those that persist in encrypted
-			  form, to ensure intermediate copies are cleared.
-              </test>
-			  <test>In cases where the TOE is implemented in firmware and
-			  operates in a limited operating environment that does not allow
-			  the use of debuggers, the evaluator shall utilize a simulator
-			  for the TOE on a general purpose operating system. The evaluator
-			  shall provide a rationale explaining the instrumentation of the
-			  simulated test environment and justifying the obtained test
-			  results.
-			  </test>
-              </testlist>
-            </aactivity>
-          </f-element>
-        </f-component>
--->
         <f-component id="fcs_ckm.1" name="Cryptographic Key Generation">
           <f-element id="fcs_ckm.1.1">
             <title> The OS shall generate asymmetric cryptographic keys in accordance with a
@@ -969,108 +762,6 @@
               that any outputted or logged error message is identical for each. </aactivity>
           </f-element>
         </f-component>
-        <!-- 
-
-Commenting out: the fundamental question is how to handle requirements for more general
-functionality (such as these)
-        <f-component id="fcs_cop_ext.1" name="Encryption/Decryption Services">
-          <f-element id="fcs_cop_ext.1.1">
-            <title>The OS shall <selectables linebreak="yes">
-                <selectable>perform no encryption/decryption</selectable>
-                <selectable>invoke platform-provided encryption/decryption functionality</selectable>
-                <selectable>implement encryption/decryption functionality</selectable>
-              </selectables> 
-	      .
-	    </title>
-            <note role="application">
-			  The selection <i>invoke platform-provided encryption/decryption services</i> is to be
-              chosen in cases where the OS uses platform APIs to perform these operations.
-              If <i>implement encryption/decryption functionality</i> is selected, then
-              additional requirements from <linkref linkend="FCS_COP.1(1)"/> shall be included in
-              the <abbr linkend="ST"/>.  
-            </note>
-            <aactivity>
-              If <b>perform no encryption/decryption</b> is selected, the evaluator shall inspect the 
-			  application and its developer documentation and verify that the OS needs no
-              encryption/decryption services. 
-			  <br/>
-              If <b>implement encryption/decryption functionality</b> is selected, the evaluator shall ensure
-			  that additional <linkref linkend="FCS_COP.1(1)"/> elements are included in the <abbr linkend="ST"/>.
-			  <br/>
-			  If <b>invoke platform-provided encryption/decryption functionality </b> is selected, 
-			  the evaluator shall examine the TSS of the
-              application to verify that it describes how the platform's encryption/decryption
-              functionality is invoked for each operation for which it is used by the OS. 
-			</aactivity>
-          </f-element>
-        </f-component>
-
-        <f-component id="fcs_cop_ext.2" name="Cryptographic Hashing Services">
-          <f-element id="fcs_cop_ext.2.1">
-            <title>The OS shall <selectables linebreak="yes">
-                <selectable>perform no cryptographic hashing</selectable>
-                <selectable>invoke platform-provided cryptographic hashing</selectable>
-                <selectable>implement cryptographic hashing</selectable>
-              </selectables> 
-	      .
-	    </title>
-            <note role="application">
-			  The selection <i>invoke platform-provided cryptographic hashing</i> is to be
-              chosen in cases where the OS uses platform APIs to perform cryptographic
-              hashing. If <i>implement cryptographic hashing</i> is selected, then
-              additional requirements from <linkref linkend="FCS_COP.1(2)"/> shall be included in
-              the <abbr linkend="ST"/>.
-            </note>
-            <aactivity>
-              If <b>perform no cryptographic hashing</b> is selected, the evaluator shall inspect the 
-			  application and its developer documentation and verify that the OS needs no
-              cryptographic hashing services. 
-			  <br/>
-              If <b>implement cryptographic hashing</b> is selected, the evaluator shall ensure
-			  that additional <linkref linkend="FCS_COP.1(2)"/> elements are included in the <abbr linkend="ST"/>.
-			  <br/>
-			  If <b>invoke platform-provided cryptographic hashing</b> is selected, 
-			  the evaluator shall examine the TSS of the
-              application to verify that it describes how the platform's hashing
-              functionality is invoked for each operation for which it is used in the OS, including
-			  digest sizes used.
-			</aactivity>
-          </f-element>
-        </f-component>
-
-        <f-component id="fcs_cop_ext.3" name="Cryptographic Signing Services">
-          <f-element id="fcs_cop_ext.3.1">
-            <title>The OS shall 
-			  <selectables linebreak="yes">
-                <selectable>perform no cryptographic signing</selectable>
-                <selectable>invoke platform-provided cryptographic signing</selectable>
-                <selectable>implement cryptographic signing</selectable>
-              </selectables> 
-	        .
-	        </title>
-            <note role="application">The selection <i>invoke platform-provided cryptographic signing</i> 
-			  is to be used in cases where the OS uses platform APIs to perform cryptographic
-              signing. If <i>implement cryptographic signing</i> is selected, then
-              additional requirements from <linkref linkend="FCS_COP.1(3)"/> shall be included in
-              the <abbr linkend="ST"/>.
-            </note>
-            <aactivity>
-              If <b>perform no cryptographic signing</b> is selected, the evaluator shall inspect the 
-			  application and its developer documentation and verify that the OS needs no
-              cryptographic hashing services. 
-			  <br/>
-              If <b>implement cryptographic signing</b> is selected, the evaluator shall ensure
-			  that additional <linkref linkend="FCS_COP.1(3)"/> elements are included in the <abbr linkend="ST"/>.
-			  <br/>
-			  If <b>invoke platform-provided cryptographic cryptographic signing</b> is selected, 
-			  the evaluator shall examine the TSS of the
-              application to verify that it describes how the platform's digital signature
-              functionality is invoked for each operation for which it is used in the OS, 
-			  including digest sizes used.
-              </aactivity>
-          </f-element>
-        </f-component>
--->
         <f-component id="fcs_cop.1(1)" name="Cryptographic Operation - Encryption/Decryption">
           <f-element id="fcs_cop.1.1(1)">
             <title>The OS shall perform encryption/decryption in accordance with a specified
@@ -1365,6 +1056,167 @@ functionality (such as these)
               message data. The evaluator shall have the OS generate HMAC tags for these sets of
               test data. The resulting MAC tags shall be compared to the result of generating HMAC
               tags with the same key and IV using a known-good implementation. </aactivity>
+          </f-element>
+        </f-component>
+        <f-component id="fcs_dtls_ext.1" name="DTLS Implementation">
+          <f-element id="fcs_dtls_ext.1.1">
+            <title>The OS shall implement the DTLS protocol in accordance with 
+              <selectables>
+                <selectable>DTLS 1.0 (RFC 4347)</selectable>
+                <selectable>DTLS 1.2 (RFC 6347)</selectable>
+              </selectables>.
+            </title>
+            <aactivity>
+              <testlist>
+                <test> The evaluator shall attempt to establish a connection with a DTLS server,
+                  observe the traffic with a packet analyzer, and verify that the connection
+                  succeeds and that the traffic is identified as DTLS. </test>
+                <br/> Other tests are performed in conjunction with the Assurance Activity listed
+                for <linkref linkend="FCS_TLSC_EXT.1"/>. </testlist>
+            </aactivity>
+          </f-element>
+          <f-element id="fcs_dtls_ext.1.2">
+            <title>The OS shall implement the requirements in TLS (<linkref linkend="FCS_TLSC_EXT.1"
+            />) for the DTLS implementation, except where variations are allowed according to DTLS
+              1.2 (RFC 6347). </title>
+            <note role="application"> Differences between DTLS 1.2 and TLS 1.2 are outlined in RFC
+              6347; otherwise the protocols are the same. In particular, for the applicable security
+              characteristics defined for the <abbr linkend="TSF"/>, the two protocols do not
+              differ. Therefore, all application notes and assurance activities that are listed for
+              <abbr title="Transport Layer Security">TLS</abbr> apply to the DTLS implementation. </note>
+            <aactivity> The evaluator shall perform the assurance activities listed for <linkref
+              linkend="FCS_TLSC_EXT.1"/>. </aactivity>
+          </f-element>
+        </f-component>
+        <f-component id="fcs_rbg_ext.1" name="Random Bit Generation">
+          <f-element id="fcs_rbg_ext.1.1">
+            <title> 
+              The OS shall perform all deterministic random bit generation (DRBG) services in
+              accordance with 
+              <selectables atleastone="yes" linebreak="yes">
+                <selectable>NIST Special Publication 800-90A using 
+                  <selectables>
+                    <selectable>Hash_DRBG (any)</selectable>
+                    <selectable>HMAC_DRBG (any)</selectable>
+                    <selectable>CTR_DRBG (AES)</selectable>
+                  </selectables>
+                </selectable>
+                <selectable>FIPS Pub 140-2 Annex C: X9.31 Appendix 2.4 using AES</selectable>
+              </selectables>. 
+            </title>
+            <note role="application">The <abbr linkend="ST"/> author should select the
+              standard to which the RBG services comply (either SP 800-90A or FIPS 140-2 Annex C).
+              <br/> SP 800-90A contains three different methods of generating random numbers; each
+              of these, in turn, depends on underlying cryptographic primitives (hash
+              functions/ciphers). The <abbr linkend="ST"/> author will select the function used (if
+              SP 800-90A is selected), and include the specific underlying cryptographic primitives
+              used in the requirement or in the TSS. While any of the identified hash functions
+              (SHA-1, SHA-224, SHA-256, SHA-384, SHA-512) are allowed for Hash_DRBG or HMAC_DRBG,
+              only AES-based implementations for CTR_DRBG are allowed. <br/> Note that for FIPS Pub
+              140-2 Annex C, currently only the method described in NIST-Recommended Random Number
+              Generator based on ANSI X9.31 Appendix A.2.4, Section 3 is valid. Use of this DRBG is
+              disallowed after 2015 per NIST SP 800-131A. The PP will be updated to reflect this;
+              however, developers should begin transitioning from this DRBG as soon as possible. </note>
+            <aactivity>The evaluator shall perform the following tests, depending on the standard to
+              which the RBG conforms. <br/> Implementations Conforming to FIPS 140-2 Annex C. <br/>
+              The reference for the tests contained in this section is The Random Number Generator
+              Validation System (RNGVS). The evaluators shall conduct the following two tests. Note
+              that the "expected values" are produced by a reference implementation of the algorithm
+              that is known to be correct. Proof of correctness is left to each Scheme. <testlist>
+                <test>The evaluators shall perform a Variable Seed Test. The evaluators shall
+                  provide a set of 128 (Seed, DT) pairs to the <abbr linkend="TSF"/> RBG function,
+                  each 128 bits. The evaluators shall also provide a key (of the length appropriate
+                  to the AES algorithm) that is constant for all 128 (Seed, DT) pairs. The DT value
+                  is incremented by 1 for each set. The seed values shall have no repeats within the
+                  set. The evaluators ensure that the values returned by the <abbr linkend="TSF"/>
+                  match the expected values. </test>
+                <test> The evaluators shall perform a Monte Carlo Test. For this test, they supply
+                  an initial Seed and DT value to the <abbr linkend="TSF"/> RBG function; each of
+                  these is 128 bits. The evaluators shall also provide a key (of the length
+                  appropriate to the AES algorithm) that is constant throughout the test. The
+                  evaluators then invoke the <abbr linkend="TSF"/> RBG 10,000 times, with the DT
+                  value being incremented by 1 on each iteration, and the new seed for the
+                  subsequent iteration produced as specified in NIST-Recommended Random Number
+                  Generator based on ANSI X9.31 Appendix A.2.4 Using the 3-Key Triple DES and AES
+                  Algorithms, Section 3. The evaluators ensure that the 10,000th value produced
+                  matches the expected value. </test>
+              </testlist> Implementations Conforming to NIST Special Publication 800-90A <testlist>
+                <test> The evaluator shall perform 15 trials for the RNG implementation. If the RNG
+                  is configurable, the evaluator shall perform 15 trials for each configuration. The
+                  evaluator shall also confirm that the operational guidance contains appropriate
+                  instructions for configuring the RNG functionality. <br/> If the RNG has
+                  prediction resistance enabled, each trial consists of (1) instantiate DRBG, (2)
+                  generate the first block of random bits (3) generate a second block of random bits
+                  (4) uninstantiate. The evaluator verifies that the second block of random bits is
+                  the expected value. The evaluator shall generate eight input values for each
+                  trial. The first is a count (0 – 14). The next three are entropy input, nonce, and
+                  personalization string for the instantiate operation. The next two are additional
+                  input and entropy input for the first call to generate. The final two are
+                  additional input and entropy input for the second call to generate. These values
+                  are randomly generated. “generate one block of random bits” means to generate
+                  random bits with number of returned bits equal to the Output Block Length (as
+                  defined in NIST SP 800-90A). <br/> If the RNG does not have prediction resistance,
+                  each trial consists of (1) instantiate DRBG, (2) generate the first block of
+                  random bits (3) reseed, (4) generate a second block of random bits (5)
+                  uninstantiate. The evaluator verifies that the second block of random bits is the
+                  expected value. The evaluator shall generate eight input values for each trial.
+                  The first is a count (0 – 14). The next three are entropy input, nonce, and
+                  personalization string for the instantiate operation. The fifth value is
+                  additional input to the first call to generate. The sixth and seventh are
+                  additional input and entropy input to the call to reseed. The final value is
+                  additional input to the second generate call. <br/> The following paragraphs
+                  contain more information on some of the input values to be generated/selected by
+                  the evaluator. <br/>
+                  <b>Entropy input:</b> the length of the entropy input value must equal the seed
+                  length. <br/>
+                  <b>Nonce:</b> If a nonce is supported (CTR_DRBG with no Derivation Function does
+                  not use a nonce), the nonce bit length is one-half the seed length. <br/>
+                  <b>Personalization string:</b> The length of the personalization string must be
+                  less than or equal to seed length. If the implementation only supports one
+                  personalization string length, then the same length can be used for both values.
+                  If more than one string length is support, the evaluator shall use personalization
+                  strings of two different lengths. If the implementation does not use a
+                  personalization string, no value needs to be supplied. <br/>
+                  <b>Additional input:</b> the additional input bit lengths have the same defaults
+                  and restrictions as the personalization string lengths. </test>
+              </testlist>
+            </aactivity>
+          </f-element>
+          
+          <f-element id="fcs_rbg_ext.1.2">
+            <selection-depends req="fcs_rbg_ext.1.1"/>
+            <title>
+              The deterministic RBG used by the OS shall be seeded by an entropy source that
+              accumulates entropy from 
+              <selectables linebreak="yes">
+                <selectable>a software-based noise source</selectable>
+                <selectable>TSF-hardware-based noise source</selectable>
+              </selectables>
+              with a minimum of
+              <selectables linebreak="yes">
+                <selectable>128 bits</selectable>
+                <selectable>256 bits</selectable>
+              </selectables>
+              of entropy at least equal to the greatest security strength (according to NIST SP 800-57) 
+              of the keys and hashes that it will generate. 
+            </title>
+            <note role="application">For the first
+              selection in this requirement, the <abbr linkend="ST"/> author selects 'software-based noise source' if 
+              any additional noise sources are used as input to the DRBG.
+              <br />In the second selection in this requirement, the <abbr linkend="ST"/> author selects the 
+              appropriate number of bits of entropy that corresponds to the greatest security 
+              strength of the algorithms included in the <abbr linkend="ST"/>. Security strength is defined in Tables 
+              2 and 3 of NIST SP 800-57A. For example, if the implementation includes 2048-bit RSA 
+              (security strength of 112 bits), AES 128 (security strength 128 bits), and 
+              HMAC-SHA-256 (security strength 256 bits), then the <abbr linkend="ST"/> author would select 256 bits.
+            </note>
+            <aactivity>Documentation shall be produced - and the evaluator shall perform the
+              activities - in accordance with <appref linkend="entropyappendix"/> and
+              the <a href="https://www.niap-ccevs.org/Documents_and_Guidance/ccevs/Entropy%20Documentation%20and%20Assessment%20Clarification.pdf">
+                Clarification to the Entropy Documentation and Assessment Annex</a>.
+              <br />In the future, specific statistical testing (in line with NIST SP 800-90B) will 
+              be required to verify the entropy estimates.
+            </aactivity>
           </f-element>
         </f-component>
         <f-component id="fcs_sto_ext.1" name="Storage of Secrets">
@@ -1741,127 +1593,22 @@ functionality (such as these)
             </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fcs_dtls_ext.1" name="DTLS Implementation">
-          <f-element id="fcs_dtls_ext.1.1">
-            <title>The OS shall implement the DTLS protocol in accordance with 
-              <selectables>
-                <selectable>DTLS 1.0 (RFC 4347)</selectable>
-                <selectable>DTLS 1.2 (RFC 6347)</selectable>
-              </selectables>.
-            </title>
-            <aactivity>
-              <testlist>
-                <test> The evaluator shall attempt to establish a connection with a DTLS server,
-                  observe the traffic with a packet analyzer, and verify that the connection
-                  succeeds and that the traffic is identified as DTLS. </test>
-                <br/> Other tests are performed in conjunction with the Assurance Activity listed
-                for <linkref linkend="FCS_TLSC_EXT.1"/>. </testlist>
-            </aactivity>
-          </f-element>
-          <f-element id="fcs_dtls_ext.1.2">
-            <title>The OS shall implement the requirements in TLS (<linkref linkend="FCS_TLSC_EXT.1"
-              />) for the DTLS implementation, except where variations are allowed according to DTLS
-              1.2 (RFC 6347). </title>
-            <note role="application"> Differences between DTLS 1.2 and TLS 1.2 are outlined in RFC
-              6347; otherwise the protocols are the same. In particular, for the applicable security
-              characteristics defined for the <abbr linkend="TSF"/>, the two protocols do not
-              differ. Therefore, all application notes and assurance activities that are listed for
-                <abbr title="Transport Layer Security">TLS</abbr> apply to the DTLS implementation. </note>
-            <aactivity> The evaluator shall perform the assurance activities listed for <linkref
-                linkend="FCS_TLSC_EXT.1"/>. </aactivity>
-          </f-element>
-        </f-component>
       </subsection>
-<!--
-          <f-element id="fmt_mof.1.1">
-            <title> The OS shall restrict the ability to modify the behavior of the functions
-              password-based user authentication to <assignable> rules that need to be satisfied for
-                other users to perform the operations </assignable> by allowing those users to
-              specify rules for acceptable passwords that: <ul>
-                <li>allow for uppercase characters, lowercase characters, digits, and special
-                  characters to be used in passwords </li>
-                <li>define a minimum password length of 8 characters or more (at least up to 15
-                  characters)</li>
-                <li>define that passwords must have at least one digit and one special character </li>
-                <li>reject passwords used by the same user before up to a history of at least 6
-                  passwords</li>
-              </ul>
-            </title>
-            <aactivity> The evaluator shall configure the OS to require passwords contain: <ul>
-                <li>Upper case letters</li>
-                <li>Lower case letters</li>
-                <li>Numbers</li>
-                <li>Special Characters</li>
-              </ul> The evaluator shall configure the OS to require passwords of length 8 characters
-              or more. <testlist>
-                <test> The evaluator will attempt to set the following passwords for a user account: <ul>
-                    <li>password</li>
-                    <li>Password</li>
-                    <li>123456</li>
-                    <li>!@#$%^</li>
-                  </ul> The evaluator will ensure that none of these passwords are accepted by the
-                  OS due to the requirements for upper and lower case letters, numbers, special
-                  characters, password length, and password history. </test>
-                <test> The evaluator will attempt to set the following passwords for a user account: <ul>
-                    <li>Eight12!</li>
-                    <li>Nine1234!</li>
-                  </ul> The evaluator will ensure that these passwords are accepted by the OS for
-                  the user as they meet the requirements for upper and lower case letters, numbers,
-                  special characters, password length, and password history. </test>
-                <test> The evaluator will set a specific user's password to the following passwords
-                  in order <ul>
-                    <li>Eight12!</li>
-                    <li>Eight23!</li>
-                    <li>Eight34!</li>
-                    <li>Eight45!</li>
-                    <li>Eight56!</li>
-                    <li>Eight67!</li>
-                  </ul> The evaluator will then attempt to reset the password of that user to the
-                  following passwords: <ul>
-                    <li>Eight12!</li>
-                    <li>Eight23!</li>
-                    <li>Eight34!</li>
-                    <li>Eight45!</li>
-                    <li>Eight56!</li>
-                    <li>Eight67!</li>
-                  </ul> the evaluator will ensure that none of these passwords are accepted due to
-                  the password history constraint of not reusing the last six passwords. </test>
-              </testlist> Other tests are performed in conjunction with the Assurance Activity
-              listed for <linkref linkend="FCS_TLSC_EXT.1"/>. </aactivity>
-          </f-element>
-
-          <f-element id="fmt_mof.1.2">
-            <title> 
-	      The OS shall restrict the ability to modify the <abbr linkend="DAR"/> protection configuration 
-	      to 
-	      <assignable> rules that need to be satisfied for
-              users to configure <abbr linkend="DAR"/> </assignable> 
-	      by allowing those users to
-	      specify conditions underwhich <abbr linkend="DAR"/> encryption/decryption and wiping shall occur.
-            </title>
-            <aactivity>
-	    </aactivity>
-	  </f-element>
-        </f-component>
--->
       <subsection title="User Data Protection (FDP)" id="fdp">
         <f-component id="fdp_acf_ext.1" name="Access Controls for Protecting User Data">
           <f-element id="fdp_acf_ext.1.1">
             <title> The OS shall implement access controls which prohibit unprivileged subjects from
-              modifying objects owned by other subjects including:<ul>
+              modifying objects owned by other subjects including:
+              <ul>
                 <li>files</li>
-                <li>
-                  <selectables>
-                    <selectable>other objects</selectable>
-                  </selectables>
-                </li>
+                <li><assignable>other objects</assignable></li>
               </ul>
             </title>
             <note role="application">Objects owned by one user in a multi user system should be protected from
             modification by another user in that system.  Achieving such an access control
             policy may depend upon system configuration.</note>
             <aactivity>
-              The evaluator shall create two new user accounts on the system with different credentials.
+              The evaluator shall create two new standard user user accounts on the system with different credentials.
               <testlist>
                 <test>
                   The evaluator shall authenticate to the system as the first user and create a file within their user directory. The evaluator shall then
@@ -1880,10 +1627,37 @@ functionality (such as these)
                 <test>
                   The evaluator shall authenticate to the system as the first user and attempt to delete the file created in their home directory.
                   The evaluator shall ensure that the deletion of the file is accepted.
-                </test>                  
+                </test>
+                <test>
+                  If any other objects have been selected, the evaluator shall attempt to modify and delete them while authenticated to the system with a standard user that does not
+                  own the object being tested. The evaluator shall ensure that both the modification and deletion activities are denied.
+                </test>
+                <test>
+                  If any other objects have been selected, the evaluator shall attempt to modify and delete them while authenticated to the system with a standard user that
+                  owns the object being tested. The evaluator shall ensure that both the modification and deletion activities are denied.
+                </test>
               </testlist>
             </aactivity>
           </f-element>          
+        </f-component>
+        <f-component id="fdp_ifc_ext.1" name="Information flow control ">
+          <f-element id="fdp_ifc_ext.1.1">
+            <title> The TSF shall <selectables linebreak="yes">
+              <selectable>provide an interface to VPN applications to enable all IP traffic (other
+                than IP traffic required to establish the VPN connection) to flow through the
+                IPsec VPN client.</selectable>
+              <selectable>enable all IP traffic (other than IP traffic required to establish the
+                VPN connection) to flow through the IPsec VPN client.</selectable>
+            </selectables>
+            </title>
+            <aactivity> The evaluator shall verify that the TSS section of the ST describes the
+              routing of IP traffic through processes on the TSF when a VPN client is enabled. The
+              evaluator shall ensure that the description indicates which traffic does not go
+              through the VPN and which traffic does and that a configuration exists for each
+              baseband protocol in which only the traffic identified by the ST author as necessary
+              for establishing the VPN connection (IKE traffic and perhaps HTTPS or DNS traffic) is
+              not encapsulated by the VPN protocol (IPsec). </aactivity>
+          </f-element>
         </f-component>
       </subsection>
       <subsection title="Security Management (FMT)" id="fmt">
@@ -1972,8 +1746,33 @@ functionality (such as these)
 	  </f-element>
 	</f-component>
       </subsection>
-
       <subsection title="Protection of the TSF (FPT)" id="fpt">
+        <f-component id="fpt_acf_ext.1" name="Access controls">
+          <f-element id="fpt_acf_ext.1.1">
+            <title> The OS shall implement access controls which prohibit unprivileged subjects from
+              modifying: <ul>
+                <li>Bootloader</li>
+                <li>Kernel drivers/modules</li>
+                <li>Security audit logs</li>
+                <li>Shared libraries</li>
+                <li>System configuration files</li>
+                <li><assignable>other components</assignable></li>
+              </ul>
+            </title>
+            <aactivity>The evaluator will ensure that the following tests result in a negative
+              outcome (I.E., the action results in the OS denying the evaluator permission to
+              complete the action): 
+              <testlist>
+                <test>The evaluator shall attempt to modify the boot loader</test>
+                <test>The evaluator shall attempt to modify kernel drivers and modules</test>
+                <test>The evaluator shall attempt to remove security audit logs generated by the logging subsystem</test>
+                <test>The evaluator shall attempt to modify shared libraries that are used throughout the system</test>
+                <test>The evaluator shall attempt to modify system configuration files</test>
+                <test>The evaluator shall attempt to modify any additional components selected</test>
+              </testlist>
+            </aactivity>
+          </f-element>
+        </f-component>
         <f-component id="fpt_aslr_ext.1" name="Address Space Layout Randomization">
           <f-element id="fpt_aslr_ext.1.1">
             <title>The OS shall always randomize process, kernel, and module address space memory locations except for
@@ -1990,29 +1789,137 @@ functionality (such as these)
 	        </aactivity>
           </f-element>
 		 </f-component>
-
-        <f-component id="fpt_w^x_ext.1" name="Write XOR Execute Memory Pages">
-         <f-element id="fpt_w^x_ext.1.1" status="objective">
-            <title> The OS shall prevent allocation of any memory region with both write and 
-                execute permissions except for <assignable>list of exceptions</assignable>.
+        <f-component id="fpt_php_ext.1" name="External Interface Controls ">
+          <f-element id="fpt_php_ext.1.1">
+            <title> The OS shall be able to constrain the set of external interfaces (physical and logical) and
+              services exposed to untrusted networks and devices: 
+              <selectables linebreak="yes">
+                <selectable>WiFi</selectable>
+                <selectable>Bluetooth</selectable>
+                <selectable>NFC</selectable>
+                <selectable>USB</selectable>
+                <selectable>FireWire</selectable>
+                <selectable><assignable>list of other external interfaces</assignable></selectable>
+              </selectables>
             </title>
-            <note role="application">Requesting a memory mapping with both write and execute
-              permissions subverts the platform protection provided by <abbr linkend="DEP"/>. If the
-              OS provides no exceptions (such as for just-in-time compilation), then "no exceptions"
-              should be indicated in the assignment.
-              </note>
-            <aactivity> 
-	      The evaluator shall verify that no memory mapping requests can be made with
-              write and execute permissions.
+            <note role="application">Different hardware platforms will present different external
+              interfaces. The selection of tests to run against an OS will vary depending on the
+              hardware the OS is running on. However, where an OS supports an external interface
+              type (E.G., FireWire) it is important that the OS also offers the ability to disable
+              that interface. </note>
+            <aactivity>The evaluator will ensure that the following tests (where applicable)
+              succeed: <testlist>
+                <test> The evaluator shall attempt to connect to a Wireless network and ensure that the OS successfully connects and allows network traffic to flow.</test>
+                <test> The evaluator shall connect to a Wireless network and then disable the WiFi
+                  network interface from within the OS. The evaluator will ensure that the WiFi
+                  connection is terminated and that there are no Wireless emanations from the
+                  device. </test>
+                <test> The evaluator shall attempt to pair, and connect, a Bluetooth device to the OS and ensure that the OS successfully connects to the device.</test>
+                <test> The evaluator shall pair, and connect, a Bluetooth device to the OS and then
+                  disable the Bluetooth interface within the OS. The evaluator will ensure that the
+                  Bluetooth connection is terminated and that there are no Bluetooth emanations from
+                  the device. </test>
+                <test> The evaluator shall attempt to pair, and connect, a NFC device to the OS and ensure that the OS successfully connects to the device.</test>
+                <test> The evaluator shall pair, and connect, an NFC device to the OS and then disable
+                  the NFC interface within the OS. The evaluator will ensure that the NFC connection
+                  is terminated and that there are no NFC emanations from the device. </test>
+                <test> The evaluator shall connect a USB device to the OS and then disable the USB
+                  interface within the OS. The evaluator will ensure that the USB device no longer
+                  functions within the OS. </test>
+                <test> The evaluator shall connect a FireWire device to the OS and ensure that the OS successfully connects to the device.</test>
+                <test> The evaluator shall connect a FireWire device to the OS and then disable the
+                  FireWire interface within the OS. The evaluator will ensure that the FireWire
+                  device no longer functions within the OS. </test>
+                <test>If any additional components have been listed in the selection, the evaluator shall connect each component to the OS and ensure that the OS successfully connects to it.</test>
+                <test> If any additional components have been listed in the selection, the evaluator
+                  shall connect each component to the OS and then disable the component interface
+                  within the OS. The evaluator will ensure that the component device no longer
+                  functions within the OS. </test>
+              </testlist>
             </aactivity>
           </f-element>
-		 </f-component>
-         <f-component id="fpt_sbop_ext.1" name="Stack Buffer Overflow Protection">
+        </f-component>
+        <f-component id="fpt_sbop_ext.1" name="Stack Buffer Overflow Protection">
           <f-element id="fpt_sbop_ext.1.1">
             <title>The OS shall implement stack-based buffer overflow protections.</title>
             <aactivity>The evaluator shall ensure that the <abbr linkend="TSS"/> section of the
                 <abbr linkend="ST"/> describes how kernel stacks, and the userspace stacks of security-relevant
                OS userspace processes, implement stack-based buffer overflow protections. 
+            </aactivity>
+          </f-element>
+        </f-component>
+        <f-component id="fpt_srp_ext.1" name="Software Restriction Policies">
+          <f-element id="fpt_srp_ext.1.1" status="objective">
+            <title> The OS shall restrict execution to only programs which match an administrator-specified
+              <selectables linebreak="yes">
+                <selectable>file path</selectable>
+                <selectable>file digital signature</selectable>
+                <selectable>version</selectable>
+                <selectable>hash</selectable>
+                <selectable><assignable>other characteristics</assignable></selectable>
+              </selectables>
+            </title>
+            <note role="application">
+              The assignment permits implementations which provide a low 
+              level of granularity such as a volume.  The restriction is only against direct execution of 
+              executable programs.  It does not forbid interpreters which may take data as an input, even if
+              this data can subsequently result in arbitrary computation.
+            </note>
+            <aactivity>For each selection specified in the ST, the evaluator will ensure that the corresponding tests result in a negative
+              outcome (I.E., the action results in the OS denying the evaluator permission to
+              complete the action): 
+              <testlist>
+                <test>
+                  The evaluator shall configure the OS to only allow code execution from the core
+                  OS directories. The evaluator will then attempt to execute code from a directory
+                  that is in the allowed list. The evaluator will ensure that the code they
+                  attempted to execute has been executed.
+                </test>                
+                <test>
+                  The evaluator shall configure the OS to only allow code execution from the core
+                  OS directories. The evaluator will then attempt to execute code from a directory
+                  that is not in the allowed list. The evaluator will ensure that the code they
+                  attempted to execute has not been executed.
+                </test>
+                <test>
+                  The evaluator shall configure the OS to only allow code that has been signed by
+                  the OS vendor to execute. The evaluator will then attempt to execute code signed
+                  by the OS vendor. The evaluator will ensure that the code they
+                  attempted to execute has been executed.
+                </test>                
+                <test>
+                  The evaluator shall configure the OS to only allow code that has been signed by
+                  the OS vendor to execute. The evaluator will then attempt to execute code signed
+                  by another digital authority. The evaluator will ensure that the code they
+                  attempted to execute has not been executed.
+                </test>
+                <test>
+                  The evaluator shall configure the OS to allow execution of a specific
+                  application based on version. The evaluator will then attempt to execute the same
+                  version of the application. The evaluator will ensure that the code they attempted
+                  to execute has been executed.
+                </test>                
+                <test>
+                  The evaluator shall configure the OS to allow execution of a specific
+                  application based on version. The evaluator will then attempt to execute an older
+                  version of the application. The evaluator will ensure that the code they attempted
+                  to execute has not been executed.
+                </test>
+                <test>
+                  The evaluator shall configure the OS to allow execution based on the hash of the application
+                  executable. The evaluator will then attempt to execute 
+                  the application with the matching hash. The evaluator will
+                  ensure that the code they attempted to execute has been executed.
+                </test>
+                <test>
+                  The evaluator shall configure the OS to allow execution based on the hash of the application
+                  executable. The evaluator will modify the
+                  application in such a way that the application hash is changed. The evaluator 
+                  will then attempt to execute the application with the matching hash. The evaluator will
+                  ensure that the code they attempted to execute has not been executed.
+                </test>
+              </testlist>
+              
             </aactivity>
           </f-element>
         </f-component>
@@ -2169,182 +2076,23 @@ functionality (such as these)
             </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fpt_acf_ext.1" name="Access controls">
-          <f-element id="fpt_acf_ext.1.1">
-            <title> The OS shall implement access controls which prohibit unprivileged subjects from
-              modifying: <ul>
-                <li>Bootloader</li>
-                <li>Kernel drivers/modules</li>
-                <li>Security audit logs</li>
-                <li>Shared libraries</li>
-                <li>System configuration files</li>
-                <li>
-                  <selectables>
-                    <selectable>other components</selectable>
-                  </selectables>
-                </li>
-              </ul>
+        <f-component id="fpt_w^x_ext.1" name="Write XOR Execute Memory Pages">
+          <f-element id="fpt_w^x_ext.1.1" status="objective">
+            <title> The OS shall prevent allocation of any memory region with both write and 
+              execute permissions except for <assignable>list of exceptions</assignable>.
             </title>
-            <aactivity>The evaluator will ensure that the following tests result in a negative
-              outcome (I.E., the action results in the OS denying the evaluator permission to
-              complete the action): 
-			       <testlist>
-               <test>The evaluator shall attempt to modify the boot loader</test>
-			         <test>The evaluator shall attempt to modify kernel drivers and modules</test>
-			         <test>The evaluator shall attempt to remove security audit logs generated by the logging subsystem</test>
-               <test>The evaluator shall attempt to modify shared libraries that are used throughout the system</test>
-			         <test>The evaluator shall attempt to modify system configuration files</test>
-              </testlist>
-            </aactivity>
-          </f-element>
-        </f-component>
-        <f-component id="fpt_php_ext.1" name="External Interface Controls ">
-          <f-element id="fpt_php_ext.1.1">
-            <title> The OS shall be able to constrain the set of ports (physical and logical) and
-              services exposed to untrusted networks and devices: 
-              <selectables linebreak="yes">
-                <selectable>WiFi</selectable>
-                <selectable>Bluetooth</selectable>
-                <selectable>NFC</selectable>
-                <selectable>USB</selectable>
-                <selectable>FireWire</selectable>
-                <selectable><assignable>list of other ports</assignable></selectable>
-              </selectables>
-            </title>
-            <note role="application">Different hardware platforms will present different external
-              interfaces. The selection of tests to run against an OS will vary depending on the
-              hardware the OS is running on. However, where an OS supports an external interface
-              type (E.G., FireWire) it is important that the OS also offers the ability to disable
-              that interface. </note>
-            <aactivity>The evaluator will ensure that the following tests (where applicable)
-              succeed: <testlist>
-                <test> The evaluator shall attempt to connect to a Wireless network and ensure that the OS successfully connects and allows network traffic to flow.</test>
-                <test> The evaluator shall connect to a Wireless network and then disable the WiFi
-                  network interface from within the OS. The evaluator will ensure that the WiFi
-                  connection is terminated and that there are no Wireless emanations from the
-                  device. </test>
-                <test> The evaluator shall attempt to pair, and connect, a Bluetooth device to the OS and ensure that the OS successfully connects to the device.</test>
-                <test> The evaluator shall pair, and connect, a Bluetooth device to the OS and then
-                  disable the Bluetooth interface within the OS. The evaluator will ensure that the
-                  Bluetooth connection is terminated and that there are no Bluetooth emanations from
-                  the device. </test>
-                <test> The evaluator shall attempt to pair, and connect, a NFC device to the OS and ensure that the OS successfully connects to the device.</test>
-                <test> The evaluator shall pair, and connect, an NFC device to the OS and then disable
-                  the NFC interface within the OS. The evaluator will ensure that the NFC connection
-                  is terminated and that there are no NFC emanations from the device. </test>
-                <test> The evaluator shall connect a USB device to the OS and then disable the USB
-                  interface within the OS. The evaluator will ensure that the USB device no longer
-                  functions within the OS. </test>
-                <test> The evaluator shall connect a FireWire device to the OS and ensure that the OS successfully connects to the device.</test>
-                <test> The evaluator shall connect a FireWire device to the OS and then disable the
-                  FireWire interface within the OS. The evaluator will ensure that the FireWire
-                  device no longer functions within the OS. </test>
-                <test>If any additional components have been listed in the selection, the evaluator shall connect each component to the OS and ensure that the OS successfully connects to it.</test>
-                <test> If any additional components have been listed in the selection, the evaluator
-                  shall connect each component to the OS and then disable the component interface
-                  within the OS. The evaluator will ensure that the component device no longer
-                  functions within the OS. </test>
-              </testlist>
-            </aactivity>
-          </f-element>
-        </f-component>
-        <f-component id="fpt_srp_ext.1" name="Software Restriction Policies">
-          <f-element id="fpt_srp_ext.1.1">
-            <title> The OS shall restrict execution to only programs which match an administrator-specified
-              <selectables linebreak="yes">
-                <selectable>file path</selectable>
-                <selectable>file digital signature</selectable>
-                <selectable>version</selectable>
-                <selectable>hash</selectable>
-                <selectable><assignable>other characteristics</assignable></selectable>
-              </selectables>
-            </title>
-            <note role="application">
-              The assignment permits implementations which provide a low 
-              level of granularity such as a volume.  The restriction is only against direct execution of 
-              executable programs.  It does not forbid interpreters which may take data as an input, even if
-              this data can subsequently result in arbitrary computation.
+            <note role="application">Requesting a memory mapping with both write and execute
+              permissions subverts the platform protection provided by <abbr linkend="DEP"/>. If the
+              OS provides no exceptions (such as for just-in-time compilation), then "no exceptions"
+              should be indicated in the assignment.
             </note>
-            <aactivity>For each selection specified in the ST, the evaluator will ensure that the corresponding tests result in a negative
-              outcome (I.E., the action results in the OS denying the evaluator permission to
-              complete the action): 
-              <testlist>
-                <test>
-                  The evaluator shall configure the OS to only allow code execution from the core
-                  OS directories. The evaluator will then attempt to execute code from a directory
-                  that is in the allowed list. The evaluator will ensure that the code they
-                  attempted to execute has been executed.
-                </test>                
-                <test>
-                  The evaluator shall configure the OS to only allow code execution from the core
-                  OS directories. The evaluator will then attempt to execute code from a directory
-                  that is not in the allowed list. The evaluator will ensure that the code they
-                  attempted to execute has not been executed.
-                </test>
-                <test>
-                  The evaluator shall configure the OS to only allow code that has been signed by
-                  the OS vendor to execute. The evaluator will then attempt to execute code signed
-                  by the OS vendor. The evaluator will ensure that the code they
-                  attempted to execute has been executed.
-                </test>                
-                <test>
-                  The evaluator shall configure the OS to only allow code that has been signed by
-                  the OS vendor to execute. The evaluator will then attempt to execute code signed
-                  by another digital authority. The evaluator will ensure that the code they
-                  attempted to execute has not been executed.
-                </test>
-                <test>
-                  The evaluator shall configure the OS to allow execution of a specific
-                  application based on version. The evaluator will then attempt to execute the same
-                  version of the application. The evaluator will ensure that the code they attempted
-                  to execute has been executed.
-                </test>                
-                <test>
-                  The evaluator shall configure the OS to allow execution of a specific
-                  application based on version. The evaluator will then attempt to execute an older
-                  version of the application. The evaluator will ensure that the code they attempted
-                  to execute has not been executed.
-                </test>
-                <test>
-                  The evaluator shall configure the OS to allow execution based on the hash of the application
-                  executable. The evaluator will then attempt to execute 
-                  the application with the matching hash. The evaluator will
-                  ensure that the code they attempted to execute has been executed.
-                </test>
-                <test>
-                  The evaluator shall configure the OS to allow execution based on the hash of the application
-                  executable. The evaluator will modify the
-                  application in such a way that the application hash is changed. The evaluator 
-                  will then attempt to execute the application with the matching hash. The evaluator will
-                  ensure that the code they attempted to execute has not been executed.
-                </test>
-              </testlist>
-              
+            <aactivity> 
+              The evaluator shall verify that no memory mapping requests can be made with
+              write and execute permissions.
             </aactivity>
           </f-element>
         </f-component>
-      </subsection>
-      <subsection title="User Data Protection (FDP)" id="fdp">
-        <f-component id="fdp_ifc_ext.1" name="Information flow control ">
-          <f-element id="fdp_ifc_ext.1.1">
-            <title> The TSF shall <selectables linebreak="yes">
-                <selectable>provide an interface to VPN applications to enable all IP traffic (other
-                  than IP traffic required to establish the VPN connection) to flow through the
-                  IPsec VPN client.</selectable>
-                <selectable>enable all IP traffic (other than IP traffic required to establish the
-                  VPN connection) to flow through the IPsec VPN client.</selectable>
-              </selectables>
-            </title>
-            <aactivity> The evaluator shall verify that the TSS section of the ST describes the
-              routing of IP traffic through processes on the TSF when a VPN client is enabled. The
-              evaluator shall ensure that the description indicates which traffic does not go
-              through the VPN and which traffic does and that a configuration exists for each
-              baseband protocol in which only the traffic identified by the ST author as necessary
-              for establishing the VPN connection (IKE traffic and perhaps HTTPS or DNS traffic) is
-              not encapsulated by the VPN protocol (IPsec). </aactivity>
-          </f-element>
-        </f-component>
-      </subsection>
+      </subsection>    
       <subsection title="Audit Data Generation (FAU)" id="fau">
         <f-component id="fau_gen.1" name="Audit Data Generation">
           <f-element id="fau_gen.1.1">
@@ -2353,13 +2101,15 @@ functionality (such as these)
               <ul>
                 <li>Authentication events (Success/Failure);</li>
                 <li>Use of privileged/special rights events (Successful and unsuccessful security, audit, and configuration changes);</li>
-                <li>Administrator or root-level access events (Success/Failure);</li>
                 <li>Privilege or role escalation events (Success/Failure);</li>
                 <selectables linebreak='yes'>
                   <selectable>File and object events (Successful and unsuccessful attempts to create, access, delete, modify, modify permissions)</selectable>
                   <selectable>User and Group management events (Successful and unsuccessful add, delete, modify, disable</selectable>
                   <selectable>Audit and log data access events (Success/Failure)</selectable>
+                  <selectable>Cryptological verification of update events (Success/Failure)</selectable>
+                  <selectable>Software restriction policy execution events (Success/Failure) </selectable>
                   <selectable>System reboot, restart, and shutdown events (Success/Failure)</selectable>
+                  <selectable>Administrator or root-level access events (Success/Failure)</selectable>
                   <selectable>All auditable events for the "minimal" level of audit; and</selectable>
                   <selectable> 
                     <assignable>other specifically defined auditable events</assignable>.
@@ -2500,15 +2250,33 @@ functionality (such as these)
             <title> When the defined number of unsuccessful authentication attempts for an account has been met,
               the OS shall: <assignable>list of actions</assignable>. 
             </title>
-            <aactivity> The evaluator shall attempt to authenticate repeatedly to the system with a
-              known bad password. Once the defined number of failed authentication attempts has been
-              reached the evaluator shall ensure that the account that was being used for testing
-              has had the actions detailed in the assignment list above applied to it. The evaluator shall ensure that 
-              an event has been logged to the security event log detailing that the account has had these actions applied. 
+            <aactivity> 
+              <testlist>
+                <test>
+                  The evaluator shall attempt to authenticate repeatedly to the system with a
+                  known bad password. Once the defined number of failed authentication attempts has been
+                  reached the evaluator shall ensure that the account that was being used for testing
+                  has had the actions detailed in the assignment list above applied to it. The evaluator shall ensure that 
+                  an event has been logged to the security event log detailing that the account has had these actions applied. 
+                </test>
+                <test>
+                  The evaluator shall attempt to authenticate repeatedly to the system with a
+                  known bad certificate. Once the defined number of failed authentication attempts has been
+                  reached the evaluator shall ensure that the account that was being used for testing
+                  has had the actions detailed in the assignment list above applied to it. The evaluator shall ensure that 
+                  an event has been logged to the security event log detailing that the account has had these actions applied. 
+                </test>
+                <test>
+                  The evaluator shall attempt to authenticate repeatedly to the system using both a bad password and a bad certificate. 
+                  Once the defined number of failed authentication attempts has been
+                  reached the evaluator shall ensure that the account that was being used for testing
+                  has had the actions detailed in the assignment list above applied to it. The evaluator shall ensure that 
+                  an event has been logged to the security event log detailing that the account has had these actions applied. 
+                </test>
+              </testlist>
             </aactivity>
           </f-element>
-        </f-component>
-        
+        </f-component>        
         <f-component id="fia_uau_ext.1" name="Multiple Authentication Mechanisms">
           <f-element id="fia_uau.ext.1.1">
             <title>
@@ -2544,7 +2312,6 @@ functionality (such as these)
             </aactivity>
           </f-element>
         </f-component>
-
         <f-component id="fia_x509_ext.1" name="X.509 Certificate Validation">
           <f-element id="fia_x509_ext.1.1">
             <title> The OS shall implement functionality to validate certificates in accordance with
@@ -2676,126 +2443,124 @@ functionality (such as these)
           </f-element>
         </f-component>
       </subsection>
-
       <subsection title="TOE Access (FTA)" id="fta">
-	  <f-component id="fta_tab.1" name="Default TOE access banners">
-	    <f-element id="fta_tab.1.1" status="optional">
-	      <title>
-		Before establishing a user session, the TSF shall display an advisory
-		warning message regarding unauthorized use of the OS.
-	      </title>
-	      <aactivity> 
-		The evaluator shall configure the OS, per instructions in the OS manual,
-		to display the advisory warning message "TEST TEST Warning Message TEST TEST". 
-		The evaluator shall then log out and confirm that the advisory message is 
-		displayed before logging in can occur.
-	      </aactivity>
-	    </f-element>
-	</f-component>
-      </subsection>
-
-      <subsection title="Trusted Path/Channels (FTP)" id="ftp">
-	<f-component id="ftp_itc_ext.1" name="Trusted channel communication">
-	  <f-element id="ftp_itc_ext.1.1">
-	    <title>
-	      The OS shall use 
-	      <selectables linebreak='yes'>
-  	      <selectable>TLS as conforming to <linkref linkend="FCS_TLSC_EXT.1"/></selectable>
-  	      <selectable>DTLS as conforming to <linkref linkend="FCS_DTLS_EXT.1"/></selectable>
-	        <selectable>IPsec as conforming to the IPsec VPN client Protection Profile</selectable>
-  	    </selectables>
-	      to provide a trusted communication path between itself and remote administrators that: 
-	      is logically distinct from other communication channels, 
-	      provides assured identification of its end points, 
-	      protects channel data from disclosure, 
-	      and detects modification of the channel data.
-	    </title>
-	    <note role="application">
-	      The intent of the mandatory portion of the above requirement is to use the
-	      cryptographic protocols identified in the requirement to establish and maintain a 
-	      trusted channel between the OS another trusted IT product.
-	      <br/>
-	      If the ST author selects IPsec, the TSF shall be validated against the “Protection
-	      Profile for IPsec Virtual Private Network (VPN) Clients.”  The ST author must
-	      include the security functional requirements for the trusted channel protocol selected in
-	      FTP_ITC_EXT.1 in the main body of the ST.
-	    </note>
-	    <aactivity>
-	      The evaluator shall configure the OS to communicate with another trusted IT 
-	      product.
-	      The evaluator shall ensure that the traffic conforms to the requirements defined
-	      by <linkref linkend="FCS_TLSC_EXT.1"/> or <linkref linkend="FCS_DTLS_EXT.1"/>.
-	    </aactivity>
-	  </f-element>
-	  <f-element id="ftp_itc_ext.1.2">
-	    <title>The OS shall initiate communication via the trusted channel for 
-	    administrative communication, configured enterprise connections, and software updates.
-	    </title>
-	    <aactivity>
-	      The evaluator shall monitor network traffic while the OS performs each of the
-	      following actions: administrative communication, configured enterprise connections, and software updates. 
-	      The evaluator shall ensure that for each session a trusted channel was established
-	      in conformance with <linkref linkend="FTP_ITC_EXT.1.1"/>.
-	    </aactivity>
-	  </f-element>
-	</f-component>
-     <f-component id="ftp_trp.1" name="Trusted Path">
-          <f-element id="ftp_trp.1.1">
-            <title> The OS shall provide a communication path between itself and remote users that is logically 
-              distinct from other communication paths and provides assured identification of its endpoints
-              and protection of the communicated data from modification and disclosure.
+        <f-component id="fta_tab.1" name="Default TOE access banners">
+          <f-element id="fta_tab.1.1" status="optional">
+            <title>
+            Before establishing a user session, the TSF shall display an advisory
+            warning message regarding unauthorized use of the OS.
             </title>
+            <aactivity> 
+            The evaluator shall configure the OS, per instructions in the OS manual,
+            to display the advisory warning message "TEST TEST Warning Message TEST TEST". 
+            The evaluator shall then log out and confirm that the advisory message is 
+            displayed before logging in can occur.
+            </aactivity>
           </f-element>
-          <f-element id="ftp_trp.1.2">
-            <title> The OS shall permit 
-              <selectables>
-                <selectable>the TSF</selectable>
-                <selectable>a management server</selectable>
-              </selectables>
-              to initiate communication via the trusted path.
-            </title>
-          </f-element>
-          <f-element id="ftp_trp.1.3">
-            <title> The OS shall require use of the trusted path for all remote administrative actions.
-            </title>
-            <note role="application">
-              This requirement ensures that authorized remote administrators initiate all communication
-              with the OS via a trusted path, and that all communication with the OS by remote administrators 
-              is performed over this path. The data passed in this trusted communication channel is encrypted as 
-              defined in <linkref linkend="FTP_ITC_EXT.1"/>.
-            </note>
-            <aactivity>
-              The evaluator shall examine the TSS to determine that the methods of remote OS administration
-              are indicated, along with how those communications are protected. The evaluator shall also
-              confirm that all protocols listed in the TSS in support of OS administration are consistent with those
-              specified in the requirement, and are included in the requirements in the ST. The evaluator shall
-              confirm that the operational guidance contains instructions for establishing the remote
-              administrative sessions for each supported method. The evaluator shall also perform the following
-              tests:
-              <testlist>
-                <test>
-                  The evaluators shall ensure that communications using each remote administration method is 
-                  tested during the course of the evaluation, setting up the connections as described in the 
-                  operational guidance and ensuring that communication is successful.
-                </test>
-                <test>
-                  For each method of remote administration supported, the evaluator shall
-                  follow the operational guidance to ensure that there is no available interface that can be
-                  used by a remote user to establish a remote administrative sessions without invoking the
-                  trusted path.
-                </test>
-                <test>
-                  The evaluator shall ensure, for each method of remote administration, the
-                  channel data is not sent in plaintext.
-                </test>
-                <test>
-                  The evaluator shall ensure, for each method of remote administration,
-                  modification of the channel data is detected by the OS.
-                </test>
-              </testlist>
-            </aactivity>              
-          </f-element>     
         </f-component>
+      </subsection>
+      <subsection title="Trusted Path/Channels (FTP)" id="ftp">
+      	<f-component id="ftp_itc_ext.1" name="Trusted channel communication">
+      	  <f-element id="ftp_itc_ext.1.1">
+      	    <title>
+      	      The OS shall use 
+      	      <selectables linebreak='yes'>
+        	      <selectable>TLS as conforming to <linkref linkend="FCS_TLSC_EXT.1"/></selectable>
+        	      <selectable>DTLS as conforming to <linkref linkend="FCS_DTLS_EXT.1"/></selectable>
+      	        <selectable>IPsec as conforming to the IPsec VPN client Protection Profile</selectable>
+        	    </selectables>
+      	      to provide a trusted communication path between itself and remote administrators that: 
+      	      is logically distinct from other communication channels, 
+      	      provides assured identification of its end points, 
+      	      protects channel data from disclosure, 
+      	      and detects modification of the channel data.
+      	    </title>
+      	    <note role="application">
+      	      The intent of the mandatory portion of the above requirement is to use the
+      	      cryptographic protocols identified in the requirement to establish and maintain a 
+      	      trusted channel between the OS another trusted IT product.
+      	      <br/>
+      	      If the ST author selects IPsec, the TSF shall be validated against the “Protection
+      	      Profile for IPsec Virtual Private Network (VPN) Clients.”  The ST author must
+      	      include the security functional requirements for the trusted channel protocol selected in
+      	      FTP_ITC_EXT.1 in the main body of the ST.
+      	    </note>
+      	    <aactivity>
+      	      The evaluator shall configure the OS to communicate with another trusted IT 
+      	      product.
+      	      The evaluator shall ensure that the traffic conforms to the requirements defined
+      	      by <linkref linkend="FCS_TLSC_EXT.1"/> or <linkref linkend="FCS_DTLS_EXT.1"/>.
+      	    </aactivity>
+      	  </f-element>
+      	  <f-element id="ftp_itc_ext.1.2">
+      	    <title>The OS shall initiate communication via the trusted channel for 
+      	    administrative communication, configured enterprise connections, and software updates.
+      	    </title>
+      	    <aactivity>
+      	      The evaluator shall monitor network traffic while the OS performs each of the
+      	      following actions: administrative communication, configured enterprise connections, and software updates. 
+      	      The evaluator shall ensure that for each session a trusted channel was established
+      	      in conformance with <linkref linkend="FTP_ITC_EXT.1.1"/>.
+      	    </aactivity>
+      	  </f-element>
+      	</f-component>
+        <f-component id="ftp_trp.1" name="Trusted Path">
+            <f-element id="ftp_trp.1.1">
+              <title> The OS shall provide a communication path between itself and remote users that is logically 
+                distinct from other communication paths and provides assured identification of its endpoints
+                and protection of the communicated data from modification and disclosure.
+              </title>
+            </f-element>
+            <f-element id="ftp_trp.1.2">
+              <title> The OS shall permit 
+                <selectables>
+                  <selectable>the TSF</selectable>
+                  <selectable>a management server</selectable>
+                </selectables>
+                to initiate communication via the trusted path.
+              </title>
+            </f-element>
+            <f-element id="ftp_trp.1.3">
+              <title> The OS shall require use of the trusted path for all remote administrative actions.
+              </title>
+              <note role="application">
+                This requirement ensures that authorized remote administrators initiate all communication
+                with the OS via a trusted path, and that all communication with the OS by remote administrators 
+                is performed over this path. The data passed in this trusted communication channel is encrypted as 
+                defined in <linkref linkend="FTP_ITC_EXT.1"/>.
+              </note>
+              <aactivity>
+                The evaluator shall examine the TSS to determine that the methods of remote OS administration
+                are indicated, along with how those communications are protected. The evaluator shall also
+                confirm that all protocols listed in the TSS in support of OS administration are consistent with those
+                specified in the requirement, and are included in the requirements in the ST. The evaluator shall
+                confirm that the operational guidance contains instructions for establishing the remote
+                administrative sessions for each supported method. The evaluator shall also perform the following
+                tests:
+                <testlist>
+                  <test>
+                    The evaluators shall ensure that communications using each remote administration method is 
+                    tested during the course of the evaluation, setting up the connections as described in the 
+                    operational guidance and ensuring that communication is successful.
+                  </test>
+                  <test>
+                    For each method of remote administration supported, the evaluator shall
+                    follow the operational guidance to ensure that there is no available interface that can be
+                    used by a remote user to establish a remote administrative sessions without invoking the
+                    trusted path.
+                  </test>
+                  <test>
+                    The evaluator shall ensure, for each method of remote administration, the
+                    channel data is not sent in plaintext.
+                  </test>
+                  <test>
+                    The evaluator shall ensure, for each method of remote administration,
+                    modification of the channel data is detected by the OS.
+                  </test>
+                </testlist>
+              </aactivity>              
+            </f-element>     
+          </f-component>
       </subsection>
     </section>
     <section title="Security Assurance Requirements" id="SARs">The Security Objectives for the <abbr
@@ -3529,10 +3294,6 @@ functionality (such as these)
         <term>ASLR</term>
         <description>Address Space Layout Randomization</description>
       </entry>
-      <entry>
-        <term>BIOS</term>
-        <description>Basic Input/Output System</description>
-      </entry>
       <!-- Never used -->
       <!-- <entry> -->
       <!--   <term>CDSA</term> -->
@@ -3642,10 +3403,6 @@ functionality (such as these)
         <term>DSS</term>
         <description>Digital Signature Standard</description>
       </entry>
-      <entry>
-        <term>IANA</term>
-        <description>Internet Assigned Number Authority</description>
-      </entry>
       <!-- <entry> -->
       <!--   <term>IEC</term> -->
       <!--   <description>International Electrotechnical Commission</description> -->
@@ -3719,16 +3476,8 @@ functionality (such as these)
         <description>Operating System</description>
       </entry>
       <entry>
-        <term>PID</term>
-        <description>Process Identifier</description>
-      </entry>
-      <entry>
         <term>PII</term>
         <description>Personally Identifiable Information</description>
-      </entry>
-      <entry>
-        <term>PKG</term>
-        <description>Package file</description>
       </entry>
       <entry>
         <term>PKI</term>
@@ -3793,10 +3542,6 @@ functionality (such as these)
       <entry>
         <term>TLS</term>
         <description>Transport Layer Security</description>
-      </entry>
-      <entry>
-        <term>UI</term>
-        <description>User Interface</description>
       </entry>
       <entry>
         <term>URI</term>
