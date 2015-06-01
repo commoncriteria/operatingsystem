@@ -126,7 +126,7 @@
       	    <term><abbr title="Data At Rest">DAR</abbr> Protection</term>
       	    <description>
       	      Countermeasures that prevent attackers, even those with physical access, 
-      	      from extracting data from non-volatile memory. 
+      	      from extracting data from non-volatile storage. 
       	      Common techniques include data encryption and wiping.
       	    </description>
       	  </entry>
@@ -141,11 +141,6 @@
             <term>Developer</term>
             <description>An entity that writes OS software. For the purposes of this document,
               vendors and developers are the same.</description>
-          </entry>
-          <entry>
-            <term>Software Firewall</term>
-            <description>A software-based firewall implementation running on the OS for filtering inbound and 
-              outbound network traffic to and from processes running on the OS.</description>
           </entry>
           <entry>
             <term><abbr title="Operating System">OS</abbr></term>
@@ -169,6 +164,13 @@
               application data such as emails, messaging, documents, calendar items, and contacts.
               Sensitive data must minimally include PII, credentials, and keys. Sensitive data shall
               be identified in the OS’s TSS by the <abbr linkend="ST"/> author. </description>
+          </entry>
+          <entry>
+            <term>Software Firewall</term>
+            <description>
+	      A software-based firewall implementation running on the OS for filtering inbound and 
+              outbound network traffic to and from processes running on the OS.
+	    </description>
           </entry>
           <entry>
             <term>Stack Cookie</term>
@@ -486,11 +488,11 @@
                     <selectable> P-521 </selectable>
                     <selectable> no other curves </selectable>
                     </selectables> 
-		    that meet FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.4
+		    that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.4
                 </selectable>
                 <selectable>
                   <b>FFC schemes</b> using cryptographic key sizes of 2048-bit or greater
-                  that meet FIPS PUB 186-4, “Digital Signature Standard (DSS)”,
+                  that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”,
                     Appendix B.1
                 </selectable>
               </selectables>. </title>
@@ -625,19 +627,23 @@
         <f-component id="fcs_ckm.2" name="Cryptographic Key Establishment">
           <f-element id="fcs_ckm.2.1">
             <title> The OS shall implement functionality to perform cryptographic key establishment
-              in accordance with a specified cryptographic key establishment method:<p/>
-              <b>[RSA-based key establishment schemes]</b> that meets the following: <b>[NIST
-                Special Publication 800-56B, “Recommendation for Pair-Wise Key Establishment Schemes
-                Using Integer Factorization Cryptography”]</b><p/> and <selectables linebreak="yes">
+              in accordance with a specified cryptographic key establishment method:
+	      <p/>
+              <b>RSA-based key establishment schemes</b> that meets the following: 
+	      NIST Special Publication 800-56B, “Recommendation for Pair-Wise Key Establishment Schemes
+              Using Integer Factorization Cryptography”
+	      <p/> 
+	      and 
+	      <selectables linebreak="yes">
                 <selectable>
-                  <b>[Elliptic curve-based key establishment schemes]</b> that meets the following:
-                    <b>[NIST Special Publication 800-56A, “Recommendation for Pair-Wise Key
-                    Establishment Schemes Using Discrete Logarithm Cryptography”]</b>
+                  <b>Elliptic curve-based key establishment schemes</b> that meets the following:
+                    NIST Special Publication 800-56A, “Recommendation for Pair-Wise Key
+                    Establishment Schemes Using Discrete Logarithm Cryptography”
                 </selectable>
                 <selectable>
-                  <b>[Finite field-based key establishment schemes]</b> that meets the following:
-                    <b>[NIST Special Publication 800-56A, “Recommendation for Pair-Wise Key
-                    Establishment Schemes Using Discrete Logarithm Cryptography”]</b>
+                  <b>Finite field-based key establishment schemes</b> that meets the following:
+                    NIST Special Publication 800-56A, “Recommendation for Pair-Wise Key
+                    Establishment Schemes Using Discrete Logarithm Cryptography”
                 </selectable>
                 <selectable> No other schemes </selectable>
               </selectables>. </title>
@@ -969,14 +975,18 @@
             <title>The OS shall perform cryptographic signature services (generation and
               verification) in accordance with a specified cryptographic algorithm <selectables
                 linebreak="yes">
-                <selectable><b>RSA schemes</b> using cryptographic key sizes of 2048-bit or greater
-                  that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”,
-                  Section 4 </selectable>
-                <selectable><b>ECDSA schemes</b> using “NIST curves” P-256, P-384 and <selectables>
+                <selectable>
+		  <b>RSA schemes</b> using cryptographic key sizes of 2048-bit or greater
+                  that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”,  Section 4 
+		</selectable>
+                <selectable>
+		  <b>ECDSA schemes</b> using “NIST curves” P-256, P-384 and 
+		  <selectables>
                     <selectable>P-521</selectable>
                     <selectable>no other curves</selectable>
-                  </selectables> that meet the following: FIPS PUB 186-4, “Digital Signature
-                  Standard (DSS)”, Section 5 </selectable>
+                  </selectables> 
+		  that meet the following: FIPS PUB 186-4, “Digital Signature   Standard (DSS)”, Section 5 
+		</selectable>
               </selectables> . </title>
             <note role="application"> The ST Author should choose the algorithm implemented to
               perform digital signatures; if more than one algorithm is available, this requirement
@@ -1223,7 +1233,7 @@
         </f-component>
         <f-component id="fcs_sto_ext.1" name="Storage of Secrets">
           <f-element id="fcs_sto_ext.1.1">
-            <title>The OS shall implement functionality to store credentials to non-volatile memory
+            <title>The OS shall implement functionality to store credentials to non-volatile storage
             and provide interfaces to applications to invoke this functionality.
             </title>
             <aactivity>The evaluator shall check the TSS to ensure that it lists all persistent
@@ -1761,8 +1771,9 @@
                 <li><assignable>other components</assignable></li>
               </ul>
             </title>
-            <aactivity>The evaluator will ensure that the following tests result in a negative
-              outcome (I.E., the action results in the OS denying the evaluator permission to
+            <aactivity> The evalutor will create an unprivileged user account. 
+	    Using this account, the evaluator will ensure that the following tests result in a negative
+              outcome (i.e., the action results in the OS denying the evaluator permission to
               complete the action): 
               <testlist>
                 <test>The evaluator shall attempt to modify the boot loader</test>
@@ -1786,7 +1797,7 @@
             </title>
             <aactivity> The evaluator shall ensure that the <abbr linkend="TSS"/> describes the
               linker flags used to enable <abbr linkend="ASLR"/> when the OS modules are compiled.
-              The evaluator shall perform either a static or dynamic analysis to determine that no
+              The evaluator shall perform either static or dynamic analysis to determine that no
               memory mappings are placed at an explicit and consistent address.
 	        </aactivity>
           </f-element>
@@ -1868,7 +1879,7 @@
               this data can subsequently result in arbitrary computation.
             </note>
             <aactivity>For each selection specified in the ST, the evaluator will ensure that the corresponding tests result in a negative
-              outcome (I.E., the action results in the OS denying the evaluator permission to
+              outcome (i.e., the action results in the OS denying the evaluator permission to
               complete the action): 
               <testlist>
                 <test>
