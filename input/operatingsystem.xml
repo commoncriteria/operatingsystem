@@ -1902,6 +1902,9 @@
 		<management-function> 
 		  configure name/address of network time server
 		</management-function>
+		<management-function> 
+		  initiate a software update
+		</management-function>
 		<management-function>
 		<assignable>list of other management functions to be provided by the TSF</assignable>
                 </management-function>
@@ -2422,9 +2425,13 @@
             </selectables>
               occur related to <assignable>list of authentication events</assignable>. 
 
-            <aactivity> The evaluator shall ensure that after attempting to authenticate with
-              an incorrect password or certificate that an event is logged by the OS. The
-              method of how these events are logged varies depending on platform. </aactivity>
+            <aactivity>
+	      The evaluator shall (if appropriate) set a threshold for failed attempts.
+	      The evaluator shall then repeatedly attempt to authenticate with an incorrect password 
+	      or certificate until the number of attempts reaches the threshold.
+	      The evaluator shall then ensure that an event is created and logged by the OS.
+	      The method of how these events are logged varies depending on platform. 
+	    </aactivity>
           </f-element>
           <f-element id="fia_afl.1.2">
             <title> When the defined number of unsuccessful authentication attempts for an account has been met,
