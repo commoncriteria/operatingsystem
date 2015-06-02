@@ -1772,7 +1772,7 @@
         <f-component id="fdp_acf_ext.1" name="Access Controls for Protecting User Data">
           <f-element id="fdp_acf_ext.1.1">
             <title> The OS shall implement access controls which prohibit unprivileged subjects from
-              modifying objects owned by other subjects including:
+              accessing objects owned by other subjects including:
               <ul>
                 <li>files</li>
                 <li><assignable>other objects</assignable></li>
@@ -1784,6 +1784,12 @@
             <aactivity>
               The evaluator shall create two new standard user user accounts on the system with different credentials.
               <testlist>
+                <test>
+                  The evaluator shall authenticate to the system as the first user and create a file within their user directory. 
+		  The evaluator shall then log off the system and re-authenticate with the second user's credentials. 
+		  The evaluator shall then attempt to read the file created in the first user's home directory.
+		  The evaluator shall ensure that the read attempt is denied.
+                </test>
                 <test>
                   The evaluator shall authenticate to the system as the first user and create a file within their user directory. The evaluator shall then
                   log off the system and re-authenticate with the second user's credentials. The evaluator shall then attempt to modify the file created in the
