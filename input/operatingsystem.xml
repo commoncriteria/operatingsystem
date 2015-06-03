@@ -1777,6 +1777,7 @@
                 <li>files</li>
                 <li><assignable>other objects</assignable></li>
               </ul>
+	      .
             </title>
             <note role="application">Objects owned by one user in a multi user system should be protected from
             modification by another user in that system.  Achieving such an access control
@@ -1825,10 +1826,11 @@
             <title> The TSF shall <selectables linebreak="yes">
               <selectable>provide an interface to VPN applications to enable all IP traffic (other
                 than IP traffic required to establish the VPN connection) to flow through the
-                IPsec VPN client.</selectable>
+                IPsec VPN client</selectable>
               <selectable>enable all IP traffic (other than IP traffic required to establish the
-                VPN connection) to flow through the IPsec VPN client.</selectable>
+                VPN connection) to flow through the IPsec VPN client</selectable>
             </selectables>
+	    .
             </title>
             <aactivity> The evaluator shall verify that the TSS section of the ST describes the
               routing of IP traffic through processes on the TSF when a VPN client is enabled. The
@@ -1915,7 +1917,7 @@
 		<assignable>list of other management functions to be provided by the TSF</assignable>
                 </management-function>
 	      </management-function-set>
-
+	      .
 	    </title>
             <aactivity>
                  The evaluator shall verify that every management function captured in the ST is
@@ -1941,6 +1943,7 @@
                 <li>System configuration files</li>
                 <li><assignable>other components</assignable></li>
               </ul>
+	      .
             </title>
             <aactivity> The evalutor will create an unprivileged user account. 
 	    Using this account, the evaluator will ensure that the following tests result in a negative
@@ -1975,7 +1978,13 @@
 		 </f-component>
         <f-component id="fpt_php_ext.1" name="External Interface Controls ">
           <f-element id="fpt_php_ext.1.1">
-            <title> The OS shall be able to constrain the set of external interfaces (physical and logical) and
+            <title>
+	      The OS shall provide a mechanism to 
+	      <selectables>
+		<selectable>users</selectable>
+		<selectable>administrators</selectable>
+	      </selectables>
+	      to disable external interfaces (physical and logical) and
               services exposed to untrusted networks and devices: 
               <selectables linebreak="yes">
                 <selectable>WiFi</selectable>
@@ -1985,12 +1994,16 @@
                 <selectable>FireWire</selectable>
                 <selectable><assignable>list of other external interfaces</assignable></selectable>
               </selectables>
+	      .
             </title>
-            <note role="application">Different hardware platforms will present different external
-              interfaces. The selection of tests to run against an OS will vary depending on the
-              hardware the OS is running on. However, where an OS supports an external interface
+            <note role="application">
+	      Different hardware platforms present different external interfaces.
+	      The selection of tests to run against an OS varies depending on the hardware the OS 
+	      is running on. 
+	      However, where an OS supports an external interface
               type (e.g., FireWire) it is important that the OS also offers the ability to disable
-              that interface. </note>
+              that interface. 
+	    </note>
             <aactivity>
 	      The evaluator will install the OS onto a platform that has capabilities commiserate
 	      with the OS capabilities (e.g., a USB capable OS must be evaluated on a USB capable
