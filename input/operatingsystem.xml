@@ -1962,7 +1962,7 @@
         </f-component>
         <f-component id="fpt_aslr_ext.1" name="Address Space Layout Randomization">
           <f-element id="fpt_aslr_ext.1.1">
-            <title>The OS shall always randomize process, kernel, and module address space memory locations except for
+            <title>The OS shall always randomize process and module address space memory locations except for
                 <assignable>list of explicit exceptions</assignable>.
                 <note role="application">
                 Requesting a memory mapping at an explicit address subverts address space layout
@@ -1975,7 +1975,18 @@
               memory mappings are placed at an explicit and consistent address.
 	        </aactivity>
           </f-element>
-		 </f-component>
+          <f-element id="fpt_aslr_ext.1.2" status="optional">
+            <title>The OS shall always randomize kernel address space memory locations
+                <note role="application">
+                  Requesting a memory mapping at an explicit address subverts address space layout
+                  randomization (<abbr linkend="ASLR"/>). 
+                </note>
+            </title>
+            <aactivity> 
+	      The evaluator shall review the TSS to ensure that ASLR applies to the kernel.
+	    </aactivity>
+          </f-element>
+	</f-component>
         <f-component id="fpt_php_ext.1" name="External Interface Controls ">
           <f-element id="fpt_php_ext.1.1">
             <title>
