@@ -1055,7 +1055,7 @@
               </ul>
               The evaluator shall test the authenticated-decryption functionality of AES-KWP using the
               same test as for AES-KWP authenticated-encryption, replacing plaintext values with
-              ciphertext values and AES-KWP authenticated-encryption with AES-KWP authenticateddecryption.
+              ciphertext values and AES-KWP authenticated-encryption with AES-KWP authenticated-decryption.
             </aactivity>
           </f-element>
         </f-component>
@@ -1387,8 +1387,9 @@
             </note>
             <aactivity>Documentation shall be produced - and the evaluator shall perform the
               activities - in accordance with <appref linkend="entropyappendix"/> and
-              the <a href="https://www.niap-ccevs.org/Documents_and_Guidance/ccevs/Entropy%20Documentation%20and%20Assessment%20Clarification.pdf">
-                Clarification to the Entropy Documentation and Assessment Annex</a>.
+              the 
+	      <a href="https://www.niap-ccevs.org/Documents_and_Guidance/ccevs/Entropy%20Documentation%20and%20Assessment%20Clarification.pdf"
+	      >Clarification to the Entropy Documentation and Assessment Annex</a>.
               <br />In the future, specific statistical testing (in line with NIST SP 800-90B) will 
               be required to verify the entropy estimates.
             </aactivity>
@@ -1767,6 +1768,20 @@
       <subsection title="User Data Protection (FDP)" id="fdp">
         <f-component id="fdp_acf_ext.1" name="Access Controls for Protecting User Data">
           <f-element id="fdp_acf_ext.1.1">
+            <title> 
+	      The TSS shall comprehensively describe the access control policy enforced by the OS.
+            </title>
+            <note role="application">
+	      The description must include the rules by which accesses to particular objects are 
+	      determined for particular subjects.
+	    </note>
+            <aactivity>
+	      The evaluator shall inspect the TSS to ensure that it describes the access control rules 
+	      in such detail that given any possible scenario between a subject and object governed by
+	      the OS the access control decision is unambiguous.
+            </aactivity>
+          </f-element>          
+          <f-element id="fdp_acf_ext.1.2">
             <title> The OS shall implement access controls which prohibit unprivileged subjects from
               accessing objects owned by other subjects including:
               <ul>
@@ -1779,22 +1794,22 @@
             modification by another user in that system.  Achieving such an access control
             policy may depend upon system configuration.</note>
             <aactivity>
-              The evaluator shall create two new standard user user accounts on the system with different credentials.
+              The evaluator shall create two new standard user user accounts on the system.
               <testlist>
                 <test>
                   The evaluator shall authenticate to the system as the first user and create a file within their user directory. 
-		  The evaluator shall then log off the system and re-authenticate with the second user's credentials. 
+		  The evaluator shall then log off the system and log in as the second user.
 		  The evaluator shall then attempt to read the file created in the first user's home directory.
 		  The evaluator shall ensure that the read attempt is denied.
                 </test>
                 <test>
                   The evaluator shall authenticate to the system as the first user and create a file within their user directory. The evaluator shall then
-                  log off the system and re-authenticate with the second user's credentials. The evaluator shall then attempt to modify the file created in the
+                  log off the system and log in as the second user. The evaluator shall then attempt to modify the file created in the
                   first user's home directory. The evaluator shall ensure that the modification is denied.
                 </test>
                 <test>
                   The evaluator shall authenticate to the system as the first user and create a file within their user directory. The evaluator shall then
-                  log off the system and re-authenticate with the second user's credentials. The evaluator shall then attempt to delete the file created in the
+                  log off the system and log in as the second user. The evaluator shall then attempt to delete the file created in the
                   first user's home directory. The evaluator shall ensure that the deletion is denied.
                 </test>
                 <test>
@@ -1941,7 +1956,7 @@
               </ul>
 	      .
             </title>
-            <aactivity> The evalutor will create an unprivileged user account. 
+            <aactivity> The evaluator will create an unprivileged user account. 
 	    Using this account, the evaluator will ensure that the following tests result in a negative
               outcome (i.e., the action results in the OS denying the evaluator permission to
               complete the action): 
@@ -2010,6 +2025,11 @@
 	      However, where an OS supports an external interface
               type (e.g., FireWire) it is important that the OS also offers the ability to disable
               that interface. 
+	      This requirement only ensures that OSs can disable WiFi: 
+	      Requirements that ensure secure communication over WiFi are defined in the 
+	      <a href="https://www.niap-ccevs.org/pp/PP_WLAN_AS_EP_V1.0/"
+		 >ND CPP EP Wireless LAN Access System</a>.
+	      
 	    </note>
             <aactivity>
 	      The evaluator will install the OS onto a platform that has capabilities commiserate
@@ -2017,19 +2037,30 @@
 	      platform) and ensure that the following tests (where applicable)
               succeed: <testlist>
                 <test> The evaluator shall attempt to connect to a Wireless network and ensure that the OS successfully connects and allows network traffic to flow.</test>
-                <test> The evaluator shall connect to a Wireless network and then disable the WiFi
-                  network interface from within the OS. The evaluator will ensure that the WiFi
-                  connection is terminated and that there are no Wireless emanations from the
-                  device. </test>
+                <test> 
+		  The evaluator shall connect to a Wireless network and then disable the WiFi
+                  network interface from within the OS. 
+		  The evaluator will ensure that the WiFi connection is terminated and that the OS
+		  does not list any wireless network as accessible.
+		  The evaluator shall run a wireless sniffer (e.g. Kismet, aircrack) and ensure that
+		  no signals, attributable to the test platform, are detected.
+		</test>
                 <test> The evaluator shall attempt to pair, and connect, a Bluetooth device to the OS and ensure that the OS successfully connects to the device.</test>
-                <test> The evaluator shall pair, and connect, a Bluetooth device to the OS and then
-                  disable the Bluetooth interface within the OS. The evaluator will ensure that the
-                  Bluetooth connection is terminated and that there are no Bluetooth emanations from
-                  the device. </test>
+                <test>
+		  The evaluator shall pair, and connect, a Bluetooth device to the OS and then
+                  disable the Bluetooth interface within the OS. 
+		  The evaluator will ensure that the Bluetooth connection is terminated and that
+		  the OS does not list any devices as accessible.
+		  The evaluator shall run a Bluetooth sniffer (e.g. UberTooth, Wireshark)
+		  and ensure that no signals, attributable to the test platform, are detected.
+		</test>
                 <test> The evaluator shall attempt to pair, and connect, a NFC device to the OS and ensure that the OS successfully connects to the device.</test>
                 <test> The evaluator shall pair, and connect, an NFC device to the OS and then disable
                   the NFC interface within the OS. The evaluator will ensure that the NFC connection
-                  is terminated and that there are no NFC emanations from the device. </test>
+                  is terminated.
+		  The evaluator shall run a NFC sniffer 
+		  and ensure that no signals, attributable to the test platform, are detected.
+		</test>
                 <test> The evaluator shall connect a USB device to the OS and then disable the USB
                   interface within the OS. The evaluator will ensure that the USB device no longer
                   functions within the OS. </test>
@@ -2048,10 +2079,25 @@
         </f-component>
         <f-component id="fpt_sbop_ext.1" name="Stack Buffer Overflow Protection">
           <f-element id="fpt_sbop_ext.1.1">
-            <title>The OS shall implement stack-based buffer overflow protections.</title>
-            <aactivity>The evaluator shall ensure that the <abbr linkend="TSS"/> section of the
-                <abbr linkend="ST"/> describes how kernel stacks, and the userspace stacks of security-relevant
-               OS userspace processes, implement stack-based buffer overflow protections. 
+            <title>The OS shall be compiled with stack-based buffer overflow protections enabled.</title>
+            <note>It is expected that most of the OS, to include the kernel, libraries, and 
+              application software from the OS vendor be compiled with stack-based buffer overflow 
+              protection enabled.
+            </note>
+            <aactivity>
+            <tss>
+            The evaluator shall determine that the <abbr linkend="TSS"/> contains a description of stack-based buffer
+            overflow protections used by the OS. Example implementations may be activated
+            through compiler options such as "-fstack-protector-all", "-fstack-protector", and "/GS" flags. 
+            The TSS must include a rationale for any binaries that are not protected in this manner.
+            </tss>
+            <testlist>
+                <test>
+                  The evaluator shall inventory the kernel, libraries, and application binaries
+                  to determine those that do not implement stack-based buffer overflow protections. This list should
+                  match up with the list provided in the TSS.
+                </test>
+            </testlist>
             </aactivity>
           </f-element>
         </f-component>
