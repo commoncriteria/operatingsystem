@@ -2024,6 +2024,11 @@
 	      However, where an OS supports an external interface
               type (e.g., FireWire) it is important that the OS also offers the ability to disable
               that interface. 
+	      This requirement only ensures that OSs can disable WiFi: 
+	      Requirements that ensure secure communication over WiFi are defined in the 
+	      <a href="https://www.niap-ccevs.org/pp/PP_WLAN_AS_EP_V1.0/"
+		 >ND CPP EP Wireless LAN Access System</a>.
+	      
 	    </note>
             <aactivity>
 	      The evaluator will install the OS onto a platform that has capabilities commiserate
@@ -2031,19 +2036,30 @@
 	      platform) and ensure that the following tests (where applicable)
               succeed: <testlist>
                 <test> The evaluator shall attempt to connect to a Wireless network and ensure that the OS successfully connects and allows network traffic to flow.</test>
-                <test> The evaluator shall connect to a Wireless network and then disable the WiFi
-                  network interface from within the OS. The evaluator will ensure that the WiFi
-                  connection is terminated and that there are no Wireless emanations from the
-                  device. </test>
+                <test> 
+		  The evaluator shall connect to a Wireless network and then disable the WiFi
+                  network interface from within the OS. 
+		  The evaluator will ensure that the WiFi connection is terminated and that the OS
+		  does not list any wireless network as accessible.
+		  The evaluator shall run a wireless sniffer (e.g. Kismet, aircrack) and ensure that
+		  no signals, attributable to the test platform, are detected.
+		</test>
                 <test> The evaluator shall attempt to pair, and connect, a Bluetooth device to the OS and ensure that the OS successfully connects to the device.</test>
-                <test> The evaluator shall pair, and connect, a Bluetooth device to the OS and then
-                  disable the Bluetooth interface within the OS. The evaluator will ensure that the
-                  Bluetooth connection is terminated and that there are no Bluetooth emanations from
-                  the device. </test>
+                <test>
+		  The evaluator shall pair, and connect, a Bluetooth device to the OS and then
+                  disable the Bluetooth interface within the OS. 
+		  The evaluator will ensure that the Bluetooth connection is terminated and that
+		  the OS does not list any devices as accessible.
+		  The evaluator shall run a Bluetooth sniffer (e.g. UberTooth, Wireshark)
+		  and ensure that no signals, attributable to the test platform, are detected.
+		</test>
                 <test> The evaluator shall attempt to pair, and connect, a NFC device to the OS and ensure that the OS successfully connects to the device.</test>
                 <test> The evaluator shall pair, and connect, an NFC device to the OS and then disable
                   the NFC interface within the OS. The evaluator will ensure that the NFC connection
-                  is terminated and that there are no NFC emanations from the device. </test>
+                  is terminated.
+		  The evaluator shall run a NFC sniffer 
+		  and ensure that no signals, attributable to the test platform, are detected.
+		</test>
                 <test> The evaluator shall connect a USB device to the OS and then disable the USB
                   interface within the OS. The evaluator will ensure that the USB device no longer
                   functions within the OS. </test>
