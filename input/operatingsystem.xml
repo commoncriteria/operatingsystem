@@ -1055,7 +1055,7 @@
               </ul>
               The evaluator shall test the authenticated-decryption functionality of AES-KWP using the
               same test as for AES-KWP authenticated-encryption, replacing plaintext values with
-              ciphertext values and AES-KWP authenticated-encryption with AES-KWP authenticateddecryption.
+              ciphertext values and AES-KWP authenticated-encryption with AES-KWP authenticated-decryption.
             </aactivity>
           </f-element>
         </f-component>
@@ -1767,6 +1767,20 @@
       <subsection title="User Data Protection (FDP)" id="fdp">
         <f-component id="fdp_acf_ext.1" name="Access Controls for Protecting User Data">
           <f-element id="fdp_acf_ext.1.1">
+            <title> 
+	      The TSS shall comprehensively describe the access control policy enforced by the OS.
+            </title>
+            <note role="application">
+	      The description must include the rules by which accesses to particular objects are 
+	      determined for particular subjects.
+	    </note>
+            <aactivity>
+	      The evaluator shall inspect the TSS to ensure that it describes the access control rules 
+	      in such detail that given any possible scenario between a subject and object governed by
+	      the OS the access control decision is unambiguous.
+            </aactivity>
+          </f-element>          
+          <f-element id="fdp_acf_ext.1.2">
             <title> The OS shall implement access controls which prohibit unprivileged subjects from
               accessing objects owned by other subjects including:
               <ul>
@@ -1779,22 +1793,22 @@
             modification by another user in that system.  Achieving such an access control
             policy may depend upon system configuration.</note>
             <aactivity>
-              The evaluator shall create two new standard user user accounts on the system with different credentials.
+              The evaluator shall create two new standard user user accounts on the system.
               <testlist>
                 <test>
                   The evaluator shall authenticate to the system as the first user and create a file within their user directory. 
-		  The evaluator shall then log off the system and re-authenticate with the second user's credentials. 
+		  The evaluator shall then log off the system and log in as the second user.
 		  The evaluator shall then attempt to read the file created in the first user's home directory.
 		  The evaluator shall ensure that the read attempt is denied.
                 </test>
                 <test>
                   The evaluator shall authenticate to the system as the first user and create a file within their user directory. The evaluator shall then
-                  log off the system and re-authenticate with the second user's credentials. The evaluator shall then attempt to modify the file created in the
+                  log off the system and log in as the second user. The evaluator shall then attempt to modify the file created in the
                   first user's home directory. The evaluator shall ensure that the modification is denied.
                 </test>
                 <test>
                   The evaluator shall authenticate to the system as the first user and create a file within their user directory. The evaluator shall then
-                  log off the system and re-authenticate with the second user's credentials. The evaluator shall then attempt to delete the file created in the
+                  log off the system and log in as the second user. The evaluator shall then attempt to delete the file created in the
                   first user's home directory. The evaluator shall ensure that the deletion is denied.
                 </test>
                 <test>
@@ -1941,7 +1955,7 @@
               </ul>
 	      .
             </title>
-            <aactivity> The evalutor will create an unprivileged user account. 
+            <aactivity> The evaluator will create an unprivileged user account. 
 	    Using this account, the evaluator will ensure that the following tests result in a negative
               outcome (i.e., the action results in the OS denying the evaluator permission to
               complete the action): 
