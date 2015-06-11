@@ -2079,10 +2079,25 @@
         </f-component>
         <f-component id="fpt_sbop_ext.1" name="Stack Buffer Overflow Protection">
           <f-element id="fpt_sbop_ext.1.1">
-            <title>The OS shall implement stack-based buffer overflow protections.</title>
-            <aactivity>The evaluator shall ensure that the <abbr linkend="TSS"/> section of the
-                <abbr linkend="ST"/> describes how kernel stacks, and the userspace stacks of security-relevant
-               OS userspace processes, implement stack-based buffer overflow protections. 
+            <title>The OS shall be compiled with stack-based buffer overflow protections enabled.</title>
+            <note>It is expected that most of the OS, to include the kernel, libraries, and 
+              application software from the OS vendor be compiled with stack-based buffer overflow 
+              protection enabled.
+            </note>
+            <aactivity>
+            <tss>
+            The evaluator shall determine that the <abbr linkend="TSS"/> contains a description of stack-based buffer
+            overflow protections used by the OS. Example implementations may be activated
+            through compiler options such as "-fstack-protector-all", "-fstack-protector", and "/GS" flags. 
+            The TSS must include a rationale for any binaries that are not protected in this manner.
+            </tss>
+            <testlist>
+                <test>
+                  The evaluator shall inventory the kernel, libraries, and application binaries
+                  to determine those that do not implement stack-based buffer overflow protections. This list should
+                  match up with the list provided in the TSS.
+                </test>
+            </testlist>
             </aactivity>
           </f-element>
         </f-component>
