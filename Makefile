@@ -40,8 +40,8 @@ simplified: $(SIMPLIFIED)
 $(SIMPLIFIED): $(TRANS)/pp2simplified.xsl $(PP_XML)
 	xsltproc --stringparam release final -o $(SIMPLIFIED) $(TRANS)/pp2simplified.xsl $(PP_XML)
 
-schema/operatingsystem.rnc: schema/operatingsystem.rng
-	trang -I rng -O rnc  schema/operatingsystem.rng schema/operatingsystem.rnc
+validators/operatingsystem.rnc: validators/operatingsystem.rng
+	trang -I rng -O rnc  validators/operatingsystem.rng validators/operatingsystem.rnc
 
 clean:
 	@for f in a $(TABLE) $(SIMPLIFIED) $(PP_HTML) $(PP_RELEASE_HTML) $(PP_OP_HTML); do \
