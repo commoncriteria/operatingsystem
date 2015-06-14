@@ -372,9 +372,8 @@
             security. Conformant <abbr linkend="OS"/>s provide execution environment-based
             mitigations that increase the cost to attackers by adding complexity to the task of
             compromising systems. </description>
-          <component-refer ref="fpt_aex_ext.1"/>
-          <component-refer ref="fpt_aex_ext.2"/>
-          <component-refer ref="fpt_aex_ext.3"/>
+          <component-refer ref="fpt_sbop_ext.1"/>
+          <component-refer ref="fpt_aslr_ext.1"/>
           <component-refer ref="fpt_tud_ext.1"/>
           <component-refer ref="fcs_cop.1.1(2)"/>
           <component-refer ref="fcs_cop.1.1(3)"/>
@@ -385,7 +384,7 @@
           <component-refer ref="fpt_tst_ext.1"/>
 	  <component-refer ref="ftp_itc_ext.1.1"/>
 	  <component-refer ref="ftp_itc_ext.1.2"/>
-
+	  <component-refer ref="fpt_w^x_ext.1.1"/>
 	  <component-refer ref="fia_afl.1.1"/>
 	  <component-refer ref="fia_afl.1.2"/>
 	  <component-refer ref="fia_uau_ext.1.1"/>
@@ -1972,8 +1971,8 @@
             </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fpt_aex_ext.1" name="Anti-Exploitation Capabilities (Address Space Layout Randomization)">
-          <f-element id="fpt_aex_ext.1.1">
+        <f-component id="fpt_aslr_ext.1" name="Address Space Layout Randomization">
+          <f-element id="fpt_aslr_ext.1.1">
             <title>The OS shall always randomize process and module address space memory locations except for
                 <assignable>list of explicit exceptions</assignable>.
                 <note role="application">
@@ -1987,7 +1986,7 @@
               memory mappings are placed at an explicit and consistent address.
 	        </aactivity>
           </f-element>
-          <f-element id="fpt_aex_ext.1.2" status="optional">
+          <f-element id="fpt_aslr_ext.1.2" status="optional">
             <title>The OS shall always randomize kernel address space memory locations
                 <note role="application">
                   Randomizing the location of the kernel address spaces provides some defense against
@@ -1999,47 +1998,6 @@
 	    </aactivity>
           </f-element>
 	</f-component>
-        <f-component id="fpt_aex_ext.2" name="Anti-Exploitation Capabilities (Memory Page Permissions)">
-          <f-element id="fpt_aex_ext.2.1">
-            <title> The OS shall prevent allocation of any memory region with both write and 
-              execute permissions except for <assignable>list of exceptions</assignable>.
-            </title>
-            <note role="application">Requesting a memory mapping with both write and execute
-              permissions subverts the platform protection provided by <abbr linkend="DEP"/>. If the
-              OS provides no exceptions (such as for just-in-time compilation), then "no exceptions"
-              should be indicated in the assignment.
-            </note>
-            <aactivity> 
-              The evaluator shall inspect the vendor-provided developer documentation and 
-              verify that no memory-mapping can be made with
-              write and execute permissions except for the cases listed in the assignment.
-            </aactivity>
-          </f-element>
-        </f-component>
-        <f-component id="fpt_aex_ext.3" name="Anti-Exploitation Capabilities (Stack Buffer Overflow Protection)">
-          <f-element id="fpt_aex_ext.3.1">
-            <title>The OS shall be compiled with stack-based buffer overflow protections enabled.
-            </title>
-            <note role="application">It is expected that most of the OS, to include the kernel, libraries, and 
-              application software from the OS vendor be compiled with stack-based buffer overflow 
-              protection enabled.
-            </note>
-            <aactivity>
-              The evaluator shall determine that the <abbr linkend="TSS"/> contains a description of stack-based buffer
-              overflow protections used by the OS. Example implementations may be activated
-              through compiler options such as "-fstack-protector-all", "-fstack-protector", and "/GS" flags. 
-              The TSS must include a rationale for any binaries that are not protected in this manner.
-              <testlist>
-                <test>
-                  The evaluator shall inventory the kernel, libraries, and application binaries
-                  to determine those that do not implement stack-based buffer overflow protections. This list should
-                  match up with the list provided in the TSS.
-                </test>
-              </testlist>
-            </aactivity>
-          </f-element>
-        </f-component>
-        
         <f-component id="fpt_php_ext.1" name="External Interface Controls ">
           <f-element id="fpt_php_ext.1.1">
             <title>
@@ -2119,7 +2077,29 @@
             </aactivity>
           </f-element>
         </f-component>
-       
+        <f-component id="fpt_sbop_ext.1" name="Stack Buffer Overflow Protection">
+          <f-element id="fpt_sbop_ext.1.1">
+            <title>The OS shall be compiled with stack-based buffer overflow protections enabled.
+            </title>
+            <note role="application">It is expected that most of the OS, to include the kernel, libraries, and 
+              application software from the OS vendor be compiled with stack-based buffer overflow 
+              protection enabled.
+            </note>
+            <aactivity>
+            The evaluator shall determine that the <abbr linkend="TSS"/> contains a description of stack-based buffer
+            overflow protections used by the OS. Example implementations may be activated
+            through compiler options such as "-fstack-protector-all", "-fstack-protector", and "/GS" flags. 
+            The TSS must include a rationale for any binaries that are not protected in this manner.
+            <testlist>
+                <test>
+                  The evaluator shall inventory the kernel, libraries, and application binaries
+                  to determine those that do not implement stack-based buffer overflow protections. This list should
+                  match up with the list provided in the TSS.
+                </test>
+            </testlist>
+            </aactivity>
+          </f-element>
+        </f-component>
         <f-component id="fpt_srp_ext.1" name="Software Restriction Policies">
           <f-element id="fpt_srp_ext.1.1" status="objective">
             <title> The OS shall restrict execution to only programs which match an administrator-specified
@@ -2349,7 +2329,23 @@
             </aactivity>
           </f-element>
         </f-component>
-     
+        <f-component id="fpt_w^x_ext.1" name="Write XOR Execute Memory Pages">
+          <f-element id="fpt_w^x_ext.1.1" status="objective">
+            <title> The OS shall prevent allocation of any memory region with both write and 
+              execute permissions except for <assignable>list of exceptions</assignable>.
+            </title>
+            <note role="application">Requesting a memory mapping with both write and execute
+              permissions subverts the platform protection provided by <abbr linkend="DEP"/>. If the
+              OS provides no exceptions (such as for just-in-time compilation), then "no exceptions"
+              should be indicated in the assignment.
+            </note>
+            <aactivity> 
+              The evaluator shall inspect the vendor-provided developer documentation and 
+	      verify that no memory-mapping can be made with
+              write and execute permissions except for the cases listed in the assignment.
+            </aactivity>
+          </f-element>
+        </f-component>
       </subsection>    
       <subsection title="Audit Data Generation (FAU)" id="fau">
         <f-component id="fau_gen.1" name="Audit Data Generation">
