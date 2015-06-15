@@ -372,9 +372,8 @@
             security. Conformant <abbr linkend="OS"/>s provide execution environment-based
             mitigations that increase the cost to attackers by adding complexity to the task of
             compromising systems. </description>
-          <component-refer ref="fpt_aex_ext.1"/>
-          <component-refer ref="fpt_aex_ext.2"/>
-          <component-refer ref="fpt_aex_ext.3"/>
+          <component-refer ref="fpt_sbop_ext.1"/>
+          <component-refer ref="fpt_aslr_ext.1"/>
           <component-refer ref="fpt_tud_ext.1"/>
           <component-refer ref="fcs_cop.1.1(2)"/>
           <component-refer ref="fcs_cop.1.1(3)"/>
@@ -385,7 +384,7 @@
           <component-refer ref="fpt_tst_ext.1"/>
 	  <component-refer ref="ftp_itc_ext.1.1"/>
 	  <component-refer ref="ftp_itc_ext.1.2"/>
-
+	  <component-refer ref="fpt_w^x_ext.1.1"/>
 	  <component-refer ref="fia_afl.1.1"/>
 	  <component-refer ref="fia_afl.1.2"/>
 	  <component-refer ref="fia_uau_ext.1.1"/>
@@ -1429,6 +1428,150 @@
             </aactivity>
           </f-element>
         </f-component>
+
+        <f-component id="fcs_sshc_ext.1" name="SSH Client Protocol">
+          <f-element id="fcs_sshc_ext.1.1">
+            <title>The OS shall implement the SSH protocol that complies with RFCs 4251, 4252, 4253, 4254 and
+			<selectables>
+			<selectable>5647</selectable>
+			<selectable>5656</selectable>
+			<selectable>6187</selectable>
+			<selectable>6668</selectable>
+			<selectable>no other RFCs</selectable>
+			</selectables>
+            </title>
+			<note role="application"> The ST author selects which of the additional RFCs to which
+			conformance is being claimed.  Note that these need to be
+			consistent with selections in later elements of this component
+			(e.g., cryptographic algorithms permitted). RFC 4253 indicates that
+			certain cryptographic algorithms are "REQUIRED". This means that
+			the implementation must include support, not that the algorithms
+			must be enabled for use. Ensuring that algorithms indicated as
+			"REQUIRED" but not listed in the later elements of this component
+			are implemented is out of scope of the assurance activity for this
+			requirement.
+            </note>
+		  </f-element>
+          <f-element id="fcs_sshc_ext.1.2">
+            <title>The OS shall ensure that the SSH protocol implementation supports
+              the following authentication methods as described in RFC 4252: public key-based, passwordbased.
+            </title>
+		  </f-element>
+		  <f-element id="fcs_sshc_ext.1.3">
+		    <title>The OS shall ensure that, as described in RFC 4253, packets greater
+            than <assignable>number of bytes</assignable> bytes in an SSH transport connection are dropped. 
+            </title>
+		    <note role="application">RFC 4253 provides for the acceptance of “large packets” with the caveat that the packets
+            should be of “reasonable length” or dropped. The assignment should be filled in by the ST
+            author with the maximum packet size accepted, thus defining “reasonable length” for the
+            TOE.
+		    </note>
+		  </f-element>
+          <f-element id="fcs_sshc_ext.1.4">
+		  <title>The OS shall ensure that the SSH transport implementation uses the
+            following encryption algorithms and rejects all other encryption algorithms: aes128-cbc,
+            aes256-cbc, 
+			<selectables>
+			<selectable>AEAD_AES_128_GCM</selectable>
+			<selectable>AEAD_AES_256_GCM</selectable>
+			<selectable>no other algorithms</selectable>
+            </selectables>.
+		  </title>
+		  <note role="application">
+		  RFC 5647 specifies the use of the AEAD_AES_128_GCM and
+		  AEAD_AES_256_GCM algorithms in SSH. As described in RFC 5647,
+		  AEAD_AES_128_GCM and AEAD_AES_256_GCM can only be chosen as
+		  encryption algorithms when the same algorithm is being used as the
+		  MAC algorithm. In the assignment, the ST author can select the
+		  AES-GCM algorithms, or "no other algorithms" if AES-GCM is not
+		  supported. If AESGCM is selected, there should be corresponding
+		  FCS_COP entries in the ST.
+		  </note>
+		  </f-element>
+
+		  <f-element id="fcs_sshc_ext.1.5">
+		  <title>The OS shall ensure that the SSH transport implementation uses
+          <selectables>
+		    <selectable>ssh-rsa</selectable>
+		    <selectable>ecdsa-sha2-nistp256</selectable>
+		  </selectables>
+		  and
+          <selectables>
+		    <selectable>ecdsa-sha2-nistp256</selectable>
+		    <selectable>x509v3-ecdsa-sha2-nistp256</selectable>
+		    <selectable>x509v3-ecdsa-sha2-nistp384</selectable>
+		    <selectable>no other public key algorithms</selectable>
+		  </selectables>
+          as its public key algorithm(s) and rejects all other public key algorithms. 
+          </title>
+		  <note role="application">Implementations that select only ssh-rsa will not achieve the
+		  112-bit security strength in the digital signature generation for SSH
+		  authentication as is recommended in NIST SP 800- 131A. Future
+		  versions of this profile may remove ssh-rsa as a selection. If
+		  x509v3-ecdsasha2-nistp256 or x509v3-ecdsa-sha2-nistp384 are selected,
+		  then the list of trusted certification authorities must be selected
+		  in <linkref linkend="FCS_SSHC_EXT.1.9"/>.
+          </note>
+		  </f-element>
+		  <f-element id="fcs_sshc_ext.1.6">
+		  <title>The TSF shall ensure that the SSH transport
+		  implementation uses 
+		  <selectables>
+		  <selectable>hmac-sha1</selectable>
+		  <selectable>hmac-sha1-96</selectable>
+		  <selectable>hmac-sha2-256</selectable>
+		  <selectable>hmac-sha2-512</selectable>
+		  </selectables>
+		  and
+		  <selectables>
+		  <selectable>AEAD_AES_128_GCM</selectable>
+		  <selectable>AEAD_AES_256_GCM</selectable>
+		  <selectable>no other MAC algorithms</selectable>
+		  </selectables>
+		  as its data integrity MAC
+		  algorithm(s) and rejects all other MAC algorithm(s).  
+
+          </title>
+		  <note role="application">RFC 5647 specifies the use of the AEAD_AES_128_GCM and
+		  AEAD_AES_256_GCM algorithms in SSH. As described in RFC 5647,
+		  AEAD_AES_128_GCM and AEAD_AES_256_GCM can only be chosen as MAC
+		  algorithms when the same algorithm is being used as the encryption
+		  algorithm. RFC 6668 specifies the use of the sha2 algorithms in SSH.
+		  </note>
+		  </f-element>
+          <f-element id="fcs_sshc_ext.1.7">
+		  <title>The OS shall ensure that [selection:
+		  diffie-hellman-group14-sha1, ecdh-sha2-nistp256] and [selection:
+		  ecdh-sha2-nistp384, ecdh-sha2-nistp521, no other methods] are the
+		  only allowed key exchange methods used for the SSH protocol.
+		  </title>
+		  </f-element>
+
+          <f-element id="fcs_sshc_ext.1.8">
+		  <title>The OS shall ensure that the SSH connection be rekeyed after
+          no more than 2^28 packets have been transmitted using that key.
+		  </title>
+          </f-element>
+
+		  <f-element id="fcs_sshc_ext.1.9">
+		  <title>The OS shall ensure that the SSH client
+		  authenticates the identity of the SSH server using a local database
+		  associating each host name with its corresponding public key or
+		  <selectables>
+		  <selectable>a list of trusted certification authorities</selectable>
+		  <selectable>no other methods</selectable> 
+		  </selectables>
+		  as described in RFC 4251 section 4.1.
+		  </title>
+		  <note role="application">
+		  The list of trusted certification authorities can only be selected if
+		  x509v3-ecdsa-sha2-nistp256 or x509v3-ecdsa-sha2-nistp384 are
+		  selected in <linkref linkend="FCS_SSHC_EXT.1.5"/>.
+		  </note> 
+		  </f-element>
+
+        </f-component>
+
         <f-component id="fcs_tlsc_ext.1" name="TLS Client Protocol">
           <f-element id="fcs_tlsc_ext.1.1">
             <title> The OS shall implement <abbr title="Transport Layer Security">TLS</abbr> 1.2
@@ -1885,7 +2028,7 @@
 		<management-function>
 			configure minimum number of lowercase characters in password
 		</management-function>
-		<management-function user="X">
+		<management-function>
 		  enable/disable screen lock
 		</management-function> 
 		<management-function>
@@ -1920,10 +2063,13 @@
 		  configure name/address of audit/logging server to which to send audit/logging records
 		</management-function>
 		<management-function> 
+		  configure audit/logging rules
+		</management-function>
+		<management-function> 
 		  configure name/address of network time server
 		</management-function>
 		<management-function> 
-		  initiate a software update
+		  enable/disable automatic software update
 		</management-function>
 		<management-function>
 		<assignable>list of other management functions to be provided by the TSF</assignable>
@@ -1972,73 +2118,33 @@
             </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fpt_aex_ext.1" name="Anti-Exploitation Capabilities (Address Space Layout Randomization)">
-          <f-element id="fpt_aex_ext.1.1">
+        <f-component id="fpt_aslr_ext.1" name="Address Space Layout Randomization">
+          <f-element id="fpt_aslr_ext.1.1">
             <title>The OS shall always randomize process and module address space memory locations except for
                 <assignable>list of explicit exceptions</assignable>.
+                <note role="application">
+                Requesting a memory mapping at an explicit address subverts address space layout
+                randomization (<abbr linkend="ASLR"/>). 
+                </note>
             </title>
-            <note role="application">
-              Requesting a memory mapping at an explicit address subverts address space layout
-              randomization (<abbr linkend="ASLR"/>). 
-            </note>
             <aactivity> The evaluator shall ensure that the <abbr linkend="TSS"/> describes the
               linker flags used to enable <abbr linkend="ASLR"/> when the OS modules are compiled.
               The evaluator shall perform either static or dynamic analysis to determine that no
               memory mappings are placed at an explicit and consistent address.
 	        </aactivity>
           </f-element>
-          <f-element id="fpt_aex_ext.1.2" status="optional">
-            <title>The OS shall always randomize kernel address space memory locations.</title>
-            <note role="application">
-              Randomizing the location of the kernel address spaces provides some defense against
-	      kernel-level exploits.
-            </note>
+          <f-element id="fpt_aslr_ext.1.2" status="optional">
+            <title>The OS shall always randomize kernel address space memory locations
+                <note role="application">
+                  Randomizing the location of the kernel address spaces provides some defense against
+		  kernel-level exploits.
+                </note>
+            </title>
             <aactivity> 
 	      The evaluator shall review the TSS to ensure that ASLR applies to the kernel.
 	    </aactivity>
           </f-element>
 	</f-component>
-        <f-component id="fpt_aex_ext.2" name="Anti-Exploitation Capabilities (Memory Page Permissions)">
-          <f-element id="fpt_aex_ext.2.1">
-            <title> The OS shall prevent allocation of any memory region with both write and 
-              execute permissions except for <assignable>list of exceptions</assignable>.
-            </title>
-            <note role="application">Requesting a memory mapping with both write and execute
-              permissions subverts the platform protection provided by <abbr linkend="DEP"/>. If the
-              OS provides no exceptions (such as for just-in-time compilation), then "no exceptions"
-              should be indicated in the assignment.
-            </note>
-            <aactivity> 
-              The evaluator shall inspect the vendor-provided developer documentation and 
-              verify that no memory-mapping can be made with
-              write and execute permissions except for the cases listed in the assignment.
-            </aactivity>
-          </f-element>
-        </f-component>
-        <f-component id="fpt_aex_ext.3" name="Anti-Exploitation Capabilities (Stack Buffer Overflow Protection)">
-          <f-element id="fpt_aex_ext.3.1">
-            <title>The OS shall be compiled with stack-based buffer overflow protections enabled.
-            </title>
-            <note role="application">It is expected that most of the OS, to include the kernel, libraries, and 
-              application software from the OS vendor be compiled with stack-based buffer overflow 
-              protection enabled.
-            </note>
-            <aactivity>
-              The evaluator shall determine that the <abbr linkend="TSS"/> contains a description of stack-based buffer
-              overflow protections used by the OS. Example implementations may be activated
-              through compiler options such as "-fstack-protector-all", "-fstack-protector", and "/GS" flags. 
-              The TSS must include a rationale for any binaries that are not protected in this manner.
-              <testlist>
-                <test>
-                  The evaluator shall inventory the kernel, libraries, and application binaries
-                  to determine those that do not implement stack-based buffer overflow protections. This list should
-                  match up with the list provided in the TSS.
-                </test>
-              </testlist>
-            </aactivity>
-          </f-element>
-        </f-component>
-        
         <f-component id="fpt_php_ext.1" name="External Interface Controls ">
           <f-element id="fpt_php_ext.1.1">
             <title>
@@ -2118,7 +2224,29 @@
             </aactivity>
           </f-element>
         </f-component>
-       
+        <f-component id="fpt_sbop_ext.1" name="Stack Buffer Overflow Protection">
+          <f-element id="fpt_sbop_ext.1.1">
+            <title>The OS shall be compiled with stack-based buffer overflow protections enabled.
+            </title>
+            <note role="application">It is expected that most of the OS, to include the kernel, libraries, and 
+              application software from the OS vendor be compiled with stack-based buffer overflow 
+              protection enabled.
+            </note>
+            <aactivity>
+            The evaluator shall determine that the <abbr linkend="TSS"/> contains a description of stack-based buffer
+            overflow protections used by the OS. Example implementations may be activated
+            through compiler options such as "-fstack-protector-all", "-fstack-protector", and "/GS" flags. 
+            The TSS must include a rationale for any binaries that are not protected in this manner.
+            <testlist>
+                <test>
+                  The evaluator shall inventory the kernel, libraries, and application binaries
+                  to determine those that do not implement stack-based buffer overflow protections. This list should
+                  match up with the list provided in the TSS.
+                </test>
+            </testlist>
+            </aactivity>
+          </f-element>
+        </f-component>
         <f-component id="fpt_srp_ext.1" name="Software Restriction Policies">
           <f-element id="fpt_srp_ext.1.1" status="objective">
             <title> The OS shall restrict execution to only programs which match an administrator-specified
@@ -2348,7 +2476,41 @@
             </aactivity>
           </f-element>
         </f-component>
-     
+        <f-component id="fpt_w^x_ext.1" name="Write XOR Execute Memory Pages">
+          <f-element id="fpt_w^x_ext.1.1" status="objective">
+            <title> The OS shall prevent allocation of any memory region with both write and 
+              execute permissions except for <assignable>list of exceptions</assignable>.
+            </title>
+            <note role="application">Requesting a memory mapping with both write and execute
+              permissions subverts the platform protection provided by <abbr linkend="DEP"/>. If the
+              OS provides no exceptions (such as for just-in-time compilation), then "no exceptions"
+              should be indicated in the assignment.  Full realization of this requirement requires hardware support,
+			  but this is commonly available.  
+            </note>
+            <aactivity> 
+              The evaluator shall inspect the vendor-provided developer documentation and 
+	      verify that no memory-mapping can be made with
+              write and execute permissions except for the cases listed in the assignment.
+			  <testlist>
+			  <test>
+                  The evaluator shall construct a test program which attempts to allocate memory that
+				  is both writable and executable.  
+				  The evaluator shall confirm that this is prevented.
+			  </test>
+			  <test>
+                  The evaluator shall construct a test program which allocates memory that is executable, and then
+				  later change permissions on that memory to also be writable.
+				  The evaluator shall confirm that this is prevented.
+			  </test>
+			  <test>
+                  The evaluator shall construct a test program which allocates memory that is writable, and then
+				  later change permissions on that memory to also be executable.
+				  The evaluator shall confirm that this is prevented.
+			  </test>
+			  </testlist>
+            </aactivity>
+          </f-element>
+        </f-component>
       </subsection>    
       <subsection title="Audit Data Generation (FAU)" id="fau">
         <f-component id="fau_gen.1" name="Audit Data Generation">
@@ -2363,7 +2525,7 @@
                   <selectable>File and object events (Successful and unsuccessful attempts to create, access, delete, modify, modify permissions)</selectable>
                   <selectable>User and Group management events (Successful and unsuccessful add, delete, modify, disable</selectable>
                   <selectable>Audit and log data access events (Success/Failure)</selectable>
-                  <selectable>Cryptological verification of update events (Success/Failure)</selectable>
+                  <selectable>Cryptographic verification of software (Success/Failure)</selectable>
                   <selectable>Software restriction policy execution events (Success/Failure) </selectable>
                   <selectable>System reboot, restart, and shutdown events (Success/Failure)</selectable>
                   <selectable>Administrator or root-level access events (Success/Failure)</selectable>
@@ -2732,6 +2894,7 @@
         	      <selectable>TLS as conforming to <linkref linkend="FCS_TLSC_EXT.1"/></selectable>
         	      <selectable>DTLS as conforming to <linkref linkend="FCS_DTLS_EXT.1"/></selectable>
       	        <selectable>IPsec as conforming to the IPsec VPN client Protection Profile</selectable>
+      	        <selectable>SSH as conforming to <linkref linkend="FCS_SSHC_EXT.1"/> or <linkref linkend="FCS_SSHS_EXT.1"/></selectable>
         	    </selectables>
       	      to provide a trusted communication path between itself and remote administrators that: 
       	      is logically distinct from other communication channels, 
