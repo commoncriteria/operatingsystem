@@ -2338,12 +2338,17 @@
             <note role="application">
               The bootchain of the OS is the sequence of software, including: the OS loader, the kernel, system 
               drivers or modules, and system files, which ultimately result in loading the OS. 
+	      The first part of the OS, usually referred to as the first-stage bootloader, 
+	      must be loaded by the platform. 
+	      Accessing its integrity, while critical, is a platform responsibility; and therefore outside
+	      the scope of this protection profile.
+	      All software after this initial program is within scope.
               <br/>
-              The verification may be transitive in nature: a
-              hardware-protected public key or hash may be used to verify the mutable bootloader code 
+              The verification may be transitive in nature: 
+	      a hardware-protected public key or hash may be used to verify the mutable bootloader code 
               which contains a key or hash used by the bootloader to verify the mutable OS kernel code,
-              which contains a key or hash to verify the next layer of executable code, and so on. However, the way 
-              in which the hardware stores and protects these keys is out of scope.
+              which contains a key or hash to verify the next layer of executable code, and so on. 
+	      However, the way in which the hardware stores and protects these keys is out of scope.
               <br/>
               If all executable code (including bootloader(s), kernel, device drivers, pre-loaded applications, user-loaded
               applications, and libraries) is verified, “all executable code stored in mutable media” should
@@ -2355,7 +2360,8 @@
               procedures, including a description of the entire bootchain, of the software for the TSF’s. 
               The evaluator shall ensure that before loading the bootloader(s) for
               the operating system and the kernel, all bootloaders and the kernel software itself is
-              cryptographically verified. For each additional category of executable code verified before
+              cryptographically verified. 
+	      For each additional category of executable code verified before
               execution, the evaluator shall verify that the description in the TSS describes how that
               software is cryptographically verified.
               <br/>
