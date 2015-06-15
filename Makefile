@@ -40,6 +40,7 @@ simplified: $(SIMPLIFIED)
 $(SIMPLIFIED): $(TRANS)/pp2simplified.xsl $(PP_XML)
 	xsltproc --stringparam release final -o $(SIMPLIFIED) $(TRANS)/pp2simplified.xsl $(PP_XML)
 
+rnc: validators/operatingsystem.rnc
 validators/operatingsystem.rnc: validators/operatingsystem.rng
 	trang -I rng -O rnc  validators/operatingsystem.rng validators/operatingsystem.rnc
 

@@ -2340,9 +2340,9 @@
               drivers or modules, and system files, which ultimately result in loading the OS. 
 	      The first part of the OS, usually referred to as the first-stage bootloader, 
 	      must be loaded by the platform. 
-	      Accessing its integrity, while critical, is a platform responsibility; and therefore outside
+	      Assessing its integrity, while critical, is a platform responsibility; and therefore outside
 	      the scope of this protection profile.
-	      All software after this initial program is within scope.
+	      All software after the initial program is within scope.
               <br/>
               The verification may be transitive in nature: 
 	      a hardware-protected public key or hash may be used to verify the mutable bootloader code 
@@ -2358,9 +2358,9 @@
             <aactivity>
               The evaluator shall verify that the TSS section of the ST includes a description of the boot
               procedures, including a description of the entire bootchain, of the software for the TSF’s. 
-              The evaluator shall ensure that before loading the bootloader(s) for
-              the operating system and the kernel, all bootloaders and the kernel software itself is
-              cryptographically verified. 
+              The evaluator shall ensure that the OS cryptographically verifies each
+	      piece of software it loads in the bootchain to include bootloaders and the kernel.
+	      Software loaded directly by the platform (e.g. first-stage bootloaders) are out of scope.
 	      For each additional category of executable code verified before
               execution, the evaluator shall verify that the description in the TSS describes how that
               software is cryptographically verified.
@@ -2380,7 +2380,7 @@
               The evaluator shall perform the following tests:
               <testlist>
                 <test>
-                   The evaluator shall perform actions to cause TSF software to load and observe that the
+                  The evaluator shall perform actions to cause TSF software to load and observe that the
                   integrity mechanism does not flag any executables as containing integrity errors and that the
                   OS properly boots.
                 </test>
