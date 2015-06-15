@@ -2122,11 +2122,11 @@
           <f-element id="fpt_aslr_ext.1.1">
             <title>The OS shall always randomize process and module address space memory locations except for
                 <assignable>list of explicit exceptions</assignable>.
-                <note role="application">
-                Requesting a memory mapping at an explicit address subverts address space layout
-                randomization (<abbr linkend="ASLR"/>). 
-                </note>
             </title>
+            <note role="application">
+              Requesting a memory mapping at an explicit address subverts address space layout
+              randomization (<abbr linkend="ASLR"/>). 
+            </note>
             <aactivity> The evaluator shall ensure that the <abbr linkend="TSS"/> describes the
               linker flags used to enable <abbr linkend="ASLR"/> when the OS modules are compiled.
               The evaluator shall perform either static or dynamic analysis to determine that no
@@ -2134,12 +2134,11 @@
 	        </aactivity>
           </f-element>
           <f-element id="fpt_aslr_ext.1.2" status="optional">
-            <title>The OS shall always randomize kernel address space memory locations
+            <title>The OS shall always randomize kernel address space memory locations</title>
                 <note role="application">
                   Randomizing the location of the kernel address spaces provides some defense against
 		  kernel-level exploits.
                 </note>
-            </title>
             <aactivity> 
 	      The evaluator shall review the TSS to ensure that ASLR applies to the kernel.
 	    </aactivity>
