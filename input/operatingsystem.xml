@@ -1456,6 +1456,27 @@
             <title>The OS shall ensure that the SSH protocol implementation supports
               the following authentication methods as described in RFC 4252: public key-based, passwordbased.
             </title>
+			<aactivity>The evaluator shall check to ensure that the TSS contains a
+			description of the public key algorithms that are acceptable for
+			use for authentication, that this list conforms to
+			<linkref linkend="FCS_SSHC_EXT.1.5"/>, and ensure that password-based authentication
+			methods are also allowed.
+			<br/>
+			<testlist>
+			<test>The evaluator shall, for each public key algorithm
+			supported, show that the TOE supports the use of that public key
+			algorithm to authenticate a user connection to an SSH server. Any
+			configuration activities required to support this test shall be
+			performed according to instructions in the guidance documentation.
+			</test> 
+			<test>Using the guidance documentation, the evaluator shall
+			configure the TOE to perform password-based authentication to an
+			SSH server, and demonstrate that a user can be successfully
+			authenticated by the TOE to an SSH server using a password as an
+			authenticator.
+            </test>
+			</testlist>
+            </aactivity>
 		  </f-element>
 		  <f-element id="fcs_sshc_ext.1.3">
 		    <title>The OS shall ensure that, as described in RFC 4253, packets greater
@@ -1466,7 +1487,16 @@
             author with the maximum packet size accepted, thus defining “reasonable length” for the
             TOE.
 		    </note>
+			<aactivity>
+			The evaluator shall check that the TSS describes how “large
+			packets” in terms of RFC 4253 are detected and handled.
+			<br/>
+			The evaluator shall demonstrate that if the TOE receives a packet
+			larger than that specified in this component, that packet is
+			dropped.
+			</aactivity>
 		  </f-element>
+
           <f-element id="fcs_sshc_ext.1.4">
 		  <title>The OS shall ensure that the SSH transport implementation uses the
             following encryption algorithms and rejects all other encryption algorithms: aes128-cbc,
@@ -1487,6 +1517,33 @@
 		  supported. If AESGCM is selected, there should be corresponding
 		  FCS_COP entries in the ST.
 		  </note>
+		  <aactivity>The evaluator shall check the description of the
+		  implementation of this protocol in the TSS to ensure that optional
+		  characteristics are specified, and the encryption algorithms
+		  supported are specified as well. The evaluator shall check the TSS to
+		  ensure that the encryption algorithms specified are identical to
+		  those listed for this component.
+		  <br/>
+		  The evaluator shall also check the guidance documentation to ensure
+		  that it contains instructions on configuring the TOE so that SSH
+		  conforms to the description in the TSS (for instance, the set of
+		  algorithms advertised by the TOE may have to be restricted to meet
+		  the requirements).
+          <br/>
+		  <testlist>
+		  <test>The evaluator shall establish a SSH connection using each of
+		  the encryption algorithms specified by the requirement. It is
+		  sufficient to observe (on the wire) the successful negotiation of the
+		  algorithm to satisfy the intent of the test.
+		  </test>
+		  <test>
+		  The evaluator shall configure an SSH server to only allow the 3des-cbc
+		  encryption algorithm and no other encryption algorithms. The
+		  evaluator shall attempt to establish an SSH connection from the TOE
+		  to the SSH server and observe that the connection is rejected.
+		  </test>
+		  </testlist>
+		  </aactivity>
 		  </f-element>
 
 		  <f-element id="fcs_sshc_ext.1.5">
@@ -1512,23 +1569,45 @@
 		  then the list of trusted certification authorities must be selected
 		  in <linkref linkend="FCS_SSHC_EXT.1.9"/>.
           </note>
-		  </f-element>
+		  <aactivity>The evaluator shall check the description of the
+		  implementation of this protocol in the TSS to ensure that optional
+		  characteristics are specified, and the public key algorithms
+		  supported are specified as well. The evaluator shall check the TSS to
+		  ensure that the public key algorithms specified are identical to
+		  those listed for this component.
+		  <br/> The evaluator shall also check the guidance documentation to
+		  ensure that it contains instructions on configuring the TOE so that
+		  SSH conforms to the description in the TSS (for instance, the set of
+		  algorithms advertised by the TOE may have to be restricted to meet
+		  the requirements).
+          <br/>
+		  <testlist>
+		  <test>
+		  The evaluator shall establish a SSH connection using each of the
+		  public key algorithms specified by the requirement to authenticate an
+		  SSH server to the TOE. It is sufficient to observe (on the wire) the
+		  successful negotiation of the algorithm to satisfy the intent of the
+		  test. 
+		  </test>
+		  <test>The evaluator shall configure an SSH server to
+		  only allow the ssh-dsa public key algorithm and no other public key
+		  algorithms. The evaluator shall attempt to establish an SSH
+		  connection from the TOE to the SSH server and observe that the
+		  connection is rejected.
+          </test>
+		  </testlist>
+		  </aactivity> 
+		  </f-element> 
+		  
 		  <f-element id="fcs_sshc_ext.1.6">
-		  <title>The TSF shall ensure that the SSH transport
-		  implementation uses 
-		  <selectables>
-		  <selectable>hmac-sha1</selectable>
+		  <title>The TSF shall ensure that the SSH transport implementation
+		  uses <selectables> <selectable>hmac-sha1</selectable>
 		  <selectable>hmac-sha1-96</selectable>
 		  <selectable>hmac-sha2-256</selectable>
-		  <selectable>hmac-sha2-512</selectable>
-		  </selectables>
-		  and
-		  <selectables>
-		  <selectable>AEAD_AES_128_GCM</selectable>
-		  <selectable>AEAD_AES_256_GCM</selectable>
-		  <selectable>no other MAC algorithms</selectable>
-		  </selectables>
-		  as its data integrity MAC
+		  <selectable>hmac-sha2-512</selectable> </selectables> and
+		  <selectables> <selectable>AEAD_AES_128_GCM</selectable>
+		  <selectable>AEAD_AES_256_GCM</selectable> <selectable>no other MAC
+		  algorithms</selectable> </selectables> as its data integrity MAC
 		  algorithm(s) and rejects all other MAC algorithm(s).  
 
           </title>
@@ -1538,19 +1617,77 @@
 		  algorithms when the same algorithm is being used as the encryption
 		  algorithm. RFC 6668 specifies the use of the sha2 algorithms in SSH.
 		  </note>
+		  <aactivity>The evaluator shall check the TSS to ensure that it lists
+		  the supported data integrity algorithms, and that that list
+		  corresponds to the list in this component.
+		  <br/>
+		  The evaluator shall also check the guidance documentation to ensure
+		  that it contains instructions to the administrator on how to ensure
+		  that only the allowed data integrity algorithms are used in SSH
+		  connections with the TOE (specifically, that the “none” MAC algorithm
+		  is not allowed).
+		  <br/>
+		  <testlist>
+		  <test>The evaluator shall establish a SSH connection using each of
+		  the integrity algorithms specified by the requirement. It is
+		  sufficient to observe (on the wire) the successful negotiation of the
+		  algorithm to satisfy the intent of the test.
+		  </test>
+		  <test>The evaluator
+		  shall configure an SSH server to only allow the “none” MAC algorithm.
+		  The evaluator shall attempt to connect from the TOE to the SSH server
+		  and observe that the attempt fails.
+		  </test>
+		  <test>
+		  The evaluator shall
+		  configure an SSH server to only allow the hmac- md5 MAC algorithm.
+		  The evaluator shall attempt to connect from the TOE to the SSH server
+		  and observe that the attempt fails.
+          </test>
+		  </testlist>
+		  </aactivity>
 		  </f-element>
+
           <f-element id="fcs_sshc_ext.1.7">
 		  <title>The OS shall ensure that [selection:
 		  diffie-hellman-group14-sha1, ecdh-sha2-nistp256] and [selection:
 		  ecdh-sha2-nistp384, ecdh-sha2-nistp521, no other methods] are the
 		  only allowed key exchange methods used for the SSH protocol.
 		  </title>
+		  <aactivity>
+		  The evaluator shall check the TSS to ensure that it lists the
+		  supported key exchange algorithms, and that that list corresponds to
+		  the list in this component.
+		  <br/>
+		  The evaluator shall also check the guidance documentation to ensure
+		  that it contains instructions to the administrator on how to ensure
+		  that only the allowed key exchange algorithms are used in SSH
+		  connections with the TOE.
+		  <br/>
+		  <testlist>
+		  <test>The evaluator shall configure an SSH server to permit all
+		  allowed key exchange methods. The evaluator shall attempt to connect
+		  from the TOE to the SSH server using each allowed key exchange
+		  method, and observe that each attempt succeeds.
+          </test>
+		  </testlist>
+		  </aactivity>
 		  </f-element>
 
           <f-element id="fcs_sshc_ext.1.8">
 		  <title>The OS shall ensure that the SSH connection be rekeyed after
           no more than 2^28 packets have been transmitted using that key.
 		  </title>
+		  <aactivity>
+		  <testlist>
+		  <test>The evaluator shall configure the TOE to create a log entry when a
+		  rekey occurs. The evaluator shall connect to the TOE with an SSH
+		  client and cause 2^28 packets to be transmitted from the client to
+		  the TOE, and subsequently review the audit log to ensure that a rekey
+		  occurred.
+          </test>
+		  </testlist>
+		  </aactivity>
           </f-element>
 
 		  <f-element id="fcs_sshc_ext.1.9">
@@ -1568,10 +1705,105 @@
 		  x509v3-ecdsa-sha2-nistp256 or x509v3-ecdsa-sha2-nistp384 are
 		  selected in <linkref linkend="FCS_SSHC_EXT.1.5"/>.
 		  </note> 
+		  <aactivity>
+		  <testlist>
+		  <test>The evaluator shall delete all entries in the TOE’s list of
+		  recognized SSH server host keys and, if selected, all entries in the
+		  TOE’s list of trusted certification authorities. The evaluator shall
+		  initiate a connection from the TOE to an SSH server. The evaluator
+		  shall ensure that the TOE either rejects the connection or displays
+		  the SSH server’s public key (either the key bytes themselves or a
+		  hash of the key using any allowed hash algorithm) and prompts the
+		  user to accept or deny the key before continuing the connection. 
+		  </test>
+		  <test>The evaluator shall add an entry associating a host name with
+		  a public key into the TOE’s local database. The evaluator shall
+		  replace, on the corresponding SSH server, the server’s host key with
+		  a different host key. The evaluator shall initiate a connection from
+		  the TOE to the SSH server using password-based authentication, shall
+		  ensure that the TOE rejects the connection, and shall ensure that the
+		  password was not transmitted to the SSH server (for example, by
+		  instrumenting the SSH server with a debugging capability to output
+		  received passwords).
+          </test>
+		  </testlist>
+		  </aactivity>
 		  </f-element>
 
         </f-component>
 
+        <f-component id="fcs_sshs_ext.1" name="SSH Server Protocol">
+          <f-element id="fcs_sshs_ext.1.1">
+            <title>The OS shall implement the SSH protocol that complies with RFCs 4251, 4252, 4253, 4254 and
+			<selectables>
+			<selectable>5647</selectable>
+			<selectable>5656</selectable>
+			<selectable>6187</selectable>
+			<selectable>6668</selectable>
+			<selectable>no other RFCs</selectable>
+			</selectables>
+            </title>
+			<note role="application"> The ST author selects which of the additional RFCs to which
+			conformance is being claimed.  Note that these need to be
+			consistent with selections in later elements of this component
+			(e.g., cryptographic algorithms permitted). RFC 4253 indicates that
+			certain cryptographic algorithms are "REQUIRED". This means that
+			the implementation must include support, not that the algorithms
+			must be enabled for use. Ensuring that algorithms indicated as
+			"REQUIRED" but not listed in the later elements of this component
+			are implemented is out of scope of the assurance activity for this
+			requirement.
+            </note>
+		  </f-element>
+
+          <f-element id="fcs_sshs_ext.1.2">
+            <title>The OS shall ensure that the SSH protocol implementation supports
+              the following authentication methods as described in RFC 4252: public key-based, passwordbased.
+            </title>
+		  </f-element>
+		  <f-element id="fcs_sshs_ext.1.3">
+		    <title>The OS shall ensure that, as described in RFC 4253, packets greater
+            than <assignable>number of bytes</assignable> bytes in an SSH transport connection are dropped. 
+            </title>
+		    <note role="application">RFC 4253 provides for the acceptance of “large packets” with the caveat that the packets
+            should be of “reasonable length” or dropped. The assignment should be filled in by the ST
+            author with the maximum packet size accepted, thus defining “reasonable length” for the
+            TOE.
+		    </note>
+		  </f-element>
+          <f-element id="fcs_sshs_ext.1.4">
+		  <title>The OS shall ensure that the SSH transport implementation uses the
+            following encryption algorithms and rejects all other encryption algorithms: 
+			<assignable>encryption algorithms</assignable>.
+		  </title>
+		  </f-element>
+
+		  <f-element id="fcs_sshs_ext.1.5">
+		  <title>The OS shall ensure that the SSH transport implementation uses
+		  <assignable>list of public key algorithms</assignable> as its public key
+		  algorithm(s) and rejects all other public key algorithms.
+          </title>
+		  </f-element>
+		  <f-element id="fcs_sshs_ext.1.6">
+		  <title>The OS shall ensure that the SSH transport implementation uses 
+		  <assignable>list of MAC algorithms</assignable> as its MAC algorithm(s) and
+		  rejects all other MAC algorithm(s).
+          </title>
+		  </f-element>
+          <f-element id="fcs_sshs_ext.1.7">
+		  <title>The OS shall ensure that 
+		  <assignable>list of key exchange methods</assignable>
+		  are the only allowed key exchange methods used for the SSH protocol.
+		  </title>
+		  </f-element>
+
+          <f-element id="fcs_sshc_ext.1.8">
+		  <title>The OS shall ensure that the SSH connection be rekeyed after
+          no more than 2^28 packets have been transmitted using that key.
+		  </title>
+          </f-element>
+
+		</f-component>
         <f-component id="fcs_tlsc_ext.1" name="TLS Client Protocol">
           <f-element id="fcs_tlsc_ext.1.1">
             <title> The OS shall implement <abbr title="Transport Layer Security">TLS</abbr> 1.2
