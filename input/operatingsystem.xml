@@ -1429,7 +1429,8 @@
         </f-component>
 
         <f-component id="fcs_sshc_ext.1" name="SSH Client Protocol">
-          <f-element id="fcs_sshc_ext.1.1">
+          <f-element id="fcs_sshc_ext.1.1" status="sel-based">
+		    <selection-depends req="ftp_itc_ext.1.1"/>
             <title>The OS shall implement the SSH protocol that complies with RFCs 4251, 4252, 4253, 4254 and
 			<selectables>
 			<selectable>5647</selectable>
@@ -1451,7 +1452,8 @@
 			requirement.
             </note>
 		  </f-element>
-          <f-element id="fcs_sshc_ext.1.2">
+          <f-element id="fcs_sshc_ext.1.2" status="sel-based">
+		    <selection-depends req="ftp_itc_ext.1.1"/>
             <title>The OS shall ensure that the SSH protocol implementation supports
               the following authentication methods as described in RFC 4252: public key-based, passwordbased.
             </title>
@@ -1477,7 +1479,8 @@
 			</testlist>
             </aactivity>
 		  </f-element>
-		  <f-element id="fcs_sshc_ext.1.3">
+		  <f-element id="fcs_sshc_ext.1.3" status="sel-based">
+		    <selection-depends req="ftp_itc_ext.1.1"/>
 		    <title>The OS shall ensure that, as described in RFC 4253, packets greater
             than <assignable>number of bytes</assignable> bytes in an SSH transport connection are dropped. 
             </title>
@@ -1496,7 +1499,8 @@
 			</aactivity>
 		  </f-element>
 
-          <f-element id="fcs_sshc_ext.1.4">
+          <f-element id="fcs_sshc_ext.1.4" status="sel-based">
+		    <selection-depends req="ftp_itc_ext.1.1"/>
 		  <title>The OS shall ensure that the SSH transport implementation uses the
             following encryption algorithms and rejects all other encryption algorithms: aes128-cbc,
             aes256-cbc, 
@@ -1545,7 +1549,8 @@
 		  </aactivity>
 		  </f-element>
 
-		  <f-element id="fcs_sshc_ext.1.5">
+		  <f-element id="fcs_sshc_ext.1.5" status="sel-based">
+		    <selection-depends req="ftp_itc_ext.1.1"/>
 		  <title>The OS shall ensure that the SSH transport implementation uses
           <selectables>
 		    <selectable>ssh-rsa</selectable>
@@ -1598,7 +1603,8 @@
 		  </aactivity> 
 		  </f-element> 
 		  
-		  <f-element id="fcs_sshc_ext.1.6">
+		  <f-element id="fcs_sshc_ext.1.6" status="sel-based">
+		    <selection-depends req="ftp_itc_ext.1.1"/>
 		  <title>The TSF shall ensure that the SSH transport implementation
 		  uses <selectables> <selectable>hmac-sha1</selectable>
 		  <selectable>hmac-sha1-96</selectable>
@@ -1647,7 +1653,8 @@
 		  </aactivity>
 		  </f-element>
 
-          <f-element id="fcs_sshc_ext.1.7">
+          <f-element id="fcs_sshc_ext.1.7" status="sel-based">
+		    <selection-depends req="ftp_itc_ext.1.1"/>
 		  <title>The OS shall ensure that [selection:
 		  diffie-hellman-group14-sha1, ecdh-sha2-nistp256] and [selection:
 		  ecdh-sha2-nistp384, ecdh-sha2-nistp521, no other methods] are the
@@ -1673,7 +1680,8 @@
 		  </aactivity>
 		  </f-element>
 
-          <f-element id="fcs_sshc_ext.1.8">
+          <f-element id="fcs_sshc_ext.1.8" status="sel-based">
+		    <selection-depends req="ftp_itc_ext.1.1"/>
 		  <title>The OS shall ensure that the SSH connection be rekeyed after
           no more than 2^28 packets have been transmitted using that key.
 		  </title>
@@ -1689,7 +1697,8 @@
 		  </aactivity>
           </f-element>
 
-		  <f-element id="fcs_sshc_ext.1.9">
+		  <f-element id="fcs_sshc_ext.1.9" status="sel-based">
+		    <selection-depends req="ftp_itc_ext.1.1"/>
 		  <title>The OS shall ensure that the SSH client
 		  authenticates the identity of the SSH server using a local database
 		  associating each host name with its corresponding public key or
@@ -1731,8 +1740,10 @@
 
         </f-component>
 
-        <f-component id="fcs_sshs_ext.1" name="SSH Server Protocol">
-          <f-element id="fcs_sshs_ext.1.1">
+        <f-component id="fcs_sshs_ext.1" name="SSH Server Protocol" status="sel-based">
+	      <selection-depends req="ftp_itc_ext.1.1"/>
+          <f-element id="fcs_sshs_ext.1.1" status="sel-based">
+	        <selection-depends req="ftp_itc_ext.1.1"/>
             <title>The OS shall implement the SSH protocol that complies with RFCs 4251, 4252, 4253, 4254 and
 			<selectables>
 			<selectable>5647</selectable>
@@ -1755,12 +1766,14 @@
             </note>
 		  </f-element>
 
-          <f-element id="fcs_sshs_ext.1.2">
+          <f-element id="fcs_sshs_ext.1.2" status="sel-based">
+	        <selection-depends req="ftp_itc_ext.1.1"/>
             <title>The OS shall ensure that the SSH protocol implementation supports
               the following authentication methods as described in RFC 4252: public key-based, passwordbased.
             </title>
 		  </f-element>
-		  <f-element id="fcs_sshs_ext.1.3">
+		  <f-element id="fcs_sshs_ext.1.3" status="sel-based">
+	        <selection-depends req="ftp_itc_ext.1.1"/>
 		    <title>The OS shall ensure that, as described in RFC 4253, packets greater
             than <assignable>number of bytes</assignable> bytes in an SSH transport connection are dropped. 
             </title>
@@ -1770,33 +1783,38 @@
             TOE.
 		    </note>
 		  </f-element>
-          <f-element id="fcs_sshs_ext.1.4">
+          <f-element id="fcs_sshs_ext.1.4" status="sel-based">
+	        <selection-depends req="ftp_itc_ext.1.1"/>
 		  <title>The OS shall ensure that the SSH transport implementation uses the
             following encryption algorithms and rejects all other encryption algorithms: 
 			<assignable>encryption algorithms</assignable>.
 		  </title>
 		  </f-element>
 
-		  <f-element id="fcs_sshs_ext.1.5">
+		  <f-element id="fcs_sshs_ext.1.5" status="sel-based">
+	        <selection-depends req="ftp_itc_ext.1.1"/>
 		  <title>The OS shall ensure that the SSH transport implementation uses
 		  <assignable>list of public key algorithms</assignable> as its public key
 		  algorithm(s) and rejects all other public key algorithms.
           </title>
 		  </f-element>
-		  <f-element id="fcs_sshs_ext.1.6">
+		  <f-element id="fcs_sshs_ext.1.6" status="sel-based">
+	        <selection-depends req="ftp_itc_ext.1.1"/>
 		  <title>The OS shall ensure that the SSH transport implementation uses 
 		  <assignable>list of MAC algorithms</assignable> as its MAC algorithm(s) and
 		  rejects all other MAC algorithm(s).
           </title>
 		  </f-element>
-          <f-element id="fcs_sshs_ext.1.7">
+          <f-element id="fcs_sshs_ext.1.7" status="sel-based">
+	        <selection-depends req="ftp_itc_ext.1.1"/>
 		  <title>The OS shall ensure that 
 		  <assignable>list of key exchange methods</assignable>
 		  are the only allowed key exchange methods used for the SSH protocol.
 		  </title>
 		  </f-element>
 
-          <f-element id="fcs_sshs_ext.1.8">
+          <f-element id="fcs_sshs_ext.1.8" status="sel-based">
+	        <selection-depends req="ftp_itc_ext.1.1"/>
 		  <title>The OS shall ensure that the SSH connection be rekeyed after
           no more than 2^28 packets have been transmitted using that key.
 		  </title>
@@ -2143,17 +2161,16 @@
       <subsection title="User Data Protection (FDP)" id="fdp">
         <f-component id="fdp_acf_ext.1" name="Access Controls for Protecting User Data">
           <f-element id="fdp_acf_ext.1.1">
-            <title> The OS shall implement access controls which prohibit unprivileged subjects from
-              accessing objects owned by other subjects including:
-              <ul>
-                <li>files</li>
-                <li><assignable>other objects</assignable></li>
-              </ul>
-	      .
+            <title>The OS shall implement access controls which can prohibit unprivileged subjects from
+              accessing objects owned by other subjects.
             </title>
-            <note role="application">Objects owned by one user in a multi user system should be protected from
-            modification by another user in that system.  Achieving such an access control
-            policy may depend upon system configuration.</note>
+			<note role="application">
+			Effective enforcement of an access control policy may also depend
+			upon system configuration.  This requirement is designed to ensure
+			that, for example, objects owned by one user in a multi user system
+			can be protected from access by another user in that system.  
+            </note>
+
             <aactivity>
               The evaluator shall create two new standard user user accounts on the system.
               <testlist>
@@ -2292,7 +2309,7 @@
 		<assignable>list of other management functions to be provided by the TSF</assignable>
                 </management-function>
 	      </management-function-set>
-	      .
+
 	    </title>
             <aactivity>
                  The evaluator shall verify that every management function captured in the ST is
@@ -2316,7 +2333,7 @@
                 <li>Security audit logs</li>
                 <li>Shared libraries</li>
                 <li>System configuration files</li>
-                <li><assignable>other components</assignable></li>
+                <li><assignable>other objects</assignable></li>
               </ul>
 	      .
             </title>
@@ -2331,6 +2348,23 @@
                 <test>The evaluator shall attempt to modify shared libraries that are used throughout the system</test>
                 <test>The evaluator shall attempt to modify system configuration files</test>
                 <test>The evaluator shall attempt to modify any additional components selected</test>
+              </testlist>
+            </aactivity>
+          </f-element>
+          <f-element id="fpt_acf_ext.1.2">
+            <title> The OS shall implement access controls which prohibit unprivileged subjects from
+              reading: <ul>
+                <li>Security audit logs</li>
+                <li><assignable>list of other objects</assignable></li>
+              </ul>.
+            </title>
+            <aactivity> The evaluator will create an unprivileged user account. 
+	    Using this account, the evaluator will ensure that the following tests result in a negative
+              outcome (i.e., the action results in the OS denying the evaluator permission to
+              complete the action): 
+              <testlist>
+                <test>The evaluator shall attempt to read security audit logs generated by the auditing subsystem</test>
+                <test>The evaluator shall attempt to read any other object specified in the assignment</test>
               </testlist>
             </aactivity>
           </f-element>
