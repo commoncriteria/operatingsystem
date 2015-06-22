@@ -2227,6 +2227,15 @@
             </selectables>
 	    .
             </title>
+	    <note role="application">
+	      Typically, the traffic required to establish the VPN connection is referred to as “Control Plane” traffic; 
+	      whereas, the IP traffic protected by the IPsec VPN is referred to as “Data Plane” traffic. 
+	      All “Data Plane” traffic must flow through the VPN connection and the VPN must not split-tunnel.
+	      If no native IPsec client is validated or third-party VPN clients may also implement the required Information Flow Control, the first option shall be selected. In these cases, the TOE provides an API to third-party VPN clients that allows them to configure the TOE’s network stack to perform the required Information Flow Control.
+The ST author shall select the second option if the TSF implements a native VPN client (IPsec is selected in FTP_ITC_EXT.1). If the native VPN client is to be validated (IPsec is selected in FTP_ITC_EXT.1 and the TSF is validated against the “Protection Profile for￼IPsec Virtual Private Network (VPN) Clients”), the ST author shall also include FDP_IFC_EXT from the VPN Client Protection Profile.
+	      In the future, this requirement may also make a distinction between the current requirement (which requires that when the IPsec trusted channel is enabled, all traffic from the TSF is routed through that channel) and having an option to force the establishment of an IPsec trusted channel to allow any communication by the TSF.
+	    </note>
+
             <aactivity> The evaluator shall verify that the TSS section of the ST describes the
               routing of IP traffic through processes on the TSF when a VPN client is enabled. The
               evaluator shall ensure that the description indicates which traffic does not go
