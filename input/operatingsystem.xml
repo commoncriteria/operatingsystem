@@ -293,7 +293,7 @@
           </objective-refer>
         </threat>
         <threat id="T.LOCAL_ATTACK">
-          <description> An attacker may compromise unprivileged applications running on the OS. The
+          <description> An attacker may compromise applications running on the OS. The
             compromised application may provide maliciously formatted input to the OS through a
             variety of channels including unprivileged system calls and messaging via the
             file system. </description>
@@ -325,7 +325,9 @@
         </assumption>
         <assumption id="A.PROPER_USER">
           <description> The user of the OS is not willfully negligent or hostile, and uses the
-            software in compliance with the applied enterprise security policy. </description>
+            software in compliance with the applied enterprise security policy. At the same time,
+            malicious software could act <i>as</i> the user, so requirements which
+            confine malicious subjects are still in scope.</description>
           <objective-refer ref="OE.PROPER_USER">
             <rationale>The operational environment objective OE.PROPER_USER is realized through
               A.PROPER_USER.</rationale>
@@ -341,7 +343,7 @@
         </assumption>
       </assumptions>
     </section>
-    <section title="Organizational Security Policies" id="OSPs">
+<!--    <section title="Organizational Security Policies" id="OSPs">
       <OSPs>
         <OSP id="P.ENTERPRISE">
           <description>If the OS is bound to a directory or management server, the configuration of
@@ -354,7 +356,7 @@
           </objective-refer>
         </OSP>
       </OSPs>
-    </section>
+    </section> -->
   </chapter>
   <chapter title="Security Objectives" id="obj">
     <section title="Security Objectives for the TOE" id="SecurityObjectivesTOE">
@@ -1397,7 +1399,7 @@
         <f-component id="fcs_sto_ext.1" name="Storage of Secrets">
           <f-element id="fcs_sto_ext.1.1">
             <title>The OS shall implement functionality to store credentials to non-volatile storage
-            and provide interfaces to applications to invoke this functionality.
+            and provide interfaces to invoke this functionality.
             </title>
             <aactivity>The evaluator shall check the TSS to ensure that it lists all persistent
               credential types (secret keys, PKI private keys, or passwords) for which the OS provides
@@ -1409,7 +1411,7 @@
 	      exists for applications to securely store credentials.
             </aactivity>
           </f-element>
-          <f-element id="fcs_sto_ext.1.2">
+<!--          <f-element id="fcs_sto_ext.1.2">
             <title>The TSF shall associate stored credentials with users.</title>
             <aactivity>
               <testlist>
@@ -1425,7 +1427,7 @@
                   the second user's credential. </test>
               </testlist>
             </aactivity>
-          </f-element>
+          </f-element> -->
         </f-component>
 
         <f-component id="fcs_sshc_ext.1" name="SSH Client Protocol">
