@@ -790,6 +790,65 @@
               that any outputted or logged error message is identical for each. </aactivity>
           </f-element>
         </f-component>
+                
+        <f-component id="fcs_ckm_ext.3" name="Cryptographic Key Destruction">
+          <f-element id="fcs_ckm_ext.3.1">
+            <title> The OS shall destroy cryptographic keys in accordance with the
+              specified cryptographic key destruction methods
+              <selectables linebreak="yes">
+                <selectable>
+                  For volatile memory, the destruction shall be executed by a single direct overwrite
+                  <selectables>
+                    <selectable>
+                      consisting of a pseudo-random pattern using the TSF’s RBG
+                    </selectable>
+                    <selectable>
+                      consisting of zeroes
+                    </selectable>
+                  </selectables>
+                  followed by a read-verify. If the read-verification of the overwritten data fails,
+                  the process shall be repeated again.
+                </selectable>
+                <selectable>
+                  For non-volatile EEPROM, the destruction shall be executed by a single, direct
+                  overwrite consisting of a pseudo random pattern using the TSF’s RBG (as specified in
+                  <linkref linkend="CS_RBG_EXT.1"/>), followed by a read-verify.
+                  If the read-verification of the overwritten data fails, the process shall be
+                  repeated again.
+                </selectable>
+                <selectable>
+                  For non-volatile flash memory, the destruction shall be executed by 
+                  <selectables>
+                    <selectable>
+                      a single, direct overwrite consisting of zeroes
+                    </selectable>
+                    <selectable>
+                      a block erase
+                    </selectable>
+                  </selectables>
+                  followed by a read-verify.
+                  If the read-verification of the overwritten data fails, the process shall be
+                  repeated again.
+                </selectable>
+                <selectable>
+                  For non-volatile memory other than EEPROM and flash, the destruction shall be
+                  executed by overwriting three or more times with a random pattern that is changed
+                  before each write
+                </selectable>
+              </selectables>.
+            </title>
+            <note role="application">
+              The clearing indicated above applies to each intermediate storage area for
+              plaintext key/cryptographic critical security parameter (i.e., any storage, such as memory
+              buffers, that is included in the path of such data) upon the transfer of the key/cryptographic
+              critical security parameter to another location.
+            </note>
+            <aactivity>
+            
+            </aactivity>
+          </f-element>
+        </f-component>
+ 
         <f-component id="fcs_cop.1(1)" name="Cryptographic Operation - Encryption/Decryption">
           <f-element id="fcs_cop.1.1(1)">
             <title>
