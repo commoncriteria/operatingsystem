@@ -293,7 +293,7 @@
           </objective-refer>
         </threat>
         <threat id="T.LOCAL_ATTACK">
-          <description> An attacker may compromise unprivileged applications running on the OS. The
+          <description> An attacker may compromise applications running on the OS. The
             compromised application may provide maliciously formatted input to the OS through a
             variety of channels including unprivileged system calls and messaging via the
             file system. </description>
@@ -317,7 +317,7 @@
       <assumptions>
         <assumption id="A.PLATFORM">
           <description> The <abbr linkend="OS"/> relies upon a trustworthy computing platform for
-            its execution. This underlying runtime environment is out of scope of this PP. </description>
+            its execution. This underlying platform is out of scope of this PP. </description>
           <objective-refer ref="OE.PLATFORM">
             <rationale> The operational environment objective OE.PLATFORM is realized through
               A.PLATFORM. </rationale>
@@ -325,7 +325,9 @@
         </assumption>
         <assumption id="A.PROPER_USER">
           <description> The user of the OS is not willfully negligent or hostile, and uses the
-            software in compliance with the applied enterprise security policy. </description>
+            software in compliance with the applied enterprise security policy. At the same time,
+            malicious software could act <i>as</i> the user, so requirements which
+            confine malicious subjects are still in scope.</description>
           <objective-refer ref="OE.PROPER_USER">
             <rationale>The operational environment objective OE.PROPER_USER is realized through
               A.PROPER_USER.</rationale>
@@ -341,7 +343,7 @@
         </assumption>
       </assumptions>
     </section>
-    <section title="Organizational Security Policies" id="OSPs">
+<!--    <section title="Organizational Security Policies" id="OSPs">
       <OSPs>
         <OSP id="P.ENTERPRISE">
           <description>If the OS is bound to a directory or management server, the configuration of
@@ -354,7 +356,7 @@
           </objective-refer>
         </OSP>
       </OSPs>
-    </section>
+    </section> -->
   </chapter>
   <chapter title="Security Objectives" id="obj">
     <section title="Security Objectives for the TOE" id="SecurityObjectivesTOE">
@@ -1403,7 +1405,7 @@
         <f-component id="fcs_sto_ext.1" name="Storage of Secrets">
           <f-element id="fcs_sto_ext.1.1">
             <title>The OS shall implement functionality to store credentials to non-volatile storage
-            and provide interfaces to applications to invoke this functionality.
+            and provide interfaces to invoke this functionality.
             </title>
             <aactivity>The evaluator shall check the TSS to ensure that it lists all persistent
               credential types (secret keys, PKI private keys, or passwords) for which the OS provides
@@ -1415,7 +1417,7 @@
 	      exists for applications to securely store credentials.
             </aactivity>
           </f-element>
-          <f-element id="fcs_sto_ext.1.2">
+<!--          <f-element id="fcs_sto_ext.1.2">
             <title>The TSF shall associate stored credentials with users.</title>
             <aactivity>
               <testlist>
@@ -1431,7 +1433,7 @@
                   the second user's credential. </test>
               </testlist>
             </aactivity>
-          </f-element>
+          </f-element> -->
         </f-component>
 
         <f-component id="fcs_sshc_ext.1" name="SSH Client Protocol">
@@ -2233,6 +2235,15 @@
             </selectables>
 	    .
             </title>
+	    <note role="application">
+	      Typically, the traffic required to establish the VPN connection is referred to as “Control Plane” traffic; 
+	      whereas, the IP traffic protected by the IPsec VPN is referred to as “Data Plane” traffic. 
+	      All “Data Plane” traffic must flow through the VPN connection and the VPN must not split-tunnel.
+	      If no native IPsec client is validated or third-party VPN clients may also implement the required Information Flow Control, the first option shall be selected. In these cases, the TOE provides an API to third-party VPN clients that allows them to configure the TOE’s network stack to perform the required Information Flow Control.
+The ST author shall select the second option if the TSF implements a native VPN client (IPsec is selected in FTP_ITC_EXT.1). If the native VPN client is to be validated (IPsec is selected in FTP_ITC_EXT.1 and the TSF is validated against the “Protection Profile for￼IPsec Virtual Private Network (VPN) Clients”), the ST author shall also include FDP_IFC_EXT from the VPN Client Protection Profile.
+	      In the future, this requirement may also make a distinction between the current requirement (which requires that when the IPsec trusted channel is enabled, all traffic from the TSF is routed through that channel) and having an option to force the establishment of an IPsec trusted channel to allow any communication by the TSF.
+	    </note>
+
             <aactivity> The evaluator shall verify that the TSS section of the ST describes the
               routing of IP traffic through processes on the TSF when a VPN client is enabled. The
               evaluator shall ensure that the description indicates which traffic does not go
@@ -2387,18 +2398,15 @@
         </f-component>
         <f-component id="fpt_aslr_ext.1" name="Address Space Layout Randomization">
           <f-element id="fpt_aslr_ext.1.1">
-            <title>The OS shall always randomize process and module address space memory locations except for
+            <title>The OS shall always randomize process address space memory locations except for
                 <assignable>list of explicit exceptions</assignable>.
             </title>
-            <note role="application">
-              Requesting a memory mapping at an explicit address subverts address space layout
-              randomization (<abbr linkend="ASLR"/>). 
-            </note>
-            <aactivity> The evaluator shall ensure that the <abbr linkend="TSS"/> describes the
-              linker flags used to enable <abbr linkend="ASLR"/> when the OS modules are compiled.
-              The evaluator shall perform either static or dynamic analysis to determine that no
-              memory mappings are placed at an explicit and consistent address.
-	        </aactivity>
+	    <note>
+	      <inline-comment color="red"> ADD DECENT ASSURANCE ACTIVITY </inline-comment>
+	      </note>
+            <aactivity>
+
+	    </aactivity>
           </f-element>
           <f-element id="fpt_aslr_ext.1.2" status="optional">
             <title>The OS shall always randomize kernel address space memory locations</title>
@@ -2438,7 +2446,6 @@
 	      However, where an OS supports an external interface
               type (e.g., FireWire) it is important that the OS also offers the ability to disable
               that interface. 
-	      This requirement only ensures that OSs can disable WiFi: 
 	      Requirements that ensure secure communication over WiFi are defined in the 
 	      <a href="https://www.niap-ccevs.org/pp/PP_WLAN_AS_EP_V1.0/"
 		 >ND CPP EP Wireless LAN Access System</a>.
