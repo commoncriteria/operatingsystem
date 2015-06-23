@@ -2169,8 +2169,9 @@
       <subsection title="User Data Protection (FDP)" id="fdp">
         <f-component id="fdp_acf_ext.1" name="Access Controls for Protecting User Data">
           <f-element id="fdp_acf_ext.1.1">
-            <title>The OS shall implement access controls which can prohibit unprivileged subjects from
-              accessing objects owned by other subjects.
+            <title>
+	      The OS shall implement access controls which can prohibit unprivileged subjects from
+              accessing files and directories owned by other subjects.
             </title>
 			<note role="application">
 			Effective enforcement of an access control policy may also depend
@@ -2189,36 +2190,35 @@
               The evaluator shall create two new standard user user accounts on the system and conduct the following tests:
               <testlist>
                 <test>
-                  The evaluator shall authenticate to the system as the first user and create a file within their user directory. 
+                  The evaluator shall authenticate to the system as the first user and create a file within that user's home directory. 
 		  The evaluator shall then log off the system and log in as the second user.
 		  The evaluator shall then attempt to read the file created in the first user's home directory.
 		  The evaluator shall ensure that the read attempt is denied.
                 </test>
                 <test>
-                  The evaluator shall authenticate to the system as the first user and create a file within their user directory. The evaluator shall then
-                  log off the system and log in as the second user. The evaluator shall then attempt to modify the file created in the
-                  first user's home directory. The evaluator shall ensure that the modification is denied.
+                  The evaluator shall authenticate to the system as the first user and create a file within that user's home directory. 
+		  The evaluator shall then log off the system and log in as the second user.
+		  The evaluator shall then attempt to modify the file created in the first user's home directory.
+		  The evaluator shall ensure that the modification is denied.
                 </test>
                 <test>
-                  The evaluator shall authenticate to the system as the first user and create a file within their user directory. The evaluator shall then
-                  log off the system and log in as the second user. The evaluator shall then attempt to delete the file created in the
-                  first user's home directory. The evaluator shall ensure that the deletion is denied.
+                  The evaluator shall authenticate to the system as the first user and create a file within that user's user directory. 
+		  The evaluator shall then log off the system and log in as the second user.
+		  The evaluator shall then attempt to delete the file created in the first user's home directory.
+		  The evaluator shall ensure that the deletion is denied.
                 </test>
                 <test>
-                  The evaluator shall authenticate to the system as the first user and attempt to modify the file created in their home directory.
+                  The evaluator shall authenticate to the system as the first user.
+		  The evaluator shall attempt to create a file in the second user's home directory.
+                  The evaluator shall ensure that the creation of the file is denied.
+                </test>       
+                <test>
+                  The evaluator shall authenticate to the system as the first user and attempt to modify the file created in the home directory.
                   The evaluator shall ensure that the modification of the file is accepted.
                 </test>       
                 <test>
-                  The evaluator shall authenticate to the system as the first user and attempt to delete the file created in their home directory.
+                  The evaluator shall authenticate to the system as the first user and attempt to delete the file created in the home directory.
                   The evaluator shall ensure that the deletion of the file is accepted.
-                </test>
-                <test>
-                  If any other objects have been selected, the evaluator shall attempt to modify and delete them while authenticated to the system with a standard user that does not
-                  own the object being tested. The evaluator shall ensure that both the modification and deletion activities are denied.
-                </test>
-                <test>
-                  If any other objects have been selected, the evaluator shall attempt to modify and delete them while authenticated to the system with a standard user that
-                  owns the object being tested. The evaluator shall ensure that both the modification and deletion activities are denied.
                 </test>
               </testlist>
             </aactivity>
