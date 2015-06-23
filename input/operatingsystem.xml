@@ -397,7 +397,7 @@
             applications and application updates through the use of platform-supported deployment
             mechanisms and formats, as well as providing mechanisms for configuration and
             application execution control. </description>
-          <component-refer ref="fmt_mof_ext.1.1"/>
+          <component-refer ref="fmt_mof_ext.1"/>
           <component-refer ref="ftp_trp.1"/>
           <component-refer ref="fpt_php_ext.1"/>
         </SO>
@@ -415,6 +415,7 @@
           <component-refer ref="fcs_sto_ext.1"/>
           <component-refer ref="fcs_rbg_ext.1"/>
           <component-refer ref="fcs_cop.1.1(1)"/>
+	  <component-refer ref="fdp_acf_ext.1"/>
         </SO>
         <SO id="O.PROTECTED_COMMS">
           <description> To address both passive (eavesdropping) and active (packet modification)
@@ -424,12 +425,14 @@
           <component-refer ref="fcs_tlsc_ext.1"/>
           <component-refer ref="fcs_dtls_ext.1"/>
           <component-refer ref="fcs_rbg_ext.1"/>
-          <component-refer ref="fcs_ckm.1.1"/>
-          <component-refer ref="fcs_ckm.2.1"/>
+          <component-refer ref="fcs_ckm.1"/>
+          <component-refer ref="fcs_ckm.2"/>
           <component-refer ref="fcs_cop.1.1(1)"/>
           <component-refer ref="fdp_ifc_ext.1"/>
           <component-refer ref="fia_x509_ext.1"/>
           <component-refer ref="fia_x509_ext.2"/>
+	  <component-refer ref="fcs_sshc_ext.1"/>
+	  <component-refer ref="fcs_sshs_ext.1"/>
         </SO>
       </SOs>
     </section>
@@ -1232,8 +1235,10 @@
               tags with the same key and IV using a known-good implementation. </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fcs_dtls_ext.1" name="DTLS Implementation">
-          <f-element id="fcs_dtls_ext.1.1">
+        <f-component id="fcs_dtls_ext.1" name="DTLS Implementation" status="sel-based">
+	  <selection-depends req="ftp_itc_ext.1.1"/>
+          <f-element id="fcs_dtls_ext.1.1" status="sel-based">
+	    <selection-depends req="ftp_itc_ext.1.1"/>
             <title>The OS shall implement the DTLS protocol in accordance with 
               <selectables>
                 <selectable>DTLS 1.0 (RFC 4347)</selectable>
@@ -1249,7 +1254,8 @@
                 for <linkref linkend="FCS_TLSC_EXT.1"/>. </testlist>
             </aactivity>
           </f-element>
-          <f-element id="fcs_dtls_ext.1.2">
+          <f-element id="fcs_dtls_ext.1.2" status="sel-based">
+	    <selection-depends req="ftp_itc_ext.1.1"/>
             <title>The OS shall implement the requirements in TLS (<linkref linkend="FCS_TLSC_EXT.1"
             />) for the DTLS implementation, except where variations are allowed according to DTLS
               1.2 (RFC 6347). </title>
@@ -1741,9 +1747,9 @@
         </f-component>
 
         <f-component id="fcs_sshs_ext.1" name="SSH Server Protocol" status="sel-based">
-	      <selection-depends req="ftp_itc_ext.1.1"/>
+	  <selection-depends req="ftp_itc_ext.1.1"/>
           <f-element id="fcs_sshs_ext.1.1" status="sel-based">
-	        <selection-depends req="ftp_itc_ext.1.1"/>
+	    <selection-depends req="ftp_itc_ext.1.1"/>
             <title>The OS shall implement the SSH protocol that complies with RFCs 4251, 4252, 4253, 4254 and
 			<selectables>
 			<selectable>5647</selectable>
@@ -3124,9 +3130,10 @@
               application and ensure that the provided certificate is used to authenticate the
               connection. </aactivity>
           </f-element>
-          <f-element id="fia_x509_ext.2.2">
+          <f-element id="fia_x509_ext.2.2" status="sel-based">
+	    <selection-depends req="ftp_itc_ext.1.1"/>
             <title> The OS shall use X.509v3 certificates as defined by RFC 5280 to support
-              authentication for DTLS connections. </title>
+            authentication for DTLS connections. </title>
             <aactivity> The evaluator shall then acquire or develop an application that uses the OS
               DTLS mechanism with an X.509v3 certificate. The evaluator shall then run the
               application and ensure that the provided certificate is used to authenticate the
