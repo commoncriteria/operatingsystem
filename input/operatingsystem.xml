@@ -377,6 +377,7 @@
           <component-refer ref="fpt_sbop_ext.1"/>
           <component-refer ref="fpt_aslr_ext.1"/>
           <component-refer ref="fpt_tud_ext.1"/>
+          <component-refer ref="fpt_tud_ext.2"/>
           <component-refer ref="fcs_cop.1.1(2)"/>
           <component-refer ref="fcs_cop.1.1(3)"/>
           <component-refer ref="fcs_cop.1.1(4)"/>
@@ -2741,27 +2742,14 @@ The ST author shall select the second option if the TSF implements a native VPN 
              </aactivity>
           </f-element>
         </f-component>
+
         <f-component id="fpt_tud_ext.1" name="Integrity for Installation and Update">
-          <!-- TO DO: Cite references. -->
           <f-element id="fpt_tud_ext.1.1">
-            <title>The OS shall provide the ability to check for updates to 
-              application software. </title>
-            <note role="application">This requirement is about the ability to "check" for updates.
-              The actual installation of any updates is covered by <linkref
-                linkend="FPT_TUD_EXT.1.4"/>. This requirement is intended to ensure that the OS can
-              check for updates provided by the vendor, as updates provided by another source may
-              contain malicious code. </note>
-            <aactivity> The evaluator shall check for an update using procedures described in the
-              documentation and verify that the OS does not issue an error. If it is updated or if
-              it reports that no update is available this requirement is considered to be met.
-            </aactivity>
-          </f-element>
-          <f-element id="fpt_tud_ext.1.2">
             <title>The OS shall provide the ability to check for updates to the OS
               software itself. </title>
             <note role="application">This requirement is about the ability to "check" for updates.
               The actual installation of any updates is covered by <linkref
-                linkend="FPT_TUD_EXT.1.3"/>. This requirement is intended to ensure that the OS can
+                linkend="FPT_TUD_EXT.1.2"/>. This requirement is intended to ensure that the OS can
               check for updates provided by the vendor, as updates provided by another source may
               contain malicious code. </note>
             <aactivity> 
@@ -2770,7 +2758,7 @@ The ST author shall select the second option if the TSF implements a native VPN 
               it reports that no update is available this requirement is considered to be met.
             </aactivity>
           </f-element>
-          <f-element id="fpt_tud_ext.1.3">
+          <f-element id="fpt_tud_ext.1.2">
             <title> The OS shall cryptographically verify updates to itself using a digital
               signature prior to installation.</title>
             <aactivity> 
@@ -2792,9 +2780,29 @@ The ST author shall select the second option if the TSF implements a native VPN 
               </testlist>
             </aactivity>
           </f-element>
-          <f-element id="fpt_tud_ext.1.4">
-            <title> The OS shall provide the ability to cryptographically verify the integrity of updates to applications 
-              using a digital signature prior to installation.</title>
+	</f-component>
+        <f-component id="fpt_tud_ext.2" name="Integrity for Installation and Update">
+          <!-- TO DO: Cite references. -->
+          <f-element id="fpt_tud_ext.2.1">
+            <title>
+	      The OS shall provide the ability to check for updates to 
+              application software.
+	    </title>
+            <note role="application">This requirement is about the ability to "check" for updates.
+              The actual installation of any updates is covered by <linkref
+                linkend="FPT_TUD_EXT.2.1"/>. This requirement is intended to ensure that the OS can
+              check for updates provided by the vendor, as updates provided by another source may
+              contain malicious code. </note>
+            <aactivity> The evaluator shall check for an update using procedures described in the
+              documentation and verify that the OS does not issue an error. If it is updated or if
+              it reports that no update is available this requirement is considered to be met.
+            </aactivity>
+          </f-element>
+          <f-element id="fpt_tud_ext.2.1">
+            <title>
+	      The OS shall provide the ability to cryptographically verify the integrity of updates 
+	      to applications using a digital signature prior to installation.
+	    </title>
             <aactivity>
               <testlist>
                 <test>
