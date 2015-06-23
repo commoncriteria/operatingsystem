@@ -2444,8 +2444,10 @@ The ST author shall select the second option if the TSF implements a native VPN 
                 <li><assignable>list of other objects</assignable></li>
               </ul>.
             </title>
-            <aactivity> The evaluator will create an unprivileged user account. 
-	    Using this account, the evaluator will ensure that the following tests result in a negative
+            <aactivity>
+	      The evaluator shall confirm that the TSS specifies the kernel drivers/modules,
+	      The evaluator will create an unprivileged user account. 
+	      Using this account, the evaluator will ensure that the following tests result in a negative
               outcome (i.e., the action results in the OS denying the evaluator permission to
               complete the action): 
               <testlist>
@@ -3231,24 +3233,31 @@ The ST author shall select the second option if the TSF implements a native VPN 
       	<f-component id="ftp_itc_ext.1" name="Trusted channel communication">
       	  <f-element id="ftp_itc_ext.1.1">
       	    <title>
-      	      The OS shall use 
+
+
+     	      The OS shall use 
       	      <selectables linebreak='yes'>
         	      <selectable>TLS as conforming to <linkref linkend="FCS_TLSC_EXT.1"/></selectable>
         	      <selectable>DTLS as conforming to <linkref linkend="FCS_DTLS_EXT.1"/></selectable>
       	        <selectable>IPsec as conforming to the IPsec VPN client Protection Profile</selectable>
       	        <selectable>SSH as conforming to <linkref linkend="FCS_SSHC_EXT.1"/> or <linkref linkend="FCS_SSHS_EXT.1"/></selectable>
         	    </selectables>
-      	      to provide a trusted communication path between itself and remote administrators that: 
-      	      is logically distinct from other communication channels, 
-      	      provides assured identification of its end points, 
-      	      protects channel data from disclosure, 
-      	      and detects modification of the channel data.
+
+		    to provide a trusted communication channel between itself and 
+		    authorized IT entities supporting the following capabilities: 
+		    <selectables>
+		      <selectable>audit server</selectable>
+		      <selectable>authentication server</selectable>
+		      <selectable>directory service server</selectable> 
+		      <selectable>
+			<assignable>other capabilities</assignable>
+		      </selectable>
+		    </selectables>
+		    that is logically distinct from other communication
+		    channels and provides assured identification of its end points and protection of the channel 
+		    data from disclosure and detection of modification of the channel data.
       	    </title>
       	    <note role="application">
-      	      The intent of the mandatory portion of the above requirement is to use the
-      	      cryptographic protocols identified in the requirement to establish and maintain a 
-      	      trusted channel between the OS another trusted IT product.
-      	      <br/>
       	      If the ST author selects IPsec, the TSF shall be validated against the “Protection
       	      Profile for IPsec Virtual Private Network (VPN) Clients.”  The ST author must
       	      include the security functional requirements for the trusted channel protocol selected in
@@ -3257,8 +3266,14 @@ The ST author shall select the second option if the TSF implements a native VPN 
       	    <aactivity>
       	      The evaluator shall configure the OS to communicate with another trusted IT 
       	      product.
-      	      The evaluator shall ensure that the traffic conforms to the requirements defined
-      	      by <linkref linkend="FCS_TLSC_EXT.1"/> or <linkref linkend="FCS_DTLS_EXT.1"/>.
+      	      The evaluator shall ensure that the traffic conforms the set requirements defined
+      	      by either the
+	      IPsec VPN client Protection Profile,
+	      <linkref linkend="FCS_SSHC_EXT.1"/>,
+	      <linkref linkend="FCS_SSHS_EXT.1"/>, 
+	      <linkref linkend="FCS_TLSC_EXT.1"/>, 
+	      or 
+	      <linkref linkend="FCS_DTLS_EXT.1"/>.
       	    </aactivity>
       	  </f-element>
       	  <f-element id="ftp_itc_ext.1.2">
@@ -3288,7 +3303,8 @@ The ST author shall select the second option if the TSF implements a native VPN 
               <title> The OS shall permit 
                 <selectables>
                   <selectable>the TSF</selectable>
-                  <selectable>a management server</selectable>
+                  <selectable>local users</selectable>
+                  <selectable>remote users</selectable>
                 </selectables>
                 to initiate communication via the trusted path.
               </title>
