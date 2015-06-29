@@ -1295,7 +1295,8 @@
 	      implementation mandatory for compliant OSs.
 	      <br/>
 	      SHA-1 is currently required in order to comply with <linkref linkend="FCS_TLSC_EXT.1"/>
-	      and, depending on selections, <linkref linkend="FCS_DTLS_EXT.1"/>,
+	      and, depending on selections, <linkref linkend="FCS_DTLS_EXT.1"/>.
+	      SHA-1 is currently required in order to comply with <linkref linkend="FCS_TLSC_EXT.1"/>,
 	      but has been deprecated and should not be used for any other purpose beyond TLS and DTLS.
 	    </note>
             <aactivity>The evaluator shall perform the following activities based on the selections
@@ -2687,7 +2688,7 @@ The ST author shall select the second option if the TSF implements a native VPN 
               </selectables>
             </title>
             <note role="application">
-              The bootchain of the OS is the sequence of software, including: the OS loader, the kernel, system 
+              The bootchain of the OS is the sequence of software, to included the OS loader, the kernel, system 
               drivers or modules, and system files, which ultimately result in loading the OS. 
 	      The first part of the OS, usually referred to as the first-stage bootloader, 
 	      must be loaded by the platform. 
@@ -2707,11 +2708,11 @@ The ST author shall select the second option if the TSF implements a native VPN 
               <br/>
             </note>
             <aactivity>
-              The evaluator shall verify that the TSS section of the ST includes a description of the boot
-              procedures, including a description of the entire bootchain, of the software for the TSF’s. 
+              The evaluator shall verify that the TSS section of the ST includes a comprehensive description of the boot
+              procedures, including a description of the entire bootchain, for the TSF. 
               The evaluator shall ensure that the OS cryptographically verifies each
 	      piece of software it loads in the bootchain to include bootloaders and the kernel.
-	      Software loaded directly by the platform (e.g. first-stage bootloaders) are out of scope.
+	      Software loaded directly by the platform (e.g. first-stage bootloaders) is out of scope.
 	      For each additional category of executable code verified before
               execution, the evaluator shall verify that the description in the TSS describes how that
               software is cryptographically verified.
@@ -2736,12 +2737,11 @@ The ST author shall select the second option if the TSF implements a native VPN 
                   OS properly boots.
                 </test>
                 <test>
-                  The evaluator shall modify a TSF executable that is integrity protected and cause that
-                  executable to be successfully loaded by the TSF. The evaluator observes that an integrity
-                  violation is triggered and the OS does not boot. (Care must be taken so that the integrity
+                  The evaluator shall modify a TSF executable that is part of the bootchain verified by the TSF (i.e. Not the first-stage bootloader) 
+		  and attempt to boot.
+		  The evaluator observes that an integrity violation is triggered and the OS does not boot. (Care must be taken so that the integrity
                   violation is determined to be the cause of the failure to load the module, and not the fact that
-                  the module was modified so that it was rendered unable to run because its format was
-                  corrupt).
+                  in such a way to invalidate the structure of the module.).
                 </test>
                 <test>
                   If the ST author indicates that the integrity verification is performed
