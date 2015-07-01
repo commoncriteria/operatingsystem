@@ -21,6 +21,11 @@ spellcheck-esr: $(ESR_HTML)
 spellcheck-os:  $(PP_HTML)
 	hunspell -l -H -p validators/Dictionary.txt $(PP_HTML)
 
+linkcheck: $(TABLE) $(SIMPLIFIED) $(PP_HTML) $(ESR_HTML) $(PP_OP_HTML) $(PP_RELEASE_HTML)
+	for bb in output/*.html; do for aa in $$(\
+	  sed "s/href=['\"]/\nhref=\"/g" $$bb | grep "^href=[\"']#" | sed "s/href=[\"']#//g" | sed "s/[\"'].*//g"\
+        ); do grep "id=[\"']$${aa}[\"']" -q  $$bb || echo "Detected missing link $$bb:$$aa"; done; done
+
 
 pp:$(PP_HTML)
 $(PP_HTML):  $(TRANS)/pp2html.xsl $(PP_XML)
