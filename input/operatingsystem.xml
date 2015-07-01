@@ -3126,6 +3126,9 @@ The ST author shall select the second option if the TSF implements a native VPN 
                       2560 </selectable>
                     <selectable> a Certificate Revocation List (CRL) as specified in RFC 5759
                     </selectable>
+		    <selectable> 
+		      an OCSP TLS Status Request Extension (i.e., OCSP stapling) as specified in RFC 6066
+		    </selectable>
                   </selectables>. </li>
                 <li> The OS shall validate the extendedKeyUsage field according to the following
                   rules: <ul>
@@ -3173,15 +3176,16 @@ The ST author shall select the second option if the TSF implements a native VPN 
                 <test> The evaluator shall demonstrate that validating an expired certificate
                   results in the function failing. </test>
                 <test> The evaluator shall test that the <abbr linkend="OS"/> can properly handle
-                  revoked certificates-–conditional on whether CRL or OCSP is selected; if both are
-                  selected, then a test shall be performed for each method. The evaluator shall test
+                  revoked certificates-–conditional on whether CRL, OCSP, or OCSP stapling is selected; 
+		  if multiple methods are selected, then a test shall be performed for each method. 
+		  The evaluator shall test
                   revocation of the node certificate and revocation of the intermediate CA
                   certificate (i.e. the intermediate CA certificate should be revoked by the root
                   CA). The evaluator shall ensure that a valid certificate is used, and that the
                   validation function succeeds. The evaluator then attempts the test with a
                   certificate that has been revoked (for each method chosen in the selection) to
                   ensure when the certificate is no longer valid that the validation function fails. </test>
-                <test> If OCSP is selected, the evaluator shall configure the OCSP server or use a
+                <test> If either OCSP option is selected, the evaluator shall configure the OCSP server or use a
                   man-in-the-middle tool to present a certificate that does not have the OCSP
                   signing purpose and verify that validation of the OCSP response fails. If CRL is
                   selected, the evaluator shall configure the CA to sign a CRL with a certificate
