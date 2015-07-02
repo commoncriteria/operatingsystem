@@ -2427,6 +2427,41 @@ The ST author shall select the second option if the TSF implements a native VPN 
             </aactivity>
 	  </f-element>
 	</f-component>
+	<f-component id="fmt_smr.1" name="Security Roles">
+	  <f-element id="fmt_smr.1.1">
+	    <title> 
+	      The OS shall maintain the roles
+	      <assignable>the authorized identified roles</assignable>.
+	    </title>
+	    <note role="application">
+	      This requirement is tested with the assurance activity listed for
+	      <linkref linkend="fmt_smr.1.2"/>.
+	    </note>
+	  </f-element>
+	  <f-element id="fmt_smr.1.2">
+	    <title> 
+	      The OS shall be able to associate users with roles
+	    </title>
+	    <aactivity>
+	      For each identified role, the evaluator will create a standard user account.
+	      <testlist>
+		<test>
+		  The evaluator will assign one unique role to each user account that was created
+		  and ensure that the created user is able to assume its assigned role.
+		</test>
+		<test>
+		  The evaluator will create an additional standard user account with no assigned
+		  roles.
+		  The evaluator will then attempt to assume every possible role and ensure
+		  that this action denied in every case.
+		</test>
+	      </testlist>
+	      
+
+	    </aactivity>
+
+	  </f-element>
+	</f-component>
       </subsection>
       <subsection title="Protection of the TSF (FPT)" id="fpt">
         <f-component id="fpt_acf_ext.1" name="Access controls">
@@ -3972,14 +4007,6 @@ The ST author shall select the second option if the TSF implements a native VPN 
 	<td>
 	  <linkref linkend="FMT_MOF_EXT.1"/> defines requirements for user-initiated session locking;
 	  therefore, it is duplicative to include a separate session locking requirement.
-	</td>
-	</tr>
-	<tr>
-	<td>FMT_SMR.1 - Security roles</td>
-	<td>
-	  <linkref linkend="FMT_MOF_EXT.1"/> specifies role-based management functions that implicitly defines
-	  user and privileged accounts; 
-	  therefore, it is duplicative to include separate role requirements.
 	</td>
 	</tr>
 	<tr>
