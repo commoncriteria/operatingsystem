@@ -2249,21 +2249,21 @@
         <f-component id="fdp_acf_ext.1" name="Access Controls for Protecting User Data">
           <f-element id="fdp_acf_ext.1.1">
             <title>
-	      The OS shall implement access controls which can prohibit unprivileged subjects from
-              accessing files and directories owned by other subjects.
+	      The OS shall implement access controls which can prohibit unprivileged users from
+              accessing files and directories owned by other users.
             </title>
-			<note role="application">
-			Effective enforcement of an access control policy may also depend
-			upon system configuration.  This requirement is designed to ensure
-			that, for example, objects owned by one user in a multi user system
-			can be protected from access by another user in that system.  
+	    <note role="application">
+	      Effective enforcement of an access control policy may also depend
+	      upon system configuration.  This requirement is designed to ensure
+	      that, for example, files and directories owned by one user in a multi user system
+	      can be protected from access by another user in that system.  
             </note>
             <aactivity>
-	          The evaluator shall confirm that the TSS comprehensively describes the access control policy enforced by the OS.
-              The description must include the rules by which accesses to particular objects are 
-              determined for particular subjects.
+	      The evaluator shall confirm that the TSS comprehensively describes the access control policy enforced by the OS.
+              The description must include the rules by which accesses to particular files and directories
+	      are determined for particular users.
               The evaluator shall inspect the TSS to ensure that it describes the access control rules 
-              in such detail that given any possible scenario between a subject and object governed by
+              in such detail that given any possible scenario between a user and a file governed by
               the OS the access control decision is unambiguous.
               <br/>
               The evaluator shall create two new standard user user accounts on the system and conduct the following tests:
@@ -2464,7 +2464,7 @@ The ST author shall select the second option if the TSF implements a native VPN 
       <subsection title="Protection of the TSF (FPT)" id="fpt">
         <f-component id="fpt_acf_ext.1" name="Access controls">
           <f-element id="fpt_acf_ext.1.1">
-            <title> The OS shall implement access controls which prohibit unprivileged subjects from
+            <title> The OS shall implement access controls which prohibit unprivileged users from
               modifying: <ul>
                 <li>Bootloaders</li>
                 <li>Kernel drivers/modules</li>
@@ -2494,7 +2494,7 @@ The ST author shall select the second option if the TSF implements a native VPN 
             </aactivity>
           </f-element>
           <f-element id="fpt_acf_ext.1.2">
-            <title> The OS shall implement access controls which prohibit unprivileged subjects from
+            <title> The OS shall implement access controls which prohibit unprivileged users from
               reading: <ul>
                 <li>Security audit logs</li>
                 <li><assignable>list of other objects</assignable></li>
@@ -3028,26 +3028,29 @@ The ST author shall select the second option if the TSF implements a native VPN 
           </f-element>
           <f-element id="fau_gen.1.2">
             <title> The OS shall record within each audit record at least the following information: 
-	           <ul>
-              <li>
-                  Date and time of the event, type of event, subject identity (if applicable), 
-          	      and outcome (success or failure) of the event, the identity of the user which caused the event,
-          	      what has changed on the system due to the event; and 
+	    <ul>
+	      <li>
+                Date and time of the event, type of event, subject identity (if applicable), 
+          	and outcome (success or failure) of the event, the identity of the user which caused the event,
+          	what has changed on the system due to the event; and 
               </li>
-          	  <li>
-          		    For each audit event type, based on the auditable event
-          		    definitions of the functional components included in the PP/ST,
-          		    <assignable>
-          		      other audit relevant information
-          		    </assignable>.
-          	  </li>
-             </ul>
+              <li>
+          	For each audit event type, based on the auditable event
+          	definitions of the functional components included in the PP/ST,
+          	<assignable>other audit relevant information</assignable>
+		.
+              </li>
+	    </ul>
             </title>
+	    <note role="application">
+	      The term <i>subject</i> here is understood to be the user that the application
+	      is acting on behalf of.
+	    </note>
             <aactivity> The evaluator will ensure that all logged events written to the system
               logging service contain the following information: <ul>
                 <li>Date and time of when the event occurred</li>
                 <li>The type of event</li>
-                <li>Subject identity (if applicable)</li>
+                <li>User identity (if applicable)</li>
                 <li>The outcome of the event (Success or failure)</li>
                 <li>The identity of the user which caused the event</li>
                 <li>What has now been modified on the system due to the event</li>
@@ -4035,7 +4038,7 @@ The ST author shall select the second option if the TSF implements a native VPN 
 	  <td>FAU_SAR.1 - Audit review</td>
 	  <td>
 	    <linkref linkend="FPT_ACF_EXT.1.2"/> requires that audit logs (and other objects)
-	    are protected from reading by unprivileged subjects; therefore, it is duplicative
+	    are protected from reading by unprivileged users; therefore, it is duplicative
 	    to include a separate requirement to protect only the audit information.
 	  </td>
 	</tr>
