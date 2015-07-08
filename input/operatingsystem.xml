@@ -841,13 +841,40 @@
               </selectables>.
             </title>
             <note role="application">
-              The clearing indicated above applies to each intermediate storage area for
-              plaintext key/cryptographic critical security parameter (i.e., any storage, such as memory
-              buffers, that is included in the path of such data) upon the transfer of the key/cryptographic
-              critical security parameter to another location.
+              The clearing indicated above applies to each intermediate storage area upon
+              the transfer of the key to another location.
             </note>
             <aactivity>
-            
+            <tss>
+              The evaluator shall check to ensure the TSS lists each type of key material 
+              and its origin and storage location. The evaluator shall verify that the TSS describes when 
+              each type of key material is cleared.
+            </tss>
+            For each software key clearing situation the evaluator shall repeat the following test.
+            <testlist>
+              <test>
+                The evaluator shall utilize appropriate combinations of specialized operational environment and
+                development tools (debuggers, simulators, etc.) for the TOE and instrumented TOE builds to test that
+                keys are cleared correctly, including all intermediate copies of the key that may have been created
+                internally by the TOE during normal cryptographic processing with that key.
+                Cryptographic TOE implementations in software shall be loaded and exercised under a debugger to
+                perform such tests. The evaluator shall perform the following test for each key subject to clearing,
+                including intermediate copies of keys that are persisted encrypted by the TOE: <br/> 
+                1. Load the instrumented TOE build in a debugger.<br/> 
+                2. Record the value of the key in the TOE subject to clearing.<br/> 
+                3. Cause the TOE to perform a normal cryptographic processing with the key from #1.<br/> 
+                4. Cause the TOE to clear the key.<br/> 
+                5. Cause the TOE to stop the execution but not exit.<br/> 
+                6. Cause the TOE to dump the entire memory footprint of the TOE into a binary file.<br/> 
+                7. Search the content of the binary file created in #4 for instances of the known key value from #1.<br/> 
+                The test succeeds if no copies of the key from #1 are found in step #7 above and fails otherwise.<br/> 
+                rotection Profile for Mobile Device Management<br/> 
+                
+                The evaluator shall perform this test on all keys, including those persisted in encrypted form, to ensure
+                intermediate copies are cleared.
+              </test>
+            </testlist>
+
             </aactivity>
           </f-element>
         </f-component>
