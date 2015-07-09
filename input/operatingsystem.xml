@@ -2792,22 +2792,18 @@ The ST author shall select the second option if the TSF implements a native VPN 
               procedures, including a description of the entire bootchain, for the TSF. 
               The evaluator shall ensure that the OS cryptographically verifies each
 	      piece of software it loads in the bootchain to include bootloaders and the kernel.
-	      Software loaded directly by the platform (e.g. first-stage bootloaders) is out of scope.
+	      Software loaded for execution directly by the platform (e.g. first-stage bootloaders) is out of scope.
 	      For each additional category of executable code verified before
               execution, the evaluator shall verify that the description in the TSS describes how that
               software is cryptographically verified.
               <br/>
-              The evaluator shall verify that the TSS contains a justification for the protection of the
+              <!-- Out of scope, for now:
+			  The evaluator shall verify that the TSS contains a justification for the protection of the
               cryptographic key or hash, preventing it from being modified by unverified or
               unauthenticated software.
-              <br/>
+              <br/> -->
               The evaluator shall verify that the TSS contains a description of the
               protection afforded to the mechanism performing the cryptographic verification.
-              <br/>
-              The evaluator shall verify that the TSS describes each auxiliary boot mode available on the
-              OS during the boot procedures. The evaluator shall verify that, for each auxiliary boot
-              mode, a description of the cryptographic integrity of the executed code through the kernel is
-              verified before each execution.
               <br/>
               The evaluator shall perform the following tests:
               <testlist>
@@ -3313,20 +3309,22 @@ The ST author shall select the second option if the TSF implements a native VPN 
         <f-component id="fia_x509_ext.2" name="X.509 Certificate Authentication">
           <f-element id="fia_x509_ext.2.1">
             <title> The OS shall use X.509v3 certificates as defined by RFC 5280 to support
-              authentication for TLS connections. </title>
-            <aactivity> The evaluator shall then acquire or develop an application that uses the OS
+              authentication for TLS and 
+			  <selectables>
+			  <selectable>DTLS</selectable>
+			  <selectable>HTTPS</selectable>
+			  <selectable><assignable>other protocols</assignable></selectable>
+			  <selectable>no other protocols</selectable>
+			  </selectables>
+			  connections. 
+			</title>
+            <aactivity> The evaluator shall acquire or develop an application that uses the OS
               TLS mechanism with an X.509v3 certificate. The evaluator shall then run the
               application and ensure that the provided certificate is used to authenticate the
-              connection. </aactivity>
-          </f-element>
-          <f-element id="fia_x509_ext.2.2" status="sel-based">
-	    <selection-depends req="ftp_itc_ext.1.1"/>
-            <title> The OS shall use X.509v3 certificates as defined by RFC 5280 to support
-            authentication for DTLS connections. </title>
-            <aactivity> The evaluator shall then acquire or develop an application that uses the OS
-              DTLS mechanism with an X.509v3 certificate. The evaluator shall then run the
-              application and ensure that the provided certificate is used to authenticate the
-              connection. </aactivity>
+              connection. 
+			  <br/>
+			  The evaluator shall repeat the activity for any other selections listed.
+			</aactivity>
           </f-element>
         </f-component>
       </subsection>
