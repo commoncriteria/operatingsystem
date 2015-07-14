@@ -900,7 +900,7 @@
                 <selectable>AES-GCMP-256 (as defined in NIST SP800-38D and IEEE 802.11ac-2013)</selectable>
                 <selectable>no other modes</selectable>
               </selectables> 
-	      and cryptographic key sizes 128-bit and 256-bit key sizes.
+	      and cryptographic key sizes 128-bit and 256-bit.
 	    </title>
             <note role="application"> 
 	      For the first selection, the ST author should choose the mode
@@ -1337,7 +1337,6 @@
           </f-element>
         </f-component>
         <f-component id="fcs_dtls_ext.1" name="DTLS Implementation" status="sel-based">
-	  <selection-depends req="ftp_itc_ext.1.1"/>
           <f-element id="fcs_dtls_ext.1.1" status="sel-based">
 	    <selection-depends req="ftp_itc_ext.1.1"/>
             <title>The OS shall implement the DTLS protocol in accordance with 
@@ -1850,7 +1849,6 @@
         </f-component>
 
         <f-component id="fcs_sshs_ext.1" name="SSH Server Protocol" status="sel-based">
-	  <selection-depends req="ftp_itc_ext.1.1"/>
           <f-element id="fcs_sshs_ext.1.1" status="sel-based">
 	    <selection-depends req="ftp_itc_ext.1.1"/>
             <title>The OS shall implement the SSH protocol that complies with RFCs 4251, 4252, 4253, 4254 and
@@ -3592,9 +3590,8 @@ The ST author shall select the second option if the TSF implements a native VPN 
             <title>The developer shall provide operational user guidance.</title>
             <note role="application">The operation user guidance does not have to be contained in a
               single document. Guidance to users, administrators and application developers can be
-              spread among documents or web pages. Where appropriate, the guidance documentation is
-              expressed in the eXtensible Configuration Checklist Description Format (XCCDF) to
-              support security automation. Rather than repeat information here, the developer should
+              spread among documents or web pages. 
+			  Rather than repeat information here, the developer should
               review the assurance activities for this component to ascertain the specifics of the
               guidance that the evaluator will be checking for. This will provide the necessary
               information for the preparation of acceptable guidance.</note>
@@ -3615,6 +3612,15 @@ The ST author shall select the second option if the TSF implements a native VPN 
             <title>The operational user guidance shall describe, for each user role, the available
               functions and interfaces, in particular all security parameters under the control of
               the user, indicating secure values as appropriate.</title>
+            <note role="application">This portion of the operational user guidance should be presented
+			  in the form of a checklist that can be quickly executed by IT personnel (or end-users, 
+			  when necessary) and suitable for use in compliance activities.  When possible, 
+			  this guidance is to be 
+              expressed in the eXtensible Configuration Checklist Description Format (XCCDF) to
+              support security automation.  Minimally, it should be presented in a structured 
+			  format which includes a title for each configuration item, 
+			  instructions for achieving the secure configuration, and any relevant rationale.  
+            </note>
           </a-element>
           <a-element id="AGD_OPE.1.4C">
             <title>The operational user guidance shall, for each user role, clearly present each
