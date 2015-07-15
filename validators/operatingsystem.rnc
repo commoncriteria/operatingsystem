@@ -1,0 +1,302 @@
+default namespace = "http://common-criteria.rhcloud.com/ns/cc"
+namespace htm = "http://www.w3.org/1999/xhtml"
+namespace local = ""
+
+htm:h1 [ "Relax NG Syntax for Protection Profile input" ]
+start =
+  element PP {
+    attribute name { text },
+    element PPReference {
+      attribute id { text },
+      attribute title { text },
+      element ReferenceTable {
+        element PPTitle { text },
+        element PPVersion { xsd:NMTOKEN },
+        element PPAuthor { text },
+        element PPPubDate { xsd:NMTOKEN },
+        element PPCertificationID { xsd:NCName },
+        element CCVersion { text },
+        element Keywords { text },
+        entry
+      }
+    },
+    element RevisionHistory {
+      attribute role { text },
+      entry
+    },
+    element chapter {
+      attribute id { xsd:NCName },
+      attribute title { text },
+      (text
+       | abbr
+       | cite
+       | section
+       | ul
+       | element cclaims {
+           element cclaim {
+             attribute id { text },
+             description
+           }+
+         })+
+    }+,
+    element appendix {
+      attribute id { xsd:NCName },
+      attribute title { text },
+      (text
+       | abbr
+       | appref
+       | b
+       | br
+       | cite
+       | secref
+       | section
+       | element acronyms { entry+ }
+       | element bibliography { entry+ }
+       | element table {
+           element tr {
+             attribute class { xsd:NCName }?,
+             element td { (text | linkref)+ }+
+           }+
+         })+
+    }+
+  }
+entry =
+  element entry {
+    attribute id { xsd:NCName }?,
+    element term { (text | abbr)+ }?,
+    (element version { text },
+     element date { xsd:NMTOKEN },
+     element subject { text })?,
+    (element name { xsd:NCName }
+     | element tag { xsd:NCName })?,
+    description?
+  }
+section =
+  element section {
+    attribute id { xsd:NCName },
+    attribute title { text },
+    (text
+     | abbr
+     | br
+     | cite
+     | secref
+     | element InsertSPDCorrespondence { empty }
+     | element OSPs {
+         element OSP {
+           attribute id { xsd:NCName },
+           description,
+           objective-refer
+         }
+       }
+     | element SOEs {
+         element SOE {
+           attribute id { xsd:NCName },
+           description
+         }+
+       }
+     | element SOs {
+         element SO {
+           attribute id { xsd:NCName },
+           description,
+           element component-refer {
+             attribute ref { text }
+           }+
+         }+
+       }
+     | element assumptions {
+         element assumption {
+           attribute id { xsd:NCName },
+           description,
+           objective-refer
+         }+
+       }
+     | element subsection {
+         attribute id { xsd:NCName },
+         attribute title { text },
+         (text
+          | abbr
+          | cite
+          | secref
+          | element a-component {
+              attribute id { xsd:NCName },
+              attribute name { text },
+              (text
+               | aactivity
+               | abbr
+               | secref
+               | element a-element {
+                   attribute id { xsd:NCName },
+                   title,
+                   note?,
+                   aactivity?
+                 }
+               | element h4 { text })+
+            }
+          | element f-component {
+              attribute id { text },
+              attribute name { text },
+              status,
+              selection-depends?,
+              element f-element {
+                attribute id { text },
+                status?,
+                (text
+                 | aactivity
+                 | assignable
+                 | note
+                 | selectables
+                 | title
+                 | selection-depends)+
+              }+
+            }
+          | element figure {
+              attribute entity { text },
+              attribute id { xsd:NCName },
+              attribute title { text }
+            }
+          | element glossary { entry+ })+
+       }
+     | element threats {
+         element threat {
+           attribute id { xsd:NCName },
+           description,
+           objective-refer+
+         }+
+       }
+     | element usecases {
+         element usecase {
+           attribute id { xsd:NCName },
+           attribute title { text },
+           description
+         }+
+       })+
+  }
+abbr =
+  element abbr {
+    attribute class { xsd:NCName }?,
+    attribute linkend { xsd:NCName }?,
+    attribute title { text }?,
+    text
+  }
+description =
+  element description {
+    (text
+     | a
+     | abbr
+     | appref
+     | br
+     | cite
+     | i
+     | linkref
+     | xref
+     | ul
+     | element InsertAppendixExplainer { empty })+
+  }
+cite =
+  element cite {
+    attribute linkend { xsd:NCName }
+  }
+ul = element ul { li* }
+br = element br { empty }
+secref =
+  element secref {
+    attribute linkend { xsd:NCName }
+  }
+xref =
+  element xref {
+    attribute linkend { text }
+  }
+linkref =
+  element linkref {
+    attribute linkend { text }
+  }
+b = element b { text }
+appref =
+  element appref {
+    attribute linkend { xsd:NCName }
+  }
+objective-refer =
+  element objective-refer {
+    attribute ref { xsd:NCName },
+    element rationale { (text | abbr)+ }
+  }
+aactivity = element aactivity { basic-content }
+title =
+  element title {
+    (html-element
+     | abbr
+     | assignable
+     | text
+     | linkref
+     | selectables
+     | element management-function-set {
+         element manager { xsd:NCName }+,
+         element management-function {
+           attribute user { xsd:NCName }?,
+           (text | abbr | assignable | selectables)+
+         }+
+       }
+     | element requires {
+         attribute req { xsd:NCName }
+       })+
+  }
+note =
+  element note {
+    attribute role { xsd:NCName }?,
+    basic-content
+  }
+selectables =
+  element selectables {
+    attribute atleastone { "yes" | "no" }?,
+    attribute linebreak { "yes" | "no" }?,
+    selectable,
+    selectable+
+  }
+assignable = element assignable { text }
+i = element i { text }
+basic-content =
+  (text
+   | a
+   | abbr
+   | p
+   | b
+   | i
+   | ul
+   | ol
+   | li
+   | br
+   | pre
+   | element indent { basic-content }
+   | # Kinda need these here b/c li elements can have either of these when used in an
+     # f-element/title.
+     linkref
+   | cite
+   | secref
+   | testlist
+   | selectables
+   | assignable)+
+a =
+  element a {
+    attribute href { xsd:anyURI },
+    text
+  }
+pre = text
+ol = li+
+li = element li { basic-content }
+testlist =
+  element testlist {
+    (basic-content
+     | element test { (basic-content | testlist)+ })+
+  }
+selection-depends =
+  element selection-depends {
+    attribute req { xsd:NCName }
+  }
+p = element p { empty }
+status =
+  attribute status {
+    "threshold" | "sel-based" | "optional" | "objective"
+  }
+selectable-group = selectable-single, selectable-single+
+selectable-single = element selectable { basic-content }
+html-element = element * - local:* { (html-element)* }
