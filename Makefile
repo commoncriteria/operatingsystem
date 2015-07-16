@@ -13,13 +13,13 @@ all: $(TABLE) $(SIMPLIFIED) $(PP_HTML) $(ESR_HTML)
 
 
 spellcheck: $(ESR_HTML) $(PP_HTML)
-	bash -c "hunspell -l -H -p <(cat validators/dictionary/*) output/*.html | sort -u"
+	bash -c "hunspell -l -H -p <(cat transforms/dictionaries/CommonCriteria.txt transforms/dictionaries/Computer.txt transforms/dictionaries/Crypto.txt transforms/dictionaries/OperatingSystemSpecific.txt) output/*.html | sort -u"
 
 spellcheck-esr: $(ESR_HTML)
-	hunspell -l -H -p validators/Dictionary.txt $(ESR_HTML)	
+	bash -c "hunspell -l -H -p <(cat transforms/dictionaries/CommonCriteria.txt transforms/dictionaries/Computer.txt transforms/dictionaries/Crypto.txt transforms/dictionaries/OperatingSystemSpecific.txt) $(ESR_HTML) | sort -u"	
 
 spellcheck-os:  $(PP_HTML)
-	hunspell -l -H -p validators/Dictionary.txt $(PP_HTML)
+	bash -c "hunspell -l -H -p <(cat transforms/dictionaries/CommonCriteria.txt transforms/dictionaries/Computer.txt transforms/dictionaries/Crypto.txt transforms/dictionaries/OperatingSystemSpecific.txt) $(PP_HTML) | sort -u"
 
 linkcheck: $(TABLE) $(SIMPLIFIED) $(PP_HTML) $(ESR_HTML) $(PP_OP_HTML) $(PP_RELEASE_HTML)
 	for bb in output/*.html; do for aa in $$(\
@@ -45,9 +45,9 @@ simplified: $(SIMPLIFIED)
 $(SIMPLIFIED): $(TRANS)/pp2simplified.xsl $(PP_XML)
 	xsltproc --stringparam release final -o $(SIMPLIFIED) $(TRANS)/pp2simplified.xsl $(PP_XML)
 
-rnc: validators/operatingsystem.rnc
-validators/operatingsystem.rnc: validators/operatingsystem.rng
-	trang -I rng -O rnc  validators/operatingsystem.rng validators/operatingsystem.rnc
+rnc: transforms/schemas/schema.rnc
+transforms/schemas/schema.rnc: transforms/schemas/schema.rng
+	trang -I rng -O rnc  transforms/schemas/schema.rng transforms/schemas/schema.rnc
 
 clean:
 	@for f in a $(TABLE) $(SIMPLIFIED) $(PP_HTML) $(PP_RELEASE_HTML) $(PP_OP_HTML); do \
