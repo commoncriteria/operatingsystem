@@ -495,13 +495,11 @@
                   <b>RSA schemes</b> using cryptographic key sizes of 2048-bit or greater
                   that meet the following: 
 		  <selectables linebreak="yes">
-                    <selectable>
-                      <b>FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.3</b>
-                    </selectable>
-                    <selectable>
-                      <b>ANSI X9.31-1998, Section 4.1</b>
-                    </selectable>
-                  </selectables>
+		    <selectable>
+		      <b>FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.3</b>
+		    </selectable>
+		    <selectable><b>ANSI X9.31-1998, Section 4.1</b></selectable>
+		  </selectables>
                 </selectable>
                 <selectable>
                   <b>ECC schemes</b> using “NIST curves” P-256, P-384 and 
@@ -533,22 +531,24 @@
               sizes supported by the <abbr linkend="OS"/>. If the <abbr linkend="ST"/> specifies
               more than one scheme, the evaluator shall examine the <abbr linkend="TSS"/> to verify
               that it identifies the usage for each scheme. <br/> The evaluator shall verify that
-              the AGD guidance instructs the administrator how to configure the <abbr linkend="OS"
-              /> to use the selected key generation scheme(s) and key size(s) for all uses defined
+              the AGD guidance instructs the administrator how to configure the <abbr linkend="OS"/> 
+	      to use the selected key generation scheme(s) and key size(s) for all uses defined
               in this PP. <br/> Assurance Activity Note: The following tests may require the
               developer to provide access to a developer environment that provides the evaluator
               with tools that are typically available to end-users of the OS. <br/>
-              <b>Key Generation for FIPS PUB 186-4 RSA Schemes</b><p/> The evaluator shall verify
+              <b>Key Generation for FIPS PUB 186-4 RSA Schemes</b><br/> The evaluator shall verify
               the implementation of RSA Key Generation by the <abbr linkend="OS"/> using the Key
               Generation test. This test verifies the ability of the <abbr linkend="TSF"/> to
               correctly produce values for the key components including the public verification
               exponent e, the private prime factors p and q, the public modulus n and the
               calculation of the private signature exponent d. Key Pair generation specifies 5 ways
-              (or methods) to generate the primes p and q. These include: <ol>
-                <li> Random Primes: <ul>
-                    <li>Provable primes</li>
-                    <li>Probable primes</li>
-                  </ul>
+              (or methods) to generate the primes p and q. These include: 
+	      <ol>
+                <li> Random Primes: 
+		<ul>
+                  <li>Provable primes</li>
+                  <li>Probable primes</li>
+                </ul>
                 </li>
                 <li> Primes with Conditions: <ul>
                     <li>Primes p1, p2, q1,q2, p and q shall all be provable primes</li>
@@ -557,7 +557,8 @@
                     <li>Primes p1, p2, q1,q2, p and q shall all be probable primes</li>
                   </ul>
                 </li>
-              </ol> To test the key generation method for the Random Provable primes method and for
+              </ol>
+	      To test the key generation method for the Random Provable primes method and for
               all the Primes with Conditions methods, the evaluator must seed the <abbr
                 linkend="TSF"/> key generation routine with sufficient data to deterministically
               generate the RSA key pair. This includes the random seed(s), the public exponent of
@@ -1288,8 +1289,7 @@
             </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fcs_cop.1(4)" status="threshold">
-          name="Cryptographic Operation - Keyed-Hash Message Authentication">
+        <f-component id="fcs_cop.1(4)" status="threshold" name="Cryptographic Operation - Keyed-Hash Message Authentication">
           <f-element id="fcs_cop.1.1(4)">
             <title>The OS shall perform keyed-hash message authentication services 
 	    in accordance with a specified cryptographic algorithm
@@ -1606,15 +1606,15 @@
 		  </f-element>
 
           <f-element id="fcs_sshc_ext.1.4" status="sel-based">
-		    <selection-depends req="ftp_itc_ext.1.1"/>
-		  <title>The OS shall ensure that the SSH transport implementation uses the
+	    <selection-depends req="ftp_itc_ext.1.1"/>
+	    <title>The OS shall ensure that the SSH transport implementation uses the
             following encryption algorithms and rejects all other encryption algorithms: aes128-cbc,
             aes256-cbc, 
-			<selectables>
-			<selectable>AEAD_AES_128_GCM</selectable>
-			<selectable>AEAD_AES_256_GCM</selectable>
-			<selectable>no other algorithms</selectable>
-            </selectables>.
+	    <selectables>
+	      <selectable>AEAD_AES_128_GCM</selectable>
+	      <selectable>AEAD_AES_256_GCM</selectable>
+	      <selectable>no other algorithms</selectable>
+              </selectables>.
 		  </title>
 		  <note role="application">
 		  RFC 5647 specifies the use of the AEAD_AES_128_GCM and
@@ -2961,7 +2961,7 @@ The ST author shall select the second option if the TSF implements a native VPN 
                 <li>Authentication events (Success/Failure);</li>
                 <li>Use of privileged/special rights events (Successful and unsuccessful security, audit, and configuration changes);</li>
                 <li>Privilege or role escalation events (Success/Failure);</li>
-                <li>All auditable events for the not specified level of audit; and</li>
+                <li>All auditable events for the not specified level of audit; and
                 <selectables linebreak='yes'>
                   <selectable>File and object events (Successful and unsuccessful attempts to create, access, delete, modify, modify permissions)</selectable>
                   <selectable>User and Group management events (Successful and unsuccessful add, delete, modify, disable</selectable>
@@ -2976,6 +2976,7 @@ The ST author shall select the second option if the TSF implements a native VPN 
                     <assignable>other specifically defined auditable events</assignable>.
                   </selectable>
                 </selectables>
+		</li>
               </ul>               
             </title>
             <aactivity> The evaluator shall ensure that the following tests result in a positive
