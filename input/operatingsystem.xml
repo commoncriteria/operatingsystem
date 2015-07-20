@@ -570,16 +570,16 @@
               verified against a known good implementation as described above. Otherwise, the
               evaluator shall have the <abbr linkend="TSF"/> generate 10 keys pairs for each
               supported key length nlen and verify: <ul>
-                <li>n = p*q,</li>
+                <li>n = p&#xd7;q,</li>
                 <li>p and q are probably prime according to Miller-Rabin tests,</li>
                 <li>GCD(p-1,e) = 1,</li>
                 <li>GCD(q-1,e) = 1,</li>
                 <li>2^16 &#x2264; e &#x2264; 2^256 and e is an odd integer,</li>
                 <li>|p-q| > 2^(nlen/2 - 100),</li>
-                <li>p &#x2265; squareroot(2)*( 2^(nlen/2 -1) ),</li>
-                <li>q &#x2265; squareroot(2)*( 2^(nlen/2 -1) ),</li>
+                <li>p &#x2265; squareroot(2)&#xd7;( 2^(nlen/2 -1) ),</li>
+                <li>q &#x2265; squareroot(2)&#xd7;( 2^(nlen/2 -1) ),</li>
                 <li>2^(nlen/2) &lt; d &lt; LCM(p-1,q-1),</li>
-                <li>e*d = 1 mod LCM(p-1,q-1).</li>
+                <li>e&#xd7;d = 1 mod LCM(p-1,q-1).</li>
               </ul>
               <b>Key Generation for ANSI X9.31-1998 RSA Schemes</b><p/> If the <abbr linkend="TSF"/>
               implements the ANSI X9.31-1998 scheme, the evaluator shall check to ensure that the
@@ -1213,14 +1213,15 @@
                   provided to the <abbr linkend="TSF"/>. </test>
                 <test>Selected Long Messages Test - Bit oriented Mode The evaluators devise an input
                   set consisting of m messages, where m is the block length of the hash algorithm.
-                  The length of the <i>i</i>th message is 512 + 99*i, where 1 ≤ i ≤ m. The message
+                  The length of the <i>i</i>th message is 512 + 99&#xd7;i, where 1 ≤ i ≤ m. The message
                   text shall be pseudorandomly generated. The evaluators compute the message digest
                   for each of the messages and ensure that the correct result is produced when the
                   messages are provided to the <abbr linkend="TSF"/>. </test>
                 <test>Selected Long Messages Test - Byte oriented Mode The evaluators devise an
                   input set consisting of m/8 messages, where m is the block length of the hash
-                  algorithm. The length of the <i>i</i>th message is 512 + 8*99*i, where 1 ≤ i ≤
-                  m/8. The message text shall be pseudorandomly generated. The evaluators compute
+                  algorithm. The length of the <i>i</i>th message is 512 + 8&#xd7;99&#xd7;i, 
+		  where 1 ≤ i ≤ m/8. The message text shall be pseudorandomly generated. 
+		  The evaluators compute
                   the message digest for each of the messages and ensure that the correct result is
                   produced when the messages are provided to the <abbr linkend="TSF"/>. </test>
                 <test>Pseudorandomly Generated Messages Test This test is for byte-oriented
