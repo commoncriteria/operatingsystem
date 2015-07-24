@@ -1273,24 +1273,32 @@
             <aactivity>The evaluator will perform the following activities based on the selections
               in the <abbr linkend="ST"/>. <br/> The following tests require the developer to
               provide access to a test application that provides the evaluator with tools that are
-              typically not found in the production application. <br/> ECDSA Algorithm Tests <testlist>
+              typically not found in the production application. <br/> 
+	      ECDSA Algorithm Tests
+	      <testlist>
                 <test>ECDSA FIPS 186-4 Signature Generation Test. For each supported NIST curve
                   (i.e., P-256, P-384 and P-521) and SHA function pair, the evaluator will generate
                   10 1024-bit long messages and obtain for each message a public key and the
                   resulting signature values R and S. To determine correctness, the evaluator will
                   use the signature verification function of a known good implementation. </test>
-                <test> ECDSA FIPS 186-4 Signature Verification Test. For each supported NIST curve
+                <test>
+		  ECDSA FIPS 186-4 Signature Verification Test. For each supported NIST curve
                   (i.e., P-256, P-384 and P-521) and SHA function pair, the evaluator will generate
                   a set of 10 1024-bit message, public key and signature tuples and modify one of
-                  the values (message, public key or signature) in five of the 10 tuples. The
-                  evaluator will obtain in response a set of 10 PASS/FAIL values. </test>
-              </testlist> RSA Signature Algorithm Tests <testlist>
+                  the values (message, public key or signature) in five of the 10 tuples.
+		  The evaluator will verify that 5 reponses indicate success and
+		  5 reponses indicate failure.
+		</test>
+              </testlist> 
+	      RSA Signature Algorithm Tests 
+	      <testlist>
                 <test>Signature Generation Test. The evaluator will verify the implementation of
                   RSA Signature Generation by the <abbr linkend="OS"/> using the Signature
                   Generation Test. To conduct this test the evaluator must generate or obtain 10
                   messages from a trusted reference implementation for each modulus size/SHA
-                  combination supported by the <abbr linkend="TSF"/>. The evaluator will have the
-                    <abbr linkend="OS"/> use their private key and modulus value to sign these
+                  combination supported by the <abbr linkend="TSF"/>. 
+		  The evaluator will have the
+                    <abbr linkend="OS"/> use its private key and modulus value to sign these
                   messages. The evaluator will verify the correctness of the <abbr linkend="TSF"
                   />’s signature using a known good implementation and the associated public keys to
                   verify the signatures. </test>
@@ -1299,8 +1307,10 @@
                   another party’s valid and invalid signatures. The evaluator will inject errors
                   into the test vectors produced during the Signature Verification Test by
                   introducing errors in some of the public keys, e, messages, IR format, and/or
-                  signatures. The <abbr linkend="OS"/> attempts to verify the signatures and
-                  returns success or failure. </test>
+                  signatures. 
+		  The evaluator will verify that the <abbr linkend="OS"/> returns failure when
+		  validating each signature.
+		</test>
               </testlist>
             </aactivity>
           </f-element>
