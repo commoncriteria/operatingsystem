@@ -1051,25 +1051,26 @@
               </ul>
               To test the generation-encryption functionality of AES-CCM, the evaluator will perform the
               following four tests: 
-              <ul>
-                <li>Test 1. For EACH supported key and associated data length and ANY supported
+	      <testlist>
+		<test> For EACH supported key and associated data length and ANY supported
                   payload, nonce and tag length, the evaluator will supply one key value, one nonce
                   value and 10 pairs of associated data and payload values and obtain the resulting
                   ciphertext.
-                </li>
-                <li>Test 2. For EACH supported key and payload length and ANY supported associated
+		</test>
+		<test>For EACH supported key and payload length and ANY supported associated
                   data, nonce and tag length, the evaluator will supply one key value, one nonce value
                   and 10 pairs of associated data and payload values and obtain the resulting ciphertext.
-                </li>
-                <li>Test 3. For EACH supported key and nonce length and ANY supported associated
+		</test>
+
+                <test>For EACH supported key and nonce length and ANY supported associated
                   data, payload and tag length, the evaluator will supply one key value and 10
                   associated data, payload and nonce value 3-tuples and obtain the resulting ciphertext.
-                </li>
-                <li>Test 4. For EACH supported key and tag length and ANY supported associated data,
+                </test>
+                <test>For EACH supported key and tag length and ANY supported associated data,
                   payload and nonce length, the evaluator will supply one key value, one nonce value
                   and 10 pairs of associated data and payload values and obtain the resulting ciphertext.
-                </li>
-              </ul>
+                </test>
+	      </testlist>
               To determine correctness in each of the above tests, the evaluator will compare the
               ciphertext with the result of generation-encryption of the same inputs with a known good
               implementation. <br/>
@@ -1274,7 +1275,8 @@
               in the <abbr linkend="ST"/>. <br/> The following tests require the developer to
               provide access to a test application that provides the evaluator with tools that are
               typically not found in the production application. <br/> 
-	      ECDSA Algorithm Tests
+
+	      <b>ECDSA Algorithm Tests</b>
 	      <testlist>
                 <test>ECDSA FIPS 186-4 Signature Generation Test. For each supported NIST curve
                   (i.e., P-256, P-384 and P-521) and SHA function pair, the evaluator will generate
@@ -1290,7 +1292,7 @@
 		  5 reponses indicate failure.
 		</test>
               </testlist> 
-	      RSA Signature Algorithm Tests 
+	      <b>RSA Signature Algorithm Tests </b>
 	      <testlist>
                 <test>Signature Generation Test. The evaluator will verify the implementation of
                   RSA Signature Generation by the <abbr linkend="OS"/> using the Signature
@@ -1356,7 +1358,7 @@
               in the <abbr linkend="ST"/>. <br/> For each of the supported parameter sets, the
               evaluator will compose 15 sets of test data. Each set shall consist of a key and
               message data. The evaluator will have the OS generate HMAC tags for these sets of
-              test data. The resulting MAC tags shall be compared to the result of generating HMAC
+              test data. The resulting MAC tags shall be compared against the result of generating HMAC
               tags with the same key and IV using a known-good implementation. </aactivity>
           </f-element>
         </f-component>
