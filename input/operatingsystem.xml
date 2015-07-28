@@ -2949,32 +2949,37 @@ The ST author shall select the second option if the TSF implements a native VPN 
               execute permissions except for <assignable>list of exceptions</assignable>.
             </title>
             <note role="application">Requesting a memory mapping with both write and execute
-              permissions subverts the platform protection provided by <abbr linkend="DEP"/>. If the
-              OS provides no exceptions (such as for just-in-time compilation), then "no exceptions"
-              should be indicated in the assignment.  Full realization of this requirement requires hardware support,
-			  but this is commonly available.  
+              permissions subverts the platform protection provided by <abbr linkend="DEP"/>.
+	      If the OS provides no exceptions (such as for just-in-time compilation),
+	      then "no exceptions" should be indicated in the assignment.  
+	      Full realization of this requirement requires hardware support, but this is commonly available.  
             </note>
             <aactivity> 
               The evaluator will inspect the vendor-provided developer documentation and 
 	      verify that no memory-mapping can be made with
               write and execute permissions except for the cases listed in the assignment.
-			  <testlist>
-			  <test>
-                  The evaluator will construct a test program which attempts to allocate memory that
-				  is both writable and executable.  
-				  The evaluator will confirm that this is prevented.
-			  </test>
-			  <test>
-                  The evaluator will construct a test program which allocates memory that is executable, and then
-				  later change permissions on that memory to also be writable.
-				  The evaluator will confirm that this is prevented.
-			  </test>
-			  <test>
-                  The evaluator will construct a test program which allocates memory that is writable, and then
-				  later change permissions on that memory to also be executable.
-				  The evaluator will confirm that this is prevented.
-			  </test>
-			  </testlist>
+	      <testlist>
+		<test>
+                  The evaluator will acquire or construct a test program which attempts 
+		  to allocate memory that is both writable and executable.  
+		  The evaluator will run the program and confirm that it fails to
+		  allocate memory that is both writable and executable.
+		</test>
+		<test>
+                  The evaluator will acquire or construct a test program which 
+		  allocates memory that is executable and then
+		  subsequently requests additional write/modify permissions on that memory.
+		  The evaluator will run the program and confirm that at no time
+		  during the lifetime of the process is the memory both writable and executable.
+		</test>
+		<test>
+                  The evaluator will acquire or construct a test program which 
+		  allocates memory that is writable and then
+		  subsequently requests additional execute permissions on that memory.
+		  The evaluator will run the program and confirm that at no time
+		  during the lifetime of the process is the memory both writable and executable.
+		</test>
+	      </testlist>
             </aactivity>
           </f-element>
         </f-component>
