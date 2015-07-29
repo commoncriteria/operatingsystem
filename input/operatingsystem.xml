@@ -574,11 +574,11 @@
                 <li>p and q are probably prime according to Miller-Rabin tests,</li>
                 <li>GCD(p-1,e) = 1,</li>
                 <li>GCD(q-1,e) = 1,</li>
-                <li>2^16 &#x2264; e &#x2264; 2^256 and e is an odd integer,</li>
-                <li>|p-q| > 2^(nlen/2 - 100),</li>
-                <li>p &#x2265; squareroot(2)&#xd7;( 2^(nlen/2 -1) ),</li>
-                <li>q &#x2265; squareroot(2)&#xd7;( 2^(nlen/2 -1) ),</li>
-                <li>2^(nlen/2) &lt; d &lt; LCM(p-1,q-1),</li>
+                <li>2<sup>16</sup> &#x2264; e &#x2264; 2<sup>256</sup> and e is an odd integer,</li>
+                <li>|p-q| > 2<sup>nlen/2 - 100</sup>,</li>
+                <li>p &#x2265; 2<sup>nlen/2 -1/2</sup>,</li>
+                <li>q &#x2265; 2<sup>nlen/2 -1/2</sup>,</li>
+                <li>2<sup>(nlen/2)</sup> &lt; d &lt; LCM(p-1,q-1),</li>
                 <li>e&#xd7;d = 1 mod LCM(p-1,q-1).</li>
               </ul>
               <b>Key Generation for ANSI X9.31-1998 RSA Schemes</b><p/> If the <abbr linkend="TSF"/>
@@ -645,8 +645,8 @@
               must also confirm <ul>
                 <li>g &#x2260; 0,1</li>
                 <li>q divides p-1</li>
-                <li>g^q mod p = 1</li>
-                <li>g^x mod p = y</li>
+                <li>g<sup>q</sup> mod p = 1</li>
+                <li>g<sup>x</sup> mod p = y</li>
               </ul> for each FFC parameter set and key pair. </aactivity>
           </f-element>
         </f-component>
@@ -1819,7 +1819,7 @@
           <f-element id="fcs_sshc_ext.1.8" status="sel-based">
 	    <selection-depends req="ftp_itc_ext.1.1"/>
 	    <title>The OS shall ensure that the SSH connection be rekeyed after
-            no more than 2^28 packets have been transmitted using that key.
+            no more than 2<sup>28</sup> packets have been transmitted using that key.
 	    </title>
 	    <aactivity>
 	      <testlist>
@@ -1827,7 +1827,7 @@
 		  The evaluator will configure an SSH server to create a log entry when a
 		  rekey occurs. 
 		  The evaluator will connect to an SSH server with the TOE
-		  and cause 2^28 packets to be transmitted from the server to 
+		  and cause 2<sup>28</sup> packets to be transmitted from the server to 
 		  the TOE, and subsequently review the audit log to ensure that a rekey
 		  occurred.
 		</test>
@@ -2097,14 +2097,14 @@ connections to the TOE.
 		  <f-element id="fcs_sshs_ext.1.8" status="sel-based">
 	            <selection-depends req="ftp_itc_ext.1.1"/>
 		    <title>The OS shall ensure that the SSH connection be rekeyed after
-		    no more than 2^28 packets have been transmitted using that key.
+		    no more than 2<sup>28</sup> packets have been transmitted using that key.
 		    </title>
 		  <aactivity>
 <testlist>
   <test>
     The evaluator will configure the TOE to create a log entry when a
     rekey occurs. The evaluator will connect to the TOE with an SSH
-    client and cause 2^28 packets to be transmitted from the client to
+    client and cause 2<sup>28</sup> packets to be transmitted from the client to
     the TOE, and subsequently review the audit log to ensure that a rekey
     occurred.
   </test>
