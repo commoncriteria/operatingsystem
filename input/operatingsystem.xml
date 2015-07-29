@@ -1588,8 +1588,10 @@
 		  </f-element>
           <f-element id="fcs_sshc_ext.1.2" status="sel-based">
 		    <selection-depends req="ftp_itc_ext.1.1"/>
-            <title>The OS shall ensure that the SSH protocol implementation supports
-              the following authentication methods as described in RFC 4252: public key-based, passwordbased.
+            <title>
+	      The OS shall ensure that the SSH protocol implementation supports
+              the following authentication methods as described in RFC 4252: 
+	      public key-based, password-based.
             </title>
 			<aactivity>The evaluator will check to ensure that the TSS contains a
 			description of the public key algorithms that are acceptable for
@@ -1668,7 +1670,7 @@
 		  the requirements).
           <br/>
 		  <testlist>
-		  <test>The evaluator will establish a SSH connection using each of
+		  <test>The evaluator will establish an SSH connection using each of
 		  the encryption algorithms specified by the requirement. It is
 		  sufficient to observe (on the wire) the successful negotiation of the
 		  algorithm to satisfy the intent of the test.
@@ -1773,7 +1775,7 @@
 		  algorithm to satisfy the intent of the test.
 		  </test>
 		  <test>The evaluator
-		  shall configure an SSH server to only allow the “none” MAC algorithm.
+		  will configure an SSH server to only allow the “none” MAC algorithm.
 		  The evaluator will attempt to connect from the TOE to the SSH server
 		  and observe that the attempt fails.
 		  </test>
@@ -1815,23 +1817,25 @@
 		  </f-element>
 
           <f-element id="fcs_sshc_ext.1.8" status="sel-based">
-		    <selection-depends req="ftp_itc_ext.1.1"/>
-		  <title>The OS shall ensure that the SSH connection be rekeyed after
-          no more than 2^28 packets have been transmitted using that key.
-		  </title>
-		  <aactivity>
-		  <testlist>
-		  <test>The evaluator will configure the TOE to create a log entry when a
-		  rekey occurs. The evaluator will connect to the TOE with an SSH
-		  client and cause 2^28 packets to be transmitted from the client to
+	    <selection-depends req="ftp_itc_ext.1.1"/>
+	    <title>The OS shall ensure that the SSH connection be rekeyed after
+            no more than 2^28 packets have been transmitted using that key.
+	    </title>
+	    <aactivity>
+	      <testlist>
+		<test>
+		  The evaluator will configure an SSH server to create a log entry when a
+		  rekey occurs. 
+		  The evaluator will connect to an SSH server with the TOE
+		  and cause 2^28 packets to be transmitted from the server to 
 		  the TOE, and subsequently review the audit log to ensure that a rekey
 		  occurred.
-          </test>
-		  </testlist>
-		  </aactivity>
+		</test>
+	      </testlist>
+	    </aactivity>
           </f-element>
-
-		  <f-element id="fcs_sshc_ext.1.9" status="sel-based">
+	  
+	  <f-element id="fcs_sshc_ext.1.9" status="sel-based">
 		    <selection-depends req="ftp_itc_ext.1.1"/>
 		  <title>The OS shall ensure that the SSH client
 		  authenticates the identity of the SSH server using a local database
@@ -1899,60 +1903,215 @@
             </note>
 		  </f-element>
 
-          <f-element id="fcs_sshs_ext.1.2" status="sel-based">
-	        <selection-depends req="ftp_itc_ext.1.1"/>
-            <title>The OS shall ensure that the SSH protocol implementation supports
-              the following authentication methods as described in RFC 4252: public key-based, passwordbased.
-            </title>
+		  <f-element id="fcs_sshs_ext.1.2" status="sel-based">
+	            <selection-depends req="ftp_itc_ext.1.1"/>
+		    <title>The OS shall ensure that the SSH protocol implementation supports
+		    the following authentication methods as described in RFC 4252: public key-based, password-based.
+		    </title>
+		    
+		    <aactivity>
+The evaluator will check to ensure that the TSS contains a
+description of the public key algorithms that are acceptable for
+use for authentication, that this list conforms to
+<linkref linkend="FCS_SSHS_EXT.1.5"/>, and ensure that password-based 
+authentication methods are also allowed.
+<br/>
+<testlist>
+  <test>
+    The evaluator will, for each public key algorithm supported, show that the 
+    TOE supports the use of that public key algorithm to authenticate a user 
+    connection from an SSH client. 
+    Any configuration activities required to support this test shall be
+    performed according to instructions in the guidance documentation.
+  </test> 
+  <test>
+    Using the guidance documentation, the evaluator will
+    configure the TOE to perform password-based authentication on a client, 
+    and demonstrate that a user can be successfully authenticated by the TOE 
+    using a password as an authenticator.
+  </test>
+</testlist>
+		    </aactivity>
 		  </f-element>
 		  <f-element id="fcs_sshs_ext.1.3" status="sel-based">
-	        <selection-depends req="ftp_itc_ext.1.1"/>
+	            <selection-depends req="ftp_itc_ext.1.1"/>
 		    <title>The OS shall ensure that, as described in RFC 4253, packets greater
-            than <assignable>number of bytes</assignable> bytes in an SSH transport connection are dropped. 
-            </title>
-		    <note role="application">RFC 4253 provides for the acceptance of “large packets” with the caveat that the packets
-            should be of “reasonable length” or dropped. The assignment should be filled in by the ST
-            author with the maximum packet size accepted, thus defining “reasonable length” for the
-            TOE.
+		    than <assignable>number of bytes</assignable> bytes in an SSH transport connection are dropped. 
+		    </title>
+		    <note role="application">
+		      RFC 4253 provides for the acceptance of “large packets” with the caveat that the packets
+		      should be of “reasonable length” or dropped. The assignment should be filled in by the ST
+		      author with the maximum packet size accepted, thus defining “reasonable length” for the
+TOE.
 		    </note>
+		    <aactivity>
+		      The evaluator will check that the TSS describes how “large
+		      packets” in terms of RFC 4253 are detected and handled.
+		      <br/>
+		      The evaluator will demonstrate that if the TOE receives a packet
+		      larger than that specified in this component, that packet is
+		      dropped.
+		    </aactivity>
 		  </f-element>
-          <f-element id="fcs_sshs_ext.1.4" status="sel-based">
+		  <f-element id="fcs_sshs_ext.1.4" status="sel-based">
 	        <selection-depends req="ftp_itc_ext.1.1"/>
-		  <title>The OS shall ensure that the SSH transport implementation uses the
-            following encryption algorithms and rejects all other encryption algorithms: 
-			<assignable>encryption algorithms</assignable>.
+		  <title>
+		    The OS shall ensure that the SSH transport implementation uses the
+		    following encryption algorithms and rejects all other encryption algorithms: 
+		    <assignable>encryption algorithms</assignable>.
 		  </title>
+		  <aactivity>
+The evaluator will check the description of the
+implementation of this protocol in the TSS to ensure that optional
+characteristics are specified, and the encryption algorithms
+supported are specified as well. The evaluator will check the TSS to
+ensure that the encryption algorithms specified are identical to
+those listed for this component.
+<br/>
+The evaluator will also check the guidance documentation to ensure
+that it contains instructions on configuring the TOE so that SSH
+conforms to the description in the TSS (for instance, the set of
+algorithms advertised by the TOE may have to be restricted to meet
+the requirements).
+<br/>
+<testlist>
+  <test>
+    The evaluator will initiate an SSH connection using each of
+    the encryption algorithms specified by the requirement.
+    It is sufficient to observe (on the wire) the successful negotiation of the
+    algorithm to satisfy the intent of the test.
+  </test>
+  <test>
+    The evaluator will configure an SSH client to only propose the 3des-cbc
+    encryption algorithm and no other encryption algorithms. 
+    The evaluator will attempt to establish an SSH connection from 
+    the client to the TOE server and observe that the connection is rejected.
+  </test>
+</testlist>
+		  </aactivity>
 		  </f-element>
 
 		  <f-element id="fcs_sshs_ext.1.5" status="sel-based">
-	        <selection-depends req="ftp_itc_ext.1.1"/>
-		  <title>The OS shall ensure that the SSH transport implementation uses
-		  <assignable>list of public key algorithms</assignable> as its public key
-		  algorithm(s) and rejects all other public key algorithms.
-          </title>
+	            <selection-depends req="ftp_itc_ext.1.1"/>
+		    <title>The OS shall ensure that the SSH transport implementation uses
+		    <assignable>list of public key algorithms</assignable> as its public key
+		    algorithm(s) and rejects all other public key algorithms.
+		    </title>
+		    <aactivity>
+The evaluator will check the description of the
+implementation of this protocol in the TSS to ensure that optional
+characteristics are specified, and the public key algorithms
+supported are specified as well. The evaluator will check the TSS to
+ensure that the public key algorithms specified are identical to
+those listed for this component.
+<br/> The evaluator will also check the guidance documentation to
+ensure that it contains instructions on configuring the TOE so that
+SSH conforms to the description in the TSS (for instance, the set of
+algorithms advertised by the TOE may have to be restricted to meet
+the requirements).
+<br/>
+<testlist>
+  <test>
+    Using an appropriately configured client, the evaluator will 
+    establish an SSH connection using each of the
+    public key algorithms specified by the requirement to authenticate.
+    It is sufficient to observe (on the wire) the
+    successful negotiation of the algorithm to satisfy the intent of the
+    test. 
+  </test>
+  <test>
+    The evaluator will configure an SSH client to propose  only 
+    the ssh-dsa public key algorithm and no other public key
+    algorithms. 
+    Using this client, the evaluator will attempt to establish an SSH
+    connection to the TOE and observe that the
+    connection is rejected.
+  </test>
+</testlist>
+		    </aactivity> 
 		  </f-element>
 		  <f-element id="fcs_sshs_ext.1.6" status="sel-based">
-	        <selection-depends req="ftp_itc_ext.1.1"/>
-		  <title>The OS shall ensure that the SSH transport implementation uses 
-		  <assignable>list of MAC algorithms</assignable> as its MAC algorithm(s) and
-		  rejects all other MAC algorithm(s).
-          </title>
+	            <selection-depends req="ftp_itc_ext.1.1"/>
+		    <title>
+		      The OS shall ensure that the SSH transport implementation uses 
+		      <assignable>list of MAC algorithms</assignable> as its MAC algorithm(s) and
+		      rejects all other MAC algorithm(s).
+		    </title>
+		    <aactivity>
+The evaluator will check the TSS to ensure that it lists
+the supported data integrity algorithms, and that that list
+corresponds to the list in this component.
+<br/>
+The evaluator will also check the guidance documentation to ensure
+that it contains instructions to the administrator on how to ensure
+that only the allowed data integrity algorithms are used in SSH
+connections with the TOE (specifically, that the “none” MAC algorithm
+is not allowed).
+<br/>
+<testlist>
+  <test>
+    Using an apropriately configured client, the evaluator 
+    will establish a SSH connection using each of
+    the integrity algorithms specified by the requirement.
+    It is sufficient to observe (on the wire) the successful negotiation of the
+    algorithm to satisfy the intent of the test.
+  </test>
+  <test>
+    The evaluator will configure an SSH client to only propose the “none” MAC algorithm.
+    Using this client, the evaluator will attempt to connect to the TOE 
+    and observe that the attempt fails.
+  </test>
+  <test>
+    The evaluator will configure an SSH client to only propose the hmac-md5 MAC algorithm.
+    Using this client, the evaluator will attempt to connect to the TOE
+    and observe that the attempt fails.
+  </test>
+</testlist>
+		    </aactivity>
 		  </f-element>
-          <f-element id="fcs_sshs_ext.1.7" status="sel-based">
-	        <selection-depends req="ftp_itc_ext.1.1"/>
-		  <title>The OS shall ensure that 
-		  <assignable>list of key exchange methods</assignable>
-		  are the only allowed key exchange methods used for the SSH protocol.
-		  </title>
+		  <f-element id="fcs_sshs_ext.1.7" status="sel-based">
+	            <selection-depends req="ftp_itc_ext.1.1"/>
+		    <title>The OS shall ensure that 
+		    <assignable>list of key exchange methods</assignable>
+		    are the only allowed key exchange methods used for the SSH protocol.
+		    </title>
+		    <aactivity>
+The evaluator will check the TSS to ensure that it lists the
+supported key exchange algorithms, and that that list corresponds to
+the list in this component.
+<br/>
+The evaluator will also check the guidance documentation to ensure
+that it contains instructions to the administrator on how to ensure
+that only the allowed key exchange algorithms are used in SSH
+connections to the TOE.
+<br/>
+<testlist>
+  <test>
+    For each of the allowed key exchange methods, the evaluator will 
+    configure an SSH client to propose only it and 
+    attempt to connect to the TOE and observe that each attempt succeeds.
+  </test>
+</testlist>
+		    </aactivity>
 		  </f-element>
-
-          <f-element id="fcs_sshs_ext.1.8" status="sel-based">
-	        <selection-depends req="ftp_itc_ext.1.1"/>
-		  <title>The OS shall ensure that the SSH connection be rekeyed after
-          no more than 2^28 packets have been transmitted using that key.
-		  </title>
-          </f-element>
-
+		  <f-element id="fcs_sshs_ext.1.8" status="sel-based">
+	            <selection-depends req="ftp_itc_ext.1.1"/>
+		    <title>The OS shall ensure that the SSH connection be rekeyed after
+		    no more than 2^28 packets have been transmitted using that key.
+		    </title>
+		  <aactivity>
+<testlist>
+  <test>
+    The evaluator will configure the TOE to create a log entry when a
+    rekey occurs. The evaluator will connect to the TOE with an SSH
+    client and cause 2^28 packets to be transmitted from the client to
+    the TOE, and subsequently review the audit log to ensure that a rekey
+    occurred.
+  </test>
+</testlist>
+		  </aactivity>
+		  </f-element>
+		  
 		</f-component>
         <f-component id="fcs_tlsc_ext.1" name="TLS Client Protocol" status="threshold">
           <f-element id="fcs_tlsc_ext.1.1">
