@@ -574,11 +574,11 @@
                 <li>p and q are probably prime according to Miller-Rabin tests,</li>
                 <li>GCD(p-1,e) = 1,</li>
                 <li>GCD(q-1,e) = 1,</li>
-                <li>2<sup>16</sup> &#x2264; e &#x2264; 2<sup>256</sup> and e is an odd integer,</li>
-                <li>|p-q| > 2<sup>nlen/2 - 100</sup>,</li>
-                <li>p &#x2265; 2<sup>nlen/2 -1/2</sup>,</li>
-                <li>q &#x2265; 2<sup>nlen/2 -1/2</sup>,</li>
-                <li>2<sup>(nlen/2)</sup> &lt; d &lt; LCM(p-1,q-1),</li>
+                <li>2<htm:sup>16</htm:sup> &#x2264; e &#x2264; 2<htm:sup>256</htm:sup> and e is an odd integer,</li>
+                <li>|p-q| > 2<htm:sup>nlen/2 - 100</htm:sup>,</li>
+                <li>p &#x2265; 2<htm:sup>nlen/2 -1/2</htm:sup>,</li>
+                <li>q &#x2265; 2<htm:sup>nlen/2 -1/2</htm:sup>,</li>
+                <li>2<htm:sup>(nlen/2)</htm:sup> &lt; d &lt; LCM(p-1,q-1),</li>
                 <li>e&#xd7;d = 1 mod LCM(p-1,q-1).</li>
               </ul>
               <b>Key Generation for ANSI X9.31-1998 RSA Schemes</b><p/> If the <abbr linkend="TSF"/>
@@ -645,8 +645,8 @@
               must also confirm <ul>
                 <li>g &#x2260; 0,1</li>
                 <li>q divides p-1</li>
-                <li>g<sup>q</sup> mod p = 1</li>
-                <li>g<sup>x</sup> mod p = y</li>
+                <li>g<htm:sup>q</htm:sup> mod p = 1</li>
+                <li>g<htm:sup>x</htm:sup> mod p = y</li>
               </ul> for each FFC parameter set and key pair. </aactivity>
           </f-element>
         </f-component>
@@ -1819,7 +1819,7 @@
           <f-element id="fcs_sshc_ext.1.8" status="sel-based">
 	    <selection-depends req="ftp_itc_ext.1.1"/>
 	    <title>The OS shall ensure that the SSH connection be rekeyed after
-            no more than 2<sup>28</sup> packets have been transmitted using that key.
+            no more than 2<htm:sup>28</htm:sup> packets have been transmitted using that key.
 	    </title>
 	    <aactivity>
 	      <testlist>
@@ -1827,7 +1827,7 @@
 		  The evaluator will configure an SSH server to create a log entry when a
 		  rekey occurs. 
 		  The evaluator will connect to an SSH server with the TOE
-		  and cause 2<sup>28</sup> packets to be transmitted from the server to 
+		  and cause 2<htm:sup>28</htm:sup> packets to be transmitted from the server to 
 		  the TOE, and subsequently review the audit log to ensure that a rekey
 		  occurred.
 		</test>
@@ -2097,14 +2097,14 @@ connections to the TOE.
 		  <f-element id="fcs_sshs_ext.1.8" status="sel-based">
 	            <selection-depends req="ftp_itc_ext.1.1"/>
 		    <title>The OS shall ensure that the SSH connection be rekeyed after
-		    no more than 2<sup>28</sup> packets have been transmitted using that key.
+		    no more than 2<htm:sup>28</htm:sup> packets have been transmitted using that key.
 		    </title>
 		  <aactivity>
 <testlist>
   <test>
     The evaluator will configure the TOE to create a log entry when a
     rekey occurs. The evaluator will connect to the TOE with an SSH
-    client and cause 2<sup>28</sup> packets to be transmitted from the client to
+    client and cause 2<htm:sup>28</htm:sup> packets to be transmitted from the client to
     the TOE, and subsequently review the audit log to ensure that a rekey
     occurred.
   </test>
@@ -2525,7 +2525,7 @@ connections to the TOE.
 	      whereas, the IP traffic protected by the IPsec VPN is referred to as “Data Plane” traffic. 
 	      All “Data Plane” traffic must flow through the VPN connection and the VPN must not split-tunnel.
 	      If no native IPsec client is validated or third-party VPN clients may also implement the required Information Flow Control, the first option shall be selected. In these cases, the TOE provides an API to third-party VPN clients that allows them to configure the TOE’s network stack to perform the required Information Flow Control.
-The ST author shall select the second option if the TSF implements a native VPN client (IPsec is selected in FTP_ITC_EXT.1). If the native VPN client is to be validated (IPsec is selected in FTP_ITC_EXT.1 and the TSF is validated against the “Protection Profile for￼IPsec Virtual Private Network (VPN) Clients”), the ST author shall also include FDP_IFC_EXT from the VPN Client Protection Profile.
+The ST author shall select the second option if the TSF implements a native VPN client (IPsec is selected in FTP_ITC_EXT.1). If the native VPN client is to be validated (IPsec is selected in FTP_ITC_EXT.1 and the TSF is validated against the “Protection Profile for IPsec Virtual Private Network (VPN) Clients”), the ST author shall also include FDP_IFC_EXT from the VPN Client Protection Profile.
 	      In the future, this requirement may also make a distinction between the current requirement (which requires that when the IPsec trusted channel is enabled, all traffic from the TSF is routed through that channel) and having an option to force the establishment of an IPsec trusted channel to allow any communication by the TSF.
 	    </note>
 
