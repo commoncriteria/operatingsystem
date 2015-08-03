@@ -99,6 +99,17 @@
               process.</description>
           </entry>
           <entry>
+            <term>Administrator</term>
+			<description>An administrator is responsible for management
+			activities, including setting policies that are applied by the
+			enterprise on the operating system. This administrator could be
+			acting remotely through a management server, from which the system
+			receives configuration policies.  An administrator can enforce
+			settings on the system which cannot be overridden by
+			non-administrator users.
+            </description>
+		  </entry>
+          <entry>
             <term><abbr title="Application">app</abbr></term>
             <description>Software that runs on a platform and performs tasks on behalf of the user
               or owner of the platform, as well as its supporting documentation. </description>
@@ -181,8 +192,17 @@
               of a function call, and checks that the value is the same at the end of the function
               call. This is also referred to as Stack Guard, or Stack Canaries.</description>
           </entry>
+          <entry>
+            <term>User</term>
+			<description>
+			A user is subject to configuration policies applied to the operating system
+			by administrators.  On some systems under certain configurations, a normal user can 
+			temporarily elevate privileges to that of an administrator.
+            </description>
+          </entry>
         </glossary>
-      </subsection></section>
+      </subsection>
+	  </section>
     <section title="Compliant Targets of Evaluation" id="TOEdescription">
       <subsection title="TOE Boundary" id="TOEboundary">
         The TOE boundary encompasses the OS kernel and its drivers, common
@@ -2543,8 +2563,8 @@ The ST author shall select the second option if the TSF implements a native VPN 
         <f-component id="fmt_mof_ext.1" name="Management of security functions behavior" status="threshold">
 	  <f-element id="fmt_mof_ext.1.1">
 	    <title> 
-	      The TSF shall be capable of performing the following management functions, 
-		controlled by the user or administrator as shown:
+	      The TSF shall be capable of performing the following management functions, controlled by the user
+		  and overridden by an administrator as shown:
               <ul>
                 <li> X: Mandatory</li>
                 <li> O: Optional</li>
@@ -2573,13 +2593,13 @@ The ST author shall select the second option if the TSF implements a native VPN 
 		<management-function>
 		  enable/disable screen lock
 		</management-function> 
-		<management-function admin="X">
+		<management-function>
 		  configure screen lock inactivity timeout
 		</management-function> 
 		<management-function>
 		  configure remote connection inactivity timeout
 		</management-function> 
-		<management-function>
+		<management-function admin="X" user="X">
 		  enable/disable unauthenticated logon
 		</management-function> 
 		<management-function>
@@ -2641,6 +2661,8 @@ The ST author shall select the second option if the TSF implements a native VPN 
 	      </management-function-set>
 
 	    </title>
+		<note role="application">
+		</note>
             <aactivity>
                  The evaluator will verify that every management function captured in the ST is
                  described in the operational guidance and that the description contains the information
@@ -2752,7 +2774,7 @@ The ST author shall select the second option if the TSF implements a native VPN 
 	      that in the second test the mappings are different.
 	    </aactivity>
           </f-element>
-          <f-element id="fpt_aslr_ext.1.2" status="optional">
+<!--          <f-element id="fpt_aslr_ext.1.2" status="optional">
             <title>The OS shall always randomize kernel address space memory locations</title>
                 <note role="application">
                   Randomizing the location of the kernel address spaces provides some defense against
@@ -2761,7 +2783,7 @@ The ST author shall select the second option if the TSF implements a native VPN 
             <aactivity> 
 	      The evaluator will review the TSS to ensure that ASLR applies to the kernel.
 	    </aactivity>
-          </f-element>
+          </f-element> -->
 	</f-component>
         <!-- <f-component id="fpt_php_ext.1" name="External Interface Controls" status="threshold">-->
         <!--   <f-element id="fpt_php_ext.1.1"> -->
