@@ -1761,7 +1761,7 @@
 		  
 		  <f-element id="fcs_sshc_ext.1.6" status="sel-based">
 		    <selection-depends req="ftp_itc_ext.1.1"/>
-		  <title>The TSF shall ensure that the SSH transport implementation
+		  <title>The OS shall ensure that the SSH transport implementation
 		  uses <selectables> <selectable>hmac-sha1</selectable>
 		  <selectable>hmac-sha1-96</selectable>
 		  <selectable>hmac-sha2-256</selectable>
@@ -2531,7 +2531,7 @@ connections to the TOE.
         </f-component>
         <f-component id="fdp_ifc_ext.1" name="Information flow control " status="threshold">
           <f-element id="fdp_ifc_ext.1.1">
-            <title> The TSF shall <selectables linebreak="yes">
+            <title> The OS shall <selectables linebreak="yes">
               <selectable>provide an interface to VPN applications to enable all IP traffic (other
                 than IP traffic required to establish the VPN connection) to flow through the
                 IPsec VPN client</selectable>
@@ -2563,7 +2563,7 @@ The ST author shall select the second option if the TSF implements a native VPN 
         <f-component id="fmt_mof_ext.1" name="Management of security functions behavior" status="threshold">
 	  <f-element id="fmt_mof_ext.1.1">
 	    <title> 
-	      The TSF shall be capable of performing the following management functions, controlled by the user
+	      The OS shall be capable of performing the following management functions, controlled by the user
 		  and overridden by an administrator as shown:
               <ul>
                 <li> X: Mandatory</li>
@@ -2674,39 +2674,6 @@ The ST author shall select the second option if the TSF implements a native VPN 
             </aactivity>
 	  </f-element>
 	</f-component>
-	<!-- <f-component id="fmt_smr.1" name="Security Roles">  status="threshold"-->
-	<!--   <f-element id="fmt_smr.1.1"> -->
-	<!--     <title>  -->
-	<!--       The OS shall maintain the roles -->
-	<!--       <assignable>the authorized identified roles</assignable>. -->
-	<!--     </title> -->
-	<!--     <note role="application"> -->
-	<!--       This requirement is tested with the assurance activity listed for -->
-	<!--       <linkref linkend="fmt_smr.1.2"/>. -->
-	<!--     </note> -->
-	<!--   </f-element> -->
-	<!--   <f-element id="fmt_smr.1.2"> -->
-	<!--     <title>  -->
-	<!--       The OS shall be able to associate users with roles -->
-	<!--     </title> -->
-	<!--     <aactivity> -->
-	<!--       For each identified role, the evaluator will create a standard user account. -->
-	<!--       <testlist> -->
-	<!-- 	<test> -->
-	<!-- 	  The evaluator will assign one unique role to each user account that was created -->
-	<!-- 	  and ensure that the created user is able to assume its assigned role. -->
-	<!-- 	</test> -->
-	<!-- 	<test> -->
-	<!-- 	  The evaluator will create an additional standard user account with no assigned -->
-	<!-- 	  roles. -->
-	<!-- 	  The evaluator will then attempt to assume every possible role and ensure -->
-	<!-- 	  that this action denied in every case. -->
-	<!-- 	</test> -->
-	<!--       </testlist> -->
-	<!--     </aactivity> -->
-
-	<!--   </f-element> -->
-	<!-- </f-component> -->
       </subsection>
       <subsection title="Protection of the TSF (FPT)" id="fpt">
         <f-component id="fpt_acf_ext.1" name="Access controls" status="threshold">
@@ -3321,13 +3288,16 @@ The ST author shall select the second option if the TSF implements a native VPN 
             unsuccessful authentication attempts for 
             <selectables linebreak="yes">
               <selectable>authentication based on user name and password</selectable>
+              <selectable>authentication based on user name and a PIN that
+	      releases an asymmetric key stored in OE-protected storage</selectable>
               <selectable>authentication based on X.509 certificates</selectable>
             </selectables>
               occur related to <assignable>list of authentication events</assignable>. 
 
             <aactivity>
 	      The evaluator will (if appropriate) set a threshold for failed attempts.
-	      The evaluator will then repeatedly attempt to authenticate with an incorrect password 
+	      The evaluator will then repeatedly attempt to authenticate with an incorrect password,
+	      PIN,
 	      or certificate until the number of attempts reaches the threshold.
 	      The evaluator will then ensure that an event is created and logged by the OS.
 	      The method of how these events are logged varies depending on platform. 
@@ -3379,9 +3349,11 @@ The ST author shall select the second option if the TSF implements a native VPN 
         <f-component id="fia_uau.5" name="Multiple Authentication Mechanisms" status="threshold">
           <f-element id="fia_uau.5.1">
             <title>
-              The TSF shall provide the following authentication mechanisms
+              The OS shall provide the following authentication mechanisms
               <selectables linebreak='yes'>
                 <selectable>authentication based on user name and password</selectable>
+                <selectable>authentication based on user name and a PIN that releases an asymmetric key stored in OE-protected storage</selectable>
+
                 <selectable>authentication based on X.509 certificates</selectable>
               </selectables>
               to support user authentication.
@@ -3398,6 +3370,27 @@ The ST author shall select the second option if the TSF implements a native VPN 
               </testlist>
               If X.509 certificate authentication is selected, the evaluator will generate a X.509v3 certificate for a user with the Client Authentication Enhanced Key Usage field set. The evaluator will
               provision the OS with both the public and private parts of the X.509v3 certificate. The evaluator will ensure that the certificates are validated by the OS as per <linkref linkend="FIA_X509_EXT.1.1"/>.
+              If user name and PIN that releases an assymetric key is selected, the evaluator will examine the TSS for guidance on supported protected storage and will then configure the OS with a known PIN on a platform that has protected storage (e.g., a TPM) compatible with the OS.
+              <testlist>
+                <test>
+                  The evaluator will attempt to authenticate to the OS using the known user name and PIN. The evaluator will ensure that the authentication attempt is successful.
+                </test>
+                <test>
+                  The evaluator will attempt to authenticate to the OS using the known user name but an incorrect PIN. The evaluator will ensure that the authentication attempt is unsuccessful.
+                </test>
+              </testlist>
+
+              <testlist>
+                <test>
+                  The evaluator will attempt to authenticate to the OS using the known user name and password. The evaluator will ensure that the authentication attempt is successful.
+                </test>
+                <test>
+                  The evaluator will attempt to authenticate to the OS using the known user name but an incorrect password. The evaluator will ensure that the authentication attempt is unsuccessful.
+                </test>
+              </testlist>
+
+
+
               <testlist>
                  <test>
                     The evaluator will attempt to authenticate to the OS using the public part of the X.509v3 certificate. The evaluator will ensure that the 
@@ -3551,7 +3544,7 @@ The ST author shall select the second option if the TSF implements a native VPN 
         <f-component id="fta_tab.1" name="Default TOE access banners" status="optional">
           <f-element id="fta_tab.1.1" status="optional">
             <title>
-            Before establishing a user session, the TSF shall display an advisory
+            Before establishing a user session, the OS shall display an advisory
             warning message regarding unauthorized use of the OS.
             </title>
 	    <note>
@@ -3570,8 +3563,6 @@ The ST author shall select the second option if the TSF implements a native VPN 
       	<f-component id="ftp_itc_ext.1" name="Trusted channel communication" status="threshold">
       	  <f-element id="ftp_itc_ext.1.1">
       	    <title>
-
-
      	      The OS shall use 
       	      <selectables linebreak='yes'>
         	      <selectable>TLS as conforming to <linkref linkend="FCS_TLSC_EXT.1"/></selectable>
@@ -3779,11 +3770,11 @@ The ST author shall select the second option if the TSF implements a native VPN 
 	  </group>
 	  <group type="eval-action">
             <a-element id="ADV_FSP.1.1E">
-              <title>The evaluator will confirm that the information provided meets all requirements
+              <title>The evaluator shall confirm that the information provided meets all requirements
               for content and presentation of evidence.</title>
             </a-element>
             <a-element id="ADV_FSP.1.2E">
-              <title>The evaluator will determine that the functional specification is an accurate
+              <title>The evaluator shall determine that the functional specification is an accurate
               and complete instantiation of the SFRs.</title>
               <aactivity>There are no specific assurance activities associated with these SARs, except
               ensuring the information is provided. The functional specification documentation is
@@ -3872,7 +3863,7 @@ The ST author shall select the second option if the TSF implements a native VPN 
 	  </group>
 	  <group type="eval-action">
             <a-element id="AGD_OPE.1.1E">
-              <title>The evaluator will confirm that the information provided meets all requirements
+              <title>The evaluator shall confirm that the information provided meets all requirements
               for content and presentation of evidence. </title>
               <aactivity>Some of the contents of the operational guidance are verified by the
               assurance activities in <secref linkend="SFRs"/> and evaluation of the <abbr
@@ -3922,11 +3913,11 @@ The ST author shall select the second option if the TSF implements a native VPN 
 	  </group>
 	  <group type="eval-action">
             <a-element id="AGD_PRE.1.1E">
-              <title>The evaluator will confirm that the information provided meets all requirements
+              <title>The evaluator shall confirm that the information provided meets all requirements
               for content and presentation of evidence.</title>
             </a-element>
             <a-element id="AGD_PRE.1.2E">
-              <title>The evaluator will apply the preparative procedures to confirm that the <abbr
+              <title>The evaluator shall apply the preparative procedures to confirm that the <abbr
               linkend="OS"/> can be prepared securely for operation.</title>
               <aactivity>As indicated in the introduction above, there are significant expectations
               with respect to the documentation—especially when configuring the operational
@@ -3968,7 +3959,7 @@ The ST author shall select the second option if the TSF implements a native VPN 
 	  </group>
 	  <group type="eval-action">
             <a-element id="alc_cmc.1.1e">
-              <title>The evaluator will confirm that the information provided meets all requirements
+              <title>The evaluator shall confirm that the information provided meets all requirements
               for content and presentation of evidence.</title>
               <aactivity>The evaluator will check the <abbr linkend="ST"/> to ensure that it contains
               an identifier (such as a product name/version number) that specifically identifies the
@@ -4004,7 +3995,7 @@ The ST author shall select the second option if the TSF implements a native VPN 
 	  </group>
           <group type="eval-action">
             <a-element id="alc_cms.1.1e">
-              <title>The evaluator will confirm that the information provided meets all requirements
+              <title>The evaluator shall confirm that the information provided meets all requirements
               for content and presentation of evidence.</title>
               <aactivity>The "evaluation evidence required by the SARs" in this PP is limited to the
               information in the <abbr linkend="ST"/> coupled with the guidance provided to
@@ -4067,7 +4058,7 @@ The ST author shall select the second option if the TSF implements a native VPN 
 	  </group>
 	  <group type="eval-action">
             <a-element id="alc_tsu_ext.1.1e">
-              <title>The evaluator <i>shall confirm</i> that the information provided meets all
+              <title>The evaluator shall confirm that the information provided meets all
               requirements for content and presentation of evidence.</title>
               <aactivity> The evaluator will verify that the TSS contains a description of the timely
               security update process used by the developer to create and deploy security updates.
@@ -4123,7 +4114,7 @@ The ST author shall select the second option if the TSF implements a native VPN 
               requirements for content and presentation of evidence.</title>
             </a-element>
             <a-element id="ate_ind.1.2e">
-              <title>The evaluator will test a subset of the <abbr linkend="TSF"/> to confirm that
+              <title>The evaluator shall test a subset of the <abbr linkend="TSF"/> to confirm that
               the <abbr linkend="TSF"/> operates as specified.</title>
               <note role="application">The evaluator will test the OS on the most current fully
               patched version of the platform.</note>
@@ -4186,11 +4177,11 @@ The ST author shall select the second option if the TSF implements a native VPN 
 	  </group>
 	  <group type="eval-action">
           <a-element id="ava_van.1.1e">
-            <title>The evaluator will confirm that the information provided meets all requirements
+            <title>The evaluator shall confirm that the information provided meets all requirements
               for content and presentation of evidence.</title>
           </a-element>
           <a-element id="ava_van.1.2e">
-            <title>The evaluator will perform a search of public domain sources to identify
+            <title>The evaluator shall perform a search of public domain sources to identify
               potential vulnerabilities in the <abbr linkend="OS"/>.</title>
             <note role="application">Public domain sources include the Common Vulnerabilities 
               and Exposures (CVE) dictionary for publicly-known vulnerabilities.  Public domain
@@ -4198,7 +4189,7 @@ The ST author shall select the second option if the TSF implements a native VPN 
             <!-- their Usage statement does not permit us to mention VirusTotal by name without permission -->
           </a-element>
           <a-element id="ava_van.1.3e">
-            <title>The evaluator will conduct penetration testing, based on the identified
+            <title>The evaluator shall conduct penetration testing, based on the identified
               potential vulnerabilities, to determine that the <abbr linkend="OS"/> is resistant to
               attacks performed by an attacker possessing Basic attack potential.</title>
             <aactivity>The evaluator will generate a report to document their
