@@ -157,6 +157,13 @@
               vendors and developers are the same.</description>
           </entry>
           <entry>
+            <term>Host-based Firewall</term>
+            <description>
+	      A software-based firewall implementation running on the OS for filtering inbound and 
+              outbound network traffic to and from processes running on the OS.
+	    </description>
+          </entry>
+          <entry>
             <term><abbr title="Operating System">OS</abbr></term>
             <description> Software that manages physical and logical resources and provides services
               for applications. The terms <i>TOE</i> and <i>OS</i> are interchangeable in this
@@ -175,29 +182,16 @@
           <entry>
             <term>Sensitive Data</term>
             <description> Sensitive data may include all user or enterprise data or may be specific
-              application data such as emails, messaging, documents, calendar items, and contacts.
-              Sensitive data must minimally include PII, credentials, and keys. Sensitive data shall
+              application data such as PII, emails, messaging, documents, calendar items, and contacts.
+              Sensitive data must minimally include credentials and keys. Sensitive data shall
               be identified in the OS’s TSS by the <abbr linkend="ST"/> author. </description>
           </entry>
           <entry>
-            <term>Software Firewall</term>
-            <description>
-	      A software-based firewall implementation running on the OS for filtering inbound and 
-              outbound network traffic to and from processes running on the OS.
-	    </description>
-          </entry>
-          <entry>
-            <term>Stack Cookie</term>
-            <description>An anti-exploitation feature that places a value on the stack at the start
-              of a function call, and checks that the value is the same at the end of the function
-              call. This is also referred to as Stack Guard, or Stack Canaries.</description>
-          </entry>
-          <entry>
             <term>User</term>
-			<description>
-			A user is subject to configuration policies applied to the operating system
-			by administrators.  On some systems under certain configurations, a normal user can 
-			temporarily elevate privileges to that of an administrator.
+	    <description> A user is subject to configuration policies applied
+            to the operating system by administrators.  On some systems under certain
+            configurations, a normal user can temporarily elevate privileges to that of an administrator.  
+            At that time, such a user should be considered an administrator.  
             </description>
           </entry>
         </glossary>
@@ -222,21 +216,29 @@
     </section>
     <section title="Use Cases" id="usecases">Requirements in this Protection Profile are designed to
       address the security problems in the following use cases. These use cases are intentionally
-      very broad, as many specific use cases exist for an operating system. An operating system's
-      functionality may be extended by multiple different applications running on top of it.
-      However, these are out of scope of this PP. <usecases>
+      very broad, as many specific use cases exist for an operating system. These use cases may also
+      overlap with one another.  An operating system's functionality may even be effectively extended by
+      privileged applications installed onto it.  However, these are out of scope of this PP. <usecases>
         <usecase title="End User Devices" id="enduserdevices">
-          <description>The OS should provide a platform to end user devices such as desktops,
+          <description>The OS provides a platform to end user devices such as desktops,
             laptops, convertibles and tablets. These devices may optionally be bound to a directory server or
-            management server.</description>
+            management server.
+            As this Protection Profile does not fully address the data-at-rest problem,  
+            enterprises deploying mobile devices should ensure that these systems
+            include data-at-rest protection evaluted against other Protection Profiles.
+          </description>
         </usecase>
         <usecase title="Server Systems" id="serversystems">
-          <description>The OS should provide a platform to provide server side services, either on
-            physical or virtual hardware.</description>
+          <description>The OS provides a platform for server-side services, either on
+            physical or virtual hardware.  Many specific examples exist in which the OS acts
+            as a platform for such services, including file servers, mail servers, and web servers.
+          </description>
         </usecase>
         <usecase title="Cloud Systems" id="cloudsystems">
-          <description>The OS should provide a platform for providing cloud services running on
-            physical or virtual hardware.</description>
+          <description>The OS provides a platform for providing cloud services running on
+            physical or virtual hardware.  An OS is typically part of offerings
+            identied as Infrastructure as a Service (Iaas), Software as a Service (SaaS),
+            and Platform as a Service (PaaS).</description>
         </usecase>
       </usecases>
     </section>
@@ -387,7 +389,9 @@
         <SO id="O.ACCOUNTABILITY">
           <description> Conformant <abbr linkend="OS"/>s ensure that information exists that allows
             administrators to discover unintentional issues with the configuration and operation of
-            the operating system.</description>
+            the operating system and discover its cause.  Gathering event information and immediately 
+            transmitting it to another system can also enable incident response in the event
+            of system compromise.</description>
           <component-refer ref="fau_gen.1"/>
         </SO>
         <SO id="O.INTEGRITY">
@@ -2680,7 +2684,7 @@ The ST author shall select the second option if the TSF implements a native VPN 
           <f-element id="fpt_acf_ext.1.1">
             <title> The OS shall implement access controls which prohibit unprivileged users from
               modifying: <ul>
-                <li>Kernel drivers/modules</li>
+                <li>Kernel and its drivers/modules</li>
                 <li>Security audit logs</li>
                 <li>Shared libraries</li>
                 <li>System executables</li>
@@ -2710,6 +2714,7 @@ The ST author shall select the second option if the TSF implements a native VPN 
             <title> The OS shall implement access controls which prohibit unprivileged users from
               reading: <ul>
                 <li>Security audit logs</li>
+                <li>System-wide credential repositories</li>
                 <li><assignable>list of other objects</assignable></li>
               </ul>.
             </title>
@@ -2720,6 +2725,7 @@ The ST author shall select the second option if the TSF implements a native VPN 
               complete the action): 
               <testlist>
                 <test>The evaluator will attempt to read security audit logs generated by the auditing subsystem</test>
+                <test>The evaluator will attempt to read system-wide credential repositories</test>
                 <test>The evaluator will attempt to read any other object specified in the assignment</test>
               </testlist>
             </aactivity>
@@ -2842,6 +2848,7 @@ The ST author shall select the second option if the TSF implements a native VPN 
             The evaluator will determine that the <abbr linkend="TSS"/> contains a description of stack-based buffer
             overflow protections used by the OS. Example implementations may be activated
             through compiler options such as "-fstack-protector-all", "-fstack-protector", and "/GS" flags. 
+            These are referred to by a variety of terms, such as stack cookie, stack guard, and stack canaries.
             The TSS must include a rationale for any binaries that are not protected in this manner.
             <testlist>
                 <test>
