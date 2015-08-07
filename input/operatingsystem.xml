@@ -455,6 +455,9 @@
             trusted channels for <abbr linkend="CSP"/> and sensitive data. Both CSP and sensitive data
             should not be exposed outside of the platform. </description>
           <component-refer ref="fcs_tlsc_ext.1"/>
+          <component-refer ref="fcs_tlsc_ext.2"/>
+          <component-refer ref="fcs_tlsc_ext.3"/>
+          <component-refer ref="fcs_tlsc_ext.4"/>
           <component-refer ref="fcs_dtls_ext.1"/>
           <component-refer ref="fcs_rbg_ext.1"/>
           <component-refer ref="fcs_ckm.1"/>
@@ -2140,7 +2143,7 @@ connections to the TOE.
               <br/> These requirements will be revisited as new <abbr
                 title="Transport Layer Security">TLS</abbr> versions are standardized by the IETF.
               <br/> If any cipher suites are selected using ECDHE, then <linkref
-                linkend="FCS_TLSC_EXT.1.5"/> is required. 
+                linkend="FCS_TLSC_EXT.2.1"/> is required. 
             </note>
             <aactivity>
               The evaluator will check the description of the implementation of this
@@ -2359,28 +2362,9 @@ connections to the TOE.
               </testlist>
             </aactivity>
           </f-element>
-          <f-element id="fcs_tlsc_ext.1.4" status="optional">
-            <title> The OS shall support mutual authentication using X.509v3 certificates. </title>
-            <note role="application"> The use of X.509v3 certificates for <abbr
-                title="Transport Layer Security">TLS</abbr> is addressed in <linkref
-                linkend="FIA_X509_EXT.2.1"/>. This requirement adds that a client must be capable of
-              presenting a certificate to a <abbr title="Transport Layer Security">TLS</abbr> server
-              for <abbr title="Transport Layer Security">TLS</abbr> mutual authentication. </note>
-            <aactivity> The evaluator will ensure that the <abbr title="TOE Summary Specification"
-                linkend="TSS">TSS</abbr> description required per <linkref
-                linkend="FIA_X509_EXT.2.1"/> includes the use of client-side certificates for TLS
-              mutual authentication. <br/> The evaluator will verify that the AGD guidance required
-              per <linkref linkend="FIA_X509_EXT.2.1"/> includes instructions for configuring the
-              client-side certificates for <abbr title="Transport Layer Security">TLS</abbr> mutual
-              authentication. <br/> The evaluator will also perform the following test: 
-              <br/>
-              Configure the server to require mutual authentication and then modify a
-              byte in a CA field in the Server’s Certificate Request handshake message. The
-              modified CA field must not be the CA used to sign the client’s certificate.
-              The evaluator will verify the connection is unsuccessful.
-            </aactivity>
-          </f-element>
-          <f-element id="fcs_tlsc_ext.1.5" status="sel-based">
+        </f-component>
+        <f-component id="fcs_tlsc_ext.2" name="TLS Client Protocol" status="sel-based">
+          <f-element id="fcs_tlsc_ext.2.1" status="sel-based">
 	    <selection-depends req="fcs_tlsc_ext.1.1"/>
             <title> The OS shall present the Supported Elliptic Curves Extension in the Client Hello
               with the following NIST curves: <selectables>
@@ -2407,7 +2391,9 @@ connections to the TOE.
               receiving the server's Key Exchange handshake message. 
             </aactivity>
           </f-element>
-          <f-element id="fcs_tlsc_ext.1.6" status="objective">
+        </f-component>
+        <f-component id="fcs_tlsc_ext.3" name="TLS Client Protocol" status="objective">
+          <f-element id="fcs_tlsc_ext.3.1" status="objective">
             <title> The OS shall present the signature_algorithms extension in the Client Hello with
               the supported_signature_algorithms value containing the following hash algorithms: <selectables>
                 <selectable>SHA256</selectable>
@@ -2437,6 +2423,29 @@ connections to the TOE.
             </aactivity>
           </f-element>
         </f-component>
+        <f-component id="fcs_tlsc_ext.4" name="TLS Client Protocol" status="optional">
+          <f-element id="fcs_tlsc_ext.4.1" status="optional">
+            <title> The OS shall support mutual authentication using X.509v3 certificates. </title>
+            <note role="application"> The use of X.509v3 certificates for <abbr
+                title="Transport Layer Security">TLS</abbr> is addressed in <linkref
+                linkend="FIA_X509_EXT.2.1"/>. This requirement adds that a client must be capable of
+              presenting a certificate to a <abbr title="Transport Layer Security">TLS</abbr> server
+              for <abbr title="Transport Layer Security">TLS</abbr> mutual authentication. </note>
+            <aactivity> The evaluator will ensure that the <abbr title="TOE Summary Specification"
+                linkend="TSS">TSS</abbr> description required per <linkref
+                linkend="FIA_X509_EXT.2.1"/> includes the use of client-side certificates for TLS
+              mutual authentication. <br/> The evaluator will verify that the AGD guidance required
+              per <linkref linkend="FIA_X509_EXT.2.1"/> includes instructions for configuring the
+              client-side certificates for <abbr title="Transport Layer Security">TLS</abbr> mutual
+              authentication. <br/> The evaluator will also perform the following test: 
+              <br/>
+              Configure the server to require mutual authentication and then modify a
+              byte in a CA field in the Server’s Certificate Request handshake message. The
+              modified CA field must not be the CA used to sign the client’s certificate.
+              The evaluator will verify the connection is unsuccessful.
+            </aactivity>
+          </f-element>
+	</f-component>
       </subsection>
       <subsection title="User Data Protection (FDP)" id="fdp">
         <f-component id="fdp_acf_ext.1" name="Access Controls for Protecting User Data" status="threshold">
@@ -2633,7 +2642,7 @@ The ST author shall select the second option if the TSF implements a native VPN 
 		The intent of this requirement is to ensure that the ST is populated
 		with the management functions that are provided by the OS.  This enables developers of 
 		compliance checklists, including those provided as operational user guidance as specified 
-		in <secref linkend="agd_ope.1"/>, to leverage this table
+		in <secref linkend="AGD_OPE.1"/>, to leverage this table
 		by providing enterprise-specific values for each evaluated item.
                 <p/>
 		In cases where both the user and administrator can control a particular
@@ -3780,8 +3789,8 @@ The ST author shall select the second option if the TSF implements a native VPN 
         manage the security of the <abbr linkend="TSF"/> as a product and as a component of the
         larger operational environment. Guidance pertaining to particular security functionality is
         also provided; requirements on such guidance are contained in the assurance activities
-        specified with each requirement. <a-component id="agd_ope.1"
-          name="Operational User Guidance (AGD_OPE.1)">
+        specified with each requirement. 
+	<a-component id="agd_ope.1" name="Operational User Guidance (AGD_OPE.1)">
 	  <group type="dev-action">
 	    <a-element id="AGD_OPE.1.1D">
 	      <title>The developer shall provide operational user guidance.</title>
