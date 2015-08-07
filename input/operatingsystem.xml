@@ -3130,12 +3130,13 @@ The ST author shall select the second option if the TSF implements a native VPN 
           <f-element id="fau_gen.1.1">
             <title> The OS shall be able to generate an audit record of the following auditable
               events: 
-              <ul>
+              <ol type='a'>
                 <li>Start-up and shut-down of the audit functions;</li>
+                <li>All auditable events for the not specified level of audit; and</li>
                 <li>Authentication events (Success/Failure);</li>
                 <li>Use of privileged/special rights events (Successful and unsuccessful security, audit, and configuration changes);</li>
                 <li>Privilege or role escalation events (Success/Failure);</li>
-                <li>All auditable events for the not specified level of audit; and
+		<li>
                 <selectables linebreak='yes'>
                   <selectable>File and object events (Successful and unsuccessful attempts to create, access, delete, modify, modify permissions)</selectable>
                   <selectable>User and Group management events (Successful and unsuccessful add, delete, modify, disable</selectable>
@@ -3151,7 +3152,7 @@ The ST author shall select the second option if the TSF implements a native VPN 
                   </selectable>
                 </selectables>
 		</li>
-              </ul>               
+	      </ol>
             </title>
             <aactivity> The evaluator will ensure that the following tests result in a positive
               outcome. 
@@ -3234,32 +3235,29 @@ The ST author shall select the second option if the TSF implements a native VPN 
           </f-element>
           <f-element id="fau_gen.1.2">
             <title> The OS shall record within each audit record at least the following information: 
-	    <ul>
-	      <li>
-                Date and time of the event, type of event, subject identity (if applicable), 
-          	and outcome (success or failure) of the event, the identity of the user which caused the event,
-          	what has changed on the system due to the event; and 
-              </li>
-              <li>
-          	For each audit event type, based on the auditable event
-          	definitions of the functional components included in the PP/ST,
-          	<assignable>other audit relevant information</assignable>
-		.
-              </li>
-	    </ul>
+	    <ol type='a'>
+	      <li>Date and time of the event, type of event, subject identity (if applicable),
+	      and outcome (success or failure) of the event; and </li>
+	      <li>For each audit event type, based on the auditable event
+              definitions of the functional components included in the PP/ST,
+              <assignable>other audit relevant information</assignable>
+	      </li>
+	    </ol>
+	    .
             </title>
 	    <note role="application">
 	      The term <i>subject</i> here is understood to be the user that the application
 	      is acting on behalf of.
 	    </note>
-			<aactivity> The evaluator will ensure that when each event identified in 
-			<linkref linkend="FAU_GEN.1.1"/> is recorded in the audit record that it
-              contains the following information: <ul>
+	    <aactivity> 
+	      The evaluator will ensure that when each event identified in 
+	      <linkref linkend="FAU_GEN.1.1"/> is recorded in the audit record that it
+              contains the following information: 
+	      <ul>
                 <li>Date and time of when the event occurred</li>
                 <li>The type of event</li>
                 <li>User identity (if applicable)</li>
                 <li>The outcome of the event (Success or failure)</li>
-                <li>The identity of the user which caused the event</li>
                 <li>What has now been modified on the system due to the event</li>
               </ul>
             </aactivity>
