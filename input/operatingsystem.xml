@@ -2118,6 +2118,11 @@
 		in <linkref linkend="AGD_OPE.1.3C"/>, to leverage this table
 		by providing enterprise-specific values for each evaluated item.
                 <br/>
+				Sophisticated account management policies, such as intricate password complexity requirements 
+				and handling of temporary accounts, are a function of directory servers.  The OS
+				can enroll in such account management and enable the overall information system
+				to achieve such policies by binding to a directory server.
+				<br/>
 		In cases where both the user and administrator can control a particular
 		management function, if an administrator has not set a
 		policy then the user may be permitted to perform that function.  The ST author
@@ -2150,8 +2155,10 @@
 	      .
             </title>
             <aactivity> 
-	      The evaluator will confirm that the TSS specifies the kernel drivers/modules, security
-	      audit logs, shared libraries, system executables, and system configuration files.
+	      The evaluator will confirm that the TSS specifies the locations of kernel drivers/modules, security
+	      audit logs, shared libraries, system executables, and system configuration files.  Every
+		  file does not need to be individually identified, but the system's conventions for storing and protecting
+		  such files must be specified.
 	      The evaluator will create an unprivileged user account. 
 	      Using this account, the evaluator will ensure that the following tests result in a negative
               outcome (i.e., the action results in the OS denying the evaluator permission to
@@ -2522,7 +2529,7 @@
 	    </title>
             <note role="application">This requirement is about the ability to "check" for updates.
               The actual installation of any updates is covered by <linkref
-                linkend="FPT_TUD_EXT.2.1"/>. This requirement is intended to ensure that the OS can
+                linkend="FPT_TUD_EXT.2.2"/>. This requirement is intended to ensure that the OS can
               check for updates provided by the vendor, as updates provided by another source may
               contain malicious code. </note>
             <aactivity> The evaluator will check for an update using procedures described in the
