@@ -847,11 +847,9 @@
               the transfer of the key to another location.
             </note>
             <aactivity>
-            <tss>
               The evaluator will check to ensure the TSS lists each type of key material 
               and its origin and storage location. The evaluator will verify that the TSS describes when 
               each type of key material is cleared.
-            </tss>
             For each software key clearing situation the evaluator will repeat the following test.
             <testlist>
               <test>
@@ -1529,17 +1527,21 @@
         <f-component id="fcs_sto_ext.1" name="Storage of Sensitive Data" status="threshold">
           <f-element id="fcs_sto_ext.1.1">
             <title>
-	      The OS shall implement functionality to store sensitive data 
-	      to non-volatile storage and provide interfaces to invoke this functionality.
+	      The OS shall implement functionality to encrypt sensitive data 
+	      stored in non-volatile storage and provide interfaces to applications to invoke this functionality.
             </title>
+			<note role="application">Sensitive data shall be identified in the TSS by the ST 
+			author, and minimally includes credentials and keys.
+			</note>
             <aactivity>The evaluator will check the TSS to ensure that it lists all persistent
-              credential types (secret keys, PKI private keys, or passwords) for which the OS provides
-              a storage capability.  For each of these
+              sensitive data for which the OS provides a storage capability.  For each of these
               items, the evaluator will confirm that the TSS lists for what purpose it can be used,
-              and how it is stored. 
+              and how it is stored.  The evaluator will confirm that 
+			  cryptographic operations used to protect the data occur as specified in <linkref linkend="fcs_cop.1"/>.
 	      <br/>
 	      The evaluator will also consult the developer documentation to verify that an interface
-	      exists for applications to securely store credentials.
+	      exists for applications to securely store credentials.  The interface could take a variety of forms:
+		  it could consist of an API, or merely well-documented conventions for accessing credentials stored as files.
             </aactivity>
           </f-element>
 <!--          <f-element id="fcs_sto_ext.1.2">
