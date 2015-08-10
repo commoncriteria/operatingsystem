@@ -28,6 +28,15 @@
       <subject>First draft for comment</subject>
     </entry>
   </RevisionHistory>
+
+  <RevisionHistory role="final">
+    <entry>
+      <version>4.0</version>
+      <date>2015-08-14</date>
+      <subject></subject>
+    </entry>
+  </RevisionHistory>
+
   <chapter title="Introduction" id="int">
     <section title="Overview" id="ppoverview"> The scope of this Protection Profile (PP) is to
       describe the security functionality of operating systems in terms of <cite linkend="bibCC"/>
@@ -95,8 +104,7 @@
             <term><abbr title="Address Space Layout Randomization">ASLR</abbr></term>
             <description>An anti-exploitation feature which loads memory mappings into unpredictable
               locations. ASLR makes it more difficult for an attacker to redirect control to code
-              that they have introduced into the address space of an application
-              process.</description>
+              that they have introduced into the address space of a process.</description>
           </entry>
           <entry>
             <term>Administrator</term>
@@ -199,8 +207,8 @@
 	  </section>
     <section title="Compliant Targets of Evaluation" id="TOEdescription">
       <subsection title="TOE Boundary" id="TOEboundary">
-        The TOE boundary encompasses the OS kernel and its drivers, common
-        software libraries, and some application software from the OS vendor. The applications considered within the TOE
+        The TOE boundary encompasses the OS kernel and its drivers, shared
+        software libraries, and some application software included with the OS. The applications considered within the TOE
         are those that provide essential security services, many of which run with elevated
         privileges.  Applications which are covered by more-specific Protection Profiles cannot 
         claim evaluation as part of the OS evaluation, even when it is necessary to evaluate 
@@ -215,7 +223,7 @@
       </subsection>
     </section>
     <section title="Use Cases" id="usecases">Requirements in this Protection Profile are designed to
-      address the security problems in the following use cases. These use cases are intentionally
+      address the security problems in at least the following use cases. These use cases are intentionally
       very broad, as many specific use cases exist for an operating system. These use cases may also
       overlap with one another.  An operating system's functionality may even be effectively extended by
       privileged applications installed onto it.  However, these are out of scope of this PP. <usecases>
@@ -442,7 +450,9 @@
         <SO id="O.PROTECTED_STORAGE">
           <description> To address the issue of loss of confidentiality of credentials in the event of
             loss of physical control of the storage medium, conformant <abbr linkend="OS"/>s 
-            provide data-at-rest protection for credentials. 
+            provide data-at-rest protection for credentials.  Conformant OSes also provide
+			access controls which allow a users to keep their files private from other
+			users of the same system.
           </description>
           <component-refer ref="fcs_sto_ext.1"/>
           <component-refer ref="fcs_rbg_ext.1"/>
@@ -466,6 +476,7 @@
           <component-refer ref="fdp_ifc_ext.1"/>
           <component-refer ref="fia_x509_ext.1"/>
           <component-refer ref="fia_x509_ext.2"/>
+	      <component-refer ref="ftp_itc_ext.1"/>
         </SO>
       </SOs>
     </section>
@@ -2504,7 +2515,7 @@ The ST author shall select the second option if the TSF implements a native VPN 
               it reports that no update is available this requirement is considered to be met.
             </aactivity>
           </f-element>
-          <f-element id="fpt_tud_ext.2.1">
+          <f-element id="fpt_tud_ext.2.2">
             <title>
 	      The OS shall cryptographically verify the integrity of updates 
 	      to applications using a digital signatures specified by 
