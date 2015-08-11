@@ -8,12 +8,12 @@
   <PPReference title="PP Reference" id="XXXXX">
     <ReferenceTable>
       <PPTitle>Protection Profile for General Purpose Operating Systems</PPTitle>
-      <PPVersion>4.0-DRAFT</PPVersion>
+      <PPVersion>4.0</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
-      <PPPubDate>2015-06-01</PPPubDate>
+      <PPPubDate>2015-08-14</PPPubDate>
       <PPCertificationID>unassigned</PPCertificationID>
-      <CCVersion>.01 Revision 0</CCVersion>
-      <Keywords>OS; </Keywords>
+      <CCVersion>3.1R4</CCVersion>
+      <Keywords>OS; operating system</Keywords>
       <entry>
         <name>Registration</name>
         <description>National Information Assurance Partnership</description>
@@ -25,7 +25,7 @@
     <entry>
       <version>Round 1</version>
       <date>2015-04-23</date>
-      <subject>First draft for comment</subject>
+      <subject>First draft of version 4.0 for comment</subject>
     </entry>
   </RevisionHistory>
 
@@ -282,7 +282,7 @@
       </cclaim>
       <cclaim id="CC Conformance Claims">
         <description>This PP is conformant to Parts 2 (extended) and 3 (extended) of Common Criteria
-          Version 3.1, Revision 4. <cite linkend="bibCC"/>.</description>
+          Version 3.1, Revision 4.<cite linkend="bibCC"/>.</description>
       </cclaim>
       <cclaim id="PP Claim">
         <description>This PP does not claim conformance to any other Protection
@@ -429,7 +429,6 @@
 	  <component-refer ref="fpt_w^x_ext.1.1"/>
 	  <component-refer ref="fia_afl.1"/>
 	  <component-refer ref="fia_uau.5"/>
-	  <component-refer ref="fta_tab.1"/>
         </SO>
         <SO id="O.MANAGEMENT">
           <description> To facilitate management by users and the enterprise, conformant <abbr
@@ -2098,9 +2097,6 @@
 		  enable/disable USB interfaces
 		</management-function>
 		<management-function>
-		  enable/disable FireWire interfaces
-		</management-function>
-		<management-function>
 		  enable/disable 
 		  <assignable>list of other external interfaces</assignable>
 		</management-function>
@@ -2484,20 +2480,24 @@
           <f-element id="fpt_tud_ext.1.1">
             <title>The OS shall provide the ability to check for updates to the OS
               software itself. </title>
-            <note role="application">This requirement is about the ability to "check" for updates.
-              The actual installation of any updates is covered by <linkref
-                linkend="FPT_TUD_EXT.1.2"/>. This requirement is intended to ensure that the OS can
-              check for updates provided by the vendor, as updates provided by another source may
-              contain malicious code. </note>
+            <note role="application">This requirement is about the ability to check for the availability of 
+			authentic updates, while the installation of authentic updates is covered by <linkref
+            linkend="FPT_TUD_EXT.1.2"/>. 
+			</note>
             <aactivity> 
-              The evaluator will check for an update using procedures described in the
-              documentation and verify that the OS does not issue an error. If it is updated or if
-              it reports that no update is available this requirement is considered to be met.
+              The evaluator will check for an update using procedures described in the 
+              documentation and verify that the OS provides a list of available updates. 
+			  Testing this capability may require
+			  installing and temporarily placing the system into a
+			  configuration in conflict with secure configuration guidance
+			  which specifies automatic update.
+			  (The evaluator is also to ensure that this query occurs over a
+			  trusted channel as described in <linkref linkend="ftp_itc_ext.1"/>.)  
             </aactivity>
           </f-element>
           <f-element id="fpt_tud_ext.1.2">
             <title>
-	      The OS shall cryptographically verify updates to itself using a digital
+              The OS shall cryptographically verify updates to itself using a digital
               signature prior to installation using schemes specified in <linkref linkend="FCS_COP.1(3)"/>.
 	    </title>
             <aactivity> 
@@ -2527,14 +2527,19 @@
 	      The OS shall provide the ability to check for updates to 
               application software.
 	    </title>
-            <note role="application">This requirement is about the ability to "check" for updates.
-              The actual installation of any updates is covered by <linkref
-                linkend="FPT_TUD_EXT.2.2"/>. This requirement is intended to ensure that the OS can
-              check for updates provided by the vendor, as updates provided by another source may
-              contain malicious code. </note>
-            <aactivity> The evaluator will check for an update using procedures described in the
-              documentation and verify that the OS does not issue an error. If it is updated or if
-              it reports that no update is available this requirement is considered to be met.
+            <note role="application">This requirement is about the ability to check for authentic updates,
+              while the actual installation of such updates is covered by <linkref
+                linkend="FPT_TUD_EXT.2.2"/>. 
+            </note>
+            <aactivity>The evaluator will check for updates to application software
+			  using procedures described in the
+			  documentation and verify that the OS provides a list of available
+			  updates.  Testing this capability may require 
+			  temporarily placing the system into a configuration in conflict
+			  with secure configuration guidance which specifies automatic
+			  update.  (The evaluator is also to ensure that this query occurs
+			  over a trusted channel as described in <linkref
+			  linkend="ftp_itc_ext.1"/>.)  
             </aactivity>
           </f-element>
           <f-element id="fpt_tud_ext.2.2">
@@ -2547,7 +2552,7 @@
               <testlist>
                 <test>
                   The evaluator will initiate an update to an application.  This may vary depending on the application,
-		  but it could be through the application vendor's website or a commercial app store.
+		          but it could be through the application vendor's website or a commercial app store.
                   The evaluator will ensure that the update has a digital signature belonging
                   to the vendor. The evaluator will modify the downloaded update in such a way that the
                   digital signature is no longer valid. The evaluator will then attempt to install the
@@ -3017,7 +3022,7 @@
             Before establishing a user session, the OS shall display an advisory
             warning message regarding unauthorized use of the OS.
             </title>
-	    <note>
+	    <note role="application">
 	      This requirement applies to all users: both privileged and unprivileged.
 	    </note>
             <aactivity> 
@@ -3037,8 +3042,8 @@
       	      <selectables linebreak='yes'>
         	      <selectable>TLS as conforming to <linkref linkend="FCS_TLSC_EXT.1"/></selectable>
         	      <selectable>DTLS as conforming to <linkref linkend="FCS_DTLS_EXT.1"/></selectable>
-      	        <selectable>IPsec as conforming to the IPsec VPN Client Extended Package</selectable>
-      	        <selectable>SSH as conforming to the SSH Extended Package</selectable>
+      	        <selectable>IPsec as conforming to the <i>Extended Package for IPsec VPN Clients</i></selectable>
+      	        <selectable>SSH as conforming to the <i>Extended Package for Secure Shell</i></selectable>
         	    </selectables>
 		    to provide a trusted communication channel between itself and 
 		    authorized IT entities supporting the following capabilities: 
@@ -3055,10 +3060,10 @@
 		    data from disclosure and detection of modification of the channel data.
       	    </title>
       	    <note role="application">
-      	      If the ST author selects IPsec, the TSF shall be validated against the "Extended Package
-      	      for IPsec Virtual Private Network (VPN) Clients."  
-      	      If the ST author selects SSH, the TSF shall be validated against the "Extended Package
-      	      for Secure Shell."  
+      	      If the ST author selects IPsec, the TSF shall be validated against the <i>Extended Package
+      	      for IPsec Virtual Private Network (VPN) Clients</i>.  
+      	      If the ST author selects SSH, the TSF shall be validated against the <i>Extended Package
+      	      for Secure Shell</i>.  
 	      The ST author must
       	      include the security functional requirements for the trusted channel protocol selected in
       	      FTP_ITC_EXT.1 in the main body of the ST.
@@ -3066,8 +3071,7 @@
       	    <aactivity>
 	      The evaluator will configure the OS to communicate with another
 	      trusted IT product.  The evaluator will ensure that the traffic
-	      conforms the set requirements defined by either the IPsec VPN
-	      Client Extended Package, Secure Shell Extended Package,
+	      conforms the set requirements defined by any extended packages.
 	      <linkref linkend="FCS_TLSC_EXT.1"/>, 
 	      or 
 	      <linkref linkend="FCS_DTLS_EXT.1"/>.
@@ -3091,10 +3095,6 @@
                 distinct from other communication paths and provides assured identification of its endpoints
                 and protection of the communicated data from modification and disclosure.
               </title>
-	      <note>
-		This requirement is tested collectively with the assurance activities listed under 
-		<linkref linkend="FTP_TRP.1.3"/>.
-	      </note>
             </f-element>
             <f-element id="ftp_trp.1.2">
               <title> The OS shall permit 
@@ -3105,10 +3105,6 @@
                 </selectables>
                 to initiate communication via the trusted path.
               </title>
-	      <note>
-		This requirement is tested collectively with the assurance activities listed under 
-		<linkref linkend="FTP_TRP.1.3"/>.
-	      </note>
             </f-element>
             <f-element id="ftp_trp.1.3">
               <title> The OS shall require use of the trusted path for all remote administrative actions.
@@ -3157,7 +3153,7 @@
       </subsection>
     </section>
     <section title="Security Assurance Requirements" id="SARs">
-      The Security Objectives for the <abbr linkend="OS"/> in 
+      The Security Objectives in 
       <secref linkend="obj"/> were constructed to address threats identified in
       <secref linkend="threats"/>. The Security Functional Requirements (<abbr linkend="SFR"/>s)
       in <secref linkend="SFRs"/> are a formal instantiation of the Security Objectives. The PP
