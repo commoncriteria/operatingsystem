@@ -2553,13 +2553,15 @@
           <f-element id="fpt_tud_ext.2.2">
             <title>
 	      The OS shall cryptographically verify the integrity of updates 
-	      to applications using a digital signatures specified by 
+	      to applications using a digital signature specified by 
 	      <linkref linkend="FCS_COP.1(3)"/> prior to installation.
 	    </title>
             <aactivity>
                   The evaluator will initiate an update to an application.  This may vary depending on the application,
 		          but it could be through the application vendor's website, a commercial app store, or another system.
-				  All supported origins for the update must be indicated in the TSS and evaluated.
+				  All origins supported by the OS must be indicated in the TSS and evaluated.  However, this only includes
+				  those mechanisms for which the OS is providing an installation and update functionality.  
+				  It does not include user or administrator-driven download and installation of arbitrary files.
               <testlist>
                 <test>
                   The evaluator will ensure that the update has a digital signature which chains to the
