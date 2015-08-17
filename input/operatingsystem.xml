@@ -2732,14 +2732,15 @@
               <selectable>authentication based on X.509 certificates</selectable>
             </selectables>
               occur related to <assignable>list of authentication events</assignable>. 
-
             <aactivity>
-	      The evaluator will (if appropriate) set a threshold for failed attempts.
-	      The evaluator will then repeatedly attempt to authenticate with an incorrect password,
-	      PIN,
-	      or certificate until the number of attempts reaches the threshold.
-	      Note that the authentication attempts and lockouts must also be logged as 
-		  specified in <linkref linkend="fau_gen.1"/>.
+		  The evaluator will set an administrator-configurable threshold for
+		  failed attempts, or note the ST-specified assignment.  The evaluator
+		  will then (per selection) repeatedly attempt to authenticate with an
+		  incorrect password, PIN, or certificate until the number of attempts
+		  reaches the threshold.  Note that the authentication attempts and
+		  lockouts must also be logged as specified in <linkref
+		  linkend="fau_gen.1"/>.
+
 	    </aactivity>
           </f-element>
           <f-element id="fia_afl.1.2">
@@ -2813,8 +2814,8 @@
               </testlist>
 			  If user name and PIN that releases an asymmetric key is selected,
 			  the evaluator will examine the TSS for guidance on supported
-			  protected storage and will then configure the system using a known PIN
-			  on a platform that has protected storage (such as a TPM, a hardware token, or
+			  protected storage and will then configure the TOE or OE to establish a PIN
+			  which enables release of the asymmetric key from the protected storage (such as a TPM, a hardware token, or
 			  isolated execution environment) with which the
 			  OS can interface.  The evaluator will then conduct the following tests:
 			  <testlist> 
