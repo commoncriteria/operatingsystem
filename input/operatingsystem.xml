@@ -2838,7 +2838,6 @@
               <selectables linebreak='yes'>
                 <selectable>authentication based on user name and password</selectable>
                 <selectable>authentication based on user name and a PIN that releases an asymmetric key stored in OE-protected storage</selectable>
-
                 <selectable>authentication based on X.509 certificates</selectable>
               </selectables>
               to support user authentication.
@@ -2858,30 +2857,11 @@
 				  will ensure that the authentication attempt is unsuccessful.
                 </test>
               </testlist>
-			  If X.509 certificate authentication is selected, the evaluator
-			  will generate an X.509v3 certificate for a user with the Client
-			  Authentication Enhanced Key Usage field set. The evaluator will
-			  provision the OS for authentication with the X.509v3 certificate.
-			  The evaluator will ensure that the
-			  certificates are validated by the OS as per <linkref
-			  linkend="FIA_X509_EXT.1.1"/> and then conduct the following tests:
-              <testlist>
-                 <test>
-					The evaluator will attempt to authenticate to the OS using
-					the public part of the X.509v3 certificate. The evaluator
-					will ensure that the authentication attempt is successful.
-                  </test>
-                <test>
-				  The evaluator will modify the public part of the X.509v3
-				  certificate. The evaluator will attempt to authenticate to
-				  the OS using this modified X.509v3 certificate. The evaluator
-				  will ensure that the authentication attempt is unsuccessful.
-                </test>
-              </testlist>
 			  If user name and PIN that releases an asymmetric key is selected,
 			  the evaluator will examine the TSS for guidance on supported
 			  protected storage and will then configure the system using a known PIN
-			  on a platform that has protected storage (e.g., a TPM) with which the
+			  on a platform that has protected storage (such as a TPM, a hardware token, or
+			  isolated execution environment) with which the
 			  OS can interface.  The evaluator will then conduct the following tests:
 			  <testlist> 
 			    <test> The evaluator will attempt to
@@ -2895,6 +2875,27 @@
 			    unsuccessful.
 				</test> 
 			  </testlist>
+			  If X.509 certificate authentication is selected, the evaluator
+			  will generate an X.509v3 certificate for a user with the Client
+			  Authentication Enhanced Key Usage field set. The evaluator will
+			  provision the OS for authentication with the X.509v3 certificate.
+			  The evaluator will ensure that the
+			  certificates are validated by the OS as per <linkref
+			  linkend="FIA_X509_EXT.1.1"/> and then conduct the following tests:
+              <testlist>
+                 <test>
+					The evaluator will attempt to authenticate to the OS using
+					the X.509v3 certificate. The evaluator
+					will ensure that the authentication attempt is successful.
+                  </test>
+                <test>
+				  The evaluator will generate a second certificate identical to
+				  the first except for the public key and any values derived
+				  from the public key. The evaluator will attempt to
+				  authenticate to the OS with this certificate. The evaluator
+				  will ensure that the authentication attempt is unsuccessful.
+                </test>
+              </testlist>
 
             </aactivity>
           </f-element>
