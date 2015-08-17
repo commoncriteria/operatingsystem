@@ -33,7 +33,7 @@
     <entry>
       <version>4.0</version>
       <date>2015-08-14</date>
-      <subject>Release</subject>
+      <subject>Release - significant revision</subject>
     </entry>
   </RevisionHistory>
 
@@ -232,13 +232,16 @@
 	    The OS provides a platform to end user devices such as desktops,
 	    laptops, convertibles, and tablets. 
 	    These devices may optionally be bound to a directory server or management server.
+		<br/>
             As this Protection Profile does not address threats against data-at-rest,
-            enterprises deploying devices in mobile scenarios should ensure that these systems
+            enterprises deploying operating systems in mobile scenarios should ensure that these systems
             include data-at-rest protection spelled out in other 
-	    Protection Profiles&#x2014;specifically, 
-	    the Mobile Device Fundamentals, Full Drive Encryption - Encryption Engine, 
-	    Full Drive Encryption - Authorization Acquisition, 
-	    or Software File Encryption Protection Profiles.
+	    Protection Profiles. Specifically, this includes the Protection Profiles for 
+	    <i>Full Drive Encryption - Encryption Engine</i>, 
+	    <i>Full Drive Encryption - Authorization Acquisition</i>, 
+	    and <i>Software File Encryption</i>.  The <i>Protection Profile for Mobile
+		Device Fundamentals</i> includes requirements for data-at-rest protection and is appropriate
+		for many mobile devices.
           </description>
         </usecase>
         <usecase title="Server Systems" id="serversystems">
@@ -250,8 +253,12 @@
         <usecase title="Cloud Systems" id="cloudsystems">
           <description>The OS provides a platform for providing cloud services running on
             physical or virtual hardware.  An OS is typically part of offerings
-            identied as Infrastructure as a Service (Iaas), Software as a Service (SaaS),
-            and Platform as a Service (PaaS).</description>
+            identified as Infrastructure as a Service (IaaS), Software as a Service (SaaS),
+            and Platform as a Service (PaaS). 
+			<br/>
+			This use case typically involves the use
+			of virtualization technology which should be evaluated against the 
+			<i>Protection Profile for Server Virtualization</i>.</description>
         </usecase>
       </usecases>
     </section>
@@ -2148,7 +2155,6 @@
                 <li>System configuration files</li>
                 <li><assignable>other objects</assignable></li>
               </ul>
-	      .
             </title>
             <aactivity> 
 	      The evaluator will confirm that the TSS specifies the locations of kernel drivers/modules, security
@@ -2175,7 +2181,7 @@
                 <li>Security audit logs</li>
                 <li>System-wide credential repositories</li>
                 <li><assignable>list of other objects</assignable></li>
-              </ul>.
+              </ul>
             </title>
             <aactivity>
 	      The evaluator will create an unprivileged user account. 
@@ -2560,20 +2566,24 @@
                   The evaluator will initiate an update to an application.  This may vary depending on the application,
 		          but it could be through the application vendor's website, a commercial app store, or another system.
 				  All origins supported by the OS must be indicated in the TSS and evaluated.  However, this only includes
-				  those mechanisms for which the OS is providing an installation and update functionality.  
+				  those mechanisms for which the OS is providing a trusted installation and update functionality.  
 				  It does not include user or administrator-driven download and installation of arbitrary files.
               <testlist>
                 <test>
-                  The evaluator will ensure that the update has a digital signature which chains to the
-                  OS vendor or another trusted root managed through the OS.  The evaluator will modify the downloaded update in such a way that the
+				  The evaluator will ensure that the update has a digital
+				  signature which chains to the OS vendor or another trusted
+				  root managed through the OS.  The evaluator will modify the
+				  downloaded update in such a way that the
                   digital signature is no longer valid. The evaluator will then attempt to install the
                   modified update. The evaluator will ensure that the OS does not install the modified
                   update.
                 </test>
                 <test>
-                  The evaluator will ensure that the update has a digital signature belonging
-                  to the OS vendor or another trusted root managed through the OS. The evaluator will then attempt to install the update. 
-                  The evaluator will ensure that the OS successfully installs the update.
+				  The evaluator will ensure that the update has a digital
+				  signature belonging to the OS vendor or another trusted root
+				  managed through the OS. The evaluator will then attempt to
+				  install the update.  The evaluator will ensure that the OS
+				  successfully installs the update.
                 </test>                
               </testlist>
             </aactivity>
@@ -2651,84 +2661,21 @@
 		</li>
 	      </ol>
             </title>
-            <aactivity> The evaluator will ensure that the following tests result in a positive
-              outcome. 
-              <testlist>
-                <test>The evaluator will authenticate to the test system using a known account. The
-                  evaluator will ensure that the successful authentication event has been written to the system
-                  logging service.
-                </test>
-                <test>The evaluator will authenticate to the test system using a known bad account. The
-                  evaluator will ensure that the unsuccessful authentication event has been written to the system
-                  logging service.
-                </test>
-                <test>The evaluator will repeatedly authenticate to the test system using a known bad account. The
-                  evaluator will ensure that after the authentication limit as chosen in <linkref linkend="fia_afl.1.1"/>
-                  is reached an events detailing the actions applied as specified in <linkref linkend="fia_afl.1.2"/> has been written to the system
-                  logging service.
-                </test>
-
-                <test>The evaluator will try to create an object which requires privileged access from a standard
-                  user account. The evaluator will ensure that the unsuccessful creation event has been written to the system
-                  logging service.
-                </test>
-                <test>The evaluator will try to access an object which requires privileged access from a standard
-                  user account. The evaluator will ensure that the unsuccessful access event has been written to the system
-                  logging service.
-                </test>
-                <test>The evaluator will try to modify an object which requires privileged access from a standard
-                  user account. The evaluator will ensure that the unsuccessful modification event has been written to the system
-                  logging service.
-                </test>
-                <test>The evaluator will try to delete an object which requires privileged access from a standard
-                  user account. The evaluator will ensure that the unsuccessful deletion event has been written to the system
-                  logging service.
-                </test>
-                <test>The evaluator will try and add a standard user to the system from a standard user account. 
-                  The evaluator will ensure that the unsuccessful user adding event has been written to the system logging service. 
-                </test>     
-                <test>The evaluator will try and delete a standard user to the system from a standard user account. 
-                  The evaluator will ensure that the unsuccessful user deletion event has been written to the system logging service. 
-                </test>  
-                <test>The evaluator will try and modify their standard user's group membership to include a non-privileged group. 
-                  The evaluator will ensure that the successful user group change event has been written to the system logging service. 
-                </test>  
-                <test>The evaluator will try and modify their standard user's group membership to include a privileged group. 
-                  The evaluator will ensure that the unsuccessful user group change event has been written to the system logging service. 
-                </test>
-                <test>The evaluator will try and disable a standard user's account on the system from a standard user account. 
-                  The evaluator will ensure that the unsuccessful disable request event has been written to the system logging service. 
-                </test>                 
-                
-                <test>The evaluator will authenticate to the system with an administrator/root account. The evaluator will ensure
-                that the successful authentication event is written to the system logging service.</test>
-                
-                <test>The evaluator will try to escalate their standard user account's privilege via the provided API. 
-                  The evaluator will ensure that the unsuccessful privilege escalation event has been written to the system
-                  logging service
-                </test>
-                
-                <test>The evaluator will try to modify the security configuration of the system from a standard user account.  
-                  The evaluator will ensure that the unsuccessful security configuration request event has been written to 
-                  the system logging service. 
-                </test>
-                <test>The evaluator will try to modify the audit configuration of the system from a standard user account. 
-                  The evaluator will ensure that the unsuccessful audit configuration request event has been written to 
-                  the system logging service. 
-                </test>                  
-
-                <test>The evaluator will turn off and then turn on the test system. The
-                  evaluator will then ensure that logging events have been written to the system
-                  logging service to denote that the logging service was stopped before power off, and
-                  started again while the system turned on.
-                </test>
-                            
-                <test>The evaluator will generate auditable events on the system while monitoring the
-                  event log. The evaluator will ensure that each auditable event write an event to
-                  the system logging service.
-                </test>
-              </testlist>
-            </aactivity>
+            <aactivity>
+			  The evaluator shall check the administrative guide and ensure
+			  that it lists all of the auditable events.  The evaluator shall
+			  check to make sure that every audit event type selected in the ST
+			  is included.
+              <br/>
+			  The evaluator shall test the OS's ability to correctly generate
+			  audit records by having the TOE generate audit records for the
+			  events listed in the ST.  This should include all instance types
+			  of an event specified.  
+			  When verifying the test results, the evaluator shall ensure the
+			  audit records generated during testing match the format specified
+			  in the administrative guide, and that the fields in each audit
+			  record have the proper entries.
+           </aactivity>
           </f-element>
           <f-element id="fau_gen.1.2">
             <title> The OS shall record within each audit record at least the following information: 
@@ -2740,25 +2687,32 @@
               <assignable>other audit relevant information</assignable>
 	      </li>
 	    </ol>
-	    .
-            </title>
+	 
+        </title>
 	    <note role="application">
-	      The term <i>subject</i> here is understood to be the user that the application
-	      is acting on behalf of.
+	      The term <i>subject</i> here is understood to be the user that the process
+	      is acting on behalf of.  If no auditable event definitions of 
+		  functional components are provided, then no additional audit-relevant information 
+		  is required.
 	    </note>
-	    <aactivity> 
-	      The evaluator will ensure that when each event identified in 
-	      <linkref linkend="FAU_GEN.1.1"/> is recorded in the audit record that it
-              contains the following information: 
-	      <ul>
-                <li>Date and time of when the event occurred</li>
-                <li>The type of event</li>
-                <li>User identity (if applicable)</li>
-                <li>The outcome of the event (Success or failure)</li>
-                <li>What has now been modified on the system due to the event</li>
-              </ul>
-            </aactivity>
-          </f-element>
+            <aactivity>
+			  The evaluator shall check the administrative guide and ensure
+			  that it provides a format
+			  for audit records. Each audit record format type must be covered,
+			  along with a brief description of each field. The evaluator shall
+			  ensure that the fields contains the information required. 
+			  <br/>
+			  The evaluator shall test the OS's ability to correctly generate
+			  audit records by having the TOE generate audit records for the
+			  events listed in the ST.
+			  The evaluator shall
+			  ensure the audit records generated during testing match the
+			  format specified in the administrative guide, and that the fields
+			  in each audit record provide the required information.
+           </aactivity>
+
+
+        </f-element>
         </f-component>
       </subsection>
       <subsection title="Identification and Authentication (FIA)" id="fia">
@@ -2784,8 +2738,8 @@
 	      The evaluator will then repeatedly attempt to authenticate with an incorrect password,
 	      PIN,
 	      or certificate until the number of attempts reaches the threshold.
-	      The evaluator will then ensure that an event is created and logged by the OS.
-	      The method of how these events are logged varies depending on platform. 
+	      Note that the authentication attempts and lockouts must also be logged as 
+		  specified in <linkref linkend="fau_gen.1"/>.
 	    </aactivity>
           </f-element>
           <f-element id="fia_afl.1.2">
@@ -3043,9 +2997,6 @@
             Before establishing a user session, the OS shall display an advisory
             warning message regarding unauthorized use of the OS.
             </title>
-	    <note role="application">
-	      This requirement applies to all users: both privileged and unprivileged.
-	    </note>
             <aactivity> 
             The evaluator will configure the OS, per instructions in the OS manual,
             to display the advisory warning message "TEST TEST Warning Message TEST TEST". 
