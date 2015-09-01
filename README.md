@@ -9,6 +9,8 @@ Protection Profile for Operating Systems
 
 [Protection Profile for General Purpose Operating System](http://common-criteria.rhcloud.com/operatingsystem/output/operatingsystem-release.html)
 
+[Help working with Transforms Submodule](https://github.com/commoncriteria/transforms/wiki/Working-with-Transforms-as-a-Submodule)
+
 ## Quickstart
 To clone this project along with its _transforms_ submodule run:
 
