@@ -9,6 +9,10 @@ Protection Profile for Operating Systems
 
 [Protection Profile for General Purpose Operating System](http://common-criteria.rhcloud.com/operatingsystem/output/operatingsystem-release.html)
 
+[How to join the NIAP OS Technical Community (Mailing list and updates)](
+https://www.niap-ccevs.org/NIAP_Evolution/tech_communities.cfm)
+
+## Development Info
 [Help working with Transforms Submodule](https://github.com/commoncriteria/transforms/wiki/Working-with-Transforms-as-a-Submodule)
 
 ## Quickstart
