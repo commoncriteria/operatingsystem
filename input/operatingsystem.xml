@@ -894,10 +894,12 @@
 	      <br/>
               <ul>
                 <li>AES-XTS (as defined in NIST SP 800-38E) mode;</li>
-		<li>AES-CBC (as defined in NIST SP 800-38A) mode;</li>
-                <li>AES-CCMP (as defined in FIPS PUB 197, NIST SP 800-38C and IEEE 802.11-
-                  2012)</li>
+		            <li>AES-CBC (as defined in NIST SP 800-38A) mode;</li>
               </ul> 
+              <selectables linebreak="yes">
+                <selectable>AES-CCMP (as defined in FIPS PUB 197, NIST SP 800-38C and IEEE 802.11-2012)</selectable>
+                <selectable>none</selectable>
+              </selectables> 
 	      and 
 	      <selectables linebreak="yes">
                 <selectable>AES Key Wrap (KW) (as defined in NIST SP 800-38F)</selectable>
@@ -911,8 +913,11 @@
 	      and cryptographic key sizes 128-bit and 256-bit.
 	    </title>
             <note role="application"> 
-	      For the first selection, the ST author should choose the mode
-              or modes in which AES operates. For the second selection, the ST author should choose
+              AES CCMP (which uses AES in CCM as specified in SP 800-38C) becomes manditory and must
+              be selected if the ST includes the WLAN Client Extended Package.
+              <br/> 
+	            For the second selection, the ST author should choose the mode
+              or modes in which AES operates. For the third selection, the ST author should choose
               the key sizes that are supported by this functionality. 128-bit key size is required
               in order to comply with <linkref linkend="FCS_TLSC_EXT.1"/> and <linkref
                 linkend="FCS_CKM.1"/>, if those are selected. 
@@ -2849,6 +2854,17 @@
                 </test>
               </testlist>
 
+            </aactivity>
+          </f-element>
+           <f-element id="fia_uau.5.2">
+            <title>
+              The OS shall authenticate any user's claimed identity according to the
+              <assignable>
+              	rules describing how the multiple authentication
+		mechanisms provide authentication
+              </assignable>.
+            </title>
+            <aactivity>
             </aactivity>
           </f-element>
         </f-component>
