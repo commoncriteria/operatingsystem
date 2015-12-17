@@ -534,9 +534,9 @@
       Technology Security Evaluation, Version 3.1, Revision 4, with additional extended functional
       components. 
       <subsection title="Cryptographic Support (FCS)" id="fcs">
-        <f-component id="fcs_ckm.1" name="Cryptographic Key Generation" status="threshold">
+        <f-component id="fcs_ckm.1" name="Cryptographic Key Generation (Refined)" status="threshold">
           <f-element id="fcs_ckm.1.1">
-            <title> The OS shall generate asymmetric cryptographic keys in accordance with a
+            <title> The <b>OS</b> shall generate <b>asymmetric</b> cryptographic keys in accordance with a
               specified cryptographic key generation algorithm <selectables linebreak="yes">
                 <selectable>
                   <b>RSA schemes</b> using cryptographic key sizes of 2048-bit or greater
@@ -556,7 +556,13 @@
                     </selectables> 
 		    that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.4
                 </selectable>
-              </selectables>. </title>
+              </selectables>
+              <strike>
+                and specified cryptographic key sizes [assignment: cryptographic key sizes] 
+                that meet the following: [assignment: list of standards]
+              </strike>
+              .
+            </title>
             <note role="application"> The <abbr linkend="ST"/> author shall select all key
               generation schemes used for key establishment and entity authentication. When key
               generation is used for key establishment, the schemes in <linkref
@@ -660,10 +666,10 @@
 	    </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fcs_ckm.2" name="Cryptographic Key Establishment" status="threshold">
+        <f-component id="fcs_ckm.2" name="Cryptographic Key Establishment (Refined)" status="threshold">
           <f-element id="fcs_ckm.2.1">
-            <title> The OS shall implement functionality to perform cryptographic key establishment
-              in accordance with a specified cryptographic key establishment method:
+            <title> The <b>OS</b> shall <b>implement functionality to perform</b> cryptographic <b>key establishment</b>
+              in accordance with a specified cryptographic key <b>establishment</b> method:
 	      <p/>
               <b>RSA-based key establishment schemes</b> that meets the following: 
 	      NIST Special Publication 800-56B, “Recommendation for Pair-Wise Key Establishment Schemes
@@ -676,8 +682,11 @@
                     NIST Special Publication 800-56A, “Recommendation for Pair-Wise Key
                     Establishment Schemes Using Discrete Logarithm Cryptography”
                 </selectable>
-                <selectable> No other schemes </selectable>
-              </selectables>. </title>
+                <selectable>No other schemes</selectable>
+              </selectables>
+              <strike>that meets the following: [assignment: list of standards]</strike>
+              . 
+            </title>
             <note role="application">
 	      The ST author shall select all key establishment schemes used
               for the selected cryptographic protocols. <linkref linkend="FCS_TLSC_EXT.1"/> requires
@@ -886,22 +895,19 @@
           </f-element>
         </f-component>
  
-        <f-component id="fcs_cop.1(1)" name="Cryptographic Operation - Encryption/Decryption" status="threshold">
+        <f-component id="fcs_cop.1(1)" name="Cryptographic Operation - Encryption/Decryption (Refined)" status="threshold">
           <f-element id="fcs_cop.1.1(1)">
             <title>
-	      The OS shall perform encryption/decryption services for data in 
+              The <b>OS</b> shall perform encryption/decryption services for data in 
 	      accordance with a specified cryptographic algorithm 
 	      <br/>
               <ul>
                 <li>AES-XTS (as defined in NIST SP 800-38E) mode;</li>
 		            <li>AES-CBC (as defined in NIST SP 800-38A) mode;</li>
               </ul> 
-              <selectables linebreak="yes">
-                <selectable>AES-CCMP (as defined in FIPS PUB 197, NIST SP 800-38C and IEEE 802.11-2012)</selectable>
-                <selectable>none</selectable>
-              </selectables> 
 	      and 
 	      <selectables linebreak="yes">
+	              <selectable>AES-CCMP (as defined in FIPS PUB 197, NIST SP 800-38C and IEEE 802.11-2012)</selectable>
                 <selectable>AES Key Wrap (KW) (as defined in NIST SP 800-38F)</selectable>
                 <selectable>AES Key Wrap with Padding (KWP) (as defined in NIST SP 800-38F)</selectable>
                 <selectable>AES-GCM (as defined in NIST SP 800-38D)</selectable>
@@ -910,7 +916,13 @@
                 <selectable>AES-GCMP-256 (as defined in NIST SP800-38D and IEEE 802.11ac-2013)</selectable>
                 <selectable>no other modes</selectable>
               </selectables> 
-	      and cryptographic key sizes 128-bit and 256-bit.
+              and cryptographic key sizes 
+              <selectables>
+                <selectable>128-bit</selectable>
+                <selectable>256-bit</selectable>
+              </selectables>
+        <strike>that meet the following: [assignment: list of standards]</strike>
+	      .
 	    </title>
             <note role="application"> 
               AES CCMP (which uses AES in CCM as specified in SP 800-38C) becomes manditory and must
@@ -1174,20 +1186,20 @@
             </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fcs_cop.1(2)" name="Cryptographic Operation - Hashing" status="threshold">
+        <f-component id="fcs_cop.1(2)" name="Cryptographic Operation - Hashing (Refined)" status="threshold">
           <f-element id="fcs_cop.1.1(2)">
-            <title>The OS shall perform cryptographic hashing services in accordance with a
+            <title>The <b>OS</b> shall perform cryptographic hashing services in accordance with a
               specified cryptographic algorithm SHA-1 and <selectables linebreak="yes">
                 <selectable>SHA-256</selectable>
                 <selectable>SHA-384</selectable>
                 <selectable>SHA-512</selectable>
                 <selectable>no other algorithms</selectable>
-              </selectables> and message digest sizes 160 and <selectables linebreak="yes">
-                <selectable>256</selectable>
-                <selectable>384</selectable>
-                <selectable>512</selectable>
-                <selectable>no other message digest sizes</selectable>
-              </selectables> bits that meet the following: FIPS Pub 180-4. </title>
+              </selectables> and message digest sizes 160 bits and <selectables linebreak="yes">
+                <selectable>256 bits</selectable>
+                <selectable>384 bits</selectable>
+                <selectable>512 bits</selectable>
+                <selectable>no other sizes</selectable>
+              </selectables> that meet the following: FIPS Pub 180-4. </title>
             <note role="application"> 
 	      Per NIST SP 800-131A, SHA-1 for generating digital signatures
               is no longer allowed, and SHA-1 for verification of digital signatures is strongly
@@ -1255,9 +1267,9 @@
             </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fcs_cop.1(3)" name="Cryptographic Operation - Signing" status="threshold">
+        <f-component id="fcs_cop.1(3)" name="Cryptographic Operation - Signing (Refined)" status="threshold">
           <f-element id="fcs_cop.1.1(3)">
-            <title>The OS shall perform cryptographic signature services (generation and
+            <title>The <b>OS</b> shall perform cryptographic signature services (generation and
               verification) in accordance with a specified cryptographic algorithm <selectables
                 linebreak="yes">
                 <selectable>
@@ -1272,7 +1284,11 @@
                   </selectables> 
 		  that meet the following: FIPS PUB 186-4, “Digital Signature   Standard (DSS)”, Section 5 
 		</selectable>
-              </selectables> . </title>
+              </selectables>
+              <strike>and cryptographic key sizes [assignment: cryptographic algorithm] 
+                that meet the following: [assignment: list of standards].</strike>
+              . 
+            </title>
             <note role="application"> The ST Author should choose the algorithm implemented to
               perform digital signatures; if more than one algorithm is available, this requirement
               should be iterated to specify the functionality. For the algorithm chosen, the ST
@@ -1325,26 +1341,24 @@
             </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fcs_cop.1(4)" status="threshold" name="Cryptographic Operation - Keyed-Hash Message Authentication">
+        <f-component id="fcs_cop.1(4)" status="threshold" name="Cryptographic Operation - Keyed-Hash Message Authentication (Refined)">
           <f-element id="fcs_cop.1.1(4)">
-            <title>The OS shall perform keyed-hash message authentication services 
+            <title>The <b>OS</b> shall perform keyed-hash message authentication services 
 	    in accordance with a specified cryptographic algorithm
 	      <selectables linebreak="yes">
                 <selectable>SHA-1</selectable>
 		<selectable>SHA-256</selectable>
                 <selectable>SHA-384</selectable>
                 <selectable>SHA-512</selectable>
-                <selectable>no other algorithms</selectable>
               </selectables> 
 	      with key sizes <assignable>key size (in bits) used in HMAC</assignable>
-              and message digest sizes 
+              <b>and message digest sizes 
 	      <selectables>
-                <selectable>160</selectable>
-                <selectable>256</selectable>
-                <selectable>384</selectable>
-                <selectable>512</selectable>
-                <selectable>no other size</selectable>
-              </selectables> bits that meet the following: FIPS Pub 198-1 <i>The Keyed-Hash Message
+                <selectable>160 bits</selectable>
+                <selectable>256 bits</selectable>
+                <selectable>384 bits</selectable>
+                <selectable>512 bits</selectable>
+	      </selectables></b> that meet the following: FIPS Pub 198-1 <i>The Keyed-Hash Message
                 Authentication Code</i> and FIPS Pub 180-4 <i>Secure Hash Standard</i>. </title>
             <note role="application">
 	      The intent of this requirement is to specify the keyed-hash
