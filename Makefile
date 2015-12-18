@@ -16,13 +16,13 @@ all: $(TABLE) $(SIMPLIFIED) $(PP_HTML) $(ESR_HTML)
 
 
 spellcheck: $(ESR_HTML) $(PP_HTML)
-	bash -c "hunspell -l -H -p <(cat $(TRANS)/dictionaries/*.txt) output/*.html | sort -u"
+	bash -c "hunspell -l -H -p <(cat $(TRANS)/dictionaries/*.txt OsDictionary.txt) output/*.html | sort -u"
 
 spellcheck-esr: $(ESR_HTML)
-	bash -c "hunspell -l -H -p <(cat $(TRANS)/dictionaries/*.txt) $(ESR_HTML) | sort -u"	
+	bash -c "hunspell -l -H -p <(cat $(TRANS)/dictionaries/*.txt OsDictionary.txt) $(ESR_HTML) | sort -u"	
 
 spellcheck-os:  $(PP_HTML)
-	bash -c "hunspell -l -H -p <(cat $(TRANS)/dictionaries/*.txt) $(PP_HTML) | sort -u"
+	bash -c "hunspell -l -H -p <(cat $(TRANS)/dictionaries/*.txt OsDictionary.txt) $(PP_HTML) | sort -u"
 
 linkcheck: $(TABLE) $(SIMPLIFIED) $(PP_HTML) $(ESR_HTML) $(PP_OP_HTML) $(PP_RELEASE_HTML)
 	for bb in output/*.html; do for aa in $$(\
