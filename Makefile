@@ -1,6 +1,8 @@
 IN = input
 OUT = output
-TRANS = transforms
+# You can easily build with another set of transforms (ie the developer ones) by running
+#    make <target> TRANS=/path/to/transforms
+TRANS ?= transforms
 PP_XML=$(IN)/operatingsystem.xml
 ESR_XML=$(IN)/esr.xml
 TABLE=$(OUT)/operatingsystem-table.html
@@ -9,17 +11,18 @@ PP_HTML=$(OUT)/operatingsystem.html
 ESR_HTML=$(OUT)/operatingsystem-esr.html
 PP_OP_HTML=$(OUT)/operatingsystem-optionsappendix.html
 PP_RELEASE_HTML=$(OUT)/operatingsystem-release.html
+
 all: $(TABLE) $(SIMPLIFIED) $(PP_HTML) $(ESR_HTML)
 
 
 spellcheck: $(ESR_HTML) $(PP_HTML)
-	bash -c "hunspell -l -H -p <(cat transforms/dictionaries/CommonCriteria.txt transforms/dictionaries/Computer.txt transforms/dictionaries/Crypto.txt transforms/dictionaries/OperatingSystemSpecific.txt) output/*.html | sort -u"
+	bash -c "hunspell -l -H -p <(cat $(TRANS)/dictionaries/*.txt) output/*.html | sort -u"
 
 spellcheck-esr: $(ESR_HTML)
-	bash -c "hunspell -l -H -p <(cat transforms/dictionaries/CommonCriteria.txt transforms/dictionaries/Computer.txt transforms/dictionaries/Crypto.txt transforms/dictionaries/OperatingSystemSpecific.txt) $(ESR_HTML) | sort -u"	
+	bash -c "hunspell -l -H -p <(cat $(TRANS)/dictionaries/*.txt) $(ESR_HTML) | sort -u"	
 
 spellcheck-os:  $(PP_HTML)
-	bash -c "hunspell -l -H -p <(cat transforms/dictionaries/CommonCriteria.txt transforms/dictionaries/Computer.txt transforms/dictionaries/Crypto.txt transforms/dictionaries/OperatingSystemSpecific.txt) $(PP_HTML) | sort -u"
+	bash -c "hunspell -l -H -p <(cat $(TRANS)/dictionaries/*.txt) $(PP_HTML) | sort -u"
 
 linkcheck: $(TABLE) $(SIMPLIFIED) $(PP_HTML) $(ESR_HTML) $(PP_OP_HTML) $(PP_RELEASE_HTML)
 	for bb in output/*.html; do for aa in $$(\
@@ -45,9 +48,9 @@ simplified: $(SIMPLIFIED)
 $(SIMPLIFIED): $(TRANS)/pp2simplified.xsl $(PP_XML)
 	xsltproc --stringparam release final -o $(SIMPLIFIED) $(TRANS)/pp2simplified.xsl $(PP_XML)
 
-rnc: transforms/schemas/schema.rnc
-transforms/schemas/schema.rnc: transforms/schemas/schema.rng
-	trang -I rng -O rnc  transforms/schemas/schema.rng transforms/schemas/schema.rnc
+rnc: $(TRANS)/schemas/schema.rnc
+$(TRANS)/schemas/schema.rnc: $(TRANS)/schemas/schema.rng
+	trang -I rng -O rnc  $(TRANS)/schemas/schema.rng $(TRANS)/schemas/schema.rnc
 
 clean:
 	@for f in a $(TABLE) $(SIMPLIFIED) $(PP_HTML) $(PP_RELEASE_HTML) $(PP_OP_HTML); do \
