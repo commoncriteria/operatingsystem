@@ -12,7 +12,7 @@ ESR_HTML=$(OUT)/operatingsystem-esr.html
 PP_OP_HTML=$(OUT)/operatingsystem-optionsappendix.html
 PP_RELEASE_HTML=$(OUT)/operatingsystem-release.html
 
-all: $(TABLE) $(SIMPLIFIED) $(PP_HTML) $(ESR_HTML)
+all: $(TABLE) $(SIMPLIFIED) $(PP_HTML) $(ESR_HTML) $(PP_RELEASE_HTML)
 
 
 spellcheck: $(ESR_HTML) $(PP_HTML)
@@ -35,6 +35,10 @@ $(PP_HTML):  $(TRANS)/pp2html.xsl $(TRANS)/ppcommons.xsl $(PP_XML)
 	xsltproc -o $(PP_HTML) $(TRANS)/pp2html.xsl $(PP_XML)
 	xsltproc --stringparam appendicize on -o $(PP_OP_HTML) $(TRANS)/pp2html.xsl $(PP_XML)
 	xsltproc --stringparam appendicize on --stringparam release final -o $(PP_RELEASE_HTML) $(TRANS)/pp2html.xsl $(PP_XML)
+
+$(PP_RELEASE_HTML): $(TRANS)/pp2html.xsl $(TRANS)/ppcommons.xsl $(PP_XML)
+	xsltproc --stringparam appendicize on --stringparam release final -o $(PP_RELEASE_HTML) $(TRANS)/pp2html.xsl $(PP_XML)
+
 
 esr:$(ESR_HTML)
 $(ESR_HTML):  $(TRANS)/esr2html.xsl $(TRANS)/ppcommons.xsl $(ESR_XML)
