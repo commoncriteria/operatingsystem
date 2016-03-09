@@ -31,6 +31,11 @@
 
   <RevisionHistory role="final">
     <entry>
+      <version>4.1</version>
+      <date>2016-03-09</date>
+      <subject>Minor updates - cryptographic modes</subject>
+    </entry>
+    <entry>
       <version>4.0</version>
       <date>2015-08-14</date>
       <subject>Release - significant revision</subject>
@@ -457,7 +462,7 @@
           <description> To address the issue of loss of confidentiality of credentials in the event of
             loss of physical control of the storage medium, conformant <abbr linkend="OS"/>s 
             provide data-at-rest protection for credentials.  Conformant OSes also provide
-			access controls which allow a users to keep their files private from other
+			access controls which allow users to keep their files private from other
 			users of the same system.
           </description>
           <component-refer ref="fcs_sto_ext.1"/>
@@ -555,6 +560,11 @@
                     <selectable> no other curves </selectable>
                     </selectables> 
 		    that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.4
+                </selectable>                
+                <selectable>
+                  <h:b>FFC schemes</h:b> using cryptographic key sizes of 2048-bit 
+                  or greater that meet the following: FIPS PUB 186-4, “Digital Signature 
+                  Standard (DSS)”, Appendix B.1
                 </selectable>
               </selectables>
               <h:strike>
@@ -583,7 +593,8 @@
 	      to use the selected key generation scheme(s) and key size(s) for all uses defined
               in this PP. <h:br/> Assurance Activity Note: The following tests may require the
               vendor to furnish a developer environment and developer 
-	      tools that are typically not available to end-users of the OS. <h:br/>
+	      tools that are typically not available to end-users of the OS. 
+              <h:br/>
               <h:b>Key Generation for FIPS PUB 186-4 RSA Schemes</h:b><h:br/> The evaluator will verify
               the implementation of RSA Key Generation by the <abbr linkend="OS"/> using the Key
               Generation test. This test verifies the ability of the <abbr linkend="TSF"/> to
@@ -663,6 +674,59 @@
               implementation and modify five of the public key values so that they are incorrect,
               leaving five values unchanged (i.e., correct). The evaluator will obtain in response
               a set of 10 PASS/FAIL values.
+              <h:br/>
+              <h:b>Key Generation for Finite-Field Cryptography (FFC)</h:b>
+              <h:br/>
+              The evaluator shall verify the implementation of the Parameters Generation 
+              and the Key Generation for FFC by the TOE using the Parameter Generation 
+              and Key Generation test. This test verifies the ability of the TSF to correctly 
+              produce values for the field prime p, the cryptographic prime q (dividing p-1), 
+              the cryptographic group generator g, and the calculation of the private 
+              key x and public key y.
+              <h:br/>
+              The Parameter generation specifies 2 ways (or methods) to generate the 
+              cryptographic prime q and the field prime p:
+              <h:br/>            
+              
+              <h:li>Cryptographic and Field Primes:<h:ul>
+                <h:li>Primes q and p shall both be provable primes</h:li>
+                <h:li>Primes q and field prime p shall both be probable primes</h:li>
+              </h:ul>
+              </h:li>
+              and two ways to generate the cryptographic group generator g:
+              
+              <h:li>Cryptographic Group Generator:<h:ul>
+                <h:li>Generator g constructed through a verifiable process</h:li>
+                <h:li>Generator g constructed through an unverifiable process</h:li>
+              </h:ul>
+              </h:li>
+
+              The Key generation specifies 2 ways to generate the private key x:              
+              
+              <h:li>Private Key:<h:ul>
+                <h:li>len(q) bit output of RBG where 1 &#x2264; x &#x2264; q-1</h:li>
+                <h:li>len(q) + 64 bit output of RBG, followed by a mod q-1 operation where 1 &#x2264; x &#x2264; q-1</h:li>
+              </h:ul>
+              </h:li>
+              
+              The security strength of the RBG must be at least that of the security offered by the FFC parameter set.
+              
+              To test the cryptographic and field prime generation method for the provable primes method and/or the
+              group generator g for a verifiable process, the evaluator must seed the TSF parameter 
+              generation routine with sufficient data to deterministically generate the parameter set.
+              
+              For each key length supported, the evaluator shall have the TSF generate 25 parameter sets 
+              and key pairs. The evaluator shall verify the correctness of the TSF’s implementation 
+              by comparing values generated by the TSF with those generated from a known good 
+              implementation. Verification must also confirm:
+              <h:ul>
+                <h:li>g != 0,1</h:li>
+                <h:li>q divides p-1</h:li>
+                <h:li>g<h:sup>q</h:sup> mod p = 1</h:li>
+                <h:li>g<h:sup>x</h:sup> mod p = y</h:li>
+              </h:ul>
+              for each FFC parameter set and key pair.
+              
 	    </aactivity>
           </f-element>
         </f-component>
@@ -682,6 +746,11 @@
                     NIST Special Publication 800-56A, “Recommendation for Pair-Wise Key
                     Establishment Schemes Using Discrete Logarithm Cryptography”
                 </selectable>
+	        <selectable>
+	          <h:b>Finite field-based key establishment schemes</h:b> that meets the following:
+	          NIST Special Publication 800-56A, “Recommendation for Pair-Wise Key
+	          Establishment Schemes Using Discrete Logarithm Cryptography”
+	        </selectable>
                 <selectable>No other schemes</selectable>
               </selectables>
               <h:strike>that meets the following: [assignment: list of standards]</h:strike>
@@ -695,7 +764,10 @@
               relies on implementation of other sections in SP 800-56B. If the OS acts as a receiver
               in the RSA key establishment scheme, the OS does not need to implement RSA key generation.
               <h:br/> The elliptic curves used for the key establishment scheme shall correlate with
-              the curves specified in <linkref linkend="FCS_CKM.1.1(1)"/>. <h:br/> 
+              the curves specified in <linkref linkend="FCS_CKM.1.1(1)"/>. The domain parameters 
+              used for the finite field-based key establishment scheme are specified by the 
+              key generation according to <linkref linkend="FCS_CKM.1.1(1)"/>.
+              <h:br/> 
 	    </note>
             <aactivity> The evaluator will ensure that the supported key establishment schemes
               correspond to the key generation schemes identified in FCS_CKM.1.1. If the ST
@@ -900,11 +972,10 @@
             <title>
               The <h:b>OS</h:b> shall perform encryption/decryption services for data in 
 	      accordance with a specified cryptographic algorithm 
-	      <h:br/>
-              <h:ul>
-                <h:li>AES-XTS (as defined in NIST SP 800-38E) mode;</h:li>
-		<h:li>AES-CBC (as defined in NIST SP 800-38A) mode;</h:li>
-              </h:ul> 
+	      <selectables linebreak="yes">
+	              <selectable>AES-XTS (as defined in NIST SP 800-38E)</selectable>
+	              <selectable>AES-CBC (as defined in NIST SP 800-38A)</selectable>
+              </selectables> 
 	      and 
 	      <selectables linebreak="yes">
 	        <selectable>AES-CCMP (as defined in FIPS PUB 197, NIST SP 800-38C and IEEE 802.11-2012)</selectable>
@@ -1993,7 +2064,7 @@
               in such detail that given any possible scenario between a user and a file governed by
               the OS the access control decision is unambiguous.
               <h:br/>
-              The evaluator will create two new standard user user accounts on the system and conduct the following tests:
+              The evaluator will create two new standard user accounts on the system and conduct the following tests:
               <testlist>
                 <test>
                   The evaluator will authenticate to the system as the first user and create a file within that user's home directory. 
@@ -2470,7 +2541,7 @@
               </selectables>
             </title>
             <note role="application">
-              The bootchain of the OS is the sequence of software, to included the OS loader, the kernel, system 
+              The bootchain of the OS is the sequence of software, to include the OS loader, the kernel, system 
               drivers or modules, and system files, which ultimately result in loading the OS. 
 	      The first part of the OS, usually referred to as the first-stage bootloader, 
 	      must be loaded by the platform. 
@@ -2537,7 +2608,7 @@
           </f-element>
         </f-component>
 
-        <f-component id="fpt_tud_ext.1" name="Integrity for Installation and Update" status="threshold">
+        <f-component id="fpt_tud_ext.1" name="Trusted Update" status="threshold">
           <f-element id="fpt_tud_ext.1.1">
             <title>The OS shall provide the ability to check for updates to the OS
               software itself. </title>
@@ -2589,7 +2660,7 @@
             </aactivity>
           </f-element>
 	</f-component>
-        <f-component id="fpt_tud_ext.2" name="Integrity for Installation and Update of Application Software" status="threshold">
+        <f-component id="fpt_tud_ext.2" name="Trusted Update for Application Software" status="threshold">
           <!-- TO DO: Cite references. -->
           <f-element id="fpt_tud_ext.2.1">
             <title>
