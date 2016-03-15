@@ -1498,17 +1498,17 @@
                   </selectables>
             </title>
             <note role="application">
-              SP 800-90A contains three different methods of generating random numbers; each
+              NIST SP 800-90A contains three different methods of generating random numbers; each
               of these, in turn, depends on underlying cryptographic primitives (hash
-              functions/ciphers). The <abbr linkend="ST"/> author will select the function used (if
-              SP 800-90A is selected), and include the specific underlying cryptographic primitives
-              used in the requirement or in the TSS. While any of the identified hash functions
+              functions/ciphers). 
+	      The <abbr linkend="ST"/> author will select the function used and include the specific underlying cryptographic primitives
+              used in the requirement or in the TSS. 
+	      While any of the identified hash functions
               (SHA-1, SHA-224, SHA-256, SHA-384, SHA-512) are allowed for Hash_DRBG or HMAC_DRBG,
               only AES-based implementations for CTR_DRBG are allowed. 
             </note>
-            <aactivity>The evaluator will perform the following tests.
-              <testlist>
-                <test> The evaluator will perform 15 trials for the RNG implementation. If the RNG
+            <aactivity>
+              The evaluator will perform 15 trials for the RNG implementation. If the RNG
                   is configurable, the evaluator will perform 15 trials for each configuration. The
                   evaluator will also confirm that the operational guidance contains appropriate
                   instructions for configuring the RNG functionality. <h:br/> If the RNG has
@@ -1532,22 +1532,21 @@
                   additional input to the first call to generate. The sixth and seventh are
                   additional input and entropy input to the call to reseed. The final value is
                   additional input to the second generate call. 
-                  <h:br/> The following paragraphs
-                  contain more information on some of the input values to be generated/selected by
-                  the evaluator. <h:br/>
-                  <h:b>Entropy input:</h:b> the length of the entropy input value must equal the seed
-                  length. <h:br/>
-                  <h:b>Nonce:</h:b> If a nonce is supported (CTR_DRBG with no Derivation Function does
-                  not use a nonce), the nonce bit length is one-half the seed length. <h:br/>
-                  <h:b>Personalization string:</h:b> The length of the personalization string must be
+                  <h:br/> The following values should be set/generated as described:<h:ul>
+                  <h:li> <h:b>Entropy input:</h:b> The length of the entropy input value must equal the seed
+                  length.</h:li>
+		  
+                  <h:li><h:b>Nonce:</h:b> If a nonce is supported (CTR_DRBG with no Derivation Function does
+                  not use a nonce), the nonce bit length is one-half the seed length. </h:li>
+                  <h:li><h:b>Personalization string:</h:b> The length of the personalization string must be
                   less than or equal to seed length. If the implementation only supports one
                   personalization string length, then the same length can be used for both values.
                   If more than one string length is support, the evaluator will use personalization
                   strings of two different lengths. If the implementation does not use a
-                  personalization string, no value needs to be supplied. <h:br/>
-                  <h:b>Additional input:</h:b> the additional input bit lengths have the same defaults
-                  and restrictions as the personalization string lengths. </test>
-              </testlist>
+                  personalization string, no value needs to be supplied. </h:li>
+                  <h:li><h:b>Additional input:</h:b> The additional input bit lengths have the same defaults
+                  and restrictions as the personalization string lengths.</h:li>
+		</h:ul>
             </aactivity>
           </f-element>
           
