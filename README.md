@@ -13,7 +13,7 @@ Protection Profile for Operating Systems
 [Protection Profile for General Purpose Operating System v4.1](https://www.niap-ccevs.org/Profile/Info.cfm?id=400) 3/9/2016
 
 ## Change Log
-03/09/2016 Protection Profile for General Purpose Operating System v4.1 - updated cryptographic modes
+03/09/2016 Protection Profile for General Purpose Operating System v4.1 - updated cryptographic modes<br/>
 08/14/2015 Protection Profile for General Purpose Operating System v4.0 - initial release
 
 ## Technical Community
