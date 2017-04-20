@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../transforms/configannex2html.xsl"?>
+
+<ConfigAnnex xmlns="http://common-criteria.rhcloud.com/ns/co" name="Configuration Annex to the
+  General Purpose Operating System Protection Profile"
+    xmlns:h="http://www.w3.org/1999/xhtml">
+
+<ConfigAnnexReference title="Reference">
+  <ReferenceTable>
+    <PPType>Protection Profile</PPType>
+    <PPTechnology>General Purpose Operating Systems</PPTechnology>
+    <Subtitle>This document provides configuration requirements for operating systems used in
+    US National Security Systems.</Subtitle>
+    <PPVersion>4.1</PPVersion>
+    <Release>1</Release>
+    <Author>National Information Assurance Partnership</Author>
+    <PubDate>1 July 2017</PubDate>
+  </ReferenceTable>
+</ConfigAnnexReference>
+
+
+<chapter title="Purpose" id="purpose">
+This Configuration Annex to the Protection Profile (PP) for General Purpose
+Operating Systems provides configuration requirements for operating systems.
+This Annex is consistent with <cite linkend="CNSSI-1253"/>, which requires US National Security
+Systems to adhere to certain configuration parameters. Accordingly, configuration
+guidance produced according to the requirements of this Annex is suitable for
+use in US National Security Systems.
+
+<br/>
+These configuration requirements serve the following audiences:
+
+<audiencetable>
+<audience>
+  <audiencename>IT Product Vendors</audiencename>
+  <audiencepurpose>Use these
+  guidelines to structure the creation of product-specific configuration
+  guidance produced as part of a Common Criteria evaluation.  The creation of
+  administrative guidance is required by NIAP-approved Protection Profiles.
+  The items specified in this document, as well as any best practices, should be
+  provided as part of the administrative guidance.  For each configuration item,
+  the guidance must include the steps necessary to configure the setting of the
+  product.
+</audiencepurpose>
+</audience>
+
+<audience>
+  <audiencename>Test Labs</audiencename>
+   <audiencepurpose>Use these guidelines to configure and test systems undergoing evaluation
+  against a NIAP-approved Protection Profile.  Using this guidance during evaluation
+  provides assurance that the guidance is correct and implementable.
+  </audiencepurpose>
+</audience>
+
+<audience>
+<audiencename>Network Owners and Assessors</audiencename>
+<audiencepurpose>Use these guidelines to assess the configuration of operational
+systems when product-specific guidance does not exist.
+</audiencepurpose>
+</audience>
+
+</audiencetable>
+
+<section title="Relationship to NIST 800-53 Security Controls" id="relcontrols">
+In order implement of NIST SP 800-53 security controls, each component of the
+information system must possess the necessary security functionality and also be
+properly configured to leverage that functionality.
+<br/>
+NIAP Protection Profiles express requirements
+for security functionality for individual IT products within the overall
+information system.  This includes management functions which indicate where an
+enterprise or end user is expected to be able to operationally configure the
+product.  However, the Protection Profile does not indicate specific values
+for each configuration setting. This Annex specifies those specific
+requirements for operational configuration of a product type.  It also provides
+a mapping to each NIST control which the operational setting helps the overall
+system implement.  This complements the control mapping provided with each
+Protection Profile, which is focused on security functionality.  Together, these
+documents support the creation of system security plans, as well as the Select,
+Implement, Assess, and Monitor steps of the Risk Management Framework (RMF).
+</section>
+</chapter>
+
+<chapter title="Configuration Requirements" id="configreqs">
+The table below describes configuration
+requirements for operating systems.
+<br/>
+Each configuration requirement is
+associated with a security functionality requirement (SFR) from the associated
+Protection Profile or Extended Package.  Each configuration requirement is also
+associated with a NIST 800-53 security control.
+
+<configtable>
+
+<config>
+<configtitle>
+Set Minimum Passcode Length
+</configtitle>
+<instruction>
+Set the minimum password length to 6 characters.
+</instruction>
+
+<references>
+<reference ref="PP">FMT_SMF_EXT.1 Function 1.a</reference>
+<reference ref="NIST 800-53">IA-5 (1)(a)</reference>
+<reference ref="NIST 800-53">CM-6</reference>
+</references>
+</config>
+
+<config>
+<configtitle>
+Enable Screen Lock
+</configtitle>
+<instruction>
+Set the device to screen lock after an idle period.
+</instruction>
+
+<references>
+<reference ref="PP">FMT_SMF_EXT.1 Function 2.a</reference>
+<reference ref="NIST 800-53">AC-11a.</reference>
+<reference ref="NIST 800-53">CM-6</reference>
+</references>
+</config>
+
+<config>
+<configtitle>
+Set Screen Lock Timeout
+</configtitle>
+<instruction>
+Set the screen lock idle period to 15 minutes or fewer.
+</instruction>
+
+<references>
+<reference ref="PP">FMT_SMF_EXT.1 Function 2.b</reference>
+<reference ref="NIST 800-53">AC-11a.</reference>
+<reference ref="NIST 800-53">CM-6</reference>
+</references>
+</config>
+
+<config>
+<configtitle>
+Set Maximum Number of Authentication Failures
+</configtitle>
+<instruction>
+Set the maximum number of attempts for unsuccessful authentication to 10 or less.
+</instruction>
+<references>
+<reference ref="PP">
+FMT_SMF_EXT.1 Function 2.c
+</reference>
+<reference ref="NIST 800-53">
+AC-7a.
+</reference>
+</references>
+</config>
+
+</configtable>
+
+</chapter>
+
+<chapter title="References" id="references">
+  <bibliography>
+    <entry id="bibCC">
+      <tag>CC</tag>
+      <description>Common Criteria for Information Technology Security Evaluation - <h:ul>
+          <h:li><h:a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART1V3.1R4.pdf">Part
+              1: Introduction and General Model</h:a>, CCMB-2012-09-001, Version 3.1 Revision 4,
+            September 2012.</h:li>
+          <h:li><h:a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART2V3.1R4.pdf">Part
+              2: Security Functional Components</h:a>, CCMB-2012-09-002, Version 3.1 Revision 4,
+            September 2012.</h:li>
+          <h:li><h:a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART3V3.1R4.pdf">Part
+              3: Security Assurance Components</h:a>, CCMB-2012-09-003, Version 3.1 Revision 4,
+            September 2012.</h:li>
+        </h:ul></description>
+    </entry>
+    <entry id="CNSSI-1253">
+      <tag>CNSSI-1253</tag>
+      <description>
+        <h:a href="https://www.cnss.gov/CNSS/issuances/Instructions.cfm">
+          Committee on National Security Systems Instruction 1253</h:a>,
+        Security Categorization and Control Selection for National Security
+        Systems, 27 March 2014. </description>
+    </entry>
+  </bibliography>
+</chapter>
+
+</ConfigAnnex>
