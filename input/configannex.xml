@@ -155,16 +155,32 @@ Set Maximum Number of Authentication Failures to 3 Within 15 Minutes
 <references>
 <reference ref="PP">FAU_GEN.1.1.a</reference>
 <reference ref="NIST 800-53">AU-2a.</reference>
-<reference ref="CNSSI-1253" rev="Mar2014">System reboot, restart and shutdown</reference>
+<reference ref="CNSSI-1253" rev="Mar2014"></reference>
 </references>
 </config>
 
 <config>
-<configtitle>Audit All Authentication Events (Successful and Unsuccessful)</configtitle>
+<configtitle>Audit All Logons (Successful/Unsuccessful) and Logoffs (Successful)</configtitle>
 <references>
 <reference ref="PP">FAU_GEN.1.1.c</reference>
 <reference ref="NIST 800-53">AU-2a.</reference>
-<reference ref="CNSSI-1253" rev="Mar2014">Logons (Success/Failure)</reference>
+<reference ref="CNSSI-1253" rev="Mar2014">Authentication events:
+  (1) Logons (Success/Failure) (2) Logoffs (Success)</reference>
+</references>
+</config>
+
+<config>
+<configtitle>Audit File and Object Events (Unsuccessful)</configtitle>
+<references>
+<reference ref="PP">FAU_GEN.1.1.c</reference>
+<reference ref="NIST 800-53">AU-2a.</reference>
+<reference ref="CNSSI-1253" rev="Mar2014"> File and Objects events:
+(1) Create (Success/Failure)
+(2) Access (Success/Failure)
+(3) Delete (Success/Failure)
+(4) Modify (Success/Failure)
+(5) Permission Modification (Success/Failure)
+(6) Ownership Modification (Success/Failure)</reference>
 </references>
 </config>
 
@@ -174,7 +190,7 @@ Set Maximum Number of Authentication Failures to 3 Within 15 Minutes
 <reference ref="PP">FAU_GEN.1.1.c</reference>
 <reference ref="NIST 800-53">AU-2a.</reference>
 <reference ref="CNSSI-1253" rev="Mar2014">User and Group Management events:
-(1) User add, delete, modify, suspend, lock (Success/Failure)
+(1) User add, delete, modify, suspend, lock (Success/Failure)<p/>
 (2) Group/Role add, delete, modify (Success/Failure)
 </reference>
 </references>
@@ -218,12 +234,31 @@ Set Maximum Number of Authentication Failures to 3 Within 15 Minutes
 </references>
 </config>
 
+
+<config>
+<configtitle>Audit System Reboot, Restart, and Shutdown Events (Success/Failure)</configtitle>
+<references>
+<reference ref="PP">FAU_GEN.1.1.c</reference>
+<reference ref="NIST 800-53">AU-2a.</reference>
+<reference ref="CNSSI-1253" rev="Mar2014">System reboot, restart and shutdown (Success/Failure)</reference>
+</references>
+</config>
+
 <config>
 <configtitle>Audit Kernel Module Loading and Unloading Events (Successful and Unsuccessful)</configtitle>
 <references>
 <reference ref="PP">FAU_GEN.1.1.c</reference>
 <reference ref="NIST 800-53">AU-2a.</reference>
 <reference ref="CNSSI-1253" rev="Mar2014">Kernel module loading and unloading events (Success/Failure)</reference>
+</references>
+</config>
+
+<config>
+<configtitle>Configure the System to Offload Audit Records to a Log Server</configtitle>
+<references>
+<reference ref="PP">FAU_GEN.1.1.c</reference>
+<reference ref="NIST 800-53">AU-4(1)</reference>
+<reference ref="CNSSI-1253" rev="Mar2014"></reference>
 </references>
 </config>
 
