@@ -86,70 +86,259 @@ requirements for operating systems.
 <br/>
 Each configuration requirement is
 associated with a security functionality requirement (SFR) from the associated
-Protection Profile or Extended Package.  Each configuration requirement is also
-associated with a NIST 800-53 security control.
+Protection Profile or Module.  Each configuration requirement is also
+associated with a NIST 800-53 security control and CNSSI 1253 configuration value
+where applicable.
+
+See Wireless EP/Module for wireless-specific configuration requirements.
 
 <configtable>
 
-<config>
-<configtitle>
-Set Minimum Password Length
-</configtitle>
-<instruction>
-Set the minimum password length to 6 characters.
-</instruction>
+  <config>
+  <configtitle>
+  Configure Minimum Password Length to 12 Characters
+  </configtitle>
+  <references>
+  <reference ref="PP">FMT_MOF_EXT.1</reference>
+  <reference ref="NIST 800-53" rev="4">IA-5 (1)(a)</reference>
+  <reference ref="CNSSI-1253" rev="Mar2014">12 characters</reference>
+  </references>
+  </config>
 
-<references>
-<reference ref="PP">FMT_SMF_EXT.1 Function 1.a</reference>
-<reference ref="NIST 800-53">IA-5 (1)(a)</reference>
-<reference ref="NIST 800-53">CM-6</reference>
-</references>
-</config>
+  <config>
+  <configtitle>
+  Require at Least 1 Special Character in Password
+  </configtitle>
+  <references>
+  <reference ref="PP">FMT_MOF_EXT.1</reference>
+  <reference ref="NIST 800-53" rev="4">IA-5 (1)(a)</reference>
+  <reference ref="CNSSI-1253" rev="Mar2014">at least one</reference>
+  </references>
+  </config>
+
+  <config>
+  <configtitle>
+  Require at Least 1 Numeric Character in Password
+  </configtitle>
+  <references>
+  <reference ref="PP">FMT_MOF_EXT.1</reference>
+  <reference ref="NIST 800-53" rev="4">IA-5 (1)(a)</reference>
+  <reference ref="CNSSI-1253" rev="Mar2014">at least one</reference>
+  </references>
+  </config>
+
+  <config>
+  <configtitle>
+  Require at Least 1 Uppercase Character in Password
+  </configtitle>
+  <references>
+  <reference ref="PP">FMT_MOF_EXT.1</reference>
+  <reference ref="NIST 800-53" rev="4">IA-5 (1)(a)</reference>
+  <reference ref="CNSSI-1253" rev="Mar2014">at least one</reference>
+  </references>
+  </config>
+
+  <config>
+  <configtitle>
+  Require at Least 1 Lowercase Character in Password
+  </configtitle>
+  <references>
+  <reference ref="PP">FMT_MOF_EXT.1</reference>
+  <reference ref="NIST 800-53" rev="4">IA-5 (1)(a)</reference>
+  <reference ref="CNSSI-1253" rev="Mar2014">at least one</reference>
+  </references>
+  </config>
 
 <config>
 <configtitle>
 Enable Screen Lock
 </configtitle>
-<instruction>
-Set the device to screen lock after an idle period.
-</instruction>
-
 <references>
-<reference ref="PP">FMT_SMF_EXT.1 Function 2.a</reference>
+<reference ref="PP">FMT_MOF_EXT.1</reference>
 <reference ref="NIST 800-53">AC-11a.</reference>
-<reference ref="NIST 800-53">CM-6</reference>
+<reference ref="CNSSI-1253" rev="Mar2014"></reference>
 </references>
 </config>
 
 <config>
 <configtitle>
-Set Screen Lock Timeout
+Set Screen Lock Timeout Period to 30 Minutes or Less
 </configtitle>
-<instruction>
-Set the screen lock idle period to 15 minutes or fewer.
-</instruction>
-
 <references>
-<reference ref="PP">FMT_SMF_EXT.1 Function 2.b</reference>
+<reference ref="PP">FMT_MOF_EXT.1</reference>
 <reference ref="NIST 800-53">AC-11a.</reference>
-<reference ref="NIST 800-53">CM-6</reference>
+<reference ref="CNSSI-1253" rev="Mar2014">30 minutes</reference>
 </references>
 </config>
 
 <config>
 <configtitle>
-Set Maximum Number of Authentication Failures
+Disable Unauthenticated Login, such as Guest Accounts
 </configtitle>
-<instruction>
-Set the maximum number of attempts for unsuccessful authentication to 10 or less.
-</instruction>
 <references>
-<reference ref="PP">
-FMT_SMF_EXT.1 Function 2.c
+<reference ref="PP">FMT_MOF_EXT.1</reference>
+<reference ref="NIST 800-53" rev="4"></reference>
+<reference ref="CNSSI-1253" rev="Mar2014"></reference>
+</references>
+</config>
+
+
+<config>
+<configtitle>
+Set Maximum Number of Authentication Failures to 3 Within 15 Minutes
+</configtitle>
+<references>
+<reference ref="PP">FMT_MOF_EXT.1</reference>
+<reference ref="NIST 800-53">AC-7a.</reference>
+<reference ref="CNSSI-1253" rev="Mar2014">3</reference>
+<reference ref="CNSSI-1253" rev="Mar2014">15 minutes</reference>
+</references>
+</config>
+
+<config>
+<configtitle>
+Enable Host-Based Firewall
+</configtitle>
+<references>
+<reference ref="PP">FMT_MOF_EXT.1</reference>
+<reference ref="NIST 800-53">SC-7 (12)</reference>
+<reference ref="CNSSI-1253" rev="Mar2014"></reference>
+</references>
+</config>
+
+<config>
+<configtitle>
+Configure Name/Address of Remote Management Server From Which to Receive
+Configuration Settings
+</configtitle>
+<references>
+<reference ref="PP">FMT_MOF_EXT.1</reference>
+<reference ref="NIST 800-53">CM-3(3)</reference>
+<reference ref="CNSSI-1253" rev="Mar2014"></reference>
+</references>
+</config>
+
+<config>
+<configtitle>Configure the System to Offload Audit Records to a Log Server</configtitle>
+<references>
+<reference ref="PP">FAU_GEN.1.1.c</reference>
+<reference ref="NIST 800-53">AU-4(1)</reference>
+<reference ref="CNSSI-1253" rev="Mar2014"></reference>
+</references>
+</config>
+
+<config>
+<configtitle>Set Logon Warning Banner</configtitle>
+<references>
+<reference ref="PP">FMT_MOF_EXT.1</reference>
+<reference ref="NIST 800-53">AC-8a.</reference>
+<reference ref="CNSSI-1253" rev="Mar2014">organization-defined system use
+  notification message or banner</reference>
+</references>
+</config>
+
+<config>
+<configtitle>Audit All Logons (Successful/Unsuccessful) and Logoffs (Successful)</configtitle>
+<references>
+<reference ref="PP">FAU_GEN.1.1.c</reference>
+<reference ref="NIST 800-53">AU-2a.</reference>
+<reference ref="CNSSI-1253" rev="Mar2014">Authentication events:
+  (1) Logons (Success/Failure) (2) Logoffs (Success)</reference>
+</references>
+</config>
+
+<config>
+<configtitle>Audit File and Object Events (Unsuccessful)</configtitle>
+<references>
+<reference ref="PP">FAU_GEN.1.1.c</reference>
+<reference ref="NIST 800-53">AU-2a.</reference>
+<reference ref="CNSSI-1253" rev="Mar2014"> File and Objects events:
+(1) Create (Success/Failure)
+(2) Access (Success/Failure)
+(3) Delete (Success/Failure)
+(4) Modify (Success/Failure)
+(5) Permission Modification (Success/Failure)
+(6) Ownership Modification (Success/Failure)</reference>
+</references>
+</config>
+
+<config>
+<configtitle>Audit User and Group Management Events (Successful and Unsuccessful)</configtitle>
+<references>
+<reference ref="PP">FAU_GEN.1.1.c</reference>
+<reference ref="NIST 800-53">AU-2a.</reference>
+<reference ref="CNSSI-1253" rev="Mar2014">User and Group Management events:
+(1) User add, delete, modify, suspend, lock (Success/Failure)<p/>
+(2) Group/Role add, delete, modify (Success/Failure)
 </reference>
-<reference ref="NIST 800-53">
-AC-7a.
-</reference>
+</references>
+</config>
+
+<config>
+<configtitle>Audit Privilege or Role Escalation Events (Successful and Unsuccessful)</configtitle>
+<references>
+<reference ref="PP">FAU_GEN.1.1.c</reference>
+<reference ref="NIST 800-53">AU-2a.</reference>
+<reference ref="CNSSI-1253" rev="Mar2014">Privilege/Role escalation (Success/Failure)</reference>
+</references>
+</config>
+
+<config>
+<configtitle>Audit All Audit and Log Data Accesses (Successful and Unsuccessful)</configtitle>
+<references>
+<reference ref="PP">FAU_GEN.1.1.c</reference>
+<reference ref="NIST 800-53">AU-2a.</reference>
+<reference ref="CNSSI-1253" rev="Mar2014">Audit and log data access (Success/Failure)</reference>
+</references>
+</config>
+
+
+<config>
+<configtitle>Audit Cryptographic Verification of Software (Successful and Unsuccessful)</configtitle>
+<references>
+<reference ref="PP">FAU_GEN.1.1.c</reference>
+<reference ref="NIST 800-53">AU-2a.</reference>
+</references>
+</config>
+
+<config>
+<configtitle>Audit Program Initiations (Successful and Unsuccessful)</configtitle>
+<references>
+<reference ref="PP">FAU_GEN.1.1.c</reference>
+<reference ref="NIST 800-53">AU-2a.</reference>
+<reference ref="CNSSI-1253" rev="Mar2014">Application
+  (e.g., Firefox, Internet Explorer, MS Office Suite, etc.) initialization
+  (Success/Failure)</reference>
+</references>
+</config>
+
+
+<config>
+<configtitle>Audit System Reboot, Restart, and Shutdown Events (Success/Failure)</configtitle>
+<references>
+<reference ref="PP">FAU_GEN.1.1.c</reference>
+<reference ref="NIST 800-53">AU-2a.</reference>
+<reference ref="CNSSI-1253" rev="Mar2014">System reboot, restart and shutdown (Success/Failure)</reference>
+</references>
+</config>
+
+<config>
+<configtitle>Audit Kernel Module Loading and Unloading Events (Successful and Unsuccessful)</configtitle>
+<references>
+<reference ref="PP">FAU_GEN.1.1.c</reference>
+<reference ref="NIST 800-53">AU-2a.</reference>
+<reference ref="CNSSI-1253" rev="Mar2014"></reference>
+</references>
+</config>
+
+<config>
+<configtitle>
+Enable Automatic Software Update
+</configtitle>
+<references>
+<reference ref="PP">FMT_MOF_EXT.1</reference>
+<reference ref="NIST 800-53">SI-2</reference>
+<reference ref="CNSSI-1253" rev="Mar2014"></reference>
 </references>
 </config>
 
