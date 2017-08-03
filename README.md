@@ -1,4 +1,4 @@
-Operating System
+Operating System [![Build Status](https://jenkins-criteria.rhcloud.com/buildStatus/icon?job=protection-profiles/operatingsystem)](https://jenkins-criteria.rhcloud.com/job/protection-profiles/job/operatingsystem/)
 ===============
 
 Protection Profile for Operating Systems
