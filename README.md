@@ -14,7 +14,7 @@ A list of products that have passed evaluation against this Protection Profile c
 
 * [Protection Profile for General Purpose Operating System](http://common-criteria.rhcloud.com/operatingsystem/output/operatingsystem-release.html) (html)
 * [Protection Profile for General Purpose Operating System](http://common-criteria.rhcloud.com/operatingsystem/output/operatingsystem-release.pdf) (pdf)
-* [DoD Configuration Annex to the General Purpose Operating System](http://common-criteria.rhcloud.com/operatingsystem/output/configannex.html) (html)
+* [Configuration Annex to the General Purpose Operating System](http://common-criteria.rhcloud.com/operatingsystem/output/configannex.html) (html)
 
 ## Release Version
 
