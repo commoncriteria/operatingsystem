@@ -2957,8 +2957,35 @@
 		mechanisms provide authentication
               </assignable>.
             </title>
-            <aactivity>
-            </aactivity>
+            <note role="application">For all authentication mechanisms specified
+              in <linkref linkend="FIA_UAU.5.1"/>, the TSS shall describe the
+              rules as to how each authentication mechanism is used. Example rules
+              are how the authentication mechanism authenticates the user (i.e.
+              how does the TSF verify that the correct password or authentication
+              factor is used), the result of a successful authentication (i.e.
+              is the user input used to derive or unlock a key) and which
+              authentication mechanism can be used at which authentication factor
+              interfaces (i.e. if there are times, for example, after a reboot,
+              that only specific authentication mechanisms can be used). Rules
+              regarding how the authentication factors interact in terms of
+              unsuccessful authentication are covered in FIA_AFL_EXT.1.</note>
+
+              <aactivity>The evaluator shall ensure that the <abbr linkend="TSS"/>
+              describes each mechanism provided to support user authentication and
+              the rules describing how the authentication mechanism(s) provide
+              authentication. <h:br/><h:br/> The evaluator shall verify that
+              configuration guidance for each authentication mechanism is
+              addressed in the AGD guidance.
+              <testlist>
+                <test>For each
+              authentication mechanism selected, the evaluator shall enable that
+              mechanism and verify that it can be used to authenticate the user at
+              the specified authentication factor interfaces. </test>
+              <test>For
+              each authentication mechanism rule, the evaluator shall ensure that
+              the authentication mechanism(s) behave accordingly.</test>
+            </testlist>
+          </aactivity>
           </f-element>
         </f-component>
         <f-component id="fia_x509_ext.1" name="X.509 Certificate Validation" status="threshold">
