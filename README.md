@@ -1,6 +1,6 @@
 Protection Profile for General Purpose Operating System 
 ===============
-[![Build Status](https://jenkins-criteria.rhcloud.com/buildStatus/icon?job=protection-profiles/operatingsystem)](https://jenkins-criteria.rhcloud.com/job/protection-profiles/job/operatingsystem/)
+[![Build Status](https://travis-ci.org/commoncriteria/operatingsystem.svg?branch=master)](https://travis-ci.org/commoncriteria/operatingsystem)
 [![GitHub issues Open](https://img.shields.io/github/issues/commoncriteria/operatingsystem.svg?maxAge=2592000)](https://github.com/commoncriteria/operatingsystem/issues) 
 ![license](https://img.shields.io/badge/license-Unlicensed-blue.svg)
 
