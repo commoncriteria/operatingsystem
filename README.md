@@ -5,16 +5,16 @@ Protection Profile for General Purpose Operating System
 ![license](https://img.shields.io/badge/license-Unlicensed-blue.svg)
 
 This repository hosts the draft version of the Protection Profile for a General Purpose Operating System based on the 
-[Essential Security Requirements (ESR)](http://common-criteria.rhcloud.com/operatingsystem/output/operatingsystem-esr.html) for this technology class of 
+[Essential Security Requirements (ESR)](https://commoncriteria.github.io/pp/operatingsystem/operatingsystem-esr.html) for this technology class of 
 products. This repository is used to facilitate collaboration and development on the draft document. 
 See the [release](#Release-Version) section if you are looking for the officially released version for evaluations. 
 A list of products that have passed evaluation against this Protection Profile can be found [here](https://www.niap-ccevs.org/Profile/Info.cfm?id=400).
 
 ## Draft Version
 
-* [Protection Profile for General Purpose Operating System](http://common-criteria.rhcloud.com/operatingsystem/output/operatingsystem-release.html) (html)
-* [Protection Profile for General Purpose Operating System](http://common-criteria.rhcloud.com/operatingsystem/output/operatingsystem-release.pdf) (pdf)
-* [Configuration Annex to the General Purpose Operating System](http://common-criteria.rhcloud.com/operatingsystem/output/configannex.html) (html)
+* [Protection Profile for General Purpose Operating System](https://commoncriteria.github.io/pp/operatingsystem/operatingsystem-release.html) (html)
+* [Protection Profile for General Purpose Operating System](https://commoncriteria.github.io/pp/operatingsystem/operatingsystem-release.pdf) (pdf)
+* [Configuration Annex to the General Purpose Operating System](https://commoncriteria.github.io/pp/operatingsystem/configannex.html) (html)
 
 ## Release Version
 
