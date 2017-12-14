@@ -228,10 +228,12 @@
       privileged applications installed onto it.  However, these are out of scope of this PP. <usecases>
         <usecase title="End User Devices" id="enduserdevices">
           <description>
+	    <h:p>
 	    The OS provides a platform to end user devices such as desktops,
 	    laptops, convertibles, and tablets. 
 	    These devices may optionally be bound to a directory server or management server.
-		<h:br/>
+	    </h:p>
+	    <h:p>
             As this Protection Profile does not address threats against data-at-rest,
             enterprises deploying operating systems in mobile scenarios should ensure that these systems
             include data-at-rest protection spelled out in other 
@@ -241,6 +243,7 @@
 	    and <h:i>Software File Encryption</h:i>.  The <h:i>Protection Profile for Mobile
 		Device Fundamentals</h:i> includes requirements for data-at-rest protection and is appropriate
 		for many mobile devices.
+	    </h:p>
           </description>
         </usecase>
         <usecase title="Server Systems" id="serversystems">
@@ -250,14 +253,19 @@
           </description>
         </usecase>
         <usecase title="Cloud Systems" id="cloudsystems">
-          <description>The OS provides a platform for providing cloud services running on
-            physical or virtual hardware.  An OS is typically part of offerings
-            identified as Infrastructure as a Service (IaaS), Software as a Service (SaaS),
-            and Platform as a Service (PaaS). 
-			<h:br/>
+          <description>
+	    <h:p>
+	      The OS provides a platform for providing cloud services running on
+              physical or virtual hardware.  An OS is typically part of offerings
+              identified as Infrastructure as a Service (IaaS), Software as a Service (SaaS),
+              and Platform as a Service (PaaS). 
+	    </h:p>
+	    <h:p>
 			This use case typically involves the use
 			of virtualization technology which should be evaluated against the 
-			<h:i>Protection Profile for Server Virtualization</h:i>.</description>
+			<h:i>Protection Profile for Server Virtualization</h:i>.
+	    </h:p>
+	  </description>
         </usecase>
       </usecases>
     </section>
@@ -275,15 +283,18 @@
             <h:li>optional or</h:li>
             <h:li>objective.</h:li>
           </h:ul>
-          <InsertAppendixExplainer/> The <abbr linkend="ST"/> may iterate any of these components,
+          <InsertAppendixExplainer/> 
+	  <h:p>
+	  The <abbr linkend="ST"/> may iterate any of these components,
           but it must not include any additional component (e.g. from CC Part 2 or 3 or a PP not
           conformant with this one, or extended by the <abbr linkend="ST"/>) not defined in this PP
           or a PP conformant to this one. 
-          <h:br/>
-		  Some components in this Protection Profile have a dependency on
-		  other components.  In accordance with <cite linkend="bibCC"/> Part 1, <appref linkend="satisfiedreqs"/> 
-          includes justifications for those cases where the PP does not explicitly contain the component
-		  upon which there is a dependency.
+	  </h:p><h:p>
+	  Some components in this Protection Profile have a dependency on other components.
+	  In accordance with <cite linkend="bibCC"/> Part 1, <appref linkend="satisfiedreqs"/> 
+          includes justifications for those cases where the PP does not explicitly 
+	  contain the component upon which there is a dependency.
+	</h:p>
         </description>
       </cclaim>
       <cclaim id="CC Conformance Claims">
@@ -567,25 +578,37 @@
               </h:strike>
               .
             </title>
-            <note role="application"> The <abbr linkend="ST"/> author shall select all key
+            <note role="application"> 
+	      <h:p>
+	      The <abbr linkend="ST"/> author shall select all key
               generation schemes used for key establishment and entity authentication. When key
               generation is used for key establishment, the schemes in 
 	      <linkref linkend="FCS_CKM.2.1(1)"/> and selected cryptographic protocols must match the
               selection. When key generation is used for entity authentication, the public key is
-              expected to be associated with an X.509v3 certificate. <h:br/> If the <abbr
-                linkend="OS"/> acts only as a receiver in the RSA key establishment scheme, the <abbr
-                linkend="OS"/> does not need to implement RSA key generation. <h:br/> The ANSI
-              X9.31-1998 option will be removed from the selection in a future publication of this
+              expected to be associated with an X.509v3 certificate. 
+	      </h:p><h:p>
+	      If the <abbr linkend="OS"/> acts only as a receiver in the RSA key establishment scheme,
+	      the <abbr linkend="OS"/> does not need to implement RSA key generation. 
+	      </h:p><h:p>
+	      The ANSI X9.31-1998 option will be removed from the selection in a future publication of this
               document. Presently, the selection is not exclusively limited to the FIPS PUB 186-4
               options in order to allow industry some further time to complete the transition to the
-              modern FIPS PUB 186-4 standard. </note>
-            <aactivity> The evaluator will ensure that the <abbr linkend="TSS"/> identifies the key
+              modern FIPS PUB 186-4 standard. 
+	    </h:p>
+	    </note>
+            <aactivity> 
+	      <h:p>
+	      The evaluator will ensure that the <abbr linkend="TSS"/> identifies the key
               sizes supported by the <abbr linkend="OS"/>. If the <abbr linkend="ST"/> specifies
               more than one scheme, the evaluator will examine the <abbr linkend="TSS"/> to verify
-              that it identifies the usage for each scheme. <h:br/> The evaluator will verify that
+              that it identifies the usage for each scheme. 
+	      </h:p><h:p>
+	      The evaluator will verify that
               the AGD guidance instructs the administrator how to configure the <abbr linkend="OS"/> 
 	      to use the selected key generation scheme(s) and key size(s) for all uses defined
-              in this PP. <h:br/> Assurance Activity Note: The following tests may require the
+              in this PP. 
+	      </h:p><h:p>
+	      Assurance Activity Note: The following tests may require the
               vendor to furnish a developer environment and developer 
 	      tools that are typically not available to end-users of the OS. 
               <h:br/>
@@ -619,7 +642,9 @@
               shall have the <abbr linkend="TSF"/> generate 25 key pairs. The evaluator will verify
               the correctness of the <abbr linkend="TSF"/>’s implementation by comparing values
               generated by the <abbr linkend="TSF"/> with those generated from a known good
-              implementation. <h:br/> If possible, the Random Probable primes method should also be
+              implementation. 
+	      </h:p><h:p>
+	      If possible, the Random Probable primes method should also be
               verified against a known good implementation as described above. Otherwise, the
               evaluator will have the <abbr linkend="TSF"/> generate 10 keys pairs for each
               supported key length nlen and verify: <h:ul>
@@ -660,8 +685,9 @@
               bit generator (RBG). To determine correctness, the evaluator will submit the
               generated key pairs to the public key verification (PKV) function of a known good
               implementation. 
-	      <h:br/>
+	     </h:p>
 	      <h:p>FIPS 186-4 Public Key Verification (PKV) Test</h:p> 
+	      <h:p>
 	      For each supported
               NIST curve, i.e., P-256, P-384 and P-521, the evaluator will generate 10
               private/public key pairs using the key generation function of a known good
@@ -677,7 +703,7 @@
               produce values for the field prime p, the cryptographic prime q (dividing p-1), 
               the cryptographic group generator g, and the calculation of the private 
               key x and public key y.
-              <h:br/>
+	      </h:p><h:p>
               The Parameter generation specifies 2 ways (or methods) to generate the 
               cryptographic prime q and the field prime p:
               <h:br/>            
@@ -720,7 +746,7 @@
                 <h:li>g<h:sup>x</h:sup> mod p = y</h:li>
               </h:ul>
               for each FFC parameter set and key pair.
-              
+              </h:p>
 	    </aactivity>
           </f-element>
         </f-component>
@@ -751,29 +777,48 @@
               . 
             </title>
             <note role="application">
+	      <h:p>
 	      The ST author shall select all key establishment schemes used
               for the selected cryptographic protocols. <linkref linkend="FCS_TLSC_EXT.1"/> requires
-              cipher suites that use RSA-based key establishment schemes. <h:br/> The RSA-based key
-              establishment schemes are described in Section 9 of NIST SP 800-56B; however, Section 9
+              cipher suites that use RSA-based key establishment schemes. 
+	      </h:p>
+	      <h:p>
+		The RSA-based key establishment schemes are described in Section 9 of NIST SP 800-56B; however, Section 9
               relies on implementation of other sections in SP 800-56B. If the OS acts as a receiver
               in the RSA key establishment scheme, the OS does not need to implement RSA key generation.
-              <h:br/> The elliptic curves used for the key establishment scheme shall correlate with
+              </h:p><h:p>
+	      The elliptic curves used for the key establishment scheme shall correlate with
               the curves specified in <linkref linkend="FCS_CKM.1.1(1)"/>. The domain parameters 
               used for the finite field-based key establishment scheme are specified by the 
               key generation according to <linkref linkend="FCS_CKM.1.1(1)"/>.
-              <h:br/> 
+	    </h:p>
 	    </note>
-            <aactivity> The evaluator will ensure that the supported key establishment schemes
-              correspond to the key generation schemes identified in FCS_CKM.1.1. If the ST
-              specifies more than one scheme, the evaluator will examine the TSS to verify that it
-              identifies the usage for each scheme. <h:br/> The evaluator will verify that the AGD
-              guidance instructs the administrator how to configure the OS to use the selected key
-              establishment scheme(s). <h:br/> Assurance Activity Note: The following tests require
-              the developer to provide access to a test platform that provides the evaluator with
-              tools that are typically not found on factory products. <h:br/>
-              <h:b>Key Establishment Schemes</h:b><h:p/> The evaluator will verify the implementation of
-              the key establishment schemes supported by the OS using the applicable tests below. <h:br/>
-              <h:b>SP800-56A Key Establishment Schemes</h:b><h:p/> The evaluator will verify the OS's
+            <aactivity> 
+	      <h:p>
+		The evaluator will ensure that the supported key establishment schemes
+		correspond to the key generation schemes identified in FCS_CKM.1.1. 
+		If the ST specifies more than one scheme,
+		the evaluator will examine the TSS to verify that it identifies the usage for each scheme. 
+	      </h:p>
+	      <h:p>
+		The evaluator will verify that the AGD
+		guidance instructs the administrator how to configure the OS to use the selected key
+		establishment scheme(s). 
+	      </h:p>
+	      <h:p>
+		Assurance Activity Note: The following tests require
+		the developer to provide access to a test platform that provides the evaluator with
+		tools that are typically not found on factory products. 
+	      </h:p>
+	      <h:p><h:b>Key Establishment Schemes</h:b></h:p>
+	      <h:p>
+		The evaluator will verify the implementation of
+		the key establishment schemes supported by the OS using the applicable tests below. 
+	      </h:p>
+	      <h:p><h:b>SP800-56A Key Establishment Schemes</h:b>
+	      </h:p> 
+	      <h:p>
+	      The evaluator will verify the OS's
               implementation of SP800-56A key agreement schemes using the following Function and
               Validity tests. These validation tests for each key agreement scheme verify that the OS
               has implemented the components of the key agreement scheme according to the
@@ -785,7 +830,7 @@
               procedures described below. This includes the parsing of the DKM, the generation of
               MAC data and the calculation of MAC tag. <h:br/>
               <indent>
-                <h:b>Function Test</h:b><h:p/> The Function test verifies the ability of the OS to
+                <h:b>Function Test</h:b><h:br/> The Function test verifies the ability of the OS to
                 implement the key agreement schemes correctly. To conduct this test the evaluator
                 shall generate or obtain test vectors from a known good implementation of the OS's
                 supported schemes. For each supported key agreement scheme-key agreement role
@@ -803,7 +848,8 @@
                 the keying material DKM, and compare hashes or MAC tags generated from these values.
                 <h:br/> If key confirmation is supported, the OS shall perform the above for each
                 implemented approved MAC algorithm. <h:br/>
-                <h:b>Validity Test</h:b><h:p/> The Validity test verifies the ability of the OS to
+                <h:b>Validity Test</h:b>
+		<h:p> The Validity test verifies the ability of the OS to
                 recognize another party’s valid and invalid key agreement results with or without
                 key confirmation. To conduct this test, the evaluator will obtain a list of the
                 supporting cryptographic functions included in the SP800-56A key agreement
@@ -811,7 +857,10 @@
                 evaluator generates a set of 30 test vectors consisting of data
                 sets including domain parameter values or NIST approved curves, the evaluator’s
                 public keys, the OS’s public/private key pairs, MAC tag, and any inputs used in the
-                KDF, such as the other info and OS id fields. <h:br/> The evaluator will inject an
+                KDF, such as the other info and OS id fields.
+		</h:p>
+		
+		The evaluator will inject an
                 error in some of the test vectors to test that the OS recognizes invalid key
                 agreement results caused by the following fields being incorrect: the shared secret
                 value Z, the DKM, the other information field OI, the data to be MAC'd, or the
@@ -824,9 +873,11 @@
                 (they should pass). <h:br/> The OS shall use these modified test vectors to emulate
                 the key agreement scheme using the corresponding parameters. The evaluator will
                 compare the OS’s results with the results using a known good implementation
-                verifying that the OS detects these errors. <h:br/>
+                verifying that the OS detects these errors. 
               </indent>
-              <h:b>SP800-56B Key Establishment Schemes</h:b><h:p/> The evaluator will verify that the TSS
+	      </h:p>
+	      <h:p><h:b>SP800-56B Key Establishment Schemes</h:b></h:p>
+	      <h:p> The evaluator will verify that the TSS
               describes whether the OS acts as a sender, a recipient, or both for RSA-based key
               establishment schemes. <h:br/> If the OS acts as a sender, the following assurance
               activity shall be performed to ensure the proper operation of every OS supported
@@ -845,9 +896,11 @@
                 key from the test vector instead of the randomly generated MAC key used in normal
                 operation) and ensure that the outputted ciphertext is equivalent to the ciphertext
                 in the test vector. </indent>
-              <h:br/> If the OS acts as a receiver, the following assurance activities shall be
-              performed to ensure the proper operation of every OS supported combination of
-              RSA-based key establishment scheme: <h:br/>
+	      </h:p>
+              <h:p>
+		If the OS acts as a receiver, the following assurance activities shall be
+		performed to ensure the proper operation of every OS supported combination of
+		RSA-based key establishment scheme: <h:br/>
               <indent> To conduct this test the evaluator will generate or obtain test vectors from
                 a known good implementation of the OS's supported schemes. For each combination of
                 supported key establishment scheme and its options (with our without key
@@ -861,8 +914,10 @@
                 and ensure that the outputted plaintext keying material is equivalent to the
                 plaintext keying material in the test vector. In cases where key confirmation is
                 incorporated, the evaluator will perform the key confirmation steps and ensure that
-                the outputted MAC tag is equivalent to the MAC tag in the test vector. </indent>
-              <h:br/> The evaluator will ensure that the TSS describes how the OS handles decryption
+                the outputted MAC tag is equivalent to the MAC tag in the test vector. 
+	      </indent>
+	      </h:p>
+              <h:p> The evaluator will ensure that the TSS describes how the OS handles decryption
               errors. In accordance with NIST Special Publication 800-56B, the OS must not reveal
               the particular error that occurred, either through the contents of any outputted or
               logged error message or through timing variations. If KTS-OAEP is supported, the
@@ -873,7 +928,9 @@
               the evaluator will create separate contrived ciphertext values that trigger each of
               the three decryption error checks described in NIST Special Publication 800-56B
               section 7.2.3.3, ensure that each decryption attempt results in an error, and ensure
-              that any outputted or logged error message is identical for each. </aactivity>
+              that any outputted or logged error message is identical for each. 
+	    </h:p>
+	    </aactivity>
           </f-element>
         </f-component>
                 
