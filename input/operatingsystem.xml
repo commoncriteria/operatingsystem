@@ -830,7 +830,7 @@
               procedures described below. This includes the parsing of the DKM, the generation of
               MAC data and the calculation of MAC tag. <h:br/>
               <indent>
-                <h:b>Function Test</h:b><h:br/> The Function test verifies the ability of the OS to
+                <h:b>Function Test</h:b><h:p>The Function test verifies the ability of the OS to
                 implement the key agreement schemes correctly. To conduct this test the evaluator
                 shall generate or obtain test vectors from a known good implementation of the OS's
                 supported schemes. For each supported key agreement scheme-key agreement role
@@ -838,17 +838,27 @@
                 type combination, the tester shall generate 10 sets of test vectors. 
 		The data set consists of the NIST approved curve (ECC) per 10 sets of public keys.
 		These keys are static, ephemeral or both depending
-                on the scheme being tested. <h:br/> The evaluator will obtain the DKM, the
+                on the scheme being tested.
+	      </h:p>
+	      <h:p> The evaluator will obtain the DKM, the
                 corresponding OS's public keys (static and/or ephemeral), the MAC tag(s), and any
                 inputs used in the KDF, such as the Other Information field OI and OS id fields.
-                <h:br/> If the OS does not use a KDF defined in SP 800-56A, the evaluator will
-                obtain only the public keys and the hashed value of the shared secret. <h:br/> The
+	      </h:p>
+	      <h:p>
+                If the OS does not use a KDF defined in SP 800-56A, the evaluator will
+                obtain only the public keys and the hashed value of the shared secret.
+	      </h:p>
+	      <h:p>
+		The
                 evaluator will verify the correctness of the TSF’s implementation of a given scheme
                 by using a known good implementation to calculate the shared secret value, derive
                 the keying material DKM, and compare hashes or MAC tags generated from these values.
-                <h:br/> If key confirmation is supported, the OS shall perform the above for each
-                implemented approved MAC algorithm. <h:br/>
-                <h:b>Validity Test</h:b>
+	      </h:p>
+	      <h:p>
+                If key confirmation is supported, the OS shall perform the above for each
+                implemented approved MAC algorithm. 
+	      </h:p>
+	      <h:p><h:b>Validity Test</h:b></h:p>
 		<h:p> The Validity test verifies the ability of the OS to
                 recognize another party’s valid and invalid key agreement results with or without
                 key confirmation. To conduct this test, the evaluator will obtain a list of the
@@ -859,7 +869,7 @@
                 public keys, the OS’s public/private key pairs, MAC tag, and any inputs used in the
                 KDF, such as the other info and OS id fields.
 		</h:p>
-		
+		<h:p>
 		The evaluator will inject an
                 error in some of the test vectors to test that the OS recognizes invalid key
                 agreement results caused by the following fields being incorrect: the shared secret
@@ -870,18 +880,25 @@
                 key to assure the OS detects errors in the public key validation function and/or
                 the partial key validation function (in ECC only). At least two of the test vectors
                 shall remain unmodified and therefore should result in valid key agreement results
-                (they should pass). <h:br/> The OS shall use these modified test vectors to emulate
-                the key agreement scheme using the corresponding parameters. The evaluator will
-                compare the OS’s results with the results using a known good implementation
-                verifying that the OS detects these errors. 
+                (they should pass).
+		</h:p>
+		<h:p>
+		  The OS shall use these modified test vectors to emulate
+                  the key agreement scheme using the corresponding parameters. The evaluator will
+                  compare the OS’s results with the results using a known good implementation
+                  verifying that the OS detects these errors. 
+		</h:p>
               </indent>
 	      </h:p>
 	      <h:p><h:b>SP800-56B Key Establishment Schemes</h:b></h:p>
 	      <h:p> The evaluator will verify that the TSS
               describes whether the OS acts as a sender, a recipient, or both for RSA-based key
-              establishment schemes. <h:br/> If the OS acts as a sender, the following assurance
-              activity shall be performed to ensure the proper operation of every OS supported
-              combination of RSA-based key establishment scheme: <h:br/>
+              establishment schemes. 
+	      </h:p>
+	      <h:p>
+		If the OS acts as a sender, the following assurance
+		activity shall be performed to ensure the proper operation of every OS supported
+		combination of RSA-based key establishment scheme: <h:br/>
               <indent> To conduct this test the evaluator will generate or obtain test vectors from
                 a known good implementation of the OS's supported schemes. For each combination of
                 supported key establishment scheme and its options (with or without key confirmation
@@ -990,7 +1007,7 @@
               each type of key material is cleared.
             For each software key clearing situation the evaluator will repeat the following test.
             <testlist>
-              <test>
+	      <h:p><test>
                 The evaluator will utilize appropriate combinations of specialized operational environment and
                 development tools (debuggers, simulators, etc.) for the TOE and instrumented TOE builds to test that
                 keys are cleared correctly, including all intermediate copies of the key that may have been created
@@ -1011,7 +1028,7 @@
                
                 The evaluator will perform this test on all keys, including those persisted in encrypted form, to ensure
                 intermediate copies are cleared.
-              </test>
+              </test> </h:p>
             </testlist>
 
             </aactivity>
@@ -1047,24 +1064,32 @@
 	      .
 	    </title>
             <note role="application"> 
+	      <h:p>
               AES CCMP (which uses AES in CCM as specified in SP 800-38C) becomes mandatory and must
               be selected if the ST includes the WLAN Client Extended Package.
-              <h:br/> 
+	      </h:p>
+	      <h:p>
 	            For the second selection, the ST author should choose the mode
               or modes in which AES operates. For the third selection, the ST author should choose
               the key sizes that are supported by this functionality. 128-bit key size is required
               in order to comply with <linkref linkend="FCS_TLSC_EXT.1"/> and <linkref
                 linkend="FCS_CKM.1(1)"/>, if those are selected. 
+	      </h:p>
 	    </note>
             <aactivity> 
+	      <h:p>
 	      The evaluator will verify that the AGD documents contains instructions required 
 	      to configure the OS to use the required modes and key sizes. 
 	      The evaluator will execute all instructions as specified to configure the OS
 	      to the appropriate state.
 	      The evaluator will perform all of the following tests for each
-              algorithm implemented by the OS and used to satisfy the requirements of this PP: <h:br/>
+              algorithm implemented by the OS and used to satisfy the requirements of this PP: 
+	      </h:p>
+	      <h:p>
               <h:b>AES-CBC Known Answer Tests</h:b>
-              <h:p/>There are four Known Answer Tests (KATs), described below. In all KATs, the
+	      </h:p>
+	      <h:p>
+		There are four Known Answer Tests (KATs), described below. In all KATs, the
               plaintext, ciphertext, and IV values shall be 128-bit blocks. The results from each
               test may either be obtained by the evaluator directly or by supplying the inputs to
               the implementer and receiving the results in response. To determine correctness, the
@@ -1106,11 +1131,14 @@
                   all zeros with an IV of all zeros, respectively. Plaintext value i in each set
                   shall have the leftmost i bits be ones and the rightmost 128-i bits be zeros, for
                   i in [1,128].</h:li>
-              </h:ul>To test the decrypt functionality of AES-CBC, the evaluator will perform the
+              </h:ul>
+	      <h:br/>
+	      To test the decrypt functionality of AES-CBC, the evaluator will perform the
               same test as for encrypt, using ciphertext values of the same form as the plaintext in
-              the encrypt test as input and AES-CBC decryption. <h:br/>
+              the encrypt test as input and AES-CBC decryption.
+	      </h:p>
               <h:b>AES-CBC Multi-Block Message Test</h:b>
-	      <h:p/>
+	      <h:p>
               The evaluator will test the encrypt functionality by encrypting an i-block
               message where 1 &lt; i &#x2264; 10. The evaluator will choose a key, an IV and plaintext
               message of length i blocks and encrypt the message, using the mode to be tested, with
@@ -1122,9 +1150,11 @@
               tested, with the chosen key and IV. The plaintext shall be compared to the result of
               decrypting the same ciphertext message with the same key and IV using a known good
               implementation. 
-	      <h:br/>
+	    </h:p>
+	    <h:p>
 	      <h:b>AES-CBC Monte Carlo Tests</h:b>
-	      <h:p/>
+	    </h:p>
+	    <h:p>
 	      The evaluator will test the encrypt
               functionality using a set of 200 plaintext, IV, and key 3- tuples. 100 of these shall
               use 128 bit keys, and 100 shall use 256 bit keys. The plaintext and IV values shall be
@@ -1141,9 +1171,14 @@
               </h:pre>The
               ciphertext computed in the 1000th iteration (i.e., CT[1000]) is the result for that
               trial. This result shall be compared to the result of running 1000 iterations with the
-              same values using a known good implementation. <h:br/>The evaluator will test the
+              same values using a known good implementation. 
+	    </h:p>
+	    <h:p>
+	      The evaluator will test the
               decrypt functionality using the same test as for encrypt, exchanging CT and PT and
-              replacing AES-CBC-Encrypt with AES-CBC-Decrypt. <h:br/>
+              replacing AES-CBC-Encrypt with AES-CBC-Decrypt. 
+	    </h:p>
+	    <h:p>
               <h:b>AES-GCM Monte Carlo Tests</h:b>
               <h:p/>The evaluator will test the authenticated encrypt functionality of AES-GCM for
               each combination of the following input parameter lengths: <h:ul>
@@ -1161,16 +1196,27 @@
               obtain the ciphertext value and tag that results from AES-GCM authenticated encrypt.
               Each supported tag length shall be tested at least once per set of 10. The IV value
               may be supplied by the evaluator or the implementation being tested, as long as it is
-              known. <h:br/>The evaluator will test the decrypt functionality using a set of 10 key,
+              known. 
+	    </h:p>
+	    <h:p>
+
+
+	      The evaluator will test the decrypt functionality using a set of 10 key,
               ciphertext, tag, AAD, and IV 5-tuples for each combination of parameter lengths above
               and obtain a Pass/Fail result on authentication and the decrypted plaintext if Pass.
-              The set shall include five tuples that Pass and five that Fail. <h:br/>The results from
+              The set shall include five tuples that Pass and five that Fail. 
+	    </h:p>
+	    <h:p>
+	      The results from
               each test may either be obtained by the evaluator directly or by supplying the inputs
               to the implementer and receiving the results in response. To determine correctness,
               the evaluator will compare the resulting values to those obtained by submitting the
-              same inputs to a known good implementation.<h:br/>
-              <h:b>AES-CCM Tests</h:b>
-              <h:p/>The evaluator will test the generation-encryption and decryption-verification
+              same inputs to a known good implementation.
+	      </h:p>
+
+              <h:p><h:b>AES-CCM Tests</h:b></h:p>
+	      <h:p>
+              The evaluator will test the generation-encryption and decryption-verification
               functionality of AES-CCM for the following input parameter and tag lengths: <h:ul>
                 <h:li>128 bit and 256 bit keys</h:li>
                 <h:li>Two payload lengths. One payload length shall be the shortest supported payload
@@ -1213,21 +1259,28 @@
                   and 10 pairs of associated data and payload values and obtain the resulting ciphertext.
                 </test>
 	      </testlist>
+	      </h:p>
+	      <h:p>
               To determine correctness in each of the above tests, the evaluator will compare the
               ciphertext with the result of generation-encryption of the same inputs with a known good
-              implementation. <h:br/>
+              implementation. 
+	      </h:p>
+	      <h:p>
               To test the decryption-verification functionality of AES-CCM, for EACH combination of
               supported associated data length, payload length, nonce length and tag length, the evaluator
               shall supply a key value and 15 nonce, associated data and ciphertext 3-tuples and obtain
               either a FAIL result or a PASS result with the decrypted payload. The evaluator will supply
-              10 tuples that should FAIL and 5 that should PASS per set of 15. <h:br/>
+              10 tuples that should FAIL and 5 that should PASS per set of 15. 
+	      </h:p>
+	      <h:p>
               Additionally, the evaluator will use tests from the IEEE 802.11-02/362r6 document
               “Proposed Test vectors for IEEE 802.11 TGi”, dated September 10, 2002, Section 2.1 AESCCMP
               Encapsulation Example and Section 2.2 Additional AES CCMP Test Vectors to
-              further verify the IEEE 802.11-2007 implementation of AES-CCMP. <h:br/>
-              <h:b>AES-GCM Test</h:b>
-              <h:p/>The evaluator will test the authenticated encrypt functionality of AES-GCM for each
-                combination of the following input parameter lengths:
+              further verify the IEEE 802.11-2007 implementation of AES-CCMP.
+	      </h:p>
+	      <h:p> <h:b>AES-GCM Test</h:b></h:p>
+              <h:p>The evaluator will test the authenticated encrypt functionality of AES-GCM for each
+                combination of the following input parameter lengths: <h:br/>
               <h:ul>
                 <h:li>128 bit and 256 bit keys</h:li>
                 <h:li>Two plaintext lengths. One of the plaintext lengths shall be a non-zero integer
@@ -1246,17 +1299,23 @@
               IV tuples for each combination of parameter lengths above and obtain the ciphertext value
               and tag that results from AES-GCM authenticated encrypt. Each supported tag length shall be
               tested at least once per set of 10. The IV value may be supplied by the evaluator or the
-              implementation being tested, as long as it is known.<h:br/>
+              implementation being tested, as long as it is known.
+	      </h:p>
+	      <h:p>
               The evaluator will test the decrypt functionality using a set of 10 key, ciphertext, tag, AAD,
               and IV 5-tuples for each combination of parameter lengths above and obtain a Pass/Fail result
               on authentication and the decrypted plaintext if Pass. The set shall include five tuples that
-              Pass and five that Fail.<h:br/>
+              Pass and five that Fail.
+	      </h:p>
+	      <h:p>
               The results from each test may either be obtained by the evaluator directly or by supplying
               the inputs to the implementer and receiving the results in response. To determine correctness,
               the evaluator will compare the resulting values to those obtained by submitting the same
-              inputs to a known good implementation.<h:br/>
-              <h:b>XTS-AES Test</h:b>
-              <h:p/>The evaluator will test the encrypt functionality of XTS-AES for each combination of the
+              inputs to a known good implementation.
+	      </h:p>
+	      <h:p><h:b>XTS-AES Test</h:b></h:p>
+	      <h:p>
+		The evaluator will test the encrypt functionality of XTS-AES for each combination of the
               following input parameter lengths:
               <h:ul>
                 <h:li>256 bit (for AES-128) and 512 bit (for AES-256) keys</h:li>
@@ -1267,16 +1326,22 @@
                 </h:li>
               </h:ul>
               using a set of 100 (key, plaintext and 128-bit random tweak value) 3-tuples and obtain the
-              ciphertext that results from XTS-AES encrypt.<h:br/>
-              The evaluator may supply a data unit sequence number instead of the tweak value if the
-              implementation supports it. The data unit sequence number is a base-10 number ranging
-              between 0 and 255 that implementations convert to a tweak value internally.<h:br/>
-              The evaluator will test the decrypt functionality of XTS-AES using the same test as for
-              encrypt, replacing plaintext values with ciphertext values and XTS-AES encrypt with XTSAES
-              decrypt.<h:br/>
-              <h:b>AES Key Wrap (AES-KW) and Key Wrap with Padding (AES-KWP) Test</h:b>
-              <h:p/>The evaluator will test the authenticated encryption functionality of AES-KW for EACH
-              combination of the following input parameter lengths:
+              ciphertext that results from XTS-AES encrypt.
+	      </h:p>
+	      <h:p>
+		The evaluator may supply a data unit sequence number instead of the tweak value if the
+		implementation supports it. The data unit sequence number is a base-10 number ranging
+		between 0 and 255 that implementations convert to a tweak value internally.
+	      </h:p>
+	      <h:p>
+		The evaluator will test the decrypt functionality of XTS-AES using the same test as for
+		encrypt, replacing plaintext values with ciphertext values and XTS-AES encrypt with XTSAES
+              decrypt.
+	      </h:p>
+	      <h:p><h:b>AES Key Wrap (AES-KW) and Key Wrap with Padding (AES-KWP) Test</h:b></h:p>
+              <h:p>
+		The evaluator will test the authenticated encryption functionality of AES-KW for EACH
+		combination of the following input parameter lengths:
               <h:ul>
                 <h:li>128 and 256 bit key encryption keys (KEKs)</h:li>
                 <h:li>Three plaintext lengths. One of the plaintext lengths shall be two semi-blocks (128
@@ -1287,10 +1352,15 @@
               </h:ul>
               using a set of 100 key and plaintext pairs and obtain the ciphertext that results from AES-KW
               authenticated encryption. To determine correctness, the evaluator will use the AES-KW
-              authenticated-encryption function of a known good implementation.<h:br/>
+              authenticated-encryption function of a known good implementation.
+	      </h:p>
+	      <h:p>
+
               The evaluator will test the authenticated-decryption functionality of AES-KW using the
               same test as for authenticated-encryption, replacing plaintext values with ciphertext values
-              and AES-KW authenticated-encryption with AES-KW authenticated-decryption.<h:br/>
+              and AES-KW authenticated-encryption with AES-KW authenticated-decryption.
+	      </h:p>
+	      <h:p>
               The evaluator will test the authenticated-encryption functionality of AES-KWP using the
               same test as for AES-KW authenticated-encryption with the following change in the three
               plaintext lengths:
@@ -1305,7 +1375,8 @@
               The evaluator will test the authenticated-decryption functionality of AES-KWP using the
               same test as for AES-KWP authenticated-encryption, replacing plaintext values with
               ciphertext values and AES-KWP authenticated-encryption with AES-KWP authenticated-decryption.
-            </aactivity>
+            </h:p>
+	  </aactivity>
           </f-element>
         </f-component>
         <f-component id="fcs_cop.1(2)" name="Cryptographic Operation - Hashing (Refined)" status="threshold">
@@ -1323,23 +1394,33 @@
                 <selectable>no other sizes</selectable>
               </selectables> that meet the following: FIPS Pub 180-4. </title>
             <note role="application"> 
+	      <h:p>
 	      Per NIST SP 800-131A, SHA-1 for generating digital signatures
               is no longer allowed, and SHA-1 for verification of digital signatures is strongly
               discouraged as there may be risk in accepting these signatures. 
-	      <h:br/>
+	      </h:p>
+	      <h:p>
 	      SHA-1 is currently required in order to comply with <linkref linkend="FCS_TLSC_EXT.1"/>
 	      and, depending on selections, <linkref linkend="FCS_DTLS_EXT.1"/>.
               Vendors are strongly encouraged to implement updated protocols that support the SHA-2
               family; until updated protocols are supported, this PP allows support for SHA-1
               implementations in compliance with SP 800-131A. 
-	      <h:br/> 
+	      </h:p>
+	      <h:p>
 	      The intent of this requirement is to specify the hashing function. 
 	      The hash selection must support the message digest
               size selection. The hash selection should be consistent with the overall strength of
-              the algorithm used. </note>
-            <aactivity> The evaluator will check that the association of the hash function with
+              the algorithm used. 
+	      </h:p>
+	    </note>
+            <aactivity>
+	      <h:p>
+	      The evaluator will check that the association of the hash function with
               other application cryptographic functions (for example, the digital signature
-              verification function) is documented in the TSS. <h:br/> The <abbr linkend="TSF"/>
+              verification function) is documented in the TSS. 
+	      </h:p>
+	      <h:p>
+		The <abbr linkend="TSF"/>
               hashing functions can be implemented in one of two modes. The first mode is the
               byte-oriented mode. In this mode the <abbr linkend="TSF"/> only hashes messages that
               are an integral number of bytes in length; i.e., the length (in bits) of the message
@@ -1348,9 +1429,12 @@
               tests for each mode, an indication is given in the following sections for the
               bit-oriented vs. the byte-oriented testmacs. The evaluator will perform all of the
               following tests for each hash algorithm implemented by the <abbr linkend="TSF"/> and
-              used to satisfy the requirements of this PP. <h:br/> The following tests require the
-              developer to provide access to a test application that provides the evaluator with
-              tools that are typically not found in the production application.<testlist>
+              used to satisfy the requirements of this PP.
+	      </h:p>
+	      <h:p>
+		The following tests require the
+		developer to provide access to a test application that provides the evaluator with
+		tools that are typically not found in the production application.<testlist>
                 <test>Short Messages Test (Bit oriented Mode) - The evaluator will generate an input set
                   consisting of m+1 messages, where m is the block length of the hash algorithm. The
                   length of the messages range sequentially from 0 to m bits. The message text shall
@@ -1386,6 +1470,7 @@
                   <abbr linkend="TSF"/>.
 		</test>
               </testlist>
+	      </h:p>
             </aactivity>
           </f-element>
         </f-component>
@@ -1417,12 +1502,18 @@
               author should make the appropriate assignments/selections to specify the parameters
               that are implemented for that algorithm. RSA signature generation and verification is
               currently required in order to comply with <linkref linkend="FCS_TLSC_EXT.1"/>. </note>
-            <aactivity>The evaluator will perform the following activities based on the selections
-              in the <abbr linkend="ST"/>. <h:br/> The following tests require the developer to
-              provide access to a test application that provides the evaluator with tools that are
-              typically not found in the production application. <h:br/> 
-
-	      <h:b>ECDSA Algorithm Tests</h:b>
+            <aactivity>
+	      <h:p>
+		The evaluator will perform the following activities based on the selections
+		in the <abbr linkend="ST"/>. 
+	      </h:p>
+	      <h:p>
+		The following tests require the developer to
+		provide access to a test application that provides the evaluator with tools that are
+		typically not found in the production application.
+	      </h:p>
+	      <h:p><h:b>ECDSA Algorithm Tests</h:b></h:p>
+	      <h:p>
 	      <testlist>
                 <test>ECDSA FIPS 186-4 Signature Generation Test. For each supported NIST curve
                   (i.e., P-256, P-384 and P-521) and SHA function pair, the evaluator will generate
@@ -1438,7 +1529,9 @@
 		  5 responses indicate failure.
 		</test>
               </testlist> 
-	      <h:b>RSA Signature Algorithm Tests </h:b>
+	      </h:p>
+	      <h:p><h:b>RSA Signature Algorithm Tests </h:b></h:p>
+	      <h:p>
 	      <testlist>
                 <test>Signature Generation Test. The evaluator will verify the implementation of
                   RSA Signature Generation by the <abbr linkend="OS"/> using the Signature
@@ -1460,6 +1553,7 @@
 		  validating each signature.
 		</test>
               </testlist>
+	      </h:p>
             </aactivity>
           </f-element>
         </f-component>
@@ -1467,7 +1561,7 @@
           <f-element id="fcs_cop.1.1(4)">
             <title>The <h:b>OS</h:b> shall perform keyed-hash message authentication services 
 	    in accordance with a specified cryptographic algorithm
-	      <selectables linebreak="yes">
+	      <selectables>
                 <selectable>SHA-1</selectable>
 		<selectable>SHA-256</selectable>
                 <selectable>SHA-384</selectable>
@@ -1483,6 +1577,7 @@
 	      </selectables></h:b> that meet the following: FIPS Pub 198-1 <h:i>The Keyed-Hash Message
                 Authentication Code</h:i> and FIPS Pub 180-4 <h:i>Secure Hash Standard</h:i>. </title>
             <note role="application">
+	      <h:p>
 	      The intent of this requirement is to specify the keyed-hash
               message authentication function used for key establishment purposes for the various
               cryptographic protocols used by the OS (e.g., trusted channel). 
@@ -1492,17 +1587,27 @@
 	      Though HMAC with SHA-256 (HMAC-SHA-256) is listed as a selectable cipher suite
 	      in this requirement, <linkref linkend="FCS_TLSC_EXT.1"/> effectively makes its 
 	      implementation mandatory for compliant OSs.
-	      <h:br/>
+	      </h:p>
+	      <h:p>
 	      SHA-1 is currently required in order to comply with <linkref linkend="FCS_TLSC_EXT.1"/>
 	      and, depending on selections, <linkref linkend="FCS_DTLS_EXT.1"/>.
 	      SHA-1 is currently required in order to comply with <linkref linkend="FCS_TLSC_EXT.1"/>,
-	      but has been deprecated and should not be used for any other purpose beyond TLS and DTLS	          </note>
-            <aactivity>The evaluator will perform the following activities based on the selections
-              in the <abbr linkend="ST"/>. <h:br/> For each of the supported parameter sets, the
+	      but has been deprecated and should not be used for any other purpose beyond TLS and DTLS
+	      </h:p>
+	    </note>
+            <aactivity>
+	      <h:p>
+
+		The evaluator will perform the following activities based on the selections
+              in the <abbr linkend="ST"/>. 
+	      </h:p><h:p>
+	      For each of the supported parameter sets, the
               evaluator will compose 15 sets of test data. Each set shall consist of a key and
               message data. The evaluator will have the OS generate HMAC tags for these sets of
               test data. The resulting MAC tags shall be compared against the result of generating HMAC
-              tags with the same key and IV using a known-good implementation. </aactivity>
+              tags with the same key and IV using a known-good implementation. 
+	      </h:p>
+	    </aactivity>
           </f-element>
         </f-component>
         <f-component id="fcs_dtls_ext.1" name="DTLS Implementation" status="sel-based">
@@ -1516,10 +1621,13 @@
             </title>
             <aactivity>
               <testlist>
-                <test> The evaluator will attempt to establish a connection with a DTLS server,
+                <test> 
+		  The evaluator will attempt to establish a connection with a DTLS server,
                   observe the traffic with a packet analyzer, and verify that the connection
-                  succeeds and that the traffic is identified as DTLS. </test>
-                <h:br/> Other tests are performed in conjunction with the Assurance Activity listed
+                  succeeds and that the traffic is identified as DTLS.
+		</test>
+		<h:br/>
+		  Other tests are performed in conjunction with the Assurance Activity listed
                 for <linkref linkend="FCS_TLSC_EXT.1"/>. </testlist>
             </aactivity>
           </f-element>
@@ -1558,32 +1666,37 @@
               only AES-based implementations for CTR_DRBG are allowed. 
             </note>
             <aactivity>
+	      <h:p>	      
               The evaluator will perform 15 trials for the RNG implementation. If the RNG
-                  is configurable, the evaluator will perform 15 trials for each configuration. The
-                  evaluator will also confirm that the operational guidance contains appropriate
-                  instructions for configuring the RNG functionality. <h:br/> If the RNG has
-                  prediction resistance enabled, each trial consists of (1) instantiate DRBG, (2)
-                  generate the first block of random bits (3) generate a second block of random bits
-                  (4) uninstantiate. The evaluator verifies that the second block of random bits is
-                  the expected value. The evaluator will generate eight input values for each
-                  trial. The first is a count (0 – 14). The next three are entropy input, nonce, and
-                  personalization string for the instantiate operation. The next two are additional
-                  input and entropy input for the first call to generate. The final two are
-                  additional input and entropy input for the second call to generate. These values
-                  are randomly generated. “generate one block of random bits” means to generate
-                  random bits with number of returned bits equal to the Output Block Length (as
-                  defined in NIST SP 800-90A). <h:br/> If the RNG does not have prediction resistance,
-                  each trial consists of (1) instantiate DRBG, (2) generate the first block of
-                  random bits (3) reseed, (4) generate a second block of random bits (5)
-                  uninstantiate. The evaluator verifies that the second block of random bits is the
-                  expected value. The evaluator will generate eight input values for each trial.
-                  The first is a count (0 – 14). The next three are entropy input, nonce, and
-                  personalization string for the instantiate operation. The fifth value is
-                  additional input to the first call to generate. The sixth and seventh are
-                  additional input and entropy input to the call to reseed. The final value is
-                  additional input to the second generate call. 
-                  <h:br/> The following values should be set/generated as described:<h:ul>
-                  <h:li> <h:b>Entropy input:</h:b> The length of the entropy input value must equal the seed
+              is configurable, the evaluator will perform 15 trials for each configuration. The
+              evaluator will also confirm that the operational guidance contains appropriate
+              instructions for configuring the RNG functionality. 
+	      </h:p><h:p>
+	      If the RNG has
+              prediction resistance enabled, each trial consists of (1) instantiate DRBG, (2)
+              generate the first block of random bits (3) generate a second block of random bits
+              (4) uninstantiate. The evaluator verifies that the second block of random bits is
+              the expected value. The evaluator will generate eight input values for each
+              trial. The first is a count (0 – 14). The next three are entropy input, nonce, and
+              personalization string for the instantiate operation. The next two are additional
+              input and entropy input for the first call to generate. The final two are
+              additional input and entropy input for the second call to generate. These values
+              are randomly generated. “generate one block of random bits” means to generate
+              random bits with number of returned bits equal to the Output Block Length (as
+              defined in NIST SP 800-90A). <h:br/> If the RNG does not have prediction resistance,
+              each trial consists of (1) instantiate DRBG, (2) generate the first block of
+              random bits (3) reseed, (4) generate a second block of random bits (5)
+              uninstantiate. The evaluator verifies that the second block of random bits is the
+              expected value. The evaluator will generate eight input values for each trial.
+              The first is a count (0 – 14). The next three are entropy input, nonce, and
+              personalization string for the instantiate operation. The fifth value is
+              additional input to the first call to generate. The sixth and seventh are
+              additional input and entropy input to the call to reseed. The final value is
+              additional input to the second generate call. 
+	      </h:p><h:p>
+	      The following values should be set/generated as described:
+	      <h:ul>
+		<h:li> <h:b>Entropy input:</h:b> The length of the entropy input value must equal the seed
                   length.</h:li>
 		  
                   <h:li><h:b>Nonce:</h:b> If a nonce is supported (CTR_DRBG with no Derivation Function does
@@ -1597,6 +1710,7 @@
                   <h:li><h:b>Additional input:</h:b> The additional input bit lengths have the same defaults
                   and restrictions as the personalization string lengths.</h:li>
 		</h:ul>
+	      </h:p>
             </aactivity>
           </f-element>
           
@@ -1616,23 +1730,32 @@
               of entropy at least equal to the greatest security strength (according to NIST SP 800-57) 
               of the keys and hashes that it will generate. 
 	    </title>
-            <note role="application">For the first
-              selection in this requirement, the <abbr linkend="ST"/> author selects 'software-based noise source' if 
-              any additional noise sources are used as input to the DRBG.
-              <h:br />In the second selection in this requirement, the <abbr linkend="ST"/> author selects the 
+            <note role="application">
+	      <h:p>
+		For the first
+		selection in this requirement, the <abbr linkend="ST"/> author selects 'software-based noise source' if 
+		any additional noise sources are used as input to the DRBG.
+	      </h:p><h:p>
+	      In the second selection in this requirement, the <abbr linkend="ST"/> author selects the 
               appropriate number of bits of entropy that corresponds to the greatest security 
-              strength of the algorithms included in the <abbr linkend="ST"/>. Security strength is defined in Tables 
+              strength of the algorithms included in the <abbr linkend="ST"/>. 
+	      Security strength is defined in Tables 
               2 and 3 of NIST SP 800-57A. For example, if the implementation includes 2048-bit RSA 
               (security strength of 112 bits), AES 128 (security strength 128 bits), and 
               HMAC-SHA-256 (security strength 256 bits), then the <abbr linkend="ST"/> author would select 256 bits.
+	    </h:p>
             </note>
-            <aactivity>Documentation shall be produced - and the evaluator will perform the
-              activities - in accordance with <appref linkend="entropyappendix"/> and
-              the 
-	      <h:a href="https://www.niap-ccevs.org/Documents_and_Guidance/ccevs/Entropy%20Documentation%20and%20Assessment%20Clarification.pdf"
-	      >Clarification to the Entropy Documentation and Assessment Annex</h:a>.
-              <h:br />In the future, specific statistical testing (in line with NIST SP 800-90B) will 
+            <aactivity>
+	      <h:p>
+		Documentation shall be produced - and the evaluator will perform the
+		activities - in accordance with <appref linkend="entropyappendix"/> and
+		the 
+		<h:a href="https://www.niap-ccevs.org/Documents_and_Guidance/ccevs/Entropy%20Documentation%20and%20Assessment%20Clarification.pdf"
+		     >Clarification to the Entropy Documentation and Assessment Annex</h:a>.
+	      </h:p><h:p>
+              In the future, specific statistical testing (in line with NIST SP 800-90B) will 
               be required to verify the entropy estimates.
+	    </h:p>
             </aactivity>
           </f-element>
         </f-component>
@@ -1648,14 +1771,17 @@
 			functionality could take a variety of forms: it could consist of an API, 
 			or simply well-documented conventions for accessing credentials stored as files.
 			</note>
-            <aactivity>The evaluator will check the TSS to ensure that it lists all persistent
+            <aactivity>
+	      <h:p>
+	      The evaluator will check the TSS to ensure that it lists all persistent
               sensitive data for which the OS provides a storage capability.  For each of these
               items, the evaluator will confirm that the TSS lists for what purpose it can be used,
-              and how it is stored.  The evaluator will confirm that 
-			  cryptographic operations used to protect the data occur as specified in <linkref linkend="fcs_cop.1(1)"/>.
-	      <h:br/>
+              and how it is stored.  
+	      The evaluator will confirm that cryptographic operations used to protect the data occur as specified in <linkref linkend="fcs_cop.1(1)"/>.
+	      </h:p><h:p>
 	      The evaluator will also consult the developer documentation to verify that an interface
-	      exists for applications to securely store credentials.  
+	      exists for applications to securely store credentials.
+	    </h:p>
             </aactivity>
           </f-element>
 <!--          <f-element id="fcs_sto_ext.1.2">
@@ -1681,8 +1807,9 @@
           <f-element id="fcs_tlsc_ext.1.1">
             <title> The OS shall implement <abbr title="Transport Layer Security">TLS</abbr> 1.2
               (RFC 5246)  supporting the following cipher suites:
-              <h:p/>Mandatory cipher suites: TLS_RSA_WITH_AES_128_CBC_SHA as defined in RFC 5246
-              <h:p/>Optional cipher suites: 
+	      <h:ul>
+               <h:li>Mandatory cipher suites: TLS_RSA_WITH_AES_128_CBC_SHA as defined in RFC 5246</h:li>
+               <h:li>Optional cipher suites: 
 	      <selectables linebreak="yes">
                 <selectable>TLS_DHE_RSA_WITH_AES_128_CBC_SHA as defined in RFC 5246</selectable>
                 <selectable>TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</selectable>
@@ -1704,8 +1831,11 @@
                 <selectable>TLS_RSA_WITH_AES_256_CBC_SHA as defined in RFC 5246</selectable>
                 <selectable>TLS_RSA_WITH_AES_256_CBC_SHA256 as defined in RFC 5246</selectable>
                 <selectable>no other cipher suite</selectable>
-              </selectables> . </title>
-            <note role="application">The cipher suites to be tested in the evaluated configuration
+              </selectables></h:li>
+	      </h:ul>. </title>
+            <note role="application">
+	      <h:p>
+	      The cipher suites to be tested in the evaluated configuration
               are limited by this requirement. The <abbr title="Security Target" linkend="ST">ST
               </abbr> author should select the optional cipher suites that are supported; if there
               are no cipher suites supported other than the mandatory suites, 
@@ -1714,10 +1844,12 @@
               configuration administratively on the server in the test environment. The Suite B
               algorithms listed above (RFC 6460) are the preferred algorithms for implementation.
               TLS_RSA_WITH_AES_128_CBC_SHA is required in order to ensure compliance with RFC 5246.
-              <h:br/> These requirements will be revisited as new <abbr
+              </h:p><h:p>
+	      These requirements will be revisited as new <abbr
                 title="Transport Layer Security">TLS</abbr> versions are standardized by the IETF.
-              <h:br/> If any cipher suites are selected using ECDHE, then <linkref
-                linkend="FCS_TLSC_EXT.2.1"/> is required. 
+	      </h:p><h:p>
+              If any cipher suites are selected using ECDHE, then <linkref linkend="FCS_TLSC_EXT.2.1"/> is required. 
+	    </h:p>
             </note>
             <aactivity>
               The evaluator will check the description of the implementation of this
@@ -1805,7 +1937,9 @@
           <f-element id="fcs_tlsc_ext.1.2">
             <title> The OS shall verify that the presented identifier matches the reference
               identifier according to RFC 6125. </title>
-            <note role="application"> The rules for verification of identity are described in
+            <note role="application"> 
+	      <h:p>
+	      The rules for verification of identity are described in
               Section 6 of RFC 6125. The reference identifier is established by the user (e.g.
               entering a URL into a web browser or clicking a link), by configuration (e.g.
               configuring the name of a mail server or authentication server), or by an application
@@ -1816,7 +1950,9 @@
               DNS name, URI name, and Service Name for the Subject Alternative Name field. The
               client then compares this list of all acceptable reference identifiers to the
               presented identifiers in the <abbr title="Transport Layer Security">TLS</abbr>
-              server’s certificate. <h:br/> The preferred method for verification is the Subject
+              server’s certificate.
+	      </h:p><h:p>
+	      The preferred method for verification is the Subject
               Alternative Name using DNS names, URI names, or Service Names. Verification using the
               Common Name is required for the purposes of backwards compatibility. Additionally,
               support for use of IP addresses in the Subject Name or Subject Alternative name is
@@ -1824,8 +1960,10 @@
               should avoid constructing reference identifiers using wildcards. However, if the
               presented identifiers include wildcards, the client must follow the best practices
               regarding matching; these best practices are captured in the assurance activity. 
+	    </h:p>
             </note>
             <aactivity> 
+	      <h:p>
               The evaluator will ensure that the <abbr title="TOE Summary Specification"
                 linkend="TSS">TSS</abbr> describes the client’s method of establishing all reference
               identifiers from the application-configured reference identifier, including which
@@ -1836,7 +1974,9 @@
               supported or used by the OS.
               <h:br/> The evaluator will verify that the AGD guidance includes instructions for
               setting the reference identifier to be used for the purposes of certificate validation
-              in <abbr title="Transport Layer Security">TLS</abbr>. <h:br/> The evaluator will
+              in <abbr title="Transport Layer Security">TLS</abbr>. 
+	      </h:p><h:p>
+	      The evaluator will
               configure the reference identifier according to the AGD guidance and perform the
               following tests during a <abbr title="Transport Layer Security">TLS</abbr> connection: 
               <testlist>
@@ -1901,26 +2041,31 @@
                   identifier (but correct <abbr title="Domain Name System">DNS</abbr> name) and
                   verify that the connection fails. 
                 </test>
-                <test> 
+                <test>
                   [conditional] If pinned certificates are supported the evaluator will
                   present a certificate that does not match the pinned certificate and verify that
                   the connection fails. 
                 </test>
               </testlist>
+	    </h:p>
             </aactivity>
           </f-element>
           <f-element id="fcs_tlsc_ext.1.3">
             <title>The OS shall only establish a trusted channel if the peer certificate is valid. </title>
-            <note role="application"> Validity is determined by the identifier verification,
+            <note role="application"> 
+	      <h:p>
+		Validity is determined by the identifier verification,
               certificate path, the expiration date, and the revocation status in accordance with
               RFC 5280. Certificate validity shall be tested in accordance with testing performed
-              for <linkref linkend="FIA_X509_EXT.1"/>. <h:br/> For <abbr
-                title="Transport Layer Security">TLS</abbr> connections, this channel shall not be
+              for <linkref linkend="FIA_X509_EXT.1"/>. 
+	      </h:p><h:p>
+	      For <abbr title="Transport Layer Security">TLS</abbr> connections, this channel shall not be
               established if the peer certificate is invalid.
+	    </h:p>
 	    </note>
             <aactivity> The evaluator will use <abbr title="Transport Layer Security">TLS</abbr> as
-              a function to verify that the validation rules in <linkref linkend="FIA_X509_EXT.1.1"
-              /> are adhered to and shall perform the following additional test: <testlist>
+              a function to verify that the validation rules in <linkref linkend="FIA_X509_EXT.1.1"/>
+	      are adhered to and shall perform the following additional test: <testlist>
                 <test> The evaluator will demonstrate that a peer using a certificate without a
                   valid certification path results in an authenticate failure. Using the
                   administrative guidance, the evaluator will then load the trusted CA
@@ -1945,24 +2090,33 @@
                 <selectable>secp256r1</selectable>
                 <selectable>secp384r1</selectable>
                 <selectable>secp521r1</selectable>
-              </selectables> and no other curves. </title>
-            <note role="application"> This requirement limits the elliptic curves allowed for
-              authentication and key agreement to the NIST curves from <linkref
-                linkend="FCS_COP.1(3)"/> and <linkref linkend="FCS_CKM.1(1)"/> and <linkref
-                linkend="FCS_CKM.2(1)"/>. This extension is required for clients supporting Elliptic
-              Curve cipher suites. </note>
-            <aactivity> The evaluator will verify that <abbr title="TOE Summary Specification"
+              </selectables>. 
+	    </title>
+            <note role="application"> 
+	      This requirement does not limit the elliptic curves the client may propose for authentication and key agreement.  
+	      Rather, it asks the ST author to define which of the NIST curves from 
+	      <linkref linkend="FCS_COP.1(3)"/> and <linkref linkend="FCS_CKM.1(1)"/> and <linkref
+                linkend="FCS_CKM.2(1)"/> the TOE supports. 
+	      This extension is required for clients supporting Elliptic
+              Curve cipher suites. 
+	    </note>
+            <aactivity> 
+	      <h:p>
+	      The evaluator will verify that <abbr title="TOE Summary Specification"
                 linkend="TSS">TSS</abbr> describes the supported Elliptic Curves Extension and
               whether the required behavior is performed by default or may be configured. If the
                 <abbr title="TOE Summary Specification" linkend="TSS">TSS</abbr> indicates that the
               supported Elliptic Curves Extension must be configured to meet the requirement, the
               evaluator will verify that AGD guidance includes configuration of the supported
-              Elliptic Curves Extension. <h:br/> The evaluator will also perform the following test: 
+              Elliptic Curves Extension. 
+	      </h:p><h:p>
+	      The evaluator will also perform the following test: 
               <h:br/>
               The evaluator will configure the server to perform an ECDHE key exchange
               message in the <abbr title="Transport Layer Security">TLS</abbr> connection using
               a non-supported ECDHE curve (for example, P-192) and shall verify that the OS disconnects after
-              receiving the server's Key Exchange handshake message. 
+              receiving the server's Key Exchange handshake message.
+	    </h:p>
             </aactivity>
           </f-element>
         </f-component>
@@ -1979,21 +2133,25 @@
               the supported hashes for the purpose of digital signature generation by the server.
               The signature_algorithm extension is only supported by <abbr
                 title="Transport Layer Security">TLS</abbr> 1.2. </note>
-            <aactivity> The evaluator will verify that <abbr title="TOE Summary Specification"
+            <aactivity>
+	      <h:p>
+	      The evaluator will verify that <abbr title="TOE Summary Specification"
                 linkend="TSS">TSS</abbr> describes the signature_algorithm extension and whether the
               required behavior is performed by default or may be configured. If the <abbr
                 title="TOE Summary Specification" linkend="TSS">TSS</abbr> indicates that the
               signature_algorithm extension must be configured to meet the requirement, the
               evaluator will verify that AGD guidance includes configuration of the
-              signature_algorithm extension. <h:br/> The evaluator will also perform the following
-              test:
+              signature_algorithm extension. 
+	      </h:p><h:p>
+	      The evaluator will also perform the following test:
               <h:br/>
-                The evaluator will configure the server to send a certificate in the <abbr
-                title="Transport Layer Security">TLS</abbr> connection that is not supported
+                The evaluator will configure the server to send a certificate in the 
+		<abbr title="Transport Layer Security">TLS</abbr> connection that is not supported
                 according to the Client’s HashAlgorithm enumeration within the
                 signature_algorithms extension (for example, send a certificate with a SHA-1
                 signature). The evaluator will verify that the OS disconnects after receiving the server’s Certificate
                 handshake message.
+	      </h:p>
             </aactivity>
           </f-element>
         </f-component>
@@ -2005,18 +2163,26 @@
                 linkend="FIA_X509_EXT.2.1"/>. This requirement adds that a client must be capable of
               presenting a certificate to a <abbr title="Transport Layer Security">TLS</abbr> server
               for <abbr title="Transport Layer Security">TLS</abbr> mutual authentication. </note>
-            <aactivity> The evaluator will ensure that the <abbr title="TOE Summary Specification"
-                linkend="TSS">TSS</abbr> description required per <linkref
-                linkend="FIA_X509_EXT.2.1"/> includes the use of client-side certificates for TLS
-              mutual authentication. <h:br/> The evaluator will verify that the AGD guidance required
+            <aactivity> 
+	      <h:p>
+		The evaluator will ensure that the 
+		<abbr title="TOE Summary Specification" linkend="TSS">TSS</abbr> 
+		description required per <linkref linkend="FIA_X509_EXT.2.1"/> 
+		includes the use of client-side certificates for TLS
+		mutual authentication. 
+	      </h:p><h:p>
+	      The evaluator will verify that the AGD guidance required
               per <linkref linkend="FIA_X509_EXT.2.1"/> includes instructions for configuring the
               client-side certificates for <abbr title="Transport Layer Security">TLS</abbr> mutual
-              authentication. <h:br/> The evaluator will also perform the following test: 
+              authentication. 
+	      </h:p><h:p>
+	      The evaluator will also perform the following test: 
               <h:br/>
               Configure the server to require mutual authentication and then modify a
               byte in a CA field in the Server’s Certificate Request handshake message. The
               modified CA field must not be the CA used to sign the client’s certificate.
               The evaluator will verify the connection is unsuccessful.
+	      </h:p>
             </aactivity>
           </f-element>
 	</f-component>
@@ -2076,13 +2242,15 @@
 	      can be protected from access by another user in that system.  
             </note>
             <aactivity>
+	      <h:p>
 	      The evaluator will confirm that the TSS comprehensively describes the access control policy enforced by the OS.
               The description must include the rules by which accesses to particular files and directories
 	      are determined for particular users.
               The evaluator will inspect the TSS to ensure that it describes the access control rules 
               in such detail that given any possible scenario between a user and a file governed by
               the OS the access control decision is unambiguous.
-              <h:br/>
+	      </h:p><h:p>
+
               The evaluator will create two new standard user accounts on the system and conduct the following tests:
               <testlist>
                 <test>
@@ -2117,6 +2285,7 @@
                   The evaluator will ensure that the deletion of the file is accepted.
                 </test>
               </testlist>
+	    </h:p>
             </aactivity>
           </f-element>          
         </f-component>
@@ -2131,16 +2300,19 @@
             </selectables>with the exception of IP traffic required to establish the VPN connection.
             </title>
 	    <note role="application">
-	      Typically, the traffic required to establish the VPN connection is referred to as "Control Plane" traffic 
-	      whereas the IP traffic protected by the IPsec VPN is referred to as "Data Plane" traffic. 
-	      All "Data Plane" traffic must flow through the VPN connection and the VPN must not split-tunnel.
-		  <h:br/>
+	      <h:p>
+		Typically, the traffic required to establish the VPN connection is referred to as "Control Plane" traffic, 
+		whereas the IP traffic protected by the IPsec VPN is referred to as "Data Plane" traffic. 
+		All "Data Plane" traffic must flow through the VPN connection and the VPN must not split-tunnel.
+	      </h:p>
+	      <h:p>
 		  If no native IPsec client is validated or third-party VPN clients may
 		  also implement the required Information Flow Control, the first
 		  option shall be selected. In these cases, the TOE provides an API to
 		  third-party VPN clients that allows them to configure the TOE’s
 		  network stack to perform the required Information Flow Control.  
-		  <h:br/>
+	      </h:p>
+	      <h:p>
 		  The ST author shall select the second option if the TSF implements a
 		  native VPN client (IPsec is selected in FTP_ITC_EXT.1). If the native
 		  VPN client is to be validated (IPsec is selected in 
@@ -2153,6 +2325,7 @@
 		  channel is enabled, all traffic from the TSF is routed through that
 		  channel) and having an option to force the establishment of an IPsec
 		  trusted channel to allow any communication by the TSF.
+	      </h:p>
 	    </note>
             <aactivity> The evaluator will verify that the TSS section of the ST describes the
               routing of IP traffic when a VPN client is enabled. The
@@ -2259,24 +2432,28 @@
 
 	    </title>
 	    <note role="application">
-	      The
-		terms "Administrator" and "User" are defined in <secref linkend="glossary"/>.
+	      <h:p>
+		The terms "Administrator" and "User" are defined in <secref linkend="glossary"/>.
 		The intent of this requirement is to ensure that the ST is populated
 		with the management functions that are provided by the OS.  This enables developers of 
 		compliance checklists, including those provided as operational user guidance as specified 
 		in <linkref linkend="AGD_OPE.1.3C"/>, to leverage this table
 		by providing enterprise-specific values for each evaluated item.
-                <h:br/>
-				Sophisticated account management policies, such as intricate password complexity requirements 
-				and handling of temporary accounts, are a function of directory servers.  The OS
-				can enroll in such account management and enable the overall information system
-				to achieve such policies by binding to a directory server.
-				<h:br/>
+	      </h:p>
+	      <h:p>
+		Sophisticated account management policies, such as intricate password complexity requirements 
+		and handling of temporary accounts, are a function of directory servers.
+
+		The OS can enroll in such account management and enable the overall information system
+		to achieve such policies by binding to a directory server.
+	      </h:p>
+	      <h:p>
 		In cases where both the user and administrator can control a particular
 		management function, if an administrator has not set a
 		policy then the user may be permitted to perform that function.  The ST author
 		should use a "-" (instead of "X") to indicate where management is not provided.
-		</note>
+	      </h:p>
+	    </note>
             <aactivity>
                  The evaluator will verify that every management function captured in the ST is
                  described in the operational guidance and that the description contains the information
@@ -2561,6 +2738,7 @@
               </selectables>
             </title>
             <note role="application">
+	      <h:p>
               The bootchain of the OS is the sequence of software, to include the OS loader, the kernel, system 
               drivers or modules, and system files, which ultimately result in loading the OS. 
 	      The first part of the OS, usually referred to as the first-stage bootloader, 
@@ -2568,19 +2746,22 @@
 	      Assessing its integrity, while critical, is the platform's responsibility; and therefore outside
 	      the scope of this PP.  All software loaded after this stage is potentially 
 		  within the control of the OS and is in scope.
-              <h:br/>
+	      </h:p>
+	      <h:p>
               The verification may be transitive in nature: 
 	      a hardware-protected public key or hash may be used to verify the mutable bootloader code 
               which contains a key or hash used by the bootloader to verify the mutable OS kernel code,
               which contains a key or hash to verify the next layer of executable code, and so on. 
 	      However, the way in which the hardware stores and protects these keys is out of scope.
-              <h:br/>
+	      </h:p>
+	      <h:p>
               If all executable code (including bootloader(s), kernel, device drivers, pre-loaded applications, user-loaded
               applications, and libraries) is verified, “all executable code stored in mutable media” should
               be selected.
-              <h:br/>
+              </h:p>
             </note>
             <aactivity>
+	      <h:p>
               The evaluator will verify that the TSS section of the ST includes a comprehensive description of the boot
               procedures, including a description of the entire bootchain, for the TSF. 
               The evaluator will ensure that the OS cryptographically verifies each
@@ -2589,7 +2770,8 @@
 	      For each additional category of executable code verified before
               execution, the evaluator will verify that the description in the TSS describes how that
               software is cryptographically verified.
-              <h:br/>
+	      </h:p>
+	      <h:p>
               <!-- Out of scope, for now:
 			  The evaluator will verify that the TSS contains a justification for the protection of the
               cryptographic key or hash, preventing it from being modified by unverified or
@@ -2597,7 +2779,8 @@
               <br/> -->
               The evaluator will verify that the TSS contains a description of the
               protection afforded to the mechanism performing the cryptographic verification.
-              <h:br/>
+	      </h:p>
+	      <h:p>
               The evaluator will perform the following tests:
               <testlist>
                 <test>
@@ -2624,6 +2807,7 @@
                   the extendedKeyUsage field.
                 </test>
               </testlist>
+	      </h:p>
              </aactivity>
           </f-element>
         </f-component>
@@ -2808,11 +2992,13 @@
 	      </h:ol>
             </title>
             <aactivity>
+	      <h:p>
 			  The evaluator shall check the administrative guide and ensure
 			  that it lists all of the auditable events.  The evaluator shall
 			  check to make sure that every audit event type selected in the ST
 			  is included.
-              <h:br/>
+	      </h:p>
+	      <h:p>
 			  The evaluator shall test the OS's ability to correctly generate
 			  audit records by having the TOE generate audit records for the
 			  events listed in the ST.  This should include all instance types
@@ -2821,6 +3007,7 @@
 			  audit records generated during testing match the format specified
 			  in the administrative guide, and that the fields in each audit
 			  record have the proper entries.
+	      </h:p>
            </aactivity>
           </f-element>
           <f-element id="fau_gen.1.2">
@@ -2842,12 +3029,14 @@
 		  is required.
 	    </note>
             <aactivity>
+	      <h:p>
 			  The evaluator shall check the administrative guide and ensure
 			  that it provides a format
 			  for audit records. Each audit record format type must be covered,
 			  along with a brief description of each field. The evaluator shall
 			  ensure that the fields contains the information required. 
-			  <h:br/>
+	      </h:p>
+	      <h:p>
 			  The evaluator shall test the OS's ability to correctly generate
 			  audit records by having the TOE generate audit records for the
 			  events listed in the ST.
@@ -2855,9 +3044,8 @@
 			  ensure the audit records generated during testing match the
 			  format specified in the administrative guide, and that the fields
 			  in each audit record provide the required information.
+	      </h:p>
            </aactivity>
-
-
         </f-element>
         </f-component>
       </subsection>
@@ -3029,21 +3217,26 @@
               regarding how the authentication factors interact in terms of
               unsuccessful authentication are covered in FIA_AFL_EXT.1.</note>
 
-              <aactivity>The evaluator shall ensure that the <abbr linkend="TSS"/>
+              <aactivity>
+		<h:p>
+		The evaluator shall ensure that the <abbr linkend="TSS"/>
               describes each mechanism provided to support user authentication and
               the rules describing how the authentication mechanism(s) provide
-              authentication. <h:br/><h:br/> The evaluator shall verify that
+              authentication. 
+	      </h:p><h:p>
+	      The evaluator shall verify that
               configuration guidance for each authentication mechanism is
               addressed in the AGD guidance.
               <testlist>
                 <test>For each
-              authentication mechanism selected, the evaluator shall enable that
-              mechanism and verify that it can be used to authenticate the user at
-              the specified authentication factor interfaces. </test>
-              <test>For
-              each authentication mechanism rule, the evaluator shall ensure that
-              the authentication mechanism(s) behave accordingly.</test>
-            </testlist>
+		authentication mechanism selected, the evaluator shall enable that
+		mechanism and verify that it can be used to authenticate the user at
+		the specified authentication factor interfaces. </test>
+		<test>For
+		each authentication mechanism rule, the evaluator shall ensure that
+		the authentication mechanism(s) behave accordingly.</test>
+              </testlist>
+	    </h:p>
           </aactivity>
           </f-element>
         </f-component>
@@ -3087,16 +3280,20 @@
                 </h:li>
               </h:ul>
             </title>
-            <note role="application"> FIA_X509_EXT.1.1 lists the rules for validating certificates.
+            <note role="application"> 
+	      FIA_X509_EXT.1.1 lists the rules for validating certificates.
               The <abbr linkend="ST"/> author shall select whether revocation status is verified
               using OCSP or CRLs. <linkref linkend="FIA_X509_EXT.2"/> requires that certificates are
               used for HTTPS, TLS and DTLS; this use requires that the extendedKeyUsage rules are
-              verified. <h:br/>
+              verified.
             </note>
-            <aactivity> The evaluator will ensure the <abbr linkend="TSS"/> describes where the
-              check of validity of the certificates takes place. The evaluator ensures the <abbr
-                linkend="TSS"/> also provides a description of the certificate path validation
-              algorithm. <h:br/> The tests described must be performed in conjunction with the other
+            <aactivity>
+	      <h:p>
+	      The evaluator will ensure the <abbr linkend="TSS"/> describes where the
+              check of validity of the certificates takes place. 
+	      The evaluator ensures the <abbr linkend="TSS"/> also provides a description of the certificate path validation algorithm. 
+	      </h:p><h:p>
+	      The tests described must be performed in conjunction with the other
               certificate services assurance activities, including the functions in <linkref
                 linkend="FIA_X509_EXT.2.1"/>. The tests for the extendedKeyUsage rules are performed
               in conjunction with the uses that require those rules. The evaluator will create a
@@ -3135,6 +3332,7 @@
                   demonstrate that the certificate fails to validate. (The signature on the
                   certificate should not validate.) </test>
               </testlist>
+	    </h:p>
             </aactivity>
           </f-element>
           <f-element id="fia_x509_ext.1.2">
@@ -3174,13 +3372,17 @@
 			  </selectables>
 			  connections. 
 			</title>
-            <aactivity> The evaluator will acquire or develop an application that uses the OS
-              TLS mechanism with an X.509v3 certificate. The evaluator will then run the
-              application and ensure that the provided certificate is used to authenticate the
-              connection. 
-			  <h:br/>
-			  The evaluator will repeat the activity for any other selections listed.
-			</aactivity>
+            <aactivity> 
+	      <h:p>
+		The evaluator will acquire or develop an application that uses the OS
+		TLS mechanism with an X.509v3 certificate. The evaluator will then run the
+		application and ensure that the provided certificate is used to authenticate the
+		connection. 
+	      </h:p>
+	      <h:p>
+		The evaluator will repeat the activity for any other selections listed.
+	      </h:p>
+	    </aactivity>
           </f-element>
         </f-component>
       </subsection>
@@ -3264,13 +3466,15 @@
               <title> The OS shall require use of the trusted path for all remote administrative actions.
               </title>
               <note role="application">
+		<h:p>
                 This requirement ensures that authorized remote administrators initiate all communication
                 with the OS via a trusted path, and that all communication with the OS by remote administrators 
                 is performed over this path. The data passed in this trusted communication channel is encrypted as 
                 defined in <linkref linkend="FTP_ITC_EXT.1"/>.
-		<h:br/>
-		The assurance activities for this requirement also test requirements 
-		<linkref linkend="FTP_TRP.1.1"/> and <linkref linkend="FTP_TRP.1.2"/>.
+	      </h:p><h:p>
+	      The assurance activities for this requirement also test requirements 
+	      <linkref linkend="FTP_TRP.1.1"/> and <linkref linkend="FTP_TRP.1.2"/>.
+	    </h:p>
               </note>
               <aactivity>
                 The evaluator will examine the TSS to determine that the methods of remote OS administration
@@ -3307,27 +3511,37 @@
       </subsection>
     </section>
     <section title="Security Assurance Requirements" id="SARs">
+      <h:p>
       The Security Objectives in 
       <secref linkend="obj"/> were constructed to address threats identified in
       <secref linkend="threats"/>. The Security Functional Requirements (<abbr linkend="SFR"/>s)
       in <secref linkend="SFRs"/> are a formal instantiation of the Security Objectives. The PP
       identifies the Security Assurance Requirements (<abbr linkend="SAR"/>s) to frame the extent to
       which the evaluator assesses the documentation applicable for the evaluation and performs
-      independent testing. <h:br/> This section lists the set of <abbr linkend="SAR"/>s from CC part 3
+      independent testing. 
+      </h:p><h:p>
+      This section lists the set of <abbr linkend="SAR"/>s from CC part 3
       that are required in evaluations against this PP. Individual Assurance Activities
       <!--(AAs). Never use these again --> to be performed are specified both in <secref
-        linkend="req"/> as well as in this section. <h:br/> The general model for evaluation of <abbr
-        linkend="OS"/>s against STs written to conform to this PP is as follows: <h:br/> After the
-        <abbr linkend="ST"/> has been approved for evaluation, the <abbr class="expanded"
-        title="Information Technology Security Evaluation Facility">ITSEF</abbr> will obtain the
-        <abbr linkend="OS"/>, supporting environmental IT, and the administrative/user guides for
+        linkend="req"/> as well as in this section. 
+      </h:p><h:p>
+      The general model for evaluation of <abbr
+        linkend="OS"/>s against STs written to conform to this PP is as follows: 
+      <h:br/> 
+      After the <abbr linkend="ST"/> has been approved for evaluation,
+      the 
+      <abbr class="expanded" title="Information Technology Security Evaluation Facility">ITSEF</abbr>
+      will obtain the <abbr linkend="OS"/>, supporting environmental IT, and the administrative/user guides for
       the OS. The ITSEF is expected to perform actions mandated by the Common Evaluation
       Methodology (CEM) for the ASE and ALC SARs. The ITSEF also performs the Assurance Activities
       contained within <secref linkend="req"/>, which are intended to be an interpretation of the
       other CEM assurance requirements as they apply to the specific technology instantiated in the
       OS. The Assurance Activities that are captured in <secref linkend="req"/> also provide
       clarification as to what the developer needs to provide to demonstrate the OS is compliant
-      with the PP. <subsection title="Class ASE: Security Target" id="ase">As per ASE activities
+      with the PP. 
+    </h:p>
+
+      <subsection title="Class ASE: Security Target" id="ase">As per ASE activities
         defined in <cite linkend="bibCEM"/>.</subsection>
       <subsection title="Class ADV: Development" id="adv">The information about the <abbr
           linkend="OS"/> is contained in the guidance documentation available to the end user as
@@ -3617,7 +3831,9 @@
             <a-element id="alc_cms.1.1e">
               <title>The evaluator shall confirm that the information provided meets all requirements
               for content and presentation of evidence.</title>
-              <aactivity>The "evaluation evidence required by the SARs" in this PP is limited to the
+              <aactivity>
+		<h:p>
+		  The "evaluation evidence required by the SARs" in this PP is limited to the
               information in the <abbr linkend="ST"/> coupled with the guidance provided to
               administrators and users under the AGD requirements. By ensuring that the <abbr
               linkend="OS"/> is specifically identified and that this identification is
@@ -3629,7 +3845,9 @@
               development and configuration management process. This is not meant to diminish the
               critical role that a developer’s practices play in contributing to the overall
               trustworthiness of a product; rather, it’s a reflection on the information to be made
-              available for evaluation. <h:br/> The evaluator will ensure that the developer has
+              available for evaluation.
+	      </h:p><h:p>
+	      The evaluator will ensure that the developer has
               identified (in guidance documentation for application developers concerning the
               targeted platform) one or more development environments appropriate for use in
               developing applications for the developer’s platform. For each of these development
@@ -3641,7 +3859,9 @@
               uniquely identified (with respect to other products from the <abbr linkend="TSF"/>
               vendor), and that documentation provided by the developer in association with the
               requirements in the <abbr linkend="ST"/> is associated with the <abbr linkend="TSF"/>
-              using this unique identification.</aactivity>
+              using this unique identification.
+	      </h:p>
+	      </aactivity>
           </a-element>
 	  </group>
         </a-component>
@@ -3680,22 +3900,30 @@
             <a-element id="alc_tsu_ext.1.1e">
               <title>The evaluator shall confirm that the information provided meets all
               requirements for content and presentation of evidence.</title>
-              <aactivity> The evaluator will verify that the TSS contains a description of the timely
+              <aactivity> 
+		<h:p>
+		The evaluator will verify that the TSS contains a description of the timely
               security update process used by the developer to create and deploy security updates.
               The evaluator will verify that this description addresses the entire application. The
               evaluator will also verify that, in addition to the OS developer’s process, any
               third-party processes are also addressed in the description. The evaluator will also
-              verify that each mechanism for deployment of security updates is described. <h:br/> The
+              verify that each mechanism for deployment of security updates is described. 
+	      </h:p><h:p> 
+	      The
               evaluator will verify that, for each deployment mechanism described for the update
               process, the TSS lists a time between public disclosure of a vulnerability and public
               availability of the security update to the OS patching this vulnerability, to include
               any third-party or carrier delays in deployment. The evaluator will verify that this
-              time is expressed in a number or range of days. <h:br/> The evaluator will verify that
+              time is expressed in a number or range of days.
+	      </h:p><h:p>
+	      The evaluator will verify that
               this description includes the publicly available mechanisms (including either an email
               address or website) for reporting security issues related to the OS. The evaluator
               shall verify that the description of this mechanism includes a method for protecting
               the report either using a public key for encrypting email or a trusted channel for a
-              website. </aactivity>
+              website. 
+	    </h:p>
+	    </aactivity>
             </a-element>
 	  </group>
         </a-component>
@@ -3738,11 +3966,15 @@
               the <abbr linkend="TSF"/> operates as specified.</title>
               <note role="application">The evaluator will test the OS on the most current fully
               patched version of the platform.</note>
-              <aactivity>The evaluator will prepare a test plan and report documenting the testing
+              <aactivity>
+		<h:p>
+		  The evaluator will prepare a test plan and report documenting the testing
               aspects of the system, including any application crashes during testing. The evaluator
               shall determine the root cause of any application crashes and include that information
               in the report. The test plan covers all of the testing actions contained in the <cite
-                linkend="bibCEM"/> and the body of this PP’s Assurance Activities. <h:br/> While it is
+                linkend="bibCEM"/> and the body of this PP’s Assurance Activities. 
+	      </h:p><h:p>
+	      While it is
               not necessary to have one test case per test listed in an Assurance Activity, the
               evaluator must document in the test plan that each applicable testing requirement in
               the <abbr linkend="ST"/> is covered. The test plan identifies the platforms to be
@@ -3760,17 +3992,22 @@
               may include special test drivers or tools. For each driver or tool, an argument (not
               just an assertion) should be provided that the driver or tool will not adversely
               affect the performance of the functionality by the <abbr linkend="OS"/> and its
-              platform. <h:br/> This also includes the configuration of the cryptographic engine to be
+              platform.
+	      </h:p><h:p>
+	      This also includes the configuration of the cryptographic engine to be
               used. The cryptographic algorithms implemented by this engine are those specified by
               this PP and used by the cryptographic protocols being evaluated (IPsec, TLS). The test
               plan identifies high-level test objectives as well as the test procedures to be
-              followed to achieve those objectives. These procedures include expected results. <h:br/>
+              followed to achieve those objectives. These procedures include expected results.
+	      </h:p><h:p>
               The test report (which could just be an annotated version of the test plan) details
               the activities that took place when the test procedures were executed, and includes
               the actual results of the tests. This shall be a cumulative account, so if there was a
               test run that resulted in a failure; a fix installed; and then a successful re-run of
               the test, the report would show a “fail” and “pass” result (and the supporting
-              details), and not just the “pass” result.</aactivity>
+              details), and not just the “pass” result.
+	    </h:p>
+	    </aactivity>
             </a-element>
 	  </group>
         </a-component>
@@ -3812,7 +4049,9 @@
             <title>The evaluator shall conduct penetration testing, based on the identified
               potential vulnerabilities, to determine that the <abbr linkend="OS"/> is resistant to
               attacks performed by an attacker possessing Basic attack potential.</title>
-            <aactivity>The evaluator will generate a report to document their
+            <aactivity>
+	      <h:p>
+	      The evaluator will generate a report to document their
               findings with respect to this requirement. This report could physically be part of the
               overall test report mentioned in ATE_IND, or a separate document. The evaluator
               performs a search of public information to find vulnerabilities that have been found
@@ -3820,14 +4059,16 @@
               uses and document formats it parses. 
               The evaluator documents the sources consulted and
               the vulnerabilities found in the report. 
-              <h:br/>
+	      </h:p><h:p>
               For each vulnerability found, the evaluator
               either provides a rationale with respect to its non-applicability, or the evaluator
               formulates a test (using the guidelines provided in ATE_IND) to confirm the
               vulnerability, if suitable. Suitability is determined by assessing the attack vector
               needed to take advantage of the vulnerability. If exploiting the vulnerability
               requires expert skills and an electron microscope, for instance, then a test would not
-              be suitable and an appropriate justification would be formulated.</aactivity>
+              be suitable and an appropriate justification would be formulated.
+	    </h:p>
+	    </aactivity>
           </a-element>
 	  </group>
         </a-component>
@@ -3863,7 +4104,9 @@
     OS is still conformant to this PP, and it is expected that they be included as soon as
     possible. </appendix>
 
-  <appendix title="Implicitly Satisfied Requirements" id="satisfiedreqs"> This
+  <appendix title="Implicitly Satisfied Requirements" id="satisfiedreqs">
+    <h:p>
+      This
 	appendix lists requirements that should be considered satisfied by products
 	successfully evaluated against this Protection Profile.  
 	However, these requirements are not featured explicitly as SFRs and should not be
@@ -3871,10 +4114,11 @@
 	They are not included as standalone SFRs because it would
 	increase the time, cost, and complexity of evaluation.  This approach is permitted
 	by <cite linkend="bibCC"/> Part 1, <h:b>8.2 Dependencies between components</h:b>.
-    <h:br/>
+     </h:p><h:p>
 	This information benefits systems engineering activities which call for inclusion of 
 	particular security controls.  Evaluation against the Protection Profile
 	provides evidence that these controls are present and have been evaluated.
+      </h:p>
      <h:table>
 	<h:tr class="header">
 	<h:td>Requirement</h:td>
