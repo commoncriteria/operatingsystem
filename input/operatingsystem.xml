@@ -1589,30 +1589,6 @@ including intermediate copies of keys that are persisted encrypted by the TOE: <
         </f-component>
 
 
-FCS_RBG_EXT.1.1
-
-The <abbr linkend="OS"/> shall perform all deterministic random bit generation (DRBG) services in accordance with NIST Special Publication 800-90A using [selection:Hash_DRBG (any), HMAC_DRBG (any), CTR_DRBG (AES)].
-
-Application Note: SP 800-90A contains three different methods of generating random numbers; each of these, in turn, depends on underlying cryptographic primitives (hash functions/ciphers). The ST author will select the function used, and include the specific underlying cryptographic primitives used in the requirement or in the <abbr linkend="TSS"/>. While any of the identified hash functions (SHA-1, SHA-224, SHA-256, SHA-384, SHA-512) are allowed for Hash_DRBG or HMAC_DRBG, only AES-based implementations for CTR_DRBG are allowed.
-
-Assurance Activity: The evaluator shall perform the following tests.
-
-The evaluator shall perform 15 trials for the RNG implementation. If the RNG is configurable, the evaluator shall perform 15 trials for each configuration. The evaluator shall also confirm that the operational guidance contains appropriate instructions for configuring the RNG functionality.
-
-If the RNG has prediction resistance enabled, each trial consists of (1) instantiate DRBG, (2) generate the first block of random bits (3) generate a second block of random bits (4) uninstantiate. The evaluator verifies that the second block of random bits is the expected value. The evaluator shall generate eight input values for each trial. The first is a count (0 – 14). The next three are entropy input, nonce, and personalization string for the instantiate operation. The next two are additional input and entropy input for the first call to generate. The final two are additional input and entropy input for the second call to generate. These values are randomly generated. “generate one block of random bits” means to generate random bits with number of returned bits equal to the Output Block Length (as defined in NIST SP 800-90A).
-
-If the RNG does not have prediction resistance, each trial consists of (1) instantiate DRBG, (2) generate the first block of random bits (3) reseed, (4) generate a second block of random bits (5) uninstantiate. The evaluator verifies that the second block of random bits is the expected value. The evaluator shall generate eight input values for each trial. The first is a count (0 – 14). The next three are entropy input, nonce, and personalization string for the instantiate operation. The fifth value is additional input to the first call to generate. The sixth and seventh are additional input and entropy input to the call to reseed. The final value is additional input to the second generate call.
-
-The following paragraphs contain more information on some of the input values to be generated/selected by the evaluator.
-
-Entropy input: the length of the entropy input value must equal the seed length.
-
-Nonce: If a nonce is supported (CTR_DRBG with no Derivation Function does not use a nonce), the nonce bit length is one-half the seed length.
-
-Personalization string: The length of the personalization string must be less then or equal to seed length. If the implementation only supports one personalization string length, then the same length can be used for both values. If more than one string length is support, the evaluator shall use personalization strings of two different lengths. If the implementation does not use a personalization string, no value needs to be supplied.
-
-Additional input: the additional input bit lengths have the same defaults and restrictions as the personalization string lengths
-
         <f-component id="fcs_rbg_ext.1" name="Random Bit Generation" status="threshold">
           <f-element id="fcs_rbg_ext.1.1">
             <title> 
@@ -1844,11 +1820,11 @@ only AES-based implementations for CTR_DRBG are allowed.
                 <test> 
                   The evaluator will attempt to establish the connection using a server with a
                   server certificate that contains the Server Authentication purpose in the
-                  extendedKeyUsage field and verify that a connection is established. The evaluator
+                  <h:i>extendedKeyUsage</h:i> field and verify that a connection is established. The evaluator
                   will then verify that the client rejects an otherwise valid server certificate
-                  that lacks the Server Authentication purpose in the extendedKeyUsage field and a
+                  that lacks the Server Authentication purpose in the <h:i>extendedKeyUsage</h:i> field and a
                   connection is not established. Ideally, the two certificates should be identical
-                  except for the extendedKeyUsage field. 
+                  except for the <h:i>extendedKeyUsage</h:i> field. 
                 </test>
                 <test> 
                   The evaluator will send a server certificate in the <abbr title="Transport Layer Security">TLS</abbr> connection 
@@ -2728,10 +2704,10 @@ The evaluator will determine that the <abbr linkend="TSS"/> contains a descripti
                   using a public key, the evaluator will verify that the update mechanism includes a certificate
                   validation according to <linkref linkend="FIA_X509_EXT.1"/>. The evaluator will digitally sign the TSF
                   executable with a certificate that does not have the Code Signing purpose in the
-                  extendedKeyUsage field and verify that an integrity violation is triggered. The evaluator
+                  <h:i>extendedKeyUsage</h:i> field and verify that an integrity violation is triggered. The evaluator
                   shall repeat the test using a certificate that contains the Code Signing purpose and verify that
                   the integrity verification succeeds. Ideally, the two certificates should be identical except for
-                  the extendedKeyUsage field.
+                  the <h:i>extendedKeyUsage</h:i> field.
                 </test>
               </testlist>
 	      </h:p>
@@ -3172,40 +3148,37 @@ the authentication mechanism(s) behave as documented in the <abbr linkend='TSS'/
         </f-component>
         <f-component id="fia_x509_ext.1" name="X.509 Certificate Validation" status="threshold">
           <f-element id="fia_x509_ext.1.1">
-            <title> The <abbr linkend="OS"/> shall implement functionality to validate certificates in accordance with
-              the following rules: <h:ul>
-                <h:li> RFC 5280 certificate validation and certificate path validation. </h:li>
-                <h:li> The certificate path must terminate with a trusted CA certificate. </h:li>
-                <h:li> The <abbr linkend="OS"/> shall validate a certificate path by ensuring the presence of the
-                  basicConstraints extension and that the CA flag is set to TRUE for all CA
-                  certificates. </h:li>
-                <h:li> The <abbr linkend="OS"/> shall validate the revocation status of the certificate using <selectables>
-                    <selectable> the Online Certificate Status Protocol (OCSP) as specified in RFC
-                      2560</selectable>
-                    <selectable> a Certificate Revocation List (CRL) as specified in RFC 5759</selectable>
-		    <selectable> 
-		      an OCSP TLS Status Request Extension (i.e., OCSP stapling) as specified in RFC 6066</selectable>
-                  </selectables>. </h:li>
-                <h:li> The <abbr linkend="OS"/> shall validate the extendedKeyUsage field according to the following
-                  rules: <h:ul>
-                    <h:li> Certificates used for trusted updates and executable code integrity
-                      verification shall have the Code Signing purpose (id-kp 3 with OID
-                      1.3.6.1.5.5.7.3.3) in the extendedKeyUsage field. </h:li>
-                    <h:li> 
-		      Server certificates presented for <h:abbr title="Transport Layer Security">TLS</h:abbr>
-		      shall have the Server Authentication purpose (id-kp 1 with OID
-                      1.3.6.1.5.5.7.3.1) in the extendedKeyUsage field. </h:li>
-                    <h:li> Client certificates presented for <h:abbr title="Transport Layer Security"
-                        >TLS</h:abbr> shall have the Client Authentication purpose (id-kp 2 with OID
-                      1.3.6.1.5.5.7.3.2) in the extendedKeyUsage field. </h:li>
-                    <h:li> S/MIME certificates presented for email encryption and signature shall have
-                      the Email Protection purpose (id-kp 4 with OID 1.3.6.1.5.5.7.3.4) in the
-                      extendedKeyUsage field. </h:li>
-                    <h:li> OCSP certificates presented for OCSP responses shall have the OCSP Signing
-                      purpose (id-kp 9 with OID 1.3.6.1.5.5.7.3.9) in the extendedKeyUsage field. </h:li>
-                    <h:li> (Conditional) Server certificates presented for EST shall have the CMC Registration
-                      Authority (RA) purpose (id-kp-cmcRA with OID 1.3.6.1.5.5.7.3.28) in the
-                      extendedKeyUsage field. </h:li>
+            <title>
+The <abbr linkend="OS"/> shall implement functionality to validate certificates in accordance with
+the following rules: <h:ul>
+<h:li> RFC 5280 certificate validation and certificate path validation. </h:li>
+<h:li> The certificate path must terminate with a trusted CA certificate. </h:li>
+<h:li> The <abbr linkend="OS"/> shall validate a certificate path by ensuring the presence of the
+<h:i>basicConstraints</h:i> extension and that the <h:i>CA</h:i> flag is set to <h:code>TRUE</h:code> for all CA  certificates. </h:li>
+<h:li> The <abbr linkend="OS"/> shall validate the revocation status of the certificate using 
+<selectables>
+  <selectable> the Online Certificate Status Protocol (OCSP) as specified in RFC 2560</selectable>
+  <selectable> a Certificate Revocation List (CRL) as specified in RFC 5759</selectable>
+  <selectable> an OCSP TLS Status Request Extension (i.e., OCSP stapling) as specified in RFC 6066</selectable>
+</selectables>. </h:li>
+<h:li> The <abbr linkend="OS"/> shall validate the <h:i>extendedKeyUsage</h:i> field according to the following rules: 
+<h:ul>
+  <h:li> Certificates used for trusted updates and executable code integrity
+  verification shall have the Code Signing purpose (id-kp 3 with OID 1.3.6.1.5.5.7.3.3) in the <h:i>extendedKeyUsage</h:i> field. </h:li>
+  <h:li> Server certificates presented for <h:abbr title="Transport Layer Security">TLS</h:abbr>
+  shall have the Server Authentication purpose (id-kp 1 with OID
+  1.3.6.1.5.5.7.3.1) in the <h:i>extendedKeyUsage</h:i> field. </h:li>
+  <h:li> Client certificates presented for <h:abbr title="Transport Layer Security">TLS</h:abbr> 
+  shall have the Client Authentication purpose (id-kp 2 with OID 1.3.6.1.5.5.7.3.2) 
+  in the <h:i>extendedKeyUsage</h:i> field. </h:li>
+  <h:li> S/MIME certificates presented for email encryption and signature shall have
+  the Email Protection purpose (id-kp 4 with OID 1.3.6.1.5.5.7.3.4) in the
+  <h:i>extendedKeyUsage</h:i> field. </h:li>
+  <h:li> OCSP certificates presented for OCSP responses shall have the OCSP Signing
+  purpose (id-kp 9 with OID 1.3.6.1.5.5.7.3.9) in the <h:i>extendedKeyUsage</h:i> field. </h:li>
+  <h:li> (Conditional) Server certificates presented for EST shall have the CMC Registration
+  Authority (RA) purpose (id-kp-cmcRA with OID 1.3.6.1.5.5.7.3.28) in the
+  <h:i>extendedKeyUsage</h:i> field. </h:li>
                   </h:ul>
                 </h:li>
               </h:ul>
@@ -3214,7 +3187,7 @@ the authentication mechanism(s) behave as documented in the <abbr linkend='TSS'/
 	      FIA_X509_EXT.1.1 lists the rules for validating certificates.
               The <abbr linkend="ST"/> author shall select whether revocation status is verified
               using OCSP or CRLs. <linkref linkend="FIA_X509_EXT.2"/> requires that certificates are
-              used for HTTPS, TLS and DTLS; this use requires that the extendedKeyUsage rules are
+              used for HTTPS, TLS and DTLS; this use requires that the <h:i>extendedKeyUsage</h:i> rules are
               verified.
             </note>
             <aactivity>
@@ -3225,7 +3198,7 @@ the authentication mechanism(s) behave as documented in the <abbr linkend='TSS'/
 	      </h:p><h:p>
 	      The tests described must be performed in conjunction with the other
               certificate services assurance activities, including the functions in <linkref
-                linkend="FIA_X509_EXT.2.1"/>. The tests for the extendedKeyUsage rules are performed
+                linkend="FIA_X509_EXT.2.1"/>. The tests for the <h:i>extendedKeyUsage</h:i> rules are performed
               in conjunction with the uses that require those rules. The evaluator will create a
               chain of at least four certificates: the node certificate to be tested, two
               Intermediate CAs, and the self-signed Root CA. <testlist>
@@ -3266,27 +3239,32 @@ the authentication mechanism(s) behave as documented in the <abbr linkend='TSS'/
             </aactivity>
           </f-element>
           <f-element id="fia_x509_ext.1.2">
-            <title> The <abbr linkend="OS"/> shall only treat a certificate as a CA certificate if the
-              basicConstraints extension is present and the CA flag is set to TRUE. </title>
+            <title>
+The <abbr linkend="OS"/> shall only treat a certificate as a CA certificate if the
+<h:i>basicConstraints</h:i> extension is present and the CA flag is set to TRUE. 
+	    </title>
             <note role="application"> This requirement applies to certificates that are used and
               processed by the <abbr linkend="TSF"/> and restricts the certificates that may be
               added as trusted CA certificates. </note>
-            <aactivity> The tests described must be performed in conjunction with the other
-              certificate services assurance activities, including the functions in <linkref
-                linkend="FIA_X509_EXT.2.1"/>. The evaluator will create a chain of at least four
-              certificates: the node certificate to be tested, two Intermediate CAs, and the
-              self-signed Root CA. <testlist>
-                <test> The evaluator will construct a certificate path, such that the certificate
-                  of the CA issuing the <abbr linkend="OS"/>'s certificate does not contain the
-                  basicConstraints extension. The validation of the certificate path fails. </test>
-                <test> The evaluator will construct a certificate path, such that the certificate
-                  of the CA issuing the <abbr linkend="OS"/>'s certificate has the CA flag in the
-                  basicConstraints extension not set. The validation of the certificate path fails. </test>
-                <test> The evaluator will construct a certificate path, such that the certificate
-                  of the CA issuing the <abbr linkend="OS"/>'s certificate has the CA flag in the
-                  basicConstraints extension set to TRUE. The validation of the certificate path
-                  succeeds. </test>
-              </testlist>
+            <aactivity>
+The tests described must be performed in conjunction with the other
+certificate services assurance activities, including the functions in 
+<linkref linkend="FIA_X509_EXT.2.1"/>.
+The evaluator will create a chain of at least four certificates: 
+the node certificate to be tested, two Intermediate CAs, and the
+              self-signed Root CA. 
+<testlist>
+  <test> The evaluator will construct a certificate path, such that the certificate
+  of the CA issuing the <abbr linkend="OS"/>'s certificate does not contain the
+  <h:i>basicConstraints</h:i> extension. The validation of the certificate path fails. </test>
+  <test> The evaluator will construct a certificate path, such that the certificate
+  of the CA issuing the <abbr linkend="OS"/>'s certificate has the CA flag in the
+  <h:i>basicConstraints</h:i> extension not set. The validation of the certificate path fails. </test>
+  <test> The evaluator will construct a certificate path, such that the certificate
+  of the CA issuing the <abbr linkend="OS"/>'s certificate has the CA flag in the
+  <h:i>basicConstraints</h:i> extension set to TRUE. The validation of the certificate path
+  succeeds. </test>
+</testlist>
             </aactivity>
           </f-element>
         </f-component>
