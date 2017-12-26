@@ -128,6 +128,13 @@
               vendors and developers are the same.</description>
           </entry>
           <entry>
+            <term><abbr title="Extended Package">EP</abbr></term>
+            <description>
+The term formerly used for an implementation-independent set of security requirements for a category of products, which extends those in a Protection Profile.
+</description>
+          </entry>
+	  
+          <entry>
             <term>Host-based Firewall</term>
             <description>
 	      A software-based firewall implementation running on the <abbr linkend="OS"/> for filtering inbound and 
@@ -154,6 +161,13 @@
             <term><abbr title="Protection Profile">PP</abbr></term>
             <description>An implementation-independent set of security requirements for a category
               of products.</description>
+          </entry>
+          <entry>
+            <term><abbr title="Protection Profile Module">PP-Module</abbr></term>
+            <description>
+An implementation-independent set of security requirements for a specific subset of products described, formerly known as <h:i>Extended Packages (<abbr linkend="EP"/>s)</h:i>.
+At the time of the release of this <abbr linkend="PP"/>, some <abbr linkend="EP"/>s had yet to be updated to PP-Modules; therefore, the term <h:i>PP-Modules</h:i> should be interpreted as also applying to any EP that has yet to be re-released as a Module.
+	    </description>
           </entry>
           <entry>
             <term><abbr title="Security Target">ST</abbr></term>
@@ -1009,7 +1023,7 @@ including intermediate copies of keys that are persisted encrypted by the TOE: <
             <note role="application"> 
 	      <h:p>
               AES CCMP (which uses AES in CCM as specified in SP 800-38C) becomes mandatory and must
-              be selected if the ST includes the WLAN Client Extended Package.
+              be selected if the ST includes the WLAN Client <abbr linkend="PP-Module"/>
 	      </h:p>
 	      <h:p>
 	            For the second selection, the ST author should choose the mode
@@ -2262,7 +2276,7 @@ and verify that the client rejects the connection after receiving the Server Key
 		  native VPN client (IPsec is selected in FTP_ITC_EXT.1). If the native
 		  VPN client is to be validated (IPsec is selected in 
 		  <linkref linkend="FTP_ITC_EXT.1"/> and
-		  the <abbr linkend="TSF"/> is validated against the <h:i>Extended Package for IPsec
+		  the <abbr linkend="TSF"/> is validated against the <h:i><abbr linkend="PP-Module"/> for IPsec
 		  Virtual Private Network (VPN) Clients</h:i>), the ST author shall also
 		  include FDP_IFC_EXT from this package.  In the
 		  future, this requirement may also make a distinction between the
@@ -3038,10 +3052,10 @@ The evaluator will determine that the <abbr linkend="TSS"/> contains a descripti
               to support user authentication.
             </title>
             <note role="application">
-	      The "for use in SSH only, SSH public key-based authentication as specified by the Extended Package 
+	      The "for use in SSH only, SSH public key-based authentication as specified by the <abbr linkend="PP-Module"/> 
 		    for Secure Shell" selection can only be included, and must be included, if 
 		    <linkref linkend="ftp_itc_ext.1.1"/> selects 
-		    "SSH as conforming to the Extended Package for Secure Shell".
+		    "SSH as conforming to the <abbr linkend="PP-Module"/> for Secure Shell".
 	    </note>
             <aactivity>
               If user name and password authentication is selected, the evaluator will configure the <abbr linkend="OS"/> with a 
@@ -3318,8 +3332,8 @@ the node certificate to be tested, two Intermediate CAs, and the
       	      <selectables linebreak='yes'>
         	      <selectable>TLS as conforming to <linkref linkend="FCS_TLSC_EXT.1"/></selectable>
         	      <selectable>DTLS as conforming to <linkref linkend="FCS_DTLS_EXT.1"/></selectable>
-      	        <selectable>IPsec as conforming to the <h:a href="https://www.niap-ccevs.org/pp/"><h:i>Extended Package for IPsec VPN Clients</h:i></h:a></selectable>
-      	        <selectable>SSH as conforming to the <h:a href="https://www.niap-ccevs.org/pp/"><h:i>Extended Package for Secure Shell</h:i></h:a></selectable>
+      	        <selectable>IPsec as conforming to the <h:a href="https://www.niap-ccevs.org/pp/"><h:i><abbr linkend="PP-Module"/> for IPsec VPN Clients</h:i></h:a></selectable>
+      	        <selectable>SSH as conforming to the <h:a href="https://www.niap-ccevs.org/pp/"><h:i><abbr linkend="PP-Module"/> for Secure Shell</h:i></h:a></selectable>
         	    </selectables>
 		    to provide a trusted communication channel between itself and 
 		    authorized IT entities supporting the following capabilities: 
@@ -3336,12 +3350,9 @@ the node certificate to be tested, two Intermediate CAs, and the
 		    data from disclosure and detection of modification of the channel data.
       	    </title>
       	    <note role="application">
-      	      If the ST author selects IPsec, the <abbr linkend="TSF"/> shall be validated against the <h:i>Extended Package
-      	      for IPsec Virtual Private Network (VPN) Clients</h:i>.  
-      	      If the ST author selects SSH, the <abbr linkend="TSF"/> shall be validated against the <h:i>Extended Package
-      	      for Secure Shell</h:i>.  The ST author must
-      	      include the security functional requirements for the trusted channel protocol selected in
-      	      FTP_ITC_EXT.1 in the main body of the ST.
+If the ST author selects IPsec, the <abbr linkend="TSF"/> shall be validated against the <h:i><abbr linkend="PP-Module"/> for IPsec Virtual Private Network (VPN) Clients</h:i>.  
+If the ST author selects SSH, the <abbr linkend="TSF"/> shall be validated against the <h:i><abbr linkend="PP-Module"/> for Secure Shell</h:i>.
+The ST author must include the security functional requirements for the trusted channel protocol selected in <linkref linkend="ftp_itc_ext.1"/> in the main body of the ST.
       	    </note>
       	    <aactivity>
 	      The evaluator will configure the <abbr linkend="OS"/> to communicate with another
@@ -3438,13 +3449,13 @@ This requirement is tested with the  assurance activities for  <linkref linkend=
     </section>
     <section title="Security Assurance Requirements" id="SARs">
       <h:p>
-      The Security Objectives in 
-      <secref linkend="obj"/> were constructed to address threats identified in
-      <secref linkend="threats"/>. The Security Functional Requirements (<abbr linkend="SFR"/>s)
-      in <secref linkend="SFRs"/> are a formal instantiation of the Security Objectives. The PP
-      identifies the Security Assurance Requirements (<abbr linkend="SAR"/>s) to frame the extent to
-      which the evaluator assesses the documentation applicable for the evaluation and performs
-      independent testing. 
+The Security Objectives in <secref linkend="obj"/> were constructed to 
+address threats identified in <secref linkend="threats"/>. 
+The Security Functional Requirements (<abbr linkend="SFR"/>s) in <secref linkend="SFRs"/>
+are a formal instantiation of the Security Objectives. 
+The PP identifies the Security Assurance Requirements (<abbr linkend="SAR"/>s) to frame 
+the extent to which the evaluator assesses the documentation applicable for the 
+evaluation and performs independent testing. 
       </h:p><h:p>
       This section lists the set of <abbr linkend="SAR"/>s from CC part 3
       that are required in evaluations against this PP. Individual Assurance Activities
