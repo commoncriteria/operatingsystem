@@ -478,11 +478,12 @@ At the time of the release of this <abbr linkend="PP"/>, some <abbr linkend="EP"
 	<!--   </description> -->
 	<!-- </SO> -->
         <SO id="O.PROTECTED_STORAGE">
-          <description> To address the issue of loss of confidentiality of credentials in the event of
-            loss of physical control of the storage medium, conformant <abbr linkend="OS"/>s 
-            provide data-at-rest protection for credentials.  Conformant OSes also provide
-			access controls which allow users to keep their files private from other
-			users of the same system.
+          <description>
+To address the issue of loss of confidentiality of credentials in the event of
+loss of physical control of the storage medium, conformant <abbr linkend="OS"/>s 
+provide data-at-rest protection for credentials.
+Conformant OSs also provide access controls which allow users to keep their files private from other
+users of the same system.
           </description>
           <component-refer ref="fcs_sto_ext.1"/>
           <component-refer ref="fcs_rbg_ext.1"/>
@@ -1623,7 +1624,7 @@ only AES-based implementations for CTR_DRBG are allowed.
             </note>
             <aactivity>
 	      <h:p>
-	      The evaulator shall perform the following tests:
+	      The evaluator shall perform the following tests:
 	      </h:p><h:p>
               The evaluator will perform 15 trials for the RNG implementation. If the RNG
               is configurable, the evaluator will perform 15 trials for each configuration. The
@@ -2551,10 +2552,12 @@ For each of these apps, the evaluator will launch the same executables on two se
             </note>
             <aactivity>
 The evaluator will determine that the <abbr linkend="TSS"/> contains a description of stack-based buffer
-            overflow protections used by the <abbr linkend="OS"/>. Example implementations may be activated
-            through compiler options such as "-fstack-protector-all", "-fstack-protector", and "/GS" flags. 
-            These are referred to by a variety of terms, such as stack cookie, stack guard, and stack canaries.
-            The <abbr linkend="TSS"/> must include a rationale for any binaries that are not protected in this manner.
+overflow protections used by the <abbr linkend="OS"/>.
+These are referred to by a variety of terms, such as stack cookie, stack guard, and stack canaries.
+The <abbr linkend="TSS"/> must include a rationale for any binaries that are not protected in this manner.
+Example implementations may be activated through compiler options such as "-fstack-protector-all",
+"-fstack-protector-strong" and, "-fstack-protector" flags.
+GNU gcc, as of version 4.8, and Microsoft's VC++, as of 2010 release, activate overflow protections by default.
             <testlist>
                 <test>
                   The evaluator will inventory the kernel, libraries, and application binaries
