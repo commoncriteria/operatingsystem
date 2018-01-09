@@ -436,7 +436,7 @@ At the time of the release of this <abbr linkend="PP"/>, some <abbr linkend="EP"
             the operating system and discover its cause.  Gathering event information and immediately 
             transmitting it to another system can also enable incident response in the event
             of system compromise.</description>
-          <component-refer ref="fau_gen.1"/>
+          <component-refer ref="fau_gen.1(1)"/>
         </SO>
         <SO id="O.INTEGRITY">
           <description>Conformant <abbr linkend="OS"/>s ensure the integrity of their update
@@ -458,8 +458,8 @@ At the time of the release of this <abbr linkend="PP"/>, some <abbr linkend="EP"
           <component-refer ref="fpt_tst_ext.1"/>
 	  <component-refer ref="ftp_itc_ext.1"/>
 	  <component-refer ref="fpt_w^x_ext.1.1"/>
-	  <component-refer ref="fia_afl.1"/>
-	  <component-refer ref="fia_uau.5"/>
+	  <component-refer ref="fia_afl.1(1)"/>
+	  <component-refer ref="fia_uau.5(1)"/>
         </SO>
         <SO id="O.MANAGEMENT">
           <description> To facilitate management by users and the enterprise, conformant <abbr
@@ -502,7 +502,8 @@ users of the same system.
           <component-refer ref="fcs_dtls_ext.1"/>
           <component-refer ref="fcs_rbg_ext.1"/>
           <component-refer ref="fcs_ckm.1(1)"/>
-          <component-refer ref="fcs_ckm.2(1)"/>
+	  <component-refer ref="fcs_ckm_ext.1"/>
+	  <component-refer ref="fcs_ckm_ext.2"/>
           <component-refer ref="fcs_cop.1.1(1)"/>
           <component-refer ref="fdp_ifc_ext.1"/>
           <component-refer ref="fia_x509_ext.1"/>
@@ -593,7 +594,7 @@ users of the same system.
 	      The <abbr linkend="ST"/> author shall select all key
               generation schemes used for key establishment and entity authentication. When key
               generation is used for key establishment, the schemes in 
-	      <linkref linkend="FCS_CKM.2.1(1)"/> and selected cryptographic protocols must match the
+	      <linkref linkend="FCS_CKM_EXT.1"/> and selected cryptographic protocols must match the
               selection. When key generation is used for entity authentication, the public key is
               expected to be associated with an X.509v3 certificate. 
 	      </h:p><h:p>
@@ -739,10 +740,10 @@ users of the same system.
 	    </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fcs_ckm.2(1)" name="Cryptographic Key Establishment (Refined)" status="threshold">
-          <f-element id="fcs_ckm.2.1(1)">
-            <title> The <h:b>OS</h:b> shall <h:b>implement functionality to perform</h:b> cryptographic <h:b>key establishment</h:b>
-              in accordance with a specified cryptographic key <h:b>establishment</h:b> method:
+        <f-component id="fcs_ckm_ext.1" name="Cryptographic Key Establishment" status="threshold">
+          <f-element id="fcs_ckm_ext.1">
+            <title> The OS shall implement functionality to perform cryptographic key establishment
+              in accordance with a specified cryptographic key establishment method:
 	      <h:p/>
               <h:b>RSA-based key establishment schemes</h:b> that meets the following: 
 	      NIST Special Publication 800-56B, “Recommendation for Pair-Wise Key Establishment Schemes
@@ -940,8 +941,8 @@ users of the same system.
           </f-element>
         </f-component>
                 
-        <f-component id="fcs_ckm_ext.3" name="Cryptographic Key Destruction" status="threshold">
-          <f-element id="fcs_ckm_ext.3.1">
+        <f-component id="fcs_ckm_ext.2" name="Cryptographic Key Destruction" status="threshold">
+          <f-element id="fcs_ckm_ext.2.1">
             <title> The <abbr linkend="OS"/> shall destroy cryptographic keys by at least a single direct overwrite
                   <selectables>
                     <selectable>
@@ -2056,7 +2057,7 @@ and verify that the client rejects the connection after receiving the Server Key
 	      This requirement does not limit the elliptic curves the client may propose for authentication and key agreement.  
 	      Rather, it asks the ST author to define which of the NIST curves from 
 	      <linkref linkend="FCS_COP.1(3)"/> and <linkref linkend="FCS_CKM.1(1)"/> and <linkref
-                linkend="FCS_CKM.2(1)"/> the TOE supports. 
+                linkend="FCS_CKM_EXT.1"/> the TOE supports. 
 	      This extension is required for clients supporting Elliptic
               Curve cipher suites. 
 	    </note>
@@ -2881,14 +2882,15 @@ GNU gcc, as of version 4.8, and Microsoft's VC++, as of 2010 release, activate o
         </f-component>
       </subsection>    
       <subsection title="Audit Data Generation (FAU)" id="fau">
-        <f-component id="fau_gen.1" name="Audit Data Generation" status="threshold">
-          <f-element id="fau_gen.1.1">
-            <title> The <abbr linkend="OS"/> shall be able to generate an audit record of the following auditable
+        <f-component id="fau_gen.1(1)" name="Audit Data Generation (Refined)" status="threshold">
+          <f-element id="fau_gen.1.1(1)">
+            <title> 
+The <h:b><abbr linkend="OS"/></h:b> shall be able to generate an audit record of the following auditable
               events: 
               <h:ol type='a'>
                 <h:li>Start-up and shut-down of the audit functions;</h:li>
-                <h:li>All auditable events for the not specified level of audit; and</h:li>
-                <h:li>
+                <h:li>All auditable events for the <h:b>not specified</h:b> level of audit; and</h:li>
+                <h:li><h:b>
 		  <h:ul><h:li>Authentication events (Success/Failure);</h:li>
                   <h:li>Use of privileged/special rights events (Successful and unsuccessful security, audit, and configuration changes);</h:li>
                   <h:li>Privilege or role escalation events (Success/Failure);</h:li>
@@ -2908,6 +2910,7 @@ GNU gcc, as of version 4.8, and Microsoft's VC++, as of 2010 release, activate o
                     </selectables>
 		  </h:li>
 		  </h:ul>
+		</h:b>
 		</h:li>
 	      </h:ol>
             </title>
@@ -2930,8 +2933,8 @@ GNU gcc, as of version 4.8, and Microsoft's VC++, as of 2010 release, activate o
 	      </h:p>
            </aactivity>
           </f-element>
-          <f-element id="fau_gen.1.2">
-            <title> The <abbr linkend="OS"/> shall record within each audit record at least the following information: 
+          <f-element id="fau_gen.1.2(1)">
+            <title> The <h:b><abbr linkend="OS"/></h:b> shall record within each audit record at least the following information: 
 	    <h:ol type='a'>
 	      <h:li>Date and time of the event, type of event, subject identity (if applicable),
 	      and outcome (success or failure) of the event; and </h:li>
@@ -2970,22 +2973,24 @@ GNU gcc, as of version 4.8, and Microsoft's VC++, as of 2010 release, activate o
         </f-component>
       </subsection>
       <subsection title="Identification and Authentication (FIA)" id="fia">
-        <f-component id="fia_afl.1" name="Authentication failure handling" status="threshold">
-          <f-element id="fia_afl.1.1">
+        <f-component id="fia_afl.1(1)" name="Authentication failure handling (Refined)" status="threshold">
+          <f-element id="fia_afl.1.1(1)">
             <title>
-            The <abbr linkend="OS"/> shall detect when 
+            The <h:b><abbr linkend="OS"/></h:b> shall detect when 
             <selectables linebreak='yes'>
-              <selectable><assignable> a positive integer number</assignable></selectable> 
-              <selectable>an administrator configurable positive integer within a <assignable>range of acceptable values</assignable></selectable>
+              <selectable><assignable>positive integer number</assignable></selectable> 
+              <selectable>an administrator configurable positive integer within <assignable>range of acceptable values</assignable></selectable>
             </selectables>
-            unsuccessful authentication attempts for 
+            unsuccessful authentication attempts occur related to
+	    <h:b>
+	      events with
             <selectables linebreak="yes">
               <selectable>authentication based on user name and password</selectable>
               <selectable>authentication based on user name and a PIN that
 	      releases an asymmetric key stored in OE-protected storage</selectable>
               <selectable>authentication based on X.509 certificates</selectable>
             </selectables>
-              occur related to <assignable>list of authentication events</assignable>. 
+	    </h:b>.
 	    </title>
             <aactivity>
 		  The evaluator will set an administrator-configurable threshold for
@@ -2993,21 +2998,23 @@ GNU gcc, as of version 4.8, and Microsoft's VC++, as of 2010 release, activate o
 		  will then (per selection) repeatedly attempt to authenticate with an
 		  incorrect password, PIN, or certificate until the number of attempts
 		  reaches the threshold.  Note that the authentication attempts and
-		  lockouts must also be logged as specified in <linkref
-		  linkend="fau_gen.1"/>.
+		  lockouts must also be logged as specified in 
+		  <linkref linkend="fau_gen.1(1)"/>.
 
 	    </aactivity>
           </f-element>
-          <f-element id="fia_afl.1.2">
+          <f-element id="fia_afl.1.2(1)">
             <title> 
 	      When the defined number of unsuccessful authentication attempts for an 
-	      account has been met, the <abbr linkend="OS"/> shall:
+	      account has been <h:b>met</h:b>, the <h:b><abbr linkend="OS"/></h:b> shall:
+	      <h:b>
 	      <selectables>
 		<selectable>Account Lockout</selectable>
 		<selectable>Account Disablement</selectable>
 		<selectable>Mandatory Credential Reset</selectable>
 		<selectable><assignable>list of actions</assignable></selectable>
 	      </selectables>
+	      </h:b>.
             </title>
             <note role="application">
             	The action to be taken shall be populated in the assignment of the ST and defined 
@@ -3040,19 +3047,20 @@ GNU gcc, as of version 4.8, and Microsoft's VC++, as of 2010 release, activate o
             </aactivity>
           </f-element>
         </f-component>        
-        <f-component id="fia_uau.5" name="Multiple Authentication Mechanisms" status="threshold">
-          <f-element id="fia_uau.5.1">
+        <f-component id="fia_uau.5(1)" name="Multiple Authentication Mechanisms (Refined)" status="threshold">
+          <f-element id="fia_uau.5.1(1)">
             <title>
-              The <abbr linkend="OS"/> shall provide the following authentication mechanisms
-              <selectables linebreak='yes'>
-                <selectable>authentication based on user name and password</selectable>
-                <selectable>authentication based on user name and a PIN that releases an asymmetric key stored 
-			in OE-protected storage</selectable>
-                <selectable>authentication based on X.509 certificates</selectable>
-		<selectable>for use in SSH only, SSH public key-based authentication as specified by the Extended
-			Package for Secure Shell</selectable>
-              </selectables>
-              to support user authentication.
+The <h:b><abbr linkend="OS"/></h:b> shall provide the following authentication mechanisms
+<h:b><selectables linebreak='yes'>
+  <selectable>authentication based on user name and password</selectable>
+  <selectable>authentication based on user name and a PIN that releases an asymmetric key stored 
+  in OE-protected storage</selectable>
+  <selectable>authentication based on X.509 certificates</selectable>
+  <selectable>for use in SSH only, SSH public key-based authentication as specified by the Extended
+  Package for Secure Shell</selectable>
+</selectables>
+</h:b>
+to support user authentication.
             </title>
             <note role="application">
 	      The "for use in SSH only, SSH public key-based authentication as specified by the <abbr linkend="PP-Module"/> 
@@ -3117,16 +3125,16 @@ GNU gcc, as of version 4.8, and Microsoft's VC++, as of 2010 release, activate o
 
             </aactivity>
           </f-element>
-           <f-element id="fia_uau.5.2">
+           <f-element id="fia_uau.5.2(1)">
             <title>
-              The <abbr linkend="OS"/> shall authenticate any user's claimed identity according to the
+The <h:b><abbr linkend="OS"/></h:b> shall authenticate any user's claimed identity according to the
               <assignable>
               	rules describing how the multiple authentication
 		mechanisms provide authentication
               </assignable>.
             </title>
             <note role="application">
-For all authentication mechanisms specified in <linkref linkend="FIA_UAU.5.1"/>, the <abbr linkend="TSS"/> shall describe the rules as to how each authentication mechanism is used.
+For all authentication mechanisms specified in <linkref linkend="FIA_UAU.5.1(1)"/>, the <abbr linkend="TSS"/> shall describe the rules as to how each authentication mechanism is used.
 Example rules are how the authentication mechanism authenticates the user (i.e.
 how does the <abbr linkend="TSF"/> verify that the correct password or authentication
 factor is used), the result of a successful authentication (i.e.
@@ -3135,7 +3143,7 @@ authentication mechanism can be used at which authentication factor
 interfaces (i.e. if there are times, for example, after a reboot,
 that only specific authentication mechanisms can be used).
 Rules regarding how the authentication factors interact in terms of
-unsuccessful authentication are covered in <linkref linkend="fia_afl.1"/>.
+unsuccessful authentication are covered in <linkref linkend="fia_afl.1(1)"/>.
 	    </note>
 
               <aactivity>
@@ -4066,7 +4074,7 @@ evaluation and performs independent testing.
 	<h:tr>
 	<h:td>FIA_UAU.1 - Timing of authentication</h:td>
 	<h:td>
-	  <linkref linkend="FIA_AFL.1"/> implicitly requires that the <abbr linkend="OS"/> perform all necessary actions, 
+	  <linkref linkend="FIA_AFL.1(1)"/> implicitly requires that the <abbr linkend="OS"/> perform all necessary actions, 
 	  including those on behalf of the user who has not been authenticated, 
 	  in order to authenticate;
 	  therefore it is duplicative to include these actions as a 
@@ -4076,7 +4084,7 @@ evaluation and performs independent testing.
 	<h:tr>
 	<h:td>FIA_UID.1 - Timing of identification</h:td>
 	<h:td>
-	  <linkref linkend="FIA_AFL.1"/> implicitly requires that the <abbr linkend="OS"/> perform all necessary actions, 
+	  <linkref linkend="FIA_AFL.1(1)"/> implicitly requires that the <abbr linkend="OS"/> perform all necessary actions, 
 	  including those on behalf of the user who has not been identified, 
 	  in order to authenticate;
 	  therefore it is duplicative to include these actions as a 
@@ -4094,7 +4102,7 @@ evaluation and performs independent testing.
 	<h:tr>
 	<h:td>FPT_STM.1 - Reliable time stamps</h:td>
 	<h:td>
-	  <linkref linkend="FAU_GEN.1.2"/> explicitly requires that the <abbr linkend="OS"/> associate timestamps with audit records;
+	  <linkref linkend="FAU_GEN.1.2(1)"/> explicitly requires that the <abbr linkend="OS"/> associate timestamps with audit records;
 	  therefore it is duplicative to include a separate timestamp requirement.
 	</h:td>
 	</h:tr>
@@ -4122,7 +4130,7 @@ evaluation and performs independent testing.
 	<h:tr>
 	<h:td>FAU_GEN.2 - User identity association</h:td>
 	<h:td>
-	  <linkref linkend="FAU_GEN.1.2"/> explicitly requires that the <abbr linkend="OS"/> record
+<linkref linkend="FAU_GEN.1.2(1)"/> explicitly requires that the <abbr linkend="OS"/> record
 	  any user account associated with each event; therefore, it is duplicative
 	  to include a separate requirement to associate a user account with each
 	  event.
