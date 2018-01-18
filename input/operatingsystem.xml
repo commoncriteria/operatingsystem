@@ -573,7 +573,7 @@ users of the same system.
                   <h:b>ECC schemes</h:b> using “NIST curves” P-256, P-384 and 
 		  <selectables>
                     <selectable> P-521 </selectable>
-                    <selectable> no other curves </selectable>
+                    <selectable exclusive="yes"> no other curves </selectable>
                     </selectables> 
 		    that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.4
                 </selectable>                
@@ -761,7 +761,7 @@ users of the same system.
 	          NIST Special Publication 800-56A, “Recommendation for Pair-Wise Key
 	          Establishment Schemes Using Discrete Logarithm Cryptography”
 	        </selectable>
-                <selectable>No other schemes</selectable>
+                <selectable exclusive="yes">No other schemes</selectable>
               </selectables>
               <h:strike>that meets the following: [assignment: list of standards]</h:strike>
               . 
@@ -1012,7 +1012,7 @@ including intermediate copies of keys that are persisted encrypted by the TOE: <
                 <selectable>AES-CCM (as defined in NIST SP 800-38C)</selectable>
                 <selectable>AES-CCMP-256 (as defined in NIST SP800-38C and IEEE 802.11ac-2013)</selectable>
                 <selectable>AES-GCMP-256 (as defined in NIST SP800-38D and IEEE 802.11ac-2013)</selectable>
-                <selectable>no other modes</selectable>
+                <selectable exclusive="yes">no other modes</selectable>
               </selectables> 
               and cryptographic key sizes 
               <selectables>
@@ -1345,12 +1345,12 @@ including intermediate copies of keys that are persisted encrypted by the TOE: <
                 <selectable>SHA-256</selectable>
                 <selectable>SHA-384</selectable>
                 <selectable>SHA-512</selectable>
-                <selectable>no other algorithms</selectable>
+                <selectable exclusive="yes">no other algorithms</selectable>
               </selectables> and message digest sizes 160 bits and <selectables linebreak="yes">
                 <selectable>256 bits</selectable>
                 <selectable>384 bits</selectable>
                 <selectable>512 bits</selectable>
-                <selectable>no other sizes</selectable>
+                <selectable exclusive="yes">no other sizes</selectable>
               </selectables> that meet the following: FIPS Pub 180-4. </title>
             <note role="application"> 
 	      <h:p>
@@ -1446,7 +1446,7 @@ including intermediate copies of keys that are persisted encrypted by the TOE: <
 		  <h:b>ECDSA schemes</h:b> using “NIST curves” P-256, P-384 and 
 		  <selectables>
                     <selectable>P-521</selectable>
-                    <selectable>no other curves</selectable>
+                    <selectable exclusive="yes">no other curves</selectable>
                   </selectables> 
 		  that meet the following: FIPS PUB 186-4, “Digital Signature   Standard (DSS)”, Section 5 
 		</selectable>
@@ -1570,7 +1570,7 @@ including intermediate copies of keys that are persisted encrypted by the TOE: <
           </f-element>
         </f-component>
         <f-component id="fcs_dtls_ext.1" name="DTLS Implementation" status="sel-based">
-	  <selection-depends req="ftp_itc_ext.1.1"/>
+	  <selection-depends req="ftp_itc_ext.1.1" ids="pathtype:dtls"/>
           <f-element id="fcs_dtls_ext.1.1">
             <title>The <abbr linkend="OS"/> shall implement the DTLS protocol in accordance with 
               <selectables>
@@ -1771,27 +1771,27 @@ only AES-based implementations for CTR_DRBG are allowed.
 	      <h:ul>
                <h:li>Mandatory cipher suites: TLS_RSA_WITH_AES_128_CBC_SHA as defined in RFC 5246</h:li>
                <h:li>Optional cipher suites: 
-	      <selectables linebreak="yes">
+	      <selectables linebreak="yes" id="ciphers">
                 <selectable>TLS_DHE_RSA_WITH_AES_128_CBC_SHA as defined in RFC 5246</selectable>
                 <selectable>TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</selectable>
                 <selectable>TLS_DHE_RSA_WITH_AES_256_CBC_SHA as defined in RFC 5246</selectable>
                 <selectable>TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 as defined in RFC 5246</selectable>
-                <selectable>TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA as defined in RFC 4492</selectable>
-                <selectable>TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5289</selectable>
-                <selectable>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5289</selectable>
-                <selectable>TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA as defined in RFC 4492</selectable>
-                <selectable>TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289</selectable>
-                <selectable>TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289</selectable>
-                <selectable>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA as defined in RFC 4492</selectable>
-                <selectable>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5289</selectable>
-                <selectable>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5289</selectable>
-                <selectable>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA as defined in RFC 4492</selectable>
-                <selectable>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289</selectable>
-                <selectable>TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289</selectable>
+                <selectable id="ec1">TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA as defined in RFC 4492</selectable>
+                <selectable id="ec2">TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5289</selectable>
+                <selectable id="ec3">TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5289</selectable>
+                <selectable id="ec4">TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA as defined in RFC 4492</selectable>
+                <selectable id="ec5">TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289</selectable>
+                <selectable id="ec6">TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289</selectable>
+                <selectable id="ec7">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA as defined in RFC 4492</selectable>
+                <selectable id="ec8">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5289</selectable>
+                <selectable id="ec9">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5289</selectable>
+                <selectable id="ec10">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA as defined in RFC 4492</selectable>
+                <selectable id="ec11">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289</selectable>
+                <selectable id="ec12">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289</selectable>
                 <selectable>TLS_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</selectable>
                 <selectable>TLS_RSA_WITH_AES_256_CBC_SHA as defined in RFC 5246</selectable>
                 <selectable>TLS_RSA_WITH_AES_256_CBC_SHA256 as defined in RFC 5246</selectable>
-                <selectable>no other cipher suite</selectable>
+                <selectable exclusive="yes">no other cipher suite</selectable>
               </selectables></h:li>
 	      </h:ul>. </title>
             <note role="application">
@@ -2044,7 +2044,7 @@ and verify that the client rejects the connection after receiving the Server Key
           </f-element>
         </f-component>
         <f-component id="fcs_tlsc_ext.2" name="TLS Client Protocol" status="sel-based">
-	  <selection-depends req="fcs_tlsc_ext.1.1"/>
+	  <selection-depends req="fcs_tlsc_ext.1.1" ids="ciphers:ec1,ec2,ec3,ec4,ec5,ec6,ec7,ec8,ec9,ec10,ec11,ec12"/>
           <f-element id="fcs_tlsc_ext.2.1">
             <title> The <abbr linkend="OS"/> shall present the Supported Elliptic Curves Extension in the Client Hello
               with the following NIST curves: <selectables>
@@ -2088,7 +2088,7 @@ and verify that the client rejects the connection after receiving the Server Key
                 <selectable>SHA256</selectable>
                 <selectable>SHA384</selectable>
                 <selectable>SHA512</selectable>
-              </selectables> and no other hash algorithms. </title>
+            </selectables> and no other hash algorithms. </title>
             <note role="application"> This requirement limits the hashing algorithms supported for
               the purpose of digital signature verification by the client and limits the server to
               the supported hashes for the purpose of digital signature generation by the server.
@@ -2168,7 +2168,7 @@ and verify that the client rejects the connection after receiving the Server Key
 		    <selectable>AES Key Wrap with Padding</selectable>
 		    <selectable>AES-GCM</selectable>
 		    <selectable>AES-CCM</selectable>
-		    <selectable>no other modes</selectable> 
+		    <selectable exclusive="yes">no other modes</selectable> 
 		  </selectables>
 		</li>
 		<li>
@@ -2650,7 +2650,7 @@ GNU gcc, as of version 4.8, and Microsoft's VC++, as of 2010 release, activate o
               <selectables linebreak="yes">
                 <selectable>all executable code stored in mutable media</selectable>
                 <selectable><assignable>list of other executable code</assignable></selectable>
-                <selectable>no other executable code</selectable>
+                <selectable exclusive="yes">no other executable code</selectable>
               </selectables> 
 	      prior to its execution through the use of
               <selectables linebreak="yes">
@@ -3300,7 +3300,7 @@ the node certificate to be tested, two Intermediate CAs, and the
 			  <selectable>DTLS</selectable>
 			  <selectable>HTTPS</selectable>
 			  <selectable><assignable>other protocols</assignable></selectable>
-			  <selectable>no other protocols</selectable>
+			  <selectable exclusive="yes">no other protocols</selectable>
 			  </selectables>
 			  connections. 
 			</title>
@@ -3339,9 +3339,9 @@ the node certificate to be tested, two Intermediate CAs, and the
       	  <f-element id="ftp_itc_ext.1.1">
       	    <title>
      	      The <abbr linkend="OS"/> shall use 
-      	      <selectables linebreak='yes'>
-        	      <selectable>TLS as conforming to <linkref linkend="FCS_TLSC_EXT.1"/></selectable>
-        	      <selectable>DTLS as conforming to <linkref linkend="FCS_DTLS_EXT.1"/></selectable>
+      	      <selectables linebreak='yes' id="pathtype">
+        	      <selectable id="tls">TLS as conforming to <linkref linkend="FCS_TLSC_EXT.1"/></selectable>
+        	      <selectable id="dtls">DTLS as conforming to <linkref linkend="FCS_DTLS_EXT.1"/></selectable>
       	        <selectable>IPsec as conforming to the <h:a href="https://www.niap-ccevs.org/pp/"><h:i><abbr linkend="PP-Module"/> for IPsec VPN Clients</h:i></h:a></selectable>
       	        <selectable>SSH as conforming to the <h:a href="https://www.niap-ccevs.org/pp/"><h:i><abbr linkend="PP-Module"/> for Secure Shell</h:i></h:a></selectable>
         	    </selectables>
