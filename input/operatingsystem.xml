@@ -431,7 +431,7 @@ At the time of the release of this <abbr linkend="PP"/>, some <abbr linkend="EP"
     <section title="Security Objectives for the TOE" id="SecurityObjectivesTOE">
       <SOs>
         <SO id="O.ACCOUNTABILITY">
-          <description> Conformant <abbr linkend="OS"/>s ensure that information exists that allows
+          <description> Conformant <abbr linkend="OS"/>es ensure that information exists that allows
             administrators to discover unintentional issues with the configuration and operation of
             the operating system and discover its cause.  Gathering event information and immediately 
             transmitting it to another system can also enable incident response in the event
@@ -439,10 +439,10 @@ At the time of the release of this <abbr linkend="PP"/>, some <abbr linkend="EP"
           <component-refer ref="fau_gen.1(1)"/>
         </SO>
         <SO id="O.INTEGRITY">
-          <description>Conformant <abbr linkend="OS"/>s ensure the integrity of their update
-            packages. <abbr linkend="OS"/>s are seldom if ever shipped without errors, and the
+          <description>Conformant <abbr linkend="OS"/>es ensure the integrity of their update
+            packages. <abbr linkend="OS"/>es are seldom if ever shipped without errors, and the
             ability to deploy patches and updates with integrity is critical to enterprise network
-            security. Conformant <abbr linkend="OS"/>s provide execution environment-based
+            security. Conformant <abbr linkend="OS"/>es provide execution environment-based
             mitigations that increase the cost to attackers by adding complexity to the task of
             compromising systems. </description>
           <component-refer ref="fpt_sbop_ext.1"/>
@@ -480,9 +480,9 @@ At the time of the release of this <abbr linkend="PP"/>, some <abbr linkend="EP"
         <SO id="O.PROTECTED_STORAGE">
           <description>
 To address the issue of loss of confidentiality of credentials in the event of
-loss of physical control of the storage medium, conformant <abbr linkend="OS"/>s 
+loss of physical control of the storage medium, conformant <abbr linkend="OS"/>es 
 provide data-at-rest protection for credentials.
-Conformant OSs also provide access controls which allow users to keep their files private from other
+Conformant OSes also provide access controls which allow users to keep their files private from other
 users of the same system.
           </description>
           <component-refer ref="fcs_sto_ext.1"/>
@@ -492,7 +492,7 @@ users of the same system.
         </SO>
         <SO id="O.PROTECTED_COMMS">
           <description> To address both passive (eavesdropping) and active (packet modification)
-            network attack threats, conformant <abbr linkend="OS"/>s provide mechanisms to create
+            network attack threats, conformant <abbr linkend="OS"/>es provide mechanisms to create
             trusted channels for <abbr linkend="CSP"/> and sensitive data. Both CSP and sensitive data
             should not be exposed outside of the platform. </description>
           <component-refer ref="fcs_tlsc_ext.1"/>
@@ -1545,7 +1545,7 @@ including intermediate copies of keys that are persisted encrypted by the TOE: <
 	      algorithm used for <linkref linkend="FCS_COP.1(1)"/>. 
 	      Though HMAC with SHA-256 (HMAC-SHA-256) is listed as a selectable cipher suite
 	      in this requirement, <linkref linkend="FCS_TLSC_EXT.1"/> effectively makes its 
-	      implementation mandatory for compliant OSs.
+	      implementation mandatory for compliant OSes.
 	      </h:p>
 	      <h:p>
 	      SHA-1 is currently required in order to comply with <linkref linkend="FCS_TLSC_EXT.1"/>
@@ -1570,7 +1570,7 @@ including intermediate copies of keys that are persisted encrypted by the TOE: <
           </f-element>
         </f-component>
         <f-component id="fcs_dtls_ext.1" name="DTLS Implementation" status="sel-based">
-	  <selection-depends req="ftp_itc_ext.1.1" ids="pathtype:dtls"/>
+	  <selection-depends req="ftp_itc_ext.1.1" ids="dtls"/>
           <f-element id="fcs_dtls_ext.1.1">
             <title>The <abbr linkend="OS"/> shall implement the DTLS protocol in accordance with 
               <selectables>
@@ -2044,7 +2044,7 @@ and verify that the client rejects the connection after receiving the Server Key
           </f-element>
         </f-component>
         <f-component id="fcs_tlsc_ext.2" name="TLS Client Protocol" status="sel-based">
-	  <selection-depends req="fcs_tlsc_ext.1.1" ids="ciphers:ec1,ec2,ec3,ec4,ec5,ec6,ec7,ec8,ec9,ec10,ec11,ec12"/>
+	  <selection-depends req="fcs_tlsc_ext.1.1" ids="ec1,ec2,ec3,ec4,ec5,ec6,ec7,ec8,ec9,ec10,ec11,ec12"/>
           <f-element id="fcs_tlsc_ext.2.1">
             <title> The <abbr linkend="OS"/> shall present the Supported Elliptic Curves Extension in the Client Hello
               with the following NIST curves: <selectables>
@@ -3473,7 +3473,7 @@ evaluation and performs independent testing.
         linkend="req"/> as well as in this section. 
       </h:p><h:p>
       The general model for evaluation of <abbr
-        linkend="OS"/>s against STs written to conform to this PP is as follows: 
+        linkend="OS"/>es against STs written to conform to this PP is as follows: 
       <h:br/> 
       After the <abbr linkend="ST"/> has been approved for evaluation,
       the 
@@ -3500,7 +3500,7 @@ evaluation and performs independent testing.
           <a-component id="adv_fsp.1" name="Basic Functional Specification (ADV_FSP.1)">The
           functional specification describes the <abbr title="TSF Interface">TSFI</abbr>s. It is not
           necessary to have a formal or complete specification of these interfaces. Additionally,
-          because <abbr linkend="OS"/>s conforming to this PP will necessarily have interfaces to
+          because <abbr linkend="OS"/>es conforming to this PP will necessarily have interfaces to
           the Operational Environment that are not directly invokable by <abbr linkend="OS"/>
           users, there is little point specifying that such interfaces be described in and of
           themselves since only indirect testing of such interfaces may be possible. For this PP,
@@ -3710,7 +3710,7 @@ evaluation and performs independent testing.
         </a-component>
       </subsection>
       <subsection id="alc" title="Class ALC: Life-cycle Support"> At the assurance level provided
-        for OSs conformant to this PP, life-cycle support is limited to end-user-visible aspects of
+        for OSes conformant to this PP, life-cycle support is limited to end-user-visible aspects of
         the life-cycle, rather than an examination of the <abbr linkend="OS"/> vendor’s development and configuration
         management process. This is not meant to diminish the critical role that a developer’s
         practices play in contributing to the overall trustworthiness of a product; rather, it is a
