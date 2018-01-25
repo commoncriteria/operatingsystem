@@ -2308,13 +2308,13 @@ and verify that the client rejects the connection after receiving the Server Key
         <f-component id="fmt_mof_ext.1" name="Management of security functions behavior" status="threshold">
 	  <f-element id="fmt_mof_ext.1.1">
 	    <title> 
-	      The <abbr linkend="OS"/> shall restrict the ability to perform the function indicated in the third column of <ctr-ref refid="manfuntable"/> in <linkref linkend="fmt_smf_ext.1.1"/> to the administrator.
+	      The <abbr linkend="OS"/> shall restrict the ability to perform the function indicated in the "Administrator" column of <ctr-ref refid="manfuntable"/> in <linkref linkend="fmt_smf_ext.1.1"/> to the administrator.
 	    </title>
 	    <note role="application">
-	      The functions that have an “M” in the third column must be restricted to the administrator when implemented in the TOE.
-	      The functions that have an “O” in the third column may be restricted to the administrator when implemented in the TOE at the discretion of the ST author.
-	      If capabilities marked with an “O” in the third column are to be restricted to an administrator, 
-	      the ST author indicates this by replacing an “O” with an “X” (or some other indicator) in the PP.
+	      The functions with an “M” in the "Administrator" column must be restricted to the administrator when implemented in the TOE.
+	      The functions with an “O” in the "Administrator" column may be restricted to the administrator when implemented in the TOE at the discretion of the ST author.
+	      For those functions marked with an “O” in the "Administrator" column that are restricted to an administrator, 
+	      the ST author indicates this by replacing an “O” with an “X” in the PP.
 	    </note>
             <aactivity>
 	      <h:p>
@@ -2331,8 +2331,7 @@ and verify that the client rejects the connection after receiving the Server Key
 	      The <abbr linkend="OS"/> shall be capable of performing the following management functions:
 	      <h:br/>
 	      <h:table style="border: 1px solid black;">
-		<h:caption><ctr pre="Table " id="manfuntable">. Management Functions</ctr></h:caption>
-		<h:tr><h:th>Management Function</h:th><h:th>FMT_SMF_EXT.1</h:th><h:th id="col3">FMT_MOF_EXT.1 </h:th></h:tr>
+		<h:tr><h:th>Management Function</h:th><h:th>User</h:th><h:th id="col3">Administrator</h:th></h:tr>
 		<h:tr><h:td>Enable/disable screen lock</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
 		<h:tr><h:td>Configure screen lock inactivity timeout</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
 		<h:tr><h:td>Configure local audit storage capacity</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
@@ -2353,17 +2352,15 @@ and verify that the client rejects the connection after receiving the Server Key
 		<h:tr><h:td>Enable/disable automatic software update</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
 		<h:tr><h:td>Configure WiFi interface       </h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
 		<h:tr><h:td>Enable/disable Bluetooth interface</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
-		<h:tr><h:td>Configure USB interfaces</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
 		<h:tr><h:td>Enable/disable [assignment: list of other external interfaces]</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
 		<h:tr><h:td><assignable>list of other management functions to be provided by the TSF</assignable></h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
 	      </h:table>
 	    </title>
 	    <note role="application">
 	      <h:p>
-The ST author indicates in the ST which of the optional management functions (beyond the first three, which are mandatory) are implement in the TOE;
-This can be done by copying the above table into the ST and adjusting the second column according to which capabilities are present or not present.
-The ST author also indicates, as was described in the Application Note for FMT_MOF_EXT.1, which of the selected capabilities are restricted such that only the administrator can perform the function.
-It should be noted that in the table above, only the ability to enable or disable unauthenticated logons (if that capability is implemented by the TOE) is restricted by this PP to be performed only by the administrator.
+The ST should indicate which of the optional management functions are implemented in the TOE.
+This can be done by copying the above table into the ST and adjusting the "User" column according to which capabilities are present or not present.
+The ST should also indicate, as described in the Application Note for FMT_MOF_EXT.1, which of the selected capabilities are restricted such that only the administrator can perform the function.
 	      </h:p>
 	      <h:p>
 The terms "Administrator" and "User" are defined in <secref linkend="glossary"/>
