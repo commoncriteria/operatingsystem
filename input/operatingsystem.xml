@@ -2330,31 +2330,38 @@ and verify that the client rejects the connection after receiving the Server Key
 	    <title> 
 	      The <abbr linkend="OS"/> shall be capable of performing the following management functions:
 	      <h:br/>
-	      <h:table style="border: 1px solid black;">
-		<h:tr><h:th>Management Function</h:th><h:th>User</h:th><h:th id="col3">Administrator</h:th></h:tr>
-		<h:tr><h:td>Enable/disable screen lock</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
-		<h:tr><h:td>Configure screen lock inactivity timeout</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
-		<h:tr><h:td>Configure local audit storage capacity</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
-		<h:tr><h:td>Configure minimum password Length</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
-		<h:tr><h:td>Configure minimum number of special characters in password</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
-		<h:tr><h:td>Configure minimum number of numeric characters in password</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
-		<h:tr><h:td>Configure minimum number of uppercase characters in password</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
-		<h:tr><h:td>Configure minimum number of lowercase characters in password</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
-		<h:tr><h:td>Configure remote connection inactivity timeout</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
-		<h:tr><h:td>Enable/disable unauthenticated logon</h:td><h:td>M</h:td><h:td>M</h:td></h:tr>
-		<h:tr><h:td>Configure lockout policy for unsuccessful authentication attempts through [selection: timeouts between attempts, limiting number of attempts during a time period]</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
-		<h:tr><h:td>Configure host-based firewall</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
-		<h:tr><h:td>Configure name/address of directory server to bind with</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
-		<h:tr><h:td>Configure name/address of remote management server from which to receive management settings</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
-		<h:tr><h:td>Configure name/address of audit/logging server to which to send audit/logging records</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
-		<h:tr><h:td>Configure audit rules</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
-		<h:tr><h:td>Configure name/address of network time server</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
-		<h:tr><h:td>Enable/disable automatic software update</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
-		<h:tr><h:td>Configure WiFi interface       </h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
-		<h:tr><h:td>Enable/disable Bluetooth interface</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
-		<h:tr><h:td>Enable/disable [assignment: list of other external interfaces]</h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
-		<h:tr><h:td><assignable>list of other management functions to be provided by the TSF</assignable></h:td><h:td>O</h:td><h:td>O</h:td></h:tr>
-	      </h:table>
+	      <management-function-set>
+		<manager>Administrator</manager>
+		<manager>User</manager>
+		<management-function admin='O' user='O'>Enable/disable screen lock</management-function>
+		<management-function admin='O' user='O'>Configure screen lock inactivity timeout</management-function>
+		<management-function admin='O' user='O'>Configure local audit storage capacity</management-function>
+		<management-function admin='O' user='O'>Configure minimum password Length</management-function>
+		<management-function admin='O' user='O'>Configure minimum number of special characters in password</management-function>
+		<management-function admin='O' user='O'>Configure minimum number of numeric characters in password</management-function>
+		<management-function admin='O' user='O'>Configure minimum number of uppercase characters in password</management-function>
+		<management-function admin='O' user='O'>Configure minimum number of lowercase characters in password</management-function>
+		<management-function admin='O' user='O'>Configure remote connection inactivity timeout</management-function>
+		<management-function admin='X' user='O'>Enable/disable unauthenticated logon</management-function>
+		<management-function admin='O' user='O'>
+Configure lockout policy for unsuccessful authentication attempts through 
+                  <selectables>
+		    <selectable>timeouts between attempts</selectable>
+		    <selectable>limiting number of attempts during a time period</selectable>
+		  </selectables>
+		</management-function>
+		<management-function admin='O' user='O'>Configure host-based firewall</management-function>
+		<management-function admin='O' user='O'>Configure name/address of directory server to bind with</management-function>
+		<management-function admin='O' user='O'>Configure name/address of remote management server from which to receive management settings</management-function>
+		<management-function admin='O' user='O'>Configure name/address of audit/logging server to which to send audit/logging records</management-function>
+		<management-function admin='O' user='O'>Configure audit rules</management-function>
+		<management-function admin='O' user='O'>Configure name/address of network time server</management-function>
+		<management-function admin='O' user='O'>Enable/disable automatic software update</management-function>
+		<management-function admin='O' user='O'>Configure WiFi interface       </management-function>
+		<management-function admin='O' user='O'>Enable/disable Bluetooth interface</management-function>
+		<management-function admin='O' user='O'>Enable/disable [assignment: list of other external interfaces]</management-function>
+		<management-function admin='O' user='O'><assignable>list of other management functions to be provided by the TSF</assignable></management-function>
+	      </management-function-set>
 	    </title>
 	    <note role="application">
 	      <h:p>
