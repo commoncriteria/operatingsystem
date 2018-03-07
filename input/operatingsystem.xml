@@ -946,11 +946,12 @@ users of the same system.
             <note role="application">
 	      <h:p>
 The threat addressed by this element is the recovery of disused cryptographic keys from volatile memory by unauthorized processes.
+In this component, <h:i>keys</h:i> refer to the key itself or any intermediate sensitive values that were used to construct the key (e.g., primes).
 	      </h:p>
 
 	      <h:p>
 The <abbr linkend="TSF"/> is expected to destroy or cause to be destroyed all copies of cryptographic keys created and managed by the <abbr linkend="TOE"/> once the keys are no longer needed.
- This requirement is the same for all instances of keys within <abbr linkend="TOE"/> volatile memory regardless of whether the memory is controlled by <abbr linkend="TOE"/> manufacturer software or by 3rd party <abbr linkend="TOE"/> modules.
+This requirement is the same for all instances of keys within <abbr linkend="TOE"/> volatile memory regardless of whether the memory is controlled by <abbr linkend="TOE"/> manufacturer software or by 3rd party <abbr linkend="TOE"/> modules.
  The assurance activities are designed with flexibility to address cases where the <abbr linkend="TOE"/> manufacturer has limited insight into the behavior of 3rd party <abbr linkend="TOE"/> components.
 	      </h:p>
 	      <h:p>
@@ -2467,6 +2468,9 @@ The evaluator is expected to test these functions in all the ways in which the S
               </h:ul>
 	      .
             </title>
+            <note role="application">
+	      "Credential repositories" refer, in this case, to structures containing cryptographic keys or passwords.
+	    </note>
             <aactivity>
 	      The evaluator will create an unprivileged user account. 
 	      Using this account, the evaluator will ensure that the following tests result in a negative
