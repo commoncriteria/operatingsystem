@@ -946,11 +946,12 @@ users of the same system.
             <note role="application">
 	      <h:p>
 The threat addressed by this element is the recovery of disused cryptographic keys from volatile memory by unauthorized processes.
+In this component, <h:i>keys</h:i> refer to the key itself or any intermediate sensitive values that were used to construct the key (e.g., primes).
 	      </h:p>
 
 	      <h:p>
 The <abbr linkend="TSF"/> is expected to destroy or cause to be destroyed all copies of cryptographic keys created and managed by the <abbr linkend="TOE"/> once the keys are no longer needed.
- This requirement is the same for all instances of keys within <abbr linkend="TOE"/> volatile memory regardless of whether the memory is controlled by <abbr linkend="TOE"/> manufacturer software or by 3rd party <abbr linkend="TOE"/> modules.
+This requirement is the same for all instances of keys within <abbr linkend="TOE"/> volatile memory regardless of whether the memory is controlled by <abbr linkend="TOE"/> manufacturer software or by 3rd party <abbr linkend="TOE"/> modules.
  The assurance activities are designed with flexibility to address cases where the <abbr linkend="TOE"/> manufacturer has limited insight into the behavior of 3rd party <abbr linkend="TOE"/> components.
 	      </h:p>
 	      <h:p>
@@ -1846,7 +1847,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 	      These requirements will be revisited as new <abbr
                 title="Transport Layer Security">TLS</abbr> versions are standardized by the IETF.
 	      </h:p><h:p>
-              If any cipher suites are selected using ECDHE, then <linkref linkend="FCS_TLSC_EXT.2.1"/> is required. 
+              If any cipher suites are selected using ECDHE, then <linkref linkend="FCS_TLSC_EXT.2"/> is required. 
 	    </h:p>
             </note>
             <aactivity>
@@ -2416,6 +2417,9 @@ Configure lockout policy for unsuccessful authentication attempts through
 Sophisticated account management policies, such as intricate password complexity requirements and handling of temporary accounts, are a function of directory servers.
 The OS can enroll in such account management and enable the overall information system to achieve such policies by binding to a directory server.
 	      </h:p>
+	      <h:p>
+		In this element, a session timeout can fulfill the management function of a "screen lock".
+	      </h:p>
 	    </note>
 	    <aactivity>
 The evaluator will verify that every management function captured in the ST is described in the operational guidance and that the description contains the information required to perform the management duties associated with the management function.
@@ -2467,6 +2471,9 @@ The evaluator is expected to test these functions in all the ways in which the S
               </h:ul>
 	      .
             </title>
+            <note role="application">
+	      "Credential repositories" refer, in this case, to structures containing cryptographic keys or passwords.
+	    </note>
             <aactivity>
 	      The evaluator will create an unprivileged user account. 
 	      Using this account, the evaluator will ensure that the following tests result in a negative
@@ -2493,13 +2500,16 @@ The evaluator is expected to test these functions in all the ways in which the S
             <aactivity>
 
 The evaluator will select 3 executables included with the <abbr linkend="TSF"/>. 
-These must include any web browser or mail client included with the <abbr linkend="TSF"/>. 
+If the <abbr linkend="TSF"/> includes a web browser it must be selected.
+If the <abbr linkend="TSF"/> includes a mail client it must be selected.
 For each of these apps, the evaluator will launch the same executables on two separate instances of the 
-OS on identical hardware and compare all memory mapping locations. 
-	      The evaluator will ensure that no memory mappings are placed in the same location.
-	      If the rare chance occurs that two mappings are the same for a single executable and
-	      not the same for the other two, the evaluator will repeat the test with that executable to verify
-	      that in the second test the mappings are different.
+OS on identical hardware and compare all memory mapping locations.
+The evaluator will ensure that no memory mappings are placed in the same location.
+If the rare chance occurs that two mappings are the same for a single executable and
+not the same for the other two, the evaluator will repeat the test with that executable to verify
+that in the second test the mappings are different.
+This test can also be completed on the same hardware and rebooting between application launches. 
+
 	    </aactivity>
           </f-element>
 <!--          <f-element id="fpt_aslr_ext.1.2" status="optional">
@@ -2769,12 +2779,7 @@ GNU gcc, as of version 4.8, and Microsoft's VC++, as of 2010 release, activate o
                 <test>
                   If the ST author indicates that the integrity verification is performed
                   using a public key, the evaluator will verify that the update mechanism includes a certificate
-                  validation according to <linkref linkend="FIA_X509_EXT.1"/>. The evaluator will digitally sign the TSF
-                  executable with a certificate that does not have the Code Signing purpose in the
-                  <h:i>extendedKeyUsage</h:i> field and verify that an integrity violation is triggered. The evaluator
-                  shall repeat the test using a certificate that contains the Code Signing purpose and verify that
-                  the integrity verification succeeds. Ideally, the two certificates should be identical except for
-                  the <h:i>extendedKeyUsage</h:i> field.
+                  validation according to <linkref linkend="FIA_X509_EXT.1"/>.
                 </test>
               </testlist>
 	      </h:p>
@@ -4314,9 +4319,9 @@ evaluation and performs independent testing.
       <entry id="bibCEM">
         <tag>CEM</tag>
         <description>
-          <h:a href="http://www.commoncriteriaportal.org/files/ccfiles/CEMV3.1R4.pdf">Common
+          <h:a href="http://www.commoncriteriaportal.org/files/ccfiles/CEMV3.1R5.pdf">Common
             Evaluation Methodology for Information Technology Security - Evaluation Methodology</h:a>,
-          CCMB-2012-09-004, Version 3.1, Revision 4, September 2012. </description>
+          CCMB-2017-04-004, Version 3.1, Revision 5, April 2017. </description>
       </entry>
       <entry id="bibCESG">
         <tag>CESG</tag>
