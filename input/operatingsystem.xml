@@ -500,7 +500,7 @@ users of the same system.
           <component-refer ref="fcs_rbg_ext.1"/>
           <component-refer ref="fcs_ckm.1"/>
           <component-refer ref="fcs_ckm.2"/>
-          <component-refer ref="fcs_ckm_ext.4"/>
+          <component-refer ref="fcs_ckm.4"/>
           <component-refer ref="fcs_cop.1.1(1)"/>
           <component-refer ref="fdp_ifc_ext.1"/>
           <component-refer ref="fia_x509_ext.1"/>
@@ -939,94 +939,155 @@ users of the same system.
         </f-component>
                 
 
-	<f-component id="FCS_CKM_EXT.4" name="Cryptographic Key Destruction" >
-          <f-element id="FCS_CKM_EXT.4.1">
-            <title>The OS shall cause disused cryptographic keys in volatile memory to be destroyed or rendered unrecoverable.
-            </title>
-            <note role="application">
+	<f-component id="FCS_CKM.4" name="Cryptographic Key Destruction" >
+          <f-element id="FCS_CKM.4.1">
+	    <title>
+The OS shall destroy cryptographic keys in accordance with a specified cryptographic key destruction method 
+              <selectables>
+		<selectable>
+For volatile memory, the destruction shall be executed by a 
+		<selectables>
+		  <selectable>
+single overwrite consisting of [selection: 
+                    <selectables>
+		      <selectable>a pseudo-random pattern using the TSF’s RBG</selectable>
+		      <selectable>zeroes</selectable>
+		      <selectable>ones</selectable>
+		      <selectable>a new value of a key</selectable>
+		      <selectable><assignable> any value that does not contain any CSP</assignable></selectable>
+		    </selectables>
+		  </selectable>
+		  <selectable>removal of power to the memory</selectable>
+		  <selectable>destruction of reference to the key directly followed by a request for garbage collection</selectable>
+		</selectables>
+		</selectable>
+		<selectable>
+		  For non-volatile memory that consists of the invocation of an interface provided by the underlying platform that 
+		  <selectables>
+		    <selectable>
+		      logically addresses the storage location of the key and performs a 
+		      <selectables>
+			<selectable>single</selectable>
+			<selectable><assignable>ST author defined multi-pass</assignable></selectable>
+		      </selectables>
+overwrite consisting of 
+                      <selectables>
+			<selectable>zeroes</selectable><selectable>ones</selectable>
+			<selectable>pseudo-random pattern</selectable>
+			<selectable> a new value of a key of the same size</selectable>
+			<selectable><assignable>any value that does not contain any CSP</assignable></selectable>
+		      </selectables>
+		    </selectable>
+		    <selectable>
+		      instructs the underlying platform to destroy the abstraction that represents the key
+		    </selectable>
+		  </selectables>
+		</selectable>
+	      </selectables>
+	      .
+	    </title>
+	    <note role="application">
 	      <h:p>
-The threat addressed by this element is the recovery of disused cryptographic keys from volatile memory by unauthorized processes.
-In this component, <h:i>keys</h:i> refer to the key itself or any intermediate sensitive values that were used to construct the key (e.g., primes).
+The interface referenced in the requirement could take different forms, the most likely of which is an application programming interface to an OS kernel. There may be various levels of abstraction visible. For instance, in a given implementation, selection a, the application may have access to the file system details and may be able to logically address specific memory locations. In another implementation, selection b, the application may simply have a handle to a resource and can only ask the platform to delete the resource, as may be the case with a platforms secure key store. Selection b should only be used for the most restricted access. The level of detail to which the TOE has access will be reflected in the TSS section of the ST.
 	      </h:p>
-
 	      <h:p>
-The <abbr linkend="TSF"/> is expected to destroy or cause to be destroyed all copies of cryptographic keys created and managed by the <abbr linkend="TOE"/> once the keys are no longer needed.
-This requirement is the same for all instances of keys within <abbr linkend="TOE"/> volatile memory regardless of whether the memory is controlled by <abbr linkend="TOE"/> manufacturer software or by 3rd party <abbr linkend="TOE"/> modules.
- The assurance activities are designed with flexibility to address cases where the <abbr linkend="TOE"/> manufacturer has limited insight into the behavior of 3rd party <abbr linkend="TOE"/> components.
-	      </h:p>
-	      <h:p>
-The preferred method for destroying keys in <abbr linkend="TOE"/> volatile memory is by direct overwrite of the memory occupied by the keys.
-The values used for overwriting can be all zeros, all ones, or any other pattern or combination of values significantly different than the value of the key itself such that the keys are rendered inaccessible to running processes.
-	      </h:p>
-	      <h:p>
-Some implementations may find that direct overwriting of memory is not feasible or possible due to programming language constraints.
-Many memory- and type-safe languages provide no mechanism for programmers to specify that a particular memory location be accessed or written.
-The value of such languages is that it is much harder for a programming error to result in a buffer or heap overflow.
-The downside is that multiple copies of keys might be scattered throughout language-runtime memory.
-In such cases, the <abbr linkend="TOE"/> should take whatever actions are feasible to cause the keys to become inaccessible—freeing memory, destroying objects, closing applications, programming using the minimum possible scope for variables containing keys.
-	      </h:p>
-	      <h:p>
-Likewise, if keys reside in memory within the execution context of a third-party module, then the <abbr linkend="TOE"/> should take whatever feasible actions it can to cause the keys to be destroyed.
-	      </h:p>
-	      <h:p>
-Cryptographic keys in non-<abbr linkend="TOE"/> volatile memory are not covered by this requirement.
-This expressly includes keys created and used by Guest <abbr linkend="VM"/>s.
-The Guest is responsible for disposing of such keys.
+Several selections allow assignment of a ‘value that does not contain any CSP’. This means that the TOE uses some other specified data not drawn from a source that may contain key material or reveal information about key material, and not being any of the particular values listed as other selection options. The point of the phrase ‘does not contain any CSP’ is to ensure that the overwritten data is carefully selected, and not taken from a general ‘pool’ that might contain current or residual data that itself requires confidentiality protection.
 	      </h:p>
 	    </note>
-          </f-element>
-          <f-element id="FCS_CKM_EXT.4.2">
-            <title>The OS shall cause disused cryptographic keys in non-volatile storage to be destroyed or rendered unrecoverable.
-            </title>
-            <note role="application">
+	    <aactivity>
+	      <h:h3>TSS</h:h3>
 	      <h:p>
-The ultimate goal of this element is to ensure that disused cryptographic keys are inaccessible not only to components of the running system, but are also unrecoverable through forensic analysis of discarded storage media.
-The element is designed to reflect the fact that the latter may not be wholly practical at this time due to the way some storage technologies are implemented (e.g., wear-leveling of flash storage).
+The evaluator examines the TSS to ensure it describes how the keys are managed in volatile memory. This description includes details of how each identified key is introduced into volatile memory (e.g. by derivation from user input, or by unwrapping a wrapped key stored in non-volatile memory) and how they are overwritten.
 	      </h:p>
 	      <h:p>
-Key storage areas in non-volatile storage can be overwritten with any value that renders the keys unrecoverable.
-The value used can be all zeros, all ones, or any other pattern or combination of values significantly different than the value of the key itself.
+The evaluator shall check to ensure the TSS lists each type of key that is stored in in non-volatile memory, and identifies how the TOE interacts with the underlying platform to manage keys (e.g., store, retrieve, destroy). The description includes details on the method of how the TOE interacts with the platform, including an identification and description of the interfaces it uses to manage keys (e.g., file system APIs, platform key store APIs).
 	      </h:p>
 	      <h:p>
-The <abbr linkend="TSF"/> is expected to destroy all copies of cryptographic keys created and managed by the <abbr linkend="TOE"/> once the keys are no longer needed.
-Since this is a software-only <abbr linkend="TOE"/>, the hardware controllers that manage non-volatile storage media are necessarily outside the <abbr linkend="TOE"/> boundary.
-Thus, the <abbr linkend="TOE"/> manufacturer is likely to have little control over—or insight into—the functioning of these storage devices.
-The <abbr linkend="TOE"/> is expected to make a “best-effort” to destroy disused cryptographic keys by invoking the appropriate platform interfaces—recognizing that the specific actions taken by the platform are out of the <abbr linkend="TOE"/>’s control.
+The evaluator examines the interface description for each different media type to ensure that the interface supports the selection(s) and description in the TSS.
 	      </h:p>
 	      <h:p>
-But in cases where the <abbr linkend="TOE"/> has insight into the non-volatile storage technologies used by the platform, or where the <abbr linkend="TOE"/> can specify a preference or method for destroying keys, the destruction should be executed by a single, direct overwrite consisting of pseudo-random data or a new key, by a repeating pattern of any static value, or by a block erase.
+If the ST makes use of the open assignment and fills in the type of pattern that is used, the evaluator examines the TSS to ensure it describes how that pattern is obtained and used. The evaluator shall verify that the pattern does not contain any CSPs.
 	      </h:p>
 	      <h:p>
-For keys stored on encrypted media, it is sufficient for the media encryption keys to be destroyed for all keys stored on the media to be considered destroyed.
+The evaluator shall check that the TSS identifies any configurations or circumstances that may not strictly conform to the key destruction requirement.
 	      </h:p>
-            </note>
-            <aactivity>
+<h:h3>Operational Guidance</h:h3>
 	      <h:p>
-The evaluator shall check to ensure the <abbr linkend="TSS"/> lists each type of key and its origin and location in memory or storage.
-The evaluator shall verify that the <abbr linkend="TSS"/> describes when each type of key is cleared.
+There are a variety of concerns that may prevent or delay key destruction in some cases. The evaluator shall check that the guidance documentation identifies configurations or circumstances that may not strictly conform to the key destruction requirement, and that this description is consistent with the relevant parts of the TSS and any other relevant Required Supplementary Information. The evaluator shall check that the guidance documentation provides guidance on situations where key destruction may be delayed at the physical layer and how such situations can be avoided or mitigated if possible.
 	      </h:p>
 	      <h:p>
-For each key clearing situation the evaluator shall perform one of the following activities:
+Some examples of what is expected to be in the documentation are provided here. 
 	      </h:p>
 	      <h:p>
-		<h:ul>
-                  <h:li>The evaluator shall use appropriate combinations of specialized operational or development environments, development tools (debuggers, emulators, simulators, etc.), or instrumented builds (developmental, debug, or release) to demonstrate that keys are cleared correctly, including all intermediate copies of the key that may have been created internally by the <abbr linkend="TOE"/> during normal cryptographic processing.</h:li>
-                  <h:li>In cases where testing reveals that 3rd-party software modules or programming language run-time environments do not properly overwrite keys, this fact must be documented.
-		  Likewise, it must be documented if there is no practical way to determine whether such modules or environments destroy keys properly.</h:li>
-		  <h:li>In cases where it is impossible or impracticable to perform the above tests, the evaluator shall describe how keys are destroyed in such cases, to include:
-                  <h:ul>
-                    <h:li>Which keys are affected</h:li>
-                    <h:li>The reasons why testing is impossible or impracticable</h:li>
-                    <h:li>Evidence that keys are destroyed appropriately (e.g., citations to component documentation, component developer/vendor attestation, component vendor test results)</h:li>
-                    <h:li>Aggravating and mitigating factors that may affect the timeliness or execution of key destruction (e.g., caching, garbage collection, operating system memory management)</h:li>
-                  </h:ul>
-                  </h:li>
-		</h:ul>
+When the TOE does not have full access to the physical memory, it is possible that the storage may be implementing wear-leveling and garbage collection. This may create additional copies of the key that are logically inaccessible but persist physically. In this case, to mitigate this the drive should support the TRIM command and implements garbage collection to destroy these persistent copies when not actively engaged in other tasks.
 	      </h:p>
 	      <h:p>
-Note: using debug or instrumented builds of the <abbr linkend="TOE"/> and <abbr linkend="TOE"/> components is permitted in order to demonstrate that the <abbr linkend="TOE"/> takes appropriate action to destroy keys.
-It is expected that these builds are based on the same source code as are release builds (of course, with instrumentation and debug-specific code added).
+Drive vendors implement garbage collection in a variety of different ways, as such there is a variable amount of time until data is truly removed from these solutions. There is a risk that data may persist for a longer amount of time if it is contained in a block with other data not ready for erasure. To reduce this risk, the operating system and file system of the OE should support TRIM, instructing the non-volatile memory to erase copies via garbage collection upon their deletion. If a RAID array is being used, only set-ups that support TRIM are utilized. If the drive is connected via PCI-Express, the operating system supports TRIM over that channel.
 	      </h:p>
+	      <h:p>
+The drive should be healthy and contains minimal corrupted data and should be end of lifed before a significant amount of damage to drive health occurs, this minimizes the risk that small amounts of potentially recoverable data may remain in damaged areas of the drive.
+	      </h:p>
+		<testlist>
+		  <test>Applied to each key held as in volatile memory and subject to destruction by overwrite by the TOE (whether or not the value is subsequently encrypted for storage in volatile or non-volatile memory). In the case where the only selection made for the destruction method key was removal of power, then this test is unnecessary. The evaluator shall:
+		  <h:ol>
+		    <h:li>Record the value of the key in the TOE subject to clearing.</h:li>
+		    <h:li>Cause the TOE to perform a normal cryptographic processing with the key from Step #1.</h:li>
+		    <h:li>Cause the TOE to clear the key.</h:li>
+		    <h:li>Cause the TOE to stop the execution but not exit.</h:li>
+		    <h:li>Cause the TOE to dump the entire memory of the TOE into a binary file.</h:li>
+		    <h:li>Search the content of the binary file created in Step #5 for instances of the known key value from Step #1.</h:li>
+		  </h:ol>
+		  <h:p>
+Steps 1-6 ensure that the complete key does not exist anywhere in volatile memory. If a copy is found, then the test fails.
+		  </h:p>
+</test>
+<test>Applied to each key help in non-volatile memory and subject to destruction by the TOE. The evaluator shall use special tools (as needed), provided by the TOE developer if necessary, to ensure the tests function as intended.
+<h:ol>
+  <h:li>Identify the purpose of the key and what access should fail when it is deleted. (e.g. the data encryption key being deleted would cause data decryption to fail.)</h:li>
+  <h:li>Cause the TOE to clear the key.</h:li>
+  <h:li>Have the TOE attempt the functionality that the cleared key would be necessary for.</h:li>
+</h:ol>
+
+<h:p>
+  The test succeeds if step 3 fails.
+</h:p>
+</test>
+<test>
+<h:p>
+  The following tests apply only to selection a), since the TOE in this instance has more visibility into what is happening within the underlying platform (e.g., a logical view of the media). In selection b), the TOE has no visibility into the inner workings and completely relies on the underlying platform, so there is no reason to test the TOE beyond test 2.
+</h:p>
+<h:p>
+For selection a), the following tests are used to determine the TOE is able to request the platform to overwrite the key with a TOE supplied pattern.
+</h:p>
+<h:p>
+
+Applied to each key held in non-volatile memory and subject to destruction by overwrite by the TOE. The evaluator shall use a tool that provides a logical view of the media (e.g., MBR file system):
+<h:ol>
+<h:li>Record the value of the key in the TOE subject to clearing.</h:li>
+
+<h:li>Cause the TOE to perform a normal cryptographic processing with the key from Step #1.</h:li>
+
+<h:li>Cause the TOE to clear the key.</h:li>
+
+<h:li>Search the logical view that the key was stored in for instances of the known key value from Step #1. If a copy is found, then the test fails.</h:li>
+</h:ol>
+</h:p>
+</test>
+<test> Applied to each key held as non-volatile memory and subject to destruction by overwrite by the TOE. The evaluator shall use a tool that provides a logical view of the media:
+<h:ol>
+<h:li>Record the logical storage location of the key in the TOE subject to clearing.</h:li>
+
+<h:li>Cause the TOE to perform a normal cryptographic processing with the key from Step #1.</h:li>
+
+<h:li>Cause the TOE to clear the key.</h:li>
+
+<h:li>Read the logical storage location in Step #1 of non-volatile memory to ensure the appropriate pattern is utilized.</h:li>
+</h:ol>
+<h:p>
+  The test succeeds if correct pattern is used to overwrite the key in the memory location. If the pattern is not found the test fails.
+</h:p>
+</test>
+		</testlist>
             </aactivity>
           </f-element>
         </f-component>
