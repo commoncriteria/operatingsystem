@@ -2242,11 +2242,17 @@ and verify that the client rejects the connection after receiving the Server Key
               authentication. 
 	      </h:p><h:p>
 	      The evaluator will also perform the following test: 
-              <h:br/>
-              Configure the server to require mutual authentication and then modify a
-              byte in a CA field in the Server’s Certificate Request handshake message. The
-              modified CA field must not be the CA used to sign the client’s certificate.
-              The evaluator will verify the connection is unsuccessful.
+
+	      <testlist>
+		<test>
+The evaluator will establish a connection to a peer server that is not configured for mutual authentication (i.e. does not send Server’s Certificate Request (type 13) message).
+The evaluator observes negotiation of a TLS channel and confirms that the TOE did not send Client’s Certificate message (type 11) during handshake.
+		</test>
+		<test>
+The evaluator will establish a connection to a peer server with a shared trusted root that is configured for mutual authentication (i.e. it sends Server’s Certificate Request (type 13) message).
+The evaluator observes negotiation of a TLS channel and confirms that the TOE responds with a non-empty Client’s Certificate message (type 11) and Certificate Verify (type 15) messages.
+		</test>
+	      </testlist>
 	      </h:p>
             </aactivity>
           </f-element>
