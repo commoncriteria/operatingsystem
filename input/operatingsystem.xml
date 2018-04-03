@@ -610,12 +610,14 @@ users of the same system.
               the AGD guidance instructs the administrator how to configure the OS 
 	      to use the selected key generation scheme(s) and key size(s) for all uses defined
               in this PP. 
-	      </h:p><h:p>
+	      </h:p>
+	      <h:p>
 	      Evaluation Activity Note: The following tests may require the
               vendor to furnish a developer environment and developer 
 	      tools that are typically not available to end-users of the OS. 
-              <h:br/>
-              <h:b>Key Generation for FIPS PUB 186-4 RSA Schemes</h:b><h:br/> The evaluator will verify
+              <h:p>
+		<h:b>Key Generation for FIPS PUB 186-4 RSA Schemes</h:b><h:br/>
+		The evaluator will verify
               the implementation of RSA Key Generation by the OS using the Key
               Generation test. This test verifies the ability of the <abbr linkend="TSF"/> to
               correctly produce values for the key components including the public verification
@@ -680,7 +682,9 @@ users of the same system.
               implementation and modify five of the public key values so that they are incorrect,
               leaving five values unchanged (i.e., correct). The evaluator will obtain in response
               a set of 10 PASS/FAIL values.
-              <h:br/>
+
+	      </h:p>
+	      <h:p>
               <h:b>Key Generation for Finite-Field Cryptography (FFC)</h:b>
               <h:br/>
               The evaluator shall verify the implementation of the Parameters Generation 
@@ -734,6 +738,7 @@ users of the same system.
               </h:ul>
               for each FFC parameter set and key pair.
               </h:p>
+	      </h:p>
 	    </aactivity>
           </f-element>
         </f-component>
@@ -817,15 +822,13 @@ users of the same system.
               procedures described below. This includes the parsing of the DKM, the generation of
               MAC data and the calculation of MAC tag. <h:br/>
               <indent>
-                <h:b>Function Test</h:b><h:p>The Function test verifies the ability of the OS to
-                implement the key agreement schemes correctly. To conduct this test the evaluator
-                shall generate or obtain test vectors from a known good implementation of the OS's
-                supported schemes. For each supported key agreement scheme-key agreement role
-                combination, KDF type, and, if supported, key confirmation role- key confirmation
-                type combination, the tester shall generate 10 sets of test vectors. 
-		The data set consists of the NIST approved curve (ECC) per 10 sets of public keys.
-		These keys are static, ephemeral or both depending
-                on the scheme being tested.
+		<h:p>
+		  <h:b>Function Test</h:b>
+		  <h:p>The Function test verifies the ability of the OS to implement the key agreement schemes correctly.
+To conduct this test the evaluator shall generate or obtain test vectors from a known good implementation of the OS's supported schemes.
+For each supported key agreement scheme-key agreement role combination, KDF type, and, if supported, key confirmation role- key confirmation type combination, the tester shall generate 10 sets of test vectors. 
+The data set consists of the NIST approved curve (ECC) per 10 sets of public keys.
+These keys are static, ephemeral or both depending on the scheme being tested.
 	      </h:p>
 	      <h:p> The evaluator will obtain the DKM, the
                 corresponding OS's public keys (static and/or ephemeral), the MAC tag(s), and any
@@ -845,7 +848,9 @@ users of the same system.
                 If key confirmation is supported, the OS shall perform the above for each
                 implemented approved MAC algorithm. 
 	      </h:p>
-	      <h:p><h:b>Validity Test</h:b></h:p>
+              </h:p>
+	      <h:p>
+		<h:b>Validity Test</h:b><h:br/>
 		<h:p> The Validity test verifies the ability of the OS to
                 recognize another party’s valid and invalid key agreement results with or without
                 key confirmation. To conduct this test, the evaluator will obtain a list of the
@@ -875,6 +880,7 @@ users of the same system.
                   compare the OS’s results with the results using a known good implementation
                   verifying that the OS detects these errors. 
 		</h:p>
+	      </h:p>
               </indent>
 	      </h:p>
 	      <h:p><h:b>SP800-56B Key Establishment Schemes</h:b></h:p>
@@ -2053,9 +2059,12 @@ and verify that the client rejects the connection after receiving the Server Key
                   each supported SAN type. 
                 </test>
                 <test> 
-                  The evaluator will present a server certificate that contains a CN that
+		  [conditional]
+		  If the TOE does not mandate the presence of the SAN extension, 
+		  the evaluator will present a server certificate that contains a CN that
                   matches the reference identifier and does not contain the SAN extension. The
                   evaluator will verify that the connection succeeds. 
+		  If the TOE mandates the presence of the SAN extension, this test shall be omitted.
                 </test>
                 <test> 
                   The evaluator will present a server certificate that contains a CN that does
@@ -3014,7 +3023,7 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
                       <selectable>User and Group management events (Successful and unsuccessful add, delete, modify, disable, enable, and credential change) </selectable>
                       <selectable>Audit and log data access events (Success/Failure)</selectable>
                       <selectable>Cryptographic verification of software (Success/Failure)</selectable>
-                      <selectable>Attempted application invocation with arguments(Success/Failure e.g. due to software restriction policy) </selectable>
+                      <selectable>Attempted application invocation with arguments (Success/Failure e.g. due to software restriction policy) </selectable>
                       <selectable>System reboot, restart, and shutdown events (Success/Failure)</selectable>
                       <selectable>Kernel module loading and unloading events (Success/Failure)</selectable>
                       <selectable>Administrator or root-level access events (Success/Failure)</selectable>
