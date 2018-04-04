@@ -500,7 +500,7 @@ users of the same system.
           <component-refer ref="fcs_rbg_ext.1"/>
           <component-refer ref="fcs_ckm.1"/>
           <component-refer ref="fcs_ckm.2"/>
-          <component-refer ref="fcs_ckm.4"/>
+          <component-refer ref="fcs_ckm_ext.4"/>
           <component-refer ref="fcs_cop.1.1(1)"/>
           <component-refer ref="fdp_ifc_ext.1"/>
           <component-refer ref="fia_x509_ext.1"/>
@@ -932,17 +932,14 @@ These keys are static, ephemeral or both depending on the scheme being tested.
         </f-component>
                 
 
-	<f-component id="FCS_CKM.4" name="Cryptographic Key Destruction" >
-          <f-element id="FCS_CKM.4.1">
+	<f-component id="FCS_CKM_EXT.4" name="Cryptographic Key Destruction" >
+          <f-element id="FCS_CKM_EXT.4.1">
 	    <title>
-The OS shall destroy cryptographic keys in accordance with a specified cryptographic key destruction method 
+The OS shall destroy cryptographic keys and key material in accordance with a specified cryptographic key destruction method 
               <selectables>
-		<selectable>
-For volatile memory, the destruction shall be executed by a 
+		<selectable>For volatile memory, the destruction shall be executed by a 
 		<selectables>
-		  <selectable>
-single overwrite consisting of 
-                    <selectables>
+		  <selectable>single overwrite consisting of <selectables>
 		      <selectable>a pseudo-random pattern using the TSF’s RBG</selectable>
 		      <selectable>zeroes</selectable>
 		      <selectable>ones</selectable>
@@ -950,14 +947,9 @@ single overwrite consisting of
 		      <selectable><assignable> any value that does not contain any CSP</assignable></selectable></selectables></selectable>
 		  <selectable>removal of power to the memory</selectable>
 		  <selectable>destruction of reference to the key directly followed by a request for garbage collection</selectable>
-		</selectables>
-		</selectable>
-		<selectable>
-		  For non-volatile memory that consists of the invocation of an interface provided by the underlying platform that 
-		  <selectables>
-		    <selectable>
-		      logically addresses the storage location of the key and performs a 
-		      <selectables>
+		</selectables></selectable>
+		<selectable>For non-volatile memory that consists of the invocation of an interface provided by the underlying platform that <selectables>
+		    <selectable>logically addresses the storage location of the key and performs a <selectables>
 			<selectable>single</selectable>
 			<selectable><assignable>ST author defined multi-pass</assignable></selectable>
 		      </selectables>
@@ -965,7 +957,7 @@ overwrite consisting of
                       <selectables>
 			<selectable>zeroes</selectable><selectable>ones</selectable>
 			<selectable>pseudo-random pattern</selectable>
-			<selectable> a new value of a key of the same size</selectable>
+			<selectable>a new value of a key of the same size</selectable>
 			<selectable><assignable>any value that does not contain any CSP</assignable></selectable>
 		      </selectables></selectable>
 		    <selectable>instructs the underlying platform to destroy the abstraction that represents the key</selectable>
@@ -1076,6 +1068,15 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 </test>
 		</testlist>
             </aactivity>
+	  </f-element>
+          <f-element id="FCS_CKM_EXT.4.2">
+	    <title>The OS shall destroy all keys and key material when no longer needed.</title>
+	    <note role="application">
+	      <h:p>
+		For the purposes of this requirement, key material refers to authentication data, passwords, secret/private symmetric keys, private asymmetric keys, data used to derive keys, values derived from passwords, etc. 
+	      </h:p>
+	      <h:p>Key destruction procedures are performed in accordance with <linkref linkend='FCS_CKM_EXT.4.1'/>.</h:p>
+	    </note>
           </f-element>
         </f-component>
  
@@ -1523,18 +1524,13 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
             <title>The <h:b>OS</h:b> shall perform cryptographic signature services (generation and
               verification) in accordance with a specified cryptographic algorithm <selectables
                 linebreak="yes">
-                <selectable>
-		  <h:b>RSA schemes</h:b> using cryptographic key sizes of 2048-bit or greater
-                  that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”,  Section 4 
-		</selectable>
-                <selectable>
-		  <h:b>ECDSA schemes</h:b> using “NIST curves” P-256, P-384 and 
-		  <selectables>
+                <selectable><h:b>RSA schemes</h:b> using cryptographic key sizes of 2048-bit or greater
+                  that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”,  Section 4</selectable>
+                <selectable><h:b>ECDSA schemes</h:b> using “NIST curves” P-256, P-384 and <selectables>
                     <selectable>P-521</selectable>
                     <selectable exclusive="yes">no other curves</selectable>
                   </selectables> 
-		  that meet the following: FIPS PUB 186-4, “Digital Signature   Standard (DSS)”, Section 5 
-		</selectable>
+		  that meet the following: FIPS PUB 186-4, “Digital Signature   Standard (DSS)”, Section 5</selectable>
               </selectables>
               <h:strike>and cryptographic key sizes [assignment: cryptographic algorithm] 
                 that meet the following: [assignment: list of standards].</h:strike>
@@ -2345,10 +2341,8 @@ The evaluator observes negotiation of a TLS channel and confirms that the TOE re
           <f-element id="fdp_ifc_ext.1.1">
             <title> The OS shall
 			<selectables linebreak="yes">
-              <selectable>provide an interface which allows a VPN client to protect all IP traffic using IPsec
-              </selectable>
-              <selectable>provide a VPN client which can protects all IP traffic using IPsec
-			  </selectable>
+              <selectable>provide an interface which allows a VPN client to protect all IP traffic using IPsec</selectable>
+              <selectable>provide a VPN client which can protects all IP traffic using IPsec</selectable>
             </selectables>with the exception of IP traffic required to establish the VPN connection.
             </title>
 	    <note role="application">
@@ -3004,16 +2998,14 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
                   <h:li>Privilege or role escalation events (Success/Failure);</h:li>
 		  <h:li><selectables linebreak='yes'>
                       <selectable>File and object events (Successful and unsuccessful attempts to create, access, delete, modify, modify permissions)</selectable>
-                      <selectable>User and Group management events (Successful and unsuccessful add, delete, modify, disable, enable, and credential change) </selectable>
+                      <selectable>User and Group management events (Successful and unsuccessful add, delete, modify, disable, enable, and credential change)</selectable>
                       <selectable>Audit and log data access events (Success/Failure)</selectable>
                       <selectable>Cryptographic verification of software (Success/Failure)</selectable>
-                      <selectable>Attempted application invocation with arguments (Success/Failure e.g. due to software restriction policy) </selectable>
+                      <selectable>Attempted application invocation with arguments (Success/Failure e.g. due to software restriction policy)</selectable>
                       <selectable>System reboot, restart, and shutdown events (Success/Failure)</selectable>
                       <selectable>Kernel module loading and unloading events (Success/Failure)</selectable>
                       <selectable>Administrator or root-level access events (Success/Failure)</selectable>
-                      <selectable> 
-			<assignable>other specifically defined auditable events</assignable>.
-                      </selectable>
+                      <selectable><assignable>other specifically defined auditable events</assignable>.</selectable>
                     </selectables>
 		  </h:li>
 		  </h:ul>
@@ -3288,9 +3280,9 @@ the following rules: <h:ul>
 <h:i>basicConstraints</h:i> extension and that the <h:i>CA</h:i> flag is set to <h:code>TRUE</h:code> for all CA  certificates. </h:li>
 <h:li> The OS shall validate the revocation status of the certificate using 
 <selectables>
-  <selectable> the Online Certificate Status Protocol (OCSP) as specified in RFC 2560</selectable>
-  <selectable> a Certificate Revocation List (CRL) as specified in RFC 5759</selectable>
-  <selectable> an OCSP TLS Status Request Extension (i.e., OCSP stapling) as specified in RFC 6066</selectable>
+  <selectable>the Online Certificate Status Protocol (OCSP) as specified in RFC 2560</selectable>
+  <selectable>a Certificate Revocation List (CRL) as specified in RFC 5759</selectable>
+  <selectable>an OCSP TLS Status Request Extension (i.e., OCSP stapling) as specified in RFC 6066</selectable>
 </selectables>. </h:li>
 <h:li> The OS shall validate the <h:i>extendedKeyUsage</h:i> field according to the following rules: 
 <h:ul>
@@ -3459,9 +3451,7 @@ the node certificate to be tested, two Intermediate CAs, and the
 		      <selectable>audit server</selectable>
 		      <selectable>authentication server</selectable>
 		      <selectable>management server</selectable> 
-		      <selectable>
-			<assignable>other capabilities</assignable>
-		      </selectable>
+		      <selectable><assignable>other capabilities</assignable></selectable>
 		    </selectables>
 		    that is logically distinct from other communication
 		    channels and provides assured identification of its end points and protection of the channel 
