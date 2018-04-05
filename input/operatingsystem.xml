@@ -973,16 +973,22 @@ The interface referenced in the requirement could take different forms, the most
 Several selections allow assignment of a ‘value that does not contain any CSP’. This means that the TOE uses some other specified data not drawn from a source that may contain key material or reveal information about key material, and not being any of the particular values listed as other selection options. The point of the phrase ‘does not contain any CSP’ is to ensure that the overwritten data is carefully selected, and not taken from a general ‘pool’ that might contain current or residual data that itself requires confidentiality protection.
 	      </h:p>
 	    </note>
+	  </f-element>
+          <f-element id="FCS_CKM_EXT.4.2">
+	    <title>The OS shall destroy all keys and key material when no longer needed.</title>
+	    <note role="application">
+	      <h:p>
+		For the purposes of this requirement, key material refers to authentication data, passwords, secret/private symmetric keys, private asymmetric keys, data used to derive keys, values derived from passwords, etc. 
+	      </h:p>
+	      <h:p>Key destruction procedures are performed in accordance with <linkref linkend='FCS_CKM_EXT.4.1'/>.</h:p>
+	    </note>
 	    <aactivity>
-	      <h:h3>TSS</h:h3>
+	      <tss/>
 	      <h:p>
 The evaluator examines the TSS to ensure it describes how the keys are managed in volatile memory. This description includes details of how each identified key is introduced into volatile memory (e.g. by derivation from user input, or by unwrapping a wrapped key stored in non-volatile memory) and how they are overwritten.
 	      </h:p>
 	      <h:p>
 The evaluator shall check to ensure the TSS lists each type of key that is stored in in non-volatile memory, and identifies how the TOE interacts with the underlying platform to manage keys (e.g., store, retrieve, destroy). The description includes details on the method of how the TOE interacts with the platform, including an identification and description of the interfaces it uses to manage keys (e.g., file system APIs, platform key store APIs).
-	      </h:p>
-	      <h:p>
-The evaluator examines the interface description for each different media type to ensure that the interface supports the selection(s) and description in the TSS.
 	      </h:p>
 	      <h:p>
 If the ST makes use of the open assignment and fills in the type of pattern that is used, the evaluator examines the TSS to ensure it describes how that pattern is obtained and used. The evaluator shall verify that the pattern does not contain any CSPs.
@@ -1068,15 +1074,6 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 </test>
 		</testlist>
             </aactivity>
-	  </f-element>
-          <f-element id="FCS_CKM_EXT.4.2">
-	    <title>The OS shall destroy all keys and key material when no longer needed.</title>
-	    <note role="application">
-	      <h:p>
-		For the purposes of this requirement, key material refers to authentication data, passwords, secret/private symmetric keys, private asymmetric keys, data used to derive keys, values derived from passwords, etc. 
-	      </h:p>
-	      <h:p>Key destruction procedures are performed in accordance with <linkref linkend='FCS_CKM_EXT.4.1'/>.</h:p>
-	    </note>
           </f-element>
         </f-component>
  
