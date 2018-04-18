@@ -1845,33 +1845,24 @@ only AES-based implementations for CTR_DRBG are allowed.
         <f-component id="fcs_tlsc_ext.1" name="TLS Client Protocol">
           <f-element id="fcs_tlsc_ext.1.1">
             <title> The OS shall implement <abbr title="Transport Layer Security">TLS</abbr> 1.2
-              (RFC 5246)  supporting the following cipher suites:
-	      <h:ul>
-               <h:li>Mandatory cipher suites: TLS_RSA_WITH_AES_128_CBC_SHA as defined in RFC 5246</h:li>
-               <h:li>Optional cipher suites: 
+              (RFC 5246) supporting the following cipher suites:
 	      <selectables linebreak="yes">
-                <selectable>TLS_DHE_RSA_WITH_AES_128_CBC_SHA as defined in RFC 5246</selectable>
-                <selectable>TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</selectable>
-                <selectable>TLS_DHE_RSA_WITH_AES_256_CBC_SHA as defined in RFC 5246</selectable>
-                <selectable>TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 as defined in RFC 5246</selectable>
-                <selectable id="ec1">TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA as defined in RFC 4492</selectable>
-                <selectable id="ec2">TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5289</selectable>
-                <selectable id="ec3">TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5289</selectable>
-                <selectable id="ec4">TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA as defined in RFC 4492</selectable>
-                <selectable id="ec5">TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289</selectable>
-                <selectable id="ec6">TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289</selectable>
-                <selectable id="ec7">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA as defined in RFC 4492</selectable>
-                <selectable id="ec8">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5289</selectable>
-                <selectable id="ec9">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5289</selectable>
-                <selectable id="ec10">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA as defined in RFC 4492</selectable>
-                <selectable id="ec11">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289</selectable>
-                <selectable id="ec12">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289</selectable>
+                <selectable>TLS_RSA_WITH_AES_128_CBC_SHA as defined in RFC 5246</selectable>
                 <selectable>TLS_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</selectable>
-                <selectable>TLS_RSA_WITH_AES_256_CBC_SHA as defined in RFC 5246</selectable>
                 <selectable>TLS_RSA_WITH_AES_256_CBC_SHA256 as defined in RFC 5246</selectable>
-                <selectable exclusive="yes">no other cipher suite</selectable>
-              </selectables></h:li>
-	      </h:ul>. </title>
+                <selectable>TLS_RSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5288</selectable>
+                <selectable>TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</selectable>
+                <selectable>TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 as defined in RFC 5246</selectable>
+                <selectable>TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5288</selectable>
+                <selectable id="ec1">TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5289</selectable>
+                <selectable id="ec2">TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5289</selectable>
+                <selectable id="ec3">TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289</selectable>
+                <selectable id="ec4">TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289</selectable>
+                <selectable id="ec5">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5289</selectable>
+                <selectable id="ec6">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5289</selectable>
+                <selectable id="ec7">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289</selectable>
+                <selectable id="ec8">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289</selectable>
+              </selectables>. </title>
             <note role="application">
 	      <h:p>
 	      The cipher suites to be tested in the evaluated configuration
@@ -2125,7 +2116,7 @@ and verify that the client rejects the connection after receiving the Server Key
           </f-element>
         </f-component>
         <f-component id="fcs_tlsc_ext.2" name="TLS Client Protocol" status="sel-based">
-	  <selection-depends req="fcs_tlsc_ext.1.1" ids="ec1,ec2,ec3,ec4,ec5,ec6,ec7,ec8,ec9,ec10,ec11,ec12"/>
+	  <selection-depends req="fcs_tlsc_ext.1.1" ids="ec1,ec2,ec3,ec4,ec5,ec6,ec7,ec8"/>
           <f-element id="fcs_tlsc_ext.2.1">
             <title> The OS shall present the Supported Elliptic Curves Extension in the Client Hello
               with the following NIST curves: <selectables>
