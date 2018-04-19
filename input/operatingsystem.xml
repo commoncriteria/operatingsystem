@@ -2638,8 +2638,13 @@ This test can also be completed on the same hardware and rebooting between appli
         <!-- </f-component> -->
         <f-component id="fpt_sbop_ext.1" name="Stack Buffer Overflow Protection">
           <f-element id="fpt_sbop_ext.1.1">
-            <title>The OS shall be compiled with stack-based buffer overflow protections enabled.
-            </title>
+            <title>
+The OS shall <selectables>
+  <selectable>not save parameters/variables to the same stack as control flow values</selectable>
+  <selectable>employ stack-based buffer overflow protections</selectable>
+</selectables>.
+</title>
+
             <note role="application">
 	      It is expected that most of the OS, to include the kernel, libraries, and 
               application software from the OS vendor be compiled with stack-based buffer overflow 
