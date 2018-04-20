@@ -24,7 +24,7 @@
   <RevisionHistory>
     <entry>
       <version>4.2-DRAFT</version>
-      <date>2018-01-23</date>
+      <date>2018-04-20</date>
       <subject>Multiple Technical Decisions Applied</subject>
     </entry>
     <entry>
@@ -2640,22 +2640,21 @@ This test can also be completed on the same hardware and rebooting between appli
           <f-element id="fpt_sbop_ext.1.1">
             <title>
 The OS shall <selectables>
-  <selectable>not save parameters/variables to the same stack as control flow values</selectable>
   <selectable>employ stack-based buffer overflow protections</selectable>
+  <selectable>not store parameters/variables in the same data structures as control flow values</selectable>
 </selectables>.
 </title>
 
             <note role="application">
-	      It is expected that most of the OS, to include the kernel, libraries, and 
-              application software from the OS vendor be compiled with stack-based buffer overflow 
-              protection enabled.
+Many OSes store control flow values (i.e. return addresses) in stack data structures that also contain parameters and variables.
+For these OSes, it is expected that most of the OS, to include the kernel, libraries, and application software from the OS vendor be compiled with stack-based buffer overflow protection enabled.
+OSes that store parameters and variables separately from control flow values do not need additional stack protections.
             </note>
             <aactivity>
-The evaluator will determine that the <abbr linkend="TSS"/> contains a description of stack-based buffer
-overflow protections used by the OS.
+<h:p>For stack-based OSes, the evaluator will determine that the <abbr linkend="TSS"/> contains a description of stack-based buffer overflow protections used by the OS.
 These are referred to by a variety of terms, such as stack cookie, stack guard, and stack canaries.
 The <abbr linkend="TSS"/> must include a rationale for any binaries that are not protected in this manner.
-GNU gcc, as of version 4.8, and Microsoft's VC++, as of 2010 release, activate overflow protections by default.
+The evaluator will also preform the following test:
             <testlist>
                 <test>
                   The evaluator will inventory the kernel, libraries, and application binaries
@@ -2663,6 +2662,11 @@ GNU gcc, as of version 4.8, and Microsoft's VC++, as of 2010 release, activate o
                   match up with the list provided in the <abbr linkend="TSS"/>.
                 </test>
             </testlist>
+</h:p>
+
+<h:p>For OSes that store parameters/variables separately from control flow values, the evaluator will verify that the <abbr linkend="TSS"/> describes what data structures control values, parameters, and variables are stored.
+The evaluator will also ensure that the TSS includes a description of the safeguards that ensure parameters and variables do not intermix with control flow values.
+</h:p>
             </aactivity>
           </f-element>
         </f-component>
