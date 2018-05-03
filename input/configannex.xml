@@ -1,389 +1,327 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../transforms/configannex2html.xsl"?>
-
-<ConfigAnnex xmlns="http://common-criteria.rhcloud.com/ns/co" name="Configuration Annex to the
-  General Purpose Operating System Protection Profile"
+<ConfigAnnex 
+    xmlns="http://common-criteria.rhcloud.com/ns/co" 
+    name="Configuration Annex to the General Purpose Operating System Protection Profile"
     xmlns:h="http://www.w3.org/1999/xhtml">
-
-<ConfigAnnexReference title="Reference">
+  <ConfigAnnexReference title="Reference">
     <PPType>Protection Profile</PPType>
     <PPTechnology>General Purpose Operating Systems</PPTechnology>
     <Subtitle>This document provides configuration requirements for operating systems used in
     US National Security Systems.</Subtitle>
-    <Release>1 - DRAFT</Release>
+    <Release>1</Release>
     <PPVersion>4.2</PPVersion>
     <Author>National Information Assurance Partnership</Author>
-    <PubDate>23 January 2018</PubDate>
-</ConfigAnnexReference>
+    <PubDate>20 April 2018</PubDate>
+  </ConfigAnnexReference>
+  <chapter title="Purpose" id="purpose">
+    This Configuration Annex to the Protection Profile (PP) for General Purpose
+    Operating Systems provides configuration requirements for operating systems.
+    This Annex is consistent with <cite linkend="CNSSI-1253"/>, which requires US National Security
+    Systems to adhere to certain configuration parameters. Accordingly, configuration
+    guidance produced according to the requirements of this Annex is suitable for
+    use in US National Security Systems.
+    <br/>
+    These configuration requirements serve the following audiences:
+    <audiencetable>
+      <audience>
+	<audiencename>IT Product Vendors</audiencename>
+	<audiencepurpose>Use these
+	guidelines to structure the creation of product-specific configuration
+	guidance produced as part of a Common Criteria evaluation.  The creation of
+	administrative guidance is required by NIAP-approved Protection Profiles.
+	The items specified in this document, as well as any best practices, should be
+	provided as part of the administrative guidance.  For each configuration item,
+	the guidance must include the steps necessary to configure the setting of the
+	product.
+	</audiencepurpose>
+      </audience>
+      <audience>
+	<audiencename>Test Labs</audiencename>
+	<audiencepurpose>Use these guidelines to configure and test systems undergoing evaluation
+	against a NIAP-approved Protection Profile.  Using this guidance during evaluation
+	provides assurance that the guidance is correct and implementable.
+	</audiencepurpose>
+      </audience>
+      <audience> 
+	<audiencename>Network Owners and Assessors</audiencename>
+	<audiencepurpose>
+	  Use these guidelines to assess the configuration of operational
+	  systems when product-specific guidance does not exist.
+	</audiencepurpose>
+      </audience>
+    </audiencetable>
+    <section title="Relationship to NIST Risk Management Framework" id="relcontrols">
+      <h:p>
+      In order to implement security controls from the NIST Risk Management
+      Framework, each component of the
+      information system must possess the necessary security functionality and also be
+      properly configured to leverage that functionality.
+      </h:p><h:p>
+      NIAP Protection Profiles express requirements
+      for security functionality for individual IT products within the overall
+      information system.  This includes management functions which indicate where an
+      enterprise or end user is expected to be able to operationally configure the
+      product.  However, the Protection Profile does not indicate specific values
+      for each configuration setting. This Annex specifies those specific
+      requirements for operational configuration of a product type.  It also provides
+      a mapping to each NIST control which the operational setting helps the overall
+      system implement.  This complements the control mapping provided with each
+      Protection Profile, which is focused on security functionality.  Together, these
+      documents support the creation of system security plans, as well as the Select,
+      Implement, Assess, and Monitor steps of the Risk Management Framework (RMF).
+      </h:p>
+    </section>
+  </chapter>
+  <chapter title="Configuration Requirements" id="configreqs">
+    <h:p>
+    The table below describes configuration requirements for operating systems.
+    </h:p>
+    <h:p>
+    Each configuration requirement is
+    associated with a security functionality requirement (SFR) from the associated
+    Protection Profile or Module.  Each configuration requirement is also
+    associated with a NIST 800-53 security control and CNSSI 1253 configuration value
+    where applicable.
+    See Wireless EP/Module for wireless-specific configuration requirements.
+    <h:br/>
+    <configtable>
+      <config>
+	<configtitle>Configure Minimum Password Length to 12 Characters</configtitle>
+	<references>
+	  <reference ref="PP">FMT_MOF_EXT.1</reference>
+	  <reference ref="NIST 800-53" rev="4">IA-5 (1)(a)</reference>
+	  <reference ref="CNSSI-1253" rev="Mar2014">12 characters</reference>
+	</references>
+      </config>
+
+      <config>
+	<configtitle>Require at Least 1 Special Character in Password</configtitle>
+	<references>
+	  <reference ref="PP">FMT_MOF_EXT.1</reference>
+	  <reference ref="NIST 800-53" rev="4">IA-5 (1)(a)</reference>
+	  <reference ref="CNSSI-1253" rev="Mar2014">at least one</reference>
+	</references>
+      </config>
+
+      <config>
+	<configtitle>Require at Least 1 Numeric Character in Password</configtitle>
+	<references>
+	  <reference ref="PP">FMT_MOF_EXT.1</reference>
+	  <reference ref="NIST 800-53" rev="4">IA-5 (1)(a)</reference>
+	  <reference ref="CNSSI-1253" rev="Mar2014">at least one</reference>
+	</references>
+      </config>
+      
+      <config>
+	<configtitle>Require at Least 1 Uppercase Character in Password</configtitle>
+	<references>
+	  <reference ref="PP">FMT_MOF_EXT.1</reference>
+	  <reference ref="NIST 800-53" rev="4">IA-5 (1)(a)</reference>
+	  <reference ref="CNSSI-1253" rev="Mar2014">at least one</reference>
+	</references>
+      </config>
+      
+      <config>
+	<configtitle>Require at Least 1 Lowercase Character in Password</configtitle>
+	<references>
+	  <reference ref="PP">FMT_MOF_EXT.1</reference>
+	  <reference ref="NIST 800-53" rev="4">IA-5 (1)(a)</reference>
+	  <reference ref="CNSSI-1253" rev="Mar2014">at least one</reference>
+	</references>
+      </config>
+      
+      <config>
+	<configtitle>Enable Screen Lock</configtitle>
+	<references>
+	  <reference ref="PP">FMT_MOF_EXT.1</reference>
+	  <reference ref="NIST 800-53">AC-11a.</reference>
+	  <reference ref="CNSSI-1253" rev="Mar2014"></reference>
+	</references>
+      </config>
+      <config>
+	<configtitle>Set Screen Lock Timeout Period to 30 Minutes or Less</configtitle>
+	<references>
+	  <reference ref="PP">FMT_MOF_EXT.1</reference>
+	  <reference ref="NIST 800-53">AC-11a.</reference>
+	  <reference ref="CNSSI-1253" rev="Mar2014">30 minutes</reference>
+	</references>
+      </config>
+      <config>
+	<configtitle>Disable Unauthenticated Login (such as Guest Accounts)</configtitle>
+	<references>
+	  <reference ref="PP">FIA_AFL.1</reference>
+	  <reference ref="NIST 800-53" rev="4"></reference>
+	  <reference ref="CNSSI-1253" rev="Mar2014"></reference>
+	</references>
+      </config>
+      <config>
+	<configtitle>Set Maximum Number of Authentication Failures to 3 Within 15 Minutes</configtitle>
+	<references>
+	  <reference ref="PP">FMT_MOF_EXT.1</reference>
+	  <reference ref="NIST 800-53">AC-7a.</reference>
+	  <reference ref="CNSSI-1253" rev="Mar2014">3</reference>
+	  <reference ref="CNSSI-1253" rev="Mar2014">15 minutes</reference>
+	</references>
+      </config>
+      <config>
+	<configtitle>Enable Host-Based Firewall</configtitle>
+	<references>
+	  <reference ref="PP">FMT_MOF_EXT.1</reference>
+	  <reference ref="NIST 800-53">SC-7 (12)</reference>
+	  <reference ref="CNSSI-1253" rev="Mar2014"></reference>
+	</references>
+      </config>
+      <config>
+	<configtitle>
+	  Configure Name/Address of Remote Management Server <h:br/>
+	From Which to Receive Config Settings</configtitle>
+	<references>
+	  <reference ref="PP">FMT_MOF_EXT.1</reference>
+	  <reference ref="NIST 800-53">CM-3(3)</reference>
+	  <reference ref="CNSSI-1253" rev="Mar2014"></reference>
+	</references>
+      </config>
+      <config>
+	<configtitle>Configure the System to Offload Audit Records to a Log Server</configtitle>
+	<references>
+	  <reference ref="PP">FAU_GEN.1.1.c</reference>
+	  <reference ref="NIST 800-53">AU-4(1)</reference>
+	  <reference ref="CNSSI-1253" rev="Mar2014"></reference>
+	</references>
+      </config>
+      <config>
+	<configtitle>Set Logon Warning Banner</configtitle>
+	<references>
+	  <reference ref="PP">FMT_MOF_EXT.1</reference>
+	  <reference ref="NIST 800-53">AC-8a.</reference>
+	  <reference ref="CNSSI-1253" rev="Mar2014">
+	    <h:i>see text <h:a href="#logontext">below</h:a></h:i>
+	  </reference>
+	</references>
+      </config>
+      <config>
+	<configtitle>Audit All Logons (Success/Failure) and Logoffs (Successful)</configtitle>
+	<references><reference ref="PP">FAU_GEN.1.1.c</reference>
+	<reference ref="NIST 800-53">AU-2a.</reference>
+	<reference ref="CNSSI-1253" rev="Mar2014">Authentication events:<h:br/>
+	(1) Logons (Success/Failure)<h:br/> (2) Logoffs (Success)</reference>
+	</references>
+      </config>
+      <config><configtitle>Audit File and Object Events (Unsuccessful)</configtitle>
+      <references>
+	<reference ref="PP">FAU_GEN.1.1.c</reference>
+	<reference ref="NIST 800-53">AU-2a.</reference>
+	<reference ref="CNSSI-1253" rev="Mar2014"> File and Objects events:<h:br/>
+	(1) Create (Success/Failure)<h:br/>
+	(2) Access (Success/Failure)<h:br/>
+	(3) Delete (Success/Failure)<h:br/>
+	(4) Modify (Success/Failure)<h:br/>
+	(5) Permission Modification (Success/Failure)<h:br/>
+	(6) Ownership Modification (Success/Failure)</reference>
+      </references>
+      </config>
+      <config>
+	<configtitle>Audit User and Group Management Events (Success/Failure)</configtitle>
+	<references>
+	  <reference ref="PP">FAU_GEN.1.1.c</reference>
+	  <reference ref="NIST 800-53">AU-2a.</reference>
+	  <reference ref="CNSSI-1253" rev="Mar2014">User and Group Management events:<h:br/>(1) User add, delete, modify, disable, enable (Success/Failure)<h:br/>(2) Group/Role add, delete, modify (Success/Failure)</reference>
+	</references>
+	</config>
+	<config>
+	  <configtitle>Audit Privilege or Role Escalation Events (Success/Failure)</configtitle>
+	  <references>
+	    <reference ref="PP">FAU_GEN.1.1.c</reference>
+	    <reference ref="NIST 800-53">AU-2a.</reference>
+	    <reference ref="CNSSI-1253" rev="Mar2014">Privilege/Role escalation (Success/Failure)</reference>
+	  </references>
+	</config>
+	<config>
+	  <configtitle>Audit All Audit and Log Data Accesses (Success/Failure)</configtitle>
+	  <references><reference ref="PP">FAU_GEN.1.1.c</reference>
+	  <reference ref="NIST 800-53">AU-2a.</reference>
+	  <reference ref="CNSSI-1253" rev="Mar2014">Audit and log data access (Success/Failure)</reference>
+	  </references>
+	  </config><config><configtitle>Audit Cryptographic Verification of Software (Success/Failure)</configtitle>
+	  <references>
+	    <reference ref="PP">FAU_GEN.1.1.c</reference>
+	    <reference ref="NIST 800-53">AU-2a.</reference>
+	  </references>
+	</config>
+	<config>
+	  <configtitle>Audit Program Initiations (Success/Failure)</configtitle>
+	  <references><reference ref="PP">FAU_GEN.1.1.c</reference>
+	  <reference ref="NIST 800-53">AU-2a.</reference>
+	  <reference ref="CNSSI-1253" rev="Mar2014">Application  (e.g., Firefox, Internet Explorer, MS Office Suite, etc.) initialization  (Success/Failure)</reference>
+	  </references>
+	  </config><config><configtitle>Audit System Reboot, Restart, and Shutdown Events (Success/Failure)</configtitle>
+	  <references>
+	    <reference ref="PP">FAU_GEN.1.1.c</reference>
+	    <reference ref="NIST 800-53">AU-2a.</reference>
+	    <reference ref="CNSSI-1253" rev="Mar2014">System reboot, restart and shutdown (Success/Failure)</reference>
+	  </references>
+	</config>
+	<config>
+	  <configtitle>Audit Kernel Module Loading and Unloading Events (Success/Failure)</configtitle>
+	  <references><reference ref="PP">FAU_GEN.1.1.c</reference>
+	  <reference ref="NIST 800-53">AU-2a.</reference>
+	  <reference ref="CNSSI-1253" rev="Mar2014"></reference>
+	  </references>
+	</config>
+	<config>
+	  <configtitle>Enable Automatic Software Update</configtitle>
+	  <references>
+	    <reference ref="PP">FMT_MOF_EXT.1</reference>
+	    <reference ref="NIST 800-53">SI-2</reference>
+	    <reference ref="CNSSI-1253" rev="Mar2014"></reference>
+	  </references>
+	</config>
+      </configtable>
+    </h:p>
 
 
-<chapter title="Purpose" id="purpose">
-This Configuration Annex to the Protection Profile (PP) for General Purpose
-Operating Systems provides configuration requirements for operating systems.
-This Annex is consistent with <cite linkend="CNSSI-1253"/>, which requires US National Security
-Systems to adhere to certain configuration parameters. Accordingly, configuration
-guidance produced according to the requirements of this Annex is suitable for
-use in US National Security Systems.
-
-<br/>
-These configuration requirements serve the following audiences:
-
-<audiencetable>
-<audience>
-  <audiencename>IT Product Vendors</audiencename>
-  <audiencepurpose>Use these
-  guidelines to structure the creation of product-specific configuration
-  guidance produced as part of a Common Criteria evaluation.  The creation of
-  administrative guidance is required by NIAP-approved Protection Profiles.
-  The items specified in this document, as well as any best practices, should be
-  provided as part of the administrative guidance.  For each configuration item,
-  the guidance must include the steps necessary to configure the setting of the
-  product.
-</audiencepurpose>
-</audience>
-
-<audience>
-  <audiencename>Test Labs</audiencename>
-   <audiencepurpose>Use these guidelines to configure and test systems undergoing evaluation
-  against a NIAP-approved Protection Profile.  Using this guidance during evaluation
-  provides assurance that the guidance is correct and implementable.
-  </audiencepurpose>
-</audience>
-
-<audience>
-<audiencename>Network Owners and Assessors</audiencename>
-<audiencepurpose>Use these guidelines to assess the configuration of operational
-systems when product-specific guidance does not exist.
-</audiencepurpose>
-</audience>
-
-</audiencetable>
-
-<section title="Relationship to NIST Risk Management Framework" id="relcontrols">
-In order to implement security controls from the NIST Risk Management
-Framework, each component of the
-information system must possess the necessary security functionality and also be
-properly configured to leverage that functionality.
-<br/>
-NIAP Protection Profiles express requirements
-for security functionality for individual IT products within the overall
-information system.  This includes management functions which indicate where an
-enterprise or end user is expected to be able to operationally configure the
-product.  However, the Protection Profile does not indicate specific values
-for each configuration setting. This Annex specifies those specific
-requirements for operational configuration of a product type.  It also provides
-a mapping to each NIST control which the operational setting helps the overall
-system implement.  This complements the control mapping provided with each
-Protection Profile, which is focused on security functionality.  Together, these
-documents support the creation of system security plans, as well as the Select,
-Implement, Assess, and Monitor steps of the Risk Management Framework (RMF).
-</section>
-</chapter>
-
-<chapter title="Configuration Requirements" id="configreqs">
-The table below describes configuration
-requirements for operating systems.
-<br/>
-Each configuration requirement is
-associated with a security functionality requirement (SFR) from the associated
-Protection Profile or Module.  Each configuration requirement is also
-associated with a NIST 800-53 security control and CNSSI 1253 configuration value
-where applicable.
-
-See Wireless EP/Module for wireless-specific configuration requirements.
-
-<configtable>
-
-  <config>
-  <configtitle>
-  Configure Minimum Password Length to 12 Characters
-  </configtitle>
-  <references>
-  <reference ref="PP">FMT_MOF_EXT.1</reference>
-  <reference ref="NIST 800-53" rev="4">IA-5 (1)(a)</reference>
-  <reference ref="CNSSI-1253" rev="Mar2014">12 characters</reference>
-  </references>
-  </config>
-
-  <config>
-  <configtitle>
-  Require at Least 1 Special Character in Password
-  </configtitle>
-  <references>
-  <reference ref="PP">FMT_MOF_EXT.1</reference>
-  <reference ref="NIST 800-53" rev="4">IA-5 (1)(a)</reference>
-  <reference ref="CNSSI-1253" rev="Mar2014">at least one</reference>
-  </references>
-  </config>
-
-  <config>
-  <configtitle>
-  Require at Least 1 Numeric Character in Password
-  </configtitle>
-  <references>
-  <reference ref="PP">FMT_MOF_EXT.1</reference>
-  <reference ref="NIST 800-53" rev="4">IA-5 (1)(a)</reference>
-  <reference ref="CNSSI-1253" rev="Mar2014">at least one</reference>
-  </references>
-  </config>
-
-  <config>
-  <configtitle>
-  Require at Least 1 Uppercase Character in Password
-  </configtitle>
-  <references>
-  <reference ref="PP">FMT_MOF_EXT.1</reference>
-  <reference ref="NIST 800-53" rev="4">IA-5 (1)(a)</reference>
-  <reference ref="CNSSI-1253" rev="Mar2014">at least one</reference>
-  </references>
-  </config>
-
-  <config>
-  <configtitle>
-  Require at Least 1 Lowercase Character in Password
-  </configtitle>
-  <references>
-  <reference ref="PP">FMT_MOF_EXT.1</reference>
-  <reference ref="NIST 800-53" rev="4">IA-5 (1)(a)</reference>
-  <reference ref="CNSSI-1253" rev="Mar2014">at least one</reference>
-  </references>
-  </config>
-
-<config>
-<configtitle>
-Enable Screen Lock
-</configtitle>
-<references>
-<reference ref="PP">FMT_MOF_EXT.1</reference>
-<reference ref="NIST 800-53">AC-11a.</reference>
-<reference ref="CNSSI-1253" rev="Mar2014"></reference>
-</references>
-</config>
-
-<config>
-<configtitle>
-Set Screen Lock Timeout Period to 30 Minutes or Less
-</configtitle>
-<references>
-<reference ref="PP">FMT_MOF_EXT.1</reference>
-<reference ref="NIST 800-53">AC-11a.</reference>
-<reference ref="CNSSI-1253" rev="Mar2014">30 minutes</reference>
-</references>
-</config>
-
-<config>
-<configtitle>
-Disable Unauthenticated Login (such as Guest Accounts)
-</configtitle>
-<references>
-<reference ref="PP">FIA_AFL.1</reference>
-<reference ref="NIST 800-53" rev="4"></reference>
-<reference ref="CNSSI-1253" rev="Mar2014"></reference>
-</references>
-</config>
-
-
-<config>
-<configtitle>
-Set Maximum Number of Authentication Failures to 3 Within 15 Minutes
-</configtitle>
-<references>
-<reference ref="PP">FMT_MOF_EXT.1</reference>
-<reference ref="NIST 800-53">AC-7a.</reference>
-<reference ref="CNSSI-1253" rev="Mar2014">3</reference>
-<reference ref="CNSSI-1253" rev="Mar2014">15 minutes</reference>
-</references>
-</config>
-
-<config>
-<configtitle>
-Enable Host-Based Firewall
-</configtitle>
-<references>
-<reference ref="PP">FMT_MOF_EXT.1</reference>
-<reference ref="NIST 800-53">SC-7 (12)</reference>
-<reference ref="CNSSI-1253" rev="Mar2014"></reference>
-</references>
-</config>
-
-<config>
-<configtitle>
-Configure Name/Address of Remote Management Server From Which to Receive
-Configuration Settings
-</configtitle>
-<references>
-<reference ref="PP">FMT_MOF_EXT.1</reference>
-<reference ref="NIST 800-53">CM-3(3)</reference>
-<reference ref="CNSSI-1253" rev="Mar2014"></reference>
-</references>
-</config>
-
-<config>
-<configtitle>Configure the System to Offload Audit Records to a Log Server</configtitle>
-<references>
-<reference ref="PP">FAU_GEN.1.1.c</reference>
-<reference ref="NIST 800-53">AU-4(1)</reference>
-<reference ref="CNSSI-1253" rev="Mar2014"></reference>
-</references>
-</config>
-
-<config>
-<configtitle>Set Logon Warning Banner</configtitle>
-<references>
-<reference ref="PP">FMT_MOF_EXT.1</reference>
-<reference ref="NIST 800-53">AC-8a.</reference>
-<reference ref="CNSSI-1253" rev="Mar2014">
-  <b>For DoD Systems:</b><h:br/>
-  You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions: <h:br/>
-  -The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. <h:br/>
-  -At any time, the USG may inspect and seize data stored on this IS. <h:br/>
-  -Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose. <h:br/>
-  -This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy. <h:br/>
-  -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.
-<p/>
-<p/>
-<b>For non-DoD NSS:</b><h:br/>
-organization-defined system use notification message or banner
-  <p/>
-  </reference>
-</references>
-</config>
-
-<config>
-<configtitle>Audit All Logons (Successful/Unsuccessful) and Logoffs (Successful)</configtitle>
-<references>
-<reference ref="PP">FAU_GEN.1.1.c</reference>
-<reference ref="NIST 800-53">AU-2a.</reference>
-<reference ref="CNSSI-1253" rev="Mar2014">Authentication events:<h:br/>
-(1) Logons (Success/Failure)<h:br/> 
-(2) Logoffs (Success)</reference>
-</references>
-</config>
-
-<config>
-<configtitle>Audit File and Object Events (Unsuccessful)</configtitle>
-<references>
-<reference ref="PP">FAU_GEN.1.1.c</reference>
-<reference ref="NIST 800-53">AU-2a.</reference>
-<reference ref="CNSSI-1253" rev="Mar2014"> File and Objects events:<h:br/>
-(1) Create (Success/Failure)<h:br/>
-(2) Access (Success/Failure)<h:br/>
-(3) Delete (Success/Failure)<h:br/>
-(4) Modify (Success/Failure)<h:br/>
-(5) Permission Modification (Success/Failure)<h:br/>
-(6) Ownership Modification (Success/Failure)</reference>
-</references>
-</config>
-
-<config>
-<configtitle>Audit User and Group Management Events (Successful and Unsuccessful)</configtitle>
-<references>
-<reference ref="PP">FAU_GEN.1.1.c</reference>
-<reference ref="NIST 800-53">AU-2a.</reference>
-<reference ref="CNSSI-1253" rev="Mar2014">User and Group Management events:<h:br/>
-(1) User add, delete, modify, suspend, lock (Success/Failure)<h:br/>
-(2) Group/Role add, delete, modify (Success/Failure)
-</reference>
-</references>
-</config>
-
-<config>
-<configtitle>Audit Privilege or Role Escalation Events (Successful and Unsuccessful)</configtitle>
-<references>
-<reference ref="PP">FAU_GEN.1.1.c</reference>
-<reference ref="NIST 800-53">AU-2a.</reference>
-<reference ref="CNSSI-1253" rev="Mar2014">Privilege/Role escalation (Success/Failure)</reference>
-</references>
-</config>
-
-<config>
-<configtitle>Audit All Audit and Log Data Accesses (Successful and Unsuccessful)</configtitle>
-<references>
-<reference ref="PP">FAU_GEN.1.1.c</reference>
-<reference ref="NIST 800-53">AU-2a.</reference>
-<reference ref="CNSSI-1253" rev="Mar2014">Audit and log data access (Success/Failure)</reference>
-</references>
-</config>
-
-
-<config>
-<configtitle>Audit Cryptographic Verification of Software (Successful and Unsuccessful)</configtitle>
-<references>
-<reference ref="PP">FAU_GEN.1.1.c</reference>
-<reference ref="NIST 800-53">AU-2a.</reference>
-</references>
-</config>
-
-<config>
-<configtitle>Audit Program Initiations (Successful and Unsuccessful)</configtitle>
-<references>
-<reference ref="PP">FAU_GEN.1.1.c</reference>
-<reference ref="NIST 800-53">AU-2a.</reference>
-<reference ref="CNSSI-1253" rev="Mar2014">Application
-  (e.g., Firefox, Internet Explorer, MS Office Suite, etc.) initialization
-  (Success/Failure)</reference>
-</references>
-</config>
-
-
-<config>
-<configtitle>Audit System Reboot, Restart, and Shutdown Events (Success/Failure)</configtitle>
-<references>
-<reference ref="PP">FAU_GEN.1.1.c</reference>
-<reference ref="NIST 800-53">AU-2a.</reference>
-<reference ref="CNSSI-1253" rev="Mar2014">System reboot, restart and shutdown (Success/Failure)</reference>
-</references>
-</config>
-
-<config>
-<configtitle>Audit Kernel Module Loading and Unloading Events (Successful and Unsuccessful)</configtitle>
-<references>
-<reference ref="PP">FAU_GEN.1.1.c</reference>
-<reference ref="NIST 800-53">AU-2a.</reference>
-<reference ref="CNSSI-1253" rev="Mar2014"></reference>
-</references>
-</config>
-
-<config>
-<configtitle>
-Enable Automatic Software Update
-</configtitle>
-<references>
-<reference ref="PP">FMT_MOF_EXT.1</reference>
-<reference ref="NIST 800-53">SI-2</reference>
-<reference ref="CNSSI-1253" rev="Mar2014"></reference>
-</references>
-</config>
-
-</configtable>
-
-</chapter>
-
-<chapter title="References" id="references">
-  <bibliography>
-    <entry id="bibCC">
-      <tag>CC</tag>
-      <description>Common Criteria for Information Technology Security Evaluation - <h:ul>
-          <h:li><h:a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART1V3.1R4.pdf">Part
-              1: Introduction and General Model</h:a>, CCMB-2012-09-001, Version 3.1 Revision 4,
-            September 2012.</h:li>
-          <h:li><h:a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART2V3.1R4.pdf">Part
-              2: Security Functional Components</h:a>, CCMB-2012-09-002, Version 3.1 Revision 4,
-            September 2012.</h:li>
-          <h:li><h:a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART3V3.1R4.pdf">Part
-              3: Security Assurance Components</h:a>, CCMB-2012-09-003, Version 3.1 Revision 4,
-            September 2012.</h:li>
-        </h:ul></description>
-    </entry>
-    <entry id="CNSSI-1253">
-      <tag>CNSSI-1253</tag>
-      <description>
-        <h:a href="https://www.cnss.gov/CNSS/issuances/Instructions.cfm">
-          Committee on National Security Systems Instruction 1253</h:a>,
-        Security Categorization and Control Selection for National Security
+    <h:h2 id="logontext">Logon Banner Text</h:h2>
+      <h:div>
+	<h:b>For DoD Systems:</h:b><h:br/>
+	You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions: <h:br/>
+	-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. <h:br/>
+	-At any time, the USG may inspect and seize data stored on this IS. <h:br/>
+	-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose. <h:br/>
+	-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy. <h:br/>
+	-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.
+	    <h:br/>
+	    <h:br/>
+	    <h:br/>
+	    <h:b xmlns="">For non-DoD NSS:</h:b><h:br/>
+	    <h:i> organization-defined system use notification message or banner</h:i>
+      </h:div>
+    </chapter>
+    <chapter title="References" id="references">
+      <bibliography>
+	<entry id="bibCC">
+	  <tag>CC</tag>
+	  <description>Common Criteria for Information Technology Security Evaluation - <h:ul>
+            <h:li><h:a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART1V3.1R5.pdf">
+Part 1: Introduction and General Model</h:a>, 
+CCMB-2017-04-001, Version 3.1 Revision 5, April 2017. </h:li>
+            <h:li><h:a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART2V3.1R5.pdf">
+Part 2: Security Functional Components</h:a>,
+CCMB-2017-04-002, Version 3.1 Revision 5, April 2017.</h:li>
+            <h:li><h:a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART3V3.1R5.pdf">
+Part 3: Security Assurance Components</h:a>,
+CCMB-2017-04-003, Version 3.1 Revision 5, April 2017.</h:li>
+          </h:ul>	  
+	  </description>
+      </entry>
+      <entry id="CNSSI-1253">
+	<tag>CNSSI-1253</tag>
+	<description>
+          <h:a href="https://www.cnss.gov/CNSS/issuances/Instructions.cfm">
+            Committee on National Security Systems Instruction 1253</h:a>,
+            Security Categorization and Control Selection for National Security
         Systems, 27 March 2014. </description>
-    </entry>
-  </bibliography>
-</chapter>
-
+      </entry>
+    </bibliography>
+  </chapter>
 </ConfigAnnex>

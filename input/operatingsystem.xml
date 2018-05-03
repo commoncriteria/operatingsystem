@@ -3,14 +3,12 @@
 
 <PP xmlns="https://niap-ccevs.org/cc/v1" name="General Purpose Operating System"
     xmlns:h="http://www.w3.org/1999/xhtml">
-  <!-- <inline-comment color='green'> Hello World QQQQ </inline-comment> -->
-  <!-- <inline-comment color='blue' linebreak='yes'> Hello World QQQQ </inline-comment> -->
   <PPReference title="PP Reference">
     <ReferenceTable>
       <PPTitle>Protection Profile for General Purpose Operating Systems</PPTitle>
-      <PPVersion>4.2-DRAFT</PPVersion>
+      <PPVersion>4.2</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
-      <PPPubDate>2018-01-23</PPPubDate>
+      <PPPubDate>2018-04-20</PPPubDate>
       <PPCertificationID>unassigned</PPCertificationID>
       <CCVersion>3.1R4</CCVersion>
       <Keywords>OS; operating system</Keywords>
@@ -23,8 +21,8 @@
 
   <RevisionHistory>
     <entry>
-      <version>4.2-DRAFT</version>
-      <date>2018-01-23</date>
+      <version>4.2</version>
+      <date>2018-04-20</date>
       <subject>Multiple Technical Decisions Applied</subject>
     </entry>
     <entry>
@@ -297,7 +295,7 @@ At the time of the release of this <abbr linkend="PP"/>, some <abbr linkend="EP"
           <InsertAppendixExplainer/> 
 	  <h:p>
 	  The <abbr linkend="ST"/> may iterate any of these components,
-          but it must not include any additional component (e.g. from CC Part 2 or 3 or a PP not
+          but it must not include any additional component (e.g. from <cite linkend="bibCC"/> Part 2 or 3 or a PP not
           conformant with this one, or extended by the <abbr linkend="ST"/>) not defined in this PP
           or a PP conformant to this one. 
 	  </h:p><h:p>
@@ -310,7 +308,7 @@ At the time of the release of this <abbr linkend="PP"/>, some <abbr linkend="EP"
       </cclaim>
       <cclaim id="CC Conformance Claims">
         <description>This PP is conformant to Parts 2 (extended) and 3 (extended) of Common Criteria
-          Version 3.1, Revision 4.<cite linkend="bibCC"/>.</description>
+          Version 3.1, Revision 5.<cite linkend="bibCC"/>.</description>
       </cclaim>
       <cclaim id="PP Claim">
         <description>This PP does not claim conformance to any other Protection
@@ -554,7 +552,7 @@ users of the same system.
     </h:ul>
     <section title="Security Functional Requirements" id="SFRs">The Security Functional Requirements
       included in this section are derived from Part 2 of the Common Criteria for Information
-      Technology Security Evaluation, Version 3.1, Revision 4, with additional extended functional
+      Technology Security Evaluation, Version 3.1, Revision 5, with additional extended functional
       components. 
       <subsection title="Cryptographic Support (FCS)" id="fcs">
         <f-component id="fcs_ckm.1" name="Cryptographic Key Generation (Refined)">
@@ -970,7 +968,7 @@ overwrite consisting of
 The interface referenced in the requirement could take different forms, the most likely of which is an application programming interface to an OS kernel. There may be various levels of abstraction visible. For instance, in a given implementation, selection a, the application may have access to the file system details and may be able to logically address specific memory locations. In another implementation, selection b, the application may simply have a handle to a resource and can only ask the platform to delete the resource, as may be the case with a platforms secure key store. Selection b should only be used for the most restricted access. The level of detail to which the TOE has access will be reflected in the TSS section of the ST.
 	      </h:p>
 	      <h:p>
-Several selections allow assignment of a ‘value that does not contain any CSP'. This means that the TOE uses some other specified data not drawn from a source that may contain key material or reveal information about key material, and not being any of the particular values listed as other selection options. The point of the phrase ‘does not contain any CSP' is to ensure that the overwritten data is carefully selected, and not taken from a general ‘pool' that might contain current or residual data that itself requires confidentiality protection.
+Several selections allow assignment of a 'value that does not contain any CSP'. This means that the TOE uses some other specified data not drawn from a source that may contain key material or reveal information about key material, and not being any of the particular values listed as other selection options. The point of the phrase 'does not contain any CSP' is to ensure that the overwritten data is carefully selected, and not taken from a general 'pool' that might contain current or residual data that itself requires confidentiality protection.
 	      </h:p>
 	    </note>
 	  </f-element>
@@ -1010,7 +1008,7 @@ When the TOE does not have full access to the physical memory, it is possible th
 Drive vendors implement garbage collection in a variety of different ways, as such there is a variable amount of time until data is truly removed from these solutions. There is a risk that data may persist for a longer amount of time if it is contained in a block with other data not ready for erasure. To reduce this risk, the operating system and file system of the OE should support TRIM, instructing the non-volatile memory to erase copies via garbage collection upon their deletion. If a RAID array is being used, only set-ups that support TRIM are utilized. If the drive is connected via PCI-Express, the operating system supports TRIM over that channel.
 	      </h:p>
 	      <h:p>
-The drive should be healthy and contains minimal corrupted data and should be end of lifed before a significant amount of damage to drive health occurs, this minimizes the risk that small amounts of potentially recoverable data may remain in damaged areas of the drive.
+The drive should be healthy and contains minimal corrupted data and should be end-of-lifed before a significant amount of damage to drive health occurs, this minimizes the risk that small amounts of potentially recoverable data may remain in damaged areas of the drive.
 	      </h:p>
 		<testlist>
 		  <test>Applied to each key held as in volatile memory and subject to destruction by overwrite by the TOE (whether or not the value is subsequently encrypted for storage in volatile or non-volatile memory). In the case where the only selection made for the destruction method key was removal of power, then this test is unnecessary. The evaluator shall:
@@ -2410,7 +2408,7 @@ The evaluator observes negotiation of a TLS channel and confirms that the TOE re
 	      <management-function-set default="O">
 		<manager id="a">Administrator</manager>
 		<manager id="u">User</manager>
-		<management-function><text>Enable/disable <selectables><selectable>screen lock</selectable><selectable>sesssion timeout</selectable></selectables></text><M ref="a"/></management-function>
+		<management-function><text>Enable/disable <selectables><selectable>screen lock</selectable><selectable>session timeout</selectable></selectables></text><M ref="a"/></management-function>
 		<management-function><text>Configure <selectables><selectable>screen lock</selectable><selectable>session</selectable></selectables> inactivity timeout</text><M ref="a"/></management-function>
 		<management-function><text>Configure local audit storage capacity</text></management-function>
 		<management-function><text>Configure minimum password length</text></management-function>
@@ -2638,19 +2636,23 @@ This test can also be completed on the same hardware and rebooting between appli
         <!-- </f-component> -->
         <f-component id="fpt_sbop_ext.1" name="Stack Buffer Overflow Protection">
           <f-element id="fpt_sbop_ext.1.1">
-            <title>The OS shall be compiled with stack-based buffer overflow protections enabled.
-            </title>
+            <title>
+The OS shall <selectables>
+  <selectable>employ stack-based buffer overflow protections</selectable>
+  <selectable>not store parameters/variables in the same data structures as control flow values</selectable>
+</selectables>.
+</title>
+
             <note role="application">
-	      It is expected that most of the OS, to include the kernel, libraries, and 
-              application software from the OS vendor be compiled with stack-based buffer overflow 
-              protection enabled.
+Many OSes store control flow values (i.e. return addresses) in stack data structures that also contain parameters and variables.
+For these OSes, it is expected that most of the OS, to include the kernel, libraries, and application software from the OS vendor be compiled with stack-based buffer overflow protection enabled.
+OSes that store parameters and variables separately from control flow values do not need additional stack protections.
             </note>
             <aactivity>
-The evaluator will determine that the <abbr linkend="TSS"/> contains a description of stack-based buffer
-overflow protections used by the OS.
+<h:p>For stack-based OSes, the evaluator will determine that the <abbr linkend="TSS"/> contains a description of stack-based buffer overflow protections used by the OS.
 These are referred to by a variety of terms, such as stack cookie, stack guard, and stack canaries.
 The <abbr linkend="TSS"/> must include a rationale for any binaries that are not protected in this manner.
-GNU gcc, as of version 4.8, and Microsoft's VC++, as of 2010 release, activate overflow protections by default.
+The evaluator will also preform the following test:
             <testlist>
                 <test>
                   The evaluator will inventory the kernel, libraries, and application binaries
@@ -2658,6 +2660,11 @@ GNU gcc, as of version 4.8, and Microsoft's VC++, as of 2010 release, activate o
                   match up with the list provided in the <abbr linkend="TSS"/>.
                 </test>
             </testlist>
+</h:p>
+
+<h:p>For OSes that store parameters/variables separately from control flow values, the evaluator will verify that the <abbr linkend="TSS"/> describes what data structures control values, parameters, and variables are stored.
+The evaluator will also ensure that the TSS includes a description of the safeguards that ensure parameters and variables do not intermix with control flow values.
+</h:p>
             </aactivity>
           </f-element>
         </f-component>
