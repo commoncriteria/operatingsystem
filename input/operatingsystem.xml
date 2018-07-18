@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="../transforms/pp2html.xsl"?>
 
 <PP xmlns="https://niap-ccevs.org/cc/v1" name="General Purpose Operating System"
-    xmlns:h="http://www.w3.org/1999/xhtml">
+    xmlns:h="http://www.w3.org/1999/xhtml" boilerplate="yes">
   <PPReference title="PP Reference">
     <ReferenceTable>
       <PPTitle>Protection Profile for General Purpose Operating Systems</PPTitle>
@@ -10,7 +10,7 @@
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
       <PPPubDate>2018-05-22</PPPubDate>
       <PPCertificationID>unassigned</PPCertificationID>
-      <CCVersion>3.1R4</CCVersion>
+      <CCVersion>3.1R5</CCVersion>
       <Keywords>OS; operating system</Keywords>
       <entry>
         <name>Registration</name>
@@ -280,48 +280,7 @@
       </usecases>
     </section>
   </chapter>
-  <chapter title="Conformance Claims" id="ccl">
-    <cclaims>
-      <cclaim id="Conformance Statement">
-        <description> To be conformant to this PP, a <abbr linkend="ST"/> must demonstrate Exact
-          Conformance, a subset of Strict Conformance as defined in <cite linkend="bibCC"/> Part 1
-          (ASE_CCL). The <abbr linkend="ST"/> must include all components in this PP that are: <h:ul>
-            <h:li>unconditional (which are always required)</h:li>
-            <h:li>selection-based (which are required when certain <h:i>selections</h:i> are chosen in the
-              unconditional requirements)</h:li>
-          </h:ul>and may include components that are <h:ul>
-            <h:li>optional or</h:li>
-            <h:li>objective.</h:li>
-          </h:ul>
-          <InsertAppendixExplainer/> 
-	  <h:p>
-	  The <abbr linkend="ST"/> may iterate any of these components,
-          but it must not include any additional component (e.g. from <cite linkend="bibCC"/> Part 2 or 3 or a PP not
-          conformant with this one, or extended by the <abbr linkend="ST"/>) not defined in this PP
-          or a PP conformant to this one. 
-	  </h:p><h:p>
-	  Some components in this Protection Profile have a dependency on other components.
-	  In accordance with <cite linkend="bibCC"/> Part 1, <appref linkend="satisfiedreqs"/> 
-          includes justifications for those cases where the PP does not explicitly 
-	  contain the component upon which there is a dependency.
-	</h:p><h:p>
-	  <!-- insert language -->
-	</h:p>
-        </description>
-      </cclaim>
-      <cclaim id="CC Conformance Claims">
-        <description>This PP is conformant to Parts 2 (extended) and 3 (extended) of Common Criteria
-          Version 3.1, Revision 5.<cite linkend="bibCC"/>.</description>
-      </cclaim>
-      <cclaim id="PP Claim">
-        <description>This PP does not claim conformance to any other Protection
-          Profile.</description>
-      </cclaim>
-      <cclaim id="Package Claim">
-        <description>This PP does not claim conformance to any packages.</description>
-      </cclaim>
-    </cclaims>
-  </chapter>
+  <chapter title="Conformance Claims" id="ccl"/>
   <chapter title="Security Problem Definition" id="spd">The security problem is described in terms
     of the threats that the OS is expected to address, assumptions about the
     operational environment, and any organizational security policies that the OS
@@ -535,28 +494,8 @@ users of the same system.
       assumptions, threats, and organizational security policies map to the security objectives.
       <InsertSPDCorrespondence/></section>
   </chapter>
-  <chapter title="Security Requirements" id="req">This chapter describes the security requirements
-    which have to be fulfilled by the OS. Those requirements comprise functional
-    components from Part 2 and assurance components from Part 3 of <cite linkend="bibCC"/>. The
-    following notations are used: <h:ul>
-      <h:li>
-        <h:b>Refinement</h:b> operation (denoted by <h:b>bold text</h:b>): is used to add details to a
-        requirement, and thus further restricts a requirement.</h:li>
-      <h:li>
-        <h:b>Selection</h:b> (denoted by <h:i>italicized text</h:i>): is used to select one or more options
-        provided by the [CC] in stating a requirement.</h:li>
-      <h:li>
-        <h:b>Assignment</h:b> operation (denoted by <h:span class="assignable-content">italicized text</h:span>): is used to assign a
-        specific value to an unspecified parameter, such as the length of a password. Showing the
-        value in square brackets indicates assignment.</h:li>
-      <h:li>
-        <h:b>Iteration</h:b> operation: are identified with a number inside parentheses (e.g.
-        "(1)")</h:li>
-    </h:ul>
-    <section title="Security Functional Requirements" id="SFRs">The Security Functional Requirements
-      included in this section are derived from Part 2 of the Common Criteria for Information
-      Technology Security Evaluation, Version 3.1, Revision 5, with additional extended functional
-      components. 
+  <chapter title="Security Requirements" id="req">
+    <section title="Security Functional Requirements" id="SFRs">
       <subsection title="Cryptographic Support (FCS)" id="fcs">
         <f-component id="fcs_ckm.1" name="Cryptographic Key Generation (Refined)">
           <f-element id="fcs_ckm.1.1">
@@ -4159,49 +4098,13 @@ evaluation and performs independent testing.
     </section>
   </chapter>
 
-  <appendix title="Optional Requirements" id="optional"> As indicated in <secref linkend="ccl"/>,
-    the baseline requirements (those that must be performed by the OS) are
-    contained in the body of this PP. Additionally, there are three other types of requirements
-    specified in <appref linkend="optional"/>, <appref linkend="sel-based"/>, and <appref
-      linkend="objective"/>. The first type (in this Appendix) are requirements that can be included
-    in the <abbr linkend="ST"/>, but are not required in order for a OS to claim conformance to
-    this PP. The second type (in <appref linkend="sel-based"/>) are requirements based on selections
-    in the body of the PP: if certain selections are made, then additional requirements in that
-    appendix must be included. The third type (in <appref linkend="objective"/> are components that
-    are not required in order to conform to this PP, but will be included in the baseline
-    requirements in future versions of this PP, so adoption by vendors is encouraged. Note that the
-    ST author is responsible for ensuring that requirements that may be associated with those in
-      <appref linkend="optional"/>, <appref linkend="sel-based"/>, and <appref linkend="objective"/>
-    but are not listed (e.g., FMT-type requirements) are also included in the ST. </appendix>
+  <appendix title="Optional Requirements" id="optional"/>
 
-  <appendix title="Selection-Based Requirements" id="sel-based"> As indicated in the introduction to
-    this PP, the baseline requirements (those that must be performed by the OS or its underlying
-    platform) are contained in the body of this PP. There are additional requirements based on
-    selections in the body of the PP: if certain selections are made, then additional requirements
-    below will need to be included. </appendix>
+  <appendix title="Selection-Based Requirements" id="sel-based"/>
 
-  <appendix title="Objective Requirements" id="objective"> This appendix includes requirements that
-    specify security functionality which also addresses threats. The requirements are not currently
-    mandated in the body of this PP as they describe security functionality not yet widely-available
-    in commercial technology. However, these requirements may be included in the ST such that the
-    OS is still conformant to this PP, and it is expected that they be included as soon as
-    possible. </appendix>
+  <appendix title="Objective Requirements" id="objective"/>
 
   <appendix title="Implicitly Satisfied Requirements" id="satisfiedreqs">
-    <h:p>
-      This
-	appendix lists requirements that should be considered satisfied by products
-	successfully evaluated against this Protection Profile.  
-	However, these requirements are not featured explicitly as SFRs and should not be
-	included in the <abbr linkend="ST"/>.  
-	They are not included as standalone SFRs because it would
-	increase the time, cost, and complexity of evaluation.  This approach is permitted
-	by <citeCC/> Part 1, <h:b>8.2 Dependencies between components</h:b>.
-     </h:p><h:p>
-	This information benefits systems engineering activities which call for inclusion of 
-	particular security controls.  Evaluation against the Protection Profile
-	provides evidence that these controls are present and have been evaluated.
-      </h:p>
      <h:table>
 	<h:tr class="header">
 	<h:td>Requirement</h:td>
