@@ -40,6 +40,8 @@
       it manages may be physical or virtual.
     </section>
     <section title="Terms" id="glossary"> 
+      The following sections provide both Common Criteria and
+      technology terms used in this Protection Profile.
       <subsection title="Common Criteria Terms">
 	<glossary>
           <entry>
@@ -280,7 +282,7 @@
     </section>
   </chapter>
   <chapter title="Conformance Claims" id="ccl"/>
-  <chapter title="Security Problem Definition" id="spd">The security problem is described in terms
+  <chapter title="Security Problem Description" id="spd">The security problem is described in terms
     of the threats that the OS is expected to address, assumptions about the
     operational environment, and any organizational security policies that the OS
     is expected to enforce. <section title="Threats" id="threats">
@@ -491,7 +493,7 @@ users of the same system.
       </SOEs></section>
     <section title="Security Objectives Rationale" id="SOR">This section describes how the
       assumptions, threats, and organizational security policies map to the security objectives.
-      <InsertSPDCorrespondence/></section>
+      </section>
   </chapter>
   <chapter title="Security Requirements" id="req">
     <section title="Security Functional Requirements" id="SFRs">
@@ -749,8 +751,10 @@ users of the same system.
               components of key confirmation have been implemented correctly, using the test
               procedures described below. This includes the parsing of the DKM, the generation of
               MAC data and the calculation of MAC tag. <h:br/>
-              <indent>
-		<h:p>
+
+
+
+		<h:div style="margin-left: 40px">
 		  <h:b>Function Test</h:b>
 		  <h:p>The Function test verifies the ability of the OS to implement the key agreement schemes correctly.
 To conduct this test the evaluator will generate or obtain test vectors from a known good implementation of the OS's supported schemes.
@@ -776,7 +780,6 @@ These keys are static, ephemeral or both depending on the scheme being tested.
                 If key confirmation is supported, the OS shall perform the above for each
                 implemented approved MAC algorithm. 
 	      </h:p>
-              </h:p>
 	      <h:p>
 		<h:b>Validity Test</h:b><h:br/>
 		<h:p> The Validity test verifies the ability of the OS to
@@ -809,8 +812,8 @@ These keys are static, ephemeral or both depending on the scheme being tested.
                   verifying that the OS detects these errors. 
 		</h:p>
 	      </h:p>
-              </indent>
-	      </h:p>
+		</h:div>
+
 	      <h:p><h:b>SP800-56B Key Establishment Schemes</h:b></h:p>
 	      <h:p> The evaluator will verify that the TSS
               describes whether the OS acts as a sender, a recipient, or both for RSA-based key
@@ -820,7 +823,9 @@ These keys are static, ephemeral or both depending on the scheme being tested.
 		If the OS acts as a sender, the following assurance
 		activity shall be performed to ensure the proper operation of every OS supported
 		combination of RSA-based key establishment scheme: <h:br/>
-              <indent> To conduct this test the evaluator will generate or obtain test vectors from
+
+		<h:div style="margin-left: 40px">
+		  To conduct this test the evaluator will generate or obtain test vectors from
                 a known good implementation of the OS's supported schemes. For each combination of
                 supported key establishment scheme and its options (with or without key confirmation
                 if supported, for each supported key confirmation MAC function if key confirmation
@@ -833,13 +838,15 @@ These keys are static, ephemeral or both depending on the scheme being tested.
                 inputs (in cases where key confirmation is incorporated, the test shall use the MAC
                 key from the test vector instead of the randomly generated MAC key used in normal
                 operation) and ensure that the outputted ciphertext is equivalent to the ciphertext
-                in the test vector. </indent>
+                in the test vector. 
+		</h:div>
 	      </h:p>
               <h:p>
 		If the OS acts as a receiver, the following evaluation activities shall be
 		performed to ensure the proper operation of every OS supported combination of
 		RSA-based key establishment scheme: <h:br/>
-              <indent> To conduct this test the evaluator will generate or obtain test vectors from
+              
+		<h:div style="margin-left: 40px"> To conduct this test the evaluator will generate or obtain test vectors from
                 a known good implementation of the OS's supported schemes. For each combination of
                 supported key establishment scheme and its options (with our without key
                 confirmation if supported, for each supported key confirmation MAC function if key
@@ -853,8 +860,9 @@ These keys are static, ephemeral or both depending on the scheme being tested.
                 plaintext keying material in the test vector. In cases where key confirmation is
                 incorporated, the evaluator will perform the key confirmation steps and ensure that
                 the outputted MAC tag is equivalent to the MAC tag in the test vector. 
-	      </indent>
-	      </h:p>
+
+		</h:div>
+		</h:p>
               <h:p> The evaluator will ensure that the TSS describes how the OS handles decryption
               errors. In accordance with NIST Special Publication 800-56B, the OS must not reveal
               the particular error that occurred, either through the contents of any outputted or
@@ -868,6 +876,7 @@ These keys are static, ephemeral or both depending on the scheme being tested.
               section 7.2.3.3, ensure that each decryption attempt results in an error, and ensure
               that any outputted or logged error message is identical for each. 
 	    </h:p>
+	  </h:p>
 	    </aactivity>
           </f-element>
         </f-component>
@@ -3610,21 +3619,21 @@ The evaluator will also perform the following
     </section>
     <section title="Security Assurance Requirements" id="SARs">
       <h:p>
-The Security Objectives in <secref linkend="obj"/> were constructed to 
-address threats identified in <secref linkend="threats"/>. 
-The Security Functional Requirements (<abbr linkend="SFR"/>s) in <secref linkend="SFRs"/>
-are a formal instantiation of the Security Objectives. 
-The PP identifies the Security Assurance Requirements (<abbr linkend="SAR"/>s) to frame 
-the extent to which the evaluator assesses the documentation applicable for the 
-evaluation and performs independent testing. 
-      </h:p><h:p>
-      This section lists the set of <abbr linkend="SAR"/>s from CC part 3
-      that are required in evaluations against this PP. Individual evaluation activities
-      <!--(AAs). Never use these again --> to be performed are specified both in <secref
-        linkend="req"/> as well as in this section. 
-      </h:p><h:p>
-      The general model for evaluation of <abbr
-        linkend="OS"/>es against STs written to conform to this PP is as follows: 
+	The Security Objectives in <secref linkend="obj"/> were constructed to 
+	address threats identified in <secref linkend="threats"/>. 
+	The Security Functional Requirements (<abbr linkend="SFR"/>s) in <secref linkend="SFRs"/>
+	are a formal instantiation of the Security Objectives. 
+	The PP identifies the Security Assurance Requirements (<abbr linkend="SAR"/>s) to frame 
+	the extent to which the evaluator assesses the documentation applicable for the 
+	evaluation and performs independent testing. 
+      </h:p>
+      <h:p>
+	This section lists the set of <abbr linkend="SAR"/>s from CC part 3
+	that are required in evaluations against this PP. Individual evaluation activities
+	to be performed are specified both in <secref linkend="req"/> as well as in this section. 
+      </h:p>
+      <h:p>
+      The general model for evaluation of TOEs against STs written to conform to this PP is as follows: 
       <h:br/> 
       After the <abbr linkend="ST"/> has been approved for evaluation,
       the 
@@ -3637,7 +3646,7 @@ evaluation and performs independent testing.
       OS. The evaluation activities that are captured in <secref linkend="req"/> also provide
       clarification as to what the developer needs to provide to demonstrate the OS is compliant
       with the PP. 
-    </h:p>
+      </h:p>
 
       <subsection title="Class ASE: Security Target" id="ase">
         The following ASE components as defined in <cite linkend="bibCEM"/> are required:
@@ -4061,7 +4070,7 @@ evaluation and performs independent testing.
               <title>The developer shall provide the OS for testing.</title>
             </a-element>
 	  
-                  <evalactionlabel title="Content and presentation elements :"/>
+                  <evalactionlabel title="Content and presentation elements:"/>
             <a-element id="ate_ind.1.1c">
               <title>The OS shall be suitable for testing.</title>
             </a-element>
