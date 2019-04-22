@@ -344,6 +344,11 @@
             <rationale>The threat T.NETWORK_ATTACK is countered by O.MANAGEMENT as this provides for
               the ability to configure the OS to defend against network attack.</rationale>
           </objective-refer>
+          <objective-refer ref="O.ACCOUNTABILITY">
+            <rationale>The threat T.NETWORK_ATTACK is countered by O.ACCOUNTABILITY as this
+              provides a mechanism for the OS to report behavior that may indicate a network
+              attack has occurred.</rationale>
+          </objective-refer>
         </threat>
         <threat id="T.NETWORK_EAVESDROP">
           <description> An attacker is positioned on a communications channel or elsewhere on the
@@ -368,6 +373,11 @@
             <rationale>The objective O.INTEGRITY protects against the use of mechanisms that weaken
               the <abbr linkend="TOE"/> with regard to attack by other software on the
               platform.</rationale>
+          </objective-refer>
+          <objective-refer ref="O.ACCOUNTABILITY">
+            <rationale>The objective O.ACCOUNTABILITY protects against local attacks by providing
+              a mechanism to report behavior that may indicate a local attack is occurring or
+              has occurred.</rationale>
           </objective-refer>
         </threat>
         <threat id="T.LIMITED_PHYSICAL_ACCESS">
@@ -435,6 +445,11 @@
             transmitting it to another system can also enable incident response in the event
             of system compromise.</description>
           <component-refer ref="fau_gen.1"/>
+          <component-refer ref="ftp_itc_ext.1"/>
+          <rationale>FAU_GEN.1 defines the auditable events that must be generated to diagnose the
+          cause of unexpected system behavior. FTP_ITC_EXT.1 provides a mechanism for the TSF to
+          transmit the audit data to a remote system.
+          </rationale>
         </SO>
         <SO id="O.INTEGRITY">
           <description>Conformant OSes ensure the integrity of their update
@@ -447,17 +462,31 @@
           <component-refer ref="fpt_aslr_ext.1"/>
           <component-refer ref="fpt_tud_ext.1"/>
           <component-refer ref="fpt_tud_ext.2"/>
-          <component-refer ref="fcs_cop.1.1(2)"/>
-          <component-refer ref="fcs_cop.1.1(3)"/>
-          <component-refer ref="fcs_cop.1.1(4)"/>
+          <component-refer ref="fcs_cop.1(2)"/>
+          <component-refer ref="fcs_cop.1(3)"/>
+          <component-refer ref="fcs_cop.1(4)"/>
           <component-refer ref="fpt_acf_ext.1"/>
           <component-refer ref="fpt_srp_ext.1"/>
-          <component-refer ref="fia_x509_ext.2"/>
+          <component-refer ref="fia_x509_ext.1"/>
           <component-refer ref="fpt_tst_ext.1"/>
-	  <component-refer ref="ftp_itc_ext.1"/>
-	  <component-refer ref="fpt_w^x_ext.1.1"/>
-	  <component-refer ref="fia_afl.1"/>
-	  <component-refer ref="fia_uau.5"/>
+	        <component-refer ref="ftp_itc_ext.1"/>
+	        <component-refer ref="fpt_w^x_ext.1"/>
+          <component-refer ref="fia_afl.1"/>
+          <component-refer ref="fia_uau.5"/>
+          <rationale>FPT_SBOP_EXT.1 enforces stack buffer overflow protection that makes it more
+            difficult to exploit running code. FPT_ASLR_EXT.1 prevents attackers from exploiting
+            code that executes in static known memory locations. FPT_TUD_EXT.1 and FPT_TUD_EXT.2
+            enforce integrity of software updates. FCS_COP.1(2), FCS_COP.1(3), and FCS_COP.1(4)
+            provide the cryptographic mechanisms that are used to verify integrity values.
+            FPT_ACF_EXT.1 guarantees the integrity of critical components by preventing unauthorized
+            modifications of them. FPT_SRP_EXT.1 restricts the execution of unauthorized software.
+            FPT_X509_EXT.1 provides X.509 certificates as a way of validating software integrity.
+            FPT_TST_EXT.1 verifies the integrity of stored code. FPT_W^X_EXT.1 prevents execution
+            of data in writable memory. FIA_UAU.5 provides mechanisms that prevent untrusted users
+            from accessing the TSF and FIA_AFL.1 prevents brute-force authentication attempts.
+            FTP_ITC_EXT.1 provides trusted remote communications which makes a remote authenticated
+            session less susceptible to compromise.
+          </rationale>
         </SO>
         <SO id="O.MANAGEMENT">
           <description> To facilitate management by users and the enterprise, conformant <abbr
@@ -467,7 +496,14 @@
             mechanisms and formats, as well as providing mechanisms for configuration and
             application execution control. </description>
           <component-refer ref="fmt_mof_ext.1"/>
+          <component-refer ref="fmt_smf_ext.1"/>
+          <component-refer ref="fta_tab.1"/>
           <component-refer ref="ftp_trp.1"/>
+          <rationale>FMT_SMF_EXT.1 defines the TOE's management functions and FMT_MOF_EXT.1
+            defines the privileges required to invoke them. FTP_TRP.1 provides one or more secure
+            remote interfaces for management of the TSF and FTA_TAB.1 provides actionable warnings
+            against misuse of these interfaces.
+          </rationale>
         </SO>
 	<!-- <SO id="O.RESILIENCE"> -->
 	<!--   <description>  -->
@@ -485,8 +521,15 @@ users of the same system.
           </description>
           <component-refer ref="fcs_sto_ext.1"/>
           <component-refer ref="fcs_rbg_ext.1"/>
-          <component-refer ref="fcs_cop.1.1(1)"/>
-	  <component-refer ref="fdp_acf_ext.1"/>
+          <component-refer ref="fcs_cop.1(1)"/>
+          <component-refer ref="fdp_acf_ext.1"/>
+          <rationale>FCS_STO_EXT.1 provides a mechanism by which the TOE can designate
+            data as ‘sensitive’ and subsequently require it to be encrypted. FCS_COP.1(1)
+            defines the symmetric algorithm used to encrypt and decrypt sensitive data.
+            FCS_RBG_EXT.1 defines the random bit generator used to create the symmetric
+            keys used to perform this encryption and decryption. FDP_ACF_EXT.1 enforces
+            logical access control on stored data.
+          </rationale>
         </SO>
         <SO id="O.PROTECTED_COMMS">
           <description> To address both passive (eavesdropping) and active (packet modification)
@@ -502,11 +545,26 @@ users of the same system.
           <component-refer ref="fcs_ckm.1"/>
           <component-refer ref="fcs_ckm.2"/>
           <component-refer ref="fcs_ckm_ext.4"/>
-          <component-refer ref="fcs_cop.1.1(1)"/>
+          <component-refer ref="fcs_cop.1(1)"/>
+          <component-refer ref="fcs_cop.1(2)"/>
+          <component-refer ref="fcs_cop.1(3)"/>
+          <component-refer ref="fcs_cop.1(4)"/>
           <component-refer ref="fdp_ifc_ext.1"/>
           <component-refer ref="fia_x509_ext.1"/>
           <component-refer ref="fia_x509_ext.2"/>
-	  <component-refer ref="ftp_itc_ext.1"/>
+          <component-refer ref="ftp_itc_ext.1"/>
+          <rationale>FCS_TLSC_EXT.1, FCS_TLSC_EXT.2, FCS_TLSC_EXT.3, and FCS_TLSC_EXT.4 define the
+            ability of the TOE to act as a TLS client as a method of enforcing protected communications.
+            FCS_DTLS_EXT.1 defines the ability of the TOE to act as a DTLS client for the same purpose.
+            FCS_CKM.1, FCS_CKM.2, FCS_COP.1(1), FCS_COP.1(2), FCS_COP.1(3), FCS_COP.1(4), and
+            FCS_RBG_EXT.1 define the cryptographic operations and key lifecycle activity used to support
+            the establishment of protected communications. FIA_X509_EXT.1 defines how the TSF validates
+            x.509 certificates as part of establishing protected communications. FIA_X509_EXT.2 defines
+            the trusted communication protocols for which the TOE must perform certificate validation
+            operations. FDP_IFC_EXT.1 defines the extent to which the TSF provides an IPsec VPN as a
+            protected communications method. FTP_ITC_EXT.1 defines the trusted communications channels
+            supported by the TOE.
+          </rationale>
         </SO>
       </SOs>
     </section>
@@ -540,8 +598,11 @@ users of the same system.
     components from Part 2 and assurance components from Part 3 of <cite linkend="bibCC"/>. The
     following notations are used: <h:ul>
       <h:li>
-        <h:b>Refinement</h:b> operation (denoted by <h:b>bold text</h:b>): is used to add details to a
-        requirement, and thus further restricts a requirement.</h:li>
+        <h:b>Refinement</h:b> operation (denoted by <h:b>bold text</h:b> or <h:strike>strikethrough
+        text</h:strike>): is used to add details to a requirement (including replacing an assignment
+        with a more restrictive selection) or to remove part of the requirement that is made irrelevant
+        through the completion of another operation, and thus further restricts a requirement.
+        </h:li>
       <h:li>
         <h:b>Selection</h:b> (denoted by <h:i>italicized text</h:i>): is used to select one or more options
         provided by the [CC] in stating a requirement.</h:li>
@@ -561,17 +622,21 @@ users of the same system.
         <f-component id="fcs_ckm.1" name="Cryptographic Key Generation (Refined)">
           <f-element id="fcs_ckm.1.1">
             <title> The <h:b>OS</h:b> shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a
-              specified cryptographic key generation algorithm <selectables linebreak="yes">
-                <selectable><h:b>RSA schemes</h:b> using cryptographic key sizes of 2048-bit or greater that meet the following: <h:b>FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.3</h:b></selectable>
-                <selectable><h:b>ECC schemes</h:b> using "NIST curves" P-256, P-384 and 
-		  <selectables>
+              specified cryptographic key generation algorithm <h:b><selectables linebreak="yes">
+                <selectable>RSA schemes using cryptographic key sizes of 2048-bit or greater that
+                meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.3
+                </selectable>
+                <selectable>ECC schemes using "NIST curves" P-256, P-384 and
+                  <selectables>
                     <selectable>P-521</selectable>
                     <selectable exclusive="yes"> no other curves</selectable>
-                    </selectables> that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.4</selectable>                
-                <selectable><h:b>FFC schemes</h:b> using cryptographic key sizes of 2048-bit 
+                  </selectables> that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)",
+                  Appendix B.4
+                </selectable>                
+                <selectable>FFC schemes using cryptographic key sizes of 2048-bit 
                   or greater that meet the following: FIPS PUB 186-4, "Digital Signature 
                   Standard (DSS)", Appendix B.1</selectable>
-              </selectables>
+              </selectables></h:b>
               <h:strike>
                 and specified cryptographic key sizes [assignment: cryptographic key sizes] 
                 that meet the following: [assignment: list of standards]
@@ -736,23 +801,23 @@ users of the same system.
         </f-component>
         <f-component id="fcs_ckm.2" name="Cryptographic Key Establishment (Refined)">
           <f-element id="fcs_ckm.2.1">
-            <title> The OS shall implement functionality to perform cryptographic key establishment
-              in accordance with a specified cryptographic key establishment method:
+            <title>The OS shall <h:b>implement functionality to perform cryptographic key establishment</h:b>
+              in accordance with a specified cryptographic key <h:b>establishment</h:b> method:
 	      <h:p/>
-              <h:b>RSA-based key establishment schemes</h:b> that meets the following: 
-	      NIST Special Publication 800-56B, "Recommendation for Pair-Wise Key Establishment Schemes
-              Using Integer Factorization Cryptography"
+              [<h:i>RSA-based key establishment schemes</h:i>] that meets the following: 
+	      [<h:i>NIST Special Publication 800-56B, "Recommendation for Pair-Wise Key Establishment Schemes
+              Using Integer Factorization Cryptography"</h:i>]
 	      <h:p/> 
-	      and 
+	      <h:b>and 
 	      <selectables linebreak="yes">
-                <selectable><h:b>Elliptic curve-based key establishment schemes</h:b> that meets the following:
+                <selectable>Elliptic curve-based key establishment schemes that meets the following:
                     NIST Special Publication 800-56A, "Recommendation for Pair-Wise Key
                     Establishment Schemes Using Discrete Logarithm Cryptography"</selectable>
-	        <selectable><h:b>Finite field-based key establishment schemes</h:b> that meets the following:
+	        <selectable>Finite field-based key establishment schemes that meets the following:
 	          NIST Special Publication 800-56A, "Recommendation for Pair-Wise Key
 	          Establishment Schemes Using Discrete Logarithm Cryptography"</selectable>
                 <selectable exclusive="yes">No other schemes</selectable>
-              </selectables>
+              </selectables></h:b>
               <h:strike>that meets the following: [assignment: list of standards]</h:strike>
               . 
             </title>
@@ -1081,8 +1146,8 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
         <f-component id="fcs_cop.1(1)" name="Cryptographic Operation - Encryption/Decryption (Refined)">
           <f-element id="fcs_cop.1.1(1)">
             <title>
-              The <h:b>OS</h:b> shall perform encryption/decryption services for data in 
-	      accordance with a specified cryptographic algorithm 
+              The <h:b>OS</h:b> shall perform [<h:i>encryption/decryption services for data</h:i>] in 
+	      accordance with a specified cryptographic algorithm<h:b>
 	      <selectables linebreak="yes">
 	              <selectable>AES-XTS (as defined in NIST SP 800-38E)</selectable>
 	              <selectable>AES-CBC (as defined in NIST SP 800-38A)</selectable>
@@ -1097,7 +1162,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 <selectable>AES-CCMP-256 (as defined in NIST SP800-38C and IEEE 802.11ac-2013)</selectable>
                 <selectable>AES-GCMP-256 (as defined in NIST SP800-38D and IEEE 802.11ac-2013)</selectable>
                 <selectable exclusive="yes">no other modes</selectable>
-              </selectables> 
+              </selectables></h:b>
               and cryptographic key sizes 
               <selectables>
                 <selectable>128-bit</selectable>
@@ -1424,18 +1489,18 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
         </f-component>
         <f-component id="fcs_cop.1(2)" name="Cryptographic Operation - Hashing (Refined)">
           <f-element id="fcs_cop.1.1(2)">
-            <title>The <h:b>OS</h:b> shall perform cryptographic hashing services in accordance with a
-              specified cryptographic algorithm SHA-1 and <selectables linebreak="yes">
+            <title>The <h:b>OS</h:b> shall perform [<h:i>cryptographic hashing services</h:i>] in accordance with a
+              specified cryptographic algorithm [<h:i>SHA-1 and <selectables linebreak="yes">
                 <selectable>SHA-256</selectable>
                 <selectable>SHA-384</selectable>
                 <selectable>SHA-512</selectable>
                 <selectable exclusive="yes">no other algorithms</selectable>
-              </selectables> and message digest sizes 160 bits and <selectables linebreak="yes">
+              </selectables>]</h:i><h:b> and message digest sizes 160 bits and <selectables linebreak="yes">
                 <selectable>256 bits</selectable>
                 <selectable>384 bits</selectable>
                 <selectable>512 bits</selectable>
                 <selectable exclusive="yes">no other sizes</selectable>
-              </selectables> that meet the following: FIPS Pub 180-4. </title>
+              </selectables></h:b> that meet the following: [<h:i>FIPS Pub 180-4</h:i>]. </title>
             <note role="application"> 
 	      <h:p>
 	      Per NIST SP 800-131A, SHA-1 for generating digital signatures
@@ -1519,17 +1584,17 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
         </f-component>
         <f-component id="fcs_cop.1(3)" name="Cryptographic Operation - Signing (Refined)">
           <f-element id="fcs_cop.1.1(3)">
-            <title>The <h:b>OS</h:b> shall perform cryptographic signature services (generation and
-              verification) in accordance with a specified cryptographic algorithm <selectables
+            <title>The <h:b>OS</h:b> shall perform [<h:i>cryptographic signature services (generation and
+              verification)</h:i>] in accordance with a specified cryptographic algorithm <h:b><selectables
                 linebreak="yes">
-                <selectable><h:b>RSA schemes</h:b> using cryptographic key sizes of 2048-bit or greater
+                <selectable>RSA schemes using cryptographic key sizes of 2048-bit or greater
                   that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)",  Section 4</selectable>
-                <selectable><h:b>ECDSA schemes</h:b> using "NIST curves" P-256, P-384 and <selectables>
+                <selectable>ECDSA schemes using "NIST curves" P-256, P-384 and <selectables>
                     <selectable>P-521</selectable>
                     <selectable exclusive="yes">no other curves</selectable>
                   </selectables> 
 		  that meet the following: FIPS PUB 186-4, "Digital Signature   Standard (DSS)", Section 5</selectable>
-              </selectables>
+              </selectables></h:b>
               <h:strike>and cryptographic key sizes [assignment: cryptographic algorithm] 
                 that meet the following: [assignment: list of standards]</h:strike>. 
             </title>
@@ -1596,23 +1661,23 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
         </f-component>
         <f-component id="fcs_cop.1(4)" name="Cryptographic Operation - Keyed-Hash Message Authentication (Refined)">
           <f-element id="fcs_cop.1.1(4)">
-            <title>The <h:b>OS</h:b> shall perform keyed-hash message authentication services 
-	    in accordance with a specified cryptographic algorithm
-	      <selectables>
+            <title>The <h:b>OS</h:b> shall perform [<h:i>keyed-hash message authentication services</h:i>] 
+            in accordance with a specified cryptographic algorithm<h:b>
+              <selectables>
                 <selectable>SHA-1</selectable>
-		<selectable>SHA-256</selectable>
+                <selectable>SHA-256</selectable>
                 <selectable>SHA-384</selectable>
                 <selectable>SHA-512</selectable>
-              </selectables> 
-	      with key sizes <assignable>key size (in bits) used in HMAC</assignable>
-              <h:b>and message digest sizes 
+              </selectables>
+              with key sizes <assignable>key size (in bits) used in HMAC</assignable>
+              and message digest</h:b> sizes
 	      <selectables>
                 <selectable>160 bits</selectable>
                 <selectable>256 bits</selectable>
                 <selectable>384 bits</selectable>
                 <selectable>512 bits</selectable>
-	      </selectables></h:b> that meet the following: FIPS Pub 198-1 <h:i>The Keyed-Hash Message
-                Authentication Code</h:i> and FIPS Pub 180-4 <h:i>Secure Hash Standard</h:i>. </title>
+	      </selectables> that meet the following: [<h:i>FIPS Pub 198-1 The Keyed-Hash Message
+                Authentication Code and FIPS Pub 180-4 Secure Hash Standard</h:i>]. </title>
             <note role="application">
 	      <h:p>
 	      The intent of this requirement is to specify the keyed-hash
@@ -3017,8 +3082,8 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
               events: 
               <h:ol type='a'>
                 <h:li>Start-up and shut-down of the audit functions;</h:li>
-                <h:li>All auditable events for the <h:b>not specified</h:b> level of audit; and</h:li>
-                <h:li><h:b>
+                <h:li>All auditable events for the [<h:i>not specified</h:i>] level of audit; and [</h:li>
+                <h:li><h:i>
 		  <h:ul><h:li>Authentication events (Success/Failure);</h:li>
                   <h:li>Use of privileged/special rights events (Successful and unsuccessful security, audit, and configuration changes);</h:li>
                   <h:li>Privilege or role escalation events (Success/Failure);</h:li>
@@ -3035,10 +3100,9 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
                     </selectables>
 		  </h:li>
 		  </h:ul>
-		</h:b>
+		</h:i>].
 		</h:li>
 	      </h:ol>
-	      .
             </title>
             <aactivity>
 	      <h:p>
