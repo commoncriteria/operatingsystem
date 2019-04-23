@@ -6,11 +6,11 @@
   <PPReference title="PP Reference">
     <ReferenceTable>
       <PPTitle>Protection Profile for General Purpose Operating Systems</PPTitle>
-      <PPVersion>4.2</PPVersion>
+      <PPVersion>4.2.1</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
-      <PPPubDate>2018-05-22</PPPubDate>
+      <PPPubDate>2019-04-22</PPPubDate>
       <PPCertificationID>unassigned</PPCertificationID>
-      <CCVersion>3.1R4</CCVersion>
+      <CCVersion>3.1R5</CCVersion>
       <Keywords>OS; operating system</Keywords>
       <entry>
         <name>Registration</name>
@@ -21,9 +21,14 @@
 
   <RevisionHistory>
     <entry>
+      <version>4.2.1</version>
+      <date>2019-04-22</date>
+      <subject>Formatting changes as a result of PP evaluation</subject>
+    </entry>
+    <entry>
       <version>4.2</version>
       <date>2018-05-22</date>
-      <subject>Multiple Technical Decisions Applied.</subject>
+      <subject>Multiple Technical Decisions applied</subject>
     </entry>
     <entry>
       <version>4.1</version>
@@ -998,8 +1003,8 @@ These keys are static, ephemeral or both depending on the scheme being tested.
         </f-component>
                 
 
-	<f-component id="FCS_CKM_EXT.4" name="Cryptographic Key Destruction" >
-          <f-element id="FCS_CKM_EXT.4.1">
+	<f-component id="fcs_ckm_ext.4" name="Cryptographic Key Destruction" >
+          <f-element id="fcs_ckm_ext.4.1">
 	    <title>
 The OS shall destroy cryptographic keys and key material in accordance with a specified cryptographic key destruction method 
               <selectables>
@@ -1040,13 +1045,13 @@ Several selections allow assignment of a 'value that does not contain any CSP'. 
 	      </h:p>
 	    </note>
 	  </f-element>
-          <f-element id="FCS_CKM_EXT.4.2">
+          <f-element id="fcs_ckm_ext.4.2">
 	    <title>The OS shall destroy all keys and key material when no longer needed.</title>
 	    <note role="application">
 	      <h:p>
 		For the purposes of this requirement, key material refers to authentication data, passwords, secret/private symmetric keys, private asymmetric keys, data used to derive keys, values derived from passwords, etc. 
 	      </h:p>
-	      <h:p>Key destruction procedures are performed in accordance with <linkref linkend='FCS_CKM_EXT.4.1'/>.</h:p>
+	      <h:p>Key destruction procedures are performed in accordance with <linkref linkend='fcs_ckm_ext.4.1'/>.</h:p>
 	    </note>
 	    <aactivity>
 	      <tss/>
@@ -1168,8 +1173,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 <selectable>128-bit</selectable>
                 <selectable>256-bit</selectable>
               </selectables>
-        <h:strike>that meet the following: [assignment: list of standards]</h:strike>
-	      .
+        <h:strike>that meet the following: [assignment: list of standards]</h:strike>.
 	    </title>
             <note role="application"> 
 	      <h:p>
@@ -2184,8 +2188,8 @@ and verify that the client rejects the connection after receiving the Server Key
         <f-component id="fcs_tlsc_ext.2" name="TLS Client Protocol" status="sel-based">
 	  <selection-depends req="fcs_tlsc_ext.1.1" ids="ec1,ec2,ec3,ec4,ec5,ec6,ec7,ec8"/>
           <f-element id="fcs_tlsc_ext.2.1">
-            <title> The OS shall present the Supported Elliptic Curves Extension in the Client Hello
-              with the following NIST curves: <selectables>
+            <title> The OS shall present the Supported Groups Extension in the Client Hello
+              with the following supported groups: <selectables>
                 <selectable>secp256r1</selectable>
                 <selectable>secp384r1</selectable>
                 <selectable>secp521r1</selectable>
@@ -2201,12 +2205,12 @@ and verify that the client rejects the connection after receiving the Server Key
             <aactivity> 
 	      <h:p>
 	      The evaluator will verify that <abbr title="TOE Summary Specification"
-                linkend="TSS">TSS</abbr> describes the supported Elliptic Curves Extension and
+                linkend="TSS">TSS</abbr> describes support for the Supported Groups Extension and
               whether the required behavior is performed by default or may be configured. If the
-                <abbr title="TOE Summary Specification" linkend="TSS">TSS</abbr> indicates that the
-              supported Elliptic Curves Extension must be configured to meet the requirement, the
-              evaluator will verify that AGD guidance includes configuration of the supported
-              Elliptic Curves Extension. 
+                <abbr title="TOE Summary Specification" linkend="TSS">TSS</abbr> indicates that
+              support for the Supported Groups Extension must be configured to meet the requirement, the
+              evaluator will verify that AGD guidance includes configuration instructions for the
+              Supported Groups Extension.
 	      </h:p><h:p>
 	      The evaluator will also perform the following test: 
               <h:br/>
@@ -3512,7 +3516,7 @@ the node certificate to be tested, two Intermediate CAs, and the
         <f-component id="fta_tab.1" name="Default TOE access banners" status="optional">
           <f-element id="fta_tab.1.1">
             <title>
-            Before establishing a user session, the OS shall display an advisory
+            Before establishing a user session, the <h:b>OS</h:b> shall display an advisory
             warning message regarding unauthorized use of the OS.
             </title>
             <aactivity> 
@@ -3528,14 +3532,14 @@ the node certificate to be tested, two Intermediate CAs, and the
       	<f-component id="ftp_itc_ext.1" name="Trusted channel communication">
       	  <f-element id="ftp_itc_ext.1.1">
       	    <title>
-     	      The OS shall use 
+              The OS shall use
       	      <selectables linebreak='yes'>
         	      <selectable id="tls">TLS as conforming to <linkref linkend="FCS_TLSC_EXT.1"/></selectable>
         	      <selectable id="dtls">DTLS as conforming to <linkref linkend="FCS_DTLS_EXT.1"/></selectable>
       	        <selectable>IPsec as conforming to the <h:a href="https://www.niap-ccevs.org/pp/"><h:i><abbr linkend="EP"/> for IPsec VPN Clients</h:i></h:a></selectable>
       	        <selectable>SSH as conforming to the <h:a href="https://www.niap-ccevs.org/pp/"><h:i><abbr linkend="EP"/> for Secure Shell</h:i></h:a></selectable>
         	    </selectables>
-		    to provide a trusted communication channel between itself and 
+		    to provide a trusted communication channel between itself and
 		    authorized IT entities supporting the following capabilities: 
 		    <selectables>
 		      <selectable>audit server</selectable>
@@ -3565,11 +3569,11 @@ The ST author must include the security functional requirements for the trusted 
         <f-component id="ftp_trp.1" name="Trusted Path">
             <f-element id="ftp_trp.1.1">
 	      <title>
-The OS shall provide a communication path between itself and 
+The <h:b>OS</h:b> shall provide a communication path between itself and
 <selectables><selectable>remote</selectable><selectable>local</selectable></selectables>
 users that is logically distinct from other communication paths and provides assured 
 identification of its endpoints and protection of the communicated data from 
-modification and disclosure.
+[modification, disclosure].
               </title>
 	      <note role="application">
 		<h:p>
@@ -3583,7 +3587,7 @@ This requirement is tested with the  evaluation activities for  <linkref linkend
 	      </note>
             </f-element>
             <f-element id="ftp_trp.1.2">
-              <title> The OS shall permit 
+              <title> The <h:b>OS</h:b> shall permit
                 <selectables>
                   <selectable>the TSF</selectable>
                   <selectable>local users</selectable>
@@ -3598,7 +3602,8 @@ This requirement is tested with the  evaluation activities for  <linkref linkend
 	      </note>
             </f-element>
             <f-element id="ftp_trp.1.3">
-              <title> The OS shall require use of the trusted path for all remote administrative actions.
+              <title> The <h:b>OS</h:b> shall require use of the trusted path for
+              [[<h:i>all remote administrative actions</h:i>]].
               </title>
               <note role="application">
 		<h:p>
@@ -3682,8 +3687,8 @@ evaluation and performs independent testing.
         <h:li>Conformance claims (ASE_CCL.1)</h:li>
         <h:li>Extended components definition (ASE_ECD.1)</h:li>
         <h:li>ST introduction (ASE_INT.1)</h:li>
-        <h:li>Security objectives for the operational environment (ASE_OBJ.1)</h:li>
-        <h:li>Stated security requirements (ASE_REQ.1)</h:li>
+        <h:li>Security objectives (ASE_OBJ.2)</h:li>
+        <h:li>Derived security requirements (ASE_REQ.2)</h:li>
         <h:li>Security Problem Definition (ASE_SPD.1)</h:li>
         <h:li>TOE summary specification (ASE_TSS.1)</h:li>
         </h:ul>
