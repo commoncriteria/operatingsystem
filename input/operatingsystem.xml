@@ -1469,12 +1469,14 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
         <f-component id="fcs_cop.1(2)" name="Cryptographic Operation - Hashing (Refined)">
           <f-element id="fcs_cop.1.1(2)">
             <title>The <h:b>OS</h:b> shall perform [<h:i>cryptographic hashing services</h:i>] in accordance with a
-              specified cryptographic algorithm [<h:i>SHA-1 and <selectables linebreak="yes">
+              specified cryptographic algorithm <h:b>
+              <selectables linebreak="yes">
+                <selectable>SHA-1</selectable>
                 <selectable>SHA-256</selectable>
                 <selectable>SHA-384</selectable>
                 <selectable>SHA-512</selectable>
                 <selectable exclusive="yes">no other algorithms</selectable>
-              </selectables>]</h:i><h:b> and message digest sizes 160 bits and <selectables linebreak="yes">
+              </selectables> and message digest sizes 160 bits and <selectables linebreak="yes">
                 <selectable>256 bits</selectable>
                 <selectable>384 bits</selectable>
                 <selectable>512 bits</selectable>
@@ -1483,21 +1485,21 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
             <note role="application"> 
 	      <h:p>
 	      Per NIST SP 800-131A, SHA-1 for generating digital signatures
-              is no longer allowed, and SHA-1 for verification of digital signatures is strongly
-              discouraged as there may be risk in accepting these signatures. 
+        is no longer allowed, and SHA-1 for verification of digital signatures is strongly
+        discouraged as there is risk in accepting these signatures.
 	      </h:p>
 	      <h:p>
-	      SHA-1 is currently required in order to comply with <linkref linkend="FCS_TLSC_EXT.1"/>
-	      and, depending on selections, <linkref linkend="FCS_DTLS_EXT.1"/>.
-              Vendors are strongly encouraged to implement updated protocols that support the SHA-2
-              family; until updated protocols are supported, this PP allows support for SHA-1
-              implementations in compliance with SP 800-131A. 
+	      Evaluation of SHA-1 is currently permitted in order to allow for evaluation
+        of TLS or DTLS ciphersuites that may be selected in the TLS Package.
+	      Vendors are strongly encouraged to implement updated protocols that support the SHA-2
+	      family; until updated protocols are supported, this PP allows support for SHA-1
+	      implementations in compliance with SP 800-131A.
 	      </h:p>
 	      <h:p>
 	      The intent of this requirement is to specify the hashing function. 
 	      The hash selection must support the message digest
-              size selection. The hash selection should be consistent with the overall strength of
-              the algorithm used. 
+        size selection. The hash selection should be consistent with the overall strength of
+        the algorithm used.
 	      </h:p>
 	    </note>
             <aactivity>
@@ -1674,10 +1676,8 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      implementation mandatory for compliant OSes.
 	      </h:p>
 	      <h:p>
-	      SHA-1 is currently required in order to comply with <linkref linkend="FCS_TLSC_EXT.1"/>
-	      and, depending on selections, <linkref linkend="FCS_DTLS_EXT.1"/>.
-	      SHA-1 is currently required in order to comply with <linkref linkend="FCS_TLSC_EXT.1"/>,
-	      but has been deprecated and should not be used for any other purpose beyond TLS and DTLS
+        Evaluation of SHA-1 is currently permitted in order to allow for evaluation
+        of TLS or DTLS ciphersuites that may be selected in the TLS Package.
 	      </h:p>
 	    </note>
             <aactivity>
