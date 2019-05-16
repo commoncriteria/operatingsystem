@@ -504,11 +504,6 @@ users of the same system.
             network attack threats, conformant OSes provide mechanisms to create
             trusted channels for <abbr linkend="CSP"/> and sensitive data. Both CSP and sensitive data
             should not be exposed outside of the platform. </description>
-          <component-refer ref="fcs_tlsc_ext.1"/>
-          <component-refer ref="fcs_tlsc_ext.2"/>
-          <component-refer ref="fcs_tlsc_ext.3"/>
-          <component-refer ref="fcs_tlsc_ext.4"/>
-          <component-refer ref="fcs_dtls_ext.1"/>
           <component-refer ref="fcs_rbg_ext.1"/>
           <component-refer ref="fcs_ckm.1"/>
           <component-refer ref="fcs_ckm.2"/>
@@ -521,9 +516,7 @@ users of the same system.
           <component-refer ref="fia_x509_ext.1"/>
           <component-refer ref="fia_x509_ext.2"/>
           <component-refer ref="ftp_itc_ext.1"/>
-          <rationale>FCS_TLSC_EXT.1, FCS_TLSC_EXT.2, FCS_TLSC_EXT.3, and FCS_TLSC_EXT.4 define the
-            ability of the TOE to act as a TLS client as a method of enforcing protected communications.
-            FCS_DTLS_EXT.1 defines the ability of the TOE to act as a DTLS client for the same purpose.
+          <rationale>
             FCS_CKM.1, FCS_CKM.2, FCS_COP.1(1), FCS_COP.1(2), FCS_COP.1(3), FCS_COP.1(4), and
             FCS_RBG_EXT.1 define the cryptographic operations and key lifecycle activity used to support
             the establishment of protected communications. FIA_X509_EXT.1 defines how the TSF validates
@@ -559,7 +552,6 @@ users of the same system.
       </SOEs></section>
     <section title="Security Objectives Rationale" id="SOR">This section describes how the
       assumptions, threats, and organizational security policies map to the security objectives.
-      <InsertSPDCorrespondence/>
       </section>
   </chapter>
   <chapter title="Security Requirements" id="req">This chapter describes the security requirements
@@ -1705,47 +1697,6 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	    </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fcs_dtls_ext.1" name="DTLS Implementation" status="sel-based">
-	  <selection-depends req="ftp_itc_ext.1.1" ids="dtls"/>
-          <f-element id="fcs_dtls_ext.1.1">
-            <title>The OS shall implement the DTLS protocol in accordance with 
-              <selectables>
-                <selectable>DTLS 1.0 (RFC 4347)</selectable>
-                <selectable>DTLS 1.2 (RFC 6347)</selectable>
-              </selectables>.
-            </title>
-            <aactivity>
-	      <Tests>
-              <testlist>
-                <test> 
-		  The evaluator will attempt to establish a connection with a DTLS server,
-                  observe the traffic with a packet analyzer, and verify that the connection
-                  succeeds and that the traffic is identified as DTLS.
-		</test>
-		<h:br/>
-		  Other tests are performed in conjunction with the evaluation activity listed
-              for <linkref linkend="FCS_TLSC_EXT.1"/>. </testlist>
-	      </Tests>
-            </aactivity>
-          </f-element>
-          <f-element id="fcs_dtls_ext.1.2">
-            <title>The OS shall implement the requirements in TLS (<linkref linkend="FCS_TLSC_EXT.1"
-            />) for the DTLS implementation, except where variations are allowed according to DTLS
-              1.2 (RFC 6347). </title>
-            <note role="application"> Differences between DTLS 1.2 and TLS 1.2 are outlined in RFC
-              6347; otherwise the protocols are the same. In particular, for the applicable security
-              characteristics defined for the <abbr linkend="TSF"/>, the two protocols do not
-              differ. Therefore, all application notes and evaluation activities that are listed for
-              <abbr title="Transport Layer Security">TLS</abbr> apply to the DTLS implementation. </note>
-            <aactivity> 
-	      <Tests>
-	      The evaluator will perform the evaluation activities listed for <linkref
-              linkend="FCS_TLSC_EXT.1"/>.
-	      </Tests>
-	    </aactivity>
-          </f-element>
-        </f-component>
-
 
         <f-component id="fcs_rbg_ext.1" name="Random Bit Generation">
           <f-element id="fcs_rbg_ext.1.1">
@@ -1894,23 +1845,6 @@ only AES-based implementations for CTR_DRBG are allowed.
 	      </TSS>
             </aactivity>
           </f-element>
-<!--          <f-element id="fcs_sto_ext.1.2">
-            <title>The TSF shall associate stored credentials with users.</title>
-            <aactivity>
-              <testlist>
-                <test>The evaluators shall create a new user account on the system with a
-                  credential. The evaluator will ensure that the user can authenticate using this credential. </test>
-                <test> The evaluators shall create a second user account on the system with a
-                  credential. The evaluator will then attempt to access the first user's credential
-                  from the second user's session. The evaluator will ensure that the second user is
-                  unable to access or authenticate using the first user's credential. </test>
-                <test> The evaluator will then re-log into the system with the first user. The
-                  evaluator then shall attempt to access the second user's credential from the first
-                  user's session. The evaluator will ensure that the first user is unable to access or authenticate using
-                  the second user's credential. </test>
-              </testlist>
-            </aactivity>
-          </f-element> -->
         </f-component>
       </subsection>
       <subsection title="User Data Protection (FDP)" id="fdp">
