@@ -8,7 +8,7 @@
       <PPTitle>Protection Profile for General Purpose Operating Systems</PPTitle>
       <PPVersion>4.3-DRAFT</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
-      <PPPubDate>2019-06-01</PPPubDate>
+      <PPPubDate>2019-07-01</PPPubDate>
       <PPCertificationID>unassigned</PPCertificationID>
       <CCVersion>3.1R5</CCVersion>
       <Keywords>OS; operating system</Keywords>
@@ -46,7 +46,7 @@
       resources, and provides common services for application programs. The hardware
       it manages may be physical or virtual.
     </section>
-    <section title="Terms" id="glossary"> 
+    <section title="Terms" id="glossary">
       The following sections provide both Common Criteria and
       technology terms used in this Protection Profile.
       <subsection title="Common Criteria Terms" id="terms">
@@ -63,7 +63,7 @@
           </entry>
           <entry>
             <term><abbr title="Extended Package">EP</abbr></term>
-            <description>An implementation-independent set of security 
+            <description>An implementation-independent set of security
 	    requirements for a specific subset of products described.</description>
           </entry>
           <entry>
@@ -79,7 +79,7 @@
           <entry>
             <term><abbr title="Target of Evaluation">TOE</abbr></term>
             <description>
-	      The product under evaluation. In this case, the Operating System as described in section 
+	      The product under evaluation. In this case, the Operating System as described in section
 	      <secref linkend="toeboundary"/> and its
               supporting documentation.
 	    </description>
@@ -104,8 +104,8 @@
             </description>
           </entry>
 	</glossary>
-      </subsection>
-      <subsection title="Technical Terms" id="tech-terms">
+  </subsection>
+  <subsection title="Technical Terms" id="tech-terms">
 	<glossary>
           <entry>
             <term><abbr title="Address Space Layout Randomization">ASLR</abbr></term>
@@ -147,18 +147,18 @@
           <entry>
             <term><abbr title="Critical Security Parameters">CSP</abbr></term>
             <description>
-              Information that is either user or system defined and 
-              is used to operate a cryptographic module in processing encryption functions including 
-              cryptographic keys and authentication data, such as passwords, the disclosure or modification 
-              of which can compromise the security of a cryptographic module or the security of the 
+              Information that is either user or system defined and
+              is used to operate a cryptographic module in processing encryption functions including
+              cryptographic keys and authentication data, such as passwords, the disclosure or modification
+              of which can compromise the security of a cryptographic module or the security of the
               information protected by the module.
-            </description>      
+            </description>
           </entry>
       	  <entry>
       	    <term><abbr title="Data At Rest">DAR</abbr> Protection</term>
       	    <description>
-      	      Countermeasures that prevent attackers, even those with physical access, 
-      	      from extracting data from non-volatile storage. 
+      	      Countermeasures that prevent attackers, even those with physical access,
+      	      from extracting data from non-volatile storage.
       	      Common techniques include data encryption and wiping.
       	    </description>
       	  </entry>
@@ -176,7 +176,7 @@
           </entry>
 	  <entry>
 	    <term>General Purpose Operating System</term>
-	    <description>A class of <abbr linkend="OS"/>es designed to support a wide-variety of workloads consisting of many concurrent applications or services. 
+	    <description>A class of <abbr linkend="OS"/>es designed to support a wide-variety of workloads consisting of many concurrent applications or services.
 	    Typical characteristics for OSes in this class include support for third-party applications,
 	    support for multiple users, and security separation between users and their respective resources.
 	    General Purpose Operating Systems also lack the real-time constraint that defines Real Time Operating Systems (RTOS).
@@ -185,7 +185,7 @@
           <entry>
             <term>Host-based Firewall</term>
             <description>
-	      A software-based firewall implementation running on the <abbr linkend="OS"/> for filtering inbound and 
+	      A software-based firewall implementation running on the <abbr linkend="OS"/> for filtering inbound and
               outbound network traffic to and from processes running on the <abbr linkend="OS"/>.
 	    </description>
           </entry>
@@ -215,22 +215,47 @@
             <term>User</term>
 	    <description> A user is subject to configuration policies applied
             to the operating system by administrators.  On some systems under certain
-            configurations, a normal user can temporarily elevate privileges to that of an administrator.  
-            At that time, such a user should be considered an administrator.  
+            configurations, a normal user can temporarily elevate privileges to that of an administrator.
+            At that time, such a user should be considered an administrator.
             </description>
           </entry>
         </glossary>
       </subsection>
       </section>
+      <section title="Format of this Document" id="docformat">
+        <secref linkend="req"/> contains baseline requirements
+        which must be implemented in the product and included in any Security Target (ST)
+        that claims conformance to this Protection Profile (PP).
+        There are three other types of requirements that can be included in an ST
+        claiming conformance to this PP:
+        <h:ul>
+        <h:li>
+        <appref linkend="optional"/> contains requirements that may optionally be included
+        in the ST, but inclusion is at the discretion of the ST
+        author.
+        </h:li>
+        <h:li>
+        <appref linkend="sel-based"/> contains requirements based on selections
+        in the requirements in <secref linkend="req"/>: if certain selections are
+        made, then the corresponding requirements in that appendix must be included.
+        </h:li>
+        <h:li>
+        <appref linkend="objective"/> contains requirements that will
+        be included in the baseline requirements in future versions of this package. Earlier adoption by vendors is
+        encouraged and may influence acquisition decisions.
+        Otherwise, these are treated the same as Optional Requirements.
+        </h:li>
+        </h:ul>
+    </section>
     <section title="Compliant Targets of Evaluation" id="TOEdescription">
       <subsection title="TOE Boundary" id="toeboundary">
         The TOE boundary encompasses the <abbr linkend="OS"/> kernel and its drivers, shared
         software libraries, and some application software included with the <abbr linkend="OS"/>. The applications considered within the TOE
         are those that provide essential security services, many of which run with elevated
-        privileges.  Applications which are covered by more-specific Protection Profiles cannot 
-        claim evaluation as part of the <abbr linkend="OS"/> evaluation, even when it is necessary to evaluate 
+        privileges.  Applications which are covered by more-specific Protection Profiles cannot
+        claim evaluation as part of the <abbr linkend="OS"/> evaluation, even when it is necessary to evaluate
         some of their functionality as it relates to their role as part of the <abbr linkend="OS"/>.
-        <figure entity="images/Toe.png" title="General TOE " id="toe"/> 
+        <figure entity="images/Toe.png" title="General TOE " id="toe"/>
       </subsection>
       <subsection title="TOE Platform" id="TOEplatform">
 	The TOE platform, which consists of the physical or virtual hardware on which the TOE executes,
@@ -248,16 +273,16 @@
           <description>
 	    <h:p>
 	    The OS provides a platform for end user devices such as desktops,
-	    laptops, convertibles, and tablets. 
+	    laptops, convertibles, and tablets.
 	    These devices may optionally be bound to a directory server or management server.
 	    </h:p>
 	    <h:p>
             As this Protection Profile does not address threats against data-at-rest,
             enterprises deploying operating systems in mobile scenarios should ensure that these systems
-            include data-at-rest protection spelled out in other 
-	    Protection Profiles. Specifically, this includes the Protection Profiles for 
-	    <h:i>Full Drive Encryption - Encryption Engine</h:i>, 
-	    <h:i>Full Drive Encryption - Authorization Acquisition</h:i>, 
+            include data-at-rest protection spelled out in other
+	    Protection Profiles. Specifically, this includes the Protection Profiles for
+	    <h:i>Full Drive Encryption - Encryption Engine</h:i>,
+	    <h:i>Full Drive Encryption - Authorization Acquisition</h:i>,
 	    and <h:i>Software File Encryption</h:i>.  The <h:i>Protection Profile for Mobile
 		Device Fundamentals</h:i> includes requirements for data-at-rest protection and is appropriate
 		for many mobile devices.
@@ -276,11 +301,11 @@
 	      The OS provides a platform for providing cloud services running on
               physical or virtual hardware.  An OS is typically part of offerings
               identified as Infrastructure as a Service (IaaS), Software as a Service (SaaS),
-              and Platform as a Service (PaaS). 
+              and Platform as a Service (PaaS).
 	    </h:p>
 	    <h:p>
 			This use case typically involves the use
-			of virtualization technology which should be evaluated against the 
+			of virtualization technology which should be evaluated against the
 			<h:i>Protection Profile for Server Virtualization</h:i>.
 	    </h:p>
 	  </description>
@@ -409,7 +434,7 @@
         <SO id="O.ACCOUNTABILITY">
           <description> Conformant OSes ensure that information exists that allows
             administrators to discover unintentional issues with the configuration and operation of
-            the operating system and discover its cause.  Gathering event information and immediately 
+            the operating system and discover its cause.  Gathering event information and immediately
             transmitting it to another system can also enable incident response in the event
             of system compromise.</description>
           <component-refer ref="fau_gen.1"/>
@@ -482,7 +507,7 @@
         <SO id="O.PROTECTED_STORAGE">
           <description>
 To address the issue of loss of confidentiality of credentials in the event of
-loss of physical control of the storage medium, conformant OSes 
+loss of physical control of the storage medium, conformant OSes
 provide data-at-rest protection for credentials.
 Conformant OSes also provide access controls which allow users to keep their files private from other
 users of the same system.
@@ -550,35 +575,16 @@ users of the same system.
             security policy. </description>
         </SOE>
       </SOEs></section>
-    <section title="Security Objectives Rationale" id="SOR">This section describes how the
-      assumptions, threats, and organizational security policies map to the security objectives.
+    <section title="Security Objectives Rationale" id="SOR">
+      <!-- This section is populated by boilerplates.xsl in transforms. -->
       </section>
   </chapter>
-  <chapter title="Security Requirements" id="req">This chapter describes the security requirements
-    which have to be fulfilled by the OS. Those requirements comprise functional
-    components from Part 2 and assurance components from Part 3 of <cite linkend="bibCC"/>. The
-    following notations are used: <h:ul>
-      <h:li>
-        <h:b>Refinement</h:b> operation (denoted by <h:b>bold text</h:b> or <h:strike>strikethrough
-        text</h:strike>): is used to add details to a requirement (including replacing an assignment
-        with a more restrictive selection) or to remove part of the requirement that is made irrelevant
-        through the completion of another operation, and thus further restricts a requirement.
-        </h:li>
-      <h:li>
-        <h:b>Selection</h:b> (denoted by <h:i>italicized text</h:i>): is used to select one or more options
-        provided by the [CC] in stating a requirement.</h:li>
-      <h:li>
-        <h:b>Assignment</h:b> operation (denoted by <h:span class="assignable-content">italicized text</h:span>): is used to assign a
-        specific value to an unspecified parameter, such as the length of a password. Showing the
-        value in square brackets indicates assignment.</h:li>
-      <h:li>
-        <h:b>Iteration</h:b> operation: are identified with a number inside parentheses (e.g.
-        "(1)")</h:li>
-    </h:ul>
+
+  <chapter title="Security Requirements" id="req">
     <section title="Security Functional Requirements" id="SFRs">The Security Functional Requirements
       included in this section are derived from Part 2 of the Common Criteria for Information
       Technology Security Evaluation, Version 3.1, Revision 5, with additional extended functional
-      components. 
+      components.
       <subsection title="Cryptographic Support (FCS)" id="fcs">
         <f-component id="fcs_ckm.1" name="Cryptographic Key Generation (Refined)">
           <f-element id="fcs_ckm.1.1">
@@ -593,47 +599,47 @@ users of the same system.
                     <selectable exclusive="yes"> no other curves</selectable>
                   </selectables> that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)",
                   Appendix B.4
-                </selectable>                
-                <selectable>FFC schemes using cryptographic key sizes of 2048-bit 
-                  or greater that meet the following: FIPS PUB 186-4, "Digital Signature 
+                </selectable>
+                <selectable>FFC schemes using cryptographic key sizes of 2048-bit
+                  or greater that meet the following: FIPS PUB 186-4, "Digital Signature
                   Standard (DSS)", Appendix B.1</selectable>
               </selectables></h:b>
               <h:strike>
-                and specified cryptographic key sizes [assignment: cryptographic key sizes] 
+                and specified cryptographic key sizes [assignment: cryptographic key sizes]
                 that meet the following: [assignment: list of standards]
               </h:strike>
               .
             </title>
-            <note role="application"> 
+            <note role="application">
 	      <h:p>
 	      The <abbr linkend="ST"/> author shall select all key
               generation schemes used for key establishment and entity authentication. When key
-              generation is used for key establishment, the schemes in 
+              generation is used for key establishment, the schemes in
 	      <linkref linkend="FCS_CKM.2"/> and selected cryptographic protocols must match the
               selection. When key generation is used for entity authentication, the public key is
-              expected to be associated with an X.509v3 certificate. 
+              expected to be associated with an X.509v3 certificate.
 	      </h:p><h:p>
 	      If the OS acts only as a receiver in the RSA key establishment scheme,
-	      the OS does not need to implement RSA key generation. 
+	      the OS does not need to implement RSA key generation.
 	      </h:p>
 	    </note>
-            <aactivity> 
+            <aactivity>
 	      <Tests>
 	      <h:p>
 	      The evaluator will ensure that the <abbr linkend="TSS"/> identifies the key
               sizes supported by the OS. If the <abbr linkend="ST"/> specifies
               more than one scheme, the evaluator will examine the <abbr linkend="TSS"/> to verify
-              that it identifies the usage for each scheme. 
+              that it identifies the usage for each scheme.
 	      </h:p><h:p>
 	      The evaluator will verify that
-              the AGD guidance instructs the administrator how to configure the OS 
+              the AGD guidance instructs the administrator how to configure the OS
 	      to use the selected key generation scheme(s) and key size(s) for all uses defined
-              in this PP. 
+              in this PP.
 	      </h:p>
 	      <h:p>
 	      Evaluation Activity Note: The following tests may require the
-              vendor to furnish a developer environment and developer 
-	      tools that are typically not available to end-users of the OS. 
+              vendor to furnish a developer environment and developer
+	      tools that are typically not available to end-users of the OS.
               <h:p>
 		<h:b>Key Generation for FIPS PUB 186-4 RSA Schemes</h:b><h:br/>
 		The evaluator will verify
@@ -642,9 +648,9 @@ users of the same system.
               correctly produce values for the key components including the public verification
               exponent e, the private prime factors p and q, the public modulus n and the
               calculation of the private signature exponent d. Key Pair generation specifies 5 ways
-              (or methods) to generate the primes p and q. These include: 
+              (or methods) to generate the primes p and q. These include:
 	      <h:ol>
-                <h:li> Random Primes: 
+                <h:li> Random Primes:
 		<h:ul>
                   <h:li>Provable primes</h:li>
                   <h:li>Probable primes</h:li>
@@ -666,7 +672,7 @@ users of the same system.
               shall have the <abbr linkend="TSF"/> generate 25 key pairs. The evaluator will verify
               the correctness of the <abbr linkend="TSF"/>'s implementation by comparing values
               generated by the <abbr linkend="TSF"/> with those generated from a known good
-              implementation. 
+              implementation.
 	      </h:p><h:p>
 	      If possible, the Random Probable primes method should also be
               verified against a known good implementation as described above. Otherwise, the
@@ -691,9 +697,9 @@ users of the same system.
               private/public key pairs. The private key shall be generated using an approved random
               bit generator (RBG). To determine correctness, the evaluator will submit the
               generated key pairs to the public key verification (PKV) function of a known good
-              implementation. 
+              implementation.
 	     </h:p>
-	      <h:p>FIPS 186-4 Public Key Verification (PKV) Test</h:p> 
+	      <h:p>FIPS 186-4 Public Key Verification (PKV) Test</h:p>
 	      <h:p>
 	      For each supported
               NIST curve, i.e., P-256, P-384 and P-521, the evaluator will generate 10
@@ -706,17 +712,17 @@ users of the same system.
 	      <h:p>
               <h:b>Key Generation for Finite-Field Cryptography (FFC)</h:b>
               <h:br/>
-              The evaluator will verify the implementation of the Parameters Generation 
-              and the Key Generation for FFC by the <abbr linkend="TOE"/> using the Parameter Generation 
-              and Key Generation test. 
-	      This test verifies the ability of the <abbr linkend="TSF"/> to correctly 
-              produce values for the field prime p, the cryptographic prime q (dividing p-1), 
-              the cryptographic group generator g, and the calculation of the private 
+              The evaluator will verify the implementation of the Parameters Generation
+              and the Key Generation for FFC by the <abbr linkend="TOE"/> using the Parameter Generation
+              and Key Generation test.
+	      This test verifies the ability of the <abbr linkend="TSF"/> to correctly
+              produce values for the field prime p, the cryptographic prime q (dividing p-1),
+              the cryptographic group generator g, and the calculation of the private
               key x and public key y.
 	      </h:p><h:p>
-              The Parameter generation specifies 2 ways (or methods) to generate the 
+              The Parameter generation specifies 2 ways (or methods) to generate the
               cryptographic prime q and the field prime p:
-              <h:br/>            
+              <h:br/>
               
               <h:li>Cryptographic and Field Primes:<h:ul>
                 <h:li>Primes q and p shall both be provable primes</h:li>
@@ -731,7 +737,7 @@ users of the same system.
               </h:ul>
               </h:li>
 
-              The Key generation specifies 2 ways to generate the private key x:              
+              The Key generation specifies 2 ways to generate the private key x:
               
               <h:li>Private Key:<h:ul>
                 <h:li>len(q) bit output of RBG where 1 &#x2264; x &#x2264; q-1</h:li>
@@ -742,12 +748,12 @@ users of the same system.
               The security strength of the RBG must be at least that of the security offered by the FFC parameter set.
               
               To test the cryptographic and field prime generation method for the provable primes method and/or the
-              group generator g for a verifiable process, the evaluator must seed the <abbr linkend="TSF"/> parameter 
+              group generator g for a verifiable process, the evaluator must seed the <abbr linkend="TSF"/> parameter
               generation routine with sufficient data to deterministically generate the parameter set.
               
-              For each key length supported, the evaluator will have the <abbr linkend="TSF"/> generate 25 parameter sets 
-              and key pairs. The evaluator will verify the correctness of the TSF's implementation 
-              by comparing values generated by the <abbr linkend="TSF"/> with those generated from a known good 
+              For each key length supported, the evaluator will have the <abbr linkend="TSF"/> generate 25 parameter sets
+              and key pairs. The evaluator will verify the correctness of the TSF's implementation
+              by comparing values generated by the <abbr linkend="TSF"/> with those generated from a known good
               implementation. Verification must also confirm:
               <h:ul>
                 <h:li>g != 0,1</h:li>
@@ -767,11 +773,11 @@ users of the same system.
             <title>The OS shall <h:b>implement functionality to perform cryptographic key establishment</h:b>
               in accordance with a specified cryptographic key <h:b>establishment</h:b> method:
 	      <h:p/>
-              [<h:i>RSA-based key establishment schemes</h:i>] that meets the following: 
+              [<h:i>RSA-based key establishment schemes</h:i>] that meets the following:
 	      [<h:i>NIST Special Publication 800-56B, "Recommendation for Pair-Wise Key Establishment Schemes
               Using Integer Factorization Cryptography"</h:i>]
-	      <h:p/> 
-	      <h:b>and 
+	      <h:p/>
+	      <h:b>and
 	      <selectables linebreak="yes">
                 <selectable>Elliptic curve-based key establishment schemes that meets the following:
                     NIST Special Publication 800-56A, "Recommendation for Pair-Wise Key
@@ -782,13 +788,12 @@ users of the same system.
                 <selectable exclusive="yes">No other schemes</selectable>
               </selectables></h:b>
               <h:strike>that meets the following: [assignment: list of standards]</h:strike>
-              . 
+              .
             </title>
             <note role="application">
 	      <h:p>
 	      The ST author shall select all key establishment schemes used
-              for the selected cryptographic protocols. <linkref linkend="FCS_TLSC_EXT.1"/> requires
-              cipher suites that use RSA-based key establishment schemes. 
+              for the selected cryptographic protocols.
 	      </h:p>
 	      <h:p>
 		The RSA-based key establishment schemes are described in Section 9 of NIST SP 800-56B; however, Section 9
@@ -796,36 +801,36 @@ users of the same system.
               in the RSA key establishment scheme, the OS does not need to implement RSA key generation.
               </h:p><h:p>
 	      The elliptic curves used for the key establishment scheme shall correlate with
-              the curves specified in <linkref linkend="FCS_CKM.1.1"/>. The domain parameters 
-              used for the finite field-based key establishment scheme are specified by the 
+              the curves specified in <linkref linkend="FCS_CKM.1.1"/>. The domain parameters
+              used for the finite field-based key establishment scheme are specified by the
               key generation according to <linkref linkend="FCS_CKM.1.1"/>.
 	    </h:p>
 	    </note>
-            <aactivity> 
+            <aactivity>
 	      <Tests>
 	      <h:p>
 		The evaluator will ensure that the supported key establishment schemes
-		correspond to the key generation schemes identified in FCS_CKM.1.1. 
+		correspond to the key generation schemes identified in FCS_CKM.1.1.
 		If the ST specifies more than one scheme,
-		the evaluator will examine the TSS to verify that it identifies the usage for each scheme. 
+		the evaluator will examine the TSS to verify that it identifies the usage for each scheme.
 	      </h:p>
 	      <h:p>
 		The evaluator will verify that the AGD
 		guidance instructs the administrator how to configure the OS to use the selected key
-		establishment scheme(s). 
+		establishment scheme(s).
 	      </h:p>
 	      <h:p>
 		Evaluation Activity Note: The following tests require
 		the developer to provide access to a test platform that provides the evaluator with
-		tools that are typically not found on factory products. 
+		tools that are typically not found on factory products.
 	      </h:p>
 	      <h:p><h:b>Key Establishment Schemes</h:b></h:p>
 	      <h:p>
 		The evaluator will verify the implementation of
-		the key establishment schemes supported by the OS using the applicable tests below. 
+		the key establishment schemes supported by the OS using the applicable tests below.
 	      </h:p>
 	      <h:p><h:b>SP800-56A Key Establishment Schemes</h:b>
-	      </h:p> 
+	      </h:p>
 	      <h:p>
 	      The evaluator will verify the OS's
               implementation of SP800-56A key agreement schemes using the following Function and
@@ -845,7 +850,7 @@ users of the same system.
 		  <h:b>Function Test</h:b>
 		  <h:p>The Function test verifies the ability of the OS to implement the key agreement schemes correctly.
 To conduct this test the evaluator will generate or obtain test vectors from a known good implementation of the OS's supported schemes.
-For each supported key agreement scheme-key agreement role combination, KDF type, and, if supported, key confirmation role- key confirmation type combination, the tester shall generate 10 sets of test vectors. 
+For each supported key agreement scheme-key agreement role combination, KDF type, and, if supported, key confirmation role- key confirmation type combination, the tester shall generate 10 sets of test vectors.
 The data set consists of the NIST approved curve (ECC) per 10 sets of public keys.
 These keys are static, ephemeral or both depending on the scheme being tested.
 	      </h:p>
@@ -865,7 +870,7 @@ These keys are static, ephemeral or both depending on the scheme being tested.
 	      </h:p>
 	      <h:p>
                 If key confirmation is supported, the OS shall perform the above for each
-                implemented approved MAC algorithm. 
+                implemented approved MAC algorithm.
 	      </h:p>
 	      <h:p>
 		<h:b>Validity Test</h:b><h:br/>
@@ -896,7 +901,7 @@ These keys are static, ephemeral or both depending on the scheme being tested.
 		  The OS shall use these modified test vectors to emulate
                   the key agreement scheme using the corresponding parameters. The evaluator will
                   compare the OS's results with the results using a known good implementation
-                  verifying that the OS detects these errors. 
+                  verifying that the OS detects these errors.
 		</h:p>
 	      </h:p>
 		</h:div>
@@ -904,7 +909,7 @@ These keys are static, ephemeral or both depending on the scheme being tested.
 	      <h:p><h:b>SP800-56B Key Establishment Schemes</h:b></h:p>
 	      <h:p> The evaluator will verify that the TSS
               describes whether the OS acts as a sender, a recipient, or both for RSA-based key
-              establishment schemes. 
+              establishment schemes.
 	      </h:p>
 	      <h:p>
 		If the OS acts as a sender, the following assurance
@@ -925,7 +930,7 @@ These keys are static, ephemeral or both depending on the scheme being tested.
                 inputs (in cases where key confirmation is incorporated, the test shall use the MAC
                 key from the test vector instead of the randomly generated MAC key used in normal
                 operation) and ensure that the outputted ciphertext is equivalent to the ciphertext
-                in the test vector. 
+                in the test vector.
 		</h:div>
 	      </h:p>
               <h:p>
@@ -946,7 +951,7 @@ These keys are static, ephemeral or both depending on the scheme being tested.
                 and ensure that the outputted plaintext keying material is equivalent to the
                 plaintext keying material in the test vector. In cases where key confirmation is
                 incorporated, the evaluator will perform the key confirmation steps and ensure that
-                the outputted MAC tag is equivalent to the MAC tag in the test vector. 
+                the outputted MAC tag is equivalent to the MAC tag in the test vector.
 
 		</h:div>
 		</h:p>
@@ -961,7 +966,7 @@ These keys are static, ephemeral or both depending on the scheme being tested.
               the evaluator will create separate contrived ciphertext values that trigger each of
               the three decryption error checks described in NIST Special Publication 800-56B
               section 7.2.3.3, ensure that each decryption attempt results in an error, and ensure
-              that any outputted or logged error message is identical for each. 
+              that any outputted or logged error message is identical for each.
 	    </h:p>
 	  </h:p>
 	      </Tests>
@@ -973,9 +978,9 @@ These keys are static, ephemeral or both depending on the scheme being tested.
 	<f-component id="fcs_ckm_ext.4" name="Cryptographic Key Destruction" >
           <f-element id="fcs_ckm_ext.4.1">
 	    <title>
-The OS shall destroy cryptographic keys and key material in accordance with a specified cryptographic key destruction method 
+The OS shall destroy cryptographic keys and key material in accordance with a specified cryptographic key destruction method
               <selectables>
-		<selectable>For volatile memory, the destruction shall be executed by a 
+		<selectable>For volatile memory, the destruction shall be executed by a
 		<selectables>
 		  <selectable>single overwrite consisting of <selectables>
 		      <selectable>a pseudo-random pattern using the TSF's RBG</selectable>
@@ -991,7 +996,7 @@ The OS shall destroy cryptographic keys and key material in accordance with a sp
 			<selectable>single</selectable>
 			<selectable><assignable>ST author defined multi-pass</assignable></selectable>
 		      </selectables>
-overwrite consisting of 
+overwrite consisting of
                       <selectables>
 			<selectable>zeroes</selectable><selectable>ones</selectable>
 			<selectable>pseudo-random pattern</selectable>
@@ -1016,7 +1021,7 @@ Several selections allow assignment of a 'value that does not contain any CSP'. 
 	    <title>The OS shall destroy all keys and key material when no longer needed.</title>
 	    <note role="application">
 	      <h:p>
-		For the purposes of this requirement, key material refers to authentication data, passwords, secret/private symmetric keys, private asymmetric keys, data used to derive keys, values derived from passwords, etc. 
+		For the purposes of this requirement, key material refers to authentication data, passwords, secret/private symmetric keys, private asymmetric keys, data used to derive keys, values derived from passwords, etc.
 	      </h:p>
 	      <h:p>Key destruction procedures are performed in accordance with <linkref linkend='fcs_ckm_ext.4.1'/>.</h:p>
 	    </note>
@@ -1041,7 +1046,7 @@ The evaluator will check that the TSS identifies any configurations or circumsta
 There are a variety of concerns that may prevent or delay key destruction in some cases. The evaluator will check that the guidance documentation identifies configurations or circumstances that may not strictly conform to the key destruction requirement, and that this description is consistent with the relevant parts of the TSS and any other relevant Required Supplementary Information. The evaluator will check that the guidance documentation provides guidance on situations where key destruction may be delayed at the physical layer and how such situations can be avoided or mitigated if possible.
 	      </h:p>
 	      <h:p>
-Some examples of what is expected to be in the documentation are provided here. 
+Some examples of what is expected to be in the documentation are provided here.
 	      </h:p>
 	      <h:p>
 When the TOE does not have full access to the physical memory, it is possible that the storage may be implementing wear-leveling and garbage collection. This may create additional copies of the key that are logically inaccessible but persist physically. In this case, to mitigate this the drive should support the TRIM command and implements garbage collection to destroy these persistent copies when not actively engaged in other tasks.
@@ -1123,13 +1128,13 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
         <f-component id="fcs_cop.1(1)" name="Cryptographic Operation - Encryption/Decryption (Refined)">
           <f-element id="fcs_cop.1.1(1)">
             <title>
-              The <h:b>OS</h:b> shall perform [<h:i>encryption/decryption services for data</h:i>] in 
+              The <h:b>OS</h:b> shall perform [<h:i>encryption/decryption services for data</h:i>] in
 	      accordance with a specified cryptographic algorithm<h:b>
 	      <selectables linebreak="yes">
 	              <selectable>AES-XTS (as defined in NIST SP 800-38E)</selectable>
 	              <selectable>AES-CBC (as defined in NIST SP 800-38A)</selectable>
-              </selectables> 
-	      and 
+              </selectables>
+	      and
 	      <selectables linebreak="yes">
 	        <selectable>AES-CCMP (as defined in FIPS PUB 197, NIST SP 800-38C and IEEE 802.11-2012)</selectable>
                 <selectable>AES Key Wrap (KW) (as defined in NIST SP 800-38F)</selectable>
@@ -1140,14 +1145,14 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 <selectable>AES-GCMP-256 (as defined in NIST SP800-38D and IEEE 802.11ac-2013)</selectable>
                 <selectable exclusive="yes">no other modes</selectable>
               </selectables></h:b>
-              and cryptographic key sizes 
+              and cryptographic key sizes
               <selectables>
                 <selectable>128-bit</selectable>
                 <selectable>256-bit</selectable>
               </selectables>
         <h:strike>that meet the following: [assignment: list of standards]</h:strike>.
 	    </title>
-            <note role="application"> 
+            <note role="application">
 	      <h:p>
               AES CCMP (which uses AES in CCM as specified in SP 800-38C) becomes mandatory and must
               be selected if the ST includes the WLAN Client <abbr linkend="EP"/>.
@@ -1155,21 +1160,19 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      <h:p>
 	            For the second selection, the ST author should choose the mode
               or modes in which AES operates. For the third selection, the ST author should choose
-              the key sizes that are supported by this functionality. 128-bit key size is required
-              in order to comply with <linkref linkend="FCS_TLSC_EXT.1"/> and <linkref
-                linkend="FCS_CKM.1"/>, if those are selected. 
+              the key sizes that are supported by this functionality.
 	      </h:p>
 	    </note>
-            <aactivity> 
+            <aactivity>
 	      <Tests>
 
 	      <h:p>
-	      The evaluator will verify that the AGD documents contains instructions required 
-	      to configure the OS to use the required modes and key sizes. 
+	      The evaluator will verify that the AGD documents contains instructions required
+	      to configure the OS to use the required modes and key sizes.
 	      The evaluator will execute all instructions as specified to configure the OS
 	      to the appropriate state.
 	      The evaluator will perform all of the following tests for each
-              algorithm implemented by the OS and used to satisfy the requirements of this PP: 
+              algorithm implemented by the OS and used to satisfy the requirements of this PP:
 	      </h:p>
 	      <h:p>
               <h:b>AES-CBC Known Answer Tests</h:b>
@@ -1235,7 +1238,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               ciphertext message of length i blocks and decrypt the message, using the mode to be
               tested, with the chosen key and IV. The plaintext shall be compared to the result of
               decrypting the same ciphertext message with the same key and IV using a known good
-              implementation. 
+              implementation.
 	    </h:p>
 	    <h:p>
 	      <h:b>AES-CBC Monte Carlo Tests</h:b>
@@ -1252,17 +1255,17 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                       CT[1] = AES-CBC-Encrypt(Key, IV, PT)
                       PT = IV
                 else:
-                  CT[i] = AES-CBC-Encrypt(Key, PT) 
+                  CT[i] = AES-CBC-Encrypt(Key, PT)
                   PT = CT[i-1]
               </h:pre>The
               ciphertext computed in the 1000th iteration (i.e., CT[1000]) is the result for that
               trial. This result shall be compared to the result of running 1000 iterations with the
-              same values using a known good implementation. 
+              same values using a known good implementation.
 	    </h:p>
 	    <h:p>
 	      The evaluator will test the
               decrypt functionality using the same test as for encrypt, exchanging CT and PT and
-              replacing AES-CBC-Encrypt with AES-CBC-Decrypt. 
+              replacing AES-CBC-Encrypt with AES-CBC-Decrypt.
 	    </h:p>
 	    <h:p>
               <h:b>AES-GCM Monte Carlo Tests</h:b>
@@ -1282,7 +1285,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               obtain the ciphertext value and tag that results from AES-GCM authenticated encrypt.
               Each supported tag length shall be tested at least once per set of 10. The IV value
               may be supplied by the evaluator or the implementation being tested, as long as it is
-              known. 
+              known.
 	    </h:p>
 	    <h:p>
 
@@ -1290,7 +1293,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      The evaluator will test the decrypt functionality using a set of 10 key,
               ciphertext, tag, AAD, and IV 5-tuples for each combination of parameter lengths above
               and obtain a Pass/Fail result on authentication and the decrypted plaintext if Pass.
-              The set shall include five tuples that Pass and five that Fail. 
+              The set shall include five tuples that Pass and five that Fail.
 	    </h:p>
 	    <h:p>
 	      The results from
@@ -1324,7 +1327,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 </h:li>
               </h:ul>
               To test the generation-encryption functionality of AES-CCM, the evaluator will perform the
-              following four tests: 
+              following four tests:
 	      <testlist>
 		<test> For EACH supported key and associated data length and ANY supported
                   payload, nonce and tag length, the evaluator will supply one key value, one nonce
@@ -1349,14 +1352,14 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      <h:p>
               To determine correctness in each of the above tests, the evaluator will compare the
               ciphertext with the result of generation-encryption of the same inputs with a known good
-              implementation. 
+              implementation.
 	      </h:p>
 	      <h:p>
               To test the decryption-verification functionality of AES-CCM, for EACH combination of
               supported associated data length, payload length, nonce length and tag length, the evaluator
               shall supply a key value and 15 nonce, associated data and ciphertext 3-tuples and obtain
               either a FAIL result or a PASS result with the decrypted payload. The evaluator will supply
-              10 tuples that should FAIL and 5 that should PASS per set of 15. 
+              10 tuples that should FAIL and 5 that should PASS per set of 15.
 	      </h:p>
 	      <h:p>
               Additionally, the evaluator will use tests from the IEEE 802.11-02/362r6 document
@@ -1482,7 +1485,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 <selectable>512 bits</selectable>
                 <selectable exclusive="yes">no other sizes</selectable>
               </selectables></h:b> that meet the following: [<h:i>FIPS Pub 180-4</h:i>]. </title>
-            <note role="application"> 
+            <note role="application">
 	      <h:p>
 	      Per NIST SP 800-131A, SHA-1 for generating digital signatures
         is no longer allowed, and SHA-1 for verification of digital signatures is strongly
@@ -1496,7 +1499,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      implementations in compliance with SP 800-131A.
 	      </h:p>
 	      <h:p>
-	      The intent of this requirement is to specify the hashing function. 
+	      The intent of this requirement is to specify the hashing function.
 	      The hash selection must support the message digest
         size selection. The hash selection should be consistent with the overall strength of
         the algorithm used.
@@ -1507,7 +1510,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      <h:p>
 	      The evaluator will check that the association of the hash function with
               other application cryptographic functions (for example, the digital signature
-              verification function) is documented in the <abbr linkend="TSS"/>. 
+              verification function) is documented in the <abbr linkend="TSS"/>.
 	      </h:p>
 	      <h:p>
 		The <abbr linkend="TSF"/>
@@ -1546,8 +1549,8 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                   messages are provided to the <abbr linkend="TSF"/>.</test>
                 <test>Selected Long Messages Test (Byte oriented Mode) - The evaluator will generate an
                   input set consisting of m/8 messages, where m is the block length of the hash
-                  algorithm. The length of the <h:i>i</h:i>th message is 512 + 8&#x22c5;99&#x22c5;i, 
-		  where 1 ≤ i ≤ m/8. The message text shall be pseudorandomly generated. 
+                  algorithm. The length of the <h:i>i</h:i>th message is 512 + 8&#x22c5;99&#x22c5;i,
+		  where 1 ≤ i ≤ m/8. The message text shall be pseudorandomly generated.
 		  The evaluator will compute
                   the message digest for each of the messages and ensure that the correct result is
                   produced when the messages are provided to the <abbr linkend="TSF"/>.</test>
@@ -1575,23 +1578,23 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 <selectable>ECDSA schemes using "NIST curves" P-256, P-384 and <selectables>
                     <selectable>P-521</selectable>
                     <selectable exclusive="yes">no other curves</selectable>
-                  </selectables> 
+                  </selectables>
 		  that meet the following: FIPS PUB 186-4, "Digital Signature   Standard (DSS)", Section 5</selectable>
               </selectables></h:b>
-              <h:strike>and cryptographic key sizes [assignment: cryptographic algorithm] 
-                that meet the following: [assignment: list of standards]</h:strike>. 
+              <h:strike>and cryptographic key sizes [assignment: cryptographic algorithm]
+                that meet the following: [assignment: list of standards]</h:strike>.
             </title>
             <note role="application"> The ST Author should choose the algorithm implemented to
               perform digital signatures; if more than one algorithm is available, this requirement
               should be iterated to specify the functionality. For the algorithm chosen, the ST
               author should make the appropriate assignments/selections to specify the parameters
-              that are implemented for that algorithm. RSA signature generation and verification is
-              currently required in order to comply with <linkref linkend="FCS_TLSC_EXT.1"/>. </note>
+              that are implemented for that algorithm.
+            </note>
             <aactivity>
 	      <Tests>
 	      <h:p>
 		The evaluator will perform the following activities based on the selections
-		in the <abbr linkend="ST"/>. 
+		in the <abbr linkend="ST"/>.
 	      </h:p>
 	      <h:p>
 		The following tests require the developer to
@@ -1614,7 +1617,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 		  The evaluator will verify that 5 responses indicate success and
 		  5 responses indicate failure.
 		</test>
-              </testlist> 
+              </testlist>
 	      </h:p>
 	      <h:p><h:b>RSA Signature Algorithm Tests </h:b></h:p>
 	      <h:p>
@@ -1623,7 +1626,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                   RSA Signature Generation by the OS using the Signature
                   Generation Test. To conduct this test the evaluator must generate or obtain 10
                   messages from a trusted reference implementation for each modulus size/SHA
-                  combination supported by the <abbr linkend="TSF"/>. 
+                  combination supported by the <abbr linkend="TSF"/>.
 		  The evaluator will have the
                     OS use its private key and modulus value to sign these
                   messages. The evaluator will verify the correctness of the <abbr linkend="TSF"
@@ -1634,7 +1637,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                   another party's valid and invalid signatures. The evaluator will inject errors
                   into the test vectors produced during the Signature Verification Test by
                   introducing errors in some of the public keys, e, messages, IR format, and/or
-                  signatures. 
+                  signatures.
 		  The evaluator will verify that the OS returns failure when
 		  validating each signature.
 		</test>
@@ -1646,7 +1649,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
         </f-component>
         <f-component id="fcs_cop.1(4)" name="Cryptographic Operation - Keyed-Hash Message Authentication (Refined)">
           <f-element id="fcs_cop.1.1(4)">
-            <title>The <h:b>OS</h:b> shall perform [<h:i>keyed-hash message authentication services</h:i>] 
+            <title>The <h:b>OS</h:b> shall perform [<h:i>keyed-hash message authentication services</h:i>]
             in accordance with a specified cryptographic algorithm<h:b>
               <selectables>
                 <selectable>SHA-1</selectable>
@@ -1666,14 +1669,11 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
             <note role="application">
 	      <h:p>
 	      The intent of this requirement is to specify the keyed-hash
-              message authentication function used for key establishment purposes for the various
-              cryptographic protocols used by the OS (e.g., trusted channel). 
+	      message authentication function used for key establishment purposes for the various
+	      cryptographic protocols used by the OS (e.g., trusted channel).
 	      The hash selection must support the message digest size selection.
-	      The hash selection should be consistent with the overall strength of the 
-	      algorithm used for <linkref linkend="FCS_COP.1(1)"/>. 
-	      Though HMAC with SHA-256 (HMAC-SHA-256) is listed as a selectable cipher suite
-	      in this requirement, <linkref linkend="FCS_TLSC_EXT.1"/> effectively makes its 
-	      implementation mandatory for compliant OSes.
+	      The hash selection should be consistent with the overall strength of the
+	      algorithm used for <linkref linkend="FCS_COP.1(1)"/>.
 	      </h:p>
 	      <h:p>
         Evaluation of SHA-1 is currently permitted in order to allow for evaluation
@@ -1685,13 +1685,13 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      <h:p>
 
 		The evaluator will perform the following activities based on the selections
-              in the <abbr linkend="ST"/>. 
+              in the <abbr linkend="ST"/>.
 	      </h:p><h:p>
 	      For each of the supported parameter sets, the
               evaluator will compose 15 sets of test data. Each set shall consist of a key and
               message data. The evaluator will have the OS generate HMAC tags for these sets of
               test data. The resulting MAC tags shall be compared against the result of generating HMAC
-              tags with the same key and IV using a known-good implementation. 
+              tags with the same key and IV using a known-good implementation.
 	    </h:p>
 	      </Tests>
 	    </aactivity>
@@ -1700,7 +1700,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 
         <f-component id="fcs_rbg_ext.1" name="Random Bit Generation">
           <f-element id="fcs_rbg_ext.1.1">
-            <title> 
+            <title>
               The OS shall perform all deterministic random bit generation (DRBG) services in
               accordance with NIST Special Publication 800-90A using
               <selectables linebreak="yes">
@@ -1711,11 +1711,11 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      .
             </title>
             <note role="application">
-NIST SP 800-90A contains three different methods of generating random numbers; 
-each of these, in turn, depends on underlying cryptographic primitives (hash functions/ciphers). 
-The <abbr linkend="ST"/> author will select the function used and include the specific underlying cryptographic primitives used in the requirement or in the <abbr linkend="TSS"/>. 
+NIST SP 800-90A contains three different methods of generating random numbers;
+each of these, in turn, depends on underlying cryptographic primitives (hash functions/ciphers).
+The <abbr linkend="ST"/> author will select the function used and include the specific underlying cryptographic primitives used in the requirement or in the <abbr linkend="TSS"/>.
 While any of the identified hash functions (SHA-1, SHA-224, SHA-256, SHA-384, SHA-512) are allowed for Hash_DRBG or HMAC_DRBG,
-only AES-based implementations for CTR_DRBG are allowed. 
+only AES-based implementations for CTR_DRBG are allowed.
             </note>
             <aactivity>
 	      <Tests>
@@ -1725,7 +1725,7 @@ only AES-based implementations for CTR_DRBG are allowed.
               The evaluator will perform 15 trials for the RNG implementation. If the RNG
               is configurable, the evaluator will perform 15 trials for each configuration. The
               evaluator will also confirm that the operational guidance contains appropriate
-              instructions for configuring the RNG functionality. 
+              instructions for configuring the RNG functionality.
 	      </h:p><h:p>
 	      If the RNG has  prediction resistance enabled, each trial consists of (1) instantiate DRBG, (2)
               generate the first block of random bits (3) generate a second block of random bits
@@ -1737,7 +1737,7 @@ only AES-based implementations for CTR_DRBG are allowed.
               additional input and entropy input for the second call to generate. These values
               are randomly generated. "generate one block of random bits" means to generate
               random bits with number of returned bits equal to the Output Block Length (as
-              defined in NIST SP 800-90A). 
+              defined in NIST SP 800-90A).
 	      </h:p><h:p>
 	      If the RNG does not have prediction resistance,
               each trial consists of (1) instantiate DRBG, (2) generate the first block of
@@ -1748,7 +1748,7 @@ only AES-based implementations for CTR_DRBG are allowed.
               personalization string for the instantiate operation. The fifth value is
               additional input to the first call to generate. The sixth and seventh are
               additional input and entropy input to the call to reseed. The final value is
-              additional input to the second generate call. 
+              additional input to the second generate call.
 	      </h:p><h:p>
 	      The following list contains more information on some of the input values to be generated/selected by the evaluator.
 	      <h:ul>
@@ -1784,21 +1784,21 @@ only AES-based implementations for CTR_DRBG are allowed.
                 <selectable>128 bits</selectable>
                 <selectable>256 bits</selectable>
               </selectables>
-              of entropy at least equal to the greatest security strength (according to NIST SP 800-57) 
-              of the keys and hashes that it will generate. 
+              of entropy at least equal to the greatest security strength (according to NIST SP 800-57)
+              of the keys and hashes that it will generate.
 	    </title>
             <note role="application">
 	      <h:p>
 		For the first
-		selection in this requirement, the <abbr linkend="ST"/> author selects 'software-based noise source' if 
+		selection in this requirement, the <abbr linkend="ST"/> author selects 'software-based noise source' if
 		any additional noise sources are used as input to the DRBG.
 	      </h:p><h:p>
-	      In the second selection in this requirement, the <abbr linkend="ST"/> author selects the 
-              appropriate number of bits of entropy that corresponds to the greatest security 
-              strength of the algorithms included in the <abbr linkend="ST"/>. 
-	      Security strength is defined in Tables 
-              2 and 3 of NIST SP 800-57A. For example, if the implementation includes 2048-bit RSA 
-              (security strength of 112 bits), AES 128 (security strength 128 bits), and 
+	      In the second selection in this requirement, the <abbr linkend="ST"/> author selects the
+              appropriate number of bits of entropy that corresponds to the greatest security
+              strength of the algorithms included in the <abbr linkend="ST"/>.
+	      Security strength is defined in Tables
+              2 and 3 of NIST SP 800-57A. For example, if the implementation includes 2048-bit RSA
+              (security strength of 112 bits), AES 128 (security strength 128 bits), and
               HMAC-SHA-256 (security strength 256 bits), then the <abbr linkend="ST"/> author would select 256 bits.
 	    </h:p>
             </note>
@@ -1807,11 +1807,11 @@ only AES-based implementations for CTR_DRBG are allowed.
 	      <h:p>
 		Documentation shall be produced - and the evaluator will perform the
 		activities - in accordance with <appref linkend="entropyappendix"/> and
-		the 
+		the
 		<h:a href="https://www.niap-ccevs.org/Documents_and_Guidance/ccevs/Entropy%20Documentation%20and%20Assessment%20Clarification.pdf"
 		     >Clarification to the Entropy Documentation and Assessment Annex</h:a>.
 	      </h:p><h:p>
-              In the future, specific statistical testing (in line with NIST SP 800-90B) will 
+              In the future, specific statistical testing (in line with NIST SP 800-90B) will
               be required to verify the entropy estimates.
 	    </h:p>
 	    </Tests>
@@ -1822,12 +1822,12 @@ only AES-based implementations for CTR_DRBG are allowed.
         <f-component id="fcs_sto_ext.1" name="Storage of Sensitive Data">
           <f-element id="fcs_sto_ext.1.1">
             <title>
-	      The OS shall implement functionality to encrypt sensitive data 
+	      The OS shall implement functionality to encrypt sensitive data
 	      stored in non-volatile storage and provide interfaces to applications to invoke this functionality.
             </title>
-			<note role="application">Sensitive data shall be identified in the TSS by the ST 
+			<note role="application">Sensitive data shall be identified in the TSS by the ST
 			author, and minimally includes credentials and keys.  The interface for invoking the
-			functionality could take a variety of forms: it could consist of an API, 
+			functionality could take a variety of forms: it could consist of an API,
 			or simply well-documented conventions for accessing credentials stored as files.
 			</note>
             <aactivity>
@@ -1836,7 +1836,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 	      The evaluator will check the TSS to ensure that it lists all persistent
               sensitive data for which the OS provides a storage capability.  For each of these
               items, the evaluator will confirm that the TSS lists for what purpose it can be used,
-              and how it is stored.  
+              and how it is stored.
 	      The evaluator will confirm that cryptographic operations used to protect the data occur as specified in <linkref linkend="fcs_cop.1(1)"/>.
 	      </h:p><h:p>
 	      The evaluator will also consult the developer documentation to verify that an interface
@@ -1858,7 +1858,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 	      Effective protection by access controls may also depend
 	      upon system configuration.  This requirement is designed to ensure
 	      that, for example, files and directories owned by one user in a multi user system
-	      can be protected from access by another user in that system.  
+	      can be protected from access by another user in that system.
             </note>
             <aactivity>
 	      <TSS>
@@ -1866,7 +1866,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 	      The evaluator will confirm that the TSS comprehensively describes the access control policy enforced by the OS.
               The description must include the rules by which accesses to particular files and directories
 	      are determined for particular users.
-              The evaluator will inspect the TSS to ensure that it describes the access control rules 
+              The evaluator will inspect the TSS to ensure that it describes the access control rules
               in such detail that given any possible scenario between a user and a file governed by
               the OS the access control decision is unambiguous.
 	      </h:p>
@@ -1876,19 +1876,19 @@ only AES-based implementations for CTR_DRBG are allowed.
               The evaluator will create two new standard user accounts on the system and conduct the following tests:
               <testlist>
                 <test>
-                  The evaluator will authenticate to the system as the first user and create a file within that user's home directory. 
+                  The evaluator will authenticate to the system as the first user and create a file within that user's home directory.
 		  The evaluator will then log off the system and log in as the second user.
 		  The evaluator will then attempt to read the file created in the first user's home directory.
 		  The evaluator will ensure that the read attempt is denied.
                 </test>
                 <test>
-                  The evaluator will authenticate to the system as the first user and create a file within that user's home directory. 
+                  The evaluator will authenticate to the system as the first user and create a file within that user's home directory.
 		  The evaluator will then log off the system and log in as the second user.
 		  The evaluator will then attempt to modify the file created in the first user's home directory.
 		  The evaluator will ensure that the modification is denied.
                 </test>
                 <test>
-                  The evaluator will authenticate to the system as the first user and create a file within that user's user directory. 
+                  The evaluator will authenticate to the system as the first user and create a file within that user's user directory.
 		  The evaluator will then log off the system and log in as the second user.
 		  The evaluator will then attempt to delete the file created in the first user's home directory.
 		  The evaluator will ensure that the deletion is denied.
@@ -1897,11 +1897,11 @@ only AES-based implementations for CTR_DRBG are allowed.
                   The evaluator will authenticate to the system as the first user.
 		  The evaluator will attempt to create a file in the second user's home directory.
                   The evaluator will ensure that the creation of the file is denied.
-                </test>       
+                </test>
                 <test>
                   The evaluator will authenticate to the system as the first user and attempt to modify the file created in the first user's home directory.
                   The evaluator will ensure that the modification of the file is accepted.
-                </test>       
+                </test>
                 <test>
                   The evaluator will authenticate to the system as the first user and attempt to delete the file created in the first user's directory.
                   The evaluator will ensure that the deletion of the file is accepted.
@@ -1910,7 +1910,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 	      </h:p>
 	      </Tests>
             </aactivity>
-          </f-element>          
+          </f-element>
         </f-component>
         <f-component id="fdp_ifc_ext.1" name="Information flow control" status="optional">
           <f-element id="fdp_ifc_ext.1.1">
@@ -1929,8 +1929,8 @@ only AES-based implementations for CTR_DRBG are allowed.
             </title>
 	    <note role="application">
 	      <h:p>
-		Typically, the traffic required to establish the VPN connection is referred to as "Control Plane" traffic, 
-		whereas the IP traffic protected by the IPsec VPN is referred to as "Data Plane" traffic. 
+		Typically, the traffic required to establish the VPN connection is referred to as "Control Plane" traffic,
+		whereas the IP traffic protected by the IPsec VPN is referred to as "Data Plane" traffic.
 		All Data Plane traffic must flow through the VPN connection and the VPN must not split-tunnel.
 	      </h:p>
 	      <h:p>
@@ -1938,12 +1938,12 @@ only AES-based implementations for CTR_DRBG are allowed.
 		  also implement the required Information Flow Control, the first
 		  option shall be selected. In these cases, the TOE provides an API to
 		  third-party VPN clients that allows them to configure the TOE's
-		  network stack to perform the required Information Flow Control.  
+		  network stack to perform the required Information Flow Control.
 	      </h:p>
 	      <h:p>
 		  The ST author shall select the second option if the <abbr linkend="TSF"/> implements a
 		  native VPN client (IPsec is selected in FTP_ITC_EXT.1). If the native
-		  VPN client is to be validated (IPsec is selected in 
+		  VPN client is to be validated (IPsec is selected in
 		  <linkref linkend="FTP_ITC_EXT.1"/> and
 		  the <abbr linkend="TSF"/> is validated against the <h:i><abbr linkend="EP"/> for IPsec
 		  Virtual Private Network (VPN) Clients</h:i>), the ST author shall also
@@ -1968,9 +1968,9 @@ only AES-based implementations for CTR_DRBG are allowed.
 	      <Tests>
 	      The evaluator will perform the following test:
 	      <testlist><test><steplist>
-		<step>The evaluator will enable a network connection. 
+		<step>The evaluator will enable a network connection.
 		  The evaluator will sniff packets while performing running applications that use the network such as web browsers and email clients.
-		  The evaluator will verify that the sniffer captures the traffic generated by these actions, turn off the sniffing tool, and save the session data. 
+		  The evaluator will verify that the sniffer captures the traffic generated by these actions, turn off the sniffing tool, and save the session data.
 		  </step>
 		  <step>
                   The evaluator will configure an IPsec VPN client that supports the routing specified in this requirement.
@@ -1979,12 +1979,12 @@ only AES-based implementations for CTR_DRBG are allowed.
                   </step>
                   <step>
 		  The evaluator will examine the traffic from both step one and step two to verify that all non-excepted Data Plane traffic in Step 2 is encapsulated by IPsec.
-		  The evaluator will examine the Security Parameter Index (SPI) value present in the encapsulated packets captured in Step 2 from the <abbr linkend="TOE"/> to the Gateway and shall verify this value is the same for all actions used to generate traffic through the VPN. 
+		  The evaluator will examine the Security Parameter Index (SPI) value present in the encapsulated packets captured in Step 2 from the <abbr linkend="TOE"/> to the Gateway and shall verify this value is the same for all actions used to generate traffic through the VPN.
 		  Note that it is expected that the SPI value for packets from the Gateway to the <abbr linkend="TOE"/> is different than the SPI value for packets from the <abbr linkend="TOE"/> to the Gateway.
 		  </step>
 		  <step>
-                  The evaluator will perform a ping on the <abbr linkend="TOE"/> host on the local network and verify that no packets sent are captured with the sniffer. 
-		  The evaluator will attempt to send packets to the <abbr linkend="TOE"/> outside the VPN tunnel (i.e. not through the VPN gateway), including from the local network, and verify that the <abbr linkend="TOE"/> discards them. 
+                  The evaluator will perform a ping on the <abbr linkend="TOE"/> host on the local network and verify that no packets sent are captured with the sniffer.
+		  The evaluator will attempt to send packets to the <abbr linkend="TOE"/> outside the VPN tunnel (i.e. not through the VPN gateway), including from the local network, and verify that the <abbr linkend="TOE"/> discards them.
 		  </step>
 	      </steplist></test></testlist>
 	      </Tests>
@@ -1995,7 +1995,7 @@ only AES-based implementations for CTR_DRBG are allowed.
       <subsection title="Security Management (FMT)" id="fmt">
         <f-component id="fmt_mof_ext.1" name="Management of security functions behavior">
 	  <f-element id="fmt_mof_ext.1.1">
-	    <title> 
+	    <title>
 	      The OS shall restrict the ability to perform the function indicated in the "Administrator" column in <linkref linkend="fmt_smf_ext.1.1"/> to the administrator.
 	    </title>
 	    <note role="application">
@@ -2031,7 +2031,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 	</f-component>
 	<f-component id="fmt_smf_ext.1" name="Specification of Management Functions">
 	  <f-element id="fmt_smf_ext.1.1">
-	    <title> 
+	    <title>
 	      The OS shall be capable of performing the following management functions:
 	      <h:br/>
 	      <management-function-set default="O">
@@ -2109,7 +2109,7 @@ The OS can enroll in such account management and enable the overall information 
               </h:ul>
 	      .
             </title>
-            <aactivity> 
+            <aactivity>
 	      <TSS>
 	      The evaluator will confirm that the TSS specifies the locations of kernel drivers/modules, security
 	      audit logs, shared libraries, system executables, and system configuration files.  Every
@@ -2117,10 +2117,10 @@ The OS can enroll in such account management and enable the overall information 
 	      such files must be specified.
 	      </TSS>
 	      <Tests>
-	      The evaluator will create an unprivileged user account. 
+	      The evaluator will create an unprivileged user account.
 	      Using this account, the evaluator will ensure that the following tests result in a negative
               outcome (i.e., the action results in the OS denying the evaluator permission to
-              complete the action): 
+              complete the action):
               <testlist>
                 <test>The evaluator will attempt to modify all kernel drivers and modules.</test>
                 <test>The evaluator will attempt to modify all security audit logs generated by the logging subsystem.</test>
@@ -2146,10 +2146,10 @@ The OS can enroll in such account management and enable the overall information 
 	    </note>
             <aactivity>
 	      <Tests>
-	      The evaluator will create an unprivileged user account. 
+	      The evaluator will create an unprivileged user account.
 	      Using this account, the evaluator will ensure that the following tests result in a negative
               outcome (i.e., the action results in the OS denying the evaluator permission to
-              complete the action): 
+              complete the action):
               <testlist>
                 <test>The evaluator will attempt to read security audit logs generated by the auditing subsystem</test>
                 <test>The evaluator will attempt to read system-wide credential repositories</test>
@@ -2161,7 +2161,7 @@ The OS can enroll in such account management and enable the overall information 
         </f-component>
         <f-component id="fpt_aslr_ext.1" name="Address Space Layout Randomization">
           <f-element id="fpt_aslr_ext.1.1">
-            <title>The OS shall always randomize process address space memory locations with 
+            <title>The OS shall always randomize process address space memory locations with
 	    <selectables>
 	      <selectable>8</selectable>
 	      <selectable><assignable>number greater than 8</assignable></selectable>
@@ -2171,16 +2171,16 @@ The OS can enroll in such account management and enable the overall information 
             </title>
             <aactivity>
 	      <Tests>
-The evaluator will select 3 executables included with the <abbr linkend="TSF"/>. 
+The evaluator will select 3 executables included with the <abbr linkend="TSF"/>.
 If the <abbr linkend="TSF"/> includes a web browser it must be selected.
 If the <abbr linkend="TSF"/> includes a mail client it must be selected.
-For each of these apps, the evaluator will launch the same executables on two separate instances of the 
+For each of these apps, the evaluator will launch the same executables on two separate instances of the
 OS on identical hardware and compare all memory mapping locations.
 The evaluator will ensure that no memory mappings are placed in the same location.
 If the rare chance occurs that two mappings are the same for a single executable and
 not the same for the other two, the evaluator will repeat the test with that executable to verify
 that in the second test the mappings are different.
-This test can also be completed on the same hardware and rebooting between application launches. 
+This test can also be completed on the same hardware and rebooting between application launches.
 	      </Tests>
 	    </aactivity>
           </f-element>
@@ -2190,7 +2190,7 @@ This test can also be completed on the same hardware and rebooting between appli
                   Randomizing the location of the kernel address spaces provides some defense against
 		  kernel-level exploits.
                 </note>
-            <aactivity> 
+            <aactivity>
 	      The evaluator will review the TSS to ensure that ASLR applies to the kernel.
 	    </aactivity>
           </f-element> -->
@@ -2322,8 +2322,8 @@ The evaluator will also ensure that the TSS includes a description of the safegu
 	      .
             </title>
             <note role="application">
-              The assignment permits implementations which provide a low 
-              level of granularity such as a volume.  The restriction is only against direct execution of 
+              The assignment permits implementations which provide a low
+              level of granularity such as a volume.  The restriction is only against direct execution of
               executable programs.  It does not forbid interpreters which may take data as an input, even if
               this data can subsequently result in arbitrary computation.
             </note>
@@ -2331,14 +2331,14 @@ The evaluator will also ensure that the TSS includes a description of the safegu
 	      <Tests>
 	      For each selection specified in the ST, the evaluator will ensure that the corresponding tests result in a negative
               outcome (i.e., the action results in the OS denying the evaluator permission to
-              complete the action): 
+              complete the action):
               <testlist>
                 <test>
                   The evaluator will configure the OS to only allow code execution from the core
                   OS directories. The evaluator will then attempt to execute code from a directory
                   that is in the allowed list. The evaluator will ensure that the code they
                   attempted to execute has been executed.
-                </test>                
+                </test>
                 <test>
                   The evaluator will configure the OS to only allow code execution from the core
                   OS directories. The evaluator will then attempt to execute code from a directory
@@ -2350,7 +2350,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
                   the OS vendor to execute. The evaluator will then attempt to execute code signed
                   by the OS vendor. The evaluator will ensure that the code they
                   attempted to execute has been executed.
-                </test>                
+                </test>
                 <test>
                   The evaluator will configure the OS to only allow code that has been signed by
                   the OS vendor to execute. The evaluator will then attempt to execute code signed
@@ -2362,7 +2362,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
                   application based on version. The evaluator will then attempt to execute the same
                   version of the application. The evaluator will ensure that the code they attempted
                   to execute has been executed.
-                </test>                
+                </test>
                 <test>
                   The evaluator will configure the OS to allow execution of a specific
                   application based on version. The evaluator will then attempt to execute an older
@@ -2371,14 +2371,14 @@ The evaluator will also ensure that the TSS includes a description of the safegu
                 </test>
                 <test>
                   The evaluator will configure the OS to allow execution based on the hash of the application
-                  executable. The evaluator will then attempt to execute 
+                  executable. The evaluator will then attempt to execute
                   the application with the matching hash. The evaluator will
                   ensure that the code they attempted to execute has been executed.
                 </test>
                 <test>
                   The evaluator will configure the OS to allow execution based on the hash of the application
                   executable. The evaluator will modify the
-                  application in such a way that the application hash is changed. The evaluator 
+                  application in such a way that the application hash is changed. The evaluator
                   will then attempt to execute the application with the matching hash. The evaluator will
                   ensure that the code they attempted to execute has not been executed.
                 </test>
@@ -2390,12 +2390,12 @@ The evaluator will also ensure that the TSS includes a description of the safegu
         </f-component>
         <f-component id="fpt_tst_ext.1" name="Boot Integrity">
           <f-element id="fpt_tst_ext.1.1">
-            <title>The OS shall verify the integrity of the bootchain up through the OS kernel and 
+            <title>The OS shall verify the integrity of the bootchain up through the OS kernel and
               <selectables linebreak="yes">
                 <selectable>all executable code stored in mutable media</selectable>
                 <selectable><assignable>list of other executable code</assignable></selectable>
                 <selectable exclusive="yes">no other executable code</selectable>
-              </selectables> 
+              </selectables>
 	      prior to its execution through the use of
               <selectables linebreak="yes">
                 <selectable>a digital signature using a hardware-protected asymmetric key and X.509 certificates</selectable>
@@ -2405,19 +2405,19 @@ The evaluator will also ensure that the TSS includes a description of the safegu
             </title>
             <note role="application">
 	      <h:p>
-              The bootchain of the OS is the sequence of software, to include the OS loader, the kernel, system 
-              drivers or modules, and system files, which ultimately result in loading the OS. 
-	      The first part of the OS, usually referred to as the first-stage bootloader, 
-	      must be loaded by the platform. 
+              The bootchain of the OS is the sequence of software, to include the OS loader, the kernel, system
+              drivers or modules, and system files, which ultimately result in loading the OS.
+	      The first part of the OS, usually referred to as the first-stage bootloader,
+	      must be loaded by the platform.
 	      Assessing its integrity, while critical, is the platform's responsibility; and therefore outside
-	      the scope of this PP.  All software loaded after this stage is potentially 
+	      the scope of this PP.  All software loaded after this stage is potentially
 		  within the control of the OS and is in scope.
 	      </h:p>
 	      <h:p>
-              The verification may be transitive in nature: 
-	      a hardware-protected public key or hash may be used to verify the mutable bootloader code 
+              The verification may be transitive in nature:
+	      a hardware-protected public key or hash may be used to verify the mutable bootloader code
               which contains a key or hash used by the bootloader to verify the mutable OS kernel code,
-              which contains a key or hash to verify the next layer of executable code, and so on. 
+              which contains a key or hash to verify the next layer of executable code, and so on.
 	      However, the way in which the hardware stores and protects these keys is out of scope.
 	      </h:p>
 	      <h:p>
@@ -2430,7 +2430,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
 	      <TSS>
 	      <h:p>
               The evaluator will verify that the TSS section of the ST includes a comprehensive description of the boot
-              procedures, including a description of the entire bootchain, for the <abbr linkend="TSF"/>. 
+              procedures, including a description of the entire bootchain, for the <abbr linkend="TSF"/>.
               The evaluator will ensure that the OS cryptographically verifies each
 	      piece of software it loads in the bootchain to include bootloaders and the kernel.
 	      Software loaded for execution directly by the platform (e.g. first-stage bootloaders) is out of scope.
@@ -2458,9 +2458,9 @@ The evaluator will also ensure that the TSS includes a description of the safegu
                   OS properly boots.
                 </test>
                 <test>
-                  The evaluator will modify a <abbr linkend="TSF"/> executable that is part of the bootchain verified by the <abbr linkend="TSF"/> (i.e. Not the first-stage bootloader) 
+                  The evaluator will modify a <abbr linkend="TSF"/> executable that is part of the bootchain verified by the <abbr linkend="TSF"/> (i.e. Not the first-stage bootloader)
 		  and attempt to boot.
-		  The evaluator will ensure that an integrity violation is triggered and the OS does not boot 
+		  The evaluator will ensure that an integrity violation is triggered and the OS does not boot
 		  (Care must be taken so that the integrity
                   violation is determined to be the cause of the failure to load the module, and not the fact that
                   in such a way to invalidate the structure of the module.).
@@ -2481,20 +2481,20 @@ The evaluator will also ensure that the TSS includes a description of the safegu
           <f-element id="fpt_tud_ext.1.1">
             <title>The OS shall provide the ability to check for updates to the OS
               software itself. </title>
-            <note role="application">This requirement is about the ability to check for the availability of 
+            <note role="application">This requirement is about the ability to check for the availability of
 			authentic updates, while the installation of authentic updates is covered by <linkref
-            linkend="FPT_TUD_EXT.1.2"/>. 
+            linkend="FPT_TUD_EXT.1.2"/>.
 			</note>
-            <aactivity> 
+            <aactivity>
 	      <Tests>
-              The evaluator will check for an update using procedures described in the 
-              documentation and verify that the OS provides a list of available updates. 
+              The evaluator will check for an update using procedures described in the
+              documentation and verify that the OS provides a list of available updates.
 			  Testing this capability may require
 			  installing and temporarily placing the system into a
 			  configuration in conflict with secure configuration guidance
 			  which specifies automatic update.
 			  (The evaluator is also to ensure that this query occurs over a
-			  trusted channel as described in <linkref linkend="ftp_itc_ext.1"/>.)  
+			  trusted channel as described in <linkref linkend="ftp_itc_ext.1"/>.)
               </Tests>
 	    </aactivity>
           </f-element>
@@ -2503,12 +2503,12 @@ The evaluator will also ensure that the TSS includes a description of the safegu
               The OS shall cryptographically verify updates to itself using a digital
               signature prior to installation using schemes specified in <linkref linkend="FCS_COP.1(3)"/>.
 	    </title>
-            <aactivity> 
+            <aactivity>
 	      <Tests>
-                  For the following tests, the evaluator will initiate the download of an update and 
-				  capture the update prior to installation.  
-				  The download could originate from the vendor's website, an enterprise-hosted 
-				  update repository, or another system (e.g. network peer).  
+                  For the following tests, the evaluator will initiate the download of an update and
+				  capture the update prior to installation.
+				  The download could originate from the vendor's website, an enterprise-hosted
+				  update repository, or another system (e.g. network peer).
 				  All supported origins
 				  for the update must be indicated in the TSS and evaluated.
               <testlist>
@@ -2524,10 +2524,10 @@ The evaluator will also ensure that the TSS includes a description of the safegu
                 <test>
 				  The evaluator will ensure that the update has a digital
 				  signature belonging to the vendor. The evaluator will then
-				  attempt to install the update (or permit installation to continue). 
+				  attempt to install the update (or permit installation to continue).
 				  The evaluator will ensure that
 				  the OS successfully installs the update.
-                </test>                
+                </test>
               </testlist>
               </Tests>
 	    </aactivity>
@@ -2537,31 +2537,31 @@ The evaluator will also ensure that the TSS includes a description of the safegu
           <!-- TO DO: Cite references. -->
           <f-element id="fpt_tud_ext.2.1">
             <title>
-	      The OS shall provide the ability to check for updates to 
+	      The OS shall provide the ability to check for updates to
               application software.
 	    </title>
             <note role="application">This requirement is about the ability to check for authentic updates,
               while the actual installation of such updates is covered by <linkref
-                linkend="FPT_TUD_EXT.2.2"/>. 
+                linkend="FPT_TUD_EXT.2.2"/>.
             </note>
             <aactivity>
 	      <Tests>
 	      The evaluator will check for updates to application software
 			  using procedures described in the
 			  documentation and verify that the OS provides a list of available
-			  updates.  Testing this capability may require 
+			  updates.  Testing this capability may require
 			  temporarily placing the system into a configuration in conflict
 			  with secure configuration guidance which specifies automatic
 			  update.  (The evaluator is also to ensure that this query occurs
 			  over a trusted channel as described in <linkref
-			  linkend="ftp_itc_ext.1"/>.)  
+			  linkend="ftp_itc_ext.1"/>.)
               </Tests>
 	    </aactivity>
           </f-element>
           <f-element id="fpt_tud_ext.2.2">
             <title>
-	      The OS shall cryptographically verify the integrity of updates 
-	      to applications using a digital signature specified by 
+	      The OS shall cryptographically verify the integrity of updates
+	      to applications using a digital signature specified by
 	      <linkref linkend="FCS_COP.1(3)"/> prior to installation.
 	    </title>
             <aactivity>
@@ -2569,7 +2569,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
                   The evaluator will initiate an update to an application.  This may vary depending on the application,
 		          but it could be through the application vendor's website, a commercial app store, or another system.
 				  All origins supported by the OS must be indicated in the TSS and evaluated.  However, this only includes
-				  those mechanisms for which the OS is providing a trusted installation and update functionality.  
+				  those mechanisms for which the OS is providing a trusted installation and update functionality.
 				  It does not include user or administrator-driven download and installation of arbitrary files.
               <testlist>
                 <test>
@@ -2587,7 +2587,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
 				  managed through the OS. The evaluator will then attempt to
 				  install the update.  The evaluator will ensure that the OS
 				  successfully installs the update.
-                </test>                
+                </test>
               </testlist>
               </Tests>
 	    </aactivity>
@@ -2595,18 +2595,18 @@ The evaluator will also ensure that the TSS includes a description of the safegu
         </f-component>
         <f-component id="fpt_w^x_ext.1" name="Write XOR Execute Memory Pages" status="objective">
           <f-element id="fpt_w^x_ext.1.1">
-            <title> The OS shall prevent allocation of any memory region with both write and 
+            <title> The OS shall prevent allocation of any memory region with both write and
               execute permissions except for <assignable>list of exceptions</assignable>.
             </title>
             <note role="application">Requesting a memory mapping with both write and execute
               permissions subverts the platform protection provided by <abbr linkend="DEP"/>.
 	      If the OS provides no exceptions (such as for just-in-time compilation),
-	      then "no exceptions" should be indicated in the assignment.  
-	      Full realization of this requirement requires hardware support, but this is commonly available.  
+	      then "no exceptions" should be indicated in the assignment.
+	      Full realization of this requirement requires hardware support, but this is commonly available.
             </note>
-            <aactivity> 
+            <aactivity>
 	      <TSS>
-              The evaluator will inspect the vendor-provided developer documentation and 
+              The evaluator will inspect the vendor-provided developer documentation and
 	      verify that no memory-mapping can be made with
               write and execute permissions except for the cases listed in the assignment.
 	      </TSS>
@@ -2614,20 +2614,20 @@ The evaluator will also ensure that the TSS includes a description of the safegu
 	      The evaluator will also perform the following tests.
 	      <testlist>
 		<test>
-                  The evaluator will acquire or construct a test program which attempts 
-		  to allocate memory that is both writable and executable.  
+                  The evaluator will acquire or construct a test program which attempts
+		  to allocate memory that is both writable and executable.
 		  The evaluator will run the program and confirm that it fails to
 		  allocate memory that is both writable and executable.
 		</test>
 		<test>
-                  The evaluator will acquire or construct a test program which 
+                  The evaluator will acquire or construct a test program which
 		  allocates memory that is executable and then
 		  subsequently requests additional write/modify permissions on that memory.
 		  The evaluator will run the program and confirm that at no time
 		  during the lifetime of the process is the memory both writable and executable.
 		</test>
 		<test>
-                  The evaluator will acquire or construct a test program which 
+                  The evaluator will acquire or construct a test program which
 		  allocates memory that is writable and then
 		  subsequently requests additional execute permissions on that memory.
 		  The evaluator will run the program and confirm that at no time
@@ -2638,13 +2638,13 @@ The evaluator will also ensure that the TSS includes a description of the safegu
 	    </aactivity>
           </f-element>
         </f-component>
-      </subsection>    
+      </subsection>
       <subsection title="Audit Data Generation (FAU)" id="fau">
         <f-component id="fau_gen.1" name="Audit Data Generation (Refined)">
           <f-element id="fau_gen.1.1">
-            <title> 
+            <title>
 The <h:b>OS</h:b> shall be able to generate an audit record of the following auditable
-              events: 
+              events:
               <h:ol type='a'>
                 <h:li>Start-up and shut-down of the audit functions;</h:li>
                 <h:li>All auditable events for the [<h:i>not specified</h:i>] level of audit; and [</h:li>
@@ -2683,7 +2683,7 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
 			  The evaluator will test the OS's ability to correctly generate
 			  audit records by having the TOE generate audit records for the
 			  events listed in the ST.  This should include all instance types
-			  of an event specified.  
+			  of an event specified.
 			  When verifying the test results, the evaluator will ensure the
 			  audit records generated during testing match the format specified
 			  in the administrative guide, and that the fields in each audit
@@ -2693,7 +2693,7 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
 	    </aactivity>
           </f-element>
           <f-element id="fau_gen.1.2">
-            <title> The <h:b>OS</h:b> shall record within each audit record at least the following information: 
+            <title> The <h:b>OS</h:b> shall record within each audit record at least the following information:
 	    <h:ol type='a'>
 	      <h:li>Date and time of the event, type of event, subject identity (if applicable),
 	      and outcome (success or failure) of the event; and </h:li>
@@ -2706,8 +2706,8 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
             </title>
 	    <note role="application">
 	      The term <h:i>subject</h:i> here is understood to be the user that the process
-	      is acting on behalf of.  If no auditable event definitions of 
-		  functional components are provided, then no additional audit-relevant information 
+	      is acting on behalf of.  If no auditable event definitions of
+		  functional components are provided, then no additional audit-relevant information
 		  is required.
 	    </note>
             <aactivity>
@@ -2717,7 +2717,7 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
 			  that it provides a format
 			  for audit records. Each audit record format type must be covered,
 			  along with a brief description of each field. The evaluator will
-			  ensure that the fields contains the information required. 
+			  ensure that the fields contains the information required.
 	      </h:p>
 	      </Guidance>
 	      <Tests>
@@ -2739,9 +2739,9 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
         <f-component id="fia_afl.1" name="Authentication failure handling (Refined)">
           <f-element id="fia_afl.1.1">
             <title>
-            The <h:b>OS</h:b> shall detect when 
+            The <h:b>OS</h:b> shall detect when
             <selectables linebreak='yes'>
-              <selectable><assignable>positive integer number</assignable></selectable> 
+              <selectable><assignable>positive integer number</assignable></selectable>
               <selectable>an administrator configurable positive integer within <assignable>range of acceptable values</assignable></selectable>
             </selectables>
             unsuccessful authentication attempts occur related to
@@ -2762,15 +2762,15 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
 		  will then (per selection) repeatedly attempt to authenticate with an
 		  incorrect password, PIN, or certificate until the number of attempts
 		  reaches the threshold.  Note that the authentication attempts and
-		  lockouts must also be logged as specified in 
+		  lockouts must also be logged as specified in
 		  <linkref linkend="fau_gen.1"/>.
 
 	      </Tests>
 	    </aactivity>
           </f-element>
           <f-element id="fia_afl.1.2">
-            <title> 
-	      When the defined number of unsuccessful authentication attempts for an 
+            <title>
+	      When the defined number of unsuccessful authentication attempts for an
 	      account has been <h:b>met</h:b>, the <h:b>OS</h:b> shall:
 	      <h:b>
 	      <selectables>
@@ -2782,45 +2782,45 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
 	      </h:b>.
             </title>
             <note role="application">
-            	The action to be taken shall be populated in the assignment of the ST and defined 
-            	in the administrator guidance. 
+            	The action to be taken shall be populated in the assignment of the ST and defined
+            	in the administrator guidance.
             </note>
-            <aactivity> 
+            <aactivity>
 	      <Tests>
               <testlist>
                 <test>
                   The evaluator will attempt to authenticate repeatedly to the system with a
                   known bad password. Once the defined number of failed authentication attempts has been
                   reached the evaluator will ensure that the account that was being used for testing
-                  has had the actions detailed in the assignment list above applied to it. The evaluator will ensure that 
-                  an event has been logged to the security event log detailing that the account has had these actions applied. 
+                  has had the actions detailed in the assignment list above applied to it. The evaluator will ensure that
+                  an event has been logged to the security event log detailing that the account has had these actions applied.
                 </test>
                 <test>
                   The evaluator will attempt to authenticate repeatedly to the system with a
                   known bad certificate. Once the defined number of failed authentication attempts has been
                   reached the evaluator will ensure that the account that was being used for testing
-                  has had the actions detailed in the assignment list above applied to it. The evaluator will ensure that 
-                  an event has been logged to the security event log detailing that the account has had these actions applied. 
+                  has had the actions detailed in the assignment list above applied to it. The evaluator will ensure that
+                  an event has been logged to the security event log detailing that the account has had these actions applied.
                 </test>
                 <test>
-                  The evaluator will attempt to authenticate repeatedly to the system using both a bad password and a bad certificate. 
+                  The evaluator will attempt to authenticate repeatedly to the system using both a bad password and a bad certificate.
                   Once the defined number of failed authentication attempts has been
                   reached the evaluator will ensure that the account that was being used for testing
-                  has had the actions detailed in the assignment list above applied to it. The evaluator will ensure that 
-                  an event has been logged to the security event log detailing that the account has had these actions applied. 
+                  has had the actions detailed in the assignment list above applied to it. The evaluator will ensure that
+                  an event has been logged to the security event log detailing that the account has had these actions applied.
                 </test>
               </testlist>
               </Tests>
 	    </aactivity>
           </f-element>
-        </f-component>        
+        </f-component>
         <f-component id="fia_uau.5" name="Multiple Authentication Mechanisms (Refined)">
           <f-element id="fia_uau.5.1">
             <title>
 The <h:b>OS</h:b> shall provide the following authentication mechanisms
 <h:b><selectables linebreak='yes'>
   <selectable>authentication based on user name and password</selectable>
-  <selectable>authentication based on user name and a PIN that releases an asymmetric key stored 
+  <selectable>authentication based on user name and a PIN that releases an asymmetric key stored
   in OE-protected storage</selectable>
   <selectable>authentication based on X.509 certificates</selectable>
   <selectable>for use in SSH only, SSH public key-based authentication as specified by the <abbr linkend="EP"/> for Secure Shell</selectable>
@@ -2829,14 +2829,14 @@ The <h:b>OS</h:b> shall provide the following authentication mechanisms
 to support user authentication.
             </title>
             <note role="application">
-	      The "for use in SSH only, SSH public key-based authentication as specified by the <abbr linkend="EP"/> 
-		    for Secure Shell" selection can only be included, and must be included, if 
-		    <linkref linkend="ftp_itc_ext.1.1"/> selects 
+	      The "for use in SSH only, SSH public key-based authentication as specified by the <abbr linkend="EP"/>
+		    for Secure Shell" selection can only be included, and must be included, if
+		    <linkref linkend="ftp_itc_ext.1.1"/> selects
 		    "SSH as conforming to the <abbr linkend="EP"/> for Secure Shell".
 	    </note>
             <aactivity>
 	      <Tests>
-              If user name and password authentication is selected, the evaluator will configure the OS with a 
+              If user name and password authentication is selected, the evaluator will configure the OS with a
 			  known user name and password and conduct the following tests:
               <testlist>
                 <test>
@@ -2856,17 +2856,17 @@ to support user authentication.
 			  which enables release of the asymmetric key from the protected storage (such as a TPM, a hardware token, or
 			  isolated execution environment) with which the
 			  OS can interface.  The evaluator will then conduct the following tests:
-			  <testlist> 
+			  <testlist>
 			    <test> The evaluator will attempt to
 			    authenticate to the OS using the known user name and PIN. The
 			    evaluator will ensure that the authentication attempt is
-			    successful. 
-			    </test> 
+			    successful.
+			    </test>
 				<test> The evaluator will attempt to
 			    authenticate to the OS using the known user name but an incorrect
 			    PIN. The evaluator will ensure that the authentication attempt is
 			    unsuccessful.
-				</test> 
+				</test>
 			  </testlist>
 			  If X.509 certificate authentication is selected, the evaluator
 			  will generate an X.509v3 certificate for a user with the Client
@@ -2920,7 +2920,7 @@ unsuccessful authentication are covered in <linkref linkend="fia_afl.1"/>.
 		The evaluator will ensure that the <abbr linkend="TSS"/>
               describes each mechanism provided to support user authentication and
               the rules describing how the authentication mechanism(s) provide
-              authentication. 
+              authentication.
 		</h:p>
 		</TSS>
 	      <Guidance>
@@ -2954,21 +2954,21 @@ the following rules: <h:ul>
 <h:li> The certificate path must terminate with a trusted CA certificate. </h:li>
 <h:li> The OS shall validate a certificate path by ensuring the presence of the
 <h:i>basicConstraints</h:i> extension and that the <h:i>CA</h:i> flag is set to <h:code>TRUE</h:code> for all CA  certificates. </h:li>
-<h:li> The OS shall validate the revocation status of the certificate using 
+<h:li> The OS shall validate the revocation status of the certificate using
 <selectables>
   <selectable>the Online Certificate Status Protocol (OCSP) as specified in RFC 2560</selectable>
   <selectable>a Certificate Revocation List (CRL) as specified in RFC 5759</selectable>
   <selectable>an OCSP TLS Status Request Extension (i.e., OCSP stapling) as specified in RFC 6066</selectable>
 </selectables>. </h:li>
-<h:li> The OS shall validate the <h:i>extendedKeyUsage</h:i> field according to the following rules: 
+<h:li> The OS shall validate the <h:i>extendedKeyUsage</h:i> field according to the following rules:
 <h:ul>
   <h:li> Certificates used for trusted updates and executable code integrity
   verification shall have the Code Signing purpose (id-kp 3 with OID 1.3.6.1.5.5.7.3.3) in the <h:i>extendedKeyUsage</h:i> field. </h:li>
   <h:li> Server certificates presented for <h:abbr title="Transport Layer Security">TLS</h:abbr>
   shall have the Server Authentication purpose (id-kp 1 with OID
   1.3.6.1.5.5.7.3.1) in the <h:i>extendedKeyUsage</h:i> field. </h:li>
-  <h:li> Client certificates presented for <h:abbr title="Transport Layer Security">TLS</h:abbr> 
-  shall have the Client Authentication purpose (id-kp 2 with OID 1.3.6.1.5.5.7.3.2) 
+  <h:li> Client certificates presented for <h:abbr title="Transport Layer Security">TLS</h:abbr>
+  shall have the Client Authentication purpose (id-kp 2 with OID 1.3.6.1.5.5.7.3.2)
   in the <h:i>extendedKeyUsage</h:i> field. </h:li>
   <h:li> S/MIME certificates presented for email encryption and signature shall have
   the Email Protection purpose (id-kp 4 with OID 1.3.6.1.5.5.7.3.4) in the
@@ -2983,7 +2983,7 @@ the following rules: <h:ul>
               </h:ul>
 	      .
             </title>
-            <note role="application"> 
+            <note role="application">
 	      FIA_X509_EXT.1.1 lists the rules for validating certificates.
               The <abbr linkend="ST"/> author shall select whether revocation status is verified
               using OCSP or CRLs. <linkref linkend="FIA_X509_EXT.2"/> requires that certificates are
@@ -2994,8 +2994,8 @@ the following rules: <h:ul>
 	      <TSS>
 	      <h:p>
 	      The evaluator will ensure the <abbr linkend="TSS"/> describes where the
-              check of validity of the certificates takes place. 
-	      The evaluator ensures the <abbr linkend="TSS"/> also provides a description of the certificate path validation algorithm. 
+              check of validity of the certificates takes place.
+	      The evaluator ensures the <abbr linkend="TSS"/> also provides a description of the certificate path validation algorithm.
 	      </h:p>
 	      </TSS>
 	      <Tests>
@@ -3014,8 +3014,8 @@ the following rules: <h:ul>
                 <test> The evaluator will demonstrate that validating an expired certificate
                   results in the function failing. </test>
                 <test> The evaluator will test that the OS can properly handle
-                  revoked certificates-–conditional on whether CRL, OCSP, or OCSP stapling is selected; 
-		  if multiple methods are selected, then a test shall be performed for each method. 
+                  revoked certificates-–conditional on whether CRL, OCSP, or OCSP stapling is selected;
+		  if multiple methods are selected, then a test shall be performed for each method.
 		  The evaluator will test
                   revocation of the node certificate and revocation of the intermediate CA
                   certificate (i.e. the intermediate CA certificate should be revoked by the root
@@ -3046,7 +3046,7 @@ the following rules: <h:ul>
           <f-element id="fia_x509_ext.1.2">
             <title>
 The OS shall only treat a certificate as a CA certificate if the
-<h:i>basicConstraints</h:i> extension is present and the CA flag is set to TRUE. 
+<h:i>basicConstraints</h:i> extension is present and the CA flag is set to TRUE.
 	    </title>
             <note role="application"> This requirement applies to certificates that are used and
               processed by the <abbr linkend="TSF"/> and restricts the certificates that may be
@@ -3054,11 +3054,11 @@ The OS shall only treat a certificate as a CA certificate if the
             <aactivity>
 	      <Tests>
 The tests described must be performed in conjunction with the other
-certificate services evaluation activities, including the functions in 
+certificate services evaluation activities, including the functions in
 <linkref linkend="FIA_X509_EXT.2.1"/>.
-The evaluator will create a chain of at least four certificates: 
+The evaluator will create a chain of at least four certificates:
 the node certificate to be tested, two Intermediate CAs, and the
-              self-signed Root CA. 
+              self-signed Root CA.
 <testlist>
   <test> The evaluator will construct a certificate path, such that the certificate
   of the CA issuing the OS's certificate does not contain the
@@ -3078,22 +3078,22 @@ the node certificate to be tested, two Intermediate CAs, and the
         <f-component id="fia_x509_ext.2" name="X.509 Certificate Authentication">
           <f-element id="fia_x509_ext.2.1">
             <title> The OS shall use X.509v3 certificates as defined by RFC 5280 to support
-              authentication for TLS and 
+              authentication for TLS and
 			  <selectables>
 			  <selectable>DTLS</selectable>
 			  <selectable>HTTPS</selectable>
 			  <selectable><assignable>other protocols</assignable></selectable>
 			  <selectable exclusive="yes">no other protocols</selectable>
 			  </selectables>
-			  connections. 
+			  connections.
 			</title>
-            <aactivity> 
+            <aactivity>
 	      <Tests>
 	      <h:p>
 		The evaluator will acquire or develop an application that uses the OS
 		TLS mechanism with an X.509v3 certificate. The evaluator will then run the
 		application and ensure that the provided certificate is used to authenticate the
-		connection. 
+		connection.
 	      </h:p>
 	      <h:p>
 		The evaluator will repeat the activity for any other selections listed.
@@ -3110,11 +3110,11 @@ the node certificate to be tested, two Intermediate CAs, and the
             Before establishing a user session, the <h:b>OS</h:b> shall display an advisory
             warning message regarding unauthorized use of the OS.
             </title>
-            <aactivity> 
+            <aactivity>
 	      <Tests>
             The evaluator will configure the OS, per instructions in the OS manual,
-            to display the advisory warning message "TEST TEST Warning Message TEST TEST". 
-            The evaluator will then log out and confirm that the advisory message is 
+            to display the advisory warning message "TEST TEST Warning Message TEST TEST".
+            The evaluator will then log out and confirm that the advisory message is
             displayed before logging in can occur.
               </Tests>
 	    </aactivity>
@@ -3133,7 +3133,7 @@ the node certificate to be tested, two Intermediate CAs, and the
       	        <selectable>SSH as conforming to the <h:a href="https://www.niap-ccevs.org/pp/"><h:i><abbr linkend="EP"/> for Secure Shell</h:i></h:a></selectable>
         	    </selectables>
 		    to provide a trusted communication channel between itself and
-		    authorized IT entities supporting the following capabilities: 
+		    authorized IT entities supporting the following capabilities:
 		    <selectables>
 		      <selectable>audit server</selectable>
 		      <selectable>authentication server</selectable>
@@ -3141,7 +3141,7 @@ the node certificate to be tested, two Intermediate CAs, and the
 		      <selectable><assignable>other capabilities</assignable></selectable>
 		    </selectables>
 		    that is logically distinct from other communication
-		    channels and provides assured identification of its end points and protection of the channel 
+		    channels and provides assured identification of its end points and protection of the channel
 		    data from disclosure and detection of modification of the channel data.
       	    </title>
       	    <note role="application">
@@ -3162,7 +3162,7 @@ the node certificate to be tested, two Intermediate CAs, and the
       	    <aactivity>
 	      <Tests>
 	      The evaluator will configure the OS to communicate with another
-	      trusted IT product as identified in the second selection.  
+	      trusted IT product as identified in the second selection.
       	  The evaluator will monitor network traffic while the OS performs communication with each of the
       	  servers identified in the second selection.
       	  The evaluator will ensure that for each session a trusted channel was established
@@ -3176,14 +3176,21 @@ the node certificate to be tested, two Intermediate CAs, and the
 	      <title>
 The <h:b>OS</h:b> shall provide a communication path between itself and
 <selectables><selectable>remote</selectable><selectable>local</selectable></selectables>
-users that is logically distinct from other communication paths and provides assured 
-identification of its endpoints and protection of the communicated data from 
+users that is logically distinct from other communication paths and provides assured
+identification of its endpoints and protection of the communicated data from
 [modification, disclosure].
               </title>
 	      <note role="application">
 		<h:p>
-This requirement ensures that all remote administrative actions are protected. Authorized remote administrators must initiate all communication with the OS via a trusted path and all communication with the OS by remote administrators must be performed over this path. The data passed in this trusted communication channel is encrypted as defined in <linkref linkend="ftp_itc_ext.1"/>.
-If local users access is selected and no unprotected traffic is sent to remote users, then this requirement is met.  If remote users access is selected, the ST author must include the security functional requirements for the trusted channel protocol selected in
+This requirement ensures that all remote administrative actions are protected.
+Authorized remote administrators must initiate all communication with the OS via
+a trusted path and all communication with the OS by remote administrators must
+be performed over this path. The data passed in this trusted communication
+channel is encrypted as defined in <linkref linkend="ftp_itc_ext.1"/>.
+If local users access is selected and no unprotected traffic is sent to remote
+users, then this requirement is met.  If remote users access is selected, the
+ST author must include the security functional requirements for the trusted
+channel protocol selected in
 <linkref linkend="ftp_itc_ext.1"/> in the main body of the ST.
 		</h:p>
 		<h:p>
@@ -3213,11 +3220,11 @@ This requirement is tested with the  evaluation activities for  <linkref linkend
               <note role="application">
 		<h:p>
 		  This requirement ensures that authorized remote administrators initiate all communication
-                with the OS via a trusted path, and that all communication with the OS by remote administrators 
-                is performed over this path. The data passed in this trusted communication channel is encrypted as 
+                with the OS via a trusted path, and that all communication with the OS by remote administrators
+                is performed over this path. The data passed in this trusted communication channel is encrypted as
                 defined in <linkref linkend="FTP_ITC_EXT.1"/>.
 	      </h:p><h:p>
-	      The evaluation activities for this requirement also test requirements 
+	      The evaluation activities for this requirement also test requirements
 	      <linkref linkend="FTP_TRP.1.1"/> and <linkref linkend="FTP_TRP.1.2"/>.
 	    </h:p>
               </note>
@@ -3226,7 +3233,7 @@ This requirement is tested with the  evaluation activities for  <linkref linkend
                 The evaluator will examine the TSS to determine that the methods of remote OS administration
                 are indicated, along with how those communications are protected. The evaluator will also
                 confirm that all protocols listed in the TSS in support of OS administration are consistent with those
-                specified in the requirement, and are included in the requirements in the ST. 
+                specified in the requirement, and are included in the requirements in the ST.
 		</TSS>
 		<Guidance>
 		The evaluator will
@@ -3239,8 +3246,8 @@ The evaluator will also perform the following
                 tests:
                 <testlist>
                   <test>
-                    The evaluator will ensure that communications using each remote administration method is 
-                    tested during the course of the evaluation, setting up the connections as described in the 
+                    The evaluator will ensure that communications using each remote administration method is
+                    tested during the course of the evaluation, setting up the connections as described in the
                     operational guidance and ensuring that communication is successful.
                   </test>
                   <test>
@@ -3266,24 +3273,24 @@ The evaluator will also perform the following
     </section>
     <section title="Security Assurance Requirements" id="SARs">
       <h:p>
-	The Security Objectives in <secref linkend="obj"/> were constructed to 
-	address threats identified in <secref linkend="threats"/>. 
+	The Security Objectives in <secref linkend="obj"/> were constructed to
+	address threats identified in <secref linkend="threats"/>.
 	The Security Functional Requirements (<abbr linkend="SFR"/>s) in <secref linkend="SFRs"/>
-	are a formal instantiation of the Security Objectives. 
-	The PP identifies the Security Assurance Requirements (<abbr linkend="SAR"/>s) to frame 
-	the extent to which the evaluator assesses the documentation applicable for the 
-	evaluation and performs independent testing. 
+	are a formal instantiation of the Security Objectives.
+	The PP identifies the Security Assurance Requirements (<abbr linkend="SAR"/>s) to frame
+	the extent to which the evaluator assesses the documentation applicable for the
+	evaluation and performs independent testing.
       </h:p>
       <h:p>
 	This section lists the set of <abbr linkend="SAR"/>s from CC part 3
 	that are required in evaluations against this PP. Individual evaluation activities
-	to be performed are specified both in <secref linkend="req"/> as well as in this section. 
+	to be performed are specified both in <secref linkend="req"/> as well as in this section.
       </h:p>
       <h:p>
-      The general model for evaluation of TOEs against STs written to conform to this PP is as follows: 
-      <h:br/> 
+      The general model for evaluation of TOEs against STs written to conform to this PP is as follows:
+      <h:br/>
       After the <abbr linkend="ST"/> has been approved for evaluation,
-      the 
+      the
       <abbr class="expanded" title="Information Technology Security Evaluation Facility">ITSEF</abbr>
       will obtain the OS, supporting environmental IT, and the administrative/user guides for
       the OS. The ITSEF is expected to perform actions mandated by the Common Evaluation
@@ -3292,7 +3299,7 @@ The evaluator will also perform the following
       other CEM assurance requirements as they apply to the specific technology instantiated in the
       OS. The evaluation activities that are captured in <secref linkend="req"/> also provide
       clarification as to what the developer needs to provide to demonstrate the OS is compliant
-      with the PP. 
+      with the PP.
       </h:p>
 
       <subsection title="Class ASE: Security Target" id="ase">
@@ -3328,7 +3335,7 @@ The evaluator will also perform the following
           presented in the AGD documentation. No additional "functional specification" documentation
           is necessary to satisfy the evaluation activities specified. The interfaces that need to be
           evaluated are characterized through the information needed to perform the assurance
-          activities listed, rather than as an independent, abstract list. 
+          activities listed, rather than as an independent, abstract list.
 	          <evalactionlabel title="Developer action elements:"/>
             <a-element id="adv_fsp.1.1d">
               <title>The developer shall provide a functional specification.</title>
@@ -3361,8 +3368,8 @@ The evaluator will also perform the following
             </a-element>
             <a-element id="adv_fsp.1.4c">
               <title>
-		The tracing shall demonstrate that the SFRs trace to 
-		<abbr title="TSF Interface">TSFI</abbr>s 
+		The tracing shall demonstrate that the SFRs trace to
+		<abbr title="TSF Interface">TSFI</abbr>s
 		in the functional specification.
 	      </title>
             </a-element>
@@ -3398,14 +3405,14 @@ The evaluator will also perform the following
         manage the security of the <abbr linkend="TSF"/> as a product and as a component of the
         larger operational environment. Guidance pertaining to particular security functionality is
         also provided; requirements on such guidance are contained in the Evaluation Activities
-        specified with each requirement. 
+        specified with each requirement.
 	<a-component id="agd_ope.1" name="Operational User Guidance (AGD_OPE.1)">
 	          <evalactionlabel title="Developer action elements:"/>
 	    <a-element id="agd_ope.1.1d">
 	      <title>The developer shall provide operational user guidance.</title>
 	      <note role="application">The operational user guidance does not have to be contained in a
 	      single document. Guidance to users, administrators and application developers can be
-              spread among documents or web pages. 
+              spread among documents or web pages.
 	      Rather than repeat information here, the developer should
               review the evaluation activities for this component to ascertain the specifics of the
               guidance that the evaluator will be checking for. This will provide the necessary
@@ -3430,14 +3437,14 @@ The evaluator will also perform the following
               the user, indicating secure values as appropriate.</title>
               <note role="application">
 		This portion of the operational user guidance should be presented
-		in the form of a checklist that can be quickly executed by IT personnel (or end-users, 
+		in the form of a checklist that can be quickly executed by IT personnel (or end-users,
 		when necessary) and suitable for use in compliance activities.
-		When possible, this guidance is to be expressed in the eXtensible Configuration 
+		When possible, this guidance is to be expressed in the eXtensible Configuration
 		Checklist Description Format (XCCDF) to
-		support security automation.  
-		Minimally, it should be presented in a structured 
-		format which includes a title for each configuration item, 
-		instructions for achieving the secure configuration, and any relevant rationale.  
+		support security automation.
+		Minimally, it should be presented in a structured
+		format which includes a title for each configuration item,
+		instructions for achieving the secure configuration, and any relevant rationale.
               </note>
             </a-element>
             <a-element id="agd_ope.1.4c">
@@ -3537,7 +3544,7 @@ The evaluator will also perform the following
           <a-component id="alc_cmc.1" name="Labeling of the TOE (ALC_CMC.1)">This component is
           targeted at identifying the OS such that it can be distinguished from
           other products or versions from the same vendor and can be easily specified when being
-          procured by an end user. 
+          procured by an end user.
 	          <evalactionlabel title="Developer action elements:"/>
             <a-element id="alc_cmc.1.1d">
               <title>The developer shall provide the OS and a reference for the
@@ -3547,7 +3554,7 @@ The evaluator will also perform the following
 	          <evalactionlabel title="Content and presentation elements:"/>
             <a-element id="alc_cmc.1.1c">
               <title>The OS shall be labeled with a unique reference.</title>
-              <note role="application">Unique reference information includes: 
+              <note role="application">Unique reference information includes:
 	      <h:ul>
 		<h:li>OS Name</h:li>
 		<h:li>OS Version</h:li>
@@ -3574,8 +3581,8 @@ The evaluator will also perform the following
 	  
         </a-component>
         <a-component id="alc_cms.1" name="TOE CM Coverage (ALC_CMS.1)">
-	  Given the scope of the OS and its associated evaluation 
-	  evidence requirements, this component's evaluation activities are covered 
+	  Given the scope of the OS and its associated evaluation
+	  evidence requirements, this component's evaluation activities are covered
 	  by the evaluation activities listed for ALC_CMC.1.
                   <evalactionlabel title="Developer action elements:"/>
             <a-element id="alc_cms.1.1d">
@@ -3638,7 +3645,7 @@ The evaluator will also perform the following
           security flaw is reported/discovered, to the time an update is released. This description
           includes the parties involved (e.g., the developer, carriers(s)) and the steps that are
           performed (e.g., developer testing, carrier testing), including worst case time periods,
-          before an update is made available to the public. 
+          before an update is made available to the public.
 	          <evalactionlabel title="Developer action elements:"/>
             <a-element id="alc_tsu_ext.1.1d">
               <title>The developer shall provide a description in the TSS of how timely security
@@ -3666,15 +3673,15 @@ The evaluator will also perform the following
             <a-element id="alc_tsu_ext.1.1e">
               <title>The evaluator will confirm that the information provided meets all
               requirements for content and presentation of evidence.</title>
-              <aactivity> 
+              <aactivity>
 		<h:p>
 		The evaluator will verify that the TSS contains a description of the timely
               security update process used by the developer to create and deploy security updates.
               The evaluator will verify that this description addresses the entire application. The
               evaluator will also verify that, in addition to the OS developer's process, any
               third-party processes are also addressed in the description. The evaluator will also
-              verify that each mechanism for deployment of security updates is described. 
-	      </h:p><h:p> 
+              verify that each mechanism for deployment of security updates is described.
+	      </h:p><h:p>
 	      The
               evaluator will verify that, for each deployment mechanism described for the update
               process, the TSS lists a time between public disclosure of a vulnerability and public
@@ -3687,7 +3694,7 @@ The evaluator will also perform the following
               address or website) for reporting security issues related to the OS. The evaluator
               shall verify that the description of this mechanism includes a method for protecting
               the report either using a public key for encrypting email or a trusted channel for a
-              website. 
+              website.
 	    </h:p>
 	    </aactivity>
             </a-element>
@@ -3738,7 +3745,7 @@ The evaluator will also perform the following
               aspects of the system, including any application crashes during testing. The evaluator
               shall determine the root cause of any application crashes and include that information
               in the report. The test plan covers all of the testing actions contained in the <cite
-                linkend="bibCEM"/> and the body of this PP's evaluation activities. 
+                linkend="bibCEM"/> and the body of this PP's evaluation activities.
 	      </h:p><h:p>
 	      While it is
               not necessary to have one test case per test listed in an evaluation activity, the
@@ -3806,7 +3813,7 @@ The evaluator will also perform the following
           <a-element id="ava_van.1.2e">
             <title>The evaluator will perform a search of public domain sources to identify
               potential vulnerabilities in the OS.</title>
-            <note role="application">Public domain sources include the Common Vulnerabilities 
+            <note role="application">Public domain sources include the Common Vulnerabilities
               and Exposures (CVE) dictionary for publicly-known vulnerabilities.  Public domain
               sources also include sites which provide free checking of files for viruses.</note>
             <!-- their Usage statement does not permit us to mention VirusTotal by name without permission -->
@@ -3822,9 +3829,9 @@ The evaluator will also perform the following
               overall test report mentioned in ATE_IND, or a separate document. The evaluator
               performs a search of public information to find vulnerabilities that have been found
               in similar applications with a particular focus on network protocols the application
-              uses and document formats it parses. 
+              uses and document formats it parses.
               The evaluator documents the sources consulted and
-              the vulnerabilities found in the report. 
+              the vulnerabilities found in the report.
 	      </h:p><h:p>
               For each vulnerability found, the evaluator
               either provides a rationale with respect to its non-applicability, or the evaluator
@@ -3838,7 +3845,7 @@ The evaluator will also perform the following
           </a-element>
 	  
         </a-component>
-      </subsection>      
+      </subsection>
     </section>
   </chapter>
 
@@ -3857,20 +3864,20 @@ The evaluator will also perform the following
 	<h:tr>
 	<h:td>FIA_UAU.1 - Timing of authentication</h:td>
 	<h:td>
-	  <linkref linkend="FIA_AFL.1"/> implicitly requires that the OS perform all necessary actions, 
-	  including those on behalf of the user who has not been authenticated, 
+	  <linkref linkend="FIA_AFL.1"/> implicitly requires that the OS perform all necessary actions,
+	  including those on behalf of the user who has not been authenticated,
 	  in order to authenticate;
-	  therefore it is duplicative to include these actions as a 
+	  therefore it is duplicative to include these actions as a
 	  separate assignment and test.
 	</h:td>
 	</h:tr>
 	<h:tr>
 	<h:td>FIA_UID.1 - Timing of identification</h:td>
 	<h:td>
-	  <linkref linkend="FIA_AFL.1"/> implicitly requires that the OS perform all necessary actions, 
-	  including those on behalf of the user who has not been identified, 
+	  <linkref linkend="FIA_AFL.1"/> implicitly requires that the OS perform all necessary actions,
+	  including those on behalf of the user who has not been identified,
 	  in order to authenticate;
-	  therefore it is duplicative to include these actions as a 
+	  therefore it is duplicative to include these actions as a
 	  separate assignment and test.
 	</h:td>
 	</h:tr>
@@ -3878,7 +3885,7 @@ The evaluator will also perform the following
 	<h:td>FMT_SMR.1 - Security roles</h:td>
 	<h:td>
 	  <linkref linkend="FMT_MOF_EXT.1"/> specifies role-based management functions that implicitly defines
-	  user and privileged accounts; 
+	  user and privileged accounts;
 	  therefore, it is duplicative to include separate role requirements.
 	</h:td>
 	</h:tr>
@@ -4026,7 +4033,7 @@ The evaluator will also perform the following
       tests, the rate and conditions under which each health test is performed (e.g., at start,
       continuously, or on-demand), the expected results for each health test, and rationale
       indicating why each test is believed to be appropriate for detecting one or more failures in
-      the entropy source. 
+      the entropy source.
     </section>
   </appendix>
 
