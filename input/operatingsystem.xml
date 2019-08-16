@@ -9,8 +9,6 @@
       <PPVersion>4.3-DRAFT</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
       <PPPubDate>2019-07-01</PPPubDate>
-      <PPCertificationID>unassigned</PPCertificationID>
-      <CCVersion>3.1R5</CCVersion>
       <Keywords>OS; operating system</Keywords>
     </ReferenceTable>
   </PPReference>
@@ -439,10 +437,6 @@
             of system compromise.</description>
           <component-refer ref="fau_gen.1"/>
           <component-refer ref="ftp_itc_ext.1"/>
-          <rationale>FAU_GEN.1 defines the auditable events that must be generated to diagnose the
-          cause of unexpected system behavior. FTP_ITC_EXT.1 provides a mechanism for the TSF to
-          transmit the audit data to a remote system.
-          </rationale>
         </SO>
         <SO id="O.INTEGRITY">
           <description>Conformant OSes ensure the integrity of their update
@@ -466,20 +460,6 @@
 	        <component-refer ref="fpt_w^x_ext.1"/>
           <component-refer ref="fia_afl.1"/>
           <component-refer ref="fia_uau.5"/>
-          <rationale>FPT_SBOP_EXT.1 enforces stack buffer overflow protection that makes it more
-            difficult to exploit running code. FPT_ASLR_EXT.1 prevents attackers from exploiting
-            code that executes in static known memory locations. FPT_TUD_EXT.1 and FPT_TUD_EXT.2
-            enforce integrity of software updates. FCS_COP.1(2), FCS_COP.1(3), and FCS_COP.1(4)
-            provide the cryptographic mechanisms that are used to verify integrity values.
-            FPT_ACF_EXT.1 guarantees the integrity of critical components by preventing unauthorized
-            modifications of them. FPT_SRP_EXT.1 restricts the execution of unauthorized software.
-            FPT_X509_EXT.1 provides X.509 certificates as a way of validating software integrity.
-            FPT_TST_EXT.1 verifies the integrity of stored code. FPT_W^X_EXT.1 prevents execution
-            of data in writable memory. FIA_UAU.5 provides mechanisms that prevent untrusted users
-            from accessing the TSF and FIA_AFL.1 prevents brute-force authentication attempts.
-            FTP_ITC_EXT.1 provides trusted remote communications which makes a remote authenticated
-            session less susceptible to compromise.
-          </rationale>
         </SO>
         <SO id="O.MANAGEMENT">
           <description> To facilitate management by users and the enterprise, conformant <abbr
@@ -492,11 +472,6 @@
           <component-refer ref="fmt_smf_ext.1"/>
           <component-refer ref="fta_tab.1"/>
           <component-refer ref="ftp_trp.1"/>
-          <rationale>FMT_SMF_EXT.1 defines the TOE's management functions and FMT_MOF_EXT.1
-            defines the privileges required to invoke them. FTP_TRP.1 provides one or more secure
-            remote interfaces for management of the TSF and FTA_TAB.1 provides actionable warnings
-            against misuse of these interfaces.
-          </rationale>
         </SO>
 	<!-- <SO id="O.RESILIENCE"> -->
 	<!--   <description>  -->
@@ -516,13 +491,6 @@ users of the same system.
           <component-refer ref="fcs_rbg_ext.1"/>
           <component-refer ref="fcs_cop.1(1)"/>
           <component-refer ref="fdp_acf_ext.1"/>
-          <rationale>FCS_STO_EXT.1 provides a mechanism by which the TOE can designate
-            data as ‘sensitive’ and subsequently require it to be encrypted. FCS_COP.1(1)
-            defines the symmetric algorithm used to encrypt and decrypt sensitive data.
-            FCS_RBG_EXT.1 defines the random bit generator used to create the symmetric
-            keys used to perform this encryption and decryption. FDP_ACF_EXT.1 enforces
-            logical access control on stored data.
-          </rationale>
         </SO>
         <SO id="O.PROTECTED_COMMS">
           <description> To address both passive (eavesdropping) and active (packet modification)
@@ -541,16 +509,6 @@ users of the same system.
           <component-refer ref="fia_x509_ext.1"/>
           <component-refer ref="fia_x509_ext.2"/>
           <component-refer ref="ftp_itc_ext.1"/>
-          <rationale>
-            FCS_CKM.1, FCS_CKM.2, FCS_COP.1(1), FCS_COP.1(2), FCS_COP.1(3), FCS_COP.1(4), and
-            FCS_RBG_EXT.1 define the cryptographic operations and key lifecycle activity used to support
-            the establishment of protected communications. FIA_X509_EXT.1 defines how the TSF validates
-            x.509 certificates as part of establishing protected communications. FIA_X509_EXT.2 defines
-            the trusted communication protocols for which the TOE must perform certificate validation
-            operations. FDP_IFC_EXT.1 defines the extent to which the TSF provides an IPsec VPN as a
-            protected communications method. FTP_ITC_EXT.1 defines the trusted communications channels
-            supported by the TOE.
-          </rationale>
         </SO>
       </SOs>
     </section>
