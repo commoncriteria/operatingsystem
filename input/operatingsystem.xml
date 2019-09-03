@@ -2510,9 +2510,15 @@ The evaluator will also ensure that the TSS includes a description of the safegu
           </f-element>
           <f-element id="fpt_tud_ext.1.2">
             <title>
-              The OS shall cryptographically verify updates to itself using a digital
+              The OS shall 
+		<selectables>
+			<selectable>cryptographically verify</selectable>
+			<selectable>invoke platform-provided functionality to cryptographically verify</selectable>
+		</selectables>
+              updates to itself using a digital
               signature prior to installation using schemes specified in <linkref linkend="FCS_COP.1(3)"/>.
 	    </title>
+		 <note role="application">The intent of the requirement is to ensure that only digitally signed and verified TOE updates are applied to the TOE.</note>
             <aactivity>
 	      <Tests>
                   For the following tests, the evaluator will initiate the download of an update and
