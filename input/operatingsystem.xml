@@ -515,7 +515,7 @@ users of the same system.
     <section title="Security Functional Requirements" id="SFRs">
       <subsection title="Cryptographic Support (FCS)" id="fcs">
         <f-component id="fcs_ckm.1" name="Cryptographic Key Generation (Refined)">
-          <f-element id="fcs_ckm.1.1">
+          <f-element>
             <title> The <h:b>OS</h:b> shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a
               specified cryptographic key generation algorithm <h:b><selectables linebreak="yes">
                 <selectable>RSA schemes using cryptographic key sizes of 2048-bit or greater that
@@ -697,7 +697,7 @@ users of the same system.
           </f-element>
         </f-component>
         <f-component id="fcs_ckm.2" name="Cryptographic Key Establishment (Refined)">
-          <f-element id="fcs_ckm.2.1">
+          <f-element>
             <title>The OS shall <h:b>implement functionality to perform cryptographic key establishment</h:b>
               in accordance with a specified cryptographic key <h:b>establishment</h:b> method:
 	      <h:p/>
@@ -904,7 +904,7 @@ These keys are static, ephemeral or both depending on the scheme being tested.
                 
 
 	<f-component id="fcs_ckm_ext.4" name="Cryptographic Key Destruction" >
-          <f-element id="fcs_ckm_ext.4.1">
+          <f-element>
 	    <title>
 The OS shall destroy cryptographic keys and key material in accordance with a specified cryptographic key destruction method
               <selectables>
@@ -985,7 +985,7 @@ and the KEK cannot be recovered or re-derived.).
 	      </h:p>
 	    </note>
 	  </f-element>
-          <f-element id="fcs_ckm_ext.4.2">
+          <f-element>
 	    <title>The OS shall destroy all keys and key material when no longer needed.</title>
 	    <note role="application">
 	      <h:p>
@@ -1105,8 +1105,8 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
           </f-element>
         </f-component>
  
-        <f-component id="fcs_cop.1(1)" name="Cryptographic Operation - Encryption/Decryption (Refined)">
-          <f-element id="fcs_cop.1.1(1)">
+        <f-component id="fcs_cop.1" iteration="ENCRYPT" name="Cryptographic Operation - Encryption/Decryption (Refined)">
+          <f-element>
             <title>
               The <h:b>OS</h:b> shall perform [<h:i>encryption/decryption services for data</h:i>] in
 	      accordance with a specified cryptographic algorithm<h:b>
@@ -1449,8 +1449,8 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	  </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fcs_cop.1(2)" name="Cryptographic Operation - Hashing (Refined)">
-          <f-element id="fcs_cop.1.1(2)">
+        <f-component id="fcs_cop.1" iteration="HASH" name="Cryptographic Operation - Hashing (Refined)">
+          <f-element>
             <title>The <h:b>OS</h:b> shall perform [<h:i>cryptographic hashing services</h:i>] in accordance with a
               specified cryptographic algorithm <h:b>
               <selectables linebreak="yes">
@@ -1548,8 +1548,8 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
             </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fcs_cop.1(3)" name="Cryptographic Operation - Signing (Refined)">
-          <f-element id="fcs_cop.1.1(3)">
+        <f-component id="fcs_cop.1" iteration="SIGN" name="Cryptographic Operation - Signing (Refined)">
+          <f-element>
             <title>The <h:b>OS</h:b> shall perform [<h:i>cryptographic signature services (generation and
               verification)</h:i>] in accordance with a specified cryptographic algorithm <h:b><selectables
                 linebreak="yes">
@@ -1627,8 +1627,8 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
             </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fcs_cop.1(4)" name="Cryptographic Operation - Keyed-Hash Message Authentication (Refined)">
-          <f-element id="fcs_cop.1.1(4)">
+        <f-component id="fcs_cop.1" iteration="KEYHMAC" name="Cryptographic Operation - Keyed-Hash Message Authentication (Refined)">
+          <f-element>
             <title>The <h:b>OS</h:b> shall perform [<h:i>keyed-hash message authentication services</h:i>]
             in accordance with a specified cryptographic algorithm<h:b>
               <selectables>
@@ -1679,7 +1679,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
         </f-component>
 
         <f-component id="fcs_rbg_ext.1" name="Random Bit Generation">
-          <f-element id="fcs_rbg_ext.1.1">
+          <f-element>
             <title>
               The OS shall perform all deterministic random bit generation (DRBG) services in
               accordance with NIST Special Publication 800-90A using
@@ -1751,7 +1751,7 @@ only AES-based implementations for CTR_DRBG are allowed.
             </aactivity>
           </f-element>
           
-          <f-element id="fcs_rbg_ext.1.2">
+          <f-element>
             <title>
               The deterministic RBG used by the OS shall be seeded by an entropy source that
               accumulates entropy from a
@@ -1800,7 +1800,7 @@ only AES-based implementations for CTR_DRBG are allowed.
         </f-component>
         
         <f-component id="fcs_sto_ext.1" name="Storage of Sensitive Data">
-          <f-element id="fcs_sto_ext.1.1">
+          <f-element>
             <title>
 	      The OS shall implement functionality to encrypt sensitive data
 	      stored in non-volatile storage and provide interfaces to applications to invoke this functionality.
@@ -1829,7 +1829,7 @@ only AES-based implementations for CTR_DRBG are allowed.
       </subsection>
       <subsection title="User Data Protection (FDP)" id="fdp">
         <f-component id="fdp_acf_ext.1" name="Access Controls for Protecting User Data">
-          <f-element id="fdp_acf_ext.1.1">
+          <f-element>
             <title>
 	      The OS shall implement access controls which can prohibit unprivileged users from
               accessing files and directories owned by other users.
@@ -1893,7 +1893,7 @@ only AES-based implementations for CTR_DRBG are allowed.
           </f-element>
         </f-component>
         <f-component id="fdp_ifc_ext.1" name="Information flow control" status="optional">
-          <f-element id="fdp_ifc_ext.1.1">
+          <f-element>
             <title> The OS shall
 	    <selectables linebreak="yes">
               <selectable>provide an interface which allows a VPN client to protect all IP traffic using IPsec</selectable>
@@ -1974,7 +1974,7 @@ only AES-based implementations for CTR_DRBG are allowed.
       </subsection>
       <subsection title="Security Management (FMT)" id="fmt">
         <f-component id="fmt_mof_ext.1" name="Management of security functions behavior">
-	  <f-element id="fmt_mof_ext.1.1">
+	  <f-element>
 	    <title>
 	      The OS shall restrict the ability to perform the function indicated in the "Administrator" column in <linkref linkend="fmt_smf_ext.1.1"/> to the administrator.
 	    </title>
@@ -2010,7 +2010,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 	  </f-element>
 	</f-component>
 	<f-component id="fmt_smf_ext.1" name="Specification of Management Functions">
-	  <f-element id="fmt_smf_ext.1.1">
+	  <f-element>
 	    <title>
 	      The OS shall be capable of performing the following management functions:
 	      <h:br/>
@@ -2077,7 +2077,7 @@ The OS can enroll in such account management and enable the overall information 
       </subsection>
       <subsection title="Protection of the TSF (FPT)" id="fpt">
         <f-component id="fpt_acf_ext.1" name="Access controls">
-          <f-element id="fpt_acf_ext.1.1">
+          <f-element>
             <title> The OS shall implement access controls which prohibit unprivileged users from
               modifying: <h:ul>
                 <h:li>Kernel and its drivers/modules</h:li>
@@ -2112,7 +2112,7 @@ The OS can enroll in such account management and enable the overall information 
 	      </Tests>
             </aactivity>
           </f-element>
-          <f-element id="fpt_acf_ext.1.2">
+          <f-element>
             <title> The OS shall implement access controls which prohibit unprivileged users from
               reading: <h:ul>
                 <h:li>Security audit logs</h:li>
@@ -2140,7 +2140,7 @@ The OS can enroll in such account management and enable the overall information 
           </f-element>
         </f-component>
         <f-component id="fpt_aslr_ext.1" name="Address Space Layout Randomization">
-          <f-element id="fpt_aslr_ext.1.1">
+          <f-element>
             <title>The OS shall always randomize process address space memory locations with
 	    <selectables>
 	      <selectable>8</selectable>
@@ -2164,7 +2164,7 @@ This test can also be completed on the same hardware and rebooting between appli
 	      </Tests>
 	    </aactivity>
           </f-element>
-<!--          <f-element id="fpt_aslr_ext.1.2" status="optional">
+<!--          <f-element>
             <title>The OS shall always randomize kernel address space memory locations</title>
                 <note role="application">
                   Randomizing the location of the kernel address spaces provides some defense against
@@ -2176,7 +2176,7 @@ This test can also be completed on the same hardware and rebooting between appli
           </f-element> -->
 	</f-component>
         <!-- <f-component id="fpt_php_ext.1" name="External Interface Controls">-->
-        <!--   <f-element id="fpt_php_ext.1.1"> -->
+        <!--   <f-element> -->
         <!--     <title> -->
 	<!--       The OS shall provide a mechanism to  -->
 	<!--       <selectables> -->
@@ -2254,7 +2254,7 @@ This test can also be completed on the same hardware and rebooting between appli
         <!--   </f-element> -->
         <!-- </f-component> -->
         <f-component id="fpt_sbop_ext.1" name="Stack Buffer Overflow Protection">
-          <f-element id="fpt_sbop_ext.1.1">
+          <f-element>
             <title>
 The OS shall <selectables>
   <selectable>employ stack-based buffer overflow protections</selectable>
@@ -2290,7 +2290,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
           </f-element>
         </f-component>
         <f-component id="fpt_srp_ext.1" name="Software Restriction Policies" status="objective">
-          <f-element id="fpt_srp_ext.1.1">
+          <f-element>
             <title> The OS shall restrict execution to only programs which match an administrator-specified
               <selectables linebreak="yes">
                 <selectable>file path</selectable>
@@ -2369,7 +2369,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
           </f-element>
         </f-component>
         <f-component id="fpt_tst_ext.1" name="Boot Integrity">
-          <f-element id="fpt_tst_ext.1.1">
+          <f-element>
             <title>The OS shall verify the integrity of the bootchain up through the OS kernel and
               <selectables linebreak="yes">
                 <selectable>all executable code stored in mutable media</selectable>
@@ -2458,7 +2458,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
         </f-component>
 
         <f-component id="fpt_tud_ext.1" name="Trusted Update">
-          <f-element id="fpt_tud_ext.1.1">
+          <f-element>
             <title>The OS shall provide the ability to check for updates to the OS
               software itself. </title>
             <note role="application">This requirement is about the ability to check for the availability of
@@ -2478,7 +2478,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
               </Tests>
 	    </aactivity>
           </f-element>
-          <f-element id="fpt_tud_ext.1.2">
+          <f-element>
             <title>
               The OS shall 
 		<selectables>
@@ -2521,7 +2521,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
 	</f-component>
         <f-component id="fpt_tud_ext.2" name="Trusted Update for Application Software">
           <!-- TO DO: Cite references. -->
-          <f-element id="fpt_tud_ext.2.1">
+          <f-element>
             <title>
 	      The OS shall provide the ability to check for updates to
               application software.
@@ -2544,7 +2544,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
               </Tests>
 	    </aactivity>
           </f-element>
-          <f-element id="fpt_tud_ext.2.2">
+          <f-element>
             <title>
 	      The OS shall cryptographically verify the integrity of updates
 	      to applications using a digital signature specified by
@@ -2580,7 +2580,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
           </f-element>
         </f-component>
         <f-component id="fpt_w^x_ext.1" name="Write XOR Execute Memory Pages" status="objective">
-          <f-element id="fpt_w^x_ext.1.1">
+          <f-element>
             <title> The OS shall prevent allocation of any memory region with both write and
               execute permissions except for <assignable>list of exceptions</assignable>.
             </title>
@@ -2627,7 +2627,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
       </subsection>
       <subsection title="Audit Data Generation (FAU)" id="fau">
         <f-component id="fau_gen.1" name="Audit Data Generation (Refined)">
-          <f-element id="fau_gen.1.1">
+          <f-element>
             <title>
 The <h:b>OS</h:b> shall be able to generate an audit record of the following auditable
               events:
@@ -2678,7 +2678,7 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
               </Tests>
 	    </aactivity>
           </f-element>
-          <f-element id="fau_gen.1.2">
+          <f-element>
             <title> The <h:b>OS</h:b> shall record within each audit record at least the following information:
 	    <h:ol type='a'>
 	      <h:li>Date and time of the event, type of event, subject identity (if applicable),
@@ -2723,7 +2723,7 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
       </subsection>
       <subsection title="Identification and Authentication (FIA)" id="fia">
         <f-component id="fia_afl.1" name="Authentication failure handling (Refined)">
-          <f-element id="fia_afl.1.1">
+          <f-element>
             <title>
             The <h:b>OS</h:b> shall detect when
             <selectables linebreak='yes'>
@@ -2754,7 +2754,7 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
 	      </Tests>
 	    </aactivity>
           </f-element>
-          <f-element id="fia_afl.1.2">
+          <f-element>
             <title>
 	      When the defined number of unsuccessful authentication attempts for an
 	      account has been <h:b>met</h:b>, the <h:b>OS</h:b> shall:
@@ -2801,7 +2801,7 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
           </f-element>
         </f-component>
         <f-component id="fia_uau.5" name="Multiple Authentication Mechanisms (Refined)">
-          <f-element id="fia_uau.5.1">
+          <f-element>
             <title>
 The <h:b>OS</h:b> shall provide the following authentication mechanisms
 <h:b><selectables linebreak='yes'>
@@ -2879,7 +2879,7 @@ to support user authentication.
               </Tests>
 	    </aactivity>
           </f-element>
-           <f-element id="fia_uau.5.2">
+           <f-element>
             <title>
 The <h:b>OS</h:b> shall authenticate any user's claimed identity according to the
               <assignable>
@@ -2932,7 +2932,7 @@ the authentication mechanism(s) behave as documented in the <abbr linkend='TSS'/
           </f-element>
         </f-component>
         <f-component id="fia_x509_ext.1" name="X.509 Certificate Validation">
-          <f-element id="fia_x509_ext.1.1">
+          <f-element>
             <title>
 The OS shall implement functionality to validate certificates in accordance with
 the following rules: <h:ul>
@@ -3029,7 +3029,7 @@ the following rules: <h:ul>
               </Tests>
 	    </aactivity>
           </f-element>
-          <f-element id="fia_x509_ext.1.2">
+          <f-element>
             <title>
 The OS shall only treat a certificate as a CA certificate if the
 <h:i>basicConstraints</h:i> extension is present and the CA flag is set to TRUE.
@@ -3062,7 +3062,7 @@ the node certificate to be tested, two Intermediate CAs, and the
           </f-element>
         </f-component>
         <f-component id="fia_x509_ext.2" name="X.509 Certificate Authentication">
-          <f-element id="fia_x509_ext.2.1">
+          <f-element>
             <title> The OS shall use X.509v3 certificates as defined by RFC 5280 to support
               authentication for TLS and
 			  <selectables>
@@ -3091,7 +3091,7 @@ the node certificate to be tested, two Intermediate CAs, and the
       </subsection>
       <subsection title="TOE Access (FTA)" id="fta">
         <f-component id="fta_tab.1" name="Default TOE access banners" status="optional">
-          <f-element id="fta_tab.1.1">
+          <f-element>
             <title>
             Before establishing a user session, the <h:b>OS</h:b> shall display an advisory
             warning message regarding unauthorized use of the OS.
@@ -3109,7 +3109,7 @@ the node certificate to be tested, two Intermediate CAs, and the
       </subsection>
       <subsection title="Trusted Path/Channels (FTP)" id="ftp">
       	<f-component id="ftp_itc_ext.1" name="Trusted channel communication">
-      	  <f-element id="ftp_itc_ext.1.1">
+      	  <f-element>
       	    <title>
               The OS shall use
       	      <selectables linebreak='yes'>
@@ -3158,7 +3158,7 @@ the node certificate to be tested, two Intermediate CAs, and the
       	  </f-element>
       	</f-component>
         <f-component id="ftp_trp.1" name="Trusted Path">
-            <f-element id="ftp_trp.1.1">
+            <f-element>
 	      <title>
 The <h:b>OS</h:b> shall provide a communication path between itself and
 <selectables><selectable>remote</selectable><selectable>local</selectable></selectables>
@@ -3184,7 +3184,7 @@ This requirement is tested with the  evaluation activities for  <linkref linkend
 		</h:p>
 	      </note>
             </f-element>
-            <f-element id="ftp_trp.1.2">
+            <f-element>
               <title> The <h:b>OS</h:b> shall permit
                 <selectables>
                   <selectable>the TSF</selectable>
@@ -3199,7 +3199,7 @@ This requirement is tested with the  evaluation activities for  <linkref linkend
 		</h:p>
 	      </note>
             </f-element>
-            <f-element id="ftp_trp.1.3">
+            <f-element>
               <title> The <h:b>OS</h:b> shall require use of the trusted path for
               [[<h:i>all remote administrative actions</h:i>]].
               </title>
@@ -3322,11 +3322,11 @@ The evaluator will also perform the following
           is necessary to satisfy the evaluation activities specified. The interfaces that need to be
           evaluated are characterized through the information needed to perform the assurance
           activities listed, rather than as an independent, abstract list.
-	          <evalactionlabel title="Developer action elements:"/>
-            <a-element id="adv_fsp.1.1d">
+
+            <a-element type="D">
               <title>The developer shall provide a functional specification.</title>
             </a-element>
-            <a-element id="adv_fsp.1.2d">
+            <a-element type="D">
               <title>The developer shall provide a tracing from the functional specification to the
               SFRs.</title>
               <note role="application">As indicated in the introduction to this section, the
@@ -3339,20 +3339,20 @@ The evaluator will also perform the following
               necessary.</note>
             </a-element>
 	  
-	          <evalactionlabel title="Content and presentation elements:"/>
-            <a-element id="adv_fsp.1.1c">
+
+            <a-element type="C">
               <title>The functional specification shall describe the purpose and method of use for
               each SFR-enforcing and SFR-supporting <abbr title="TSF Interface">TSFI</abbr>.</title>
             </a-element>
-            <a-element id="adv_fsp.1.2c">
+            <a-element type="C">
               <title>The functional specification shall identify all parameters associated with each
               SFR-enforcing and SFR-supporting <abbr title="TSF Interface">TSFI</abbr>.</title>
             </a-element>
-            <a-element id="adv_fsp.1.3c">
+            <a-element type="C">
               <title>The functional specification shall provide rationale for the implicit
               categorization of interfaces as SFR-non-interfering.</title>
             </a-element>
-            <a-element id="adv_fsp.1.4c">
+            <a-element type="C">
               <title>
 		The tracing shall demonstrate that the SFRs trace to
 		<abbr title="TSF Interface">TSFI</abbr>s
@@ -3360,12 +3360,11 @@ The evaluator will also perform the following
 	      </title>
             </a-element>
 	  
-	          <evalactionlabel title="Evaluator action elements:"/>
-            <a-element id="adv_fsp.1.1e">
+            <a-element type="E">
               <title>The evaluator will confirm that the information provided meets all requirements
               for content and presentation of evidence.</title>
             </a-element>
-            <a-element id="adv_fsp.1.2e">
+            <a-element type="E">
               <title>The evaluator will determine that the functional specification is an accurate
               and complete instantiation of the SFRs.</title>
               <aactivity>There are no specific evaluation activities associated with these SARs, except
@@ -3393,8 +3392,8 @@ The evaluator will also perform the following
         also provided; requirements on such guidance are contained in the Evaluation Activities
         specified with each requirement.
 	<a-component id="agd_ope.1" name="Operational User Guidance (AGD_OPE.1)">
-	          <evalactionlabel title="Developer action elements:"/>
-	    <a-element id="agd_ope.1.1d">
+
+	    <a-element type="D">
 	      <title>The developer shall provide operational user guidance.</title>
 	      <note role="application">The operational user guidance does not have to be contained in a
 	      single document. Guidance to users, administrators and application developers can be
@@ -3405,19 +3404,19 @@ The evaluator will also perform the following
               information for the preparation of acceptable guidance.</note>
             </a-element>
           
-	          <evalactionlabel title="Content and presentation elements:"/>
-            <a-element id="agd_ope.1.1c">
+
+            <a-element type="C">
               <title>The operational user guidance shall describe, for each user role, the
               user-accessible functions and privileges that should be controlled in a secure
               processing environment, including appropriate warnings.</title>
               <note role="application">User and administrator are to be considered in the definition
               of user role.</note>
             </a-element>
-            <a-element id="agd_ope.1.2c">
+            <a-element type="C">
               <title>The operational user guidance shall describe, for each user role, how to use the
               available interfaces provided by the OS in a secure manner.</title>
             </a-element>
-            <a-element id="agd_ope.1.3c">
+            <a-element type="C">
               <title>The operational user guidance shall describe, for each user role, the available
               functions and interfaces, in particular all security parameters under the control of
               the user, indicating secure values as appropriate.</title>
@@ -3433,28 +3432,28 @@ The evaluator will also perform the following
 		instructions for achieving the secure configuration, and any relevant rationale.
               </note>
             </a-element>
-            <a-element id="agd_ope.1.4c">
+            <a-element type="C">
               <title>The operational user guidance shall, for each user role, clearly present each
               type of security-relevant event relative to the user-accessible functions that need to
               be performed, including changing the security characteristics of entities under the
               control of the <abbr linkend="TSF"/>.</title>
             </a-element>
-            <a-element id="agd_ope.1.5c">
+            <a-element type="C">
               <title>The operational user guidance shall identify all possible modes of operation of
               the OS (including operation following failure or operational
               error), their consequences, and implications for maintaining secure operation.</title>
             </a-element>
-            <a-element id="agd_ope.1.6c">
+            <a-element type="C">
               <title>The operational user guidance shall, for each user role, describe the security
               measures to be followed in order to fulfill the security objectives for the
               operational environment as described in the <abbr linkend="ST"/>.</title>
             </a-element>
-            <a-element id="agd_ope.1.7c">
+            <a-element type="C">
               <title>The operational user guidance shall be clear and reasonable.</title>
             </a-element>
 	  
-	          <evalactionlabel title="Evaluator action elements:"/>
-            <a-element id="agd_ope.1.1e">
+
+            <a-element type="E">
               <title>The evaluator will confirm that the information provided meets all requirements
               for content and presentation of evidence. </title>
               <aactivity>Some of the contents of the operational guidance are verified by the
@@ -3481,8 +3480,8 @@ The evaluator will also perform the following
 	  
         </a-component>
         <a-component id="agd_pre.1" name="Preparative Procedures (AGD_PRE.1)">
-	          <evalactionlabel title="Developer action elements:"/>
-            <a-element id="agd_pre.1.1d">
+
+            <a-element type="D">
               <title>The developer shall provide the OS, including its preparative
               procedures.</title>
               <note role="application">As with the operational guidance, the developer should look to
@@ -3490,25 +3489,25 @@ The evaluator will also perform the following
               procedures.</note>
             </a-element>
 	  
-	          <evalactionlabel title="Content and presentation elements:"/>
-            <a-element id="agd_pre.1.1c">
+
+            <a-element type="C">
               <title>The preparative procedures shall describe all the steps necessary for secure
               acceptance of the delivered OS in accordance with the developer's
               delivery procedures.</title>
             </a-element>
-            <a-element id="agd_pre.1.2c">
+            <a-element type="C">
               <title>The preparative procedures shall describe all the steps necessary for secure
               installation of the OS and for the secure preparation of the
               operational environment in accordance with the security objectives for the operational
               environment as described in the <abbr linkend="ST"/>.</title>
             </a-element>
 	  
-	          <evalactionlabel title="Evaluator action elements:"/>
-            <a-element id="agd_pre.1.1e">
+
+            <a-element type="E">
               <title>The evaluator will confirm that the information provided meets all requirements
               for content and presentation of evidence.</title>
             </a-element>
-            <a-element id="agd_pre.1.2e">
+            <a-element type="E">
               <title>The evaluator will apply the preparative procedures to confirm that the <abbr
               linkend="OS"/> can be prepared securely for operation.</title>
               <aactivity>As indicated in the introduction above, there are significant expectations
@@ -3531,14 +3530,14 @@ The evaluator will also perform the following
           targeted at identifying the OS such that it can be distinguished from
           other products or versions from the same vendor and can be easily specified when being
           procured by an end user.
-	          <evalactionlabel title="Developer action elements:"/>
-            <a-element id="alc_cmc.1.1d">
+
+            <a-element type="D">
               <title>The developer shall provide the OS and a reference for the
               OS.</title>
             </a-element>
 	  
-	          <evalactionlabel title="Content and presentation elements:"/>
-            <a-element id="alc_cmc.1.1c">
+
+            <a-element type="C">
               <title>The OS shall be labeled with a unique reference.</title>
               <note role="application">Unique reference information includes:
 	      <h:ul>
@@ -3550,8 +3549,8 @@ The evaluator will also perform the following
               </note>
             </a-element>
 	  
-	          <evalactionlabel title="Evaluator action elements:"/>
-            <a-element id="alc_cmc.1.1e">
+
+            <a-element type="E">
               <title>The evaluator will confirm that the information provided meets all requirements
               for content and presentation of evidence.</title>
               <aactivity>The evaluator will check the <abbr linkend="ST"/> to ensure that it contains
@@ -3570,24 +3569,24 @@ The evaluator will also perform the following
 	  Given the scope of the OS and its associated evaluation
 	  evidence requirements, this component's evaluation activities are covered
 	  by the evaluation activities listed for ALC_CMC.1.
-                  <evalactionlabel title="Developer action elements:"/>
-            <a-element id="alc_cms.1.1d">
+
+            <a-element type="D">
               <title>
 		The developer shall provide a configuration list for the  OS.
 	      </title>
             </a-element>
 	  
-	          <evalactionlabel title="Content and presentation elements:"/>
-            <a-element id="alc_cms.1.1c">
+
+            <a-element type="C">
               <title>The configuration list shall include the following: the OS
               itself; and the evaluation evidence required by the SARs.</title>
             </a-element>
-            <a-element id="alc_cms.1.2c">
+            <a-element type="C">
               <title>The configuration list shall uniquely identify the configuration items.</title>
             </a-element>
 	  
-                  <evalactionlabel title="Evaluator action elements:"/>
-            <a-element id="alc_cms.1.1e">
+
+            <a-element type="E">
               <title>The evaluator will confirm that the information provided meets all requirements
               for content and presentation of evidence.</title>
               <aactivity>
@@ -3632,22 +3631,22 @@ The evaluator will also perform the following
           includes the parties involved (e.g., the developer, carriers(s)) and the steps that are
           performed (e.g., developer testing, carrier testing), including worst case time periods,
           before an update is made available to the public.
-	          <evalactionlabel title="Developer action elements:"/>
-            <a-element id="alc_tsu_ext.1.1d">
+
+            <a-element type="D">
               <title>The developer shall provide a description in the TSS of how timely security
               updates are made to the OS.</title>
             </a-element>
-            <a-element id="alc_tsu_ext.1.2d">
+            <a-element type="D">
               <title> The developer shall provide a description in the TSS of how users are notified
               when updates change security properties or the configuration of the product. </title>
             </a-element>
 	  
-	          <evalactionlabel title="Content and presentation elements:"/>
-            <a-element id="alc_tsu_ext.1.1c">
+
+            <a-element type="C">
               <title>The description shall include the process for creating and deploying security
               updates for the OS software.</title>
             </a-element>
-            <a-element id="alc_tsu_ext.1.2c">
+            <a-element type="C">
               <title>The description shall include the mechanisms publicly available for reporting
               security issues pertaining to the OS.</title>
               <note> The reporting mechanism could include web sites, email addresses, as well as a
@@ -3655,8 +3654,8 @@ The evaluator will also perform the following
               used to encrypt the details of a proof-of-concept exploit). </note>
             </a-element>
 	  
-	          <evalactionlabel title="Evaluator action elements:"/>
-            <a-element id="alc_tsu_ext.1.1e">
+
+            <a-element type="E">
               <title>The evaluator will confirm that the information provided meets all
               requirements for content and presentation of evidence.</title>
               <aactivity>
@@ -3705,22 +3704,22 @@ The evaluator will also perform the following
           combinations that are claiming conformance to this PP. Given the scope of the <abbr
             linkend="OS"/> and its associated evaluation evidence requirements, this component's
           evaluation activities are covered by the evaluation activities listed for ALC_CMC.1.
-	          <evalactionlabel title="Developer action elements:"/>
-            <a-element id="ate_ind.1.1d">
+
+            <a-element type="D">
               <title>The developer shall provide the OS for testing.</title>
             </a-element>
 	  
-                  <evalactionlabel title="Content and presentation elements:"/>
-            <a-element id="ate_ind.1.1c">
+
+            <a-element type="C">
               <title>The OS shall be suitable for testing.</title>
             </a-element>
 	  
-	          <evalactionlabel title="Evaluator action elements:"/>
-            <a-element id="ate_ind.1.1e">
+
+            <a-element type="E">
               <title>The evaluator <h:i>shall confirm</h:i> that the information provided meets all
               requirements for content and presentation of evidence.</title>
             </a-element>
-            <a-element id="ate_ind.1.2e">
+            <a-element type="E">
               <title>The evaluator will test a subset of the <abbr linkend="TSF"/> to confirm that
               the <abbr linkend="TSF"/> operates as specified.</title>
               <note role="application">The evaluator will test the OS on the most current fully
@@ -3781,22 +3780,22 @@ The evaluator will also perform the following
         the documentation provided by the vendor. This information will be used in the development
         of penetration testing tools and for the development of future protection profiles.
         <a-component id="ava_van.1" name="Vulnerability Survey (AVA_VAN.1)">
-	  <evalactionlabel title="Developer action elements:"/>
-          <a-element id="ava_van.1.1d">
+
+          <a-element type="D">
             <title>The developer shall provide the OS for testing.</title>
           </a-element>
 	  
-	  <evalactionlabel title="Content and presentation elements:"/>
-	  <a-element id="ava_van.1.1c">
+
+	  <a-element type="C">
             <title>The OS shall be suitable for testing.</title>
           </a-element>
 	  
-	  <evalactionlabel title="Evaluator action elements:"/>
-          <a-element id="ava_van.1.1e">
+
+          <a-element type="E">
             <title>The evaluator will confirm that the information provided meets all requirements
             for content and presentation of evidence.</title>
           </a-element>
-          <a-element id="ava_van.1.2e">
+          <a-element type="E">
             <title>The evaluator will perform a search of public domain sources to identify
               potential vulnerabilities in the OS.</title>
             <note role="application">Public domain sources include the Common Vulnerabilities
@@ -3804,7 +3803,7 @@ The evaluator will also perform the following
               sources also include sites which provide free checking of files for viruses.</note>
             <!-- their Usage statement does not permit us to mention VirusTotal by name without permission -->
           </a-element>
-          <a-element id="ava_van.1.3e">
+          <a-element type="E">
             <title>The evaluator will conduct penetration testing, based on the identified
               potential vulnerabilities, to determine that the OS is resistant to
               attacks performed by an attacker possessing Basic attack potential.</title>
