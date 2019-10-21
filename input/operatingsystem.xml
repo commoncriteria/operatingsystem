@@ -44,180 +44,95 @@
       resources, and provides common services for application programs. The hardware
       it manages may be physical or virtual.
     </section>
-    <section title="Terms" id="glossary">
-      The following sections provide both Common Criteria and
-      technology terms used in this Protection Profile.
-      <subsection title="Common Criteria Terms" id="terms">
-	<glossary>
-          <entry>
-            <term><abbr title="Common Criteria">CC</abbr></term>
-            <description>Common Criteria for Information Technology Security
-              Evaluation.</description>
-          </entry>
-          <entry>
-            <term><abbr title="Common Evaluation Methodology">CEM</abbr></term>
-            <description>Common Evaluation Methodology for Information Technology Security
-              Evaluation.</description>
-          </entry>
-          <entry>
-            <term><abbr title="Extended Package">EP</abbr></term>
-            <description>An implementation-independent set of security
-	    requirements for a specific subset of products described.</description>
-          </entry>
-          <entry>
-            <term><abbr title="Protection Profile">PP</abbr></term>
-            <description>An implementation-independent set of security requirements for a category
-              of products.</description>
-          </entry>
-          <entry>
-            <term><abbr title="Security Target">ST</abbr></term>
-            <description>A set of implementation-dependent security requirements for a specific
-              product.</description>
-          </entry>
-          <entry>
-            <term><abbr title="Target of Evaluation">TOE</abbr></term>
-            <description>
-	      The product under evaluation. In this case, the Operating System as described in section
-	      <secref linkend="toeboundary"/> and its
-              supporting documentation.
-	    </description>
-          </entry>
-          <entry>
-            <term><abbr title="TOE Security Functionality">TSF</abbr></term>
-            <description>The security functionality of the product under evaluation.</description>
-          </entry>
-          <entry>
-            <term><abbr title="TOE Summary Specification">TSS</abbr></term>
-            <description>A description of how a TOE satisfies the SFRs in a <abbr
-                linkend="ST"/>. </description>
-          </entry>
-          <entry>
-            <term><abbr title="Security Functional Requirement">SFR</abbr></term>
-            <description>A requirement for security enforcement by the TOE.
-            </description>
-          </entry>
-          <entry>
-            <term><abbr title="Security Assurance Requirement">SAR</abbr></term>
-            <description>A requirement to assure the security of the TOE.
-            </description>
-          </entry>
-	</glossary>
-  </subsection>
-  <subsection title="Technical Terms" id="tech-terms">
-	<glossary>
-          <entry>
-            <term><abbr title="Address Space Layout Randomization">ASLR</abbr></term>
-            <description>An anti-exploitation feature which loads memory mappings into unpredictable
-              locations. ASLR makes it more difficult for an attacker to redirect control to code
-              that they have introduced into the address space of a process.</description>
-          </entry>
-          <entry>
-            <term>Administrator</term>
-            <description>
-
-An administrator is responsible for management activities, including setting policies that are 
-applied by the enterprise on the operating system.
-This administrator could be acting remotely through a management server, from which the system
-receives configuration policies.
-An administrator can enforce settings on the system which cannot be overridden by non-administrator users.
-
-            </description>
-          </entry>
-          <entry>
-            <term><abbr title="Application">app</abbr></term>
-            <description>Software that runs on a platform and performs tasks on behalf of the user
-              or owner of the platform, as well as its supporting documentation. </description>
-          </entry>
-          <entry>
-            <term><abbr title="Application Programming Interface">API</abbr></term>
-            <description>A specification of routines, data structures, object classes, and variables
-              that allows an application to make use of services provided by another software
-              component, such as a library. APIs are often provided for a set of libraries included
-              with the platform.</description>
-          </entry>
-          <entry>
-            <term>Credential</term>
-            <description>Data that establishes the identity of a user, e.g. a cryptographic key or
-              password.</description>
-          </entry>
-          <entry>
-            <term><abbr title="Critical Security Parameters">CSP</abbr></term>
-            <description>
-              Information that is either user or system defined and
-              is used to operate a cryptographic module in processing encryption functions including
-              cryptographic keys and authentication data, such as passwords, the disclosure or modification
-              of which can compromise the security of a cryptographic module or the security of the
-              information protected by the module.
-            </description>
-          </entry>
-      	  <entry>
-      	    <term><abbr title="Data At Rest">DAR</abbr> Protection</term>
-      	    <description>
-      	      Countermeasures that prevent attackers, even those with physical access,
-      	      from extracting data from non-volatile storage.
-      	      Common techniques include data encryption and wiping.
-      	    </description>
-      	  </entry>
-          <entry>
-            <term><abbr title="Data Execution Prevention">DEP</abbr></term>
-            <description>An anti-exploitation feature of modern operating systems executing on
-              modern computer hardware, which enforces a non-execute permission on pages of memory.
-              DEP prevents pages of memory from containing both data and instructions, which makes
-              it more difficult for an attacker to introduce and execute code.</description>
-          </entry>
-          <entry>
-            <term>Developer</term>
-            <description>An entity that writes OS software. For the purposes of this document,
-              vendors and developers are the same.</description>
-          </entry>
-	  <entry>
-	    <term>General Purpose Operating System</term>
-	    <description>A class of OSes designed to support a wide-variety of workloads consisting of many concurrent applications or services.
-	    Typical characteristics for OSes in this class include support for third-party applications,
-	    support for multiple users, and security separation between users and their respective resources.
-	    General Purpose Operating Systems also lack the real-time constraint that defines Real Time Operating Systems (RTOS).
-	    RTOSes typically power routers, switches, and embedded devices.</description>
-	  </entry>
-          <entry>
-            <term>Host-based Firewall</term>
-            <description>
-	      A software-based firewall implementation running on the OS for filtering inbound and
-              outbound network traffic to and from processes running on the OS.
-	    </description>
-          </entry>
-          <entry>
-            <term><abbr title="Operating System">OS</abbr></term>
-            <description> Software that manages physical and logical resources and provides services
-              for applications. The terms <h:i>TOE</h:i> and <h:i>OS</h:i> are interchangeable in this
-              document. </description>
-          </entry>
-          <entry>
-            <term><abbr title="Personally Identifiable Information">PII</abbr></term>
-            <description>Any information about an individual maintained by an agency, including, but
-              not limited to, education, financial transactions, medical history, and criminal or
-              employment history and information which can be used to distinguish or trace an
-              individual's identity, such as their name, social security number, date and place of
-              birth, mother's maiden name, biometric records, etc., including any other personal
-              information which is linked or linkable to an individual.<cite linkend="bibOMB"/></description>
-          </entry>
-          <entry>
-            <term>Sensitive Data</term>
-            <description> Sensitive data may include all user or enterprise data or may be specific
-              application data such as PII, emails, messaging, documents, calendar items, and contacts.
-              Sensitive data must minimally include credentials and keys. Sensitive data shall
-              be identified in the OS's TSS by the ST author. </description>
-          </entry>
-          <entry>
-            <term>User</term>
-	    <description> A user is subject to configuration policies applied
-            to the operating system by administrators.  On some systems under certain
-            configurations, a normal user can temporarily elevate privileges to that of an administrator.
-            At that time, such a user should be considered an administrator.
-            </description>
-          </entry>
-        </glossary>
-      </subsection>
-    </section>
+    <tech-terms>
+      <term term="Address Space Layout Randomization" abbr="ASLR">An anti-exploitation feature which loads memory mappings into unpredictable
+      locations. ASLR makes it more difficult for an attacker to redirect control to code
+      that they have introduced into the address space of a process.
+      </term>
+      <term term="Administrator">
+	An administrator is responsible for management activities, including setting policies that are 
+	applied by the enterprise on the operating system.
+	This administrator could be acting remotely through a management server, from which the system
+	receives configuration policies.
+	An administrator can enforce settings on the system which cannot be overridden by non-administrator users.
+      </term>
+      <term title="Application" abbr="app">
+	Software that runs on a platform and performs tasks on behalf of the user
+	or owner of the platform, as well as its supporting documentation. 
+      </term>
+      <term title="Application Programming Interface" abbr="API">
+	A specification of routines, data structures, object classes, and variables
+	that allows an application to make use of services provided by another software
+	component, such as a library. APIs are often provided for a set of libraries included
+	with the platform.
+      </term>
+      <term title="Credential">
+	Data that establishes the identity of a user, e.g. a cryptographic key or
+	password.
+      </term>
+      <term title="Critical Security Parameters" abbr="CSP">
+	Information that is either user or system defined and
+	is used to operate a cryptographic module in processing encryption functions including
+	cryptographic keys and authentication data, such as passwords, the disclosure or modification
+	of which can compromise the security of a cryptographic module or the security of the
+	information protected by the module.
+      </term>
+      <term title="Data At Rest" abbr="DAR Protection">
+	Countermeasures that prevent attackers, even those with physical access,
+	from extracting data from non-volatile storage.
+	Common techniques include data encryption and wiping.
+      </term>
+      <term title="Data Execution Prevention" abbr="DEP">
+	An anti-exploitation feature of modern operating systems executing on
+	modern computer hardware, which enforces a non-execute permission on pages of memory.
+	DEP prevents pages of memory from containing both data and instructions, which makes
+	it more difficult for an attacker to introduce and execute code.
+	
+	
+      </term>
+      <term title="Developer">
+	An entity that writes OS software. For the purposes of this document,
+	vendors and developers are the same.
+	
+	
+      </term>
+      <term title="General Purpose Operating System">
+	A class of OSes designed to support a wide-variety of workloads consisting of many concurrent applications or services.
+	Typical characteristics for OSes in this class include support for third-party applications,
+	support for multiple users, and security separation between users and their respective resources.
+	General Purpose Operating Systems also lack the real-time constraint that defines Real Time Operating Systems (RTOS).
+	RTOSes typically power routers, switches, and embedded devices.
+      </term>
+      <term title="Host-based Firewall">
+	A software-based firewall implementation running on the OS for filtering inbound and
+	outbound network traffic to and from processes running on the OS.
+      </term>
+      <term title="Operating System" abbr="OS">
+	Software that manages physical and logical resources and provides services
+	for applications. The terms <h:i>TOE</h:i> and <h:i>OS</h:i> are interchangeable in this
+	document. 
+      </term>
+      <term title="Personally Identifiable Information" abbr="PII">
+	Any information about an individual maintained by an agency, including, but
+	not limited to, education, financial transactions, medical history, and criminal or
+	employment history and information which can be used to distinguish or trace an
+	individual's identity, such as their name, social security number, date and place of
+	birth, mother's maiden name, biometric records, etc., including any other personal
+	information which is linked or linkable to an individual.<cite linkend="bibOMB"/>
+      </term>
+      <term title="Sensitive Data">
+	Sensitive data may include all user or enterprise data or may be specific
+	application data such as PII, emails, messaging, documents, calendar items, and contacts.
+	Sensitive data must minimally include credentials and keys. Sensitive data shall
+	be identified in the OS's TSS by the ST author. 
+      </term>
+      <term title="User">
+	A user is subject to configuration policies applied
+	to the operating system by administrators.  On some systems under certain
+	configurations, a normal user can temporarily elevate privileges to that of an administrator.
+	At that time, such a user should be considered an administrator.
+      </term>
+    </tech-terms>
     <section title="Compliant Targets of Evaluation" id="TOEdescription">
       <subsection title="TOE Boundary" id="toeboundary">
         The TOE boundary encompasses the OS kernel and its drivers, shared
