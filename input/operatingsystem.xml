@@ -672,16 +672,16 @@ users of the same system.
               in the RSA key establishment scheme, the OS does not need to implement RSA key generation.
               </h:p><h:p>
 	      The elliptic curves used for the key establishment scheme shall correlate with
-              the curves specified in FCS_CKM.1.1. The domain parameters
+              the curves specified in <linkref linkend="fel-asym-gen"/>. The domain parameters
               used for the finite field-based key establishment scheme are specified by the
-              key generation according to FCS_CKM.1.1".
+              key generation according to <linkref linkend="fel-asym-gen"/>.
 	    </h:p>
 	    </note>
             <aactivity>
 	      <Tests>
 	      <h:p>
 		The evaluator will ensure that the supported key establishment schemes
-		correspond to the key generation schemes identified in FCS_CKM.1.1.
+		correspond to the key generation schemes identified in  <linkref linkend="fel-asym-gen"/>
 		If the ST specifies more than one scheme,
 		the evaluator will examine the TSS to verify that it identifies the usage for each scheme.
 	      </h:p>
@@ -865,8 +865,8 @@ The OS shall destroy cryptographic keys and key material in accordance with a sp
 		<selectable>For non-volatile memory that consists of 
 		    <selectables>
 			<selectable>destruction
-of all key encrypting keys protecting the target key
-according to FCS_CKM_EXT.4.1, where none of the KEKs protecting the target key are derived
+			of all key encrypting keys protecting the target key
+			according to <linkref linkend="fil-key-kill"/>, where none of the KEKs protecting the target key are derived
 			</selectable>
 			<selectable>the
 invocation of an interface provided by the underlying platform that
@@ -1866,11 +1866,11 @@ only AES-based implementations for CTR_DRBG are allowed.
 	      <h:p>
 		  The ST author shall select the second option if the TSF implements a
 		  native VPN client (IPsec is selected in FTP_ITC_EXT.1). If the native
-		  VPN client is to be validated (IPsec is selected in
-		  <linkref linkend="FTP_ITC_EXT.1"/> and
+		  VPN client is to be validated (IPsec is selected in <linkref linkend="fel-trust-comms"/>
+		  and
 		  the TSF is validated against the <h:i>EP for IPsec
 		  Virtual Private Network (VPN) Clients</h:i>), the ST author shall also
-		  include <linkref linkend="FDP_IFC_EXT.1"/> from this package.  In the
+		  include FDP_IFC_EXT.1 from this package.  In the
 		  future, this requirement may also make a distinction between the
 		  current requirement (which requires that when the IPsec trusted
 		  channel is enabled, all traffic from the TSF is routed through that
@@ -1919,7 +1919,7 @@ only AES-based implementations for CTR_DRBG are allowed.
         <f-component id="fmt_mof_ext.1" name="Management of security functions behavior">
 	  <f-element>
 	    <title>
-	      The OS shall restrict the ability to perform the function indicated in the "Administrator" column in <linkref linkend="fmt_smf_ext.1.1"/> to the administrator.
+	      The OS shall restrict the ability to perform the function indicated in the "Administrator" column in <linkref linkend="fel-manage-functions"/> to the administrator.
 	    </title>
 	    <note role="application">
         The functions with an "X" in the "Administrator" column must be restricted
@@ -1953,7 +1953,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 	  </f-element>
 	</f-component>
 	<f-component id="fmt_smf_ext.1" name="Specification of Management Functions">
-	  <f-element>
+	  <f-element id="fel-manage-functions">
 	    <title>
 	      The OS shall be capable of performing the following management functions:
 	      <h:br/>
@@ -2055,7 +2055,7 @@ The OS can enroll in such account management and enable the overall information 
 	      </Tests>
             </aactivity>
           </f-element>
-          <f-element>
+          <f-element id="fel-no-read">
             <title> The OS shall implement access controls which prohibit unprivileged users from
               reading: <h:ul>
                 <h:li>Security audit logs</h:li>
@@ -2391,7 +2391,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
                 <test>
                   If the ST author indicates that the integrity verification is performed
                   using a public key, the evaluator will verify that the update mechanism includes a certificate
-                  validation according to <linkref linkend="FIA_X509_EXT.1"/>.
+                  validation according to FIA_X509_EXT.1.
                 </test>
               </testlist>
 	      </h:p>
@@ -2406,7 +2406,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
               software itself. </title>
             <note role="application">This requirement is about the ability to check for the availability of
 			authentic updates, while the installation of authentic updates is covered by <linkref
-            linkend="FPT_TUD_EXT.1.2"/>.
+            linkend="fel-verify-updates"/>.
 			</note>
             <aactivity>
 	      <Tests>
@@ -2417,11 +2417,11 @@ The evaluator will also ensure that the TSS includes a description of the safegu
 			  configuration in conflict with secure configuration guidance
 			  which specifies automatic update.
 			  (The evaluator is also to ensure that this query occurs over a
-			  trusted channel as described in <linkref linkend="ftp_itc_ext.1"/>.)
+			  trusted channel as described in FTP_ITC_EXT.1.)
               </Tests>
 	    </aactivity>
           </f-element>
-          <f-element>
+          <f-element id="fel-verify-updates">
             <title>
               The OS shall 
 		<selectables>
@@ -2470,8 +2470,8 @@ The evaluator will also ensure that the TSS includes a description of the safegu
               application software.
 	    </title>
             <note role="application">This requirement is about the ability to check for authentic updates,
-              while the actual installation of such updates is covered by <linkref
-                linkend="FPT_TUD_EXT.2.2"/>.
+              while the actual installation of such updates is covered by 
+	      <linkref linkend="fel-verify-app-updates"/>.
             </note>
             <aactivity>
 	      <Tests>
@@ -2482,12 +2482,11 @@ The evaluator will also ensure that the TSS includes a description of the safegu
 			  temporarily placing the system into a configuration in conflict
 			  with secure configuration guidance which specifies automatic
 			  update.  (The evaluator is also to ensure that this query occurs
-			  over a trusted channel as described in <linkref
-			  linkend="ftp_itc_ext.1"/>.)
+			  over a trusted channel as described in FTP_ITC_EXT.1.)
               </Tests>
 	    </aactivity>
           </f-element>
-          <f-element>
+          <f-element id="fel-verify-app-updates">
             <title>
 	      The OS shall cryptographically verify the integrity of updates
 	      to applications using a digital signature specified by
@@ -2621,7 +2620,7 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
               </Tests>
 	    </aactivity>
           </f-element>
-          <f-element>
+          <f-element id="fel-audit-content">
             <title> The <h:b>OS</h:b> shall record within each audit record at least the following information:
 	    <h:ol type='a'>
 	      <h:li>Date and time of the event, type of event, subject identity (if applicable),
@@ -2692,7 +2691,7 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
 		  incorrect password, PIN, or certificate until the number of attempts
 		  reaches the threshold.  Note that the authentication attempts and
 		  lockouts must also be logged as specified in
-		  <linkref linkend="fau_gen.1"/>.
+		  FAU_GEN.1.
 
 	      </Tests>
 	    </aactivity>
@@ -2744,7 +2743,7 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
           </f-element>
         </f-component>
         <f-component id="fia_uau.5" name="Multiple Authentication Mechanisms (Refined)">
-          <f-element>
+          <f-element id="fel-mult-auth">
             <title>
 The <h:b>OS</h:b> shall provide the following authentication mechanisms
 <h:b><selectables linebreak='yes'>
@@ -2760,7 +2759,7 @@ to support user authentication.
             <note role="application">
 	      The "for use in SSH only, SSH public key-based authentication as specified by the EP
 		    for Secure Shell" selection can only be included, and must be included, if
-		    <linkref linkend="ftp_itc_ext.1.1"/> selects
+		    <linkref linkend="fel-trust-comms"/> selects
 		    "SSH as conforming to the EP for Secure Shell".
 	    </note>
             <aactivity>
@@ -2803,7 +2802,7 @@ to support user authentication.
 			  provision the OS for authentication with the X.509v3 certificate.
 			  The evaluator will ensure that the
 			  certificates are validated by the OS as per <linkref
-			  linkend="FIA_X509_EXT.1.1"/> and then conduct the following tests:
+			  linkend="fel-cert-val"/> and then conduct the following tests:
               <testlist>
                  <test>
 					The evaluator will attempt to authenticate to the OS using
@@ -2831,7 +2830,7 @@ The <h:b>OS</h:b> shall authenticate any user's claimed identity according to th
               </assignable>.
             </title>
             <note role="application">
-For all authentication mechanisms specified in <linkref linkend="FIA_UAU.5.1"/>, the TSS shall describe the rules as to how each authentication mechanism is used.
+For all authentication mechanisms specified in <linkref linkend="fel-mult-auth"/>, the TSS shall describe the rules as to how each authentication mechanism is used.
 Example rules are how the authentication mechanism authenticates the user (i.e.
 how does the TSF verify that the correct password or authentication
 factor is used), the result of a successful authentication (i.e.
@@ -2840,7 +2839,7 @@ authentication mechanism can be used at which authentication factor
 interfaces (i.e. if there are times, for example, after a reboot,
 that only specific authentication mechanisms can be used).
 Rules regarding how the authentication factors interact in terms of
-unsuccessful authentication are covered in <linkref linkend="fia_afl.1"/>.
+unsuccessful authentication are covered in FIA_AFL.1.
 	    </note>
 
               <aactivity>
@@ -2875,7 +2874,7 @@ the authentication mechanism(s) behave as documented in the TSS.
           </f-element>
         </f-component>
         <f-component id="fia_x509_ext.1" name="X.509 Certificate Validation">
-          <f-element>
+          <f-element id="fel-cert-val">
             <title>
 The OS shall implement functionality to validate certificates in accordance with
 the following rules: <h:ul>
@@ -2915,7 +2914,7 @@ the following rules: <h:ul>
             <note role="application">
 	      FIA_X509_EXT.1.1 lists the rules for validating certificates.
               The ST author shall select whether revocation status is verified
-              using OCSP or CRLs. <linkref linkend="FIA_X509_EXT.2"/> requires that certificates are
+              using OCSP or CRLs. FIA_X509_EXT.2 requires that certificates are
               used for HTTPS, TLS and DTLS; this use requires that the <h:i>extendedKeyUsage</h:i> rules are
               verified.
             </note>
@@ -2930,8 +2929,8 @@ the following rules: <h:ul>
 	      <Tests>
 	      <h:p>
 	      The tests described must be performed in conjunction with the other
-              certificate services evaluation activities, including the functions in <linkref
-                linkend="FIA_X509_EXT.2.1"/>. The tests for the <h:i>extendedKeyUsage</h:i> rules are performed
+              certificate services evaluation activities, including the functions in 
+	      <linkref linkend="fel-cert-auth"/>. The tests for the <h:i>extendedKeyUsage</h:i> rules are performed
               in conjunction with the uses that require those rules. The evaluator will create a
               chain of at least four certificates: the node certificate to be tested, two
               Intermediate CAs, and the self-signed Root CA. <testlist>
@@ -2984,7 +2983,7 @@ The OS shall only treat a certificate as a CA certificate if the
 	      <Tests>
 The tests described must be performed in conjunction with the other
 certificate services evaluation activities, including the functions in
-<linkref linkend="FIA_X509_EXT.2.1"/>.
+<linkref linkend="fel-cert-auth"/>.
 The evaluator will create a chain of at least four certificates:
 the node certificate to be tested, two Intermediate CAs, and the
               self-signed Root CA.
@@ -3005,7 +3004,7 @@ the node certificate to be tested, two Intermediate CAs, and the
           </f-element>
         </f-component>
         <f-component id="fia_x509_ext.2" name="X.509 Certificate Authentication">
-          <f-element>
+          <f-element id="fel-cert-auth">
             <title> The OS shall use X.509v3 certificates as defined by RFC 5280 to support
               authentication for TLS and
 			  <selectables>
@@ -3052,7 +3051,7 @@ the node certificate to be tested, two Intermediate CAs, and the
       </subsection>
       <subsection title="Trusted Path/Channels (FTP)" id="ftp">
       	<f-component id="ftp_itc_ext.1" name="Trusted channel communication">
-      	  <f-element>
+      	  <f-element id="fel-trust-comms">
       	    <title>
               The OS shall use
       	      <selectables linebreak='yes'>
@@ -3075,7 +3074,7 @@ the node certificate to be tested, two Intermediate CAs, and the
       	    </title>
       	    <note role="application">
               The ST author must include the security functional requirements for the trusted
-              channel protocol selected in <linkref linkend="ftp_itc_ext.1"/> in the main body of the ST.
+              channel protocol selected in <linkref linkend="fel-trust-comms"/> in the main body of the ST.
               <h:br/>
               If the ST author selects TLS or DTLS, the TSF shall be validated
               against requirements from the
@@ -3101,7 +3100,7 @@ the node certificate to be tested, two Intermediate CAs, and the
       	  </f-element>
       	</f-component>
         <f-component id="ftp_trp.1" name="Trusted Path">
-            <f-element>
+            <f-element id="fel-trust-ends">
 	      <title>
 The <h:b>OS</h:b> shall provide a communication path between itself and
 <selectables><selectable>remote</selectable><selectable>local</selectable></selectables>
@@ -3115,19 +3114,19 @@ This requirement ensures that all remote administrative actions are protected.
 Authorized remote administrators must initiate all communication with the OS via
 a trusted path and all communication with the OS by remote administrators must
 be performed over this path. The data passed in this trusted communication
-channel is encrypted as defined in <linkref linkend="ftp_itc_ext.1"/>.
+channel is encrypted as defined in <linkref linkend="fel-trust-comms"/>.
 If local users access is selected and no unprotected traffic is sent to remote
 users, then this requirement is met.  If remote users access is selected, the
 ST author must include the security functional requirements for the trusted
 channel protocol selected in
-<linkref linkend="ftp_itc_ext.1"/> in the main body of the ST.
+<linkref linkend="fel-trust-comms"/> in the main body of the ST.
 		</h:p>
 		<h:p>
-This requirement is tested with the  evaluation activities for  <linkref linkend="ftp_trp.1.3"/>.
+This requirement is tested with the  evaluation activities for  <linkref linkend="fel-trust-path"/>.
 		</h:p>
 	      </note>
             </f-element>
-            <f-element>
+            <f-element id="fel-trust-users">
               <title> The <h:b>OS</h:b> shall permit
                 <selectables>
                   <selectable>the TSF</selectable>
@@ -3138,11 +3137,11 @@ This requirement is tested with the  evaluation activities for  <linkref linkend
               </title>
 	      <note role="application">
 		<h:p>
-This requirement is tested with the  evaluation activities for  <linkref linkend="ftp_trp.1.3"/>.
+This requirement is tested with the  evaluation activities for  <linkref linkend="fel-trust-path"/>.
 		</h:p>
 	      </note>
             </f-element>
-            <f-element>
+            <f-element id="fel-trust-path">
               <title> The <h:b>OS</h:b> shall require use of the trusted path for
               [[<h:i>all remote administrative actions</h:i>]].
               </title>
@@ -3151,10 +3150,10 @@ This requirement is tested with the  evaluation activities for  <linkref linkend
 		  This requirement ensures that authorized remote administrators initiate all communication
                 with the OS via a trusted path, and that all communication with the OS by remote administrators
                 is performed over this path. The data passed in this trusted communication channel is encrypted as
-                defined in <linkref linkend="FTP_ITC_EXT.1"/>.
+                defined in FTP_ITC_EXT.1.
 	      </h:p><h:p>
 	      The evaluation activities for this requirement also test requirements
-	      <linkref linkend="FTP_TRP.1.1"/> and <linkref linkend="FTP_TRP.1.2"/>.
+	      <linkref linkend="fel-trust-ends"/> and <linkref linkend="fel-trust-users"/>
 	    </h:p>
               </note>
               <aactivity>
@@ -3777,7 +3776,7 @@ The evaluator will also perform the following
 	<h:tr>
 	<h:td>FIA_UAU.1 - Timing of authentication</h:td>
 	<h:td>
-	  <linkref linkend="FIA_AFL.1"/> implicitly requires that the OS perform all necessary actions,
+	  FIA_AFL.1 implicitly requires that the OS perform all necessary actions,
 	  including those on behalf of the user who has not been authenticated,
 	  in order to authenticate;
 	  therefore it is duplicative to include these actions as a
@@ -3787,7 +3786,7 @@ The evaluator will also perform the following
 	<h:tr>
 	<h:td>FIA_UID.1 - Timing of identification</h:td>
 	<h:td>
-	  <linkref linkend="FIA_AFL.1"/> implicitly requires that the OS perform all necessary actions,
+	  FIA_AFL.1 implicitly requires that the OS perform all necessary actions,
 	  including those on behalf of the user who has not been identified,
 	  in order to authenticate;
 	  therefore it is duplicative to include these actions as a
@@ -3797,7 +3796,7 @@ The evaluator will also perform the following
 	<h:tr>
 	<h:td>FMT_SMR.1 - Security roles</h:td>
 	<h:td>
-	  <linkref linkend="FMT_MOF_EXT.1"/> specifies role-based management functions that implicitly defines
+	  FMT_MOF_EXT.1 specifies role-based management functions that implicitly defines
 	  user and privileged accounts;
 	  therefore, it is duplicative to include separate role requirements.
 	</h:td>
@@ -3805,35 +3804,35 @@ The evaluator will also perform the following
 	<h:tr>
 	<h:td>FPT_STM.1 - Reliable time stamps</h:td>
 	<h:td>
-	  <linkref linkend="FAU_GEN.1.2"/> explicitly requires that the OS associate timestamps with audit records;
+	  FAU_GEN.1.2 explicitly requires that the OS associate timestamps with audit records;
 	  therefore it is duplicative to include a separate timestamp requirement.
 	</h:td>
 	</h:tr>
 	<h:tr>
 	<h:td>FTA_SSL.1 - TSF-initiated session locking</h:td>
 	<h:td>
-	  <linkref linkend="FMT_MOF_EXT.1"/> defines requirements for managing session locking;
+ 	  FMT_MOF_EXT.1 defines requirements for managing session locking;
 	  therefore, it is duplicative to include a separate session locking requirement.
 	</h:td>
 	</h:tr>
 	<h:tr>
 	<h:td>FTA_SSL.2 - User-initiated locking</h:td>
 	<h:td>
-	  <linkref linkend="FMT_MOF_EXT.1"/> defines requirements for user-initiated session locking;
+	  FMT_MOF_EXT.1 defines requirements for user-initiated session locking;
 	  therefore, it is duplicative to include a separate session locking requirement.
 	</h:td>
 	</h:tr>
 	<h:tr>
 	<h:td>FAU_STG.1 - Protected audit trail storage</h:td>
 	<h:td>
-	  <linkref linkend="FPT_ACF_EXT.1"/> defines a requirement to protect audit logs;
+	  FPT_ACF_EXT.1 defines a requirement to protect audit logs;
 	  therefore, it is duplicative to include a separate protection of audit trail requirements.
 	</h:td>
 	</h:tr>
 	<h:tr>
 	<h:td>FAU_GEN.2 - User identity association</h:td>
 	<h:td>
-<linkref linkend="FAU_GEN.1.2"/> explicitly requires that the OS record
+	  <linkref linkend="fel-audit-content"/> explicitly requires that the OS record
 	  any user account associated with each event; therefore, it is duplicative
 	  to include a separate requirement to associate a user account with each
 	  event.
@@ -3842,7 +3841,7 @@ The evaluator will also perform the following
 	<h:tr>
 	  <h:td>FAU_SAR.1 - Audit review</h:td>
 	  <h:td>
-	    <linkref linkend="FPT_ACF_EXT.1.2"/> requires that audit logs (and other objects)
+	    <linkref linkend="fel-no-read"/> requires that audit logs (and other objects)
 	    are protected from reading by unprivileged users; therefore, it is duplicative
 	    to include a separate requirement to protect only the audit information.
 	  </h:td>
