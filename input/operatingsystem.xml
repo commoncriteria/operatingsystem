@@ -38,7 +38,7 @@
 
   <chapter title="Introduction" id="introduction">
     <section title="Overview" id="ppoverview"> 
-The scope of this Protection Profile (<no-abbr>PP</no-abbr>) is to
+The scope of this Protection Profile (PP) is to
 describe the security functionality of operating systems in terms of <citeCC/>
 and to define functional and assurance requirements for such products.
 An operating system is software that manages computer hardware and software
@@ -389,8 +389,8 @@ it manages may be physical or virtual.
             </addressed-by>
         </SO>
         <SO id="O.MANAGEMENT">
-          <description> To facilitate management by users and the enterprise, conformant <abbr
-              linkend="OS"/>es provide consistent and supported interfaces for their
+          <description> To facilitate management by users and the enterprise, conformant OSes
+	    provide consistent and supported interfaces for their
             security-relevant configuration and maintenance. This includes the deployment of
             applications and application updates through the use of platform-supported deployment
             mechanisms and formats, as well as providing mechanisms for configuration and
@@ -458,7 +458,7 @@ users of the same system.
     <section title="Security Functional Requirements" id="SFRs">
       <subsection title="Cryptographic Support (FCS)" id="fcs">
         <f-component id="fcs_ckm.1" name="Cryptographic Key Generation (Refined)">
-          <f-element>
+          <f-element id="fel-asym-gen">
             <title> The <h:b>OS</h:b> shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a
               specified cryptographic key generation algorithm <h:b><selectables linebreak="yes">
                 <selectable>RSA schemes using cryptographic key sizes of 2048-bit or greater that
@@ -486,7 +486,7 @@ users of the same system.
 	      The ST author shall select all key
               generation schemes used for key establishment and entity authentication. When key
               generation is used for key establishment, the schemes in
-	      <linkref linkend="FCS_CKM.2"/> and selected cryptographic protocols must match the
+	      FCS_CKM.2 and selected cryptographic protocols must match the
               selection. When key generation is used for entity authentication, the public key is
               expected to be associated with an X.509v3 certificate.
 	      </h:p><h:p>
@@ -536,8 +536,8 @@ users of the same system.
                 </h:li>
               </h:ol>
 	      To test the key generation method for the Random Provable primes method and for
-              all the Primes with Conditions methods, the evaluator must seed the <abbr
-                linkend="TSF"/> key generation routine with sufficient data to deterministically
+              all the Primes with Conditions methods, the evaluator must seed the TSF
+	      key generation routine with sufficient data to deterministically
               generate the RSA key pair. This includes the random seed(s), the public exponent of
               the RSA key, and the desired key length. For each key length supported, the evaluator
               shall have the TSF generate 25 key pairs. The evaluator will verify
@@ -672,9 +672,9 @@ users of the same system.
               in the RSA key establishment scheme, the OS does not need to implement RSA key generation.
               </h:p><h:p>
 	      The elliptic curves used for the key establishment scheme shall correlate with
-              the curves specified in <linkref linkend="FCS_CKM.1.1"/>. The domain parameters
+              the curves specified in FCS_CKM.1.1. The domain parameters
               used for the finite field-based key establishment scheme are specified by the
-              key generation according to <linkref linkend="FCS_CKM.1.1"/>.
+              key generation according to FCS_CKM.1.1".
 	    </h:p>
 	    </note>
             <aactivity>
@@ -847,7 +847,7 @@ These keys are static, ephemeral or both depending on the scheme being tested.
                 
 
 	<f-component id="fcs_ckm_ext.4" name="Cryptographic Key Destruction" >
-          <f-element>
+          <f-element id="fil-key-kill">
 	    <title>
 The OS shall destroy cryptographic keys and key material in accordance with a specified cryptographic key destruction method
               <selectables>
@@ -934,7 +934,7 @@ and the KEK cannot be recovered or re-derived.).
 	      <h:p>
 		For the purposes of this requirement, key material refers to authentication data, passwords, secret/private symmetric keys, private asymmetric keys, data used to derive keys, values derived from passwords, etc.
 	      </h:p>
-	      <h:p>Key destruction procedures are performed in accordance with <linkref linkend='fcs_ckm_ext.4.1'/>.</h:p>
+	      <h:p>Key destruction procedures are performed in accordance with <linkref linkend="fil-key-kill"/>.</h:p>
 	    </note>
 	    <aactivity>
 	      <TSS>
@@ -1596,7 +1596,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      cryptographic protocols used by the OS (e.g., trusted channel).
 	      The hash selection must support the message digest size selection.
 	      The hash selection should be consistent with the overall strength of the
-	      algorithm used for <linkref linkend="FCS_COP.1(1)"/>.
+	      algorithm used for FCS_COP.1/HASH.
 	      </h:p>
 	      <h:p>
         Evaluation of SHA-1 is currently permitted in order to allow for evaluation
@@ -1760,7 +1760,7 @@ only AES-based implementations for CTR_DRBG are allowed.
               sensitive data for which the OS provides a storage capability.  For each of these
               items, the evaluator will confirm that the TSS lists for what purpose it can be used,
               and how it is stored.
-	      The evaluator will confirm that cryptographic operations used to protect the data occur as specified in <linkref linkend="fcs_cop.1(1)"/>.
+	      The evaluator will confirm that cryptographic operations used to protect the data occur as specified in FCS_COP.1/HASH.
 	      </h:p><h:p>
 	      The evaluator will also consult the developer documentation to verify that an interface
 	      exists for applications to securely store credentials.
@@ -2429,7 +2429,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
 			<selectable>invoke platform-provided functionality to cryptographically verify</selectable>
 		</selectables>
               updates to itself using a digital
-              signature prior to installation using schemes specified in <linkref linkend="FCS_COP.1(3)"/>.
+              signature prior to installation using schemes specified in FCS_COP.1/SIGN.
 	    </title>
 		 <note role="application">The intent of the requirement is to ensure that only digitally signed and verified TOE updates are applied to the TOE.</note>
             <aactivity>
@@ -2491,7 +2491,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
             <title>
 	      The OS shall cryptographically verify the integrity of updates
 	      to applications using a digital signature specified by
-	      <linkref linkend="FCS_COP.1(3)"/> prior to installation.
+	      FCS_COP.1/SIGN prior to installation.
 	    </title>
             <aactivity>
 	      <Tests>
@@ -2867,7 +2867,7 @@ unsuccessful authentication are covered in <linkref linkend="fia_afl.1"/>.
 		the specified authentication factor interfaces. </test>
 		<test>
 For each authentication mechanism rule, the evaluator will ensure that
-the authentication mechanism(s) behave as documented in the <abbr linkend='TSS'/>.
+the authentication mechanism(s) behave as documented in the TSS.
 		</test>
               </testlist>
 	      </Tests>
@@ -3245,10 +3245,8 @@ The evaluator will also perform the following
         The requirements for exact conformance of the Security Target are described in <secref linkend="ccl"/>.
       </subsection>
 
-      <subsection title="Class ADV: Development" id="adv">The information about the <abbr
-          linkend="OS"/> is contained in the guidance documentation available to the end user as
-        well as the TSS portion of the ST. The <abbr
-          linkend="OS"/> developer must concur with the description of the product that is
+      <subsection title="Class ADV: Development" id="adv">The information about the OS is contained in the guidance documentation available to the end user as
+        well as the TSS portion of the ST. The OS developer must concur with the description of the product that is
         contained in the TSS as it relates to the functional requirements. The evaluation activities
         contained in <secref linkend="SFRs"/> should provide the ST authors with
         sufficient information to determine the appropriate content for the TSS section.
@@ -3400,12 +3398,9 @@ The evaluator will also perform the following
               <title>The evaluator will confirm that the information provided meets all requirements
               for content and presentation of evidence. </title>
               <aactivity>Some of the contents of the operational guidance are verified by the
-              evaluation activities in <secref linkend="SFRs"/> and evaluation of the <abbr
-              linkend="OS"/> according to the <cite linkend="bibCEM"/>. The following additional
-              information is also required. If cryptographic functions are provided by the <abbr
-              linkend="OS"/>, the operational guidance shall contain instructions for configuring
-              the cryptographic engine associated with the evaluated configuration of the <abbr
-              linkend="OS"/>. It shall provide a warning to the administrator that use of other
+              evaluation activities in <secref linkend="SFRs"/> and evaluation of the OS according to the <cite linkend="bibCEM"/>. The following additional
+              information is also required. If cryptographic functions are provided by the OS, the operational guidance shall contain instructions for configuring
+              the cryptographic engine associated with the evaluated configuration of the OS. It shall provide a warning to the administrator that use of other
               cryptographic engines was not evaluated nor tested during the CC evaluation of the
               OS. The documentation must describe the process for verifying
               updates to the OS by verifying a digital signature – this may be
@@ -3451,14 +3446,12 @@ The evaluator will also perform the following
               for content and presentation of evidence.</title>
             </a-element>
             <a-element type="E">
-              <title>The evaluator will apply the preparative procedures to confirm that the <abbr
-              linkend="OS"/> can be prepared securely for operation.</title>
+              <title>The evaluator will apply the preparative procedures to confirm that the OS can be prepared securely for operation.</title>
               <aactivity>As indicated in the introduction above, there are significant expectations
               with respect to the documentation—especially when configuring the operational
               environment to support OS functional requirements. The evaluator
               shall check to ensure that the guidance provided for the OS
-              adequately addresses all platforms claimed for the OS in the <abbr
-              linkend="ST"/>. </aactivity>
+              adequately addresses all platforms claimed for the OS in the ST. </aactivity>
             </a-element>
 	  
         </a-component>
@@ -3500,9 +3493,7 @@ The evaluator will also perform the following
               an identifier (such as a product name/version number) that specifically identifies the
               version that meets the requirements of the ST. Further, the
               evaluator will check the AGD guidance and OS samples received for
-              testing to ensure that the version number is consistent with that in the <abbr
-              linkend="ST"/>. If the vendor maintains a web site advertising the <abbr
-              linkend="OS"/>, the evaluator will examine the information on the web site to
+              testing to ensure that the version number is consistent with that in the ST. If the vendor maintains a web site advertising the OS, the evaluator will examine the information on the web site to
               ensure that the information in the ST is sufficient to distinguish
               the product.</aactivity>
             </a-element>
@@ -3536,8 +3527,7 @@ The evaluator will also perform the following
 		<h:p>
 		  The "evaluation evidence required by the SARs" in this PP is limited to the
               information in the ST coupled with the guidance provided to
-              administrators and users under the AGD requirements. By ensuring that the <abbr
-              linkend="OS"/> is specifically identified and that this identification is
+              administrators and users under the AGD requirements. By ensuring that the OS is specifically identified and that this identification is
               consistent in the ST and in the AGD guidance (as done in the
               evaluation activity for ALC_CMC.1), the evaluator implicitly confirms the information
               required by this component. Life-cycle support is targeted aspects of the developer's
@@ -3635,8 +3625,9 @@ The evaluator will also perform the following
         family. At the assurance level specified in this PP, testing is based on advertised
         functionality and interfaces with dependency on the availability of design information. One
         of the primary outputs of the evaluation process is the test report as specified in the
-        following requirements. <a-component id="ate_ind.1"
-          name="Independent Testing - Conformance (ATE_IND.1)"> Testing is performed to confirm the
+        following requirements.
+	<a-component id="ate_ind.1" name="Independent Testing - Conformance (ATE_IND.1)">
+	  Testing is performed to confirm the
           functionality described in the TSS as well as the administrative
           (including configuration and operational) documentation provided. The focus of the testing
           is to confirm that the requirements specified in <secref linkend="SFRs"/> being met,
@@ -3644,8 +3635,8 @@ The evaluator will also perform the following
           evaluation activities identify the additional testing activities associated with these
           components. The evaluator produces a test report documenting the plan for and results of
           testing, as well as coverage arguments focused on the platform/OS
-          combinations that are claiming conformance to this PP. Given the scope of the <abbr
-            linkend="OS"/> and its associated evaluation evidence requirements, this component's
+          combinations that are claiming conformance to this PP.
+	  Given the scope of the OS and its associated evaluation evidence requirements, this component's
           evaluation activities are covered by the evaluation activities listed for ALC_CMC.1.
 
             <a-element type="D">
