@@ -256,7 +256,7 @@ it manages may be physical or virtual.
     is expected to enforce.
     <section title="Threats" id="threats">
       <threats>
-        <threat id="T.NETWORK_ATTACK">
+        <threat cc-id="T.NETWORK_ATTACK">
           <description> An attacker is positioned on a communications channel or elsewhere on the
             network infrastructure. Attackers may engage in communications with applications and
             services running on or part of the OS with the intent of compromise. Engagement may
@@ -279,7 +279,7 @@ it manages may be physical or virtual.
               attack has occurred.</rationale>
           </objective-refer>
         </threat>
-        <threat id="T.NETWORK_EAVESDROP">
+        <threat cc-id="T.NETWORK_EAVESDROP">
           <description> An attacker is positioned on a communications channel or elsewhere on the
             network infrastructure. Attackers may monitor and gain access to data exchanged between
             applications and services that are running on or part of the OS. </description>
@@ -293,7 +293,7 @@ it manages may be physical or virtual.
               data.</rationale>
           </objective-refer>
         </threat>
-        <threat id="T.LOCAL_ATTACK">
+        <threat cc-id="T.LOCAL_ATTACK">
           <description> An attacker may compromise applications running on the OS. The
             compromised application may provide maliciously formatted input to the OS through a
             variety of channels including unprivileged system calls and messaging via the
@@ -309,7 +309,7 @@ it manages may be physical or virtual.
               has occurred.</rationale>
           </objective-refer>
         </threat>
-        <threat id="T.LIMITED_PHYSICAL_ACCESS">
+        <threat cc-id="T.LIMITED_PHYSICAL_ACCESS">
           <description> An attacker may attempt to access data on the OS while having a limited
             amount of time with the physical device. </description>
           <objective-refer ref="O.PROTECTED_STORAGE">
@@ -321,7 +321,7 @@ it manages may be physical or virtual.
     </section>
     <section title="Assumptions" id="assumptions">
       <assumptions>
-        <assumption id="A.PLATFORM">
+        <assumption cc-id="A.PLATFORM">
           <description> The OS relies upon a trustworthy computing platform for
             its execution. This underlying platform is out of scope of this PP. </description>
           <objective-refer ref="OE.PLATFORM">
@@ -329,7 +329,7 @@ it manages may be physical or virtual.
               A.PLATFORM. </rationale>
           </objective-refer>
         </assumption>
-        <assumption id="A.PROPER_USER">
+        <assumption cc-id="A.PROPER_USER">
           <description> The user of the OS is not willfully negligent or hostile, and uses the
             software in compliance with the applied enterprise security policy. At the same time,
             malicious software could act <h:i>as</h:i> the user, so requirements which
@@ -339,7 +339,7 @@ it manages may be physical or virtual.
               A.PROPER_USER.</rationale>
           </objective-refer>
         </assumption>
-        <assumption id="A.PROPER_ADMIN">
+        <assumption cc-id="A.PROPER_ADMIN">
           <description> The administrator of the OS is not careless, willfully negligent or hostile,
             and administers the OS within compliance of the applied enterprise security policy. </description>
           <objective-refer ref="OE.PROPER_ADMIN">
@@ -367,15 +367,16 @@ it manages may be physical or virtual.
   <chapter title="Security Objectives" id="obj">
     <section title="Security Objectives for the TOE" id="SecurityObjectivesTOE">
       <SOs>
-        <SO id="O.ACCOUNTABILITY">
+        <SO cc-id="O.ACCOUNTABILITY">
           <description> Conformant OSes ensure that information exists that allows
             administrators to discover unintentional issues with the configuration and operation of
             the operating system and discover its cause.  Gathering event information and immediately
             transmitting it to another system can also enable incident response in the event
             of system compromise.</description>
           <addressed-by>FAU_GEN.1, FTP_ITC_EXT.1</addressed-by>
+          <rationale>QQQ </rationale>
         </SO>
-        <SO id="O.INTEGRITY">
+        <SO cc-id="O.INTEGRITY">
           <description>Conformant OSes ensure the integrity of their update
             packages. OSes are seldom if ever shipped without errors, and the
             ability to deploy patches and updates with integrity is critical to enterprise network
@@ -387,8 +388,9 @@ it manages may be physical or virtual.
               FCS_COP.1/SIGN, FCS_COP.1/KEYHMAC, FPT_ACF_EXT.1, FPT_SRP_EXT.1, FIA_X509_EXT.1,
               FPT_TST_EXT.1, FTP_ITC_EXT.1, FPT_W^X_EXT.1, FIA_AFL.1, FIA_UAU.5
             </addressed-by>
+          <rationale>QQQ </rationale>
         </SO>
-        <SO id="O.MANAGEMENT">
+        <SO cc-id="O.MANAGEMENT">
           <description> To facilitate management by users and the enterprise, conformant OSes
 	    provide consistent and supported interfaces for their
             security-relevant configuration and maintenance. This includes the deployment of
@@ -398,6 +400,7 @@ it manages may be physical or virtual.
             <addressed-by>
             FMT_MOF_EXT.1, FMT_SMF_EXT.1, FTA_TAB.1, FTP_TRP.1
             </addressed-by>
+          <rationale>QQQ </rationale>
         </SO>
 	<!-- <SO id="O.RESILIENCE"> -->
 	<!--   <description>  -->
@@ -405,7 +408,7 @@ it manages may be physical or virtual.
 	<!--     conformant OSs employ industry-standard exploitation countermeasures. -->
 	<!--   </description> -->
 	<!-- </SO> -->
-        <SO id="O.PROTECTED_STORAGE">
+        <SO cc-id="O.PROTECTED_STORAGE">
           <description>
 To address the issue of loss of confidentiality of credentials in the event of
 loss of physical control of the storage medium, conformant OSes
@@ -414,8 +417,9 @@ Conformant OSes also provide access controls which allow users to keep their fil
 users of the same system.
           </description>
           <addressed-by>FCS_STO_EXT.1, FCS_RBG_EXT.1, FCS_COP.1/ENCRYPT, FDP_ACF_EXT.1</addressed-by>
+          <rationale>QQQ </rationale>
         </SO>
-        <SO id="O.PROTECTED_COMMS">
+        <SO cc-id="O.PROTECTED_COMMS">
           <description> To address both passive (eavesdropping) and active (packet modification)
             network attack threats, conformant OSes provide mechanisms to create
             trusted channels for CSP and sensitive data. Both CSP and sensitive data
@@ -425,6 +429,7 @@ users of the same system.
             FCS_COP.1/HASH, FCS_COP.1/SIGN, FCS_COP.1/HMAC, FDP_IFC_EXT.1, FIA_X509_EXT.1,
             FIA_X509_EXT.2, FTP_ITC_EXT.1
           </addressed-by>
+          <rationale>QQQ </rationale>
         </SO>
       </SOs>
     </section>
@@ -432,18 +437,18 @@ users of the same system.
       id="SecurityObjectivesTOEorEnvironment">The following security objectives for the operational
       environment assist the OS in correctly providing its security functionality.
       These track with the assumptions about the environment. <SOEs>
-        <SOE id="OE.PLATFORM">
+        <SOE cc-id="OE.PLATFORM">
           <description>The OS relies on being installed on trusted
             hardware.</description>
         </SOE>
-        <SOE id="OE.PROPER_USER">
+        <SOE cc-id="OE.PROPER_USER">
           <description> The user of the OS is not willfully negligent or hostile,
             and uses the software within compliance of the applied enterprise security policy.
             Standard user accounts are provisioned in accordance with the least privilege model.
             Users requiring higher levels of access should have a separate account dedicated for
             that use. </description>
         </SOE>
-        <SOE id="OE.PROPER_ADMIN">
+        <SOE cc-id="OE.PROPER_ADMIN">
           <description> The administrator of the OS is not careless, willfully
             negligent or hostile, and administers the OS within compliance of the applied enterprise
             security policy. </description>
@@ -457,12 +462,12 @@ users of the same system.
   <chapter title="Security Requirements" id="req">
     <section title="Security Functional Requirements" id="SFRs">
       <subsection title="Cryptographic Support (FCS)" id="fcs">
-        <f-component id="fcs_ckm.1" name="Cryptographic Key Generation (Refined)">
+        <f-component cc-id="fcs_ckm.1" name="Cryptographic Key Generation (Refined)">
           <f-element id="fel-asym-gen">
             <title> The <h:b>OS</h:b> shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a
               specified cryptographic key generation algorithm <h:b><selectables linebreak="yes">
                 <selectable>RSA schemes using cryptographic key sizes of 2048-bit or greater that
-                meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.3
+         f-component    meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.3
                 </selectable>
                 <selectable>ECC schemes using "NIST curves" P-256, P-384 and
                   <selectables>
@@ -639,7 +644,7 @@ users of the same system.
 	    </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fcs_ckm.2" name="Cryptographic Key Establishment (Refined)">
+        <f-component cc-id="fcs_ckm.2" name="Cryptographic Key Establishment (Refined)">
           <f-element>
             <title>The OS shall <h:b>implement functionality to perform cryptographic key establishment</h:b>
               in accordance with a specified cryptographic key <h:b>establishment</h:b> method:
@@ -846,7 +851,7 @@ These keys are static, ephemeral or both depending on the scheme being tested.
         </f-component>
                 
 
-	<f-component id="fcs_ckm_ext.4" name="Cryptographic Key Destruction" >
+	<f-component cc-id="fcs_ckm_ext.4" name="Cryptographic Key Destruction" >
           <f-element id="fil-key-kill">
 	    <title>
 The OS shall destroy cryptographic keys and key material in accordance with a specified cryptographic key destruction method
@@ -1048,7 +1053,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
           </f-element>
         </f-component>
  
-        <f-component id="fcs_cop.1" iteration="ENCRYPT" name="Cryptographic Operation - Encryption/Decryption (Refined)">
+        <f-component cc-id="fcs_cop.1" iteration="ENCRYPT" name="Cryptographic Operation - Encryption/Decryption (Refined)">
           <f-element>
             <title>
               The <h:b>OS</h:b> shall perform [<h:i>encryption/decryption services for data</h:i>] in
@@ -1392,7 +1397,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	  </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fcs_cop.1" iteration="HASH" name="Cryptographic Operation - Hashing (Refined)">
+        <f-component cc-id="fcs_cop.1" iteration="HASH" name="Cryptographic Operation - Hashing (Refined)">
           <f-element>
             <title>The <h:b>OS</h:b> shall perform [<h:i>cryptographic hashing services</h:i>] in accordance with a
               specified cryptographic algorithm <h:b>
@@ -1491,7 +1496,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
             </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fcs_cop.1" iteration="SIGN" name="Cryptographic Operation - Signing (Refined)">
+        <f-component cc-id="fcs_cop.1" iteration="SIGN" name="Cryptographic Operation - Signing (Refined)">
           <f-element>
             <title>The <h:b>OS</h:b> shall perform [<h:i>cryptographic signature services (generation and
               verification)</h:i>] in accordance with a specified cryptographic algorithm <h:b><selectables
@@ -1570,7 +1575,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
             </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fcs_cop.1" iteration="KEYHMAC" name="Cryptographic Operation - Keyed-Hash Message Authentication (Refined)">
+        <f-component cc-id="fcs_cop.1" iteration="KEYHMAC" name="Cryptographic Operation - Keyed-Hash Message Authentication (Refined)">
           <f-element>
             <title>The <h:b>OS</h:b> shall perform [<h:i>keyed-hash message authentication services</h:i>]
             in accordance with a specified cryptographic algorithm<h:b>
@@ -1621,7 +1626,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
           </f-element>
         </f-component>
 
-        <f-component id="fcs_rbg_ext.1" name="Random Bit Generation">
+        <f-component cc-id="fcs_rbg_ext.1" name="Random Bit Generation">
           <f-element>
             <title>
               The OS shall perform all deterministic random bit generation (DRBG) services in
@@ -1742,7 +1747,7 @@ only AES-based implementations for CTR_DRBG are allowed.
           </f-element>
         </f-component>
         
-        <f-component id="fcs_sto_ext.1" name="Storage of Sensitive Data">
+        <f-component cc-id="fcs_sto_ext.1" name="Storage of Sensitive Data">
           <f-element>
             <title>
 	      The OS shall implement functionality to encrypt sensitive data
@@ -1771,7 +1776,7 @@ only AES-based implementations for CTR_DRBG are allowed.
         </f-component>
       </subsection>
       <subsection title="User Data Protection (FDP)" id="fdp">
-        <f-component id="fdp_acf_ext.1" name="Access Controls for Protecting User Data">
+        <f-component cc-id="fdp_acf_ext.1" name="Access Controls for Protecting User Data">
           <f-element>
             <title>
 	      The OS shall implement access controls which can prohibit unprivileged users from
@@ -1835,7 +1840,7 @@ only AES-based implementations for CTR_DRBG are allowed.
             </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fdp_ifc_ext.1" name="Information flow control" status="optional">
+        <f-component cc-id="fdp_ifc_ext.1" name="Information flow control" status="optional">
           <f-element>
             <title> The OS shall
 	    <selectables linebreak="yes">
@@ -1916,7 +1921,7 @@ only AES-based implementations for CTR_DRBG are allowed.
         </f-component>
       </subsection>
       <subsection title="Security Management (FMT)" id="fmt">
-        <f-component id="fmt_mof_ext.1" name="Management of security functions behavior">
+        <f-component cc-id="fmt_mof_ext.1" name="Management of security functions behavior">
 	  <f-element>
 	    <title>
 	      The OS shall restrict the ability to perform the function indicated in the "Administrator" column in <linkref linkend="fel-manage-functions"/> to the administrator.
@@ -1952,14 +1957,14 @@ only AES-based implementations for CTR_DRBG are allowed.
             </aactivity>
 	  </f-element>
 	</f-component>
-	<f-component id="fmt_smf_ext.1" name="Specification of Management Functions">
+	<f-component cc-id="fmt_smf_ext.1" name="Specification of Management Functions">
 	  <f-element id="fel-manage-functions">
 	    <title>
 	      The OS shall be capable of performing the following management functions:
 	      <h:br/>
 	      <management-function-set default="O">
-		<manager id="a">Administrator</manager>
-		<manager id="u">User</manager>
+		<manager cid="a">Administrator</manager>
+		<manager cid="u">User</manager>
 		<management-function><text>Enable/disable <selectables><selectable>screen lock</selectable><selectable>session timeout</selectable></selectables></text><M ref="a"/></management-function>
 		<management-function><text>Configure <selectables><selectable>screen lock</selectable><selectable>session</selectable></selectables> inactivity timeout</text><M ref="a"/></management-function>
 		<management-function><text>Configure local audit storage capacity</text></management-function>
@@ -2019,7 +2024,7 @@ The OS can enroll in such account management and enable the overall information 
 	</f-component>
       </subsection>
       <subsection title="Protection of the TSF (FPT)" id="fpt">
-        <f-component id="fpt_acf_ext.1" name="Access controls">
+        <f-component cc-id="fpt_acf_ext.1" name="Access controls">
           <f-element>
             <title> The OS shall implement access controls which prohibit unprivileged users from
               modifying: <h:ul>
@@ -2082,7 +2087,7 @@ The OS can enroll in such account management and enable the overall information 
             </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fpt_aslr_ext.1" name="Address Space Layout Randomization">
+        <f-component cc-id="fpt_aslr_ext.1" name="Address Space Layout Randomization">
           <f-element>
             <title>The OS shall always randomize process address space memory locations with
 	    <selectables>
@@ -2196,7 +2201,7 @@ This test can also be completed on the same hardware and rebooting between appli
         <!--     </aactivity> -->
         <!--   </f-element> -->
         <!-- </f-component> -->
-        <f-component id="fpt_sbop_ext.1" name="Stack Buffer Overflow Protection">
+        <f-component cc-id="fpt_sbop_ext.1" name="Stack Buffer Overflow Protection">
           <f-element>
             <title>
 The OS shall <selectables>
@@ -2232,7 +2237,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
 	    </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fpt_srp_ext.1" name="Software Restriction Policies" status="objective">
+        <f-component cc-id="fpt_srp_ext.1" name="Software Restriction Policies" status="objective">
           <f-element>
             <title> The OS shall restrict execution to only programs which match an administrator-specified
               <selectables linebreak="yes">
@@ -2311,7 +2316,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
 	    </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fpt_tst_ext.1" name="Boot Integrity">
+        <f-component cc-id="fpt_tst_ext.1" name="Boot Integrity">
           <f-element>
             <title>The OS shall verify the integrity of the bootchain up through the OS kernel and
               <selectables linebreak="yes">
@@ -2400,7 +2405,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
           </f-element>
         </f-component>
 
-        <f-component id="fpt_tud_ext.1" name="Trusted Update">
+        <f-component cc-id="fpt_tud_ext.1" name="Trusted Update">
           <f-element>
             <title>The OS shall provide the ability to check for updates to the OS
               software itself. </title>
@@ -2462,7 +2467,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
 	    </aactivity>
           </f-element>
 	</f-component>
-        <f-component id="fpt_tud_ext.2" name="Trusted Update for Application Software">
+        <f-component cc-id="fpt_tud_ext.2" name="Trusted Update for Application Software">
           <!-- TO DO: Cite references. -->
           <f-element>
             <title>
@@ -2521,7 +2526,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
 	    </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fpt_w^x_ext.1" name="Write XOR Execute Memory Pages" status="objective">
+        <f-component cc-id="fpt_w^x_ext.1" name="Write XOR Execute Memory Pages" status="objective">
           <f-element>
             <title> The OS shall prevent allocation of any memory region with both write and
               execute permissions except for <assignable>list of exceptions</assignable>.
@@ -2568,7 +2573,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
         </f-component>
       </subsection>
       <subsection title="Audit Data Generation (FAU)" id="fau">
-        <f-component id="fau_gen.1" name="Audit Data Generation (Refined)">
+        <f-component cc-id="fau_gen.1" name="Audit Data Generation (Refined)">
           <f-element>
             <title>
 The <h:b>OS</h:b> shall be able to generate an audit record of the following auditable
@@ -2664,7 +2669,7 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
         </f-component>
       </subsection>
       <subsection title="Identification and Authentication (FIA)" id="fia">
-        <f-component id="fia_afl.1" name="Authentication failure handling (Refined)">
+        <f-component cc-id="fia_afl.1" name="Authentication failure handling (Refined)">
           <f-element>
             <title>
             The <h:b>OS</h:b> shall detect when
@@ -2742,7 +2747,7 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
 	    </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fia_uau.5" name="Multiple Authentication Mechanisms (Refined)">
+        <f-component cc-id="fia_uau.5" name="Multiple Authentication Mechanisms (Refined)">
           <f-element id="fel-mult-auth">
             <title>
 The <h:b>OS</h:b> shall provide the following authentication mechanisms
@@ -2873,7 +2878,7 @@ the authentication mechanism(s) behave as documented in the TSS.
           </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fia_x509_ext.1" name="X.509 Certificate Validation">
+        <f-component cc-id="fia_x509_ext.1" name="X.509 Certificate Validation">
           <f-element id="fel-cert-val">
             <title>
 The OS shall implement functionality to validate certificates in accordance with
@@ -3003,7 +3008,7 @@ the node certificate to be tested, two Intermediate CAs, and the
 	    </aactivity>
           </f-element>
         </f-component>
-        <f-component id="fia_x509_ext.2" name="X.509 Certificate Authentication">
+        <f-component cc-id="fia_x509_ext.2" name="X.509 Certificate Authentication">
           <f-element id="fel-cert-auth">
             <title> The OS shall use X.509v3 certificates as defined by RFC 5280 to support
               authentication for TLS and
@@ -3032,7 +3037,7 @@ the node certificate to be tested, two Intermediate CAs, and the
         </f-component>
       </subsection>
       <subsection title="TOE Access (FTA)" id="fta">
-        <f-component id="fta_tab.1" name="Default TOE access banners" status="optional">
+        <f-component cc-id="fta_tab.1" name="Default TOE access banners" status="optional">
           <f-element>
             <title>
             Before establishing a user session, the <h:b>OS</h:b> shall display an advisory
@@ -3050,7 +3055,7 @@ the node certificate to be tested, two Intermediate CAs, and the
         </f-component>
       </subsection>
       <subsection title="Trusted Path/Channels (FTP)" id="ftp">
-      	<f-component id="ftp_itc_ext.1" name="Trusted channel communication">
+      	<f-component cc-id="ftp_itc_ext.1" name="Trusted channel communication">
       	  <f-element id="fel-trust-comms">
       	    <title>
               The OS shall use
@@ -3099,7 +3104,7 @@ the node certificate to be tested, two Intermediate CAs, and the
 	    </aactivity>
       	  </f-element>
       	</f-component>
-        <f-component id="ftp_trp.1" name="Trusted Path">
+        <f-component cc-id="ftp_trp.1" name="Trusted Path">
             <f-element id="fel-trust-ends">
 	      <title>
 The <h:b>OS</h:b> shall provide a communication path between itself and
@@ -3249,7 +3254,7 @@ The evaluator will also perform the following
         contained in the TSS as it relates to the functional requirements. The evaluation activities
         contained in <secref linkend="SFRs"/> should provide the ST authors with
         sufficient information to determine the appropriate content for the TSS section.
-          <a-component id="adv_fsp.1" name="Basic Functional Specification (ADV_FSP.1)">The
+          <a-component cc-id="adv_fsp.1" name="Basic Functional Specification (ADV_FSP.1)">The
           functional specification describes the <abbr title="TSF Interface">TSFI</abbr>s. It is not
           necessary to have a formal or complete specification of these interfaces. Additionally,
           because OSes conforming to this PP will necessarily have interfaces to
@@ -3331,7 +3336,7 @@ The evaluator will also perform the following
         larger operational environment. Guidance pertaining to particular security functionality is
         also provided; requirements on such guidance are contained in the Evaluation Activities
         specified with each requirement.
-	<a-component id="agd_ope.1" name="Operational User Guidance (AGD_OPE.1)">
+	<a-component cc-id="agd_ope.1" name="Operational User Guidance (AGD_OPE.1)">
 
 	    <a-element type="D">
 	      <title>The developer shall provide operational user guidance.</title>
@@ -3416,7 +3421,7 @@ The evaluator will also perform the following
           </a-element>
 	  
         </a-component>
-        <a-component id="agd_pre.1" name="Preparative Procedures (AGD_PRE.1)">
+        <a-component cc-id="agd_pre.1" name="Preparative Procedures (AGD_PRE.1)">
 
             <a-element type="D">
               <title>The developer shall provide the OS, including its preparative
@@ -3461,7 +3466,7 @@ The evaluator will also perform the following
         management process. This is not meant to diminish the critical role that a developer's
         practices play in contributing to the overall trustworthiness of a product; rather, it is a
         reflection on the information to be made available for evaluation at this assurance level.
-          <a-component id="alc_cmc.1" name="Labeling of the TOE (ALC_CMC.1)">This component is
+          <a-component cc-id="alc_cmc.1" name="Labeling of the TOE (ALC_CMC.1)">This component is
           targeted at identifying the OS such that it can be distinguished from
           other products or versions from the same vendor and can be easily specified when being
           procured by an end user.
@@ -3498,7 +3503,7 @@ The evaluator will also perform the following
             </a-element>
 	  
         </a-component>
-        <a-component id="alc_cms.1" name="TOE CM Coverage (ALC_CMS.1)">
+        <a-component cc-id="alc_cms.1" name="TOE CM Coverage (ALC_CMS.1)">
 	  Given the scope of the OS and its associated evaluation
 	  evidence requirements, this component's evaluation activities are covered
 	  by the evaluation activities listed for ALC_CMC.1.
@@ -3555,7 +3560,7 @@ The evaluator will also perform the following
           </a-element>
 	  
         </a-component>
-        <a-component id="alc_tsu_ext.1" name="Timely Security Updates"> This component requires the
+        <a-component cc-id="alc_tsu_ext.1" name="Timely Security Updates"> This component requires the
           OS developer, in conjunction with any other necessary parties, to provide information as
           to how the end-user devices are updated to address security issues in a timely manner. The
           documentation describes the process of providing updates to the public from the time a
@@ -3625,7 +3630,7 @@ The evaluator will also perform the following
         functionality and interfaces with dependency on the availability of design information. One
         of the primary outputs of the evaluation process is the test report as specified in the
         following requirements.
-	<a-component id="ate_ind.1" name="Independent Testing - Conformance (ATE_IND.1)">
+	<a-component cc-id="ate_ind.1" name="Independent Testing - Conformance (ATE_IND.1)">
 	  Testing is performed to confirm the
           functionality described in the TSS as well as the administrative
           (including configuration and operational) documentation provided. The focus of the testing
@@ -3712,7 +3717,7 @@ The evaluator will also perform the following
         />. The labs will be expected to comment on the likelihood of these vulnerabilities given
         the documentation provided by the vendor. This information will be used in the development
         of penetration testing tools and for the development of future protection profiles.
-        <a-component id="ava_van.1" name="Vulnerability Survey (AVA_VAN.1)">
+        <a-component cc-id="ava_van.1" name="Vulnerability Survey (AVA_VAN.1)">
 
           <a-element type="D">
             <title>The developer shall provide the OS for testing.</title>
