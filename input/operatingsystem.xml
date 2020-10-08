@@ -646,7 +646,7 @@ users of the same system.
           </f-element>
         </f-component>
         <f-component cc-id="fcs_ckm.2" name="Cryptographic Key Establishment (Refined)">
-          <f-element>
+          <f-element id="fel-crypt-key-estab">
             <title>The OS shall <h:b>implement functionality to perform cryptographic key establishment</h:b>
               in accordance with a specified cryptographic key <h:b>establishment</h:b> method:
 	      <h:p/>
@@ -853,7 +853,7 @@ These keys are static, ephemeral or both depending on the scheme being tested.
                 
 
 	<f-component cc-id="fcs_ckm_ext.4" name="Cryptographic Key Destruction" >
-          <f-element id="fil-key-kill">
+          <f-element id="fel-key-kill">
 	    <title>
 The OS shall destroy cryptographic keys and key material in accordance with a specified cryptographic key destruction method
               <selectables>
@@ -872,7 +872,7 @@ The OS shall destroy cryptographic keys and key material in accordance with a sp
 		    <selectables>
 			<selectable>destruction
 			of all key encrypting keys protecting the target key
-			according to <linkref linkend="fil-key-kill"/>, where none of the KEKs protecting the target key are derived
+			according to <linkref linkend="fel-key-kill"/>, where none of the KEKs protecting the target key are derived
 			</selectable>
 			<selectable>the
 invocation of an interface provided by the underlying platform that
@@ -934,13 +934,13 @@ and the KEK cannot be recovered or re-derived.).
 	      </h:p>
 	    </note>
 	  </f-element>
-          <f-element>
+          <f-element id="fel-key-kill-when">
 	    <title>The OS shall destroy all keys and key material when no longer needed.</title>
 	    <note role="application">
 	      <h:p>
 		For the purposes of this requirement, key material refers to authentication data, passwords, secret/private symmetric keys, private asymmetric keys, data used to derive keys, values derived from passwords, etc.
 	      </h:p>
-	      <h:p>Key destruction procedures are performed in accordance with <linkref linkend="fil-key-kill"/>.</h:p>
+	      <h:p>Key destruction procedures are performed in accordance with <linkref linkend="fel-key-kill"/>.</h:p>
 	    </note>
 	    <aactivity>
 	      <TSS>
@@ -1055,7 +1055,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
         </f-component>
  
         <f-component cc-id="fcs_cop.1" iteration="ENCRYPT" name="Cryptographic Operation - Encryption/Decryption (Refined)">
-          <f-element>
+          <f-element id="fel-encrypt-how">
             <title>
               The <h:b>OS</h:b> shall perform [<h:i>encryption/decryption services for data</h:i>] in
 	      accordance with a specified cryptographic algorithm<h:b>
@@ -1399,7 +1399,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
           </f-element>
         </f-component>
         <f-component cc-id="fcs_cop.1" iteration="HASH" name="Cryptographic Operation - Hashing (Refined)">
-          <f-element>
+          <f-element id="fel-hash-how">
             <title>The <h:b>OS</h:b> shall perform [<h:i>cryptographic hashing services</h:i>] in accordance with a
               specified cryptographic algorithm <h:b>
               <selectables linebreak="yes">
@@ -1498,7 +1498,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
           </f-element>
         </f-component>
         <f-component cc-id="fcs_cop.1" iteration="SIGN" name="Cryptographic Operation - Signing (Refined)">
-          <f-element>
+          <f-element id="fel-sign-how">
             <title>The <h:b>OS</h:b> shall perform [<h:i>cryptographic signature services (generation and
               verification)</h:i>] in accordance with a specified cryptographic algorithm <h:b><selectables
                 linebreak="yes">
@@ -1577,7 +1577,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
           </f-element>
         </f-component>
         <f-component cc-id="fcs_cop.1" iteration="KEYHMAC" name="Cryptographic Operation - Keyed-Hash Message Authentication (Refined)">
-          <f-element>
+          <f-element id="fel-keyed-hash-how">
             <title>The <h:b>OS</h:b> shall perform [<h:i>keyed-hash message authentication services</h:i>]
             in accordance with a specified cryptographic algorithm<h:b>
               <selectables>
@@ -1628,7 +1628,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
         </f-component>
 
         <f-component cc-id="fcs_rbg_ext.1" name="Random Bit Generation">
-          <f-element>
+          <f-element id="fel-rbg-how">
             <title>
               The OS shall perform all deterministic random bit generation (DRBG) services in
               accordance with NIST Special Publication 800-90A using
@@ -1700,7 +1700,7 @@ only AES-based implementations for CTR_DRBG are allowed.
             </aactivity>
           </f-element>
           
-          <f-element>
+          <f-element id="fel-rbg-seed-how">
             <title>
               The deterministic RBG used by the OS shall be seeded by an entropy source that
               accumulates entropy from a
@@ -1749,7 +1749,7 @@ only AES-based implementations for CTR_DRBG are allowed.
         </f-component>
         
         <f-component cc-id="fcs_sto_ext.1" name="Storage of Sensitive Data">
-          <f-element>
+          <f-element id="fel-store-sdata">
             <title>
 	      The OS shall implement functionality to encrypt sensitive data
 	      stored in non-volatile storage and provide interfaces to applications to invoke this functionality.
@@ -1778,7 +1778,7 @@ only AES-based implementations for CTR_DRBG are allowed.
       </subsection>
       <subsection title="User Data Protection (FDP)" id="fdp">
         <f-component cc-id="fdp_acf_ext.1" name="Access Controls for Protecting User Data">
-          <f-element>
+          <f-element id="fel-protect-user-data">
             <title>
 	      The OS shall implement access controls which can prohibit unprivileged users from
               accessing files and directories owned by other users.
@@ -1842,7 +1842,7 @@ only AES-based implementations for CTR_DRBG are allowed.
           </f-element>
         </f-component>
         <f-component cc-id="fdp_ifc_ext.1" name="Information flow control" status="optional">
-          <f-element>
+          <f-element id="fel-dit-vpn">
             <title> The OS shall
 	    <selectables linebreak="yes">
               <selectable>provide an interface which allows a VPN client to protect all IP traffic using IPsec</selectable>
@@ -1923,7 +1923,7 @@ only AES-based implementations for CTR_DRBG are allowed.
       </subsection>
       <subsection title="Security Management (FMT)" id="fmt">
         <f-component cc-id="fmt_mof_ext.1" name="Management of security functions behavior">
-	  <f-element>
+	  <f-element id="fel-man-sec-func">
 	    <title>
 	      The OS shall restrict the ability to perform the function indicated in the "Administrator" column in <linkref linkend="fel-manage-functions"/> to the administrator.
 	    </title>
@@ -2026,7 +2026,7 @@ The OS can enroll in such account management and enable the overall information 
       </subsection>
       <subsection title="Protection of the TSF (FPT)" id="fpt">
         <f-component cc-id="fpt_acf_ext.1" name="Access controls">
-          <f-element>
+          <f-element id="fel-protect-priv">
             <title> The OS shall implement access controls which prohibit unprivileged users from
               modifying: <h:ul>
                 <h:li>Kernel and its drivers/modules</h:li>
@@ -2089,7 +2089,7 @@ The OS can enroll in such account management and enable the overall information 
           </f-element>
         </f-component>
         <f-component cc-id="fpt_aslr_ext.1" name="Address Space Layout Randomization">
-          <f-element>
+          <f-element id="fel-aslr">
             <title>The OS shall always randomize process address space memory locations with
 	    <selectables>
 	      <selectable>8</selectable>
@@ -2203,7 +2203,7 @@ This test can also be completed on the same hardware and rebooting between appli
         <!--   </f-element> -->
         <!-- </f-component> -->
         <f-component cc-id="fpt_sbop_ext.1" name="Stack Buffer Overflow Protection">
-          <f-element>
+          <f-element id="fel-sbop">
             <title>
 The OS shall <selectables>
   <selectable>employ stack-based buffer overflow protections</selectable>
@@ -2239,7 +2239,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
           </f-element>
         </f-component>
         <f-component cc-id="fpt_srp_ext.1" name="Software Restriction Policies" status="objective">
-          <f-element>
+          <f-element id="fel-srp">
             <title> The OS shall restrict execution to only programs which match an administrator-specified
               <selectables linebreak="yes">
                 <selectable>file path</selectable>
@@ -2318,7 +2318,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
           </f-element>
         </f-component>
         <f-component cc-id="fpt_tst_ext.1" name="Boot Integrity">
-          <f-element>
+          <f-element id="fel-boot">
             <title>The OS shall verify the integrity of the bootchain up through the OS kernel and
               <selectables linebreak="yes">
                 <selectable>all executable code stored in mutable media</selectable>
@@ -2407,7 +2407,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
         </f-component>
 
         <f-component cc-id="fpt_tud_ext.1" name="Trusted Update">
-          <f-element>
+          <f-element id="fel-os-update">
             <title>The OS shall provide the ability to check for updates to the OS
               software itself. </title>
             <note role="application">This requirement is about the ability to check for the availability of
@@ -2470,7 +2470,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
 	</f-component>
         <f-component cc-id="fpt_tud_ext.2" name="Trusted Update for Application Software">
           <!-- TO DO: Cite references. -->
-          <f-element>
+          <f-element id="fel-app-check-update">
             <title>
 	      The OS shall provide the ability to check for updates to
               application software.
@@ -2528,7 +2528,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
           </f-element>
         </f-component>
         <f-component cc-id="fpt_w^x_ext.1" name="Write XOR Execute Memory Pages" status="objective">
-          <f-element>
+          <f-element id="fel-no-rw-mem">
             <title> The OS shall prevent allocation of any memory region with both write and
               execute permissions except for <assignable>list of exceptions</assignable>.
             </title>
@@ -2575,7 +2575,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
       </subsection>
       <subsection title="Audit Data Generation (FAU)" id="fau">
         <f-component cc-id="fau_gen.1" name="Audit Data Generation (Refined)">
-          <f-element>
+          <f-element id="fel-faugen">
             <title>
 The <h:b>OS</h:b> shall be able to generate an audit record of the following auditable
               events:
@@ -2671,7 +2671,7 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
       </subsection>
       <subsection title="Identification and Authentication (FIA)" id="fia">
         <f-component cc-id="fia_afl.1" name="Authentication failure handling (Refined)">
-          <f-element>
+          <f-element id="fel-id-and-auth">
             <title>
             The <h:b>OS</h:b> shall detect when
             <selectables linebreak='yes'>
@@ -2702,7 +2702,7 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
 	      </Tests>
 	    </aactivity>
           </f-element>
-          <f-element>
+          <f-element id="fel-bad-attempts">
             <title>
 	      When the defined number of unsuccessful authentication attempts for an
 	      account has been <h:b>met</h:b>, the <h:b>OS</h:b> shall:
@@ -2827,7 +2827,7 @@ to support user authentication.
               </Tests>
 	    </aactivity>
           </f-element>
-           <f-element>
+           <f-element id="fel-auth-how">
             <title>
 The <h:b>OS</h:b> shall authenticate any user's claimed identity according to the
               <assignable>
@@ -2977,7 +2977,7 @@ the following rules: <h:ul>
               </Tests>
 	    </aactivity>
           </f-element>
-          <f-element>
+          <f-element id="fel-cacert">
             <title>
 The OS shall only treat a certificate as a CA certificate if the
 <h:i>basicConstraints</h:i> extension is present and the CA flag is set to TRUE.
@@ -3039,7 +3039,7 @@ the node certificate to be tested, two Intermediate CAs, and the
       </subsection>
       <subsection title="TOE Access (FTA)" id="fta">
         <f-component cc-id="fta_tab.1" name="Default TOE access banners" status="optional">
-          <f-element>
+          <f-element id="fel-banner">
             <title>
             Before establishing a user session, the <h:b>OS</h:b> shall display an advisory
             warning message regarding unauthorized use of the OS.
