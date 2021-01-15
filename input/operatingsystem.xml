@@ -2,6 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="../transforms/pp2html.xsl"?>
 
 <PP xmlns="https://niap-ccevs.org/cc/v1" name="General Purpose Operating System"
+    xmlns:sec="https://niap-ccevs.org/cc/v1/section"
     xmlns:h="http://www.w3.org/1999/xhtml" boilerplate="yes">
   <PPReference>
     <ReferenceTable>
@@ -38,15 +39,15 @@
   <include-pkg product="TLS" name="Network Encryption" short="TLS"  version="1.1"
 			 url="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439"
 			 xmlurl="https://raw.githubusercontent.com/commoncriteria/tls/ed2d9042c27f7793d1f96e08e47bd12b04970977/input/tls.xml"></include-pkg>
-  <chapter title="Introduction" id="introduction">
-    <section title="Overview" id="ppoverview"> 
+  <sec:Introduction>
+    <sec:Overview>
 The scope of this Protection Profile (PP) is to
 describe the security functionality of operating systems in terms of <citeCC/>
 and to define functional and assurance requirements for such products.
 An operating system is software that manages computer hardware and software
 resources, and provides common services for application programs. The hardware
 it manages may be physical or virtual.
-    </section>
+    </sec:Overview>
     <tech-terms>
       <term abbr='AES' full="Advanced Encryption Standard"/>
       <term full="Address Space Layout Randomization" abbr="ASLR">
@@ -183,7 +184,7 @@ it manages may be physical or virtual.
       <term abbr='XOR' full="Exclusive Or"/>
     </tech-terms>    
     <section title="Compliant Targets of Evaluation" id="TOEdescription">
-      <subsection title="TOE Boundary" id="toeboundary">
+      <section title="TOE Boundary" id="toeboundary">
         The TOE boundary encompasses the OS kernel and its drivers, shared
         software libraries, and some application software included with the OS. The applications considered within the TOE
         are those that provide essential security services, many of which run with elevated
@@ -191,15 +192,15 @@ it manages may be physical or virtual.
         claim evaluation as part of the OS evaluation, even when it is necessary to evaluate
         some of their functionality as it relates to their role as part of the OS.
         <figure entity="images/Toe.png" title="General TOE " id="toe"/>
-      </subsection>
-      <subsection title="TOE Platform" id="TOEplatform">
+      </section>
+      <sec:TOE_Platform>
 	The TOE platform, which consists of the physical or virtual hardware on which the TOE executes,
         is outside the scope of evaluation.  At the same time, the security of the TOE relies upon it.
         Other hardware components which independently run their own software and are
         relevant to overall system security are also outside the scope of evaluation.
-      </subsection>
+      </sec:TOE_Platform>
     </section>
-    <section title="Use Cases" id="usecases">Requirements in this Protection Profile are designed to
+    <sec:Use_Cases>Requirements in this Protection Profile are designed to
       address the security problems in at least the following use cases. These use cases are intentionally
       very broad, as many specific use cases exist for an operating system. These use cases may also
       overlap with one another.  An operating system's functionality may even be effectively extended by
@@ -246,14 +247,14 @@ it manages may be physical or virtual.
 	  </description>
         </usecase>
       </usecases>
-    </section>
-  </chapter>
-  <chapter title="Conformance Claims" id="ccl"/>
-  <chapter title="Security Problem Description" id="spd">The security problem is described in terms
+    </sec:Use_Cases>
+  </sec:Introduction>
+  <sec:Conformance_Claims/>
+  <sec:Security_Problem_Description>The security problem is described in terms
     of the threats that the OS is expected to address, assumptions about the
     operational environment, and any organizational security policies that the OS
     is expected to enforce.
-    <section title="Threats" id="threats">
+    <sec:Threats>
       <threats>
         <threat name="T.NETWORK_ATTACK">
           <description> An attacker is positioned on a communications channel or elsewhere on the
@@ -317,8 +318,8 @@ it manages may be physical or virtual.
           </objective-refer>
         </threat>
       </threats>
-    </section>
-    <section title="Assumptions" id="assumptions">
+    </sec:Threats>
+    <sec:Assumptions>
       <assumptions>
         <assumption name="A.PLATFORM">
           <description> The OS relies upon a trustworthy computing platform for
@@ -347,7 +348,7 @@ it manages may be physical or virtual.
           </objective-refer>
         </assumption>
       </assumptions>
-    </section>
+    </sec:Assumptions>
 <!--    <section title="Organizational Security Policies" id="OSPs">
       <OSPs>
         <OSP id="P.ENTERPRISE">
@@ -362,9 +363,9 @@ it manages may be physical or virtual.
         </OSP>
       </OSPs>
     </section> -->
-  </chapter>
-  <chapter title="Security Objectives" id="obj">
-    <section title="Security Objectives for the TOE" id="SecurityObjectivesTOE">
+  </sec:Security_Problem_Description>
+  <sec:Security_Objectives>
+    <sec:Security_Objectives_for_the_TOE>
       <SOs>
         <SO name="O.ACCOUNTABILITY">
           <description> Conformant OSes ensure that information exists that allows
@@ -431,9 +432,9 @@ users of the same system.
           <rationale>QQQ </rationale>
         </SO>
       </SOs>
-    </section>
-    <section title="Security Objectives for the Operational Environment"
-      id="SecurityObjectivesTOEorEnvironment">The following security objectives for the operational
+    </sec:Security_Objectives_for_the_TOE>
+    <sec:Security_Objectives_for_the_Operational_Environment>
+      The following security objectives for the operational
       environment assist the OS in correctly providing its security functionality.
       These track with the assumptions about the environment. <SOEs>
         <SOE name="OE.PLATFORM">
@@ -452,15 +453,14 @@ users of the same system.
             negligent or hostile, and administers the OS within compliance of the applied enterprise
             security policy. </description>
         </SOE>
-      </SOEs></section>
-    <section title="Security Objectives Rationale" id="SOR">
-      <!-- This section is populated by boilerplates.xsl in transforms. -->
-      </section>
-  </chapter>
+      </SOEs>
+    </sec:Security_Objectives_for_the_Operational_Environment>
+    <sec:Security_Objectives_Rationale/>
+  </sec:Security_Objectives>
 
-  <chapter title="Security Requirements" id="req">
-    <section title="Security Functional Requirements" id="SFRs">
-      <subsection title="Cryptographic Support (FCS)" id="fcs">
+  <sec:Security_Requirements>
+    <sec:SFRs title="Security Functional Requirements">
+      <section title="Cryptographic Support (FCS)" id="fcs">
         <f-component cc-id="fcs_ckm.1" name="Cryptographic Key Generation (Refined)">
           <f-element id="fel-asym-gen">
             <title> The <h:b>OS</h:b> shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a
@@ -1773,8 +1773,8 @@ only AES-based implementations for CTR_DRBG are allowed.
             </aactivity>
           </f-element>
         </f-component>
-      </subsection>
-      <subsection title="User Data Protection (FDP)" id="fdp">
+      </section>
+      <section title="User Data Protection (FDP)" id="fdp">
         <f-component cc-id="fdp_acf_ext.1" name="Access Controls for Protecting User Data">
           <f-element id="fel-protect-user-data">
             <title>
@@ -1918,8 +1918,8 @@ only AES-based implementations for CTR_DRBG are allowed.
 	    </aactivity>
           </f-element>
         </f-component>
-      </subsection>
-      <subsection title="Security Management (FMT)" id="fmt">
+      </section>
+      <section title="Security Management (FMT)" id="fmt">
         <f-component cc-id="fmt_mof_ext.1" name="Management of security functions behavior">
 	  <f-element id="fel-man-sec-func">
 	    <title>
@@ -2002,7 +2002,7 @@ Configure lockout policy for unsuccessful authentication attempts through
           how to indicate Administrator or User capability.
 	      </h:p>
 	      <h:p>
-          The terms "Administrator" and "User" are defined in <secref linkend="glossary"/>.
+          The terms "Administrator" and "User" are defined in <xref linkend="glossary"/>.
           The intent of this requirement is to ensure that the ST is populated with the
           relevant management functions that are provided by the OS.	      </h:p>
 	      <h:p>
@@ -2021,8 +2021,8 @@ The OS can enroll in such account management and enable the overall information 
 	    </aactivity>
 	  </f-element>
 	</f-component>
-      </subsection>
-      <subsection title="Protection of the TSF (FPT)" id="fpt">
+      </section>
+      <section title="Protection of the TSF (FPT)" id="fpt">
         <f-component cc-id="fpt_acf_ext.1" name="Access controls">
           <f-element id="fel-protect-priv">
             <title> The OS shall implement access controls which prohibit unprivileged users from
@@ -2570,8 +2570,8 @@ The evaluator will also ensure that the TSS includes a description of the safegu
 	    </aactivity>
           </f-element>
         </f-component>
-      </subsection>
-      <subsection title="Audit Data Generation (FAU)" id="fau">
+      </section>
+      <section title="Audit Data Generation (FAU)" id="fau">
         <f-component cc-id="fau_gen.1" name="Audit Data Generation (Refined)">
           <f-element id="fel-faugen">
             <title>
@@ -2666,8 +2666,8 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
 	    </aactivity>
         </f-element>
         </f-component>
-      </subsection>
-      <subsection title="Identification and Authentication (FIA)" id="fia">
+      </section>
+      <section title="Identification and Authentication (FIA)" id="fia">
         <f-component cc-id="fia_afl.1" name="Authentication failure handling (Refined)">
           <f-element id="fel-id-and-auth">
             <title>
@@ -3034,8 +3034,8 @@ the node certificate to be tested, two Intermediate CAs, and the
 	    </aactivity>
           </f-element>
         </f-component>
-      </subsection>
-      <subsection title="TOE Access (FTA)" id="fta">
+      </section>
+      <section title="TOE Access (FTA)" id="fta">
         <f-component cc-id="fta_tab.1" name="Default TOE access banners" status="optional">
           <f-element id="fel-banner">
             <title>
@@ -3052,8 +3052,8 @@ the node certificate to be tested, two Intermediate CAs, and the
 	    </aactivity>
           </f-element>
         </f-component>
-      </subsection>
-      <subsection title="Trusted Path/Channels (FTP)" id="ftp">
+      </section>
+      <section title="Trusted Path/Channels (FTP)" id="ftp">
       	<f-component cc-id="ftp_itc_ext.1" name="Trusted channel communication">
       	  <f-element id="fel-trust-comms">
       	    <title>
@@ -3201,12 +3201,12 @@ The evaluator will also perform the following
 	      </aactivity>
             </f-element>
         </f-component>
-      </subsection>
-    </section>
-    <section title="Security Assurance Requirements" id="SARs">
+      </section>
+    </sec:SFRs>
+    <sec:Security_Assurance_Requirements>
       <h:p>
-	The Security Objectives in <secref linkend="obj"/> were constructed to
-	address threats identified in <secref linkend="threats"/>.
+	The Security Objectives in <secref linkend="Security_Objectives"/> were constructed to
+	address threats identified in <secref linkend="Threats"/>.
 	The Security Functional Requirements (SFRs) in <secref linkend="SFRs"/>
 	are a formal instantiation of the Security Objectives.
 	The PP identifies the Security Assurance Requirements (SARs) to frame
@@ -3215,8 +3215,9 @@ The evaluator will also perform the following
       </h:p>
       <h:p>
 	This section lists the set of SARs from CC part 3
-	that are required in evaluations against this PP. Individual evaluation activities
-	to be performed are specified both in <secref linkend="req"/> as well as in this section.
+	that are required in evaluations against this PP.
+        Individual evaluation activities to be performed are specified both in 
+        <secref linkend="Security_Requirements"/> as well as in this section.
       </h:p>
       <h:p>
       The general model for evaluation of TOEs against STs written to conform to this PP is as follows:
@@ -3226,15 +3227,18 @@ The evaluator will also perform the following
       <abbr class="expanded" title="Information Technology Security Evaluation Facility">ITSEF</abbr>
       will obtain the OS, supporting environmental IT, and the administrative/user guides for
       the OS. The ITSEF is expected to perform actions mandated by the Common Evaluation
-      Methodology (CEM) for the ASE and ALC SARs. The ITSEF also performs the evaluation activities
-      contained within <secref linkend="req"/>, which are intended to be an interpretation of the
+      Methodology (CEM) for the ASE and ALC SARs.
+      The ITSEF also performs the evaluation activities contained within 
+      <secref linkend="Security_Requirements"/>, which are intended to be an interpretation of the
       other CEM assurance requirements as they apply to the specific technology instantiated in the
-      OS. The evaluation activities that are captured in <secref linkend="req"/> also provide
+      OS.
+      The evaluation activities that are captured in 
+      <secref linkend="Security_Requirements"/> also provide
       clarification as to what the developer needs to provide to demonstrate the OS is compliant
       with the PP.
       </h:p>
 
-      <subsection title="Class ASE: Security Target" id="ase">
+      <section title="Class ASE: Security Target" id="ase">
         The following ASE components as defined in <cite linkend="bibCEM"/> are required:
         <h:ul>
         <h:li>Conformance claims (ASE_CCL.1)</h:li>
@@ -3245,10 +3249,11 @@ The evaluator will also perform the following
         <h:li>Security Problem Definition (ASE_SPD.1)</h:li>
         <h:li>TOE summary specification (ASE_TSS.1)</h:li>
         </h:ul>
-        The requirements for exact conformance of the Security Target are described in <secref linkend="ccl"/>.
-      </subsection>
+        The requirements for exact conformance of the Security Target are described in 
+        <secref linkend="Conformance_Claims"/>.
+      </section>
 
-      <subsection title="Class ADV: Development" id="adv">The information about the OS is contained in the guidance documentation available to the end user as
+      <section title="Class ADV: Development" id="adv">The information about the OS is contained in the guidance documentation available to the end user as
         well as the TSS portion of the ST. The OS developer must concur with the description of the product that is
         contained in the TSS as it relates to the functional requirements. The evaluation activities
         contained in <secref linkend="SFRs"/> should provide the ST authors with
@@ -3323,8 +3328,8 @@ The evaluator will also perform the following
             </a-element>
 	  
         </a-component>
-      </subsection>
-      <subsection id="agd" title="Class AGD: Guidance Documentation">The guidance documents will be
+      </section>
+      <section id="agd" title="Class AGD: Guidance Documentation">The guidance documents will be
         provided with the ST. Guidance must include a description of how the IT
         personnel verifies that the Operational Environment can fulfill its role for the security
         functionality. The documentation should be in an informal style and readable by the IT
@@ -3458,8 +3463,8 @@ The evaluator will also perform the following
             </a-element>
 	  
         </a-component>
-      </subsection>
-      <subsection id="alc" title="Class ALC: Life-cycle Support"> At the assurance level provided
+      </section>
+      <section id="alc" title="Class ALC: Life-cycle Support"> At the assurance level provided
         for OSes conformant to this PP, life-cycle support is limited to end-user-visible aspects of
         the life-cycle, rather than an examination of the OS vendor's development and configuration
         management process. This is not meant to diminish the critical role that a developer's
@@ -3621,8 +3626,8 @@ The evaluator will also perform the following
             </a-element>
 	  
         </a-component>
-      </subsection>
-      <subsection id="ate" title="Class ATE: Tests">Testing is specified for functional aspects of
+      </section>
+      <section id="ate" title="Class ATE: Tests">Testing is specified for functional aspects of
         the system as well as aspects that take advantage of design or implementation weaknesses.
         The former is done through the ATE_IND family, while the latter is through the AVA_VAN
         family. At the assurance level specified in this PP, testing is based on advertised
@@ -3634,7 +3639,9 @@ The evaluator will also perform the following
           functionality described in the TSS as well as the administrative
           (including configuration and operational) documentation provided. The focus of the testing
           is to confirm that the requirements specified in <secref linkend="SFRs"/> being met,
-          although some additional testing is specified for SARs in <secref linkend="SARs"/>. The
+          although some additional testing is specified for SARs in
+          <secref linkend="Security_Assurance_Requirements"/>. 
+          The
           evaluation activities identify the additional testing activities associated with these
           components. The evaluator produces a test report documenting the plan for and results of
           testing, as well as coverage arguments focused on the platform/OS
@@ -3706,8 +3713,8 @@ The evaluator will also perform the following
             </a-element>
 	  
         </a-component>
-      </subsection>
-      <subsection id="ava" title="Class AVA: Vulnerability Assessment">For the first generation of
+      </section>
+      <section id="ava" title="Class AVA: Vulnerability Assessment">For the first generation of
         this protection profile, the evaluation lab is expected to survey open sources to discover
         what vulnerabilities have been discovered in these types of products. In most cases, these
         vulnerabilities will require sophistication beyond that of a basic attacker. Until
@@ -3767,9 +3774,9 @@ The evaluator will also perform the following
           </a-element>
 	  
         </a-component>
-      </subsection>
-    </section>
-  </chapter>
+      </section>
+    </sec:Security_Assurance_Requirements>
+  </sec:Security_Requirements>
 
   <appendix title="Implicitly Satisfied Requirements" id="satisfiedreqs">
      <h:table>
