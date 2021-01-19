@@ -37,8 +37,8 @@
     </entry>
   </RevisionHistory>
   <include-pkg product="TLS" name="Network Encryption" short="TLS"  version="1.1"
-			 url="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439"
-			 xmlurl="https://raw.githubusercontent.com/commoncriteria/tls/ed2d9042c27f7793d1f96e08e47bd12b04970977/input/tls.xml"></include-pkg>
+               url="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439"
+	       xmlurl="https://raw.githubusercontent.com/commoncriteria/tls/ed2d9042c27f7793d1f96e08e47bd12b04970977/input/tls.xml"/>
   <sec:Introduction>
     <sec:Overview>
 The scope of this Protection Profile (PP) is to
@@ -157,7 +157,7 @@ it manages may be physical or virtual.
 	employment history and information which can be used to distinguish or trace an
 	individual's identity, such as their name, social security number, date and place of
 	birth, mother's maiden name, biometric records, etc., including any other personal
-	information which is linked or linkable to an individual.<cite linkend="bibOMB"/>
+	information which is linked or linkable to an individual.<xref to="bibOMB"/>
       </term>
       <term abbr='SAN' full="Subject Alternative Name"/>
       <term abbr='SHA' full="Secure Hash Algorithm"/>
@@ -676,16 +676,16 @@ users of the same system.
               in the RSA key establishment scheme, the OS does not need to implement RSA key generation.
               </h:p><h:p>
 	      The elliptic curves used for the key establishment scheme shall correlate with
-              the curves specified in <linkref linkend="fel-asym-gen"/>. The domain parameters
+              the curves specified in <xref to="fel-asym-gen"/>. The domain parameters
               used for the finite field-based key establishment scheme are specified by the
-              key generation according to <linkref linkend="fel-asym-gen"/>.
+              key generation according to <xref to="fel-asym-gen"/>.
 	    </h:p>
 	    </note>
             <aactivity>
 	      <Tests>
 	      <h:p>
 		The evaluator will ensure that the supported key establishment schemes
-		correspond to the key generation schemes identified in  <linkref linkend="fel-asym-gen"/>
+		correspond to the key generation schemes identified in  <xref to="fel-asym-gen"/>
 		If the ST specifies more than one scheme,
 		the evaluator will examine the TSS to verify that it identifies the usage for each scheme.
 	      </h:p>
@@ -870,7 +870,7 @@ The OS shall destroy cryptographic keys and key material in accordance with a sp
 		    <selectables>
 			<selectable>destruction
 			of all key encrypting keys protecting the target key
-			according to <linkref linkend="fel-key-kill"/>, where none of the KEKs protecting the target key are derived
+			according to <xref to="fel-key-kill"/>, where none of the KEKs protecting the target key are derived
 			</selectable>
 			<selectable>the
 invocation of an interface provided by the underlying platform that
@@ -938,7 +938,7 @@ and the KEK cannot be recovered or re-derived.).
 	      <h:p>
 		For the purposes of this requirement, key material refers to authentication data, passwords, secret/private symmetric keys, private asymmetric keys, data used to derive keys, values derived from passwords, etc.
 	      </h:p>
-	      <h:p>Key destruction procedures are performed in accordance with <linkref linkend="fel-key-kill"/>.</h:p>
+	      <h:p>Key destruction procedures are performed in accordance with <xref to="fel-key-kill"/>.</h:p>
 	    </note>
 	    <aactivity>
 	      <TSS>
@@ -1733,7 +1733,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 	    <Tests>
 	      <h:p>
 		Documentation shall be produced - and the evaluator will perform the
-		activities - in accordance with <appref linkend="entropyappendix"/> and
+		activities - in accordance with <xref to="entropyappendix"/> and
 		the
 		<h:a href="https://www.niap-ccevs.org/Documents_and_Guidance/ccevs/Entropy%20Documentation%20and%20Assessment%20Clarification.pdf"
 		     >Clarification to the Entropy Documentation and Assessment Annex</h:a>.
@@ -1870,7 +1870,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 	      <h:p>
 		  The ST author shall select the second option if the TSF implements a
 		  native VPN client (IPsec is selected in FTP_ITC_EXT.1). If the native
-		  VPN client is to be validated (IPsec is selected in <linkref linkend="fel-trust-comms"/>
+		  VPN client is to be validated (IPsec is selected in <xref to="fel-trust-comms"/>
 		  and
 		  the TSF is validated against the <h:i>EP for IPsec
 		  Virtual Private Network (VPN) Clients</h:i>), the ST author shall also
@@ -1923,7 +1923,8 @@ only AES-based implementations for CTR_DRBG are allowed.
         <f-component cc-id="fmt_mof_ext.1" name="Management of security functions behavior">
 	  <f-element id="fel-man-sec-func">
 	    <title>
-	      The OS shall restrict the ability to perform the function indicated in the "Administrator" column in <linkref linkend="fel-manage-functions"/> to the administrator.
+	      The OS shall restrict the ability to perform the function indicated in the "Administrator" column in 
+              <xref to="fel-manage-functions"/> to the administrator.
 	    </title>
 	    <note role="application">
         The functions with an "X" in the "Administrator" column must be restricted
@@ -2002,7 +2003,7 @@ Configure lockout policy for unsuccessful authentication attempts through
           how to indicate Administrator or User capability.
 	      </h:p>
 	      <h:p>
-          The terms "Administrator" and "User" are defined in <xref linkend="glossary"/>.
+          The terms "Administrator" and "User" are defined in <xref ref="glossary"/>.
           The intent of this requirement is to ensure that the ST is populated with the
           relevant management functions that are provided by the OS.	      </h:p>
 	      <h:p>
@@ -2409,8 +2410,8 @@ The evaluator will also ensure that the TSS includes a description of the safegu
             <title>The OS shall provide the ability to check for updates to the OS
               software itself. </title>
             <note role="application">This requirement is about the ability to check for the availability of
-			authentic updates, while the installation of authentic updates is covered by <linkref
-            linkend="fel-verify-updates"/>.
+			authentic updates, while the installation of authentic updates is covered by
+                        <xref to="fel-verify-updates"/>.
 			</note>
             <aactivity>
 	      <Tests>
@@ -2475,7 +2476,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
 	    </title>
             <note role="application">This requirement is about the ability to check for authentic updates,
               while the actual installation of such updates is covered by 
-	      <linkref linkend="fel-verify-app-updates"/>.
+	      <xref to="fel-verify-app-updates"/>.
             </note>
             <aactivity>
 	      <Tests>
@@ -2763,7 +2764,7 @@ to support user authentication.
             <note role="application">
 	      The "for use in SSH only, SSH public key-based authentication as specified by the EP
 		    for Secure Shell" selection can only be included, and must be included, if
-		    <linkref linkend="fel-trust-comms"/> selects
+		    <xref to="fel-trust-comms"/> selects
 		    "SSH as conforming to the EP for Secure Shell".
 	    </note>
             <aactivity>
@@ -2805,8 +2806,8 @@ to support user authentication.
 			  Authentication Enhanced Key Usage field set. The evaluator will
 			  provision the OS for authentication with the X.509v3 certificate.
 			  The evaluator will ensure that the
-			  certificates are validated by the OS as per <linkref
-			  linkend="fel-cert-val"/> and then conduct the following tests:
+			  certificates are validated by the OS as per
+                          <xref to="fel-cert-val"/> and then conduct the following tests:
               <testlist>
                  <test>
 					The evaluator will attempt to authenticate to the OS using
@@ -2834,7 +2835,8 @@ The <h:b>OS</h:b> shall authenticate any user's claimed identity according to th
               </assignable>.
             </title>
             <note role="application">
-For all authentication mechanisms specified in <linkref linkend="fel-mult-auth"/>, the TSS shall describe the rules as to how each authentication mechanism is used.
+For all authentication mechanisms specified in <xref to="fel-mult-auth"/>,
+the TSS shall describe the rules as to how each authentication mechanism is used.
 Example rules are how the authentication mechanism authenticates the user (i.e.
 how does the TSF verify that the correct password or authentication
 factor is used), the result of a successful authentication (i.e.
@@ -2934,7 +2936,7 @@ the following rules: <h:ul>
 	      <h:p>
 	      The tests described must be performed in conjunction with the other
               certificate services evaluation activities, including the functions in 
-	      <linkref linkend="fel-cert-auth"/>. The tests for the <h:i>extendedKeyUsage</h:i> rules are performed
+	      <xref to="fel-cert-auth"/>. The tests for the <h:i>extendedKeyUsage</h:i> rules are performed
               in conjunction with the uses that require those rules. The evaluator will create a
               chain of at least four certificates: the node certificate to be tested, two
               Intermediate CAs, and the self-signed Root CA. <testlist>
@@ -2987,7 +2989,7 @@ The OS shall only treat a certificate as a CA certificate if the
 	      <Tests>
 The tests described must be performed in conjunction with the other
 certificate services evaluation activities, including the functions in
-<linkref linkend="fel-cert-auth"/>.
+<xref to="fel-cert-auth"/>.
 The evaluator will create a chain of at least four certificates:
 the node certificate to be tested, two Intermediate CAs, and the
               self-signed Root CA.
@@ -3078,7 +3080,7 @@ the node certificate to be tested, two Intermediate CAs, and the
       	    </title>
       	    <note role="application">
               The ST author must include the security functional requirements for the trusted
-              channel protocol selected in <linkref linkend="fel-trust-comms"/> in the main body of the ST.
+              channel protocol selected in <xref to="fel-trust-comms"/> in the main body of the ST.
               <h:br/>
               If the ST author selects TLS or DTLS, the TSF shall be validated
               against requirements from the
@@ -3118,15 +3120,15 @@ This requirement ensures that all remote administrative actions are protected.
 Authorized remote administrators must initiate all communication with the OS via
 a trusted path and all communication with the OS by remote administrators must
 be performed over this path. The data passed in this trusted communication
-channel is encrypted as defined in <linkref linkend="fel-trust-comms"/>.
+channel is encrypted as defined in <xref to="fel-trust-comms"/>.
 If local users access is selected and no unprotected traffic is sent to remote
 users, then this requirement is met.  If remote users access is selected, the
 ST author must include the security functional requirements for the trusted
 channel protocol selected in
-<linkref linkend="fel-trust-comms"/> in the main body of the ST.
+<xref to="fel-trust-comms"/> in the main body of the ST.
 		</h:p>
 		<h:p>
-This requirement is tested with the  evaluation activities for  <linkref linkend="fel-trust-path"/>.
+This requirement is tested with the  evaluation activities for  <xref to="fel-trust-path"/>.
 		</h:p>
 	      </note>
             </f-element>
@@ -3141,7 +3143,7 @@ This requirement is tested with the  evaluation activities for  <linkref linkend
               </title>
 	      <note role="application">
 		<h:p>
-This requirement is tested with the  evaluation activities for  <linkref linkend="fel-trust-path"/>.
+This requirement is tested with the  evaluation activities for  <xref to="fel-trust-path"/>.
 		</h:p>
 	      </note>
             </f-element>
@@ -3157,7 +3159,7 @@ This requirement is tested with the  evaluation activities for  <linkref linkend
                 defined in FTP_ITC_EXT.1.
 	      </h:p><h:p>
 	      The evaluation activities for this requirement also test requirements
-	      <linkref linkend="fel-trust-ends"/> and <linkref linkend="fel-trust-users"/>
+	      <xref to="fel-trust-ends"/> and <xref to="fel-trust-users"/>
 	    </h:p>
               </note>
               <aactivity>
@@ -3205,9 +3207,9 @@ The evaluator will also perform the following
     </sec:SFRs>
     <sec:Security_Assurance_Requirements>
       <h:p>
-	The Security Objectives in <secref linkend="Security_Objectives"/> were constructed to
-	address threats identified in <secref linkend="Threats"/>.
-	The Security Functional Requirements (SFRs) in <secref linkend="SFRs"/>
+	The Security Objectives in <xref to="Security_Objectives"/> were constructed to
+	address threats identified in <xref to="Threats"/>.
+	The Security Functional Requirements (SFRs) in <xref to="SFRs"/>
 	are a formal instantiation of the Security Objectives.
 	The PP identifies the Security Assurance Requirements (SARs) to frame
 	the extent to which the evaluator assesses the documentation applicable for the
@@ -3217,7 +3219,7 @@ The evaluator will also perform the following
 	This section lists the set of SARs from CC part 3
 	that are required in evaluations against this PP.
         Individual evaluation activities to be performed are specified both in 
-        <secref linkend="Security_Requirements"/> as well as in this section.
+        <xref to="Security_Requirements"/> as well as in this section.
       </h:p>
       <h:p>
       The general model for evaluation of TOEs against STs written to conform to this PP is as follows:
@@ -3229,17 +3231,17 @@ The evaluator will also perform the following
       the OS. The ITSEF is expected to perform actions mandated by the Common Evaluation
       Methodology (CEM) for the ASE and ALC SARs.
       The ITSEF also performs the evaluation activities contained within 
-      <secref linkend="Security_Requirements"/>, which are intended to be an interpretation of the
+      <xref to="Security_Requirements"/>, which are intended to be an interpretation of the
       other CEM assurance requirements as they apply to the specific technology instantiated in the
       OS.
       The evaluation activities that are captured in 
-      <secref linkend="Security_Requirements"/> also provide
+      <xref to="Security_Requirements"/> also provide
       clarification as to what the developer needs to provide to demonstrate the OS is compliant
       with the PP.
       </h:p>
 
       <section title="Class ASE: Security Target" id="ase">
-        The following ASE components as defined in <cite linkend="bibCEM"/> are required:
+        The following ASE components as defined in <xref to="bibCEM"/> are required:
         <h:ul>
         <h:li>Conformance claims (ASE_CCL.1)</h:li>
         <h:li>Extended components definition (ASE_ECD.1)</h:li>
@@ -3250,13 +3252,13 @@ The evaluator will also perform the following
         <h:li>TOE summary specification (ASE_TSS.1)</h:li>
         </h:ul>
         The requirements for exact conformance of the Security Target are described in 
-        <secref linkend="Conformance_Claims"/>.
+        <xref to="Conformance_Claims"/>.
       </section>
 
       <section title="Class ADV: Development" id="adv">The information about the OS is contained in the guidance documentation available to the end user as
         well as the TSS portion of the ST. The OS developer must concur with the description of the product that is
         contained in the TSS as it relates to the functional requirements. The evaluation activities
-        contained in <secref linkend="SFRs"/> should provide the ST authors with
+        contained in <xref to="SFRs"/> should provide the ST authors with
         sufficient information to determine the appropriate content for the TSS section.
           <a-component cc-id="adv_fsp.1" name="Basic Functional Specification (ADV_FSP.1)">The
           functional specification describes the <abbr title="TSF Interface">TSFI</abbr>s. It is not
@@ -3318,7 +3320,7 @@ The evaluator will also perform the following
               and complete instantiation of the SFRs.</title>
               <aactivity>There are no specific evaluation activities associated with these SARs, except
               ensuring the information is provided. The functional specification documentation is
-              provided to support the evaluation activities described in <secref linkend="SFRs"/>, and
+              provided to support the evaluation activities described in <xref to="SFRs"/>, and
               other activities described for AGD, ATE, and AVA SARs. The requirements on the content
               of the functional specification information is implicitly assessed by virtue of the
               other evaluation activities being performed; if the evaluator is unable to perform an
@@ -3406,20 +3408,27 @@ The evaluator will also perform the following
               <title>The evaluator will confirm that the information provided meets all requirements
               for content and presentation of evidence. </title>
               <aactivity>Some of the contents of the operational guidance are verified by the
-              evaluation activities in <secref linkend="SFRs"/> and evaluation of the OS according to the <cite linkend="bibCEM"/>. The following additional
-              information is also required. If cryptographic functions are provided by the OS, the operational guidance shall contain instructions for configuring
-              the cryptographic engine associated with the evaluated configuration of the OS. It shall provide a warning to the administrator that use of other
+              evaluation activities in <xref to="SFRs"/> and evaluation of the OS according to the <xref to="bibCEM"/>.
+              The following additional information is also required.
+              If cryptographic functions are provided by the OS, the operational guidance shall contain instructions for configuring
+              the cryptographic engine associated with the evaluated configuration of the OS.
+              It shall provide a warning to the administrator that use of other
               cryptographic engines was not evaluated nor tested during the CC evaluation of the
-              OS. The documentation must describe the process for verifying
+              OS.
+              The documentation must describe the process for verifying
               updates to the OS by verifying a digital signature – this may be
-              done by the OS or the underlying platform. The evaluator will
+              done by the OS or the underlying platform.
+              The evaluator will
               verify that this process includes the following steps: Instructions for obtaining the
-              update itself. This should include instructions for making the update accessible to
-              the OS (e.g., placement in a specific directory). Instructions for
-              initiating the update process, as well as discerning whether the process was
-              successful or unsuccessful. This includes generation of the hash/digital signature.
+              update itself.
+              This should include instructions for making the update accessible to
+              the OS (e.g., placement in a specific directory).
+              Instructions for initiating the update process, as well as discerning whether the process was
+              successful or unsuccessful.
+              This includes generation of the hash/digital signature.
               The OS will likely contain security functionality that does not
-              fall in the scope of evaluation under this PP. The operational guidance shall make it
+              fall in the scope of evaluation under this PP.
+              The operational guidance shall make it
               clear to an administrator which security functionality is covered by the evaluation
               activities. </aactivity>
           </a-element>
@@ -3638,9 +3647,9 @@ The evaluator will also perform the following
 	  Testing is performed to confirm the
           functionality described in the TSS as well as the administrative
           (including configuration and operational) documentation provided. The focus of the testing
-          is to confirm that the requirements specified in <secref linkend="SFRs"/> being met,
+          is to confirm that the requirements specified in <xref to="SFRs"/> being met,
           although some additional testing is specified for SARs in
-          <secref linkend="Security_Assurance_Requirements"/>. 
+          <xref to="Security_Assurance_Requirements"/>. 
           The
           evaluation activities identify the additional testing activities associated with these
           components. The evaluator produces a test report documenting the plan for and results of
@@ -3673,8 +3682,9 @@ The evaluator will also perform the following
 		  The evaluator will prepare a test plan and report documenting the testing
               aspects of the system, including any application crashes during testing. The evaluator
               shall determine the root cause of any application crashes and include that information
-              in the report. The test plan covers all of the testing actions contained in the <cite
-                linkend="bibCEM"/> and the body of this PP's evaluation activities.
+              in the report.
+              The test plan covers all of the testing actions contained in the <xref to="bibCEM"/>
+              and the body of this PP's evaluation activities.
 	      </h:p><h:p>
 	      While it is
               not necessary to have one test case per test listed in an evaluation activity, the
@@ -3843,7 +3853,7 @@ The evaluator will also perform the following
 	<h:tr>
 	<h:td>FAU_GEN.2 - User identity association</h:td>
 	<h:td>
-	  <linkref linkend="fel-audit-content"/> explicitly requires that the OS record
+	  <xref to="fel-audit-content"/> explicitly requires that the OS record
 	  any user account associated with each event; therefore, it is duplicative
 	  to include a separate requirement to associate a user account with each
 	  event.
@@ -3852,7 +3862,7 @@ The evaluator will also perform the following
 	<h:tr>
 	  <h:td>FAU_SAR.1 - Audit review</h:td>
 	  <h:td>
-	    <linkref linkend="fel-no-read"/> requires that audit logs (and other objects)
+	    <xref to="fel-no-read"/> requires that audit logs (and other objects)
 	    are protected from reading by unprivileged users; therefore, it is duplicative
 	    to include a separate requirement to protect only the audit information.
 	  </h:td>
