@@ -37,10 +37,10 @@ jobs:
         run: >
            xvfb-run -- /usr/bin/wkhtmltopdf \
             --javascript-delay 15000  \
-            file://$(pwd)/output/${PWD##*/}-release.html?expand=on \
-            ./output/${PWD##*/}-release.pdf;
+            file://$(pwd)/output/${{ env.BASE_NAME }}-release.html?expand=on \
+            ./output/$${{ env.BASE_NAME }}-release.pdf;
       - name: Package it up
-        run: cd output && zip -r ../${PWD##*/}.zip .
+        run: cd output && zip -r ../${{ env.BASE_NAME }}.zip .
       - name: Update release
         uses: johnwbyrd/update-release@v1.0.0
         with:
