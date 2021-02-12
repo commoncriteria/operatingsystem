@@ -1,0 +1,266 @@
+<?xml-stylesheet type="text/xsl" href="../transforms/esr2html.xsl"><!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:esr="http://common-criteria.rhcloud.com/ns/esr" xmlns:fn="http://www.w3.org/2005/xpath-functions"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+					/*       { background-color: #FFFFFF; } */
+					body{
+					    margin-left:8%;
+					    margin-right:8%;
+					    foreground:black;
+					}
+					td{
+					    vertical-align:top;
+					}
+					div.section{
+					    text-align:center;
+					    margin-left:0%;
+					    margin-top:1em;
+					    margin-bottom:1em;
+					    border:2px solid #000000;
+					    width:100%;
+					    background-color:#FFFF99;
+					    font-family:arial, helvetica, sans-serif;
+					    font-weight:bold;
+					    box-shadow:2px 2px 2px #888888;
+					}
+					div.note{
+					    margin-left:10%;
+					    margin-right:10%;
+					    margin-top:1em;
+					}
+					
+					table.intro{
+					    table-layout:fixed;
+					    width:100%;
+					    margin-top:1em;
+					    border:1px solid black;
+					    box-shadow:2px 2px 2px #888888;
+					    text-align:center;
+					    vertical-align:middle;
+					    font-family:arial, helvetica, sans-serif;
+					}
+					ul,
+					ol{
+					    margin-bottom:0.5em;
+					    margin-top:0.5em;
+					}
+					li{
+					    margin-bottom:0.5em;
+					    margin-top:0.25em;
+					}</style></head><body><table class="intro"><tr><td style="width: 50%;"><img style="max-width:100%;" src="images/cclogo.png"></img></td><td style="vertical-align: middle;"><b>Common Criteria Evaluation and Validation Scheme</b><p></p>National Information
+					Assurance Partnership (NIAP) </td></tr></table><p></p><b>Title: </b><esrtitle xmlns="http://common-criteria.rhcloud.com/ns/esr">General Purpose Operating System</esrtitle><p></p><b>Maintained by: </b><maintainer xmlns="http://common-criteria.rhcloud.com/ns/esr">NIAP and CESG</maintainer><p></p><b>Unique Identifier: </b><identifier xmlns="http://common-criteria.rhcloud.com/ns/esr">42</identifier><p></p><b>Version: </b><version xmlns="http://common-criteria.rhcloud.com/ns/esr">0.8</version><p></p><b>Status: </b><status xmlns="http://common-criteria.rhcloud.com/ns/esr">draft</status><p></p><b>Date of issue: </b><issuedate xmlns="http://common-criteria.rhcloud.com/ns/esr">19 March 2015</issuedate><p></p><b>Approved by: </b><approver xmlns="http://common-criteria.rhcloud.com/ns/esr"></approver><p></p><b>Supersedes: </b><p></p><div class="section" id="purpose">Background and Purpose</div>
+		<!-- This section sets the context for not only the ESR, but what is 
+			expected of the resulting Protection Profile (PP). The intent is 
+			that the remaining sections provide succinct statements that 
+			highlight the relevant aspects to be addressed by the Technical 
+			Community (TC) constructing the PP. Here, the authors provide a 
+			narrative that introduces the reader to the problem being solved, 
+			and presents key aspects that support or guide the TC, and may
+			elaborate on subtleties not apparent in the “bulleted” high level
+			statements.
+		-->
+		An operating system is software that manages computer hardware and software resources, and
+		provides common services for application programs. The hardware it manages may be physical
+		or virtual. <p xmlns="http://common-criteria.rhcloud.com/ns/esr"></p> This essential security requirements (ESR) document outlines the high-level
+		security requirements for a general-purpose operating system (OS), which will be expressed
+		in a Common Criteria Protection Profile (PP). These requirements address threats within a
+		scope established by use cases and environment assumptions. In addition to stating what
+		properties an OS must minimally exhibit, this document also identifies functionality that
+		vendors should consider as extensions that go beyond the expected minimal baseline, and
+		which may be appropriate in more-specific use cases. <p xmlns="http://common-criteria.rhcloud.com/ns/esr"></p> The security functionality must be
+		realistic and achievable by commercially available products. The resulting PP will also
+		include objective and repeatable evaluation activities, so that evaluations can be executed
+		in a manner that tracks with industry's release of operating system products. <p xmlns="http://common-criteria.rhcloud.com/ns/esr"></p> With
+		regard to evaluation scope, the operating system itself is composed of the software that is
+		delivered to the end user in the operating system product. This typically includes a kernel
+		and drivers that run with elevated privileges, common software libraries, and a great deal
+		of application software which runs with varying levels of privileges. Many of these
+		applications provide security services and are an essential part of the operating system
+		product. However, applications that are covered by more-specific Protection Profiles should
+		not be evaluated as part of the OS evaluation, even when it is necessary to
+		evaluate some of their functionality as it relates to their role as part of the OS. <div class="section" id="usecases">Use Cases</div>
+		<!-- 
+			This section is intended to provide the initial scope/bound of the 
+			security problem by providing the reader with concise statements 
+			regarding the scenarios in which the technology is being used. The 
+			intended usage presented here should lay the groundwork for the 
+			identifying the resources to be protected, and what threats must be
+			considered in the drafting of the Essential Security Requirements 
+			(ESR) and for the TC to consider when writing the PP.
+		-->
+		<p xmlns="http://common-criteria.rhcloud.com/ns/esr"> The OS is installed on a platform to allocate platform resources among applications.
+			This includes several use cases in which the OS acts as a platform for applications: <ul>
+				<li>End user systems such as a desktop or laptop, which is optionally bound to a
+					directory server or management server</li>
+				<li>Server systems, which run on physical or virtual hardware, and can run highly
+					specialized configurations</li>
+				<li>Cloud systems, end user or server systems running on physical or virtual
+					hardware hosted in a data center</li>
+			</ul>
+		</p>
+	<div class="section" id="resourcesprotected">Resources to be protected</div>
+		<!-- 
+    		This section is intended to provide the initial scope/bound of the 
+    		security problem by providing the reader with concise statements
+    		regarding the scenarios in which the technology is being used. The 
+    		intended usage presented here should lay the groundwork for the 
+    		identifying the resources to be protected, and what threats must be
+    		considered in the drafting of the Essential Security Requirements 
+    		(ESR) and for the TC to consider when writing the PP.
+    	-->
+		<p xmlns="http://common-criteria.rhcloud.com/ns/esr">
+			<ul>
+				<li>Physical and logical resources managed by the OS (e.g. network interfaces,
+					microphones, and storage media). </li>
+				<li>Sensitive user data (e.g. home directories).</li>
+				<li> Sensitive system data (e.g. account information, audit files, configuration
+					files). </li>
+				<li>Resources that comprise the OS itself, upon which its integrity depends. This
+					includes files such as the kernel and its drivers, privileged applications that
+					provide services to other applications, and shared software libraries. </li>
+			</ul>
+		</p>
+	<div class="section" id="attackeraccess">Attacker access</div> The following assumptions are made about
+		attackers' ability to develop attacks: <ul xmlns="http://common-criteria.rhcloud.com/ns/esr">
+			<li> An attacker has an arbitrary amount of time to analyze the behavior of the OS, its
+				interaction with its platform, and the data it transmits over the network. </li>
+			<li> An attacker is able to acquire their own copy of the target OS and study its
+				behavior on a platform that they control. </li>
+		</ul>
+		<p xmlns="http://common-criteria.rhcloud.com/ns/esr"></p> The attacker is expected to engage in the following general classes of attack: <!-- added in order to allow for rather direct flow to Threats section in PP -->
+		<ul xmlns="http://common-criteria.rhcloud.com/ns/esr">
+			<li> Network eavesdropping, in which an attacker may monitor and gain access to data
+				exchanged between the OS and other endpoints. </li>
+			<li> Network attack, in which an attacker may initiate malicious communications with the
+				OS or alter communications between the OS and other endpoints. </li>
+			<li> Local attack, in which an attacker has gained the ability to execute code on the
+				system, which may be used to escalate privilege or access data without
+				authorization. </li>
+			<li> Limited physical access attack, in which an attacker may attempt to access data on
+				the system by virtue of being physically present for a limited period of time. This
+				limited physical access does not include attacks in which the attacker could
+				disassemble the system to gain access to its storage media or manipulate the OS's
+				underlying hardware and firmware. Systems used for working remotely, such as laptops
+				and tablets, for which an attacker could gain longer physical access to, should
+				apply additional protections that are provided by products evaluated against other
+				Protection Profiles (e.g. FDE cPP). </li>
+			<li> Persistence, in which an attacker has already exploited the system and wishes to
+				maintain presence on the system. </li>
+		</ul>
+	<div class="section" id="requirements">Essential Security Requirements</div>
+		<!--
+        	This is where the authors present an initial set of English 
+        	requirements that specify security functionality, rather than 
+        	design and/or implementation characteristics. These requirements 
+        	will provide the foundation for which the detailed set of 
+        	requirements is derived. It is important that the requirements 
+        	captured here make an attempt to fully address the categories 
+        	(e.g., access control, identification and authentication, 
+        	management capabilities, roles of administration, secure 
+        	communications, and audit). That's not to say the requirements are 
+        	fully specified or detailed enough to simply translate to Common 
+        	Criteria security functional requirements. The goal is that there 
+        	is enough information contained here, as well as the other sections
+        	of this document, to provide the TC enough information to ensure 
+        	they have an understanding of what is minimally required in breath.
+        -->
+		<p xmlns="http://common-criteria.rhcloud.com/ns/esr"> The following are the essential security requirements expected to be implemented by an
+			operating system within the established scope: <ul>
+				<li> Implement modern anti-exploitation features, these include, but are not limited
+					to Address Space Layer Randomization (ASLR), Stack Canaries/Cookies, and Data
+					Execution Protection (DEP) to protect itself and its applications. </li>
+				<li> Provide the following cryptographic services: <ul>
+						<li>Asymmetric and Symmetric key generation</li>
+						<li>Asymmetric and Symmetric encryption and decryption </li>
+						<li>Deterministic random bit generation (DRBG)</li>
+						<li>Cryptographic hashing</li>
+						<li>Cryptographic signing and validation</li>
+						<li>Keyed-hash message authentication</li>
+						<li>TLS support</li>
+						<li>Certificate path validation</li>
+					</ul>
+				</li>
+				<li> Provide a trusted update mechanism to update itself, applications, and,
+					optionally, firmware for the platform it runs on. </li>
+				<li> Provide strong authentication mechanisms. </li>
+				<li> Leverage a trusted or secure boot process. </li>
+				<li> Provide the ability to whitelist application execution. </li>
+				<li> Provide the ability to control external interfaces (e.g. radios, ports).</li>
+				<li> Audit security-relevant events and provide mechanism for secure transmission of
+					audit data. </li>
+				<li> Provide mechanisms for management by the user and enterprise, to include
+					optionally binding to: <ul>
+						<li>directory servers, which provide support for centralized authentication
+							and sophisticated password policies</li>
+						<li>management servers, which provide support for applying enterprise
+							security policies</li>
+					</ul>
+				</li>
+			</ul>
+		</p>
+	<div class="section" id="assumptions">Assumptions</div>
+		<!--
+			Simply put, this section presents the aspects of the product and 
+			its	intended environment that can be assumed to hold true. This 
+			will provide additional scope on the resulting PP.
+		-->
+		The following assumptions are made for the operating system product and its operational
+		environment: <ul xmlns="http://common-criteria.rhcloud.com/ns/esr">
+			<li>The underlying platform is physically protected, to a large extent. The hardware
+				that the OS manages is secured by defensive measures that make physical attacks
+				impractical for most attackers. At the same time, casual passersby might attempt to
+				trivially access the system. </li>
+			<li>The OS implements some security-relevant functionality that does not require
+				evaluation (e.g., network time synchronization, process scheduling, and virtual
+				memory management including process separation). </li>
+			<li>Depending on configuration and capability, the OS may or may not be: <ul>
+					<li>configuration-managed by the enterprise</li>
+					<li>bound to directory services to support multi-user login</li> </ul>
+			</li>
+			<li> The OS runs application software developed by a third-party. The applications are
+				not intentionally developed to be malicious, but can contain inadvertent coding
+				errors. These errors introduce risk that control of an application may be seized by
+				a malicious entity. The OS shall confine these applications within the originally
+				designated operating environment. </li>
+			<li>The platform is connected to a network. For purposes of sending/receiving data, to
+				include software updates, the platform is connected to other entities. Other
+				entities on the network are not inherently trustable. </li>
+			<li>Administrators are not malicious in nature.</li>
+			<li> Users are not malicious in nature, though they may inadvertently or intentionally engage in risky behavior. </li>
+		</ul>
+	<div class="section" id="extensions">Optional Extensions</div> 
+		Additional security functionality that may
+		be appropriate for some use cases, and can be expressed in extensions to this document,
+		includes: 
+		<ul xmlns="http://common-criteria.rhcloud.com/ns/esr">
+			<li>Multi-level Security (MLS) access controls</li>
+			<li>Attestation of security measurements</li>
+			<li>Data-at-rest protection - already covered in other PPs</li>
+			<li>IPSec VPNs - already covered in other PPs</li>
+		</ul>
+	<div class="section" id="outsidescope">Outside the TOE's Scope</div>
+		<!--
+			This is where the authors explicitly state things they do not want 
+			to be considered for inclusion in an evaluation against a 
+			resulting PP.  Items expressed here could include threats, 
+			functions or capabilities that would require assurance activities 
+			that are too subjective, or specific expertise not available in the
+			evaluation facilities expected to assess products against the PP 
+			(e.g., assessing anti-tamper measures). 
+		-->
+		The following list contains items that are explicitly out-of-scope for any evaluation
+		against the OS PP <ul xmlns="http://common-criteria.rhcloud.com/ns/esr">
+			<li>Malicious, Highly-Privileged Administrators - Highly-privileged administrators
+				acting maliciously can disable most, if not all, security protections on the OS.
+				Additionally procedural controls that are out of scope of this document should be
+				considered to help highlight administrator accounts acting suspiciously.</li>
+			<li>Zero Days - The disclosure of recently published vulnerabilities (Zero Days) should
+				not be used as a reason to fail an OS undergoing evaluation.</li>
+			<li>Unofficial Versions - Non-vendor supplied install images often contain added
+				functionality and may weaken the normal operating functionality of the OS</li>
+			<li>Platform - The OS PP shall not address the hardware or firmware of its underlying
+				platform to include the boot sequence before control is handed off to the OS. That
+				the platform itself is virtual or physical is irrelevant to any evaluations. </li>
+			<li>Applications - The OS PP shall not address applications that are not delivered as
+				part of the OS installation process. </li>
+		</ul>
+	</body></html>
