@@ -1,6 +1,6 @@
 Protection Profile for General Purpose Operating System 
 ===============
-[![Build Status](https://travis-ci.com/commoncriteria/operatingsystem.svg?branch=master)](https://travis-ci.com/commoncriteria/operatingsystem)
+![Build](https://github.com/commoncriteria/operatingsystem/workflows/Build/badge.svg)
 [![GitHub issues Open](https://img.shields.io/github/issues/commoncriteria/operatingsystem.svg?maxAge=2592000)](https://github.com/commoncriteria/operatingsystem/issues) 
 ![license](https://img.shields.io/badge/license-Unlicensed-blue.svg)
 
