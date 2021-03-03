@@ -19,14 +19,14 @@ jobs:
         with:
           submodules: true
 
-      - name: Install Build Packages
-        run: sudo apt-get update && sudo apt-get install -y libfontconfig python3-bs4 wkhtmltopdf xsltproc xvfb
-
       - name: Install Jing
         run: wget -O - https://github.com/relaxng/jing-trang/releases/download/V20181222/jing-20181222.zip | jar -x
 
       - name: Schema Validation
         run: JING_JAR=jing*/bin/jing.jar make validate
+
+      - name: Install Build Packages
+        run: sudo apt-get update && sudo apt-get install -y libfontconfig python3-bs4 wkhtmltopdf xsltproc xvfb
 
       - name: Convert XML to HTML
         run: make
