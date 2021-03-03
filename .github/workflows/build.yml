@@ -22,8 +22,8 @@ jobs:
       - name: Install Build Packages
         run: sudo apt-get update && sudo apt-get install -y libfontconfig python3-bs4 wkhtmltopdf xsltproc xvfb
 
-      - name: Debug
-        run: echo "The trigger was " ${{ github.event_name }}
+      - name: Schema Validation
+        run: make validate
 
       - name: Convert XML to HTML
         run: make
