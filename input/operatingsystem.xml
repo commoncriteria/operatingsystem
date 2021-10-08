@@ -39,11 +39,18 @@
   <include-pkg id="pkg-ssh">
     <raw-url>https://raw.githubusercontent.com/commoncriteria/ssh/v1.0-fp/input/ssh.xml</raw-url>
     <url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459</url>
+    <depends on="s-ftp_ssh" also="s-uau-ssh"/>
   </include-pkg>
   <include-pkg id="pkg-tls">
     <raw-url>https://raw.githubusercontent.com/commoncriteria/tls/v1.1/input/tls.xml</raw-url>
     <url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439</url>
   </include-pkg>
+  <modules>
+    <module id="mod-vpn" name="VPN Client" product="vpn" short="VPN Client Module" version="2.3">
+      <url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=461&amp;id=461</url>
+      <depends on="s=itc-ipsec"/>
+    </module>
+  </modules>
   <sec:Introduction>
     <sec:Overview>
 The scope of this Protection Profile (PP) is to
@@ -2761,16 +2768,14 @@ The <h:b>OS</h:b> shall provide the following authentication mechanisms
   <selectable>authentication based on user name and a PIN that releases an asymmetric key stored
   in OE-protected storage</selectable>
   <selectable>authentication based on X.509 certificates</selectable>
-  <selectable>for use in SSH only, SSH public key-based authentication as specified by the EP for Secure Shell</selectable>
+  <selectable id="s-uau-ssh">for use in SSH only, SSH public key-based authentication as specified by the <xref to="pkg-ssh"/></selectable>
 </selectables>
 </h:b>
 to support user authentication.
             </title>
             <note role="application">
-	      The "for use in SSH only, SSH public key-based authentication as specified by the EP
-		    for Secure Shell" selection can only be included, and must be included, if
-		    <xref to="fel-trust-comms"/> selects
-		    "SSH as conforming to the EP for Secure Shell".
+	      The <xref to="s-uau-ssh"/> selection can only be included, and must be included, if
+		    <xref to="fel-trust-comms"/> selects <xref to="s-ftp_ssh"/>.
 	    </note>
             <aactivity>
 	      <Tests>
@@ -3066,10 +3071,10 @@ the node certificate to be tested, two Intermediate CAs, and the
       	    <title>
               The OS shall use
       	      <selectables linebreak='yes'>
-                <selectable id="tls">TLS as conforming to the <h:a href="https://www.niap-ccevs.org/pp/"><h:i>Package for Transport Layer Security</h:i></h:a></selectable>
-                <selectable id="dtls">DTLS as conforming to the <h:a href="https://www.niap-ccevs.org/pp/"><h:i>Package for Transport Layer Security</h:i></h:a></selectable>
-      	        <selectable>IPsec as conforming to the <h:a href="https://www.niap-ccevs.org/pp/"><h:i>EP for IPsec VPN Clients</h:i></h:a></selectable>
-      	        <selectable>SSH as conforming to the <h:a href="https://www.niap-ccevs.org/pp/"><h:i>EP for Secure Shell</h:i></h:a></selectable>
+                <selectable id="tls">TLS as conforming to the <xref to="pkg-tls"/></selectable>
+                <selectable id="dtls">DTLS as conforming to the <xref to="pkg-tls"/></selectable>
+      	        <selectable id="s-itc-ipsec">IPsec as conforming to the <xref to="mod-vpn"/></selectable>
+      	        <selectable id="s-ftp_ssh">SSH as conforming to the <xref to="pkg-ssh"/></selectable>
         	    </selectables>
 		    to provide a trusted communication channel between itself and
 		    authorized IT entities supporting the following capabilities:
