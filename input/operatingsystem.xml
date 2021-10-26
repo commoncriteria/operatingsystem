@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../transforms/pp2html.xsl"?>
-<!-- Applied TD365 -->
+
 
 <PP xmlns="https://niap-ccevs.org/cc/v1" target-products="General Purpose Operating Systems"
     xmlns:sec="https://niap-ccevs.org/cc/v1/section"
     xmlns:h="http://www.w3.org/1999/xhtml" boilerplate="yes">
+	
+	<!-- Applied TD365, TD386,  TD441(n/a), TD463, TD493 -->
+	
   <PPReference>
     <ReferenceTable>
       <PPTitle>Protection Profile for General Purpose Operating Systems</PPTitle>
@@ -3111,7 +3114,9 @@ The evaluator will also ensure that the TSS includes a description of the safegu
               </selectables>
 	      prior to its execution through the use of
               <selectables linebreak="yes">
-                <selectable>a digital signature using a hardware-protected asymmetric key and X.509 certificates</selectable>
+                <selectable>a digital signature using a hardware-protected asymmetric key 
+				  </selectable>
+				<selectable id="s-boot-x509">a digital signature using an X509 certificate with hardware-based protection</selectable>
                 <selectable>a hardware-protected hash</selectable>
               </selectables>
 	      .
@@ -3120,17 +3125,17 @@ The evaluator will also ensure that the TSS includes a description of the safegu
 	      <h:p>
               The bootchain of the OS is the sequence of software, to include the OS loader, the kernel, system
               drivers or modules, and system files, which ultimately result in loading the OS.
-	      The first part of the OS, usually referred to as the first-stage bootloader,
-	      must be loaded by the platform.
-	      Assessing its integrity, while critical, is the platform's responsibility; and therefore outside
-	      the scope of this PP.  All software loaded after this stage is potentially
-		  within the control of the OS and is in scope.
+	          The first part of the OS, usually referred to as the first-stage bootloader,
+	          must be loaded by the platform.
+	          Assessing its integrity, while critical, is the platform's responsibility; and therefore outside
+	          the scope of this PP. 
+		      All software loaded after this stage is potentially within the control of the OS and is in scope.
 	      </h:p>
 	      <h:p>
               The verification may be transitive in nature:
-	      a hardware-protected public key or hash may be used to verify the mutable bootloader code
-              which contains a key or hash used by the bootloader to verify the mutable OS kernel code,
-              which contains a key or hash to verify the next layer of executable code, and so on.
+	      a hardware-protected public key, X509 certificate or hash may be used to verify the mutable bootloader code
+              which contains a key, certificate, or hash used by the bootloader to verify the mutable OS kernel code,
+              which contains a key, certificate, or hash to verify the next layer of executable code, and so on.
 	      However, the way in which the hardware stores and protects these keys is out of scope.
 	      </h:p>
 	      <h:p>
@@ -3179,9 +3184,14 @@ The evaluator will also ensure that the TSS includes a description of the safegu
                   in such a way to invalidate the structure of the module.).
                 </test>
                 <test>
+					<depends on="s-boot-x509"/>
                   If the ST author indicates that the integrity verification is performed
-                  using a public key, the evaluator will verify that the update mechanism includes a certificate
-                  validation according to FIA_X509_EXT.1.
+                  using public key in an X509 certificate, the evaluator will verify that the update mechanism includes a certificate
+                  validation according to FIA_X509_EXT.1 for all certificates in the chain from the certificate used for
+				  boot integrity to a certificate in the trust store that are not themselves in the trust store.
+				  This means that, for each X509 certificate in this chain that is not a trust store element, the evaluator must ensure that revocation information is available to the TOE during the bootstrap mechanism (before the TOE becomes fully operational).
+
+ 
                 </test>
               </testlist>
 	      </h:p>
@@ -3193,21 +3203,27 @@ The evaluator will also ensure that the TSS includes a description of the safegu
         <f-component cc-id="fpt_tud_ext.1" name="Trusted Update">
           <f-element id="fel-os-update">
             <title>The OS shall provide the ability to check for updates to the OS
-              software itself. </title>
-            <note role="application">This requirement is about the ability to check for the availability of
-			authentic updates, while the installation of authentic updates is covered by
-                        <xref to="fel-verify-updates"/>.
+              software itself and shall use a digital signature scheme specified in FCS_COP.1/SIGN to validate the authenticity of the response. </title>
+            <note role="application">
+				This requirement is about the ability to check for the availability of
+			    authentic updates, while the installation of authentic updates is covered by
+                <xref to="fel-verify-updates"/>.
+				Use of the digital signature scheme ensures that an attacker cannot influence the response, 
+				regarding of whether updates are available.
 			</note>
             <aactivity>
 	      <Tests>
-              The evaluator will check for an update using procedures described in the
+              <h:p>The evaluator will check for an update using procedures described in the
               documentation and verify that the OS provides a list of available updates.
 			  Testing this capability may require
 			  installing and temporarily placing the system into a
 			  configuration in conflict with secure configuration guidance
 			  which specifies automatic update.
-			  (The evaluator is also to ensure that this query occurs over a
-			  trusted channel as described in FTP_ITC_EXT.1.)
+			  </h:p>
+			  <h:p>The evaluator is also to ensure that the response to this query is authentic by using a digital signature scheme specified in FCS_COP.1/SIGN. 
+				The digital signature verification may be performed as part of a network protocol occurs over a trusted channel as described in FTP_ITC_EXT.1.)
+				If the signature verification is not performed as part of a trusted channel, the evaluator will send a query response with a bad signature and verify that the signature verification fails.
+				The evaluator will then send a query response with a good signature and verify that the signature verification is successful.</h:p>
               </Tests>
 	    </aactivity>
           </f-element>
@@ -3256,23 +3272,34 @@ The evaluator will also ensure that the TSS includes a description of the safegu
           <!-- TO DO: Cite references. -->
           <f-element id="fel-app-check-update">
             <title>
-	      The OS shall provide the ability to check for updates to
-              application software.
-	    </title>
+	          The OS shall provide the ability to check for updates to
+              application software and shall use a digital signature scheme specified in 
+		      FCS_COP.1/SIGN to validate the authenticity of the response.
+	        </title>
             <note role="application">This requirement is about the ability to check for authentic updates,
-              while the actual installation of such updates is covered by 
-	      <xref to="fel-verify-app-updates"/>.
+              while the actual installation of such updates is covered by <xref to="fel-verify-app-updates"/>.
+			  Use of the digital signature scheme ensures that an attacker cannot influence the response,
+			  regarding of whether updates are available.
+
             </note>
             <aactivity>
 	      <Tests>
+			  <h:p>
 	      The evaluator will check for updates to application software
 			  using procedures described in the
 			  documentation and verify that the OS provides a list of available
 			  updates.  Testing this capability may require
 			  temporarily placing the system into a configuration in conflict
 			  with secure configuration guidance which specifies automatic
-			  update.  (The evaluator is also to ensure that this query occurs
-			  over a trusted channel as described in FTP_ITC_EXT.1.)
+			  update.
+			  </h:p>
+			  <h:p>
+				The evaluator is also to ensure that the response to this query is authentic by using a digital signature scheme specified in FCS_COP.1/SIGN.
+    			The digital signature verification may be performed as part of a network protocol
+			     as described in FTP_ITC_EXT.1. 
+                If the signature verification is not performed as part of a trusted channel, the evaluator will send a query response with a bad signature and verify that the signature verification fails. 
+				The evaluator will then send a query response with a good signature and verify that the signature verification is successful.
+			  </h:p>
               </Tests>
 	    </aactivity>
           </f-element>
