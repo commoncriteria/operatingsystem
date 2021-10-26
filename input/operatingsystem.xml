@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../transforms/pp2html.xsl"?>
+<!-- Applied TD365 -->
 
 <PP xmlns="https://niap-ccevs.org/cc/v1" target-products="General Purpose Operating Systems"
     xmlns:sec="https://niap-ccevs.org/cc/v1/section"
@@ -899,15 +900,13 @@ The OS shall destroy cryptographic keys and key material in accordance with a sp
 		</selectables></selectable>
 		<selectable>For non-volatile memory that consists of 
 		    <selectables>
-			<selectable>destruction
+			<selectable id="s-kek-kill"><snip>destruction
 			of all key encrypting keys protecting the target key
-			according to <xref to="fel-key-kill"/>, where none of the KEKs protecting the target key are derived
+			according to <xref to="fel-key-kill"/></snip>, where none of the KEKs protecting the target key are derived
 			</selectable>
-			<selectable>the
-invocation of an interface provided by the underlying platform that
+			<selectable>the invocation of an interface provided by the underlying platform that
 				<selectables>
-					<selectable>logically
-addresses the storage location of the key and performs a 
+					<selectable>logically addresses the storage location of the key and performs a 
 						<selectables>
 							<selectable>single</selectable>
 							<selectable><assignable>ST author defined multi-pass</assignable></selectable>
@@ -950,8 +949,7 @@ data is carefully selected, and not taken from a general 'pool' that might conta
 residual data that itself requires confidentiality protection.
 	      </h:p>
 	      <h:p>      
-For the selection <h:i>destruction of all key encrypting keys protecting target key according
-to FCS_CKM_EXT.4.1, where none of the KEKs protecting the target key are derived</h:i>,
+For the selection <xref to="s-kek-kill"/>,
 a key can be considered destroyed by destroying the key that protects the key.
 If a key is wrapped or encrypted it is not necessary to "overwrite" that key,
 overwriting the key that is used to wrap or encrypt the key used to encrypt/decrypt data,
@@ -986,8 +984,7 @@ If the ST makes use of the open assignment and fills in the type of pattern that
 The evaluator will check that the TSS identifies any configurations or circumstances that may not strictly conform to the key destruction requirement.
 	        </h:p>
 	        <h:p>
-If the selection “destruction of all key encrypting keys protecting target key according to 
-FCS_CKM_EXT.4.1, where none of the KEKs protecting the target key are derived” is included 
+If the selection <xref to="fel-key-kill"/> is included 
 the evaluator shall examine the TOE’s keychain in the TSS and identify each instance when a 
 key is destroyed by this method.
 In each instance the evaluator shall verify all keys capable of decrypting the target key are 
