@@ -1,0 +1,56 @@
+# This is a basic workflow that is manually triggered
+name: Diff
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on: [push, workflow_dispatch]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:  
+  build-project:
+
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Checkout project and transforms
+        uses: actions/checkout@v2 
+        with: 
+          submodules: true
+      - name: Set up Python 3
+        uses: actions/setup-python@v2
+        with:
+            python-version: '3.x'
+      - name: Install lib
+        run: sudo apt-get install -y xsltproc
+      - name: Convert XML to HTML
+        run: make
+        
+      - name: Setup Java JDK
+        uses: actions/setup-java@v1.4.3
+        with:
+          java-version: 1.8
+      - name: Get DaisyDiff
+        run: wget -O- https://github.com/AndroidKitKat/ExecuteDaisy/archive/master.zip | jar -x
+      - name: Make tmp dir
+        run: mkdir tmp
+      - name: Diff against 2 Days ago
+        run: TMP=tmp DAISY_DIR=ExecuteDaisy-master make little-diff
+      - name: Diff against specified versions
+        run: DAISY_DIR=ExecuteDaisy-master make diff
+      - name: Make a directory listing
+        run: >
+          cd output;
+          (echo "<html><head><title>PP-Template</title></head><body>";
+           date;
+           echo "<br/><ol>";
+           for aa in $(find . -name '*.html'); do
+                echo "<li><a href='$aa'>$aa</a></li>";
+           done;
+           echo "</ol></body></html>") > index.html
+           
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.0.0
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: output # The folder the action should deploy.
