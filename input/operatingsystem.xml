@@ -500,24 +500,25 @@ users of the same system.
           <f-element id="fel-asym-gen">
             <title> The <h:b>OS</h:b> shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a
               specified cryptographic key generation algorithm <h:b><selectables linebreak="yes">
-                <selectable id="f-keygen-rsa">RSA schemes using cryptographic key sizes of 2048-bit or greater that
+                <selectable id="s-keygen-rsa">RSA schemes using cryptographic key sizes of 2048-bit or greater that
          f-component    meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.3
                 </selectable>
-                <selectable id="f-keygen-ecc">ECC schemes using "NIST curves" P-256, P-384 and
+                <selectable id="s-keygen-ecc">ECC schemes using "NIST curves" P-256, P-384 and
                   <selectables>
                     <selectable>P-521</selectable>
                     <selectable exclusive="yes"> no other curves</selectable>
                   </selectables> that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)",
                   Appendix B.4
                 </selectable>
-                <selectable id="f-keygen-ffc">FFC schemes using cryptographic key sizes of 2048-bit
+                <selectable id="s-keygen-ffc">FFC schemes using cryptographic key sizes of 2048-bit
                   or greater that meet the following: FIPS PUB 186-4, "Digital Signature
                   Standard (DSS)", Appendix B.1</selectable>
-              </selectables>
-			  <selectable id="f-keygen-ffc-dh">FFC Schemes using Diffie-Hellman Group 14 that meet the following: RFC 3526 </selectable>
-              <selectable id="f-keygen-ffc-safeprime"> FFC Schemes using safe primes that meet the following: 
+			  <selectable id="s-keygen-ffc-dh">FFC Schemes using Diffie-Hellman Group 14 that meet the following: RFC 3526 </selectable>
+              <selectable id="s-keygen-ffc-safeprime"> FFC Schemes using safe primes that meet the following: 
 				  ‘NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes
 			  </selectable>
+              </selectables>
+
 			</h:b>.
             </title>
             <note role="application">
@@ -625,7 +626,7 @@ users of the same system.
 	      </h:p>
 		  </h:div>
 		  <h:div>
-			  <depends on="f-keygen-fcc"/>
+			  <depends on="s-keygen-ffc"/>
 	          <h:b>Key Generation for Finite-Field Cryptography (FFC)</h:b><h:br/>
               <h:p>
     
@@ -702,7 +703,7 @@ users of the same system.
 				  <selectable id="s-keyestab-ecc">Elliptic curve-based key establishment schemes that meets the following: NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</selectable>
 
 				  <selectable id="s-keyestab-ffc">Finite field-based key establishment schemes that meets the following: NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</selectable>
-				  <selectable id="s-keyestab-ffc-dh">Key establishment scheme using Diffie-Hellman group 14 that meets the following: RFC 3526</selectable></selectables>.
+				  <selectable id="s-keyestab-dh">Key establishment scheme using Diffie-Hellman group 14 that meets the following: RFC 3526</selectable></selectables>.
 				
 				
             </title>
@@ -734,13 +735,13 @@ users of the same system.
 		the developer to provide access to a test platform that provides the evaluator with
 		tools that are typically not found on factory products.
 	      </h:p>
-	      <h:p><h:b>Key Establishment Schemes</h:b></h:p>
+	      <h:b>Key Establishment Schemes</h:b><h:br/>
 	      <h:p>
 		The evaluator will verify the implementation of
 		the key establishment schemes supported by the OS using the applicable tests below.
 	      </h:p>
 		  <h:div>
-			  <depends on="s-keyestab-ecc"/>
+			  <depends on="s-keyestab-ecc" also="s-keyestab-ffc"/>
 	      <h:b>SP800-56A Key Establishment Schemes</h:b><h:br/>
 	      <h:p>
 	      The evaluator will verify the OS's
@@ -753,7 +754,7 @@ users of the same system.
               (KDF). If key confirmation is supported, the evaluator will also verify that the
               components of key confirmation have been implemented correctly, using the test
               procedures described below. This includes the parsing of the DKM, the generation of
-              MAC data and the calculation of MAC tag. <h:br/>
+			  MAC data and the calculation of MAC tag. </h:p>
 
 
 
@@ -816,8 +817,8 @@ These keys are static, ephemeral or both depending on the scheme being tested.
 		</h:p>
 	      </h:p>
 		</h:div>
-	  </h:p>
-		<h:div><depends on=""/>
+	    
+		<h:div><depends on="s-keyestab-rsa"/>
 			<h:b>RSAES-PKCS1-v1_5 Key Establishment Schemes</h:b><h:br/>
 	<h:p>
 The evaluator shall verify the correctness of the TSF's implementation of RSAES-PKCS1-v1_5 by using a known good implementation for each protocol selected in FTP_ITC_EXT.1 that uses RSAES-PKCS1-v1_5.
@@ -836,7 +837,7 @@ The evaluator shall verify the correctness of the TSF's implementation of RSAES-
 The evaluator shall verify the correctness of the TSF's implementation of "safe-prime" groups by using a known good implementation for each protocol selected in FTP_ITC_EXT.1 that uses "safe-prime" groups. This test must be performed for each "safe-prime" group that each protocol uses.
 	</h:p>
     </h:div>
-			  
+			  </h:div>
 	      </Tests>
 	    </aactivity>
           </f-element>
