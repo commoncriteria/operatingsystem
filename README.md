@@ -2,6 +2,7 @@ Protection Profile for General Purpose Operating System
 ===============
 ![Build](https://github.com/commoncriteria/operatingsystem/workflows/Build/badge.svg)
 ![Validate](https://github.com/commoncriteria/operatingsystem/workflows/Validate/badge.svg)
+[![SanityChecks](https://github.com/commoncriteria/operatingsystem/workflows/SanityChecks/badge.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/SanityChecksOutput.md)
 [![GitHub issues Open](https://img.shields.io/github/issues/commoncriteria/operatingsystem.svg?maxAge=2592000)](https://github.com/commoncriteria/operatingsystem/issues) 
 ![license](https://img.shields.io/badge/license-Unlicensed-blue.svg)
 
