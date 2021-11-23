@@ -2,9 +2,10 @@ Protection Profile for General Purpose Operating System
 ===============
 ![Build](https://github.com/commoncriteria/operatingsystem/workflows/Build/badge.svg)
 ![Validate](https://github.com/commoncriteria/operatingsystem/workflows/Validate/badge.svg)
-[![SanityChecks](https://github.com/commoncriteria/operatingsystem/workflows/SanityChecks/badge.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/SanityChecksOutput.md)
+[![SanityChecks](https://raw.githubusercontent.com/commoncriteria/operatingsystem/badges/master/warnings-badge.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/SanityChecksOutput.md)
+[![SpellCheck](https://raw.githubusercontent.com/commoncriteria/operatingsystem/badges/master/spell-badge.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/SpellCheckReport.txt)
+[![QuickBuild](https://github.com/commoncriteria/operatingsystem/actions/workflows/quick_build.yml/badge.svg)](https://commoncriteria.github.io/operatingsystem/operatingsystem-release.html)
 [![GitHub issues Open](https://img.shields.io/github/issues/commoncriteria/operatingsystem.svg?maxAge=2592000)](https://github.com/commoncriteria/operatingsystem/issues) 
-![license](https://img.shields.io/badge/license-Unlicensed-blue.svg)
 
 This repository hosts the draft version of the Protection Profile for a General Purpose Operating System based on the 
 [Essential Security Requirements (ESR)](https://commoncriteria.github.io/pp/operatingsystem/operatingsystem-esr.html) for this technology class of 
