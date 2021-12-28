@@ -4,7 +4,7 @@ on:
   push:
     branches:
     - '*'
-    - '!badges'
+    - '!gh-pages'
 
 jobs:
   test:
@@ -17,7 +17,7 @@ jobs:
         submodules: true
 
     - name: Install Build Packages
-      run: "sudo apt-get update && sudo apt-get install -y xsltproc hunspell"
+      run: "sudo apt-get update && sudo apt-get install -y xsltproc hunspell pandoc"
 
     - name: Quick Build
       run: make release 
@@ -27,6 +27,24 @@ jobs:
         make spellcheck-release
         echo ::set-output name=LINES::$(wc -l output/SpellCheckReport.txt | { read first rest ; echo $first ; } )
 
+    - name: diff
+      run: make diff || true; 
+    # Little diff depends on having a git history. 
+    # The current checkout has  depth=1 and has no history
+    #- name: little diff
+    #  run: make little-diff || true
+
+    - name: Make a directory listing
+      run: >
+          cd output;
+          (echo "<html><head><title>Listing</title></head><body>";
+           date;
+           echo "<br/><ol>";
+           for aa in $(find . -name '*.*'); do
+                echo "<li><a href='$aa'>$aa</a></li>";
+           done;
+           echo "</ol></body></html>") > index.html
+ 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@4.0.0
       with:
@@ -49,7 +67,7 @@ jobs:
         echo "##[set-output name=branch;]${BRANCH}"
       env:
         BADGE_PATH: ${{ steps.extract_branch.outputs.branch }}/warnings-badge.svg
-        BRANCH: badges
+        BRANCH: gh-pages
 
     - name: Get Status
       run: |
