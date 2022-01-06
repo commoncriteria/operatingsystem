@@ -18,13 +18,27 @@ jobs:
 
     - name: Install Build Packages
       run: "sudo apt-get update && sudo apt-get install -y xsltproc hunspell pandoc"
+    # Get current banch name to use it as dest directory
+    - name: Extract branch name
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      id: extract_branch
+
+    - name: Install Jing
+      run: wget -O - https://github.com/relaxng/jing-trang/releases/download/V20181222/jing-20181222.zip | jar -x
+
 
     - name: Quick Build
-      run: make release 
+      run: WARN_PATH="output/SanityChecksOutput.md" make release 
+
+    - id: validate
+      run: |
+        RNG_OUT="output/ValidationReport.txt" make validate || true
+        echo ::set-output name=VALERRORS::$(wc -l output/ValidationReport.txt | { read first rest ; echo $first ; } )
 
     - id: spellcheck
       run: |
-        make spellcheck-release
+        SPELL_OUT="output/SpellCheckReport.txt" make spellcheck
         echo ::set-output name=LINES::$(wc -l output/SpellCheckReport.txt | { read first rest ; echo $first ; } )
 
     - name: diff
@@ -51,17 +65,13 @@ jobs:
         branch: gh-pages # The branch the action should deploy to.
         folder: output # The folder the action should deploy.
 
-    # Get current banch name to use it as dest directory
-    - name: Extract branch name
-      shell: bash
-      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-      id: extract_branch
-
     - name: Prepare environment
       id: coverage
       run: |
         # Generates a GitHub Workflow output named `lines` with a coverage value
         echo "##[set-output name=spellcolor;]$(if [ 0 = ${{ steps.spellcheck.outputs.LINES }} ]; then echo green; else echo red; fi)"
+        echo "##[set-output name=valcolor;]$(if [ 0 = ${{ steps.validate.outputs.VALERRORS }} ]; then echo green; else echo red; fi)"
+
         # Output values to be used by other steps
         echo "##[set-output name=path;]${BADGE_PATH}"
         echo "##[set-output name=branch;]${BRANCH}"
@@ -95,6 +105,16 @@ jobs:
         status: ${{ steps.spellcheck.outputs.LINES }}
         color: ${{ steps.coverage.outputs.spellcolor }}
         path: ${{ steps.extract_branch.outputs.branch }}/spell-badge.svg
+
+     # Use the output from the `coverage` step
+    - name: Generate the validation badge SVG image
+      uses: emibcn/badge-action@v1
+      with:
+        label: 'Validation'
+        status: ${{ steps.validate.outputs.VALERRORS }}
+        color: ${{ steps.coverage.outputs.valcolor }}
+        path: ${{ steps.extract_branch.outputs.branch }}/validation.svg
+
 
     - name: Upload badge as artifact
       uses: actions/upload-artifact@v2
