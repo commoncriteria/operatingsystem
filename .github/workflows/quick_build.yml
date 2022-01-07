@@ -97,14 +97,6 @@ jobs:
         BADGE_PATH: ${{ steps.coverage.outputs.path }}
       run: mkdir -p "${BADGE_PATH%/*}"
 
-    - name: Generate the spelling badge SVG image
-      uses: emibcn/badge-action@v1
-      with:
-        label: 'Last Branch'
-        status: ${{ steps.extract_branch.outputs.branch }}
-        color: gray
-        path:  "output/build-branch-badge.svg"
-
      # Use the output from the `coverage` step
     - name: Generate the spelling badge SVG image
       uses: emibcn/badge-action@v1
@@ -113,6 +105,14 @@ jobs:
         status: ${{ steps.spellcheck.outputs.LINES }}
         color: ${{ steps.coverage.outputs.spellcolor }}
         path: ${{ steps.extract_branch.outputs.branch }}/spell-badge.svg
+
+    - name: Generate the spelling badge SVG image
+      uses: emibcn/badge-action@v1
+      with:
+        label: 'Last Branch'
+        status: ${{ steps.extract_branch.outputs.branch }}
+        color: gray
+        path:  "output/build-branch-badge.svg"
 
         
      # Use the output from the `coverage` step
@@ -125,13 +125,18 @@ jobs:
         path: ${{ steps.extract_branch.outputs.branch }}/validation.svg
 
 
-    - name: Upload badge as artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: badge
-        path: ${{ steps.extract_branch.outputs.branch }}/spell-badge.svg
-        if-no-files-found: error
+    # - name: Upload badge as artifact
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: badge
+    #     path: ${{ steps.extract_branch.outputs.branch }}/spell-badge.svg
+    #     if-no-files-found: error
 
+    - name: debug
+      run: |
+        pwd
+        ls
+        
    # Use the output from the `coverage` step
     - name: Generate the badge SVG image
       uses: emibcn/badge-action@v1
@@ -141,12 +146,12 @@ jobs:
         color: ${{ steps.status.outputs.COLOR }}
         path: ${{ steps.coverage.outputs.path }}
 
-    - name: Upload badge as artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: badge
-        path: ${{ steps.coverage.outputs.path }}
-        if-no-files-found: error
+    # - name: Upload badge as artifact
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: badge
+    #     path: ${{ steps.coverage.outputs.path }}
+    #     if-no-files-found: error
 
     - name: Commit badges
       continue-on-error: true
