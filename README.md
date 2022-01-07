@@ -2,6 +2,9 @@ Protection Profile for General Purpose Operating System
 ===============
 ![Build](https://github.com/commoncriteria/operatingsystem/workflows/Build/badge.svg)
 ![Validate](https://github.com/commoncriteria/operatingsystem/workflows/Validate/badge.svg)
+
+[Last QuickBuilt Branch ] https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/build-branch-badge.svg
+
 [![SanityChecks](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/master/warnings-badge.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/SanityChecksOutput.md)
 [![SpellCheck](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/master/spell-badge.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/SpellCheckReport.txt)
 [![QuickBuild](https://github.com/commoncriteria/operatingsystem/actions/workflows/quick_build.yml/badge.svg)](https://commoncriteria.github.io/operatingsystem)

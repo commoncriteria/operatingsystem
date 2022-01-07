@@ -109,7 +109,7 @@ jobs:
         label: 'Misspellings'
         status: ${{ steps.spellcheck.outputs.LINES }}
         color: ${{ steps.coverage.outputs.spellcolor }}
-        path: ${{ steps.extract_branch.outputs.branch }}/spell-badge.svg
+        path: spell-badge.svg
 
     - name: Generate the built branch SVG
       uses: emibcn/badge-action@v1
@@ -120,16 +120,6 @@ jobs:
         path:  "build-branch-badge.svg"
 
 
-    - name: Commit badges
-      continue-on-error: true
-      env:
-        BADGE: ${{ steps.coverage.outputs.path }}
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add "build-branch-badge.svg"
-        git commit -m "Add/Update badges"
-        
     # - name: Upload badge as artifact
     #   uses: actions/upload-artifact@v2
     #   with:
@@ -137,6 +127,14 @@ jobs:
     #     path: build-branch-badge.svg
     #     if-no-files-found: error
 
+   # Use the output from the `coverage` step
+    - name: Generate the badge SVG image
+      uses: emibcn/badge-action@v1
+      with:
+        label: 'Warnings'
+        status: ${{ steps.status.outputs.WORD }}
+        color: ${{ steps.status.outputs.COLOR }}
+        path: warnings.svg
         
         
      # Use the output from the `coverage` step
@@ -146,25 +144,7 @@ jobs:
         label: 'Validation'
         status: ${{ steps.validate.outputs.VALERRORS }}
         color: ${{ steps.coverage.outputs.valcolor }}
-        path: ${{ steps.extract_branch.outputs.branch }}/validation.svg
-
-        # - name: Upload badge as artifact
-
-   # Use the output from the `coverage` step
-    - name: Generate the badge SVG image
-      uses: emibcn/badge-action@v1
-      with:
-        label: 'Warnings'
-        status: ${{ steps.status.outputs.WORD }}
-        color: ${{ steps.status.outputs.COLOR }}
-        path: ${{ steps.coverage.outputs.path }}
-
-    # - name: Upload badge as artifact
-    #   uses: actions/upload-artifact@v2
-    #   with:
-    #     name: badge
-    #     path: ${{ steps.coverage.outputs.path }}
-    #     if-no-files-found: error
+        path: validation.svg
 
     - name: Commit badges
       continue-on-error: true
@@ -173,8 +153,26 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add "${{ steps.extract_branch.outputs.branch }}"
+        git add warnings.svg validation.svg build-branch-badge.svg spell-badge.svg
         git commit -m "Add/Update badges"
+        
+        # - name: Upload badge as artifact
+    # - name: Upload badge as artifact
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: badge
+    #     path: ${{ steps.coverage.outputs.path }}
+    #     if-no-files-found: error
+
+    # - name: Commit badges
+    #   continue-on-error: true
+    #   env:
+    #     BADGE: ${{ steps.coverage.outputs.path }}
+    #   run: |
+    #     git config --local user.email "action@github.com"
+    #     git config --local user.name "GitHub Action"
+    #     git add "${{ steps.extract_branch.outputs.branch }}"
+    #     git commit -m "Add/Update badges"
 
     - name: Push badge commit
       uses: ad-m/github-push-action@master
