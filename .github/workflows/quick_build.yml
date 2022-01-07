@@ -97,6 +97,11 @@ jobs:
         BADGE_PATH: ${{ steps.coverage.outputs.path }}
       run: mkdir -p "${BADGE_PATH%/*}"
 
+    - name: debug
+      run: |
+        pwd
+        ls
+      
      # Use the output from the `coverage` step
     - name: Generate the spelling badge SVG image
       uses: emibcn/badge-action@v1
@@ -132,11 +137,8 @@ jobs:
     #     path: ${{ steps.extract_branch.outputs.branch }}/spell-badge.svg
     #     if-no-files-found: error
 
-    - name: debug
-      run: |
-        pwd
-        ls
-        
+
+        .
    # Use the output from the `coverage` step
     - name: Generate the badge SVG image
       uses: emibcn/badge-action@v1
