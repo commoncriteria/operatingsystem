@@ -3,8 +3,8 @@ Protection Profile for General Purpose Operating System
 ![Build](https://github.com/commoncriteria/operatingsystem/workflows/Build/badge.svg)
 ![Validate](https://github.com/commoncriteria/operatingsystem/workflows/Validate/badge.svg)
 
-[Last QuickBuilt Branch](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/build-branch-badge.svg)
-[![SanityChecks](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/validation.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/ValidationReport.txt)
+![Last QuickBuilt Branch](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/build-branch-badge.svg)
+[![Validation](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/validation.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/ValidationReport.txt)
 [![SanityChecks](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/warnings-badge.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/SanityChecksOutput.md)
 [![SpellCheck](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/spell-badge.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/SpellCheckReport.txt)
 [![QuickBuild](https://github.com/commoncriteria/operatingsystem/actions/workflows/quick_build.yml/badge.svg)](https://commoncriteria.github.io/operatingsystem)
