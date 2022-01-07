@@ -119,12 +119,23 @@ jobs:
         color: gray
         path:  "build-branch-badge.svg"
 
-    - name: Upload badge as artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: badge
-        path: build-branch-badge.svg
-        if-no-files-found: error
+
+    - name: Commit badges
+      continue-on-error: true
+      env:
+        BADGE: ${{ steps.coverage.outputs.path }}
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add "build-branch-badge.svg"
+        git commit -m "Add/Update badges"
+        
+    # - name: Upload badge as artifact
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: badge
+    #     path: build-branch-badge.svg
+    #     if-no-files-found: error
 
         
         
