@@ -18,28 +18,30 @@ jobs:
 
     - name: Install Build Packages
       run: "sudo apt-get update && sudo apt-get install -y xsltproc hunspell pandoc"
+
+    - name: Install Jing
+      run: wget -O - https://github.com/relaxng/jing-trang/releases/download/V20181222/jing-20181222.zip | jar -x
+
     # Get current banch name to use it as dest directory
     - name: Extract branch name
       shell: bash
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       id: extract_branch
 
-    - name: Install Jing
-      run: wget -O - https://github.com/relaxng/jing-trang/releases/download/V20181222/jing-20181222.zip | jar -x
-
-
     - name: Quick Build
-      run: WARN_PATH="output/SanityChecksOutput.md" make release 
+      run: |
+        mkdir output/${{steps.extract_branch.outputs.branch}} || true
+        WARN_PATH="output/${{steps.extract_branch.outputs.branch}}/SanityChecksOutput.md" make release 
 
     - id: validate
       run: |
-        RNG_OUT="output/ValidationReport.txt" make validate || true
-        echo ::set-output name=VALERRORS::$(wc -l output/ValidationReport.txt | { read first rest ; echo $first ; } )
+        RNG_OUT="output/${{steps.extract_branch.outputs.branch}}/ValidationReport.txt" make validate || true
+        echo ::set-output name=VALERRORS::$(wc -l output/${{steps.extract_branch.outputs.branch}}/ValidationReport.txt | { read first rest ; echo $first ; } )
 
     - id: spellcheck
       run: |
-        SPELL_OUT="output/SpellCheckReport.txt" make spellcheck
-        echo ::set-output name=LINES::$(wc -l output/SpellCheckReport.txt | { read first rest ; echo $first ; } )
+        SPELL_OUT="output/${{steps.extract_branch.outputs.branch}}/SpellCheckReport.txt" make spellcheck
+        echo ::set-output name=LINES::$(wc -l output/${{steps.extract_branch.outputs.branch}}/SpellCheckReport.txt | { read first rest ; echo $first ; } )
 
     - name: diff
       run: make diff || true; 
