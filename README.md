@@ -1,5 +1,6 @@
 Protection Profile for General Purpose Operating System 
 ===============
+![Master Badges](https://img.shields.io/badge/Build-master-black.svg)](https://shields.io/)
 ![Build](https://github.com/commoncriteria/operatingsystem/workflows/Build/badge.svg)
 ![Validate](https://github.com/commoncriteria/operatingsystem/workflows/Validate/badge.svg)
 
