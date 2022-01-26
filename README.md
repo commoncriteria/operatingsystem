@@ -1,10 +1,16 @@
 Protection Profile for General Purpose Operating System 
 ===============
+![Master Badges](https://img.shields.io/badge/Build-master-black.svg)
 ![Build](https://github.com/commoncriteria/operatingsystem/workflows/Build/badge.svg)
 ![Validate](https://github.com/commoncriteria/operatingsystem/workflows/Validate/badge.svg)
-[![SanityChecks](https://raw.githubusercontent.com/commoncriteria/operatingsystem/badges/master/warnings-badge.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/SanityChecksOutput.md)
-[![SpellCheck](https://raw.githubusercontent.com/commoncriteria/operatingsystem/badges/master/spell-badge.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/SpellCheckReport.txt)
-[![QuickBuild](https://github.com/commoncriteria/operatingsystem/actions/workflows/quick_build.yml/badge.svg)](https://commoncriteria.github.io/operatingsystem/operatingsystem-release.html)
+
+![Last QuickBuilt Branch](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/build-branch-badge.svg)
+[![Validation](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/validation.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/ValidationReport.txt)
+[![SanityChecks](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/warnings.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/SanityChecksOutput.md)
+[![SpellCheck](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/spell-badge.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/SpellCheckReport.txt)
+[![QuickBuild](https://github.com/commoncriteria/operatingsystem/actions/workflows/quick_build.yml/badge.svg)](https://commoncriteria.github.io/operatingsystem)
+
+
 [![GitHub issues Open](https://img.shields.io/github/issues/commoncriteria/operatingsystem.svg?maxAge=2592000)](https://github.com/commoncriteria/operatingsystem/issues) 
 
 This repository hosts the draft version of the Protection Profile for a General Purpose Operating System based on the 
