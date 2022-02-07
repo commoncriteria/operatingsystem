@@ -114,13 +114,6 @@ jobs:
       env:
         BADGE_PATH: ${{ steps.coverage.outputs.path }}
       run: mkdir -p "${BADGE_PATH%/*}"
-
-    - name: debug
-      env:
-        TDD: ${{ steps.tdate.outputs.TDATE }}
-        TDD1: ${{ steps.tdate.outputs.TDATE1 }}
-        TDD2: ${{ steps.tdate.outputs.TDATE2}}
-      run: echo "TDATE is $TDD,  $TDD1,  $TDD2"
       
      # Use the output from the `coverage` step
     - name: Generate the spelling badge SVG image
