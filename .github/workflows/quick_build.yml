@@ -51,12 +51,12 @@ jobs:
         SPELL_OUT="output/SpellCheckReport.txt" make spellcheck
         echo ::set-output name=LINES::$(wc -l output/SpellCheckReport.txt | { read first rest ; echo $first ; } )
 
-    - name: tdate
+    - id: tdate
       run: |
-        git log -1 --format=%cs
-        run: echo "##[set-output name=TDATE;]$(echo TESTTEST)"
+        echo "##[::set-output name=TDATE;]$(git log -1 --format=%cs)"
+#        git log -1 --format=%cs
+#        run: echo "##[set-output name=TDATE;]$(echo TESTTEST)"
 #        echo ::set-output name=TDATE::$(git log -1 --format=%cs)
-#        echo "##[::set-output name=TDATE;]$(git log -1 --format=%cs)"
 
       
     - name: diff
