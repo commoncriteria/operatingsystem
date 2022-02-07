@@ -53,9 +53,10 @@ jobs:
 
     - id: tdate
       run: |
-        echo "##[::set-output name=TDATE;]$(git log -1 --format=%cs)"
+        echo "##[set-output name=TDATE;]$(cd transforms && git log -1 --format=%cs)"
+        echo "::set-output name=TDATE1::$(echo 'BLAHBLAH')"
+        echo "##[set-output name=TDATE2;]$(echo TESTTEST)"
 #        git log -1 --format=%cs
-#        run: echo "##[set-output name=TDATE;]$(echo TESTTEST)"
 #        echo ::set-output name=TDATE::$(git log -1 --format=%cs)
 
       
@@ -117,7 +118,9 @@ jobs:
     - name: debug
       env:
         TDD: ${{ steps.tdate.outputs.TDATE }}
-      run: echo "TDATE is $TDD"
+        TDD1: ${{ steps.tdate.outputs.TDATE1 }}
+        TDD2: ${{ steps.tdate.outputs.TDATE2}}
+      run: echo "TDATE is $TDD,  $TDD1,  $TDD2""
       
      # Use the output from the `coverage` step
     - name: Generate the spelling badge SVG image
