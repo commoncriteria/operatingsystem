@@ -115,9 +115,9 @@ jobs:
       run: mkdir -p "${BADGE_PATH%/*}"
 
     - name: debug
-      run: |
-        pwd
-        ls
+      env:
+        TDD: ${{ steps.tdate.outputs.TDATE }}
+      run: echo "TDATE is $TDD"
       
      # Use the output from the `coverage` step
     - name: Generate the spelling badge SVG image
@@ -153,6 +153,7 @@ jobs:
         color: ${{ steps.status.outputs.COLOR }}
         path: warnings.svg
 
+        
     - name: Generate the transforms badge
       uses: emibcn/badge-action@v1
       with:
