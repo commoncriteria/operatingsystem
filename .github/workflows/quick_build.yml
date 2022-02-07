@@ -51,6 +51,10 @@ jobs:
         SPELL_OUT="output/SpellCheckReport.txt" make spellcheck
         echo ::set-output name=LINES::$(wc -l output/SpellCheckReport.txt | { read first rest ; echo $first ; } )
 
+    - name: tdate
+      run: |
+        echo ::set-output name=TDATE::$(git log -1 --format=%cs)
+      
     - name: diff
       run: make diff || true; 
     # Little diff depends on having a git history. 
@@ -144,7 +148,14 @@ jobs:
         status: ${{ steps.status.outputs.WORD }}
         color: ${{ steps.status.outputs.COLOR }}
         path: warnings.svg
-        
+
+    - name: Generate the transforms badge
+      uses: emibcn/badge-action@v1
+      with:
+        label: 'Transforms'
+        status: ${{ steps.tdate.outputs.TDATE }}
+        color: gray
+        path: transforms.svg
         
      # Use the output from the `coverage` step
     - name: Generate the validation badge SVG image
