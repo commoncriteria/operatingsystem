@@ -54,11 +54,6 @@ jobs:
     - id: tdate
       run: |
         echo "##[set-output name=TDATE;]$(cd transforms && git log -1 --format=%cs)"
-        echo "::set-output name=TDATE1::$(echo 'BLAHBLAH')"
-        echo "##[set-output name=TDATE2;]$(echo TESTTEST)"
-#        git log -1 --format=%cs
-#        echo ::set-output name=TDATE::$(git log -1 --format=%cs)
-
       
     - name: diff
       run: make diff || true; 
