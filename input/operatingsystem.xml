@@ -1873,12 +1873,14 @@ only AES-based implementations for CTR_DRBG are allowed.
             </aactivity>
           </f-element>
         </f-component>
-        <f-component cc-id="fdp_ifc_ext.1" name="Information flow control" status="optional">
+        <f-component cc-id="fdp_ifc_ext.1" name="Information flow control" status="sel-based">
+	  <depends on="s-itc-ipsec"/>
+	  <depends><optional/></depends>
           <f-element id="fel-dit-vpn">
             <title> The OS shall
 	    <selectables linebreak="yes">
               <selectable>provide an interface which allows a VPN client to protect all IP traffic using IPsec</selectable>
-              <selectable>provide a VPN client which can protects all IP traffic using IPsec</selectable>
+              <selectable id="s-provides-vpnclient">provide a VPN client which can protects all IP traffic using IPsec</selectable>
             </selectables>
 	    with the exception of IP traffic required to establish the VPN connection
 	    and
@@ -1904,9 +1906,11 @@ only AES-based implementations for CTR_DRBG are allowed.
 	      <h:p>
 		  The ST author will select the second option if the TSF implements a
 		  native VPN client (IPsec is selected in FTP_ITC_EXT.1).
-		  If the native VPN client is to be validated (IPsec is selected in <xref to="fel-trust-comms"/>
-		  and the TSF is validated against the <h:i>EP for IPsec
-		  Virtual Private Network (VPN) Clients</h:i>), the ST author will also
+		  If the native VPN client is to be validated 
+		  (<xref to="s-itc-ipsec"/> is selected in <xref to="fel-trust-comms"/>
+		  and the TSF is validated against the 
+		  <h:i>Module for Virtual Private Network (VPN) Clients</h:i>),
+		  the ST author will also
 		  include FDP_IFC_EXT.1 from this package.
 		  In the future, this requirement may also make a distinction between the
 		  current requirement (which requires that when the IPsec trusted
@@ -3137,12 +3141,12 @@ the node certificate to be tested, two Intermediate CAs, and the
               The ST author must include the security functional requirements for the trusted
               channel protocol selected in <xref to="fel-trust-comms"/> in the main body of the ST.
               <h:br/>
-              If the ST author selects TLS or DTLS, the TSF shall be validated
-              against requirements from the <xref to="pkg-tls"/>
+              If the ST author selects <xref to="tls"/> or <xref to="dtls"/>, 
+	      the TSF shall be validated against requirements from the <xref to="pkg-tls"/>.
               The TSF can act as TLS client or server, or both.
               <h:br/>
               If the ST author selects SSH, the TSF shall be validated against
-              the <xref to="pkg-ssh"/>
+              the <xref to="pkg-ssh"/>.
       	    </note>
       	    <aactivity>
 	      <Tests>
