@@ -88,6 +88,9 @@ it manages may be physical or virtual.
 	component, such as a library. APIs are often provided for a set of libraries included
 	with the platform.
       </term>
+      <term full="Biometric Authentication Factor" abbr="BAF" plural="BAFs"> Authentication factor, which uses
+        biometric sample, matched to a biometric authentication template to help establish
+        identity.</term>
       <term abbr='CESG' full="Communications-Electronics Security Group"/>
       <term abbr='CMC' full="Certificate Management over CMS"/>
       <term abbr='CMS' full="Cryptographic Message Syntax"/>
@@ -122,13 +125,6 @@ it manages may be physical or virtual.
 	An entity that writes OS software. For the purposes of this document,
 	vendors and developers are the same.
       </term>
-      <term full="General Purpose Operating System">
-	A class of OSes designed to support a wide-variety of workloads consisting of many concurrent applications or services.
-	Typical characteristics for OSes in this class include support for third-party applications,
-	support for multiple users, and security separation between users and their respective resources.
-	General Purpose Operating Systems also lack the real-time constraint that defines Real Time Operating Systems (RTOS).
-	RTOSes typically power routers, switches, and embedded devices.
-      </term>
       <term abbr='DHE' full="Diffie-Hellman Ephemeral"/>
       <term abbr='DNS' full="Domain Name System"/>
       <term abbr='DRBG' full="Deterministic Random Bit Generator"/>
@@ -140,6 +136,15 @@ it manages may be physical or virtual.
       <term abbr='ECDSA' full="Elliptic Curve Digital Signature Algorithm"/>
       <term abbr='EST' full="Enrollment over Secure Transport"/>
       <term abbr='FIPS' full="Federal Information Processing Standards"/>
+      <term full="General Purpose Operating System">
+	A class of OSes designed to support a wide-variety of workloads consisting of many concurrent applications or services.
+	Typical characteristics for OSes in this class include support for third-party applications,
+	support for multiple users, and security separation between users and their respective resources.
+	General Purpose Operating Systems also lack the real-time constraint that defines Real Time Operating Systems that 
+	RTOSes typically power routers, switches, and embedded devices.
+      </term>
+      <term full="Hybrid Authentication"> A hybrid authentication factor is one where a user has to
+        submit a combination of a biometric sample and a PIN or password and both must pass. If either factor fails, the entire attempt fails. The user shall not be made aware of which factor failed, if either fails.</term>
       <term abbr='HMAC' full="Hash-based Message Authentication Code"/>
       <term full="Host-based Firewall">
 	A software-based firewall implementation running on the OS for filtering inbound and
@@ -162,6 +167,14 @@ it manages may be physical or virtual.
 	for applications. The terms <h:i>TOE</h:i> and <h:i>OS</h:i> are interchangeable in this
 	document. 
       </term>
+      <term abbr="PIN" full="Personal Identification Number">
+	An authetication factor that is comprised of a set of numeric or alphabetic characters that may be used
+        in addition to a biometric factor or cryptographic token to provide a hybrid authentication factor. At this time it
+        is not considered as a stand-alone authentication mechanism.
+	A PIN is distinct from a password in that the allowed character set and required length of a PIN
+	is typically smaller than that of a password as it is designed to be input quickly.
+      </term>
+
       <term abbr='PKI' full="Public Key Infrastructure"/>
       <term abbr='RBG' full="Random Bit Generator"/>
       <term abbr='RFC' full="Request for Comment"/>
@@ -267,7 +280,37 @@ it manages may be physical or virtual.
       </usecases>
     </sec:Use_Cases>
   </sec:Introduction>
-  <sec:Conformance_Claims/>
+  <sec:Conformance_Claims boilerplate="no">
+    <cclaims>
+      <cclaim name="Conformance Statement">
+        <description>
+	  <h:p>An ST must claim exact conformance to this PP, as defined in the CC and CEM
+          addenda for Exact Conformance, Selection-Based SFRs, and Optional SFRs (dated May 2017).
+	  </h:p>
+	  <h:p>
+          The following PP-Modules are allowed to be specified in a PP-Configuration with this PP.
+          <h:ul>
+                <h:li>PP-Module for VPN Client, Version 2.3</h:li>
+                <h:li>PP-Module for Bluetooth,  Version 1.0</h:li>
+                <h:li>PP-Module for MDM Agent,  Version 1.0</h:li>
+                <h:li>cPP-Module for Biometric Enrollment and Verification, Version 1.1</h:li>
+              </h:ul>
+	  </h:p>
+        </description>
+      </cclaim>
+      <cclaim name="CC Conformance Claims">
+        <description>This PP is conformant to Parts 2 (extended) and 3 (extended) of Common
+          Criteria Version 3.1, Revision 5.</description>
+      </cclaim>
+      <cclaim name="PP Claim">
+        <description>This PP does not claim conformance to any Protection Profile.</description>
+      </cclaim>
+      <cclaim name="Package Claim">
+        <description>This PP is TLS Package Conformant.</description>
+      </cclaim>
+    </cclaims>
+
+  </sec:Conformance_Claims>
   <sec:Security_Problem_Description>The security problem is described in terms
     of the threats that the OS is expected to address, assumptions about the
     operational environment, and any organizational security policies that the OS
@@ -551,16 +594,15 @@ users of the same system.
               vendor to furnish a developer environment and developer
 	      tools that are typically not available to end-users of the OS.
           </h:p>
-		  <h:div>
-			  <depends on="s-keygen-rsa"/>
-          <h:b>Key Generation for FIPS PUB 186-4 RSA Schemes</h:b><h:br/>
-		      <h:p>The evaluator will verify
-              the implementation of RSA Key Generation by the OS using the Key
-              Generation test. This test verifies the ability of the TSF to
-              correctly produce values for the key components including the public verification
-              exponent e, the private prime factors p and q, the public modulus n and the
-              calculation of the private signature exponent d. Key Pair generation specifies 5 ways
-              (or methods) to generate the primes p and q. These include:
+		  <h:div>  <depends on="s-keygen-rsa"/>
+		  <h:b>Key Generation for FIPS PUB 186-4 RSA Schemes</h:b><h:br/>
+		  <h:p>The evaluator will verify
+		  the implementation of RSA Key Generation by the OS using the Key
+		  Generation test. This test verifies the ability of the TSF to
+		  correctly produce values for the key components including the public verification
+		  exponent e, the private prime factors p and q, the public modulus n and the
+		  calculation of the private signature exponent d. Key Pair generation specifies 5 ways
+		  (or methods) to generate the primes p and q. These include:
 	      <h:ol>
                 <h:li> Random Primes:
 		<h:ul>
@@ -1767,760 +1809,760 @@ only AES-based implementations for CTR_DRBG are allowed.
 
         <!-- FCS_IPSEC_EXT.1 -->
         <!-- Depends on IPSEC being selected for trusted channels -->
-	<!-- This should be roughly the same as the IPsec requirement in VPNClient -->
-        <f-component cc-id="fcs_ipsec_ext.1" name="IPsec Protocol" status="sel-based">
-          <depends on-sel="s-itc-ipsec"/>
-	  <consistency-rationale/>
-	  <comp-lev>requires that IPsec be implemented as specified.</comp-lev>
-	  <management>No specific management functions are identified.
-	  </management>
-	  <audit>The following actions should be auditable if FAU_GEN Security audit data 
-	  generation is included in the PP/ST:
-	  <h:ol type="a">
-	    <h:li>Failure to establish an IPsec SA.</h:li>
-	    <h:li>Establishment/Termination of an IPsec SA.</h:li>
-	  </h:ol>
-	  </audit>
-	  <dependencies>FCS_CKM.1 Cryptographic Key Generation<h:p/>
-	  FCS_CKM.2 Cryptographic Key Establishment<h:p/>
-	  FCS_COP.1 Cryptographic Operation<h:p/>
-	  FCS_RBG_EXT.1 Cryptographic Operation (Random Bit Generation)<h:p/>
-	  FIA_X509_EXT.1 X.509 Certificate Validation</dependencies>
-	  <f-element id="fel-arch">
-	    <title>The TSF shall implement the IPsec architecture as specified in RFC 4301.
-	    </title>
-	    <note role="application">
-	      This SFR is included in the ST if the ST Author selected "IPsec" in FTP_ITC_EXT.1.1.<h:br/><h:br/>
-	      RFC 4301 calls for an IPsec implementation to protect IP traffic through the use
-	      of a Security Policy Database (SPD). The SPD is used to define how IP packets are
-	      to be handled: PROTECT the packet (e.g., encrypt the packet), BYPASS the IPsec
-	      services (e.g., no encryption), or DISCARD the packet (e.g., drop the packet). The
-	      SPD can be implemented in various ways, including router access control lists,
-	      firewall rulesets, a "traditional" SPD, etc. Regardless of the implementation
-	      details, there is a notion of a "rule" that a packet is "matched" against and a
-	      resulting action that takes place. <h:br/><h:br/>
-	      While there must be a means to order the rules, a general approach to ordering
-	      is not mandated, as long as the TOE can distinguish the IP packets and apply the
-	      rules accordingly. There may be multiple SPDs (one for each network interface),
-	      but this is not required. <h:br/><h:br/>
-	    </note>
-	    <aactivity level="component">
-	      <!-- Coponent-level EA from vpnclient module -->
-	      <TSS>
-		In addition to the TSS EAs for the individual FCS_IPSEC_EXT.1 elements below, the
-		evaluator shall perform the following:<h:p/>
-		If the TOE boundary includes a general-purpose operating system or mobile device, the evaluator shall
-		examine the TSS to ensure that it describes whether the VPN client capability is architecturally integrated
-		with the platform itself or whether it is a separate executable that is bundled with the platform.<h:p/>
-	      </TSS>
-	      <Guidance>
-		In addition to the Operational Guidance EAs for the individual FCS_IPSEC_EXT.1 elements below, the
-		evaluator shall perform the following:<h:p/>
-		If the configuration of the IPsec behavior is from an environmental source, most notably a VPN gateway
-		(e.g through receipt of required connection parameters from a VPN gateway), the evaluator shall ensure
-		that the operational guidance contains any appropriate information for ensuring that this configuration
-		can be properly applied.<h:p/>
-		Note in this case that the implementation of the IPsec protocol must be enforced entirely within the TOE
-		boundary; i.e. it is not permissible for a software application TOE to be a graphical front-end for IPsec
-		functionality implemented totally or in part by the underlying OS platform. The behavior referenced here
-		is for the possibility that the configuration of the IPsec connection is initiated from outside the TOE, which
-		is permissible so long as the TSF is solely responsible for enforcing the configured behavior. However, it is
-		allowable for the TSF to rely on low-level platform-provided networking functions to implement the SPD
-		from the client (e.g., enforcement of packet routing decisions).<h:p/>
-	      </Guidance>
-	      <Tests>
-		As a prerequisite for performing the Test EAs for the individual FCS_IPSEC_EXT.1 elements below, the
-		evaluator shall do the following:<h:p/>
-		The evaluator shall minimally create a test environment equivalent to the test environment illustrated
-		below. The traffic generator used to construct network packets should provide the
-		evaluator with the ability manipulate fields in the ICMP, IPv4, IPv6, UDP, and TCP packet headers. The
-		evaluator shall provide justification for any differences in the test environment.<h:p/>
-		<figure entity="images/network.png" title="IPsec Test Environment" id="fig-ipsectest"/><h:p/>
-		Note that the evaluator shall perform all tests using the Virtualization System and a representative sample of
-		platforms listed in the ST (for TOEs that claim to support multiple platforms).<h:p/>
-	      </Tests>
-	    </aactivity>							
-	    <aactivity level="element">
-	      <TSS>
-		The evaluator shall examine the TSS and determine that it describes how the IPsec capabilities
-		are implemented.<h:p/>
-		The evaluator shall ensure that the TSS describes at a high level the architectural relationship between
-		the IPsec implementation and the rest of the TOE (e.g., is the IPsec implementation an integrated part 
-		of the VS or is it a standalone executable that is bundled into the VS).<h:p/> 		    
-		The evaluator shall ensure that the TSS describes how the SPD is implemented and the rules for processing
-		both inbound and outbound packets in terms of the IPsec policy. The TSS describes the rules that are
-		available and the resulting actions available after matching a rule. The TSS describes how the available
-		rules and actions form the SPD using terms defined in RFC 4301 such as BYPASS (e.g., no encryption),
-		DISCARD (e.g., drop the packet), and PROTECT (e.g., encrypt the packet) actions defined in RFC 4301.
-		<h:p/>
-		As noted in section 4.4.1 of RFC 4301, the processing of entries in the SPD is non-trivial and the evaluator
-		shall determine that the description in the TSS is sufficient to determine which rules will be applied given
-		the rule structure implemented by the TOE. For example, if the TOE allows specification of ranges,
-		conditional rules, etc., the evaluator shall determine that the description of rule processing (for both
-		inbound and outbound packets) is sufficient to determine the action that will be applied, especially in the
-		case where two different rules may apply. This description shall cover both the initial packets (that is, no
-		SA is established on the interface or for that particular packet) as well as packets that are part of an
-		established SA. <h:p/>
-	      </TSS>
-	      <Guidance>
-		The evaluator shall examine the operational guidance to verify it instructs the Administrator how 
-		to construct entries into the SPD that specify a rule for processing a packet. The description 
-		includes all three cases – a rule that ensures packets are encrypted/decrypted, dropped, and 
-		flow through the TOE without being encrypted. The evaluator shall determine 
-		that the description in the operational guidance is consistent with the description in the 
-		TSS, and that the level of detail in the operational guidance is sufficient to
-		allow the administrator to set up the SPD in an unambiguous fashion. This includes a discussion 
-		of how ordering of rules impacts the processing of an IP packet.<h:p/>
-	      </Guidance>
-	      <Tests>
-		The evaluator uses the operational guidance to configure the TOE to carry out the following tests:<h:p/>
-		<testlist>
-		  <test>The evaluator shall configure the SPD such that there is a rule for dropping a packet,
-		  encrypting a packet, and allowing a packet to flow in plaintext. The selectors used in
-		  the construction of the rule shall be different such that the evaluator can generate a
-		  packet and send packets to the gateway with the appropriate fields (fields that are used
-		  by the rule - e.g., the IP addresses, TCP/UDP ports) in the packet header. The evaluator
-		  performs both positive and negative test cases for each type of rule (e.g., a packet that
-		  matches the rule and another that does not match the rule). The evaluator observes via the
-		  audit trail, and packet captures that the TOE exhibited the expected
-		  behavior: appropriate packets were dropped, allowed to flow without modification, 
-		  encrypted by the IPsec implementation.</test>
-		  <test>The evaluator shall devise several tests that cover a variety of scenarios for packet
-		  processing. As with Test 1, the evaluator ensures both positive and negative test cases
-		  are constructed. These scenarios shall exercise the range of possibilities for SPD entries 
-		  and processing modes as outlined in the TSS and operational guidance. Potential areas to
-		  cover include rules with overlapping ranges and conflicting entries, inbound and outbound
-		  packets, and packets that establish SAs as well as packets that belong to established SAs.
-		  The evaluator shall verify, via the audit trail and packet captures, for each scenario 
-		  that the expected behavior is exhibited, and is consistent with both the TSS and the
-		  operational guidance.</test>
-		</testlist>
-	      </Tests>
-	    </aactivity>
-	  </f-element>
-	  <f-element id="fel-tmode">
-	    <title>The TSF shall implement
-	    <selectables>
-	      <selectable>transport mode</selectable>
-	      <selectable>tunnel mode</selectable>
-	      </selectables>.
-	    </title>
-	    <note role="application">
-	      If the TOE is used to connect to a VPN gateway for the purposes of establishing a
-	      secure connection to a private network, the ST author shall select
-	      tunnel mode. If the TOE uses IPsec to establish an end-to-end connection to
-	      another IPsec VPN Client, the ST author shall select transport mode. If
-	      the TOE uses IPsec to establish a connection to a specific endpoint device for the
-	      purpose of secure remote administration, the ST author shall select
-	      transport mode.<h:p/>
-	    </note>
-	    <aactivity level="element">
-	      <TSS>
-		The evaluator checks the TSS to ensure it states that an IPsec VPN can be 
-		established to operate in tunnel mode or transport mode (as selected).<h:p/>
-	      </TSS>
-	      <Guidance>
-		The evaluator shall confirm that the operational guidance contains instructions on how to 
-		configure the connection in each mode selected.<h:p/>
-		If both transport mode and tunnel mode are implemented, the evaluator shall review the operational
-		guidance to determine how the use of a given mode is specified.<h:p/>
-	      </Guidance>
-	      <Tests>
-		The evaluator shall perform the following tests based on the selections chosen:
-		<testlist>
-		  <test>(conditional): If tunnel mode is selected, the evaluator uses the operational guidance to 
-		  configure the TOE/platform to operate in tunnel mode and also configures 
-		  a VPN peer to operate in tunnel mode. The evaluator configures the TOE/platform and the
-		  VPN peer to use any of the allowable cryptographic algorithms, authentication methods,
-		  etc. to ensure an allowable SA can be negotiated. The evaluator shall then initiate a 
-		  connection from the TOE/Platform to the VPN peer. The evaluator observes (for example,
-		  in the audit trail and the captured packets) that a successful connection was established
-		  using the tunnel mode.</test>
-		  <test>(conditional): If transport mode is selected, the evaluator uses the operational guidance to
-		  configure the TOE/platform to operate in 
-		  transport mode and also configures a VPN peer to operate in transport mode. The evaluator 
-		  configures the TOE/platform and the VPN peer to use any of the allowed cryptographic
-		  algorithms, authentication methods, etc. to ensure an allowable SA can be negotiated. 
-		  The evaluator then initiates a connection from the TOE/platform to connect to the VPN
-		  peer. The evaluator observes (for example, in the audit trail and the captured packets)
-		  that a successful connection was established using the transport mode.</test>
-		</testlist>
-	      </Tests>
-	    </aactivity>
-	  </f-element>
-	  <f-element id="fel-last-spd">
-	    <title>The TSF shall have a nominal, final entry in the SPD that matches anything that is otherwise unmatched, 
-	    and discards it.
-	    </title>
-	    <aactivity level="element">
-	      <TSS>
-		If both transport mode and tunnel mode are implemented, the evaluator shall review the
-		operational guidance to determine how the use of a given mode is specified.<h:p/>
-	      </TSS>
-	      <Guidance>
-		The evaluator shall check that the operational guidance provides instructions on how to construct or
-		acquire the SPD and uses the guidance to configure the TOE for the following test.<h:p/>
-	      </Guidance>
-	      <Tests>
-		The evaluator shall perform the following test:
-		<testlist>
-		  <test>The evaluator shall configure the SPD such that it has entries that contain operations that DISCARD,
-		  PROTECT, and (if applicable) BYPASS network packets. The evaluator may use the SPD that was created
-		  for verification of FCS_IPSEC_EXT.1.1. The evaluator shall construct a network packet that matches a
-		  BYPASS entry and send that packet. The evaluator should observe that the network packet is passed to
-		  the proper destination interface with no modification. The evaluator shall then modify a field in the packet
-		  header; such that it no longer matches the evaluator-created entries (there may be a “TOE-created” final
-		  entry that discards packets that do not match any previous entries). The evaluator sends the packet, and
-		  observes that the packet was not permitted to flow to any of the TOE’s interfaces.</test>
-		</testlist>
-	      </Tests>
-	    </aactivity>
-	  </f-element>
-	  <f-element id="fel-proto-esp">
-	    <title>The TSF shall implement the IPsec protocol ESP as defined by RFC 4303 using the cryptographic 
-	    algorithms [AES-GCM-128, AES-GCM-256 (as specified in RFC 4106),
-	    <selectables>
-	      <selectable>AES-CBC-128 (specified in RFC 3602)</selectable>
-	      <selectable>AES-CBC-256 (specified in RFC 3602)</selectable>
-	      <selectable>no other algorithms</selectable>
-	      </selectables>] together with a Secure Hash Algorithm (SHA)-based HMAC.
-	    </title>
-	    <aactivity level="element">
-	      <TSS>
-		The evaluator shall examine the TSS to verify that the algorithms AES-GCM-128 and 
-		AES-GCM-256 are implemented. If the "ST" author has selected either 
-		AES-CBC-128 or AES-CBC-256 in the requirement, then the evaluator verifies the
-		TSS describes these as well. In addition, the evaluator ensures that the 
-		SHA-based HMAC algorithm conforms to the algorithms specified in FCS_COP.1/KeyedHash Cryptographic 
-		Operations (Keyed Hash Algorithms).<h:p/>
-	      </TSS>
-	      <Guidance>
-		The evaluator checks the operational guidance to ensure it provides instructions on how the TOE is
-		configured to use the algorithms selected in this component and whether this is performed through direct
-		configuration, defined during initial installation, or defined by acquiring configuration settings from an
-		environmental component.<h:p/>
-	      </Guidance>
-	      <Tests>
-		<testlist>
-		  <test>The evaluator shall configure the TOE/platform as indicated in the 
-		  operational guidance configuring the TOE/platform to use each of the supported
-		  algorithms, attempt to establish a connection using ESP, and verify that the attempt succeeds.
-		  </test>
-		</testlist>
-	      </Tests>
-	    </aactivity>
-	  </f-element>
-	  <f-element id="fel-proto-options">
-	    <title>The TSF shall implement the protocol: <h:p/>
-	    <selectables linebreak="yes">
-	      <selectable>IKEv1, using Main Mode for Phase 1 exchanges, as defined in RFC 2407, RFC 2408, RFC 2409, RFC 4109, 
-	      <selectables>
-		<selectable>no other RFCs for extended sequence numbers</selectable>
-		<selectable>RFC 4304 for extended sequence numbers</selectable>
-		</selectables>,
-		<selectables>
-		  <selectable>no other RFCs for hash functions</selectable>
-		  <selectable>RFC 4868 for hash functions</selectable>
-		  </selectables>, and 
-		  <selectables>
-		    <selectable>support for XAUTH</selectable>
-		    <selectable>no support for XAUTH</selectable>
-		  </selectables>
-	      </selectable>
-	      <selectable>IKEv2 as defined in RFC 7296 (with mandatory support for NAT traversal 
-	      as specified in section 2.23), RFC 8784, RFC 8247, and 
-	      <selectables>
-		<selectable>no other RFCs for hash functions</selectable>
-		<selectable>RFC 4868 for hash functions</selectable>
-	      </selectables>.</selectable>
-	    </selectables>
-	    </title>
-	    <note role="application">If the TOE implements SHA-2 hash algorithms for IKEv1 or IKEv2, the ST author shall
-	    select RFC 4868. </note>
-	    <aactivity level="element">
-	      <TSS>
-		The evaluator shall examine the TSS to verify that IKEv1 or IKEv2 (as selected) are implemented. If IKEv1 is
-		implemented, the evaluator shall verify that the TSS indicates whether or not XAUTH is supported, and
-		that aggressive mode is not used for IKEv1 Phase 1 exchanges (i.e. only main mode is used). It may be that
-		these are configurable options.<h:p/>
-	      </TSS>
-	      <Guidance>
-		The evaluator shall check the operational guidance to ensure it instructs the administrator how to
-		configure the TOE to use IKEv1 or IKEv2 (as selected), and uses the guidance to configure the TOE to
-		perform NAT traversal for the test below. If XAUTH is implemented, the evaluator shall verify that the
-		operational guidance provides instructions on how it is enabled or disabled.<h:p/>
-		If the TOE supports IKEv1, the evaluator shall verify that the operational guidance either asserts that only
-		main mode is used for Phase 1 exchanges, or provides instructions for disabling aggressive mode.<h:p/>
-	      </Guidance>
-	      <Tests>
-		Tests are performed in conjunction with the other IPsec evaluation activities with the exception
-		of the activities below:<h:p/>
-		<testlist>
-		  <test>The evaluator shall configure the TOE so that it will perform NAT traversal processing as described
-		  in the TSS and RFC 7296, section 2.23. The evaluator shall initiate an IPsec connection and determine that
-		  the NAT is successfully traversed. If the TOE supports IKEv1 with or without XAUTH, the evaluator shall
-		  verify that this test can be successfully repeated with XAUTH enabled and disabled in the manner specified
-		  by the operational guidance. If the TOE only supports IKEv1 with XAUTH, the evaluator shall verify that
-		  connections not using XAUTH are unsuccessful. If the TOE only supports IKEv1 without XAUTH, the
-		  evaluator shall verify that connections using XAUTH are unsuccessful.</test>
-		  <test>(conditional) If the TOE supports IKEv1, the evaluator shall perform any applicable operational
-		  guidance steps to disable the use of aggressive mode and then attempt to establish a connection using an
-		  IKEv1 Phase 1 connection in aggressive mode. This attempt should fail. The evaluator shall show that the
-		  TOE will reject a VPN gateway from initiating an IKEv1 Phase 1 connection in aggressive mode. The
-		  evaluator should then show that main mode exchanges are supported.</test>
-		</testlist>
-	      </Tests>
-	    </aactivity>
-	  </f-element>
-	  <f-element id="fel-ipsec-enc-payload">
-	    <title>The TSF shall ensure the encrypted payload in the
-	    <selectables>
-	      <selectable>IKEv1</selectable>
-	      <selectable>IKEv2</selectable>
-	      </selectables> protocol uses the cryptographic algorithms AES-CBC-128, AES-CBC-256 as specified in 
-	      RFC 6379 and
-	      <selectables>
-		<selectable>AES-GCM-128 as specified in RFC 5282</selectable>
-		<selectable>AES-GCM-256 as specified in RFC 5282</selectable>
-		<selectable>no other algorithm</selectable>
-		</selectables>.
-	    </title>
-	    <aactivity level="element">
-	      <TSS>
-		The evaluator shall ensure the TSS identifies the algorithms used for encrypting the IKEv1 or IKEv2
-		payload, and that the algorithms AES-CBC-128, AES-CBC-256 are specified, and if others are chosen in the
-		selection of the requirement, those are included in the TSS discussion.<h:p/>
-	      </TSS>
-	      <Guidance>
-		The evaluator checks the operational guidance to ensure it provides instructions on how the TOE is
-		configured to use the algorithms selected in this component and whether this is performed through direct
-		configuration, defined during initial installation, or defined by acquiring configuration settings from an
-		environmental component. <h:p/>
-	      </Guidance>
-	      <Tests>
-		The evaluator shall use the operational guidance to configure the TOE (or to configure the Operational
-		Environment to have the TOE receive configuration) to perform the following test for each ciphersuite
-		selected:<h:p/>
-		<testlist>
-		  <test>The evaluator shall configure the TOE to use the ciphersuite under test to encrypt the IKEv1 or
-		  IKEv2 payload and establish a connection with a peer device, which is configured to only accept the
-		  payload encrypted using the indicated ciphersuite. The evaluator will confirm the algorithm was that used
-		  in the negotiation. The evaluator will confirm that the connection is successful by confirming that data
-		  can be passed through the connection once it is established. For example, the evaluator may connect to
-		  a remote website and verify that it can be reached.</test>
-		</testlist>
-	      </Tests>
-	    </aactivity>
-	  </f-element>
-	  <f-element id="fel-ipsec-lifetimes">
-	    <title>The TSF shall ensure that 
-	    <selectables>
-	      <selectable>IKEv2 SA lifetimes can be configured by
-	      <selectables>
-		<selectable>an Administrator</selectable>
-		<selectable>a VPN Gateway</selectable>
-		</selectables> based on 
-		<selectables>
-		  <selectable>number of packets/number of bytes</selectable>
-		  <selectable>length of time</selectable>
-		</selectables>
-	      </selectable>
-	      <selectable>IKEv1 SA lifetimes can be configured by 
-	      <selectables>
-		<selectable>an Administrator</selectable>
-		<selectable>a VPN Gateway</selectable>
-		</selectables> based on 
-		<selectables>
-		  <selectable>number of packets/number of bytes</selectable>
-		  <selectable>length of time</selectable>
-		</selectables>
-	      </selectable>
-	      <selectable>IKEv1 SA lifetimes are fixed based on 
-	      <selectables>
-		<selectable>number of packets/number of bytes</selectable>
-		<selectable>length of time</selectable>
-		</selectables>. If length of time is used, it must include at least 
-		one option that is 24 hours or less for Phase 1 SAs and 8 hours or
-		less for Phase 2 SAs.
-	      </selectable>
-	    </selectables>
-	    </title>
-	    <note role="application">
-	      The ST author is afforded a selection based on the version of IKE in their
-	      implementation. There is a further selection within this selection that allows the
-	      ST author to specify which entity is responsible for “configuring” the life of the
-	      SA. An implementation that allows an administrator to configure the client or a
-	      VPN gateway that pushes the SA lifetime down to the client are both acceptable.<h:p/>
-	      As far as SA lifetimes are concerned, the TOE can limit the lifetime based on the
-	      number of bytes transmitted, or the number of packets transmitted. Either
-	      packet-based or volume-based SA lifetimes are acceptable; the ST author makes
-	      the appropriate selection to indicate which type of lifetime limits are supported.<h:p/>
-	      The ST author chooses either the IKEv1 requirements or IKEv2 requirements (or
-	      both, depending on the selection in FCS_IPSEC_EXT.1.5. The IKEv1 requirement
-	      can be accomplished either by providing Authorized Administrator-configurable
-	      lifetimes (with appropriate instructions in documents mandated by AGD_OPE),
-	      or by “hard coding” the limits in the implementation. For IKEv2, there are no
-	      hardcoded limits, but in this case it is required that an administrator be able to
-	      configure the values. In general, instructions for setting the parameters of the
-	      implementation, including lifetime of the SAs, should be included in the 
-	      operational guidance generated for AGD_OPE. It is appropriate to refine the
-	      requirement in terms of number of MB/KB instead of number of packets, as long
-	      as the TOE is capable of setting a limit on the amount of traffic that is protected
-	      by the same key (the total volume of all IPsec traffic protected by that key).
-	    </note>
-	    <aactivity level="element">
-	      <TSS>
-		There are no TSS EAs for this requirement.<h:p/>
-	      </TSS>
-	      <Guidance>
-		The evaluator shall check the operational guidance to ensure it provides instructions on how the TOE
-		configures the values for SA lifetimes. In addition, the evaluator shall check that the guidance has the
-		option for either the Administrator or VPN Gateway to configure Phase 1 SAs if time-based limits are
-		supported. Currently there are no values mandated for the number of packets or number of bytes, the
-		evaluator shall simply check the operational guidance to ensure that this can be configured if selected in
-		the requirement.
-	      </Guidance>
-	      <Tests>
-		When testing this functionality, the evaluator needs to ensure that both sides are configured
-		appropriately. From the RFC “A difference between IKEv1 and IKEv2 is that in IKEv1 SA lifetimes were
-		negotiated. In IKEv2, each end of the SA is responsible for enforcing its own lifetime policy on the SA and
-		rekeying the SA when necessary. If the two ends have different lifetime policies, the end with the shorter
-		lifetime will end up always being the one to request the rekeying. If the two ends have the same lifetime
-		policies, it is possible that both will initiate a rekeying at the same time (which will result in redundant
-		SAs). To reduce the probability of this happening, the timing of rekeying requests SHOULD be jittered.”<h:p/>
-		Each of the following tests shall be performed for each version of IKE selected in the
-		FCS_IPSEC_EXT.1.5 protocol selection:
-		<testlist>
-		  <test>(conditional) The evaluator shall configure a maximum lifetime in terms of the # of packets (or
-		  bytes) allowed following the operational guidance. The evaluator shall establish an SA and determine that
-		  once the allowed # of packets (or bytes) through this SA is exceeded, the connection is closed.</test>
-		  <test>(conditional) The evaluator shall construct a test where a Phase 1 SA is established and attempted
-		  to be maintained for more than 24 hours before it is renegotiated. The evaluator shall observe that this
-		  SA is closed or renegotiated in 24 hours or less. If such an action requires that the TOE be configured in a
-		  specific way, the evaluator shall implement tests demonstrating that the configuration capability of the
-		  TOE works as documented in the operational guidance.</test>
-		  <test>(conditional) The evaluator shall perform a test similar to Test 2 
-		  for Phase 2 SAs, except that the lifetime will be 8 hours or less instead of 24 hours or less.</test>
-		  <test>(conditional) If a fixed limit for IKEv1 SAs is supported, the evaluator
-		  shall establish an SA and observe that the connection is closed after
-		  the fixed traffic or time value is reached.</test>
-		</testlist>				    
-	      </Tests>
-	    </aactivity>
-	  </f-element>
-	  <f-element id="fel-ipsec-dh-groups">
-	    <title>The TSF shall ensure that all IKE protocols implement DH groups [19 (256-bit
-	    Random ECP), 20 (384-bit Random ECP), and 
-	    <selectables>
-	      <selectable>24 (2048-bit MODP with 256-bit POS)</selectable>
-	      <selectable>15 (3072-bit MODP)</selectable>
-	      <selectable>14 (2048-bit MODP)</selectable>
-	      <selectable>no other DH groups</selectable>
-	      </selectables>].
-	    </title>
-	    <note role="application">
-	      The selection is used to specify additional DH groups supported. This applies to
-	      IKEv1 and IKEv2 exchanges. It should be noted that if any additional DH groups
-	      are specified, they must comply with the requirements (in terms of the
-	      ephemeral keys that are established) listed in FCS_CKM.1.<h:p/>
-	      Since the implementation may allow different Diffie-Hellman groups to be
-	      negotiated for use in forming the SAs, the assignments in FCS_IPSEC_EXT.1.9
-	      and FCS_IPSEC_EXT.1.10 may contain multiple values. For each DH group
-	      supported, the ST author consults Table 2 in 800-57 to determine the “bits of
-	      security” associated with the DH group. Each unique value is then used to fill in
-	      the assignment (for 1.9 they are doubled; for 1.10 they are inserted directly into
-	      the assignment). For example, suppose the implementation supports DH group
-	      14 (2048-bit MODP) and group 20 (ECDH using NIST curve P-384). From Table 2,
-	      the bits of security value for group 14 is 112, and for group 20 it is 192. For
-	      FCS_IPSEC_EXT.1.9, then, the assignment would read “[224, 384]” and for
-	      FCS_IPSEC_EXT.1.10 it would read “[112, 192]” (although in this case the
-	    requirement should probably be refined so that it makes sense mathematically).</note>
-	    <aactivity level="element">
-	      <TSS>
-		The evaluator shall check to ensure that the DH groups specified in the requirement are listed as being
-		supported in the TSS. If there is more than one DH group supported, the evaluator checks to ensure the
-		TSS describes how a particular DH group is specified/negotiated with a peer.
-	      </TSS>
-	      <Guidance>
-		There are no AGD EAs for this requirement.
-	      </Guidance>
-	      <Tests>
-		The evaluator shall perform the following test: <h:p/>
-		<testlist>
-		  <test>For each supported DH group, the evaluator shall test to ensure that all supported IKE protocols
-		  can be successfully completed using that particular DH group.</test>
-		</testlist>
-	      </Tests>
-	    </aactivity>
-	  </f-element>
-	  <f-element id="fel-ipsec-dh-secret">
-	    <title>The TSF shall generate the secret value x used in the IKE Diffie-Hellman key
-	    exchange (“x” in gx mod p) using the random bit generator specified in
-	    FCS_RBG_EXT.1, and having a length of at least 
-	    <assignable>(one or more) number of bits that is at least twice the “bits of
-	    security” value associated with the negotiated Diffie-Hellman group as 
-	    listed in Table 2 of NIST SP 800-57, Recommendation for Key Management – Part
-	    1: General</assignable> bits.
-	    </title>
-	    <aactivity level="element">
-	      <TSS>
-		The evaluator shall check to ensure that, for each DH group supported, the TSS describes the process for
-		generating "x" (as defined in FCS_IPSEC_EXT.1.9) and each nonce. The evaluator shall verify that the TSS
-		indicates that the random number generated that meets the requirements in this PP is used, and that the
-		length of "x" and the nonces meet the stipulations in the requirement.<h:p/>
-	      </TSS>
-	      <Guidance>
-		There are no AGD EAs for this requirement.<h:p/>
-	      </Guidance>
-	      <Tests>
-		There are no test EAs for this requirement.<h:p/>
-	      </Tests>
-	    </aactivity>
-	  </f-element>
-	  <f-element id="fel-ipsec-nonces">  
-	    <title>The TSF shall generate nonces used in IKE exchanges in a manner such that the
-	    probability that a specific nonce value will be repeated during the life a specific
-	    IPsec SA is less than 1 in 2^<assignable>(one or more) “bits of security” value
-	    associated with the negotiated Diffie-Hellman group as listed in Table 2 of NIST
-	    SP 800-57, Recommendation for Key Management – Part 1: General</assignable>.
-	    </title>
-	    <aactivity level="element">
-	      <no-tests>EAs for this element are tested through EAs for FCS_IPSEC_EXT.1.9.</no-tests>
-	    </aactivity>
-	  </f-element>
-	  <f-element id="fel-ipsec-peer-auth">
-	    <title>The TSF shall ensure that all IKE protocols perform peer authentication using a
-	    <selectables>
-	      <selectable>RSA</selectable>
-	      <selectable>ECDSA</selectable>
-	      </selectables> that use X.509v3 certificates that conform to RFC 4945 and 
-	      <selectables>
-		<selectable>Pre-shared Keys</selectable>
-		<selectable>no other method</selectable>
-		</selectables>.
-	    </title>
-	    <note role="application">
-	      At least one public-key-based Peer Authentication method is required in order to
-	      conform to this PP-Module; one or more of the public key schemes is chosen by
-	      the ST author to reflect what is implemented. The ST author also ensures that
-	      appropriate FCS requirements reflecting the algorithms used (and key
-	      generation capabilities, if provided) are listed to support those methods. Note
-	      that the TSS will elaborate on the way in which these algorithms are to be used 
-	      (for example, 2409 specifies three authentication methods using public keys;
-	      each one supported will be described in the TSS).<h:p/>
-	      If “pre-shared keys” is selected, the selection-based requirement FIA_PSK_EXT.1
-	      must be claimed.
-	    </note>
-	    <aactivity level="element">
-	      <TSS>
-		The evaluator ensures that the TSS identifies RSA or ECDSA as being used to perform peer
-		authentication.<h:p/>
-		If pre-shared keys are chosen in the selection, the evaluator shall check to ensure that the TSS describes
-		how pre-shared keys are established and used in authentication of IPsec connections. The description in
-		the TSS shall also indicate how pre-shared key establishment is accomplished depending on whether the
-		TSF can generate a pre-shared key, accept a pre-shared key, or both.<h:p/>
-		The evaluator shall ensure that the TSS describes how the TOE compares the peer’s presented identifier
-		to the reference identifier. This description shall include whether the certificate presented identifier is
-		compared to the ID payload presented identifier, which fields of the certificate are used as the presented
-		identifier (DN, Common Name, or SAN) and, if multiple fields are supported, the logical order comparison.
-		If the ST author assigned an additional identifier type, the TSS description shall also include a description
-		of that type and the method by which that type is compared to the peer’s presented certificate.<h:p/>
-	      </TSS>
-	      <Guidance>
-		The evaluator shall check that the operational guidance describes how pre-shared keys are to be
-		generated and established.<h:p/>
-		The evaluator ensures the operational guidance describes how to set up the TOE to use the cryptographic
-		algorithms RSA or ECDSA (as selected).<h:p/>
-		In order to construct the environment and configure the TOE for the following tests, the evaluator will
-		ensure that the operational guidance also describes how to configure the TOE to connect to a trusted CA,
-		and ensure a valid certificate for that CA is loaded into the TOE as a trusted CA.<h:p/>
-		The evaluator shall also ensure that the operational guidance includes the configuration of the reference
-		identifiers for the peer.<h:p/>
-	      </Guidance>
-	      <Tests>
-		For efficiency’s sake, the testing that is performed here has been combined with the testing for
-		FIA_X509_EXT.2 and FIA_X509_EXT.3 (for IPsec connections and depending on the Base-PP),
-		FCS_IPSEC_EXT.1.12, and FCS_IPSEC_EXT.1.13. The following tests shall be repeated for each peer
-		authentication protocol selected in the FCS_IPSEC_EXT.1.11 selection above:<h:p/>
-		<testlist>
-		  <test>The evaluator shall have the TOE generate a public-private key pair, and submit a CSR (Certificate
-		  Signing Request) to a CA (trusted by both the TOE and the peer VPN used to establish a connection) for
-		  its signature. The values for the DN (Common Name, Organization, Organizational Unit, and Country) will
-		  also be passed in the request. Alternatively, the evaluator may import to the TOE a previously generated
-		  private key and corresponding certificate.</test>
-		  <test>The evaluator shall configure the TOE to use a private key and associated certificate signed by a
-		  trusted CA and shall establish an IPsec connection with the peer.</test>
-		  <test>The evaluator shall test that the TOE can properly handle revoked certificates – conditional on
-		  whether CRL or OCSP is selected; if both are selected, and then a test is performed for each method. For
-		  this current version of the PP-Module, the evaluator has to only test one up in the trust chain (future
-		  drafts may require to ensure the validation is done up the entire chain). The evaluator shall ensure that a
-		  valid certificate is used, and that the SA is established. The evaluator then attempts the test with a
-		  certificate that will be revoked (for each method chosen in the selection) to ensure when the certificate
-		  is no longer valid that the TOE will not establish an SA.</test>
-		  <test>(conditional) The evaluator shall generate a pre-shared key and use it, as indicated in the
-		  operational guidance, to establish an IPsec connection with the VPN GW peer. If the generation of the
-		  pre-shared key is supported, the evaluator shall ensure that establishment of the key is carried out for an
-		  instance of the TOE generating the key as well as an instance of the TOE merely taking in and using the
-		  key.<h:p/>
-		  For each supported identifier type (excluding DNs), the evaluator shall repeat the following tests:<h:p/> </test>
-		  <test>For each field of the certificate supported for comparison, the evaluator shall configure the peer’s
-		  reference identifier on the TOE (per the administrative guidance) to match the field in the peer’s
-		  presented certificate and shall verify that the IKE authentication succeeds.</test>
-		  <test>For each field of the certificate support for comparison, the evaluator shall configure the peer’s
-		  reference identifier on the TOE (per the administrative guidance) to not match the field in the peer’s
-		  presented certificate and shall verify that the IKE authentication fails.<h:p/>
-		  The following tests are conditional:</test>
-		  <test>(conditional) If, according to the TSS, the TOE supports both Common Name and SAN certificate
-		  fields and uses the preferred logic outlined in the Application Note, the tests above with the Common
-		  Name field shall be performed using peer certificates with no SAN extension. Additionally, the evaluator
-		  shall configure the peer’s reference identifier on the TOE to not match the SAN in the peer’s presented
-		  certificate but to match the Common Name in the peer’s presented certificate, and verify that the IKE
-		  authentication fails.</test>
-		  <test>(conditional) If the TOE supports DN identifier types, the evaluator shall configure the peer's
-		  reference identifier on the TOE (per the administrative guidance) to match the subject DN in the peer's
-		  presented certificate and shall verify that the IKE authentication succeeds. To demonstrate a bit-wise
-		  comparison of the DN, the evaluator shall change a single bit in the DN (preferably, in an Object Identifier
-		  (OID) in the DN) and verify that the IKE authentication fails. To demonstrate a comparison of DN values,
-		  the evaluator shall change any one of the four DN values and verify that the IKE authentication fails.</test>
-		  <test>(conditional) If the TOE supports both IPv4 and IPv6 and supports IP address identifier types, the
-		  evaluator must repeat test 1 and 2 with both IPv4 address identifiers and IPv6 identifiers. Additionally,
-		  the evaluator shall verify that the TOE verifies that the IP header matches the identifiers by setting the
-		  presented identifiers and the reference identifier with the same IP address that differs from the actual IP
-		  address of the peer in the IP headers and verifying that the IKE authentication fails.</test>
-		  <test>(conditional) If, according to the TSS, the TOE performs comparisons between the peer’s ID
-		  payload and the peer’s certificate, the evaluator shall repeat the following test for each combination of
-		  supported identifier types and supported certificate fields (as above). The evaluator shall configure the
-		  peer to present a different ID payload than the field in the peer’s presented certificate and verify that the
-		  TOE fails to authenticate the IKE peer.</test>
-		</testlist>
-	      </Tests>
-	    </aactivity>
-	  </f-element>
-	  <f-element id="fel-ipsec-stop-sa-not-expected">
-	    <title>The TSF shall not establish an SA if the 
-	    <selectables>
-	      <selectable>IP address</selectable>
-	      <selectable>Fully Qualified Domain Name (FQDN)</selectable>
-	      <selectable>user FQDN</selectable>
-	      <selectable>Distinguished Name (DN)</selectable>
-	      </selectables> and 
-	      <selectables>
-		<selectable>no other reference identifier type</selectable>
-		<selectable><assignable>other supported reference identifier types</assignable></selectable>
-		</selectables> contained in a certificate does not match the expected values for the
-		entity attempting to establish a connection.
-	    </title>
-	    <note role="application">
-	      The TOE must support at least one of the following identifier types: IP address,
-	      Fully Qualified Domain Name (FQDN), user FQDN, or Distinguished Name (DN).
-	      In the future, the TOE will be required to support all of these identifier types. The
-	      TOE is expected to support as many IP address formats (IPv4 and IPv6) as IP
-	      versions supported by the TOE in general. The ST author may assign additional
-	      supported identifier types in the second selection.
-	    </note>
-	    <aactivity level="element">
-	      <no-tests>EAs for this element are tested through EAs for FCS_IPSEC_EXT.1.11.</no-tests>
-	    </aactivity>
-	  </f-element>
-	  <f-element id="fel-ipsec-stop-sa-mismatch">
-	    <title>The TSF shall not establish an SA if the presented identifier does not match the
-	    configured reference identifier of the peer.
-	    </title>
-	    <note role="application">
-	      At this time, only the comparison between the presented identifier in the peer’s
-	      certificate and the peer’s reference identifier is mandated by the testing below.
-	      However, in the future, this requirement will address two aspects of the peer
-	      certificate validation: 1) comparison of the peer’s ID payload to the peer’s
-	      certificate which are both presented identifiers, as required by RFC 4945 and 2)
-	      verification that the peer identified by the ID payload and the certificate is the
-	      peer expected by the TOE (per the reference identifier). At that time, the TOE will
-	      be required to demonstrate both aspects (i.e. that the TOE enforces that the
-	      peer’s ID payload matches the peer’s certificate which both match configured
-	      peer reference identifiers).<h:p/>
-	      Excluding the DN identifier type (which is necessarily the Subject DN in the peer
-	      certificate), the TOE may support the identifier in either the Common Name or
-	      Subject Alternative Name (SAN) or both. If both are supported, the preferred
-	      logic is to compare the reference identifier to a presented SAN, and only if the
-	      peer’s certificate does not contain a SAN, to fall back to a comparison against
-	      the Common Name. In the future, the TOE will be required to compare the
-	      reference identifier to the presented identifier in the SAN only, ignoring the
-	      Common Name.<h:p/>
-	      The configuration of the peer reference identifier is addressed by
-	      FMT_SMF.1.1/VPN. <h:p/>
-	    </note>
-	    <aactivity level="element">
-	      <no-tests>
-		EAs for this element are tested through EAs for FCS_IPSEC_EXT.1.11.
-	      </no-tests>
-	    </aactivity>
-	  </f-element>
-	  <f-element id="fel-ipsec-default-strength">
-	    <title>The 
-	    <selectables>
-	      <selectable>TSF</selectable>
-	      <selectable>VPN Gateway</selectable>
-	      </selectables> shall be able to ensure by default that the
-	      strength of the symmetric algorithm (in terms of the number of bits in the key)
-	      negotiated to protect the 
-	      <selectables>
-		<selectable>IKEv1 Phase 1</selectable>
-		<selectable>IKEv2 IKE_SA</selectable>
-		</selectables> connection is greater than or equal to the strength of the symmetric algorithm (in terms of
-		the number of bits in the key) negotiated to protect the [selection: IKEv1 Phase
-		2, IKEv2 CHILD_SA] connection.
-	    </title>
-	    <note role="application">
-	      If this functionality is configurable, the TSF may be configured by a VPN Gateway
-	      or by an Administrator of the TOE itself.<h:p/>
-	      The ST author chooses either or both of the IKE selections based on what is
-	      implemented by the TOE. Obviously, the IKE versions chosen should be
-	      consistent not only in this element, but with other choices for other elements in
-	      this component. While it is acceptable for this capability to be configurable, the
-	      default configuration in the evaluated configuration (either "out of the box" or
-	      by configuration guidance in the AGD documentation) must enable this
-	      functionality.
-	    </note>
-	    <aactivity level="element">
-	      <TSS>
-		The evaluator shall check that the TSS describes the potential strengths (in terms of the number of bits in
-		the symmetric key) of the algorithms that are allowed for the IKE and ESP exchanges. The TSS shall also
-		describe the checks that are done when negotiating IKEv1 Phase 2 and IKEv2 CHILD_SA suites to ensure
-		that the strength (in terms of the number of bits of key in the symmetric algorithm) of the negotiated
-		algorithm is less than or equal to that of the IKE SA that is protecting the negotiation.
-	      </TSS>
-	      <Guidance>
-		There are no AGD EAs for this requirement.
-	      </Guidance>
-	      <Tests>
-		The evaluator follows the guidance to configure the TOE to perform the following tests:<h:p/>
-		<testlist>
-		  <test>This test shall be performed for each version of IKE supported. The evaluator shall successfully
-		  negotiate an IPsec connection using each of the supported algorithms and hash functions identified in the
-		  requirements.</test>         
-		  <test>(conditional) This test shall be performed for each version of IKE supported. The evaluator shall
-		  attempt to establish an SA for ESP that selects an encryption algorithm with more strength than that being
-		  used for the IKE SA (i.e., symmetric algorithm with a key size larger than that being used for the IKE SA).
-		  Such attempts should fail.</test>
-		  <test>This test shall be performed for each version of IKE supported. The evaluator shall attempt to
-		  establish an IKE SA using an algorithm that is not one of the supported algorithms and hash functions
-		  identified in the requirements. Such an attempt should fail.</test>
-		  <test>This test shall be performed for each version of IKE supported. The evaluator shall attempt to
-		  establish an SA for ESP (assumes the proper parameters where used to establish the IKE SA) that selects
-		  an encryption algorithm that is not identified in FCS_IPSEC_EXT.1.4. Such an attempt should fail.</test>
-		</testlist>
-	      </Tests>
-	    </aactivity>
-	  </f-element>
-	  <audit-event>
-	    <audit-event-descr>Failure to establish an IPsec SA.</audit-event-descr>
-	    <audit-event-info>Reason for failure.</audit-event-info>	
-	    <audit-event-info>Non-TOE endpoint of connection (IP address).</audit-event-info>	
-	  </audit-event>
-	  <audit-event>
-	    <audit-event-descr>Establishment/Termination of an IPsec SAA.</audit-event-descr>
-	    <audit-event-info>Non-TOE endpoint of connection (IP address).</audit-event-info>	
-	  </audit-event>
-	</f-component>
+      	<!-- This should be roughly the same as the IPsec requirement in VPNClient -->
+      <!--   <f-component cc-id="fcs_ipsec_ext.1" name="IPsec Protocol" status="sel-based"> -->
+      <!--     <depends on-sel="s-itc-ipsec"/> -->
+      <!-- 	  <consistency-rationale/> -->
+      <!-- 	  <comp-lev>requires that IPsec be implemented as specified.</comp-lev> -->
+      <!-- 	  <management>No specific management functions are identified. -->
+      <!-- 	  </management> -->
+      <!-- 	  <audit>The following actions should be auditable if FAU_GEN Security audit data  -->
+      <!-- 	  generation is included in the PP/ST: -->
+      <!-- 	  <h:ol type="a"> -->
+      <!-- 	    <h:li>Failure to establish an IPsec SA.</h:li> -->
+      <!-- 	    <h:li>Establishment/Termination of an IPsec SA.</h:li> -->
+      <!-- 	  </h:ol> -->
+      <!-- 	  </audit> -->
+      <!-- 	  <dependencies>FCS_CKM.1 Cryptographic Key Generation<h:p/> -->
+      <!-- 	  FCS_CKM.2 Cryptographic Key Establishment<h:p/> -->
+      <!-- 	  FCS_COP.1 Cryptographic Operation<h:p/> -->
+      <!-- 	  FCS_RBG_EXT.1 Cryptographic Operation (Random Bit Generation)<h:p/> -->
+      <!-- 	  FIA_X509_EXT.1 X.509 Certificate Validation</dependencies> -->
+      <!-- 	  <f-element id="fel-arch"> -->
+      <!-- 	    <title>The TSF shall implement the IPsec architecture as specified in RFC 4301. -->
+      <!-- 	    </title> -->
+      <!-- 	    <note role="application"> -->
+      <!-- 	      This SFR is included in the ST if the ST Author selected "IPsec" in FTP_ITC_EXT.1.1.<h:br/><h:br/> -->
+      <!-- 	      RFC 4301 calls for an IPsec implementation to protect IP traffic through the use -->
+      <!-- 	      of a Security Policy Database (SPD). The SPD is used to define how IP packets are -->
+      <!-- 	      to be handled: PROTECT the packet (e.g., encrypt the packet), BYPASS the IPsec -->
+      <!-- 	      services (e.g., no encryption), or DISCARD the packet (e.g., drop the packet). The -->
+      <!-- 	      SPD can be implemented in various ways, including router access control lists, -->
+      <!-- 	      firewall rulesets, a "traditional" SPD, etc. Regardless of the implementation -->
+      <!-- 	      details, there is a notion of a "rule" that a packet is "matched" against and a -->
+      <!-- 	      resulting action that takes place. <h:br/><h:br/> -->
+      <!-- 	      While there must be a means to order the rules, a general approach to ordering -->
+      <!-- 	      is not mandated, as long as the TOE can distinguish the IP packets and apply the -->
+      <!-- 	      rules accordingly. There may be multiple SPDs (one for each network interface), -->
+      <!-- 	      but this is not required. <h:br/><h:br/> -->
+      <!-- 	    </note> -->
+      <!-- 	    <aactivity level="component"> -->
+      	      <!-- Coponent-level EA from vpnclient module -->
+      <!-- 	      <TSS> -->
+      <!-- 		In addition to the TSS EAs for the individual FCS_IPSEC_EXT.1 elements below, the -->
+      <!-- 		evaluator shall perform the following:<h:p/> -->
+      <!-- 		If the TOE boundary includes a general-purpose operating system or mobile device, the evaluator shall -->
+      <!-- 		examine the TSS to ensure that it describes whether the VPN client capability is architecturally integrated -->
+      <!-- 		with the platform itself or whether it is a separate executable that is bundled with the platform.<h:p/> -->
+      <!-- 	      </TSS> -->
+      <!-- 	      <Guidance> -->
+      <!-- 		In addition to the Operational Guidance EAs for the individual FCS_IPSEC_EXT.1 elements below, the -->
+      <!-- 		evaluator shall perform the following:<h:p/> -->
+      <!-- 		If the configuration of the IPsec behavior is from an environmental source, most notably a VPN gateway -->
+      <!-- 		(e.g through receipt of required connection parameters from a VPN gateway), the evaluator shall ensure -->
+      <!-- 		that the operational guidance contains any appropriate information for ensuring that this configuration -->
+      <!-- 		can be properly applied.<h:p/> -->
+      <!-- 		Note in this case that the implementation of the IPsec protocol must be enforced entirely within the TOE -->
+      <!-- 		boundary; i.e. it is not permissible for a software application TOE to be a graphical front-end for IPsec -->
+      <!-- 		functionality implemented totally or in part by the underlying OS platform. The behavior referenced here -->
+      <!-- 		is for the possibility that the configuration of the IPsec connection is initiated from outside the TOE, which -->
+      <!-- 		is permissible so long as the TSF is solely responsible for enforcing the configured behavior. However, it is -->
+      <!-- 		allowable for the TSF to rely on low-level platform-provided networking functions to implement the SPD -->
+      <!-- 		from the client (e.g., enforcement of packet routing decisions).<h:p/> -->
+      <!-- 	      </Guidance> -->
+      <!-- 	      <Tests> -->
+      <!-- 		As a prerequisite for performing the Test EAs for the individual FCS_IPSEC_EXT.1 elements below, the -->
+      <!-- 		evaluator shall do the following:<h:p/> -->
+      <!-- 		The evaluator shall minimally create a test environment equivalent to the test environment illustrated -->
+      <!-- 		below. The traffic generator used to construct network packets should provide the -->
+      <!-- 		evaluator with the ability manipulate fields in the ICMP, IPv4, IPv6, UDP, and TCP packet headers. The -->
+      <!-- 		evaluator shall provide justification for any differences in the test environment.<h:p/> -->
+      <!-- 		<figure entity="images/network.png" title="IPsec Test Environment" id="fig-ipsectest"/><h:p/> -->
+      <!-- 		Note that the evaluator shall perform all tests using the Virtualization System and a representative sample of -->
+      <!-- 		platforms listed in the ST (for TOEs that claim to support multiple platforms).<h:p/> -->
+      <!-- 	      </Tests> -->
+      <!-- 	    </aactivity>							 -->
+      <!-- 	    <aactivity level="element"> -->
+      <!-- 	      <TSS> -->
+      <!-- 		The evaluator shall examine the TSS and determine that it describes how the IPsec capabilities -->
+      <!-- 		are implemented.<h:p/> -->
+      <!-- 		The evaluator shall ensure that the TSS describes at a high level the architectural relationship between -->
+      <!-- 		the IPsec implementation and the rest of the TOE (e.g., is the IPsec implementation an integrated part  -->
+      <!-- 		of the VS or is it a standalone executable that is bundled into the VS).<h:p/> 		     -->
+      <!-- 		The evaluator shall ensure that the TSS describes how the SPD is implemented and the rules for processing -->
+      <!-- 		both inbound and outbound packets in terms of the IPsec policy. The TSS describes the rules that are -->
+      <!-- 		available and the resulting actions available after matching a rule. The TSS describes how the available -->
+      <!-- 		rules and actions form the SPD using terms defined in RFC 4301 such as BYPASS (e.g., no encryption), -->
+      <!-- 		DISCARD (e.g., drop the packet), and PROTECT (e.g., encrypt the packet) actions defined in RFC 4301. -->
+      <!-- 		<h:p/> -->
+      <!-- 		As noted in section 4.4.1 of RFC 4301, the processing of entries in the SPD is non-trivial and the evaluator -->
+      <!-- 		shall determine that the description in the TSS is sufficient to determine which rules will be applied given -->
+      <!-- 		the rule structure implemented by the TOE. For example, if the TOE allows specification of ranges, -->
+      <!-- 		conditional rules, etc., the evaluator shall determine that the description of rule processing (for both -->
+      <!-- 		inbound and outbound packets) is sufficient to determine the action that will be applied, especially in the -->
+      <!-- 		case where two different rules may apply. This description shall cover both the initial packets (that is, no -->
+      <!-- 		SA is established on the interface or for that particular packet) as well as packets that are part of an -->
+      <!-- 		established SA. <h:p/> -->
+      <!-- 	      </TSS> -->
+      <!-- 	      <Guidance> -->
+      <!-- 		The evaluator shall examine the operational guidance to verify it instructs the Administrator how  -->
+      <!-- 		to construct entries into the SPD that specify a rule for processing a packet. The description  -->
+      <!-- 		includes all three cases – a rule that ensures packets are encrypted/decrypted, dropped, and  -->
+      <!-- 		flow through the TOE without being encrypted. The evaluator shall determine  -->
+      <!-- 		that the description in the operational guidance is consistent with the description in the  -->
+      <!-- 		TSS, and that the level of detail in the operational guidance is sufficient to -->
+      <!-- 		allow the administrator to set up the SPD in an unambiguous fashion. This includes a discussion  -->
+      <!-- 		of how ordering of rules impacts the processing of an IP packet.<h:p/> -->
+      <!-- 	      </Guidance> -->
+      <!-- 	      <Tests> -->
+      <!-- 		The evaluator uses the operational guidance to configure the TOE to carry out the following tests:<h:p/> -->
+      <!-- 		<testlist> -->
+      <!-- 		  <test>The evaluator shall configure the SPD such that there is a rule for dropping a packet, -->
+      <!-- 		  encrypting a packet, and allowing a packet to flow in plaintext. The selectors used in -->
+      <!-- 		  the construction of the rule shall be different such that the evaluator can generate a -->
+      <!-- 		  packet and send packets to the gateway with the appropriate fields (fields that are used -->
+      <!-- 		  by the rule - e.g., the IP addresses, TCP/UDP ports) in the packet header. The evaluator -->
+      <!-- 		  performs both positive and negative test cases for each type of rule (e.g., a packet that -->
+      <!-- 		  matches the rule and another that does not match the rule). The evaluator observes via the -->
+      <!-- 		  audit trail, and packet captures that the TOE exhibited the expected -->
+      <!-- 		  behavior: appropriate packets were dropped, allowed to flow without modification,  -->
+      <!-- 		  encrypted by the IPsec implementation.</test> -->
+      <!-- 		  <test>The evaluator shall devise several tests that cover a variety of scenarios for packet -->
+      <!-- 		  processing. As with Test 1, the evaluator ensures both positive and negative test cases -->
+      <!-- 		  are constructed. These scenarios shall exercise the range of possibilities for SPD entries  -->
+      <!-- 		  and processing modes as outlined in the TSS and operational guidance. Potential areas to -->
+      <!-- 		  cover include rules with overlapping ranges and conflicting entries, inbound and outbound -->
+      <!-- 		  packets, and packets that establish SAs as well as packets that belong to established SAs. -->
+      <!-- 		  The evaluator shall verify, via the audit trail and packet captures, for each scenario  -->
+      <!-- 		  that the expected behavior is exhibited, and is consistent with both the TSS and the -->
+      <!-- 		  operational guidance.</test> -->
+      <!-- 		</testlist> -->
+      <!-- 	      </Tests> -->
+      <!-- 	    </aactivity> -->
+      <!-- 	  </f-element> -->
+      <!-- 	  <f-element id="fel-tmode"> -->
+      <!-- 	    <title>The TSF shall implement -->
+      <!-- 	    <selectables> -->
+      <!-- 	      <selectable>transport mode</selectable> -->
+      <!-- 	      <selectable>tunnel mode</selectable> -->
+      <!-- 	      </selectables>. -->
+      <!-- 	    </title> -->
+      <!-- 	    <note role="application"> -->
+      <!-- 	      If the TOE is used to connect to a VPN gateway for the purposes of establishing a -->
+      <!-- 	      secure connection to a private network, the ST author shall select -->
+      <!-- 	      tunnel mode. If the TOE uses IPsec to establish an end-to-end connection to -->
+      <!-- 	      another IPsec VPN Client, the ST author shall select transport mode. If -->
+      <!-- 	      the TOE uses IPsec to establish a connection to a specific endpoint device for the -->
+      <!-- 	      purpose of secure remote administration, the ST author shall select -->
+      <!-- 	      transport mode.<h:p/> -->
+      <!-- 	    </note> -->
+      <!-- 	    <aactivity level="element"> -->
+      <!-- 	      <TSS> -->
+      <!-- 		The evaluator checks the TSS to ensure it states that an IPsec VPN can be  -->
+      <!-- 		established to operate in tunnel mode or transport mode (as selected).<h:p/> -->
+      <!-- 	      </TSS> -->
+      <!-- 	      <Guidance> -->
+      <!-- 		The evaluator shall confirm that the operational guidance contains instructions on how to  -->
+      <!-- 		configure the connection in each mode selected.<h:p/> -->
+      <!-- 		If both transport mode and tunnel mode are implemented, the evaluator shall review the operational -->
+      <!-- 		guidance to determine how the use of a given mode is specified.<h:p/> -->
+      <!-- 	      </Guidance> -->
+      <!-- 	      <Tests> -->
+      <!-- 		The evaluator shall perform the following tests based on the selections chosen: -->
+      <!-- 		<testlist> -->
+      <!-- 		  <test>(conditional): If tunnel mode is selected, the evaluator uses the operational guidance to  -->
+      <!-- 		  configure the TOE/platform to operate in tunnel mode and also configures  -->
+      <!-- 		  a VPN peer to operate in tunnel mode. The evaluator configures the TOE/platform and the -->
+      <!-- 		  VPN peer to use any of the allowable cryptographic algorithms, authentication methods, -->
+      <!-- 		  etc. to ensure an allowable SA can be negotiated. The evaluator shall then initiate a  -->
+      <!-- 		  connection from the TOE/Platform to the VPN peer. The evaluator observes (for example, -->
+      <!-- 		  in the audit trail and the captured packets) that a successful connection was established -->
+      <!-- 		  using the tunnel mode.</test> -->
+      <!-- 		  <test>(conditional): If transport mode is selected, the evaluator uses the operational guidance to -->
+      <!-- 		  configure the TOE/platform to operate in  -->
+      <!-- 		  transport mode and also configures a VPN peer to operate in transport mode. The evaluator  -->
+      <!-- 		  configures the TOE/platform and the VPN peer to use any of the allowed cryptographic -->
+      <!-- 		  algorithms, authentication methods, etc. to ensure an allowable SA can be negotiated.  -->
+      <!-- 		  The evaluator then initiates a connection from the TOE/platform to connect to the VPN -->
+      <!-- 		  peer. The evaluator observes (for example, in the audit trail and the captured packets) -->
+      <!-- 		  that a successful connection was established using the transport mode.</test> -->
+      <!-- 		</testlist> -->
+      <!-- 	      </Tests> -->
+      <!-- 	    </aactivity> -->
+      <!-- 	  </f-element> -->
+      <!-- 	  <f-element id="fel-last-spd"> -->
+      <!-- 	    <title>The TSF shall have a nominal, final entry in the SPD that matches anything that is otherwise unmatched,  -->
+      <!-- 	    and discards it. -->
+      <!-- 	    </title> -->
+      <!-- 	    <aactivity level="element"> -->
+      <!-- 	      <TSS> -->
+      <!-- 		If both transport mode and tunnel mode are implemented, the evaluator shall review the -->
+      <!-- 		operational guidance to determine how the use of a given mode is specified.<h:p/> -->
+      <!-- 	      </TSS> -->
+      <!-- 	      <Guidance> -->
+      <!-- 		The evaluator shall check that the operational guidance provides instructions on how to construct or -->
+      <!-- 		acquire the SPD and uses the guidance to configure the TOE for the following test.<h:p/> -->
+      <!-- 	      </Guidance> -->
+      <!-- 	      <Tests> -->
+      <!-- 		The evaluator shall perform the following test: -->
+      <!-- 		<testlist> -->
+      <!-- 		  <test>The evaluator shall configure the SPD such that it has entries that contain operations that DISCARD, -->
+      <!-- 		  PROTECT, and (if applicable) BYPASS network packets. The evaluator may use the SPD that was created -->
+      <!-- 		  for verification of FCS_IPSEC_EXT.1.1. The evaluator shall construct a network packet that matches a -->
+      <!-- 		  BYPASS entry and send that packet. The evaluator should observe that the network packet is passed to -->
+      <!-- 		  the proper destination interface with no modification. The evaluator shall then modify a field in the packet -->
+      <!-- 		  header; such that it no longer matches the evaluator-created entries (there may be a “TOE-created” final -->
+      <!-- 		  entry that discards packets that do not match any previous entries). The evaluator sends the packet, and -->
+      <!-- 		  observes that the packet was not permitted to flow to any of the TOE’s interfaces.</test> -->
+      <!-- 		</testlist> -->
+      <!-- 	      </Tests> -->
+      <!-- 	    </aactivity> -->
+      <!-- 	  </f-element> -->
+      <!-- 	  <f-element id="fel-proto-esp"> -->
+      <!-- 	    <title>The TSF shall implement the IPsec protocol ESP as defined by RFC 4303 using the cryptographic  -->
+      <!-- 	    algorithms [AES-GCM-128, AES-GCM-256 (as specified in RFC 4106), -->
+      <!-- 	    <selectables> -->
+      <!-- 	      <selectable>AES-CBC-128 (specified in RFC 3602)</selectable> -->
+      <!-- 	      <selectable>AES-CBC-256 (specified in RFC 3602)</selectable> -->
+      <!-- 	      <selectable>no other algorithms</selectable> -->
+      <!-- 	      </selectables>] together with a Secure Hash Algorithm (SHA)-based HMAC. -->
+      <!-- 	    </title> -->
+      <!-- 	    <aactivity level="element"> -->
+      <!-- 	      <TSS> -->
+      <!-- 		The evaluator shall examine the TSS to verify that the algorithms AES-GCM-128 and  -->
+      <!-- 		AES-GCM-256 are implemented. If the "ST" author has selected either  -->
+      <!-- 		AES-CBC-128 or AES-CBC-256 in the requirement, then the evaluator verifies the -->
+      <!-- 		TSS describes these as well. In addition, the evaluator ensures that the  -->
+      <!-- 		SHA-based HMAC algorithm conforms to the algorithms specified in FCS_COP.1/KeyedHash Cryptographic  -->
+      <!-- 		Operations (Keyed Hash Algorithms).<h:p/> -->
+      <!-- 	      </TSS> -->
+      <!-- 	      <Guidance> -->
+      <!-- 		The evaluator checks the operational guidance to ensure it provides instructions on how the TOE is -->
+      <!-- 		configured to use the algorithms selected in this component and whether this is performed through direct -->
+      <!-- 		configuration, defined during initial installation, or defined by acquiring configuration settings from an -->
+      <!-- 		environmental component.<h:p/> -->
+      <!-- 	      </Guidance> -->
+      <!-- 	      <Tests> -->
+      <!-- 		<testlist> -->
+      <!-- 		  <test>The evaluator shall configure the TOE/platform as indicated in the  -->
+      <!-- 		  operational guidance configuring the TOE/platform to use each of the supported -->
+      <!-- 		  algorithms, attempt to establish a connection using ESP, and verify that the attempt succeeds. -->
+      <!-- 		  </test> -->
+      <!-- 		</testlist> -->
+      <!-- 	      </Tests> -->
+      <!-- 	    </aactivity> -->
+      <!-- 	  </f-element> -->
+      <!-- 	  <f-element id="fel-proto-options"> -->
+      <!-- 	    <title>The TSF shall implement the protocol: <h:p/> -->
+      <!-- 	    <selectables linebreak="yes"> -->
+      <!-- 	      <selectable>IKEv1, using Main Mode for Phase 1 exchanges, as defined in RFC 2407, RFC 2408, RFC 2409, RFC 4109,  -->
+      <!-- 	      <selectables> -->
+      <!-- 		<selectable>no other RFCs for extended sequence numbers</selectable> -->
+      <!-- 		<selectable>RFC 4304 for extended sequence numbers</selectable> -->
+      <!-- 		</selectables>, -->
+      <!-- 		<selectables> -->
+      <!-- 		  <selectable>no other RFCs for hash functions</selectable> -->
+      <!-- 		  <selectable>RFC 4868 for hash functions</selectable> -->
+      <!-- 		  </selectables>, and  -->
+      <!-- 		  <selectables> -->
+      <!-- 		    <selectable>support for XAUTH</selectable> -->
+      <!-- 		    <selectable>no support for XAUTH</selectable> -->
+      <!-- 		  </selectables> -->
+      <!-- 	      </selectable> -->
+      <!-- 	      <selectable>IKEv2 as defined in RFC 7296 (with mandatory support for NAT traversal  -->
+      <!-- 	      as specified in section 2.23), RFC 8784, RFC 8247, and  -->
+      <!-- 	      <selectables> -->
+      <!-- 		<selectable>no other RFCs for hash functions</selectable> -->
+      <!-- 		<selectable>RFC 4868 for hash functions</selectable> -->
+      <!-- 	      </selectables>.</selectable> -->
+      <!-- 	    </selectables> -->
+      <!-- 	    </title> -->
+      <!-- 	    <note role="application">If the TOE implements SHA-2 hash algorithms for IKEv1 or IKEv2, the ST author shall -->
+      <!-- 	    select RFC 4868. </note> -->
+      <!-- 	    <aactivity level="element"> -->
+      <!-- 	      <TSS> -->
+      <!-- 		The evaluator shall examine the TSS to verify that IKEv1 or IKEv2 (as selected) are implemented. If IKEv1 is -->
+      <!-- 		implemented, the evaluator shall verify that the TSS indicates whether or not XAUTH is supported, and -->
+      <!-- 		that aggressive mode is not used for IKEv1 Phase 1 exchanges (i.e. only main mode is used). It may be that -->
+      <!-- 		these are configurable options.<h:p/> -->
+      <!-- 	      </TSS> -->
+      <!-- 	      <Guidance> -->
+      <!-- 		The evaluator shall check the operational guidance to ensure it instructs the administrator how to -->
+      <!-- 		configure the TOE to use IKEv1 or IKEv2 (as selected), and uses the guidance to configure the TOE to -->
+      <!-- 		perform NAT traversal for the test below. If XAUTH is implemented, the evaluator shall verify that the -->
+      <!-- 		operational guidance provides instructions on how it is enabled or disabled.<h:p/> -->
+      <!-- 		If the TOE supports IKEv1, the evaluator shall verify that the operational guidance either asserts that only -->
+      <!-- 		main mode is used for Phase 1 exchanges, or provides instructions for disabling aggressive mode.<h:p/> -->
+      <!-- 	      </Guidance> -->
+      <!-- 	      <Tests> -->
+      <!-- 		Tests are performed in conjunction with the other IPsec evaluation activities with the exception -->
+      <!-- 		of the activities below:<h:p/> -->
+      <!-- 		<testlist> -->
+      <!-- 		  <test>The evaluator shall configure the TOE so that it will perform NAT traversal processing as described -->
+      <!-- 		  in the TSS and RFC 7296, section 2.23. The evaluator shall initiate an IPsec connection and determine that -->
+      <!-- 		  the NAT is successfully traversed. If the TOE supports IKEv1 with or without XAUTH, the evaluator shall -->
+      <!-- 		  verify that this test can be successfully repeated with XAUTH enabled and disabled in the manner specified -->
+      <!-- 		  by the operational guidance. If the TOE only supports IKEv1 with XAUTH, the evaluator shall verify that -->
+      <!-- 		  connections not using XAUTH are unsuccessful. If the TOE only supports IKEv1 without XAUTH, the -->
+      <!-- 		  evaluator shall verify that connections using XAUTH are unsuccessful.</test> -->
+      <!-- 		  <test>(conditional) If the TOE supports IKEv1, the evaluator shall perform any applicable operational -->
+      <!-- 		  guidance steps to disable the use of aggressive mode and then attempt to establish a connection using an -->
+      <!-- 		  IKEv1 Phase 1 connection in aggressive mode. This attempt should fail. The evaluator shall show that the -->
+      <!-- 		  TOE will reject a VPN gateway from initiating an IKEv1 Phase 1 connection in aggressive mode. The -->
+      <!-- 		  evaluator should then show that main mode exchanges are supported.</test> -->
+      <!-- 		</testlist> -->
+      <!-- 	      </Tests> -->
+      <!-- 	    </aactivity> -->
+      <!-- 	  </f-element> -->
+      <!-- 	  <f-element id="fel-ipsec-enc-payload"> -->
+      <!-- 	    <title>The TSF shall ensure the encrypted payload in the -->
+      <!-- 	    <selectables> -->
+      <!-- 	      <selectable>IKEv1</selectable> -->
+      <!-- 	      <selectable>IKEv2</selectable> -->
+      <!-- 	      </selectables> protocol uses the cryptographic algorithms AES-CBC-128, AES-CBC-256 as specified in  -->
+      <!-- 	      RFC 6379 and -->
+      <!-- 	      <selectables> -->
+      <!-- 		<selectable>AES-GCM-128 as specified in RFC 5282</selectable> -->
+      <!-- 		<selectable>AES-GCM-256 as specified in RFC 5282</selectable> -->
+      <!-- 		<selectable>no other algorithm</selectable> -->
+      <!-- 		</selectables>. -->
+      <!-- 	    </title> -->
+      <!-- 	    <aactivity level="element"> -->
+      <!-- 	      <TSS> -->
+      <!-- 		The evaluator shall ensure the TSS identifies the algorithms used for encrypting the IKEv1 or IKEv2 -->
+      <!-- 		payload, and that the algorithms AES-CBC-128, AES-CBC-256 are specified, and if others are chosen in the -->
+      <!-- 		selection of the requirement, those are included in the TSS discussion.<h:p/> -->
+      <!-- 	      </TSS> -->
+      <!-- 	      <Guidance> -->
+      <!-- 		The evaluator checks the operational guidance to ensure it provides instructions on how the TOE is -->
+      <!-- 		configured to use the algorithms selected in this component and whether this is performed through direct -->
+      <!-- 		configuration, defined during initial installation, or defined by acquiring configuration settings from an -->
+      <!-- 		environmental component. <h:p/> -->
+      <!-- 	      </Guidance> -->
+      <!-- 	      <Tests> -->
+      <!-- 		The evaluator shall use the operational guidance to configure the TOE (or to configure the Operational -->
+      <!-- 		Environment to have the TOE receive configuration) to perform the following test for each ciphersuite -->
+      <!-- 		selected:<h:p/> -->
+      <!-- 		<testlist> -->
+      <!-- 		  <test>The evaluator shall configure the TOE to use the ciphersuite under test to encrypt the IKEv1 or -->
+      <!-- 		  IKEv2 payload and establish a connection with a peer device, which is configured to only accept the -->
+      <!-- 		  payload encrypted using the indicated ciphersuite. The evaluator will confirm the algorithm was that used -->
+      <!-- 		  in the negotiation. The evaluator will confirm that the connection is successful by confirming that data -->
+      <!-- 		  can be passed through the connection once it is established. For example, the evaluator may connect to -->
+      <!-- 		  a remote website and verify that it can be reached.</test> -->
+      <!-- 		</testlist> -->
+      <!-- 	      </Tests> -->
+      <!-- 	    </aactivity> -->
+      <!-- 	  </f-element> -->
+      <!-- 	  <f-element id="fel-ipsec-lifetimes"> -->
+      <!-- 	    <title>The TSF shall ensure that  -->
+      <!-- 	    <selectables> -->
+      <!-- 	      <selectable>IKEv2 SA lifetimes can be configured by -->
+      <!-- 	      <selectables> -->
+      <!-- 		<selectable>an Administrator</selectable> -->
+      <!-- 		<selectable>a VPN Gateway</selectable> -->
+      <!-- 		</selectables> based on  -->
+      <!-- 		<selectables> -->
+      <!-- 		  <selectable>number of packets/number of bytes</selectable> -->
+      <!-- 		  <selectable>length of time</selectable> -->
+      <!-- 		</selectables> -->
+      <!-- 	      </selectable> -->
+      <!-- 	      <selectable>IKEv1 SA lifetimes can be configured by  -->
+      <!-- 	      <selectables> -->
+      <!-- 		<selectable>an Administrator</selectable> -->
+      <!-- 		<selectable>a VPN Gateway</selectable> -->
+      <!-- 		</selectables> based on  -->
+      <!-- 		<selectables> -->
+      <!-- 		  <selectable>number of packets/number of bytes</selectable> -->
+      <!-- 		  <selectable>length of time</selectable> -->
+      <!-- 		</selectables> -->
+      <!-- 	      </selectable> -->
+      <!-- 	      <selectable>IKEv1 SA lifetimes are fixed based on  -->
+      <!-- 	      <selectables> -->
+      <!-- 		<selectable>number of packets/number of bytes</selectable> -->
+      <!-- 		<selectable>length of time</selectable> -->
+      <!-- 		</selectables>. If length of time is used, it must include at least  -->
+      <!-- 		one option that is 24 hours or less for Phase 1 SAs and 8 hours or -->
+      <!-- 		less for Phase 2 SAs. -->
+      <!-- 	      </selectable> -->
+      <!-- 	    </selectables> -->
+      <!-- 	    </title> -->
+      <!-- 	    <note role="application"> -->
+      <!-- 	      The ST author is afforded a selection based on the version of IKE in their -->
+      <!-- 	      implementation. There is a further selection within this selection that allows the -->
+      <!-- 	      ST author to specify which entity is responsible for “configuring” the life of the -->
+      <!-- 	      SA. An implementation that allows an administrator to configure the client or a -->
+      <!-- 	      VPN gateway that pushes the SA lifetime down to the client are both acceptable.<h:p/> -->
+      <!-- 	      As far as SA lifetimes are concerned, the TOE can limit the lifetime based on the -->
+      <!-- 	      number of bytes transmitted, or the number of packets transmitted. Either -->
+      <!-- 	      packet-based or volume-based SA lifetimes are acceptable; the ST author makes -->
+      <!-- 	      the appropriate selection to indicate which type of lifetime limits are supported.<h:p/> -->
+      <!-- 	      The ST author chooses either the IKEv1 requirements or IKEv2 requirements (or -->
+      <!-- 	      both, depending on the selection in FCS_IPSEC_EXT.1.5. The IKEv1 requirement -->
+      <!-- 	      can be accomplished either by providing Authorized Administrator-configurable -->
+      <!-- 	      lifetimes (with appropriate instructions in documents mandated by AGD_OPE), -->
+      <!-- 	      or by “hard coding” the limits in the implementation. For IKEv2, there are no -->
+      <!-- 	      hardcoded limits, but in this case it is required that an administrator be able to -->
+      <!-- 	      configure the values. In general, instructions for setting the parameters of the -->
+      <!-- 	      implementation, including lifetime of the SAs, should be included in the  -->
+      <!-- 	      operational guidance generated for AGD_OPE. It is appropriate to refine the -->
+      <!-- 	      requirement in terms of number of MB/KB instead of number of packets, as long -->
+      <!-- 	      as the TOE is capable of setting a limit on the amount of traffic that is protected -->
+      <!-- 	      by the same key (the total volume of all IPsec traffic protected by that key). -->
+      <!-- 	    </note> -->
+      <!-- 	    <aactivity level="element"> -->
+      <!-- 	      <TSS> -->
+      <!-- 		There are no TSS EAs for this requirement.<h:p/> -->
+      <!-- 	      </TSS> -->
+      <!-- 	      <Guidance> -->
+      <!-- 		The evaluator shall check the operational guidance to ensure it provides instructions on how the TOE -->
+      <!-- 		configures the values for SA lifetimes. In addition, the evaluator shall check that the guidance has the -->
+      <!-- 		option for either the Administrator or VPN Gateway to configure Phase 1 SAs if time-based limits are -->
+      <!-- 		supported. Currently there are no values mandated for the number of packets or number of bytes, the -->
+      <!-- 		evaluator shall simply check the operational guidance to ensure that this can be configured if selected in -->
+      <!-- 		the requirement. -->
+      <!-- 	      </Guidance> -->
+      <!-- 	      <Tests> -->
+      <!-- 		When testing this functionality, the evaluator needs to ensure that both sides are configured -->
+      <!-- 		appropriately. From the RFC “A difference between IKEv1 and IKEv2 is that in IKEv1 SA lifetimes were -->
+      <!-- 		negotiated. In IKEv2, each end of the SA is responsible for enforcing its own lifetime policy on the SA and -->
+      <!-- 		rekeying the SA when necessary. If the two ends have different lifetime policies, the end with the shorter -->
+      <!-- 		lifetime will end up always being the one to request the rekeying. If the two ends have the same lifetime -->
+      <!-- 		policies, it is possible that both will initiate a rekeying at the same time (which will result in redundant -->
+      <!-- 		SAs). To reduce the probability of this happening, the timing of rekeying requests SHOULD be jittered.”<h:p/> -->
+      <!-- 		Each of the following tests shall be performed for each version of IKE selected in the -->
+      <!-- 		FCS_IPSEC_EXT.1.5 protocol selection: -->
+      <!-- 		<testlist> -->
+      <!-- 		  <test>(conditional) The evaluator shall configure a maximum lifetime in terms of the # of packets (or -->
+      <!-- 		  bytes) allowed following the operational guidance. The evaluator shall establish an SA and determine that -->
+      <!-- 		  once the allowed # of packets (or bytes) through this SA is exceeded, the connection is closed.</test> -->
+      <!-- 		  <test>(conditional) The evaluator shall construct a test where a Phase 1 SA is established and attempted -->
+      <!-- 		  to be maintained for more than 24 hours before it is renegotiated. The evaluator shall observe that this -->
+      <!-- 		  SA is closed or renegotiated in 24 hours or less. If such an action requires that the TOE be configured in a -->
+      <!-- 		  specific way, the evaluator shall implement tests demonstrating that the configuration capability of the -->
+      <!-- 		  TOE works as documented in the operational guidance.</test> -->
+      <!-- 		  <test>(conditional) The evaluator shall perform a test similar to Test 2  -->
+      <!-- 		  for Phase 2 SAs, except that the lifetime will be 8 hours or less instead of 24 hours or less.</test> -->
+      <!-- 		  <test>(conditional) If a fixed limit for IKEv1 SAs is supported, the evaluator -->
+      <!-- 		  shall establish an SA and observe that the connection is closed after -->
+      <!-- 		  the fixed traffic or time value is reached.</test> -->
+      <!-- 		</testlist>				     -->
+      <!-- 	      </Tests> -->
+      <!-- 	    </aactivity> -->
+      <!-- 	  </f-element> -->
+      <!-- 	  <f-element id="fel-ipsec-dh-groups"> -->
+      <!-- 	    <title>The TSF shall ensure that all IKE protocols implement DH groups [19 (256-bit -->
+      <!-- 	    Random ECP), 20 (384-bit Random ECP), and  -->
+      <!-- 	    <selectables> -->
+      <!-- 	      <selectable>24 (2048-bit MODP with 256-bit POS)</selectable> -->
+      <!-- 	      <selectable>15 (3072-bit MODP)</selectable> -->
+      <!-- 	      <selectable>14 (2048-bit MODP)</selectable> -->
+      <!-- 	      <selectable>no other DH groups</selectable> -->
+      <!-- 	      </selectables>]. -->
+      <!-- 	    </title> -->
+      <!-- 	    <note role="application"> -->
+      <!-- 	      The selection is used to specify additional DH groups supported. This applies to -->
+      <!-- 	      IKEv1 and IKEv2 exchanges. It should be noted that if any additional DH groups -->
+      <!-- 	      are specified, they must comply with the requirements (in terms of the -->
+      <!-- 	      ephemeral keys that are established) listed in FCS_CKM.1.<h:p/> -->
+      <!-- 	      Since the implementation may allow different Diffie-Hellman groups to be -->
+      <!-- 	      negotiated for use in forming the SAs, the assignments in FCS_IPSEC_EXT.1.9 -->
+      <!-- 	      and FCS_IPSEC_EXT.1.10 may contain multiple values. For each DH group -->
+      <!-- 	      supported, the ST author consults Table 2 in 800-57 to determine the “bits of -->
+      <!-- 	      security” associated with the DH group. Each unique value is then used to fill in -->
+      <!-- 	      the assignment (for 1.9 they are doubled; for 1.10 they are inserted directly into -->
+      <!-- 	      the assignment). For example, suppose the implementation supports DH group -->
+      <!-- 	      14 (2048-bit MODP) and group 20 (ECDH using NIST curve P-384). From Table 2, -->
+      <!-- 	      the bits of security value for group 14 is 112, and for group 20 it is 192. For -->
+      <!-- 	      FCS_IPSEC_EXT.1.9, then, the assignment would read “[224, 384]” and for -->
+      <!-- 	      FCS_IPSEC_EXT.1.10 it would read “[112, 192]” (although in this case the -->
+      <!-- 	    requirement should probably be refined so that it makes sense mathematically).</note> -->
+      <!-- 	    <aactivity level="element"> -->
+      <!-- 	      <TSS> -->
+      <!-- 		The evaluator shall check to ensure that the DH groups specified in the requirement are listed as being -->
+      <!-- 		supported in the TSS. If there is more than one DH group supported, the evaluator checks to ensure the -->
+      <!-- 		TSS describes how a particular DH group is specified/negotiated with a peer. -->
+      <!-- 	      </TSS> -->
+      <!-- 	      <Guidance> -->
+      <!-- 		There are no AGD EAs for this requirement. -->
+      <!-- 	      </Guidance> -->
+      <!-- 	      <Tests> -->
+      <!-- 		The evaluator shall perform the following test: <h:p/> -->
+      <!-- 		<testlist> -->
+      <!-- 		  <test>For each supported DH group, the evaluator shall test to ensure that all supported IKE protocols -->
+      <!-- 		  can be successfully completed using that particular DH group.</test> -->
+      <!-- 		</testlist> -->
+      <!-- 	      </Tests> -->
+      <!-- 	    </aactivity> -->
+      <!-- 	  </f-element> -->
+      <!-- 	  <f-element id="fel-ipsec-dh-secret"> -->
+      <!-- 	    <title>The TSF shall generate the secret value x used in the IKE Diffie-Hellman key -->
+      <!-- 	    exchange (“x” in gx mod p) using the random bit generator specified in -->
+      <!-- 	    FCS_RBG_EXT.1, and having a length of at least  -->
+      <!-- 	    <assignable>(one or more) number of bits that is at least twice the “bits of -->
+      <!-- 	    security” value associated with the negotiated Diffie-Hellman group as  -->
+      <!-- 	    listed in Table 2 of NIST SP 800-57, Recommendation for Key Management – Part -->
+      <!-- 	    1: General</assignable> bits. -->
+      <!-- 	    </title> -->
+      <!-- 	    <aactivity level="element"> -->
+      <!-- 	      <TSS> -->
+      <!-- 		The evaluator shall check to ensure that, for each DH group supported, the TSS describes the process for -->
+      <!-- 		generating "x" (as defined in FCS_IPSEC_EXT.1.9) and each nonce. The evaluator shall verify that the TSS -->
+      <!-- 		indicates that the random number generated that meets the requirements in this PP is used, and that the -->
+      <!-- 		length of "x" and the nonces meet the stipulations in the requirement.<h:p/> -->
+      <!-- 	      </TSS> -->
+      <!-- 	      <Guidance> -->
+      <!-- 		There are no AGD EAs for this requirement.<h:p/> -->
+      <!-- 	      </Guidance> -->
+      <!-- 	      <Tests> -->
+      <!-- 		There are no test EAs for this requirement.<h:p/> -->
+      <!-- 	      </Tests> -->
+      <!-- 	    </aactivity> -->
+      <!-- 	  </f-element> -->
+      <!-- 	  <f-element id="fel-ipsec-nonces">   -->
+      <!-- 	    <title>The TSF shall generate nonces used in IKE exchanges in a manner such that the -->
+      <!-- 	    probability that a specific nonce value will be repeated during the life a specific -->
+      <!-- 	    IPsec SA is less than 1 in 2^<assignable>(one or more) “bits of security” value -->
+      <!-- 	    associated with the negotiated Diffie-Hellman group as listed in Table 2 of NIST -->
+      <!-- 	    SP 800-57, Recommendation for Key Management – Part 1: General</assignable>. -->
+      <!-- 	    </title> -->
+      <!-- 	    <aactivity level="element"> -->
+      <!-- 	      <no-tests>EAs for this element are tested through EAs for FCS_IPSEC_EXT.1.9.</no-tests> -->
+      <!-- 	    </aactivity> -->
+      <!-- 	  </f-element> -->
+      <!-- 	  <f-element id="fel-ipsec-peer-auth"> -->
+      <!-- 	    <title>The TSF shall ensure that all IKE protocols perform peer authentication using a -->
+      <!-- 	    <selectables> -->
+      <!-- 	      <selectable>RSA</selectable> -->
+      <!-- 	      <selectable>ECDSA</selectable> -->
+      <!-- 	      </selectables> that use X.509v3 certificates that conform to RFC 4945 and  -->
+      <!-- 	      <selectables> -->
+      <!-- 		<selectable>Pre-shared Keys</selectable> -->
+      <!-- 		<selectable>no other method</selectable> -->
+      <!-- 		</selectables>. -->
+      <!-- 	    </title> -->
+      <!-- 	    <note role="application"> -->
+      <!-- 	      At least one public-key-based Peer Authentication method is required in order to -->
+      <!-- 	      conform to this PP-Module; one or more of the public key schemes is chosen by -->
+      <!-- 	      the ST author to reflect what is implemented. The ST author also ensures that -->
+      <!-- 	      appropriate FCS requirements reflecting the algorithms used (and key -->
+      <!-- 	      generation capabilities, if provided) are listed to support those methods. Note -->
+      <!-- 	      that the TSS will elaborate on the way in which these algorithms are to be used  -->
+      <!-- 	      (for example, 2409 specifies three authentication methods using public keys; -->
+      <!-- 	      each one supported will be described in the TSS).<h:p/> -->
+      <!-- 	      If “pre-shared keys” is selected, the selection-based requirement FIA_PSK_EXT.1 -->
+      <!-- 	      must be claimed. -->
+      <!-- 	    </note> -->
+      <!-- 	    <aactivity level="element"> -->
+      <!-- 	      <TSS> -->
+      <!-- 		The evaluator ensures that the TSS identifies RSA or ECDSA as being used to perform peer -->
+      <!-- 		authentication.<h:p/> -->
+      <!-- 		If pre-shared keys are chosen in the selection, the evaluator shall check to ensure that the TSS describes -->
+      <!-- 		how pre-shared keys are established and used in authentication of IPsec connections. The description in -->
+      <!-- 		the TSS shall also indicate how pre-shared key establishment is accomplished depending on whether the -->
+      <!-- 		TSF can generate a pre-shared key, accept a pre-shared key, or both.<h:p/> -->
+      <!-- 		The evaluator shall ensure that the TSS describes how the TOE compares the peer’s presented identifier -->
+      <!-- 		to the reference identifier. This description shall include whether the certificate presented identifier is -->
+      <!-- 		compared to the ID payload presented identifier, which fields of the certificate are used as the presented -->
+      <!-- 		identifier (DN, Common Name, or SAN) and, if multiple fields are supported, the logical order comparison. -->
+      <!-- 		If the ST author assigned an additional identifier type, the TSS description shall also include a description -->
+      <!-- 		of that type and the method by which that type is compared to the peer’s presented certificate.<h:p/> -->
+      <!-- 	      </TSS> -->
+      <!-- 	      <Guidance> -->
+      <!-- 		The evaluator shall check that the operational guidance describes how pre-shared keys are to be -->
+      <!-- 		generated and established.<h:p/> -->
+      <!-- 		The evaluator ensures the operational guidance describes how to set up the TOE to use the cryptographic -->
+      <!-- 		algorithms RSA or ECDSA (as selected).<h:p/> -->
+      <!-- 		In order to construct the environment and configure the TOE for the following tests, the evaluator will -->
+      <!-- 		ensure that the operational guidance also describes how to configure the TOE to connect to a trusted CA, -->
+      <!-- 		and ensure a valid certificate for that CA is loaded into the TOE as a trusted CA.<h:p/> -->
+      <!-- 		The evaluator shall also ensure that the operational guidance includes the configuration of the reference -->
+      <!-- 		identifiers for the peer.<h:p/> -->
+      <!-- 	      </Guidance> -->
+      <!-- 	      <Tests> -->
+      <!-- 		For efficiency’s sake, the testing that is performed here has been combined with the testing for -->
+      <!-- 		FIA_X509_EXT.2 and FIA_X509_EXT.3 (for IPsec connections and depending on the Base-PP), -->
+      <!-- 		FCS_IPSEC_EXT.1.12, and FCS_IPSEC_EXT.1.13. The following tests shall be repeated for each peer -->
+      <!-- 		authentication protocol selected in the FCS_IPSEC_EXT.1.11 selection above:<h:p/> -->
+      <!-- 		<testlist> -->
+      <!-- 		  <test>The evaluator shall have the TOE generate a public-private key pair, and submit a CSR (Certificate -->
+      <!-- 		  Signing Request) to a CA (trusted by both the TOE and the peer VPN used to establish a connection) for -->
+      <!-- 		  its signature. The values for the DN (Common Name, Organization, Organizational Unit, and Country) will -->
+      <!-- 		  also be passed in the request. Alternatively, the evaluator may import to the TOE a previously generated -->
+      <!-- 		  private key and corresponding certificate.</test> -->
+      <!-- 		  <test>The evaluator shall configure the TOE to use a private key and associated certificate signed by a -->
+      <!-- 		  trusted CA and shall establish an IPsec connection with the peer.</test> -->
+      <!-- 		  <test>The evaluator shall test that the TOE can properly handle revoked certificates – conditional on -->
+      <!-- 		  whether CRL or OCSP is selected; if both are selected, and then a test is performed for each method. For -->
+      <!-- 		  this current version of the PP-Module, the evaluator has to only test one up in the trust chain (future -->
+      <!-- 		  drafts may require to ensure the validation is done up the entire chain). The evaluator shall ensure that a -->
+      <!-- 		  valid certificate is used, and that the SA is established. The evaluator then attempts the test with a -->
+      <!-- 		  certificate that will be revoked (for each method chosen in the selection) to ensure when the certificate -->
+      <!-- 		  is no longer valid that the TOE will not establish an SA.</test> -->
+      <!-- 		  <test>(conditional) The evaluator shall generate a pre-shared key and use it, as indicated in the -->
+      <!-- 		  operational guidance, to establish an IPsec connection with the VPN GW peer. If the generation of the -->
+      <!-- 		  pre-shared key is supported, the evaluator shall ensure that establishment of the key is carried out for an -->
+      <!-- 		  instance of the TOE generating the key as well as an instance of the TOE merely taking in and using the -->
+      <!-- 		  key.<h:p/> -->
+      <!-- 		  For each supported identifier type (excluding DNs), the evaluator shall repeat the following tests:<h:p/> </test> -->
+      <!-- 		  <test>For each field of the certificate supported for comparison, the evaluator shall configure the peer’s -->
+      <!-- 		  reference identifier on the TOE (per the administrative guidance) to match the field in the peer’s -->
+      <!-- 		  presented certificate and shall verify that the IKE authentication succeeds.</test> -->
+      <!-- 		  <test>For each field of the certificate support for comparison, the evaluator shall configure the peer’s -->
+      <!-- 		  reference identifier on the TOE (per the administrative guidance) to not match the field in the peer’s -->
+      <!-- 		  presented certificate and shall verify that the IKE authentication fails.<h:p/> -->
+      <!-- 		  The following tests are conditional:</test> -->
+      <!-- 		  <test>(conditional) If, according to the TSS, the TOE supports both Common Name and SAN certificate -->
+      <!-- 		  fields and uses the preferred logic outlined in the Application Note, the tests above with the Common -->
+      <!-- 		  Name field shall be performed using peer certificates with no SAN extension. Additionally, the evaluator -->
+      <!-- 		  shall configure the peer’s reference identifier on the TOE to not match the SAN in the peer’s presented -->
+      <!-- 		  certificate but to match the Common Name in the peer’s presented certificate, and verify that the IKE -->
+      <!-- 		  authentication fails.</test> -->
+      <!-- 		  <test>(conditional) If the TOE supports DN identifier types, the evaluator shall configure the peer's -->
+      <!-- 		  reference identifier on the TOE (per the administrative guidance) to match the subject DN in the peer's -->
+      <!-- 		  presented certificate and shall verify that the IKE authentication succeeds. To demonstrate a bit-wise -->
+      <!-- 		  comparison of the DN, the evaluator shall change a single bit in the DN (preferably, in an Object Identifier -->
+      <!-- 		  (OID) in the DN) and verify that the IKE authentication fails. To demonstrate a comparison of DN values, -->
+      <!-- 		  the evaluator shall change any one of the four DN values and verify that the IKE authentication fails.</test> -->
+      <!-- 		  <test>(conditional) If the TOE supports both IPv4 and IPv6 and supports IP address identifier types, the -->
+      <!-- 		  evaluator must repeat test 1 and 2 with both IPv4 address identifiers and IPv6 identifiers. Additionally, -->
+      <!-- 		  the evaluator shall verify that the TOE verifies that the IP header matches the identifiers by setting the -->
+      <!-- 		  presented identifiers and the reference identifier with the same IP address that differs from the actual IP -->
+      <!-- 		  address of the peer in the IP headers and verifying that the IKE authentication fails.</test> -->
+      <!-- 		  <test>(conditional) If, according to the TSS, the TOE performs comparisons between the peer’s ID -->
+      <!-- 		  payload and the peer’s certificate, the evaluator shall repeat the following test for each combination of -->
+      <!-- 		  supported identifier types and supported certificate fields (as above). The evaluator shall configure the -->
+      <!-- 		  peer to present a different ID payload than the field in the peer’s presented certificate and verify that the -->
+      <!-- 		  TOE fails to authenticate the IKE peer.</test> -->
+      <!-- 		</testlist> -->
+      <!-- 	      </Tests> -->
+      <!-- 	    </aactivity> -->
+      <!-- 	  </f-element> -->
+      <!-- 	  <f-element id="fel-ipsec-stop-sa-not-expected"> -->
+      <!-- 	    <title>The TSF shall not establish an SA if the  -->
+      <!-- 	    <selectables> -->
+      <!-- 	      <selectable>IP address</selectable> -->
+      <!-- 	      <selectable>Fully Qualified Domain Name (FQDN)</selectable> -->
+      <!-- 	      <selectable>user FQDN</selectable> -->
+      <!-- 	      <selectable>Distinguished Name (DN)</selectable> -->
+      <!-- 	      </selectables> and  -->
+      <!-- 	      <selectables> -->
+      <!-- 		<selectable>no other reference identifier type</selectable> -->
+      <!-- 		<selectable><assignable>other supported reference identifier types</assignable></selectable> -->
+      <!-- 		</selectables> contained in a certificate does not match the expected values for the -->
+      <!-- 		entity attempting to establish a connection. -->
+      <!-- 	    </title> -->
+      <!-- 	    <note role="application"> -->
+      <!-- 	      The TOE must support at least one of the following identifier types: IP address, -->
+      <!-- 	      Fully Qualified Domain Name (FQDN), user FQDN, or Distinguished Name (DN). -->
+      <!-- 	      In the future, the TOE will be required to support all of these identifier types. The -->
+      <!-- 	      TOE is expected to support as many IP address formats (IPv4 and IPv6) as IP -->
+      <!-- 	      versions supported by the TOE in general. The ST author may assign additional -->
+      <!-- 	      supported identifier types in the second selection. -->
+      <!-- 	    </note> -->
+      <!-- 	    <aactivity level="element"> -->
+      <!-- 	      <no-tests>EAs for this element are tested through EAs for FCS_IPSEC_EXT.1.11.</no-tests> -->
+      <!-- 	    </aactivity> -->
+      <!-- 	  </f-element> -->
+      <!-- 	  <f-element id="fel-ipsec-stop-sa-mismatch"> -->
+      <!-- 	    <title>The TSF shall not establish an SA if the presented identifier does not match the -->
+      <!-- 	    configured reference identifier of the peer. -->
+      <!-- 	    </title> -->
+      <!-- 	    <note role="application"> -->
+      <!-- 	      At this time, only the comparison between the presented identifier in the peer’s -->
+      <!-- 	      certificate and the peer’s reference identifier is mandated by the testing below. -->
+      <!-- 	      However, in the future, this requirement will address two aspects of the peer -->
+      <!-- 	      certificate validation: 1) comparison of the peer’s ID payload to the peer’s -->
+      <!-- 	      certificate which are both presented identifiers, as required by RFC 4945 and 2) -->
+      <!-- 	      verification that the peer identified by the ID payload and the certificate is the -->
+      <!-- 	      peer expected by the TOE (per the reference identifier). At that time, the TOE will -->
+      <!-- 	      be required to demonstrate both aspects (i.e. that the TOE enforces that the -->
+      <!-- 	      peer’s ID payload matches the peer’s certificate which both match configured -->
+      <!-- 	      peer reference identifiers).<h:p/> -->
+      <!-- 	      Excluding the DN identifier type (which is necessarily the Subject DN in the peer -->
+      <!-- 	      certificate), the TOE may support the identifier in either the Common Name or -->
+      <!-- 	      Subject Alternative Name (SAN) or both. If both are supported, the preferred -->
+      <!-- 	      logic is to compare the reference identifier to a presented SAN, and only if the -->
+      <!-- 	      peer’s certificate does not contain a SAN, to fall back to a comparison against -->
+      <!-- 	      the Common Name. In the future, the TOE will be required to compare the -->
+      <!-- 	      reference identifier to the presented identifier in the SAN only, ignoring the -->
+      <!-- 	      Common Name.<h:p/> -->
+      <!-- 	      The configuration of the peer reference identifier is addressed by -->
+      <!-- 	      FMT_SMF.1.1/VPN. <h:p/> -->
+      <!-- 	    </note> -->
+      <!-- 	    <aactivity level="element"> -->
+      <!-- 	      <no-tests> -->
+      <!-- 		EAs for this element are tested through EAs for FCS_IPSEC_EXT.1.11. -->
+      <!-- 	      </no-tests> -->
+      <!-- 	    </aactivity> -->
+      <!-- 	  </f-element> -->
+      <!-- 	  <f-element id="fel-ipsec-default-strength"> -->
+      <!-- 	    <title>The  -->
+      <!-- 	    <selectables> -->
+      <!-- 	      <selectable>TSF</selectable> -->
+      <!-- 	      <selectable>VPN Gateway</selectable> -->
+      <!-- 	      </selectables> shall be able to ensure by default that the -->
+      <!-- 	      strength of the symmetric algorithm (in terms of the number of bits in the key) -->
+      <!-- 	      negotiated to protect the  -->
+      <!-- 	      <selectables> -->
+      <!-- 		<selectable>IKEv1 Phase 1</selectable> -->
+      <!-- 		<selectable>IKEv2 IKE_SA</selectable> -->
+      <!-- 		</selectables> connection is greater than or equal to the strength of the symmetric algorithm (in terms of -->
+      <!-- 		the number of bits in the key) negotiated to protect the [selection: IKEv1 Phase -->
+      <!-- 		2, IKEv2 CHILD_SA] connection. -->
+      <!-- 	    </title> -->
+      <!-- 	    <note role="application"> -->
+      <!-- 	      If this functionality is configurable, the TSF may be configured by a VPN Gateway -->
+      <!-- 	      or by an Administrator of the TOE itself.<h:p/> -->
+      <!-- 	      The ST author chooses either or both of the IKE selections based on what is -->
+      <!-- 	      implemented by the TOE. Obviously, the IKE versions chosen should be -->
+      <!-- 	      consistent not only in this element, but with other choices for other elements in -->
+      <!-- 	      this component. While it is acceptable for this capability to be configurable, the -->
+      <!-- 	      default configuration in the evaluated configuration (either "out of the box" or -->
+      <!-- 	      by configuration guidance in the AGD documentation) must enable this -->
+      <!-- 	      functionality. -->
+      <!-- 	    </note> -->
+      <!-- 	    <aactivity level="element"> -->
+      <!-- 	      <TSS> -->
+      <!-- 		The evaluator shall check that the TSS describes the potential strengths (in terms of the number of bits in -->
+      <!-- 		the symmetric key) of the algorithms that are allowed for the IKE and ESP exchanges. The TSS shall also -->
+      <!-- 		describe the checks that are done when negotiating IKEv1 Phase 2 and IKEv2 CHILD_SA suites to ensure -->
+      <!-- 		that the strength (in terms of the number of bits of key in the symmetric algorithm) of the negotiated -->
+      <!-- 		algorithm is less than or equal to that of the IKE SA that is protecting the negotiation. -->
+      <!-- 	      </TSS> -->
+      <!-- 	      <Guidance> -->
+      <!-- 		There are no AGD EAs for this requirement. -->
+      <!-- 	      </Guidance> -->
+      <!-- 	      <Tests> -->
+      <!-- 		The evaluator follows the guidance to configure the TOE to perform the following tests:<h:p/> -->
+      <!-- 		<testlist> -->
+      <!-- 		  <test>This test shall be performed for each version of IKE supported. The evaluator shall successfully -->
+      <!-- 		  negotiate an IPsec connection using each of the supported algorithms and hash functions identified in the -->
+      <!-- 		  requirements.</test>          -->
+      <!-- 		  <test>(conditional) This test shall be performed for each version of IKE supported. The evaluator shall -->
+      <!-- 		  attempt to establish an SA for ESP that selects an encryption algorithm with more strength than that being -->
+      <!-- 		  used for the IKE SA (i.e., symmetric algorithm with a key size larger than that being used for the IKE SA). -->
+      <!-- 		  Such attempts should fail.</test> -->
+      <!-- 		  <test>This test shall be performed for each version of IKE supported. The evaluator shall attempt to -->
+      <!-- 		  establish an IKE SA using an algorithm that is not one of the supported algorithms and hash functions -->
+      <!-- 		  identified in the requirements. Such an attempt should fail.</test> -->
+      <!-- 		  <test>This test shall be performed for each version of IKE supported. The evaluator shall attempt to -->
+      <!-- 		  establish an SA for ESP (assumes the proper parameters where used to establish the IKE SA) that selects -->
+      <!-- 		  an encryption algorithm that is not identified in FCS_IPSEC_EXT.1.4. Such an attempt should fail.</test> -->
+      <!-- 		</testlist> -->
+      <!-- 	      </Tests> -->
+      <!-- 	    </aactivity> -->
+      <!-- 	  </f-element> -->
+      <!-- 	  <audit-event> -->
+      <!-- 	    <audit-event-descr>Failure to establish an IPsec SA.</audit-event-descr> -->
+      <!-- 	    <audit-event-info>Reason for failure.</audit-event-info>	 -->
+      <!-- 	    <audit-event-info>Non-TOE endpoint of connection (IP address).</audit-event-info>	 -->
+      <!-- 	  </audit-event> -->
+      <!-- 	  <audit-event> -->
+      <!-- 	    <audit-event-descr>Establishment/Termination of an IPsec SAA.</audit-event-descr> -->
+      <!-- 	    <audit-event-info>Non-TOE endpoint of connection (IP address).</audit-event-info>	 -->
+      <!-- 	  </audit-event> -->
+      <!-- 	</f-component> -->
       </section>
       <section title="User Data Protection (FDP)" id="fdp">
         <f-component cc-id="fdp_acf_ext.1" name="Access Controls for Protecting User Data">
