@@ -11,20 +11,13 @@ Version: 4.2.1\									      |	Version: 4.3-DRAFT\
 Revision History {#revision-history style="page-break-before:always;"}			Revision History {#revision-history style="page-break-before:always;"}
 ----------------									----------------
 
-										      >	  -----------------------------------------------------------------------------------
   Version   Date         Comment							  Version   Date         Comment
   --------- ------------ ------------------------------------------------------------ |	  --------- ------------ ------------------------------------------------------------
-										      >	  4.3       2022-04-22   Inclusion of IPsec Requirements.\
-										      >	                         Added compatibility with MDM Agent, Bluetooth, and [TLS](#ab
-										      >
+										      >	  4.3       2022-04-22   Added compatibility with MDM Agent, Bluetooth, and [TLS](#ab
   4.2.1     2019-04-22   Formatting changes as a result of [PP](#abbr_PP) evaluation	  4.2.1     2019-04-22   Formatting changes as a result of [PP](#abbr_PP) evaluation
-										      >
   4.2       2018-05-22   Multiple Technical Decisions applied				  4.2       2018-05-22   Multiple Technical Decisions applied
-										      >
   4.1       2016-03-09   Minor updates - cryptographic modes				  4.1       2016-03-09   Minor updates - cryptographic modes
-										      >
   4.0       2015-08-14   Release - significant revision					  4.0       2015-08-14   Release - significant revision
-										      >	  -----------------------------------------------------------------------------------
 
 Contents										Contents
 --------										--------
@@ -61,8 +54,7 @@ Requirements](#opt-app)[A.1Strictly Optional Requirements				Requirements](#opt-
 Requirements ](#objective-reqs)[A.2.1Protection of the TSF				Requirements ](#objective-reqs)[A.2.1Protection of the TSF
 (FPT)](#fpt-objective)[A.3Implementation-based Requirements				(FPT)](#fpt-objective)[A.3Implementation-based Requirements
 ](#feat-based-reqs)[Appendix B - Selection-based Requirements				](#feat-based-reqs)[Appendix B - Selection-based Requirements
-](#sel-based-reqs)[Appendix C - Implicitly Satisfied				      |	](#sel-based-reqs)[B.1Cryptographic Support
-										      >	(FCS)](#fcs-sel-based)[Appendix C - Implicitly Satisfied
+](#sel-based-reqs)[Appendix C - Implicitly Satisfied					](#sel-based-reqs)[Appendix C - Implicitly Satisfied
 Requirements](#satisfiedreqs)[Appendix D - Entropy Documentation and			Requirements](#satisfiedreqs)[Appendix D - Entropy Documentation and
 Assessment](#entropyappendix)[D.1Design							Assessment](#entropyappendix)[D.1Design
 Description](#entropydesign)[D.2Entropy							Description](#entropydesign)[D.2Entropy
@@ -245,6 +237,12 @@ this document.										this document.
 |                                   | for a set of libraries included   |		|                                   | for a set of libraries included   |
 |                                   | with the platform.                |		|                                   | with the platform.                |
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
+										      >	| ::: {#Biometric_Authentication_Fa | Authentication factor, which uses |
+										      >	| ctor}                             | biometric sample, matched to a    |
+										      >	| Biometric Authentication Factor   | biometric authentication template |
+										      >	| ([BAF](#abbr_BAF))                | to help establish identity.       |
+										      >	| :::                               |                                   |
+										      >	+-----------------------------------+-----------------------------------+
 | ::: {#Credential}                 | Data that establishes the         |		| ::: {#Credential}                 | Data that establishes the         |
 | Credential                        | identity of a user, e.g. a        |		| Credential                        | identity of a user, e.g. a        |
 | :::                               | cryptographic key or password.    |		| :::                               | cryptographic key or password.    |
@@ -301,7 +299,7 @@ this document.										this document.
 |                                   | General Purpose Operating Systems |		|                                   | General Purpose Operating Systems |
 |                                   | also lack the real-time           |		|                                   | also lack the real-time           |
 |                                   | constraint that defines Real Time |		|                                   | constraint that defines Real Time |
-|                                   | Operating Systems (RTOS). RTOSes  |		|                                   | Operating Systems (RTOS). RTOSes  |
+|                                   | Operating Systems (RTOS). RTOSes  |	      |	|                                   | Operating Systems that RTOSes     |
 |                                   | typically power routers,          |		|                                   | typically power routers,          |
 |                                   | switches, and embedded devices.   |		|                                   | switches, and embedded devices.   |
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
@@ -312,6 +310,16 @@ this document.										this document.
 |                                   | traffic to and from processes     |		|                                   | traffic to and from processes     |
 |                                   | running on the [OS](#abbr_OS).    |		|                                   | running on the [OS](#abbr_OS).    |
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
+										      >	| ::: {#Hybrid_Authentication}      | A hybrid authentication factor is |
+										      >	| Hybrid Authentication             | one where a user has to submit a  |
+										      >	| :::                               | combination of a biometric sample |
+										      >	|                                   | and a [PIN](#abbr_PIN) or         |
+										      >	|                                   | password and both must pass. If   |
+										      >	|                                   | either factor fails, the entire   |
+										      >	|                                   | attempt fails. The user shall not |
+										      >	|                                   | be made aware of which factor     |
+										      >	|                                   | failed, if either fails.          |
+										      >	+-----------------------------------+-----------------------------------+
 | ::: {#Operating_System}           | Software that manages physical    |		| ::: {#Operating_System}           | Software that manages physical    |
 | Operating System ([OS](#abbr_OS)) | and logical resources and         |		| Operating System ([OS](#abbr_OS)) | and logical resources and         |
 | :::                               | provides services for             |		| :::                               | provides services for             |
@@ -320,6 +328,23 @@ this document.										this document.
 |                                   | *[OS](#abbr_OS)* are              |		|                                   | *[OS](#abbr_OS)* are              |
 |                                   | interchangeable in this document. |		|                                   | interchangeable in this document. |
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
+										      >	| ::: {#Personal_Identification_Num | An authetication factor that is   |
+										      >	| ber}                              | comprised of a set of numeric or  |
+										      >	| Personal Identification Number    | alphabetic characters that may be |
+										      >	| ([PIN](#abbr_PIN))                | used in addition to a biometric   |
+										      >	| :::                               | factor or cryptographic token to  |
+										      >	|                                   | provide a hybrid authentication   |
+										      >	|                                   | factor. At this time it is not    |
+										      >	|                                   | considered as a stand-alone       |
+										      >	|                                   | authentication mechanism. A       |
+										      >	|                                   | [PIN](#abbr_PIN) is distinct from |
+										      >	|                                   | a password in that the allowed    |
+										      >	|                                   | character set and required length |
+										      >	|                                   | of a [PIN](#abbr_PIN) is          |
+										      >	|                                   | typically smaller than that of a  |
+										      >	|                                   | password as it is designed to be  |
+										      >	|                                   | input quickly.                    |
+										      >	+-----------------------------------+-----------------------------------+
 | ::: {#Personally_Identifiable_Inf | Any information about an          |		| ::: {#Personally_Identifiable_Inf | Any information about an          |
 | ormation}                         | individual maintained by an       |		| ormation}                         | individual maintained by an       |
 | Personally Identifiable           | agency, including, but not        |		| Personally Identifiable           | agency, including, but not        |
@@ -441,23 +466,34 @@ scope of this [PP](#abbr_PP).								scope of this [PP](#abbr_PP).
 ====================									====================
 
 Conformance Statement									Conformance Statement
+										      >
 :   An [ST](#abbr_ST) must claim exact conformance to this				:   An [ST](#abbr_ST) must claim exact conformance to this
     [PP](#abbr_PP), as defined in the [CC](#abbr_CC) and				    [PP](#abbr_PP), as defined in the [CC](#abbr_CC) and
-    [CEM](#abbr_CEM) addenda for Exact Conformance, Selection-based			    [CEM](#abbr_CEM) addenda for Exact Conformance, Selection-based
+    [CEM](#abbr_CEM) addenda for Exact Conformance, Selection-based		      |	    [CEM](#abbr_CEM) addenda for Exact Conformance, Selection-Based
     SFRs, and Optional SFRs (dated May 2017).						    SFRs, and Optional SFRs (dated May 2017).
 
+										      >	    The following [PP](#abbr_PP)-Modules are allowed to be specified in
+										      >	    a [PP-Configuration](#abbr_PP-Configuration) with this
+										      >	    [PP](#abbr_PP).
+										      >
+										      >	    -   [PP-Module](#abbr_PP-Module) for [VPN](#abbr_VPN) Client,
+										      >	        Version 2.3
+										      >	    -   [PP-Module](#abbr_PP-Module) for Bluetooth, Version 1.0
+										      >	    -   [PP-Module](#abbr_PP-Module) for MDM Agent, Version 1.0
+										      >	    -   [cPP](#abbr_cPP)-Module for Biometric Enrollment and
+										      >	        Verification, Version 1.1
+										      >
 CC Conformance Claims									CC Conformance Claims
 :   This [PP](#abbr_PP) is conformant to Parts 2 (extended) and 3			:   This [PP](#abbr_PP) is conformant to Parts 2 (extended) and 3
-    (conformant) of Common Criteria Version 3.1, Revision 5.				    (conformant) of Common Criteria Version 3.1, Revision 5.
+    (conformant) of Common Criteria Version 3.1, Revision 5.			      |	    (extended) of Common Criteria Version 3.1, Revision 5.
 
-PP Claim 										PP Claim 
+PP Claim 									      |	PP Claim
 :   This [PP](#abbr_PP) does not claim conformance to any Protection			:   This [PP](#abbr_PP) does not claim conformance to any Protection
     Profile.										    Profile.
 
 Package Claim										Package Claim
-:   This [PP](#abbr_PP) is [Functional Package for Transport Layer		      |	:   This [PP](#abbr_PP) is [Functional Package for Secure Shell (SSH),
-    Security (TLS), version 1.1]() Conformant .					      |	    version 1.0]() Conformant and [Functional Package for Transport
-										      >	    Layer Security (TLS), version 1.1]() Conformant .
+:   This [PP](#abbr_PP) is [Functional Package for Transport Layer		      |	:   This [PP](#abbr_PP) is [TLS](#abbr_TLS) Package Conformant.\
+    Security (TLS), version 1.1]() Conformant .					      |	    This [PP](#abbr_PP) is SSH Package Conformant.
 
 3 Security Problem Description {#Security_Problem_Description .indexable data-level="	3 Security Problem Description {#Security_Problem_Description .indexable data-level="
 ==============================								==============================
@@ -3498,8 +3534,9 @@ The **[OS](#abbr_OS)** shall detect when \[**selection**:				The **[OS](#abbr_OS
 \[**selection**:**									\[**selection**:**
 
 -   *authentication based on user name and password*,					-   *authentication based on user name and password*,
--   *authentication based on user name and a PIN that releases an			-   *authentication based on user name and a PIN that releases an
-    asymmetric key stored in [OE](#abbr_OE)-protected storage*,				    asymmetric key stored in [OE](#abbr_OE)-protected storage*,
+-   *authentication based on user name and a PIN that releases an		      |	-   *authentication based on user name and a [PIN](#abbr_PIN) that
+    asymmetric key stored in [OE](#abbr_OE)-protected storage*,			      |	    releases an asymmetric key stored in [OE](#abbr_OE)-protected
+										      >	    storage*,
 -   *authentication based on X.509 certificates*					-   *authentication based on X.509 certificates*
 
 \] .											\] .
@@ -3543,9 +3580,9 @@ Tests											Tests
 The evaluator will set an administrator-configurable threshold for			The evaluator will set an administrator-configurable threshold for
 failed attempts, or note the [ST](#abbr_ST)-specified assignment. The			failed attempts, or note the [ST](#abbr_ST)-specified assignment. The
 evaluator will then (per selection) repeatedly attempt to authenticate			evaluator will then (per selection) repeatedly attempt to authenticate
-with an incorrect password, PIN, or certificate until the number of			with an incorrect password, PIN, or certificate until the number of
-attempts reaches the threshold. Note that the authentication attempts			attempts reaches the threshold. Note that the authentication attempts
-and lockouts must also be logged as specified in					and lockouts must also be logged as specified in
+with an incorrect password, PIN, or certificate until the number of		      |	with an incorrect password, [PIN](#abbr_PIN), or certificate until the
+attempts reaches the threshold. Note that the authentication attempts		      |	number of attempts reaches the threshold. Note that the authentication
+and lockouts must also be logged as specified in				      |	attempts and lockouts must also be logged as specified in
 [FAU\_GEN.1](#FAU_GEN.1).								[FAU\_GEN.1](#FAU_GEN.1).
 
 -   **Test 1:** The evaluator will attempt to authenticate repeatedly to		-   **Test 1:** The evaluator will attempt to authenticate repeatedly to
@@ -3587,8 +3624,9 @@ The **[OS](#abbr_OS)** shall provide the following authentication			The **[OS](#
 mechanisms **\[**selection**:**								mechanisms **\[**selection**:**
 
 -   *authentication based on user name and password*,					-   *authentication based on user name and password*,
--   *authentication based on user name and a PIN that releases an			-   *authentication based on user name and a PIN that releases an
-    asymmetric key stored in [OE](#abbr_OE)-protected storage*,				    asymmetric key stored in [OE](#abbr_OE)-protected storage*,
+-   *authentication based on user name and a PIN that releases an		      |	-   *authentication based on user name and a [PIN](#abbr_PIN) that
+    asymmetric key stored in [OE](#abbr_OE)-protected storage*,			      |	    releases an asymmetric key stored in [OE](#abbr_OE)-protected
+										      >	    storage*,
 -   *authentication based on X.509 certificates*,					-   *authentication based on X.509 certificates*,
 -   *for use in SSH only, SSH public key-based authentication as			-   *for use in SSH only, SSH public key-based authentication as
     specified by the [EP](#abbr_EP) for Secure Shell*				      |	    specified by the [Functional Package for Secure Shell (SSH), version
@@ -3680,21 +3718,22 @@ conduct the following tests:								conduct the following tests:
     The evaluator will ensure that the authentication attempt is			    The evaluator will ensure that the authentication attempt is
     unsuccessful.									    unsuccessful.
 
-If user name and PIN that releases an asymmetric key is selected, the			If user name and PIN that releases an asymmetric key is selected, the
-evaluator will examine the [TSS](#abbr_TSS) for guidance on supported			evaluator will examine the [TSS](#abbr_TSS) for guidance on supported
-protected storage and will then configure the [TOE](#abbr_TOE) or			protected storage and will then configure the [TOE](#abbr_TOE) or
-[OE](#abbr_OE) to establish a PIN which enables release of the				[OE](#abbr_OE) to establish a PIN which enables release of the
-asymmetric key from the protected storage (such as a TPM, a hardware			asymmetric key from the protected storage (such as a TPM, a hardware
-token, or isolated execution environment) with which the [OS](#abbr_OS)			token, or isolated execution environment) with which the [OS](#abbr_OS)
-can interface. The evaluator will then conduct the following tests:			can interface. The evaluator will then conduct the following tests:
+If user name and PIN that releases an asymmetric key is selected, the		      |	If user name and [PIN](#abbr_PIN) that releases an asymmetric key is
+evaluator will examine the [TSS](#abbr_TSS) for guidance on supported		      |	selected, the evaluator will examine the [TSS](#abbr_TSS) for guidance
+protected storage and will then configure the [TOE](#abbr_TOE) or		      |	on supported protected storage and will then configure the
+[OE](#abbr_OE) to establish a PIN which enables release of the			      |	[TOE](#abbr_TOE) or [OE](#abbr_OE) to establish a [PIN](#abbr_PIN) which
+asymmetric key from the protected storage (such as a TPM, a hardware		      |	enables release of the asymmetric key from the protected storage (such
+token, or isolated execution environment) with which the [OS](#abbr_OS)		      |	as a TPM, a hardware token, or isolated execution environment) with
+can interface. The evaluator will then conduct the following tests:		      |	which the [OS](#abbr_OS) can interface. The evaluator will then conduct
+										      >	the following tests:
 
 -   **Test 1:** The evaluator will attempt to authenticate to the			-   **Test 1:** The evaluator will attempt to authenticate to the
-    [OS](#abbr_OS) using the known user name and PIN. The evaluator will		    [OS](#abbr_OS) using the known user name and PIN. The evaluator will
-    ensure that the authentication attempt is successful.				    ensure that the authentication attempt is successful.
+    [OS](#abbr_OS) using the known user name and PIN. The evaluator will	      |	    [OS](#abbr_OS) using the known user name and [PIN](#abbr_PIN). The
+    ensure that the authentication attempt is successful.			      |	    evaluator will ensure that the authentication attempt is successful.
 -   **Test 2:** The evaluator will attempt to authenticate to the			-   **Test 2:** The evaluator will attempt to authenticate to the
-    [OS](#abbr_OS) using the known user name but an incorrect PIN. The			    [OS](#abbr_OS) using the known user name but an incorrect PIN. The
-    evaluator will ensure that the authentication attempt is				    evaluator will ensure that the authentication attempt is
-    unsuccessful.									    unsuccessful.
+    [OS](#abbr_OS) using the known user name but an incorrect PIN. The		      |	    [OS](#abbr_OS) using the known user name but an incorrect
+    evaluator will ensure that the authentication attempt is			      |	    [PIN](#abbr_PIN). The evaluator will ensure that the authentication
+    unsuccessful.								      |	    attempt is unsuccessful.
 
 If X.509 certificate authentication is selected, the evaluator will			If X.509 certificate authentication is selected, the evaluator will
 generate an X.509v3 certificate for a user with the Client				generate an X.509v3 certificate for a user with the Client
@@ -4217,8 +4256,8 @@ to meet and achieve the security objectives:\						to meet and achieve the secur
   [O.ACCOUNTABILITY](#O.ACCOUNTABILITY)\           [FAU\_GEN.1](#FAU_GEN.1), [FTP\_IT |	Objective
 										      >
 										      >	Addressed by
-										      >
-										      >	Rationale
+
+  [O.INTEGRITY](#O.INTEGRITY)\                     [FPT\_SBOP\_EXT.1](#FPT_SBOP_EXT.1 |	Rationale
 										      >
 										      >	[O.ACCOUNTABILITY](#O.ACCOUNTABILITY)\
 										      >
@@ -4315,13 +4354,13 @@ to meet and achieve the security objectives:\						to meet and achieve the secur
 										      >	Supports this objective by requiring the [TOE](#abbr_TOE) to restrict
 										      >	the ability to perform certain management functions to a privileged
 										      >	user.
-										      >
-										      >	[FMT\_SMF\_EXT.1](#FMT_SMF_EXT.1)
+
+  [O.MANAGEMENT](#O.MANAGEMENT)\                   [FMT\_MOF\_EXT.1](#FMT_MOF_EXT.1), |	[FMT\_SMF\_EXT.1](#FMT_SMF_EXT.1)
 										      >
 										      >	Supports this objective by requiring the [TOE](#abbr_TOE) to implement
 										      >	specific management functions.
-
-  [O.INTEGRITY](#O.INTEGRITY)\                     [FPT\_SBOP\_EXT.1](#FPT_SBOP_EXT.1 |	[FTA\_TAB.1](#FTA_TAB.1)
+										      >
+										      >	[FTA\_TAB.1](#FTA_TAB.1)
 										      >
 										      >	Supports this objective by requiring the [TOE](#abbr_TOE) to implement a
 										      >	trusted path between the itself and users.
@@ -4330,21 +4369,21 @@ to meet and achieve the security objectives:\						to meet and achieve the secur
 										      >
 										      >	Supports this objective by requiring a trusted path between users and
 										      >	the [OS](#abbr_OS).
-
-  [O.MANAGEMENT](#O.MANAGEMENT)\                   [FMT\_MOF\_EXT.1](#FMT_MOF_EXT.1), |	[O.PROTECTED\_​STORAGE](#O.PROTECTED_STORAGE)\
-
-  [O.PROTECTED\_​STORAGE](#O.PROTECTED_STORAGE)\   [FCS\_STO\_EXT.1](#FCS_STO_EXT.1),  |	[FCS\_STO\_EXT.1](#FCS_STO_EXT.1)
-
-  [O.PROTECTED\_​COMMS](#O.PROTECTED_COMMS)\       [FCS\_RBG\_EXT.1](#FCS_RBG_EXT.1),  |	Supports this objective by requiring the [OS](#abbr_OS) to provide
-  ----------------------------------------------------------------------------------- |	encrypted storage.
+										      >
+										      >	[O.PROTECTED\_​STORAGE](#O.PROTECTED_STORAGE)\
+										      >
+										      >	[FCS\_STO\_EXT.1](#FCS_STO_EXT.1)
+										      >
+										      >	Supports this objective by requiring the [OS](#abbr_OS) to provide
+										      >	encrypted storage.
 										      >
 										      >	[FCS\_RBG\_EXT.1](#FCS_RBG_EXT.1)
-										      >
-										      >	Supports this objective by requiring the [OS](#abbr_OS) to generate
+
+  [O.PROTECTED\_​STORAGE](#O.PROTECTED_STORAGE)\   [FCS\_STO\_EXT.1](#FCS_STO_EXT.1),  |	Supports this objective by requiring the [OS](#abbr_OS) to generate
 										      >	random bits according to industry standards.
-										      >
-										      >	[FCS\_COP.1/ENCRYPT](#FCS_COP.1/ENCRYPT)
-										      >
+
+  [O.PROTECTED\_​COMMS](#O.PROTECTED_COMMS)\       [FCS\_RBG\_EXT.1](#FCS_RBG_EXT.1),  |	[FCS\_COP.1/ENCRYPT](#FCS_COP.1/ENCRYPT)
+  ----------------------------------------------------------------------------------- |
 										      >	Supports this objective requiring the [OS](#abbr_OS) to perform
 										      >	encryption according to industry stands.
 										      >
@@ -4361,9 +4400,9 @@ to meet and achieve the security objectives:\						to meet and achieve the secur
 										      >	random bits according to industry standards.
 										      >
 										      >	[FCS\_CKM.1](#FCS_CKM.1)
-
-  : [Table [2]{.counter}]{#t-obj_map .ctr data-myid="t-obj_map"			      |	Supports this objective by requiring the [TSF](#abbr_TSF) to generate
-  data-counter-type="ct-Table"}: [SFR](#abbr_SFR) Rationale			      |	asymmetric cryptographic keys to industry standards.
+										      >
+										      >	Supports this objective by requiring the [TSF](#abbr_TSF) to generate
+										      >	asymmetric cryptographic keys to industry standards.
 										      >
 										      >	[FCS\_CKM.2](#FCS_CKM.2)
 										      >
@@ -4412,9 +4451,9 @@ to meet and achieve the security objectives:\						to meet and achieve the secur
 										      >	certificates.
 										      >
 										      >	[FTP\_ITC\_EXT.1](#FTP_ITC_EXT.1)
-										      >
-										      >	Supports the objective by requiring the [OS](#abbr_OS) to provide a
-										      >	trusted channel for critical communication.
+
+  : [Table [2]{.counter}]{#t-obj_map .ctr data-myid="t-obj_map"			      |	Supports the objective by requiring the [OS](#abbr_OS) to provide a
+  data-counter-type="ct-Table"}: [SFR](#abbr_SFR) Rationale			      |	trusted channel for critical communication.
 
 5.2 Security Assurance Requirements {#Security_Assurance_Requirements .indexable data	5.2 Security Assurance Requirements {#Security_Assurance_Requirements .indexable data
 -----------------------------------							-----------------------------------
@@ -5562,18 +5601,18 @@ shall be selected. In these cases, the [TOE](#abbr_TOE) provides an		      |	cli
 [API](#abbr_API) to third-party VPN clients that allows them to			      |	first option shall be selected. In these cases, the [TOE](#abbr_TOE)
 configure the [TOE](#abbr_TOE)\'s network stack to perform the required		      |	provides an [API](#abbr_API) to third-party [VPN](#abbr_VPN) clients
 Information Flow Control.							      |	that allows them to configure the [TOE](#abbr_TOE)\'s network stack to
-										      >	perform the required Information Flow Control.
-
-The [ST](#abbr_ST) author shall select the second option if the				The [ST](#abbr_ST) author shall select the second option if the
-[TSF](#abbr_TSF) implements a native VPN client (IPsec is selected in		      |	[TSF](#abbr_TSF) implements a native [VPN](#abbr_VPN) client (IPsec is
-[FTP\_ITC\_EXT.1](#FTP_ITC_EXT.1)). If the native VPN client is to be		      |	selected in [FTP\_ITC\_EXT.1](#FTP_ITC_EXT.1)). If the native
-validated (IPsec is selected in [FTP\_ITC\_EXT.1.1](#FTP_ITC_EXT.1.1)		      |	[VPN](#abbr_VPN) client is to be validated (IPsec is selected in
-and the [TSF](#abbr_TSF) is validated against the *[EP](#abbr_EP) for		      |	[FTP\_ITC\_EXT.1.1](#FTP_ITC_EXT.1.1) and the [TSF](#abbr_TSF) is
-IPsec Virtual Private Network (VPN) Clients*), the [ST](#abbr_ST) author	      |	validated against the *[EP](#abbr_EP) for IPsec Virtual Private Network
-shall also include [FDP\_IFC\_EXT.1](#FDP_IFC_EXT.1) from this package.		      |	([VPN](#abbr_VPN)) Clients*), the [ST](#abbr_ST) author shall also
-In the future, this requirement may also make a distinction between the		      |	include [FDP\_IFC\_EXT.1](#FDP_IFC_EXT.1) from this package. In the
-current requirement (which requires that when the IPsec trusted channel		      |	future, this requirement may also make a distinction between the current
-is enabled, all traffic from the [TSF](#abbr_TSF) is routed through that	      |	requirement (which requires that when the IPsec trusted channel is
+										      |	perform the required Information Flow Control.
+The [ST](#abbr_ST) author shall select the second option if the			      |
+[TSF](#abbr_TSF) implements a native VPN client (IPsec is selected in		      |	The [ST](#abbr_ST) author will select the second option if the
+[FTP\_ITC\_EXT.1](#FTP_ITC_EXT.1)). If the native VPN client is to be		      |	[TSF](#abbr_TSF) implements a native [VPN](#abbr_VPN) client (IPsec is
+validated (IPsec is selected in [FTP\_ITC\_EXT.1.1](#FTP_ITC_EXT.1.1)		      |	selected in [FTP\_ITC\_EXT.1](#FTP_ITC_EXT.1)). If the native
+and the [TSF](#abbr_TSF) is validated against the *[EP](#abbr_EP) for		      |	[VPN](#abbr_VPN) client is to be validated (IPsec is selected in
+IPsec Virtual Private Network (VPN) Clients*), the [ST](#abbr_ST) author	      |	[FTP\_ITC\_EXT.1.1](#FTP_ITC_EXT.1.1) and the [TSF](#abbr_TSF) is
+shall also include [FDP\_IFC\_EXT.1](#FDP_IFC_EXT.1) from this package.		      |	validated against the *[EP](#abbr_EP) for IPsec Virtual Private Network
+In the future, this requirement may also make a distinction between the		      |	([VPN](#abbr_VPN)) Clients*), the [ST](#abbr_ST) author will also
+current requirement (which requires that when the IPsec trusted channel		      |	include [FDP\_IFC\_EXT.1](#FDP_IFC_EXT.1) from this package. In the
+is enabled, all traffic from the [TSF](#abbr_TSF) is routed through that	      |	future, this requirement may also make a distinction between the current
+										      >	requirement (which requires that when the IPsec trusted channel is
 										      >	enabled, all traffic from the [TSF](#abbr_TSF) is routed through that
 channel) and having an option to force the establishment of an IPsec			channel) and having an option to force the establishment of an IPsec
 trusted channel to allow any communication by the [TSF](#abbr_TSF).			trusted channel to allow any communication by the [TSF](#abbr_TSF).
@@ -5873,1216 +5912,7 @@ its underlying platform) are contained in the body of this				its underlying pla
 the body of the [PP](#abbr_PP): if certain selections are made, then			the body of the [PP](#abbr_PP): if certain selections are made, then
 additional requirements below must be included.						additional requirements below must be included.
 
-This [PP](#abbr_PP) does not define any Selection-based requirements.		      |	B.1 Cryptographic Support (FCS) {#fcs-sel-based .indexable data-level="2"}
-										      >	-------------------------------
-										      >
-										      >	::: {#FCS_IPSEC_EXT.1 .comp}
-										      >	#### FCS\_IPSEC\_EXT.1 IPsec Protocol
-										      >
-										      >	::: {.statustag}
-										      >	***The inclusion of this selection-based component depends upon
-										      >	selection in [FTP\_ITC\_EXT.1.1](#FTP_ITC_EXT.1.1).***
-										      >	:::
-										      >
-										      >	::: {.element}
-										      >	::: {#FCS_IPSEC_EXT.1.1 .reqid}
-										      >	[FCS\_IPSEC\_EXT.1.1](#FCS_IPSEC_EXT.1.1){.abbr}
-										      >	:::
-										      >
-										      >	::: {.reqdesc}
-										      >	The [TSF](#abbr_TSF) shall implement the IPsec architecture as specified
-										      >	in [RFC](#abbr_RFC) 4301.
-										      >
-										      >	::: {.appnote}
-										      >	[Application Note: ]{.note-header}[ This [SFR](#abbr_SFR) is included in
-										      >	the [ST](#abbr_ST) if the [ST](#abbr_ST) Author selected \"IPsec\" in
-										      >	[FTP\_ITC\_EXT.1.1](#FTP_ITC_EXT.1.1).\
-										      >	\
-										      >	[RFC](#abbr_RFC) 4301 calls for an IPsec implementation to protect
-										      >	[IP](#abbr_IP) traffic through the use of a Security Policy Database
-										      >	(SPD). The SPD is used to define how [IP](#abbr_IP) packets are to be
-										      >	handled: PROTECT the packet (e.g., encrypt the packet), BYPASS the IPsec
-										      >	services (e.g., no encryption), or DISCARD the packet (e.g., drop the
-										      >	packet). The SPD can be implemented in various ways, including router
-										      >	access control lists, firewall rulesets, a \"traditional\" SPD, etc.
-										      >	Regardless of the implementation details, there is a notion of a
-										      >	\"rule\" that a packet is \"matched\" against and a resulting action
-										      >	that takes place.\
-										      >	\
-										      >	While there must be a means to order the rules, a general approach to
-										      >	ordering is not mandated, as long as the [TOE](#abbr_TOE) can
-										      >	distinguish the [IP](#abbr_IP) packets and apply the rules accordingly.
-										      >	There may be multiple SPDs (one for each network interface), but this is
-										      >	not required.\
-										      >	\
-										      >	]{.note}
-										      >	:::
-										      >	:::
-										      >	:::
-										      >
-										      >	::: {.element}
-										      >	::: {#FCS_IPSEC_EXT.1.2 .reqid}
-										      >	[FCS\_IPSEC\_EXT.1.2](#FCS_IPSEC_EXT.1.2){.abbr}
-										      >	:::
-										      >
-										      >	::: {.reqdesc}
-										      >	The [TSF](#abbr_TSF) shall implement \[**selection**: *transport mode*,
-										      >	*tunnel mode*\].
-										      >
-										      >	::: {.appnote}
-										      >	[Application Note: ]{.note-header}[ If the [TOE](#abbr_TOE) is used to
-										      >	connect to a [VPN](#abbr_VPN) gateway for the purposes of establishing a
-										      >	secure connection to a private network, the [ST](#abbr_ST) author shall
-										      >	select tunnel mode. If the [TOE](#abbr_TOE) uses IPsec to establish an
-										      >	end-to-end connection to another IPsec [VPN](#abbr_VPN) Client, the
-										      >	[ST](#abbr_ST) author shall select transport mode. If the
-										      >	[TOE](#abbr_TOE) uses IPsec to establish a connection to a specific
-										      >	endpoint device for the purpose of secure remote administration, the
-										      >	[ST](#abbr_ST) author shall select transport mode.]{.note}
-										      >	:::
-										      >	:::
-										      >	:::
-										      >
-										      >	::: {.element}
-										      >	::: {#FCS_IPSEC_EXT.1.3 .reqid}
-										      >	[FCS\_IPSEC\_EXT.1.3](#FCS_IPSEC_EXT.1.3){.abbr}
-										      >	:::
-										      >
-										      >	::: {.reqdesc}
-										      >	The [TSF](#abbr_TSF) shall have a nominal, final entry in the SPD that
-										      >	matches anything that is otherwise unmatched, and discards it.
-										      >	:::
-										      >	:::
-										      >
-										      >	::: {.element}
-										      >	::: {#FCS_IPSEC_EXT.1.4 .reqid}
-										      >	[FCS\_IPSEC\_EXT.1.4](#FCS_IPSEC_EXT.1.4){.abbr}
-										      >	:::
-										      >
-										      >	::: {.reqdesc}
-										      >	The [TSF](#abbr_TSF) shall implement the IPsec protocol ESP as defined
-										      >	by [RFC](#abbr_RFC) 4303 using the cryptographic algorithms
-										      >	\[[AES](#abbr_AES)-GCM-128, [AES](#abbr_AES)-GCM-256 (as specified in
-										      >	[RFC](#abbr_RFC) 4106), \[**selection**: *[AES](#abbr_AES)-CBC-128
-										      >	(specified in [RFC](#abbr_RFC) 3602)*, *[AES](#abbr_AES)-CBC-256
-										      >	(specified in [RFC](#abbr_RFC) 3602)*, *no other algorithms*\]\]
-										      >	together with a Secure Hash Algorithm ([SHA](#abbr_SHA))-based
-										      >	[HMAC](#abbr_HMAC).
-										      >	:::
-										      >	:::
-										      >
-										      >	::: {.element}
-										      >	::: {#FCS_IPSEC_EXT.1.5 .reqid}
-										      >	[FCS\_IPSEC\_EXT.1.5](#FCS_IPSEC_EXT.1.5){.abbr}
-										      >	:::
-										      >
-										      >	::: {.reqdesc}
-										      >	The [TSF](#abbr_TSF) shall implement the protocol:
-										      >
-										      >	\[**selection**:
-										      >
-										      >	-   *IKEv1, using Main Mode for Phase 1 exchanges, as defined in
-										      >	    [RFC](#abbr_RFC) 2407, [RFC](#abbr_RFC) 2408, [RFC](#abbr_RFC) 2409,
-										      >	    [RFC](#abbr_RFC) 4109, \[**selection**: *no other RFCs for extended
-										      >	    sequence numbers*, *[RFC](#abbr_RFC) 4304 for extended sequence
-										      >	    numbers*\], \[**selection**: *no other RFCs for hash functions*,
-										      >	    *[RFC](#abbr_RFC) 4868 for hash functions*\], and \[**selection**:
-										      >	    *support for XAUTH*, *no support for XAUTH*\]* ,
-										      >	-   *IKEv2 as defined in [RFC](#abbr_RFC) 7296 (with mandatory support
-										      >	    for NAT traversal as specified in section 2.23), [RFC](#abbr_RFC)
-										      >	    8784, [RFC](#abbr_RFC) 8247, and \[**selection**: *no other RFCs for
-										      >	    hash functions*, *[RFC](#abbr_RFC) 4868 for hash functions*\].*
-										      >
-										      >	\]
-										      >
-										      >	::: {.appnote}
-										      >	[Application Note: ]{.note-header}[If the [TOE](#abbr_TOE) implements
-										      >	[SHA](#abbr_SHA)-2 hash algorithms for IKEv1 or IKEv2, the
-										      >	[ST](#abbr_ST) author shall select [RFC](#abbr_RFC) 4868. ]{.note}
-										      >	:::
-										      >	:::
-										      >	:::
-										      >
-										      >	::: {.element}
-										      >	::: {#FCS_IPSEC_EXT.1.6 .reqid}
-										      >	[FCS\_IPSEC\_EXT.1.6](#FCS_IPSEC_EXT.1.6){.abbr}
-										      >	:::
-										      >
-										      >	::: {.reqdesc}
-										      >	The [TSF](#abbr_TSF) shall ensure the encrypted payload in the
-										      >	\[**selection**: *IKEv1*, *IKEv2*\] protocol uses the cryptographic
-										      >	algorithms [AES](#abbr_AES)-CBC-128, [AES](#abbr_AES)-CBC-256 as
-										      >	specified in [RFC](#abbr_RFC) 6379 and \[**selection**:
-										      >	*[AES](#abbr_AES)-GCM-128 as specified in [RFC](#abbr_RFC) 5282*,
-										      >	*[AES](#abbr_AES)-GCM-256 as specified in [RFC](#abbr_RFC) 5282*, *no
-										      >	other algorithm*\].
-										      >	:::
-										      >	:::
-										      >
-										      >	::: {.element}
-										      >	::: {#FCS_IPSEC_EXT.1.7 .reqid}
-										      >	[FCS\_IPSEC\_EXT.1.7](#FCS_IPSEC_EXT.1.7){.abbr}
-										      >	:::
-										      >
-										      >	::: {.reqdesc}
-										      >	The [TSF](#abbr_TSF) shall ensure that \[**selection**:
-										      >
-										      >	-   *IKEv2 SA lifetimes can be configured by \[**selection**: *an
-										      >	    Administrator*, *a [VPN](#abbr_VPN) Gateway*\] based on
-										      >	    \[**selection**: *number of packets/number of bytes*, *length of
-										      >	    time*\]* ,
-										      >	-   *IKEv1 SA lifetimes can be configured by \[**selection**: *an
-										      >	    Administrator*, *a [VPN](#abbr_VPN) Gateway*\] based on
-										      >	    \[**selection**: *number of packets/number of bytes*, *length of
-										      >	    time*\]* ,
-										      >	-   *IKEv1 SA lifetimes are fixed based on \[**selection**: *number of
-										      >	    packets/number of bytes*, *length of time*\]. If length of time is
-										      >	    used, it must include at least one option that is 24 hours or less
-										      >	    for Phase 1 SAs and 8 hours or less for Phase 2 SAs.*
-										      >
-										      >	\]
-										      >
-										      >	::: {.appnote}
-										      >	[Application Note: ]{.note-header}[ The [ST](#abbr_ST) author is
-										      >	afforded a selection based on the version of IKE in their
-										      >	implementation. There is a further selection within this selection that
-										      >	allows the [ST](#abbr_ST) author to specify which entity is responsible
-										      >	for "configuring" the life of the SA. An implementation that allows an
-										      >	administrator to configure the client or a [VPN](#abbr_VPN) gateway that
-										      >	pushes the SA lifetime down to the client are both acceptable.]{.note}
-										      >
-										      >	As far as SA lifetimes are concerned, the [TOE](#abbr_TOE) can limit the
-										      >	lifetime based on the number of bytes transmitted, or the number of
-										      >	packets transmitted. Either packet-based or volume-based SA lifetimes
-										      >	are acceptable; the [ST](#abbr_ST) author makes the appropriate
-										      >	selection to indicate which type of lifetime limits are supported.
-										      >
-										      >	The [ST](#abbr_ST) author chooses either the IKEv1 requirements or IKEv2
-										      >	requirements (or both, depending on the selection in
-										      >	[FCS\_IPSEC\_EXT.1.5](#FCS_IPSEC_EXT.1.5). The IKEv1 requirement can be
-										      >	accomplished either by providing Authorized Administrator-configurable
-										      >	lifetimes (with appropriate instructions in documents mandated by
-										      >	AGD\_OPE), or by "hard coding" the limits in the implementation. For
-										      >	IKEv2, there are no hardcoded limits, but in this case it is required
-										      >	that an administrator be able to configure the values. In general,
-										      >	instructions for setting the parameters of the implementation, including
-										      >	lifetime of the SAs, should be included in the operational guidance
-										      >	generated for AGD\_OPE. It is appropriate to refine the requirement in
-										      >	terms of number of MB/KB instead of number of packets, as long as the
-										      >	[TOE](#abbr_TOE) is capable of setting a limit on the amount of traffic
-										      >	that is protected by the same key (the total volume of all IPsec traffic
-										      >	protected by that key).
-										      >	:::
-										      >	:::
-										      >	:::
-										      >
-										      >	::: {.element}
-										      >	::: {#FCS_IPSEC_EXT.1.8 .reqid}
-										      >	[FCS\_IPSEC\_EXT.1.8](#FCS_IPSEC_EXT.1.8){.abbr}
-										      >	:::
-										      >
-										      >	::: {.reqdesc}
-										      >	The [TSF](#abbr_TSF) shall ensure that all IKE protocols implement DH
-										      >	groups \[19 (256-bit Random ECP), 20 (384-bit Random ECP), and
-										      >	\[**selection**: *24 (2048-bit MODP with 256-bit POS)*, *15 (3072-bit
-										      >	MODP)*, *14 (2048-bit MODP)*, *no other DH groups*\]\].
-										      >
-										      >	::: {.appnote}
-										      >	[Application Note: ]{.note-header}[ The selection is used to specify
-										      >	additional DH groups supported. This applies to IKEv1 and IKEv2
-										      >	exchanges. It should be noted that if any additional DH groups are
-										      >	specified, they must comply with the requirements (in terms of the
-										      >	ephemeral keys that are established) listed in
-										      >	[FCS\_CKM.1](#FCS_CKM.1).]{.note}
-										      >
-										      >	Since the implementation may allow different Diffie-Hellman groups to be
-										      >	negotiated for use in forming the SAs, the assignments in
-										      >	[FCS\_IPSEC\_EXT.1.9](#FCS_IPSEC_EXT.1.9) and
-										      >	[FCS\_IPSEC\_EXT.1.10](#FCS_IPSEC_EXT.1.10) may contain multiple values.
-										      >	For each DH group supported, the [ST](#abbr_ST) author consults Table 2
-										      >	in 800-57 to determine the "bits of security" associated with the DH
-										      >	group. Each unique value is then used to fill in the assignment (for 1.9
-										      >	they are doubled; for 1.10 they are inserted directly into the
-										      >	assignment). For example, suppose the implementation supports DH group
-										      >	14 (2048-bit MODP) and group 20 (ECDH using [NIST](#abbr_NIST) curve
-										      >	P-384). From Table 2, the bits of security value for group 14 is 112,
-										      >	and for group 20 it is 192. For
-										      >	[FCS\_IPSEC\_EXT.1.9](#FCS_IPSEC_EXT.1.9), then, the assignment would
-										      >	read "\[224, 384\]" and for [FCS\_IPSEC\_EXT.1.10](#FCS_IPSEC_EXT.1.10)
-										      >	it would read "\[112, 192\]" (although in this case the requirement
-										      >	should probably be refined so that it makes sense mathematically).
-										      >	:::
-										      >	:::
-										      >	:::
-										      >
-										      >	::: {.element}
-										      >	::: {#FCS_IPSEC_EXT.1.9 .reqid}
-										      >	[FCS\_IPSEC\_EXT.1.9](#FCS_IPSEC_EXT.1.9){.abbr}
-										      >	:::
-										      >
-										      >	::: {.reqdesc}
-										      >	The [TSF](#abbr_TSF) shall generate the secret value x used in the IKE
-										      >	Diffie-Hellman key exchange ("x" in gx mod p) using the random bit
-										      >	generator specified in [FCS\_RBG\_EXT.1](#FCS_RBG_EXT.1), and having a
-										      >	length of at least \[**assignment**: [(one or more) number of bits that
-										      >	is at least twice the "bits of security" value associated with the
-										      >	negotiated Diffie-Hellman group as listed in Table 2 of
-										      >	[NIST](#abbr_NIST) SP 800-57, Recommendation for Key Management -- Part
-										      >	1: General]{.assignable-content}\] bits.
-										      >	:::
-										      >	:::
-										      >
-										      >	::: {.element}
-										      >	::: {#FCS_IPSEC_EXT.1.10 .reqid}
-										      >	[FCS\_IPSEC\_EXT.1.10](#FCS_IPSEC_EXT.1.10){.abbr}
-										      >	:::
-										      >
-										      >	::: {.reqdesc}
-										      >	The [TSF](#abbr_TSF) shall generate nonces used in IKE exchanges in a
-										      >	manner such that the probability that a specific nonce value will be
-										      >	repeated during the life a specific IPsec SA is less than 1 in
-										      >	2\^\[**assignment**: [(one or more) "bits of security" value associated
-										      >	with the negotiated Diffie-Hellman group as listed in Table 2 of
-										      >	[NIST](#abbr_NIST) SP 800-57, Recommendation for Key Management -- Part
-										      >	1: General]{.assignable-content}\].
-										      >	:::
-										      >	:::
-										      >
-										      >	::: {.element}
-										      >	::: {#FCS_IPSEC_EXT.1.11 .reqid}
-										      >	[FCS\_IPSEC\_EXT.1.11](#FCS_IPSEC_EXT.1.11){.abbr}
-										      >	:::
-										      >
-										      >	::: {.reqdesc}
-										      >	The [TSF](#abbr_TSF) shall ensure that all IKE protocols perform peer
-										      >	authentication using a \[**selection**: *RSA*, *[ECDSA](#abbr_ECDSA)*\]
-										      >	that use X.509v3 certificates that conform to [RFC](#abbr_RFC) 4945 and
-										      >	\[**selection**: *Pre-shared Keys*, *no other method*\].
-										      >
-										      >	::: {.appnote}
-										      >	[Application Note: ]{.note-header}[ At least one public-key-based Peer
-										      >	Authentication method is required in order to conform to this
-										      >	[PP-Module](#abbr_PP-Module); one or more of the public key schemes is
-										      >	chosen by the [ST](#abbr_ST) author to reflect what is implemented. The
-										      >	[ST](#abbr_ST) author also ensures that appropriate FCS requirements
-										      >	reflecting the algorithms used (and key generation capabilities, if
-										      >	provided) are listed to support those methods. Note that the
-										      >	[TSS](#abbr_TSS) will elaborate on the way in which these algorithms are
-										      >	to be used (for example, 2409 specifies three authentication methods
-										      >	using public keys; each one supported will be described in the
-										      >	[TSS](#abbr_TSS)).]{.note}
-										      >
-										      >	If "pre-shared keys" is selected, the selection-based requirement
-										      >	FIA\_PSK\_EXT.1 must be claimed.
-										      >	:::
-										      >	:::
-										      >	:::
-										      >
-										      >	::: {.element}
-										      >	::: {#FCS_IPSEC_EXT.1.12 .reqid}
-										      >	[FCS\_IPSEC\_EXT.1.12](#FCS_IPSEC_EXT.1.12){.abbr}
-										      >	:::
-										      >
-										      >	::: {.reqdesc}
-										      >	The [TSF](#abbr_TSF) shall not establish an SA if the \[**selection**:
-										      >	*[IP](#abbr_IP) address*, *Fully Qualified Domain Name (FQDN)*, *user
-										      >	FQDN*, *Distinguished Name (DN)*\] and \[**selection**: *no other
-										      >	reference identifier type*, *\[**assignment**: [other supported
-										      >	reference identifier types]{.assignable-content}\]*\] contained in a
-										      >	certificate does not match the expected values for the entity attempting
-										      >	to establish a connection.
-										      >
-										      >	::: {.appnote}
-										      >	[Application Note: ]{.note-header}[ The [TOE](#abbr_TOE) must support at
-										      >	least one of the following identifier types: [IP](#abbr_IP) address,
-										      >	Fully Qualified Domain Name (FQDN), user FQDN, or Distinguished Name
-										      >	(DN). In the future, the [TOE](#abbr_TOE) will be required to support
-										      >	all of these identifier types. The [TOE](#abbr_TOE) is expected to
-										      >	support as many [IP](#abbr_IP) address formats (IPv4 and IPv6) as
-										      >	[IP](#abbr_IP) versions supported by the [TOE](#abbr_TOE) in general.
-										      >	The [ST](#abbr_ST) author may assign additional supported identifier
-										      >	types in the second selection. ]{.note}
-										      >	:::
-										      >	:::
-										      >	:::
-										      >
-										      >	::: {.element}
-										      >	::: {#FCS_IPSEC_EXT.1.13 .reqid}
-										      >	[FCS\_IPSEC\_EXT.1.13](#FCS_IPSEC_EXT.1.13){.abbr}
-										      >	:::
-										      >
-										      >	::: {.reqdesc}
-										      >	The [TSF](#abbr_TSF) shall not establish an SA if the presented
-										      >	identifier does not match the configured reference identifier of the
-										      >	peer.
-										      >
-										      >	::: {.appnote}
-										      >	[Application Note: ]{.note-header}[ At this time, only the comparison
-										      >	between the presented identifier in the peer's certificate and the
-										      >	peer's reference identifier is mandated by the testing below. However,
-										      >	in the future, this requirement will address two aspects of the peer
-										      >	certificate validation: 1) comparison of the peer's ID payload to the
-										      >	peer's certificate which are both presented identifiers, as required by
-										      >	[RFC](#abbr_RFC) 4945 and 2) verification that the peer identified by
-										      >	the ID payload and the certificate is the peer expected by the
-										      >	[TOE](#abbr_TOE) (per the reference identifier). At that time, the
-										      >	[TOE](#abbr_TOE) will be required to demonstrate both aspects (i.e. that
-										      >	the [TOE](#abbr_TOE) enforces that the peer's ID payload matches the
-										      >	peer's certificate which both match configured peer reference
-										      >	identifiers).]{.note}
-										      >
-										      >	Excluding the DN identifier type (which is necessarily the Subject DN in
-										      >	the peer certificate), the [TOE](#abbr_TOE) may support the identifier
-										      >	in either the Common Name or Subject Alternative Name ([SAN](#abbr_SAN))
-										      >	or both. If both are supported, the preferred logic is to compare the
-										      >	reference identifier to a presented [SAN](#abbr_SAN), and only if the
-										      >	peer's certificate does not contain a [SAN](#abbr_SAN), to fall back to
-										      >	a comparison against the Common Name. In the future, the
-										      >	[TOE](#abbr_TOE) will be required to compare the reference identifier to
-										      >	the presented identifier in the [SAN](#abbr_SAN) only, ignoring the
-										      >	Common Name.
-										      >
-										      >	The configuration of the peer reference identifier is addressed by
-										      >	FMT\_SMF.1.1/[VPN](#abbr_VPN).
-										      >	:::
-										      >	:::
-										      >	:::
-										      >
-										      >	::: {.element}
-										      >	::: {#FCS_IPSEC_EXT.1.14 .reqid}
-										      >	[FCS\_IPSEC\_EXT.1.14](#FCS_IPSEC_EXT.1.14){.abbr}
-										      >	:::
-										      >
-										      >	::: {.reqdesc}
-										      >	The \[**selection**: *[TSF](#abbr_TSF)*, *[VPN](#abbr_VPN) Gateway*\]
-										      >	shall be able to ensure by default that the strength of the symmetric
-										      >	algorithm (in terms of the number of bits in the key) negotiated to
-										      >	protect the \[**selection**: *IKEv1 Phase 1*, *IKEv2 IKE\_SA*\]
-										      >	connection is greater than or equal to the strength of the symmetric
-										      >	algorithm (in terms of the number of bits in the key) negotiated to
-										      >	protect the \[selection: IKEv1 Phase 2, IKEv2 CHILD\_SA\] connection.
-										      >
-										      >	::: {.appnote}
-										      >	[Application Note: ]{.note-header}[ If this functionality is
-										      >	configurable, the [TSF](#abbr_TSF) may be configured by a
-										      >	[VPN](#abbr_VPN) Gateway or by an Administrator of the [TOE](#abbr_TOE)
-										      >	itself.]{.note}
-										      >
-										      >	The [ST](#abbr_ST) author chooses either or both of the IKE selections
-										      >	based on what is implemented by the [TOE](#abbr_TOE). Obviously, the IKE
-										      >	versions chosen should be consistent not only in this element, but with
-										      >	other choices for other elements in this component. While it is
-										      >	acceptable for this capability to be configurable, the default
-										      >	configuration in the evaluated configuration (either \"out of the box\"
-										      >	or by configuration guidance in the AGD documentation) must enable this
-										      >	functionality.
-										      >	:::
-										      >	:::
-										      >	:::
-										      >
-										      >	::: {.activity_pane .hide}
-										      >	::: {.activity_pane_header}
-										      >	[[ Evaluation Activities ]{.activity_pane_label}[]{.toggler}](#)
-										      >	:::
-										      >
-										      >	::: {.activity_pane_body}
-										      >	::: {.component-activity-header}
-										      >	[FCS\_IPSEC\_EXT.1](#FCS_IPSEC_EXT.1)
-										      >	:::
-										      >
-										      >	::: {.eacategory}
-										      >	[TSS](#abbr_TSS)
-										      >	:::
-										      >
-										      >	In addition to the [TSS](#abbr_TSS) EAs for the individual
-										      >	[FCS\_IPSEC\_EXT.1](#FCS_IPSEC_EXT.1) elements below, the evaluator
-										      >	shall perform the following:
-										      >
-										      >	If the [TOE](#abbr_TOE) boundary includes a general-purpose operating
-										      >	system or mobile device, the evaluator shall examine the
-										      >	[TSS](#abbr_TSS) to ensure that it describes whether the
-										      >	[VPN](#abbr_VPN) client capability is architecturally integrated with
-										      >	the platform itself or whether it is a separate executable that is
-										      >	bundled with the platform.
-										      >
-										      >	::: {.eacategory}
-										      >	Guidance
-										      >	:::
-										      >
-										      >	In addition to the Operational Guidance EAs for the individual
-										      >	[FCS\_IPSEC\_EXT.1](#FCS_IPSEC_EXT.1) elements below, the evaluator
-										      >	shall perform the following:
-										      >
-										      >	If the configuration of the IPsec behavior is from an environmental
-										      >	source, most notably a [VPN](#abbr_VPN) gateway (e.g through receipt of
-										      >	required connection parameters from a [VPN](#abbr_VPN) gateway), the
-										      >	evaluator shall ensure that the operational guidance contains any
-										      >	appropriate information for ensuring that this configuration can be
-										      >	properly applied.
-										      >
-										      >	Note in this case that the implementation of the IPsec protocol must be
-										      >	enforced entirely within the [TOE](#abbr_TOE) boundary; i.e. it is not
-										      >	permissible for a software application [TOE](#abbr_TOE) to be a
-										      >	graphical front-end for IPsec functionality implemented totally or in
-										      >	part by the underlying [OS](#abbr_OS) platform. The behavior referenced
-										      >	here is for the possibility that the configuration of the IPsec
-										      >	connection is initiated from outside the [TOE](#abbr_TOE), which is
-										      >	permissible so long as the [TSF](#abbr_TSF) is solely responsible for
-										      >	enforcing the configured behavior. However, it is allowable for the
-										      >	[TSF](#abbr_TSF) to rely on low-level platform-provided networking
-										      >	functions to implement the SPD from the client (e.g., enforcement of
-										      >	packet routing decisions).
-										      >
-										      >	::: {.eacategory}
-										      >	Tests
-										      >	:::
-										      >
-										      >	As a prerequisite for performing the Test EAs for the individual
-										      >	[FCS\_IPSEC\_EXT.1](#FCS_IPSEC_EXT.1) elements below, the evaluator
-										      >	shall do the following:
-										      >
-										      >	The evaluator shall minimally create a test environment equivalent to
-										      >	the test environment illustrated below. The traffic generator used to
-										      >	construct network packets should provide the evaluator with the ability
-										      >	manipulate fields in the ICMP, IPv4, IPv6, UDP, and TCP packet headers.
-										      >	The evaluator shall provide justification for any differences in the
-										      >	test environment.
-										      >
-										      >	::: {#figure-fig-ipsectest .figure}
-										      >	![](images/network.png){#fig-ipsectest}\
-										      >	[Figure [2]{.counter}]{.ctr data-myid="fig-ipsectest"
-										      >	data-counter-type="ct-figure"}: IPsec Test Environment
-										      >	:::
-										      >
-										      >	Note that the evaluator shall perform all tests using the Virtualization
-										      >	System and a representative sample of platforms listed in the
-										      >	[ST](#abbr_ST) (for TOEs that claim to support multiple platforms).
-										      >
-										      >	::: {.element-activity-header}
-										      >	[FCS\_IPSEC\_EXT.1.1](#FCS_IPSEC_EXT.1.1)
-										      >	:::
-										      >
-										      >	::: {.eacategory}
-										      >	[TSS](#abbr_TSS)
-										      >	:::
-										      >
-										      >	The evaluator shall examine the [TSS](#abbr_TSS) and determine that it
-										      >	describes how the IPsec capabilities are implemented.
-										      >
-										      >	The evaluator shall ensure that the [TSS](#abbr_TSS) describes at a high
-										      >	level the architectural relationship between the IPsec implementation
-										      >	and the rest of the [TOE](#abbr_TOE) (e.g., is the IPsec implementation
-										      >	an integrated part of the VS or is it a standalone executable that is
-										      >	bundled into the VS).
-										      >
-										      >	The evaluator shall ensure that the [TSS](#abbr_TSS) describes how the
-										      >	SPD is implemented and the rules for processing both inbound and
-										      >	outbound packets in terms of the IPsec policy. The [TSS](#abbr_TSS)
-										      >	describes the rules that are available and the resulting actions
-										      >	available after matching a rule. The [TSS](#abbr_TSS) describes how the
-										      >	available rules and actions form the SPD using terms defined in
-										      >	[RFC](#abbr_RFC) 4301 such as BYPASS (e.g., no encryption), DISCARD
-										      >	(e.g., drop the packet), and PROTECT (e.g., encrypt the packet) actions
-										      >	defined in [RFC](#abbr_RFC) 4301.
-										      >
-										      >	As noted in section 4.4.1 of [RFC](#abbr_RFC) 4301, the processing of
-										      >	entries in the SPD is non-trivial and the evaluator shall determine that
-										      >	the description in the [TSS](#abbr_TSS) is sufficient to determine which
-										      >	rules will be applied given the rule structure implemented by the
-										      >	[TOE](#abbr_TOE). For example, if the [TOE](#abbr_TOE) allows
-										      >	specification of ranges, conditional rules, etc., the evaluator shall
-										      >	determine that the description of rule processing (for both inbound and
-										      >	outbound packets) is sufficient to determine the action that will be
-										      >	applied, especially in the case where two different rules may apply.
-										      >	This description shall cover both the initial packets (that is, no SA is
-										      >	established on the interface or for that particular packet) as well as
-										      >	packets that are part of an established SA.
-										      >
-										      >	\
-										      >
-										      >	::: {.eacategory}
-										      >	Guidance
-										      >	:::
-										      >
-										      >	The evaluator shall examine the operational guidance to verify it
-										      >	instructs the Administrator how to construct entries into the SPD that
-										      >	specify a rule for processing a packet. The description includes all
-										      >	three cases -- a rule that ensures packets are encrypted/decrypted,
-										      >	dropped, and flow through the [TOE](#abbr_TOE) without being encrypted.
-										      >	The evaluator shall determine that the description in the operational
-										      >	guidance is consistent with the description in the [TSS](#abbr_TSS), and
-										      >	that the level of detail in the operational guidance is sufficient to
-										      >	allow the administrator to set up the SPD in an unambiguous fashion.
-										      >	This includes a discussion of how ordering of rules impacts the
-										      >	processing of an [IP](#abbr_IP) packet.
-										      >
-										      >	\
-										      >
-										      >	::: {.eacategory}
-										      >	Tests
-										      >	:::
-										      >
-										      >	The evaluator uses the operational guidance to configure the
-										      >	[TOE](#abbr_TOE) to carry out the following tests:
-										      >
-										      >	-   **Test 1:** The evaluator shall configure the SPD such that there is
-										      >	    a rule for dropping a packet, encrypting a packet, and allowing a
-										      >	    packet to flow in plaintext. The selectors used in the construction
-										      >	    of the rule shall be different such that the evaluator can generate
-										      >	    a packet and send packets to the gateway with the appropriate fields
-										      >	    (fields that are used by the rule - e.g., the [IP](#abbr_IP)
-										      >	    addresses, TCP/UDP ports) in the packet header. The evaluator
-										      >	    performs both positive and negative test cases for each type of rule
-										      >	    (e.g., a packet that matches the rule and another that does not
-										      >	    match the rule). The evaluator observes via the audit trail, and
-										      >	    packet captures that the [TOE](#abbr_TOE) exhibited the expected
-										      >	    behavior: appropriate packets were dropped, allowed to flow without
-										      >	    modification, encrypted by the IPsec implementation.
-										      >	-   **Test 2:** The evaluator shall devise several tests that cover a
-										      >	    variety of scenarios for packet processing. As with Test 1, the
-										      >	    evaluator ensures both positive and negative test cases are
-										      >	    constructed. These scenarios shall exercise the range of
-										      >	    possibilities for SPD entries and processing modes as outlined in
-										      >	    the [TSS](#abbr_TSS) and operational guidance. Potential areas to
-										      >	    cover include rules with overlapping ranges and conflicting entries,
-										      >	    inbound and outbound packets, and packets that establish SAs as well
-										      >	    as packets that belong to established SAs. The evaluator shall
-										      >	    verify, via the audit trail and packet captures, for each scenario
-										      >	    that the expected behavior is exhibited, and is consistent with both
-										      >	    the [TSS](#abbr_TSS) and the operational guidance.
-										      >
-										      >	\
-										      >
-										      >	::: {.element-activity-header}
-										      >	[FCS\_IPSEC\_EXT.1.2](#FCS_IPSEC_EXT.1.2)
-										      >	:::
-										      >
-										      >	::: {.eacategory}
-										      >	[TSS](#abbr_TSS)
-										      >	:::
-										      >
-										      >	The evaluator checks the [TSS](#abbr_TSS) to ensure it states that an
-										      >	IPsec [VPN](#abbr_VPN) can be established to operate in tunnel mode or
-										      >	transport mode (as selected).
-										      >
-										      >	\
-										      >
-										      >	::: {.eacategory}
-										      >	Guidance
-										      >	:::
-										      >
-										      >	The evaluator shall confirm that the operational guidance contains
-										      >	instructions on how to configure the connection in each mode selected.
-										      >
-										      >	If both transport mode and tunnel mode are implemented, the evaluator
-										      >	shall review the operational guidance to determine how the use of a
-										      >	given mode is specified.
-										      >
-										      >	\
-										      >
-										      >	::: {.eacategory}
-										      >	Tests
-										      >	:::
-										      >
-										      >	The evaluator shall perform the following tests based on the selections
-										      >	chosen:
-										      >
-										      >	-   **Test 1:** (conditional): If tunnel mode is selected, the evaluator
-										      >	    uses the operational guidance to configure the
-										      >	    [TOE](#abbr_TOE)/platform to operate in tunnel mode and also
-										      >	    configures a [VPN](#abbr_VPN) peer to operate in tunnel mode. The
-										      >	    evaluator configures the [TOE](#abbr_TOE)/platform and the
-										      >	    [VPN](#abbr_VPN) peer to use any of the allowable cryptographic
-										      >	    algorithms, authentication methods, etc. to ensure an allowable SA
-										      >	    can be negotiated. The evaluator shall then initiate a connection
-										      >	    from the [TOE](#abbr_TOE)/Platform to the [VPN](#abbr_VPN) peer. The
-										      >	    evaluator observes (for example, in the audit trail and the captured
-										      >	    packets) that a successful connection was established using the
-										      >	    tunnel mode.
-										      >	-   **Test 2:** (conditional): If transport mode is selected, the
-										      >	    evaluator uses the operational guidance to configure the
-										      >	    [TOE](#abbr_TOE)/platform to operate in transport mode and also
-										      >	    configures a [VPN](#abbr_VPN) peer to operate in transport mode. The
-										      >	    evaluator configures the [TOE](#abbr_TOE)/platform and the
-										      >	    [VPN](#abbr_VPN) peer to use any of the allowed cryptographic
-										      >	    algorithms, authentication methods, etc. to ensure an allowable SA
-										      >	    can be negotiated. The evaluator then initiates a connection from
-										      >	    the [TOE](#abbr_TOE)/platform to connect to the [VPN](#abbr_VPN)
-										      >	    peer. The evaluator observes (for example, in the audit trail and
-										      >	    the captured packets) that a successful connection was established
-										      >	    using the transport mode.
-										      >
-										      >	\
-										      >
-										      >	::: {.element-activity-header}
-										      >	[FCS\_IPSEC\_EXT.1.3](#FCS_IPSEC_EXT.1.3)
-										      >	:::
-										      >
-										      >	::: {.eacategory}
-										      >	[TSS](#abbr_TSS)
-										      >	:::
-										      >
-										      >	If both transport mode and tunnel mode are implemented, the evaluator
-										      >	shall review the operational guidance to determine how the use of a
-										      >	given mode is specified.
-										      >
-										      >	\
-										      >
-										      >	::: {.eacategory}
-										      >	Guidance
-										      >	:::
-										      >
-										      >	The evaluator shall check that the operational guidance provides
-										      >	instructions on how to construct or acquire the SPD and uses the
-										      >	guidance to configure the [TOE](#abbr_TOE) for the following test.
-										      >
-										      >	\
-										      >
-										      >	::: {.eacategory}
-										      >	Tests
-										      >	:::
-										      >
-										      >	The evaluator shall perform the following test:
-										      >
-										      >	-   **Test 1:** The evaluator shall configure the SPD such that it has
-										      >	    entries that contain operations that DISCARD, PROTECT, and (if
-										      >	    applicable) BYPASS network packets. The evaluator may use the SPD
-										      >	    that was created for verification of
-										      >	    [FCS\_IPSEC\_EXT.1.1](#FCS_IPSEC_EXT.1.1). The evaluator shall
-										      >	    construct a network packet that matches a BYPASS entry and send that
-										      >	    packet. The evaluator should observe that the network packet is
-										      >	    passed to the proper destination interface with no modification. The
-										      >	    evaluator shall then modify a field in the packet header; such that
-										      >	    it no longer matches the evaluator-created entries (there may be a
-										      >	    "[TOE](#abbr_TOE)-created" final entry that discards packets that do
-										      >	    not match any previous entries). The evaluator sends the packet, and
-										      >	    observes that the packet was not permitted to flow to any of the
-										      >	    [TOE](#abbr_TOE)'s interfaces.
-										      >
-										      >	\
-										      >
-										      >	::: {.element-activity-header}
-										      >	[FCS\_IPSEC\_EXT.1.4](#FCS_IPSEC_EXT.1.4)
-										      >	:::
-										      >
-										      >	::: {.eacategory}
-										      >	[TSS](#abbr_TSS)
-										      >	:::
-										      >
-										      >	The evaluator shall examine the [TSS](#abbr_TSS) to verify that the
-										      >	algorithms [AES](#abbr_AES)-GCM-128 and [AES](#abbr_AES)-GCM-256 are
-										      >	implemented. If the \"[ST](#abbr_ST)\" author has selected either
-										      >	[AES](#abbr_AES)-CBC-128 or [AES](#abbr_AES)-CBC-256 in the requirement,
-										      >	then the evaluator verifies the [TSS](#abbr_TSS) describes these as
-										      >	well. In addition, the evaluator ensures that the [SHA](#abbr_SHA)-based
-										      >	[HMAC](#abbr_HMAC) algorithm conforms to the algorithms specified in
-										      >	FCS\_COP.1/KeyedHash Cryptographic Operations (Keyed Hash Algorithms).
-										      >
-										      >	\
-										      >
-										      >	::: {.eacategory}
-										      >	Guidance
-										      >	:::
-										      >
-										      >	The evaluator checks the operational guidance to ensure it provides
-										      >	instructions on how the [TOE](#abbr_TOE) is configured to use the
-										      >	algorithms selected in this component and whether this is performed
-										      >	through direct configuration, defined during initial installation, or
-										      >	defined by acquiring configuration settings from an environmental
-										      >	component.
-										      >
-										      >	\
-										      >
-										      >	::: {.eacategory}
-										      >	Tests
-										      >	:::
-										      >
-										      >	-   **Test 1:** The evaluator shall configure the
-										      >	    [TOE](#abbr_TOE)/platform as indicated in the operational guidance
-										      >	    configuring the [TOE](#abbr_TOE)/platform to use each of the
-										      >	    supported algorithms, attempt to establish a connection using ESP,
-										      >	    and verify that the attempt succeeds.
-										      >
-										      >	\
-										      >
-										      >	::: {.element-activity-header}
-										      >	[FCS\_IPSEC\_EXT.1.5](#FCS_IPSEC_EXT.1.5)
-										      >	:::
-										      >
-										      >	::: {.eacategory}
-										      >	[TSS](#abbr_TSS)
-										      >	:::
-										      >
-										      >	The evaluator shall examine the [TSS](#abbr_TSS) to verify that IKEv1 or
-										      >	IKEv2 (as selected) are implemented. If IKEv1 is implemented, the
-										      >	evaluator shall verify that the [TSS](#abbr_TSS) indicates whether or
-										      >	not XAUTH is supported, and that aggressive mode is not used for IKEv1
-										      >	Phase 1 exchanges (i.e. only main mode is used). It may be that these
-										      >	are configurable options.
-										      >
-										      >	\
-										      >
-										      >	::: {.eacategory}
-										      >	Guidance
-										      >	:::
-										      >
-										      >	The evaluator shall check the operational guidance to ensure it
-										      >	instructs the administrator how to configure the [TOE](#abbr_TOE) to use
-										      >	IKEv1 or IKEv2 (as selected), and uses the guidance to configure the
-										      >	[TOE](#abbr_TOE) to perform NAT traversal for the test below. If XAUTH
-										      >	is implemented, the evaluator shall verify that the operational guidance
-										      >	provides instructions on how it is enabled or disabled.
-										      >
-										      >	If the [TOE](#abbr_TOE) supports IKEv1, the evaluator shall verify that
-										      >	the operational guidance either asserts that only main mode is used for
-										      >	Phase 1 exchanges, or provides instructions for disabling aggressive
-										      >	mode.
-										      >
-										      >	\
-										      >
-										      >	::: {.eacategory}
-										      >	Tests
-										      >	:::
-										      >
-										      >	Tests are performed in conjunction with the other IPsec evaluation
-										      >	activities with the exception of the activities below:
-										      >
-										      >	-   **Test 1:** The evaluator shall configure the [TOE](#abbr_TOE) so
-										      >	    that it will perform NAT traversal processing as described in the
-										      >	    [TSS](#abbr_TSS) and [RFC](#abbr_RFC) 7296, section 2.23. The
-										      >	    evaluator shall initiate an IPsec connection and determine that the
-										      >	    NAT is successfully traversed. If the [TOE](#abbr_TOE) supports
-										      >	    IKEv1 with or without XAUTH, the evaluator shall verify that this
-										      >	    test can be successfully repeated with XAUTH enabled and disabled in
-										      >	    the manner specified by the operational guidance. If the
-										      >	    [TOE](#abbr_TOE) only supports IKEv1 with XAUTH, the evaluator shall
-										      >	    verify that connections not using XAUTH are unsuccessful. If the
-										      >	    [TOE](#abbr_TOE) only supports IKEv1 without XAUTH, the evaluator
-										      >	    shall verify that connections using XAUTH are unsuccessful.
-										      >	-   **Test 2:** (conditional) If the [TOE](#abbr_TOE) supports IKEv1,
-										      >	    the evaluator shall perform any applicable operational guidance
-										      >	    steps to disable the use of aggressive mode and then attempt to
-										      >	    establish a connection using an IKEv1 Phase 1 connection in
-										      >	    aggressive mode. This attempt should fail. The evaluator shall show
-										      >	    that the [TOE](#abbr_TOE) will reject a [VPN](#abbr_VPN) gateway
-										      >	    from initiating an IKEv1 Phase 1 connection in aggressive mode. The
-										      >	    evaluator should then show that main mode exchanges are supported.
-										      >
-										      >	\
-										      >
-										      >	::: {.element-activity-header}
-										      >	[FCS\_IPSEC\_EXT.1.6](#FCS_IPSEC_EXT.1.6)
-										      >	:::
-										      >
-										      >	::: {.eacategory}
-										      >	[TSS](#abbr_TSS)
-										      >	:::
-										      >
-										      >	The evaluator shall ensure the [TSS](#abbr_TSS) identifies the
-										      >	algorithms used for encrypting the IKEv1 or IKEv2 payload, and that the
-										      >	algorithms [AES](#abbr_AES)-CBC-128, [AES](#abbr_AES)-CBC-256 are
-										      >	specified, and if others are chosen in the selection of the requirement,
-										      >	those are included in the [TSS](#abbr_TSS) discussion.
-										      >
-										      >	\
-										      >
-										      >	::: {.eacategory}
-										      >	Guidance
-										      >	:::
-										      >
-										      >	The evaluator checks the operational guidance to ensure it provides
-										      >	instructions on how the [TOE](#abbr_TOE) is configured to use the
-										      >	algorithms selected in this component and whether this is performed
-										      >	through direct configuration, defined during initial installation, or
-										      >	defined by acquiring configuration settings from an environmental
-										      >	component.
-										      >
-										      >	\
-										      >
-										      >	::: {.eacategory}
-										      >	Tests
-										      >	:::
-										      >
-										      >	The evaluator shall use the operational guidance to configure the
-										      >	[TOE](#abbr_TOE) (or to configure the Operational Environment to have
-										      >	the [TOE](#abbr_TOE) receive configuration) to perform the following
-										      >	test for each ciphersuite selected:
-										      >
-										      >	-   **Test 1:** The evaluator shall configure the [TOE](#abbr_TOE) to
-										      >	    use the ciphersuite under test to encrypt the IKEv1 or IKEv2 payload
-										      >	    and establish a connection with a peer device, which is configured
-										      >	    to only accept the payload encrypted using the indicated
-										      >	    ciphersuite. The evaluator will confirm the algorithm was that used
-										      >	    in the negotiation. The evaluator will confirm that the connection
-										      >	    is successful by confirming that data can be passed through the
-										      >	    connection once it is established. For example, the evaluator may
-										      >	    connect to a remote website and verify that it can be reached.
-										      >
-										      >	\
-										      >
-										      >	::: {.element-activity-header}
-										      >	[FCS\_IPSEC\_EXT.1.7](#FCS_IPSEC_EXT.1.7)
-										      >	:::
-										      >
-										      >	::: {.eacategory}
-										      >	[TSS](#abbr_TSS)
-										      >	:::
-										      >
-										      >	There are no [TSS](#abbr_TSS) EAs for this requirement.
-										      >
-										      >	\
-										      >
-										      >	::: {.eacategory}
-										      >	Guidance
-										      >	:::
-										      >
-										      >	The evaluator shall check the operational guidance to ensure it provides
-										      >	instructions on how the [TOE](#abbr_TOE) configures the values for SA
-										      >	lifetimes. In addition, the evaluator shall check that the guidance has
-										      >	the option for either the Administrator or [VPN](#abbr_VPN) Gateway to
-										      >	configure Phase 1 SAs if time-based limits are supported. Currently
-										      >	there are no values mandated for the number of packets or number of
-										      >	bytes, the evaluator shall simply check the operational guidance to
-										      >	ensure that this can be configured if selected in the requirement.\
-										      >
-										      >	::: {.eacategory}
-										      >	Tests
-										      >	:::
-										      >
-										      >	When testing this functionality, the evaluator needs to ensure that both
-										      >	sides are configured appropriately. From the [RFC](#abbr_RFC) "A
-										      >	difference between IKEv1 and IKEv2 is that in IKEv1 SA lifetimes were
-										      >	negotiated. In IKEv2, each end of the SA is responsible for enforcing
-										      >	its own lifetime policy on the SA and rekeying the SA when necessary. If
-										      >	the two ends have different lifetime policies, the end with the shorter
-										      >	lifetime will end up always being the one to request the rekeying. If
-										      >	the two ends have the same lifetime policies, it is possible that both
-										      >	will initiate a rekeying at the same time (which will result in
-										      >	redundant SAs). To reduce the probability of this happening, the timing
-										      >	of rekeying requests SHOULD be jittered."
-										      >
-										      >	Each of the following tests shall be performed for each version of IKE
-										      >	selected in the [FCS\_IPSEC\_EXT.1.5](#FCS_IPSEC_EXT.1.5) protocol
-										      >	selection:
-										      >
-										      >	-   **Test 1:** (conditional) The evaluator shall configure a maximum
-										      >	    lifetime in terms of the \# of packets (or bytes) allowed following
-										      >	    the operational guidance. The evaluator shall establish an SA and
-										      >	    determine that once the allowed \# of packets (or bytes) through
-										      >	    this SA is exceeded, the connection is closed.
-										      >	-   **Test 2:** (conditional) The evaluator shall construct a test where
-										      >	    a Phase 1 SA is established and attempted to be maintained for more
-										      >	    than 24 hours before it is renegotiated. The evaluator shall observe
-										      >	    that this SA is closed or renegotiated in 24 hours or less. If such
-										      >	    an action requires that the [TOE](#abbr_TOE) be configured in a
-										      >	    specific way, the evaluator shall implement tests demonstrating that
-										      >	    the configuration capability of the [TOE](#abbr_TOE) works as
-										      >	    documented in the operational guidance.
-										      >	-   **Test 3:** (conditional) The evaluator shall perform a test similar
-										      >	    to Test 2 for Phase 2 SAs, except that the lifetime will be 8 hours
-										      >	    or less instead of 24 hours or less.
-										      >	-   **Test 4:** (conditional) If a fixed limit for IKEv1 SAs is
-										      >	    supported, the evaluator shall establish an SA and observe that the
-										      >	    connection is closed after the fixed traffic or time value is
-										      >	    reached.
-										      >
-										      >	\
-										      >
-										      >	::: {.element-activity-header}
-										      >	[FCS\_IPSEC\_EXT.1.8](#FCS_IPSEC_EXT.1.8)
-										      >	:::
-										      >
-										      >	::: {.eacategory}
-										      >	[TSS](#abbr_TSS)
-										      >	:::
-										      >
-										      >	The evaluator shall check to ensure that the DH groups specified in the
-										      >	requirement are listed as being supported in the [TSS](#abbr_TSS). If
-										      >	there is more than one DH group supported, the evaluator checks to
-										      >	ensure the [TSS](#abbr_TSS) describes how a particular DH group is
-										      >	specified/negotiated with a peer.\
-										      >
-										      >	::: {.eacategory}
-										      >	Guidance
-										      >	:::
-										      >
-										      >	There are no AGD EAs for this requirement.\
-										      >
-										      >	::: {.eacategory}
-										      >	Tests
-										      >	:::
-										      >
-										      >	The evaluator shall perform the following test:
-										      >
-										      >	-   **Test 1:** For each supported DH group, the evaluator shall test to
-										      >	    ensure that all supported IKE protocols can be successfully
-										      >	    completed using that particular DH group.
-										      >
-										      >	\
-										      >
-										      >	::: {.element-activity-header}
-										      >	[FCS\_IPSEC\_EXT.1.9](#FCS_IPSEC_EXT.1.9)
-										      >	:::
-										      >
-										      >	::: {.eacategory}
-										      >	[TSS](#abbr_TSS)
-										      >	:::
-										      >
-										      >	The evaluator shall check to ensure that, for each DH group supported,
-										      >	the [TSS](#abbr_TSS) describes the process for generating \"x\" (as
-										      >	defined in [FCS\_IPSEC\_EXT.1.9](#FCS_IPSEC_EXT.1.9)) and each nonce.
-										      >	The evaluator shall verify that the [TSS](#abbr_TSS) indicates that the
-										      >	random number generated that meets the requirements in this
-										      >	[PP](#abbr_PP) is used, and that the length of \"x\" and the nonces meet
-										      >	the stipulations in the requirement.
-										      >
-										      >	\
-										      >
-										      >	::: {.eacategory}
-										      >	Guidance
-										      >	:::
-										      >
-										      >	There are no AGD EAs for this requirement.
-										      >
-										      >	\
-										      >
-										      >	::: {.eacategory}
-										      >	Tests
-										      >	:::
-										      >
-										      >	There are no test EAs for this requirement.
-										      >
-										      >	\
-										      >
-										      >	::: {.element-activity-header}
-										      >	[FCS\_IPSEC\_EXT.1.10](#FCS_IPSEC_EXT.1.10)
-										      >	:::
-										      >
-										      >	EAs for this element are tested through EAs for
-										      >	[FCS\_IPSEC\_EXT.1.9](#FCS_IPSEC_EXT.1.9).
-										      >
-										      >	::: {.element-activity-header}
-										      >	[FCS\_IPSEC\_EXT.1.11](#FCS_IPSEC_EXT.1.11)
-										      >	:::
-										      >
-										      >	::: {.eacategory}
-										      >	[TSS](#abbr_TSS)
-										      >	:::
-										      >
-										      >	The evaluator ensures that the [TSS](#abbr_TSS) identifies RSA or
-										      >	[ECDSA](#abbr_ECDSA) as being used to perform peer authentication.
-										      >
-										      >	If pre-shared keys are chosen in the selection, the evaluator shall
-										      >	check to ensure that the [TSS](#abbr_TSS) describes how pre-shared keys
-										      >	are established and used in authentication of IPsec connections. The
-										      >	description in the [TSS](#abbr_TSS) shall also indicate how pre-shared
-										      >	key establishment is accomplished depending on whether the
-										      >	[TSF](#abbr_TSF) can generate a pre-shared key, accept a pre-shared key,
-										      >	or both.
-										      >
-										      >	The evaluator shall ensure that the [TSS](#abbr_TSS) describes how the
-										      >	[TOE](#abbr_TOE) compares the peer's presented identifier to the
-										      >	reference identifier. This description shall include whether the
-										      >	certificate presented identifier is compared to the ID payload presented
-										      >	identifier, which fields of the certificate are used as the presented
-										      >	identifier (DN, Common Name, or [SAN](#abbr_SAN)) and, if multiple
-										      >	fields are supported, the logical order comparison. If the
-										      >	[ST](#abbr_ST) author assigned an additional identifier type, the
-										      >	[TSS](#abbr_TSS) description shall also include a description of that
-										      >	type and the method by which that type is compared to the peer's
-										      >	presented certificate.
-										      >
-										      >	\
-										      >
-										      >	::: {.eacategory}
-										      >	Guidance
-										      >	:::
-										      >
-										      >	The evaluator shall check that the operational guidance describes how
-										      >	pre-shared keys are to be generated and established.
-										      >
-										      >	The evaluator ensures the operational guidance describes how to set up
-										      >	the [TOE](#abbr_TOE) to use the cryptographic algorithms RSA or
-										      >	[ECDSA](#abbr_ECDSA) (as selected).
-										      >
-										      >	In order to construct the environment and configure the [TOE](#abbr_TOE)
-										      >	for the following tests, the evaluator will ensure that the operational
-										      >	guidance also describes how to configure the [TOE](#abbr_TOE) to connect
-										      >	to a trusted CA, and ensure a valid certificate for that CA is loaded
-										      >	into the [TOE](#abbr_TOE) as a trusted CA.
-										      >
-										      >	The evaluator shall also ensure that the operational guidance includes
-										      >	the configuration of the reference identifiers for the peer.
-										      >
-										      >	\
-										      >
-										      >	::: {.eacategory}
-										      >	Tests
-										      >	:::
-										      >
-										      >	For efficiency's sake, the testing that is performed here has been
-										      >	combined with the testing for [FIA\_X509\_EXT.2](#FIA_X509_EXT.2) and
-										      >	FIA\_X509\_EXT.3 (for IPsec connections and depending on the
-										      >	[Base-PP](#abbr_Base-PP)), [FCS\_IPSEC\_EXT.1.12](#FCS_IPSEC_EXT.1.12),
-										      >	and [FCS\_IPSEC\_EXT.1.13](#FCS_IPSEC_EXT.1.13). The following tests
-										      >	shall be repeated for each peer authentication protocol selected in the
-										      >	[FCS\_IPSEC\_EXT.1.11](#FCS_IPSEC_EXT.1.11) selection above:
-										      >
-										      >	-   **Test 1:** The evaluator shall have the [TOE](#abbr_TOE) generate a
-										      >	    public-private key pair, and submit a CSR (Certificate Signing
-										      >	    Request) to a CA (trusted by both the [TOE](#abbr_TOE) and the peer
-										      >	    [VPN](#abbr_VPN) used to establish a connection) for its signature.
-										      >	    The values for the DN (Common Name, Organization, Organizational
-										      >	    Unit, and Country) will also be passed in the request.
-										      >	    Alternatively, the evaluator may import to the [TOE](#abbr_TOE) a
-										      >	    previously generated private key and corresponding certificate.
-										      >	-   **Test 2:** The evaluator shall configure the [TOE](#abbr_TOE) to
-										      >	    use a private key and associated certificate signed by a trusted CA
-										      >	    and shall establish an IPsec connection with the peer.
-										      >	-   **Test 3:** The evaluator shall test that the [TOE](#abbr_TOE) can
-										      >	    properly handle revoked certificates -- conditional on whether
-										      >	    [CRL](#abbr_CRL) or [OCSP](#abbr_OCSP) is selected; if both are
-										      >	    selected, and then a test is performed for each method. For this
-										      >	    current version of the [PP-Module](#abbr_PP-Module), the evaluator
-										      >	    has to only test one up in the trust chain (future drafts may
-										      >	    require to ensure the validation is done up the entire chain). The
-										      >	    evaluator shall ensure that a valid certificate is used, and that
-										      >	    the SA is established. The evaluator then attempts the test with a
-										      >	    certificate that will be revoked (for each method chosen in the
-										      >	    selection) to ensure when the certificate is no longer valid that
-										      >	    the [TOE](#abbr_TOE) will not establish an SA.
-										      >	-   **Test 4:** (conditional) The evaluator shall generate a pre-shared
-										      >	    key and use it, as indicated in the operational guidance, to
-										      >	    establish an IPsec connection with the [VPN](#abbr_VPN) GW peer. If
-										      >	    the generation of the pre-shared key is supported, the evaluator
-										      >	    shall ensure that establishment of the key is carried out for an
-										      >	    instance of the [TOE](#abbr_TOE) generating the key as well as an
-										      >	    instance of the [TOE](#abbr_TOE) merely taking in and using the key.
-										      >	    For each supported identifier type (excluding DNs), the evaluator
-										      >	    shall repeat the following tests:
-										      >	-   **Test 5:** For each field of the certificate supported for
-										      >	    comparison, the evaluator shall configure the peer's reference
-										      >	    identifier on the [TOE](#abbr_TOE) (per the administrative guidance)
-										      >	    to match the field in the peer's presented certificate and shall
-										      >	    verify that the IKE authentication succeeds.
-										      >	-   **Test 6:** For each field of the certificate support for
-										      >	    comparison, the evaluator shall configure the peer's reference
-										      >	    identifier on the [TOE](#abbr_TOE) (per the administrative guidance)
-										      >	    to not match the field in the peer's presented certificate and shall
-										      >	    verify that the IKE authentication fails.
-										      >	    The following tests are conditional:
-										      >	-   **Test 7:** (conditional) If, according to the [TSS](#abbr_TSS), the
-										      >	    [TOE](#abbr_TOE) supports both Common Name and [SAN](#abbr_SAN)
-										      >	    certificate fields and uses the preferred logic outlined in the
-										      >	    Application Note, the tests above with the Common Name field shall
-										      >	    be performed using peer certificates with no [SAN](#abbr_SAN)
-										      >	    extension. Additionally, the evaluator shall configure the peer's
-										      >	    reference identifier on the [TOE](#abbr_TOE) to not match the
-										      >	    [SAN](#abbr_SAN) in the peer's presented certificate but to match
-										      >	    the Common Name in the peer's presented certificate, and verify that
-										      >	    the IKE authentication fails.
-										      >	-   **Test 8:** (conditional) If the [TOE](#abbr_TOE) supports DN
-										      >	    identifier types, the evaluator shall configure the peer\'s
-										      >	    reference identifier on the [TOE](#abbr_TOE) (per the administrative
-										      >	    guidance) to match the subject DN in the peer\'s presented
-										      >	    certificate and shall verify that the IKE authentication succeeds.
-										      >	    To demonstrate a bit-wise comparison of the DN, the evaluator shall
-										      >	    change a single bit in the DN (preferably, in an Object Identifier
-										      >	    ([OID](#abbr_OID)) in the DN) and verify that the IKE authentication
-										      >	    fails. To demonstrate a comparison of DN values, the evaluator shall
-										      >	    change any one of the four DN values and verify that the IKE
-										      >	    authentication fails.
-										      >	-   **Test 9:** (conditional) If the [TOE](#abbr_TOE) supports both IPv4
-										      >	    and IPv6 and supports [IP](#abbr_IP) address identifier types, the
-										      >	    evaluator must repeat test 1 and 2 with both IPv4 address
-										      >	    identifiers and IPv6 identifiers. Additionally, the evaluator shall
-										      >	    verify that the [TOE](#abbr_TOE) verifies that the [IP](#abbr_IP)
-										      >	    header matches the identifiers by setting the presented identifiers
-										      >	    and the reference identifier with the same [IP](#abbr_IP) address
-										      >	    that differs from the actual [IP](#abbr_IP) address of the peer in
-										      >	    the [IP](#abbr_IP) headers and verifying that the IKE authentication
-										      >	    fails.
-										      >	-   **Test 10:** (conditional) If, according to the [TSS](#abbr_TSS),
-										      >	    the [TOE](#abbr_TOE) performs comparisons between the peer's ID
-										      >	    payload and the peer's certificate, the evaluator shall repeat the
-										      >	    following test for each combination of supported identifier types
-										      >	    and supported certificate fields (as above). The evaluator shall
-										      >	    configure the peer to present a different ID payload than the field
-										      >	    in the peer's presented certificate and verify that the
-										      >	    [TOE](#abbr_TOE) fails to authenticate the IKE peer.
-										      >
-										      >	\
-										      >
-										      >	::: {.element-activity-header}
-										      >	[FCS\_IPSEC\_EXT.1.12](#FCS_IPSEC_EXT.1.12)
-										      >	:::
-										      >
-										      >	EAs for this element are tested through EAs for
-										      >	[FCS\_IPSEC\_EXT.1.11](#FCS_IPSEC_EXT.1.11).
-										      >
-										      >	::: {.element-activity-header}
-										      >	[FCS\_IPSEC\_EXT.1.13](#FCS_IPSEC_EXT.1.13)
-										      >	:::
-										      >
-										      >	EAs for this element are tested through EAs for
-										      >	[FCS\_IPSEC\_EXT.1.11](#FCS_IPSEC_EXT.1.11).
-										      >
-										      >	::: {.element-activity-header}
-										      >	[FCS\_IPSEC\_EXT.1.14](#FCS_IPSEC_EXT.1.14)
-										      >	:::
-										      >
-										      >	::: {.eacategory}
-										      >	[TSS](#abbr_TSS)
-										      >	:::
-										      >
-										      >	The evaluator shall check that the [TSS](#abbr_TSS) describes the
-										      >	potential strengths (in terms of the number of bits in the symmetric
-										      >	key) of the algorithms that are allowed for the IKE and ESP exchanges.
-										      >	The [TSS](#abbr_TSS) shall also describe the checks that are done when
-										      >	negotiating IKEv1 Phase 2 and IKEv2 CHILD\_SA suites to ensure that the
-										      >	strength (in terms of the number of bits of key in the symmetric
-										      >	algorithm) of the negotiated algorithm is less than or equal to that of
-										      >	the IKE SA that is protecting the negotiation.\
-										      >
-										      >	::: {.eacategory}
-										      >	Guidance
-										      >	:::
-										      >
-										      >	There are no AGD EAs for this requirement.\
-										      >
-										      >	::: {.eacategory}
-										      >	Tests
-										      >	:::
-										      >
-										      >	The evaluator follows the guidance to configure the [TOE](#abbr_TOE) to
-										      >	perform the following tests:
-										      >
-										      >	-   **Test 1:** This test shall be performed for each version of IKE
-										      >	    supported. The evaluator shall successfully negotiate an IPsec
-										      >	    connection using each of the supported algorithms and hash functions
-										      >	    identified in the requirements.
-										      >	-   **Test 2:** (conditional) This test shall be performed for each
-										      >	    version of IKE supported. The evaluator shall attempt to establish
-										      >	    an SA for ESP that selects an encryption algorithm with more
-										      >	    strength than that being used for the IKE SA (i.e., symmetric
-										      >	    algorithm with a key size larger than that being used for the IKE
-										      >	    SA). Such attempts should fail.
-										      >	-   **Test 3:** This test shall be performed for each version of IKE
-										      >	    supported. The evaluator shall attempt to establish an IKE SA using
-										      >	    an algorithm that is not one of the supported algorithms and hash
-										      >	    functions identified in the requirements. Such an attempt should
-										      >	    fail.
-										      >	-   **Test 4:** This test shall be performed for each version of IKE
-										      >	    supported. The evaluator shall attempt to establish an SA for ESP
-										      >	    (assumes the proper parameters where used to establish the IKE SA)
-										      >	    that selects an encryption algorithm that is not identified in
-										      >	    [FCS\_IPSEC\_EXT.1.4](#FCS_IPSEC_EXT.1.4). Such an attempt should
-										      >	    fail.
-										      >
-										      >	\
-										      >	:::
-										      >	:::
-										      >	:::
+This [PP](#abbr_PP) does not define any Selection-based requirements.			This [PP](#abbr_PP) does not define any Selection-based requirements.
 
 Appendix C - Implicitly Satisfied Requirements {#satisfiedreqs .indexable data-level=	Appendix C - Implicitly Satisfied Requirements {#satisfiedreqs .indexable data-level=
 ==============================================						==============================================
@@ -7236,6 +6066,7 @@ Appendix E - Acronyms {#acronyms .indexable data-level="A"}				Appendix E - Acro
   [[AES](#abbr_AES)]{#abbr_AES .term}                                          [Advan	  [[AES](#abbr_AES)]{#abbr_AES .term}                                          [Advan
   [[API](#abbr_API)]{#abbr_API .term}                                          [Appli	  [[API](#abbr_API)]{#abbr_API .term}                                          [Appli
   [[ASLR](#abbr_ASLR)]{#abbr_ASLR .term}                                       [Addre	  [[ASLR](#abbr_ASLR)]{#abbr_ASLR .term}                                       [Addre
+										      >	  [[BAF](#abbr_BAF)]{#abbr_BAF .term data-plural="BAFs"}                       [Biome
   [[Base-PP](#abbr_Base-PP)]{#abbr_Base-PP .term}                              [Base 	  [[Base-PP](#abbr_Base-PP)]{#abbr_Base-PP .term}                              [Base 
   [[CC](#abbr_CC)]{#abbr_CC .term}                                             [Commo	  [[CC](#abbr_CC)]{#abbr_CC .term}                                             [Commo
   [[CEM](#abbr_CEM)]{#abbr_CEM .term}                                          [Commo	  [[CEM](#abbr_CEM)]{#abbr_CEM .term}                                          [Commo
@@ -7278,6 +6109,7 @@ Appendix E - Acronyms {#acronyms .indexable data-level="A"}				Appendix E - Acro
   [[OMB](#abbr_OMB)]{#abbr_OMB .term}                                          [Offic	  [[OMB](#abbr_OMB)]{#abbr_OMB .term}                                          [Offic
   [[OS](#abbr_OS)]{#abbr_OS .term}                                             [Opera	  [[OS](#abbr_OS)]{#abbr_OS .term}                                             [Opera
   [[PII](#abbr_PII)]{#abbr_PII .term}                                          [Perso	  [[PII](#abbr_PII)]{#abbr_PII .term}                                          [Perso
+										      >	  [[PIN](#abbr_PIN)]{#abbr_PIN .term}                                          [Perso
   [[PKI](#abbr_PKI)]{#abbr_PKI .term}                                          [Publi	  [[PKI](#abbr_PKI)]{#abbr_PKI .term}                                          [Publi
   [[PP](#abbr_PP)]{#abbr_PP .term}                                             [Prote	  [[PP](#abbr_PP)]{#abbr_PP .term}                                             [Prote
   [[PP-Configuration](#abbr_PP-Configuration)]{#abbr_PP-Configuration .term}   [Prote	  [[PP-Configuration](#abbr_PP-Configuration)]{#abbr_PP-Configuration .term}   [Prote

@@ -597,8 +597,7 @@ function showTarget(id){
 
           }
     </style></head><body onLoad="init()"><h1 class="title" style="page-break-before:auto;">Protection Profile for General Purpose Operating Systems</h1><noscript><h1 style="text-align:center; border-style: dashed; border-width: medium; border-color: red;">This page is best viewed with JavaScript enabled!</h1></noscript><div class="center"><img src="images/niaplogo.png" alt="NIAP Logo"></img><br/>
-      Version: 4.3-DRAFT<br/>2019-07-01<br/><b>National Information Assurance Partnership</b><br/></div><h2 style="page-break-before:always;">Revision History</h2><table><tr class="header"><th>Version</th><th>Date</th><th>Comment</th></tr><tr><td>4.3</td><td>2022-04-22</td><td>Inclusion of IPsec Requirements.<br/>
-               Added compatibility with MDM Agent, Bluetooth, and <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Modules.</td></tr>
+      Version: 4.3-DRAFT<br/>2019-07-01<br/><b>National Information Assurance Partnership</b><br/></div><h2 style="page-break-before:always;">Revision History</h2><table><tr class="header"><th>Version</th><th>Date</th><th>Comment</th></tr><tr><td>4.3</td><td>2022-04-22</td><td>Added compatibility with MDM Agent, Bluetooth, and <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Modules.</td></tr>
 <tr><td>4.2.1</td><td>2019-04-22</td><td>Formatting changes as a result of <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> evaluation</td></tr>
 <tr><td>4.2</td><td>2018-05-22</td><td>Multiple Technical Decisions applied</td></tr>
 <tr><td>4.1</td><td>2016-03-09</td><td>Minor updates - cryptographic modes</td></tr>
@@ -607,7 +606,7 @@ function showTarget(id){
     </span></a><a href="#fdp-optional" style="text-indent:20px">A.1.1<span>User Data Protection (FDP)</span></a><a href="#fta-optional" style="text-indent:20px">A.1.2<span>TOE Access (FTA)</span></a><a href="#objective-reqs" style="text-indent:10px">A.2<span>Objective  Requirements
     </span></a><a href="#fpt-objective" style="text-indent:20px">A.2.1<span>Protection of the TSF (FPT)</span></a><a href="#feat-based-reqs" style="text-indent:10px">A.3<span>Implementation-based  Requirements
     </span></a><a href="#sel-based-reqs" style="text-indent:0px">Appendix B - <span>Selection-based  Requirements
-    </span></a><a href="#fcs-sel-based" style="text-indent:10px">B.1<span>Cryptographic Support (FCS)</span></a><a href="#satisfiedreqs" style="text-indent:0px">Appendix C - <span>Implicitly Satisfied Requirements</span></a><a href="#entropyappendix" style="text-indent:0px">Appendix D - <span>Entropy Documentation and Assessment</span></a><a href="#entropydesign" style="text-indent:10px">D.1<span>Design Description</span></a><a href="#entropyjustification" style="text-indent:10px">D.2<span>Entropy Justification</span></a><a href="#entropyoperatingconditions" style="text-indent:10px">D.3<span>Operating Conditions</span></a><a href="#entropyhealthtesting" style="text-indent:10px">D.4<span>Health Testing</span></a><a href="#acronyms" style="text-indent:0px">Appendix E - <span>Acronyms</span></a><a href="#appendix-bibliography" style="text-indent:0px">Appendix F - <span>Bibliography</span></a></div><h1 class="indexable" data-level="1" id="Introduction">1 Introduction</h1>
+    </span></a><a href="#satisfiedreqs" style="text-indent:0px">Appendix C - <span>Implicitly Satisfied Requirements</span></a><a href="#entropyappendix" style="text-indent:0px">Appendix D - <span>Entropy Documentation and Assessment</span></a><a href="#entropydesign" style="text-indent:10px">D.1<span>Design Description</span></a><a href="#entropyjustification" style="text-indent:10px">D.2<span>Entropy Justification</span></a><a href="#entropyoperatingconditions" style="text-indent:10px">D.3<span>Operating Conditions</span></a><a href="#entropyhealthtesting" style="text-indent:10px">D.4<span>Health Testing</span></a><a href="#acronyms" style="text-indent:0px">Appendix E - <span>Acronyms</span></a><a href="#appendix-bibliography" style="text-indent:0px">Appendix F - <span>Bibliography</span></a></div><h1 class="indexable" data-level="1" id="Introduction">1 Introduction</h1>
     <h2 class="indexable" data-level="2" id="Overview">1.1 Overview</h2>
 The scope of this Protection Profile (<abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>) is to
 describe the security functionality of operating systems in terms of <a href="#bibCC">[CC]</a>
@@ -664,6 +663,9 @@ The following sections list Common Criteria and technology terms used in this do
 	component, such as a library. APIs are often provided for a set of libraries included
 	with the platform.
       </td></tr>
+<tr><td><div id="Biometric_Authentication_Factor">Biometric Authentication Factor (<abbr class="dyn-abbr"><a href="#abbr_BAF">BAF</a></abbr>)</div></td><td> Authentication factor, which uses
+        biometric sample, matched to a biometric authentication template to help establish
+        identity.</td></tr>
 <tr><td><div id="Credential">Credential</div></td><td>
 	Data that establishes the identity of a user, e.g. a cryptographic key or
 	password.
@@ -694,17 +696,26 @@ The following sections list Common Criteria and technology terms used in this do
 	A class of OSes designed to support a wide-variety of workloads consisting of many concurrent applications or services.
 	Typical characteristics for OSes in this class include support for third-party applications,
 	support for multiple users, and security separation between users and their respective resources.
-	General Purpose Operating Systems also lack the real-time constraint that defines Real Time Operating Systems (RTOS).
+	General Purpose Operating Systems also lack the real-time constraint that defines Real Time Operating Systems that 
 	RTOSes typically power routers, switches, and embedded devices.
       </td></tr>
 <tr><td><div id="Host-based_Firewall">Host-based Firewall</div></td><td>
 	A software-based firewall implementation running on the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> for filtering inbound and
 	outbound network traffic to and from processes running on the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>.
       </td></tr>
+<tr><td><div id="Hybrid_Authentication">Hybrid Authentication</div></td><td> A hybrid authentication factor is one where a user has to
+        submit a combination of a biometric sample and a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr> or password and both must pass. If either factor fails, the entire attempt fails. The user shall not be made aware of which factor failed, if either fails.</td></tr>
 <tr><td><div id="Operating_System">Operating System (<abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>)</div></td><td>
 	Software that manages physical and logical resources and provides services
 	for applications. The terms <i><abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr></i> and <i><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></i> are interchangeable in this
 	document. 
+      </td></tr>
+<tr><td><div id="Personal_Identification_Number">Personal Identification Number (<abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr>)</div></td><td>
+	An authetication factor that is comprised of a set of numeric or alphabetic characters that may be used
+        in addition to a biometric factor or cryptographic token to provide a hybrid authentication factor. At this time it
+        is not considered as a stand-alone authentication mechanism.
+	A <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr> is distinct from a password in that the allowed character set and required length of a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr>
+	is typically smaller than that of a password as it is designed to be input quickly.
       </td></tr>
 <tr><td><div id="Personally_Identifiable_Information">Personally Identifiable Information (<abbr class="dyn-abbr"><a href="#abbr_PII">PII</a></abbr>)</div></td><td>
 	Any information about an individual maintained by an agency, including, but
@@ -784,16 +795,25 @@ The following sections list Common Criteria and technology terms used in this do
 	    </p>
 	  </dd></dl>
     
-  <h1 class="indexable" data-level="1" id="Conformance_Claims">2 Conformance Claims</h1><dl><dt>Conformance Statement</dt><dd>
-          An <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must claim exact conformance to this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, 
-              as defined in the <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr> and <abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr> addenda for Exact Conformance, Selection-based SFRs, and 
-              Optional SFRs (dated May 2017).
-        </dd><dt>CC Conformance Claims</dt><dd>This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> is conformant to Parts 2 (extended) and 3 (conformant) of Common Criteria Version 3.1, Revision 5.</dd><dt>PP Claim </dt><dd>This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> does not claim conformance to any Protection Profile. </dd><dt>Package Claim</dt><dd>This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> is  
-                  <a href="">Functional Package for Secure Shell (SSH), 
-       version 1.0</a> Conformant
-   and <a href="">Functional Package for Transport Layer Security (TLS), 
-       version 1.1</a> Conformant
-  .</dd></dl><h1 class="indexable" data-level="1" id="Security_Problem_Description">3 Security Problem Description</h1>The security problem is described in terms
+  <h1 class="indexable" data-level="1" id="Conformance_Claims">2 Conformance Claims</h1>
+    <dl><dt class="cclaim,defined" id="Conformance Statement">Conformance Statement</dt><dd>
+	  <p>An <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must claim exact conformance to this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, as defined in the <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr> and <abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr>
+          addenda for Exact Conformance, Selection-Based SFRs, and Optional SFRs (dated May 2017).
+	  </p>
+	  <p>
+          The following <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-Modules are allowed to be specified in a <abbr class="dyn-abbr"><a href="#abbr_PP-Configuration">PP-Configuration</a></abbr> with this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>.
+          <ul>
+                <li><abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> Client, Version 2.3</li>
+                <li><abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Bluetooth,  Version 1.0</li>
+                <li><abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for MDM Agent,  Version 1.0</li>
+                <li><abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr>-Module for Biometric Enrollment and Verification, Version 1.1</li>
+              </ul>
+	  </p>
+        </dd><dt class="cclaim,defined" id="CC Conformance Claims">CC Conformance Claims</dt><dd>This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> is conformant to Parts 2 (extended) and 3 (extended) of Common
+          Criteria Version 3.1, Revision 5.</dd><dt class="cclaim,defined" id="PP Claim">PP Claim</dt><dd>This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> does not claim conformance to any Protection Profile.</dd><dt class="cclaim,defined" id="Package Claim">Package Claim</dt><dd>This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> is <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Package Conformant.<br/>
+	This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> is SSH Package Conformant.</dd></dl>
+
+  <h1 class="indexable" data-level="1" id="Security_Problem_Description">3 Security Problem Description</h1>The security problem is described in terms
     of the threats that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> is expected to address, assumptions about the
     operational environment, and any organizational security policies that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>
     is expected to enforce.
@@ -957,16 +977,15 @@ users of the same system.
                 </a>,
            
            is selected from 
-           <a href="#FCS_CKM.1.1">FCS_CKM.1.1</a></li></ul><div class="dependent-content"><div>
-			  
-          <b>Key Generation for <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4 RSA Schemes</b><br/>
-		      <p>The evaluator will verify
-              the implementation of RSA Key Generation by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the Key
-              Generation test. This test verifies the ability of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to
-              correctly produce values for the key components including the public verification
-              exponent e, the private prime factors p and q, the public modulus n and the
-              calculation of the private signature exponent d. Key Pair generation specifies 5 ways
-              (or methods) to generate the primes p and q. These include:
+           <a href="#FCS_CKM.1.1">FCS_CKM.1.1</a></li></ul><div class="dependent-content"><div>  
+		  <b>Key Generation for <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4 RSA Schemes</b><br/>
+		  <p>The evaluator will verify
+		  the implementation of RSA Key Generation by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the Key
+		  Generation test. This test verifies the ability of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to
+		  correctly produce values for the key components including the public verification
+		  exponent e, the private prime factors p and q, the public modulus n and the
+		  calculation of the private signature exponent d. Key Pair generation specifies 5 ways
+		  (or methods) to generate the primes p and q. These include:
 	      <ol>
                 <li> Random Primes:
 		<ul>
@@ -2098,10 +2117,6 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
 	    </p>
 	      </div></div></div>
 
-        
-        
-	
-        
       
       <h3 id="fdp" class="indexable" data-level="3">5.1.2 User Data Protection (FDP)</h3>
         <div class="comp" id="FDP_ACF_EXT.1"><h4>FDP_ACF_EXT.1 Access Controls for Protecting User Data</h4>
@@ -2209,8 +2224,8 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
 	      The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall be capable of performing the following management functions:
 	      <br/>
 	      <table class="mfs" style="width: 100%;"><tr class="header"><td>#</td><td>Management Function</td><td>Administrator</td><td>User</td></tr>
-<tr id="_mf_1"><td>1</td><td style="text-align:left">Enable/disable [<b>selection</b>: <i id="_s_127">screen lock</i>, <i id="_s_128">session timeout</i>]</td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
-<tr id="_mf_2"><td>2</td><td style="text-align:left">Configure [<b>selection</b>: <i id="_s_129">screen lock</i>, <i id="_s_130">session</i>] inactivity timeout</td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+<tr id="_mf_1"><td>1</td><td style="text-align:left">Enable/disable [<b>selection</b>: <i id="_s_76">screen lock</i>, <i id="_s_77">session timeout</i>]</td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+<tr id="_mf_2"><td>2</td><td style="text-align:left">Configure [<b>selection</b>: <i id="_s_78">screen lock</i>, <i id="_s_79">session</i>] inactivity timeout</td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_3"><td>3</td><td style="text-align:left">import keys/secrets into  the secure key storage</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_4"><td>4</td><td style="text-align:left">Configure local audit storage capacity</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_5"><td>5</td><td style="text-align:left">Configure minimum password length</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
@@ -2220,7 +2235,7 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
 <tr id="_mf_9"><td>9</td><td style="text-align:left">Configure minimum number of lowercase characters in password</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_10"><td>10</td><td style="text-align:left">
 Configure lockout policy for unsuccessful authentication attempts through
-                  [<b>selection</b>: <i id="_s_131">timeouts between attempts</i>, <i id="_s_132">limiting number of attempts during a time period</i>]
+                  [<b>selection</b>: <i id="_s_80">timeouts between attempts</i>, <i id="_s_81">limiting number of attempts during a time period</i>]
 		</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_11"><td>11</td><td style="text-align:left">Configure host-based firewall</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_12"><td>12</td><td style="text-align:left">Configure name/address of directory server with which to bind</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
@@ -2329,7 +2344,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can enroll in such a
 	      </div></div></div>
         <div class="comp" id="FPT_ASLR_EXT.1"><h4>FPT_ASLR_EXT.1 Address Space Layout Randomization</h4>
           <div class="element"><div class="reqid" id="FPT_ASLR_EXT.1.1"><a href="#FPT_ASLR_EXT.1.1" class="abbr">FPT_ASLR_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall always randomize process address space memory locations with
-	    [<b>selection</b>: <i id="_s_133">8</i>, <i id="_s_134">[<b>assignment</b>: 
+	    [<b>selection</b>: <i id="_s_82">8</i>, <i id="_s_83">[<b>assignment</b>: 
      <span class="assignable-content">number greater than 8</span>]</i>]
 	    bits of entropy except for
                 [<b>assignment</b>: 
@@ -2430,7 +2445,7 @@ This test can also be completed on the same hardware and rebooting between appli
         
         <div class="comp" id="FPT_SBOP_EXT.1"><h4>FPT_SBOP_EXT.1 Stack Buffer Overflow Protection</h4>
           <div class="element"><div class="reqid" id="FPT_SBOP_EXT.1.1"><a href="#FPT_SBOP_EXT.1.1" class="abbr">FPT_SBOP_EXT.1.1</a></div><div class="reqdesc">
-The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall [<b>selection</b>: <i id="_s_135">employ stack-based buffer overflow protections</i>, <i id="_s_136">not store parameters/variables in the same data structures as control flow values</i>].
+The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall [<b>selection</b>: <i id="_s_84">employ stack-based buffer overflow protections</i>, <i id="_s_85">not store parameters/variables in the same data structures as control flow values</i>].
 <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -2461,11 +2476,11 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
         
         <div class="comp" id="FPT_TST_EXT.1"><h4>FPT_TST_EXT.1 Boot Integrity</h4>
           <div class="element"><div class="reqid" id="FPT_TST_EXT.1.1"><a href="#FPT_TST_EXT.1.1" class="abbr">FPT_TST_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall verify the integrity of the bootchain up through the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> kernel and
-              [<b>selection</b>: <ul><li style=""><i id="_s_142">all executable code stored in mutable media</i>, </li><li style=""><i id="_s_143">[<b>assignment</b>: 
-     <span class="assignable-content">list of other executable code</span>]</i>, </li><li style=""><i id="_s_144">no other executable code</i></li></ul>]
+              [<b>selection</b>: <ul><li style=""><i id="_s_91">all executable code stored in mutable media</i>, </li><li style=""><i id="_s_92">[<b>assignment</b>: 
+     <span class="assignable-content">list of other executable code</span>]</i>, </li><li style=""><i id="_s_93">no other executable code</i></li></ul>]
 	      prior to its execution through the use of
-              [<b>selection</b>: <ul><li style=""><i id="_s_145">a digital signature using a hardware-protected asymmetric key 
-				  </i>, </li><li style=""><i id="s-boot-x509">a digital signature using an X509 certificate with hardware-based protection</i>, </li><li style=""><i id="_s_147">a hardware-protected hash</i></li></ul>]
+              [<b>selection</b>: <ul><li style=""><i id="_s_94">a digital signature using a hardware-protected asymmetric key 
+				  </i>, </li><li style=""><i id="s-boot-x509">a digital signature using an X509 certificate with hardware-based protection</i>, </li><li style=""><i id="_s_96">a hardware-protected hash</i></li></ul>]
 	      .
             <div class="appnote"><span class="note-header">Application
       Note:
@@ -2555,7 +2570,7 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
 			</span></div></div></div>
           <div class="element"><div class="reqid" id="FPT_TUD_EXT.1.2"><a href="#FPT_TUD_EXT.1.2" class="abbr">FPT_TUD_EXT.1.2</a></div><div class="reqdesc">
               The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall 
-		[<b>selection</b>: <i id="_s_148">cryptographically verify</i>, <i id="_s_149">invoke platform-provided functionality to cryptographically verify</i>]
+		[<b>selection</b>: <i id="_s_97">cryptographically verify</i>, <i id="_s_98">invoke platform-provided functionality to cryptographically verify</i>]
               updates to itself using a digital
               signature prior to installation using schemes specified in <a href="#FCS_COP.1/SIGN">FCS_COP.1/SIGN</a>.
 	    <div class="appnote"><span class="note-header">Application
@@ -2682,7 +2697,7 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall be able
 		  <ul><li>Authentication events (Success/Failure);</li>
                   <li>Use of privileged/special rights events (Successful and unsuccessful security, audit, and configuration changes);</li>
                   <li>Privilege or role escalation events (Success/Failure);</li>
-		  <li>[<b>selection</b>: <ul><li style=""><i id="_s_150">File and object events (Successful and unsuccessful attempts to create, access, delete, modify, modify permissions)</i>, </li><li style=""><i id="_s_151">User and Group management events (Successful and unsuccessful add, delete, modify, disable, enable, and credential change)</i>, </li><li style=""><i id="_s_152">Audit and log data access events (Success/Failure)</i>, </li><li style=""><i id="_s_153">Cryptographic verification of software (Success/Failure)</i>, </li><li style=""><i id="_s_154">Attempted application invocation with arguments (Success/Failure e.g. due to software restriction policy)</i>, </li><li style=""><i id="_s_155">System reboot, restart, and shutdown events (Success/Failure)</i>, </li><li style=""><i id="_s_156">Kernel module loading and unloading events (Success/Failure)</i>, </li><li style=""><i id="_s_157">Administrator or root-level access events (Success/Failure)</i>, </li><li style=""><i id="_s_158">[<b>assignment</b>: 
+		  <li>[<b>selection</b>: <ul><li style=""><i id="_s_99">File and object events (Successful and unsuccessful attempts to create, access, delete, modify, modify permissions)</i>, </li><li style=""><i id="_s_100">User and Group management events (Successful and unsuccessful add, delete, modify, disable, enable, and credential change)</i>, </li><li style=""><i id="_s_101">Audit and log data access events (Success/Failure)</i>, </li><li style=""><i id="_s_102">Cryptographic verification of software (Success/Failure)</i>, </li><li style=""><i id="_s_103">Attempted application invocation with arguments (Success/Failure e.g. due to software restriction policy)</i>, </li><li style=""><i id="_s_104">System reboot, restart, and shutdown events (Success/Failure)</i>, </li><li style=""><i id="_s_105">Kernel module loading and unloading events (Success/Failure)</i>, </li><li style=""><i id="_s_106">Administrator or root-level access events (Success/Failure)</i>, </li><li style=""><i id="_s_107">[<b>assignment</b>: 
      <span class="assignable-content">other specifically defined auditable events</span>].</i></li></ul>]
 		  </li>
 		  </ul>
@@ -2757,21 +2772,21 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall be able
         <div class="comp" id="FIA_AFL.1"><h4>FIA_AFL.1 Authentication failure handling (Refined)</h4>
           <div class="element"><div class="reqid" id="FIA_AFL.1.1"><a href="#FIA_AFL.1.1" class="abbr">FIA_AFL.1.1</a></div><div class="reqdesc">
             The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall detect when
-            [<b>selection</b>: <ul><li style=""><i id="_s_159">[<b>assignment</b>: 
-     <span class="assignable-content">positive integer number</span>]</i>, </li><li style=""><i id="_s_160">an administrator configurable positive integer within [<b>assignment</b>: 
+            [<b>selection</b>: <ul><li style=""><i id="_s_108">[<b>assignment</b>: 
+     <span class="assignable-content">positive integer number</span>]</i>, </li><li style=""><i id="_s_109">an administrator configurable positive integer within [<b>assignment</b>: 
      <span class="assignable-content">range of acceptable values</span>]</i></li></ul>]
             unsuccessful authentication attempts occur related to
 	    <b>
 	      events with
-            [<b>selection</b>: <ul><li style=""><i id="_s_161">authentication based on user name and password</i>, </li><li style=""><i id="_s_162">authentication based on user name and a PIN that
-	      releases an asymmetric key stored in <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>-protected storage</i>, </li><li style=""><i id="_s_163">authentication based on X.509 certificates</i></li></ul>]
+            [<b>selection</b>: <ul><li style=""><i id="_s_110">authentication based on user name and password</i>, </li><li style=""><i id="_s_111">authentication based on user name and a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr> that
+	      releases an asymmetric key stored in <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>-protected storage</i>, </li><li style=""><i id="_s_112">authentication based on X.509 certificates</i></li></ul>]
 	    </b>.
 	    </div></div>
           <div class="element"><div class="reqid" id="FIA_AFL.1.2"><a href="#FIA_AFL.1.2" class="abbr">FIA_AFL.1.2</a></div><div class="reqdesc">
 	      When the defined number of unsuccessful authentication attempts for an
 	      account has been <b>met</b>, the <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall:
 	      <b>
-	      [<b>selection</b>: <i id="_s_164">Account Lockout</i>, <i id="_s_165">Account Disablement</i>, <i id="_s_166">Mandatory Credential Reset</i>, <i id="_s_167">[<b>assignment</b>: 
+	      [<b>selection</b>: <i id="_s_113">Account Lockout</i>, <i id="_s_114">Account Disablement</i>, <i id="_s_115">Mandatory Credential Reset</i>, <i id="_s_116">[<b>assignment</b>: 
      <span class="assignable-content">list of actions</span>]</i>]
 	      </b>.
             <div class="appnote"><span class="note-header">Application
@@ -2788,7 +2803,7 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall be able
 		  The evaluator will set an administrator-configurable threshold for
 		  failed attempts, or note the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>-specified assignment.  The evaluator
 		  will then (per selection) repeatedly attempt to authenticate with an
-		  incorrect password, PIN, or certificate until the number of attempts
+		  incorrect password, <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr>, or certificate until the number of attempts
 		  reaches the threshold.  Note that the authentication attempts and
 		  lockouts must also be logged as specified in
 		  <a href="#FAU_GEN.1">FAU_GEN.1</a>.
@@ -2821,8 +2836,8 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall be able
         <div class="comp" id="FIA_UAU.5"><h4>FIA_UAU.5 Multiple Authentication Mechanisms (Refined)</h4>
           <div class="element"><div class="reqid" id="FIA_UAU.5.1"><a href="#FIA_UAU.5.1" class="abbr">FIA_UAU.5.1</a></div><div class="reqdesc">
 The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall provide the following authentication mechanisms
-<b>[<b>selection</b>: <ul><li style=""><i id="_s_168">authentication based on user name and password</i>, </li><li style=""><i id="_s_169">authentication based on user name and a PIN that releases an asymmetric key stored
-  in <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>-protected storage</i>, </li><li style=""><i id="_s_170">authentication based on X.509 certificates</i>, </li><li style=""><i id="s-uau-ssh">for use in SSH only, SSH public key-based authentication as specified by the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
+<b>[<b>selection</b>: <ul><li style=""><i id="_s_117">authentication based on user name and password</i>, </li><li style=""><i id="_s_118">authentication based on user name and a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr> that releases an asymmetric key stored
+  in <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>-protected storage</i>, </li><li style=""><i id="_s_119">authentication based on X.509 certificates</i>, </li><li style=""><i id="s-uau-ssh">for use in SSH only, SSH public key-based authentication as specified by the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
         version 
         1.0</a></i></li></ul>]
 </b>
@@ -2893,21 +2908,21 @@ unsuccessful authentication are covered in <a href="#FIA_AFL.1">FIA_AFL.1</a>.
 				  will ensure that the authentication attempt is unsuccessful.
                 </li>
               </ul>
-			  If user name and PIN that releases an asymmetric key is selected,
+			  If user name and <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr> that releases an asymmetric key is selected,
 			  the evaluator will examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> for guidance on supported
-			  protected storage and will then configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr> to establish a PIN
+			  protected storage and will then configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr> to establish a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr>
 			  which enables release of the asymmetric key from the protected storage (such as a TPM, a hardware token, or
 			  isolated execution environment) with which the
 			  <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can interface.  The evaluator will then conduct the following tests:
 			  <ul>
 			    <li><b>Test 1: </b> The evaluator will attempt to
-			    authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the known user name and PIN. The
+			    authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the known user name and <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr>. The
 			    evaluator will ensure that the authentication attempt is
 			    successful.
 			    </li>
 				<li><b>Test 2: </b> The evaluator will attempt to
 			    authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the known user name but an incorrect
-			    PIN. The evaluator will ensure that the authentication attempt is
+			    <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr>. The evaluator will ensure that the authentication attempt is
 			    unsuccessful.
 				</li>
 			  </ul>
@@ -2957,8 +2972,8 @@ the authentication mechanism(s) behave as documented in the <abbr class="dyn-abb
                     <li>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall validate that any CA certificate includes "Certificate Signing" as a  purpose the key usage field</li>
 
                     <li>The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall validate the revocation status of the certificate using 
-						[<b>selection</b>: <i id="_s_172"><abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6960</i>, <i id="_s_173"><abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 5759</i>, <i id="_s_174">an <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Status Request Extension (<abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling) as specified
-						      in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6066</i>, <i id="_s_175"> <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Multi-Certificate Status Request Extension 
+						[<b>selection</b>: <i id="_s_121"><abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6960</i>, <i id="_s_122"><abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 5759</i>, <i id="_s_123">an <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Status Request Extension (<abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling) as specified
+						      in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6066</i>, <i id="_s_124"> <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Multi-Certificate Status Request Extension 
 							  (i.e., <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> Multi-Stapling) as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6961</i>]
 							  
 					<li>The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall validate the extendedKeyUsage field according to the following rules:
@@ -3072,8 +3087,8 @@ the node certificate to be tested, two Intermediate CAs, and the
         <div class="comp" id="FIA_X509_EXT.2"><h4>FIA_X509_EXT.2 X.509 Certificate Authentication</h4>
           <div class="element"><div class="reqid" id="FIA_X509_EXT.2.1"><a href="#FIA_X509_EXT.2.1" class="abbr">FIA_X509_EXT.2.1</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall use X.509v3 certificates as defined by <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 5280 to support
               authentication for <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> and
-			  [<b>selection</b>: <i id="_s_176"><abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr></i>, <i id="_s_177"><abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr></i>, <i id="_s_178">[<b>assignment</b>: 
-     <span class="assignable-content">other protocols</span>]</i>, <i id="_s_179">no other protocols</i>]
+			  [<b>selection</b>: <i id="_s_125"><abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr></i>, <i id="_s_126"><abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr></i>, <i id="_s_127">[<b>assignment</b>: 
+     <span class="assignable-content">other protocols</span>]</i>, <i id="_s_128">no other protocols</i>]
 			  connections.
 			</div></div>
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FIA_X509_EXT.2">FIA_X509_EXT.2</a></div>
@@ -3104,7 +3119,7 @@ the node certificate to be tested, two Intermediate CAs, and the
         1.0</a></i></li></ul>]
 		    to provide a trusted communication channel between itself and
 		    authorized <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr> entities supporting the following capabilities:
-		    [<b>selection</b>: <i id="_s_184">audit server</i>, <i id="_s_185">authentication server</i>, <i id="_s_186">management server</i>, <i id="_s_187">[<b>assignment</b>: 
+		    [<b>selection</b>: <i id="_s_133">audit server</i>, <i id="_s_134">authentication server</i>, <i id="_s_135">management server</i>, <i id="_s_136">[<b>assignment</b>: 
      <span class="assignable-content">other capabilities</span>]</i>]
 		    that is logically distinct from other communication
 		    channels and provides assured identification of its end points and protection of the channel
@@ -3139,7 +3154,7 @@ the node certificate to be tested, two Intermediate CAs, and the
         <div class="comp" id="FTP_TRP.1"><h4>FTP_TRP.1 Trusted Path</h4>
             <div class="element"><div class="reqid" id="FTP_TRP.1.1"><a href="#FTP_TRP.1.1" class="abbr">FTP_TRP.1.1</a></div><div class="reqdesc">
 The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall provide a communication path between itself and
-[<b>selection</b>: <i id="_s_188">remote</i>, <i id="_s_189">local</i>]
+[<b>selection</b>: <i id="_s_137">remote</i>, <i id="_s_138">local</i>]
 users that is logically distinct from other communication paths and provides assured
 identification of its endpoints and protection of the communicated data from
 [modification, disclosure].
@@ -3163,7 +3178,7 @@ This requirement is tested with the  evaluation activities for  <a href="#FTP_TR
 		</p>
 	      </span></div></div></div>
             <div class="element"><div class="reqid" id="FTP_TRP.1.2"><a href="#FTP_TRP.1.2" class="abbr">FTP_TRP.1.2</a></div><div class="reqdesc"> The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall permit
-                [<b>selection</b>: <i id="_s_190">the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></i>, <i id="_s_191">local users</i>, <i id="_s_192">remote users</i>]
+                [<b>selection</b>: <i id="_s_139">the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></i>, <i id="_s_140">local users</i>, <i id="_s_141">remote users</i>]
                 to initiate communication via the trusted path.
               <div class="appnote"><span class="note-header">Application
       Note:
@@ -3783,10 +3798,10 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
   <h2 id="optional-reqs" class="indexable" data-level="2">A.1 Strictly Optional  Requirements
     </h2><h3 id="fdp-optional" class="indexable" data-level="3">A.1.1 User Data Protection (FDP)</h3><div class="comp" id="FDP_IFC_EXT.1"><h4>FDP_IFC_EXT.1 Information flow control</h4>
           <div class="element"><div class="reqid" id="FDP_IFC_EXT.1.1"><a href="#FDP_IFC_EXT.1.1" class="abbr">FDP_IFC_EXT.1.1</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall
-	    [<b>selection</b>: <ul><li style=""><i id="_s_123">provide an interface which allows a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client to protect all <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic using IPsec</i>, </li><li style=""><i id="_s_124">provide a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client which can protects all <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic using IPsec</i></li></ul>]
+	    [<b>selection</b>: <ul><li style=""><i id="_s_72">provide an interface which allows a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client to protect all <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic using IPsec</i>, </li><li style=""><i id="_s_73">provide a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client which can protects all <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic using IPsec</i></li></ul>]
 	    with the exception of <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic required to establish the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> connection
 	    and
-	    [<b>selection</b>: <i id="_s_125">signed updates directly from the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor</i>, <i id="_s_126">no other traffic</i>]
+	    [<b>selection</b>: <i id="_s_74">signed updates directly from the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor</i>, <i id="_s_75">no other traffic</i>]
 	    .
             <div class="appnote"><span class="note-header">Application
       Note:
@@ -3804,14 +3819,13 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
 		  network stack to perform the required Information Flow Control.
 	      </p>
 	      <p>
-		  The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall select the second option if the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> implements a
-		  native <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client (IPsec is selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a>). If the native
-		  <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client is to be validated (IPsec is selected in <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>
-		  and
-		  the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> is validated against the <i><abbr class="dyn-abbr"><a href="#abbr_EP">EP</a></abbr> for IPsec
-		  Virtual Private Network (<abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr>) Clients</i>), the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall also
-		  include <a href="#FDP_IFC_EXT.1">FDP_IFC_EXT.1</a> from this package.  In the
-		  future, this requirement may also make a distinction between the
+		  The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author will select the second option if the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> implements a
+		  native <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client (IPsec is selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a>).
+		  If the native <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client is to be validated (IPsec is selected in <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>
+		  and the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> is validated against the <i><abbr class="dyn-abbr"><a href="#abbr_EP">EP</a></abbr> for IPsec
+		  Virtual Private Network (<abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr>) Clients</i>), the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author will also
+		  include <a href="#FDP_IFC_EXT.1">FDP_IFC_EXT.1</a> from this package.
+		  In the future, this requirement may also make a distinction between the
 		  current requirement (which requires that when the IPsec trusted
 		  channel is enabled, all traffic from the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> is routed through that
 		  channel) and having an option to force the establishment of an IPsec
@@ -3823,8 +3837,8 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
 	      
 	    <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
 	      The evaluator will verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> section of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> describes the
-              routing of <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic when a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client is enabled. The
-              evaluator will ensure that the description indicates which traffic does not go
+              routing of <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic when a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client is enabled.
+	      The evaluator will ensure that the description indicates which traffic does not go
               through the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> and which traffic does, and that a configuration exists for each
               in which only the traffic identified by the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author as necessary
               for establishing the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> connection (IKE traffic and perhaps <abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_DNS">DNS</a></abbr> traffic) is
@@ -3866,7 +3880,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
               </div></div></div><h2 id="objective-reqs" class="indexable" data-level="2">A.2 Objective  Requirements
     </h2><h3 id="fpt-objective" class="indexable" data-level="3">A.2.1 Protection of the TSF (FPT)</h3><div class="comp" id="FPT_SRP_EXT.1"><h4>FPT_SRP_EXT.1 Software Restriction Policies</h4>
           <div class="element"><div class="reqid" id="FPT_SRP_EXT.1.1"><a href="#FPT_SRP_EXT.1.1" class="abbr">FPT_SRP_EXT.1.1</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall restrict execution to only programs which match an administrator-specified
-              [<b>selection</b>: <ul><li style=""><i id="_s_137">file path</i>, </li><li style=""><i id="_s_138">file digital signature</i>, </li><li style=""><i id="_s_139">version</i>, </li><li style=""><i id="_s_140">hash</i>, </li><li style=""><i id="_s_141">[<b>assignment</b>: 
+              [<b>selection</b>: <ul><li style=""><i id="_s_86">file path</i>, </li><li style=""><i id="_s_87">file digital signature</i>, </li><li style=""><i id="_s_88">version</i>, </li><li style=""><i id="_s_89">hash</i>, </li><li style=""><i id="_s_90">[<b>assignment</b>: 
      <span class="assignable-content">other characteristics</span>]</i></li></ul>]
 	      .
             <div class="appnote"><span class="note-header">Application
@@ -3990,640 +4004,8 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
         the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>:
         if certain selections are made, then additional requirements below must be included.
  	</p>
-		 <h2 id="fcs-sel-based" class="indexable" data-level="2">B.1 Cryptographic Support (FCS)</h2><div class="comp" id="FCS_IPSEC_EXT.1"><h4>FCS_IPSEC_EXT.1 IPsec Protocol</h4><div class="statustag"><b><i>The inclusion of this selection-based component depends upon selection in
-           <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>.
-           </i></b></div>
-          
-	  
-	  
-	  
-	  
-	  
-	  <div class="element"><div class="reqid" id="FCS_IPSEC_EXT.1.1"><a href="#FCS_IPSEC_EXT.1.1" class="abbr">FCS_IPSEC_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall implement the IPsec architecture as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 4301.
-	    <div class="appnote"><span class="note-header">Application
-      Note:
-    </span><span class="note">
-	      This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> Author selected "IPsec" in <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>.<br/><br/>
-	      <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 4301 calls for an IPsec implementation to protect <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic through the use
-	      of a Security Policy Database (SPD). The SPD is used to define how <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> packets are
-	      to be handled: PROTECT the packet (e.g., encrypt the packet), BYPASS the IPsec
-	      services (e.g., no encryption), or DISCARD the packet (e.g., drop the packet). The
-	      SPD can be implemented in various ways, including router access control lists,
-	      firewall rulesets, a "traditional" SPD, etc. Regardless of the implementation
-	      details, there is a notion of a "rule" that a packet is "matched" against and a
-	      resulting action that takes place. <br/><br/>
-	      While there must be a means to order the rules, a general approach to ordering
-	      is not mandated, as long as the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> can distinguish the <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> packets and apply the
-	      rules accordingly. There may be multiple SPDs (one for each network interface),
-	      but this is not required. <br/><br/>
-	    </span></div></div></div>
-	  <div class="element"><div class="reqid" id="FCS_IPSEC_EXT.1.2"><a href="#FCS_IPSEC_EXT.1.2" class="abbr">FCS_IPSEC_EXT.1.2</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall implement
-	    [<b>selection</b>: <i id="_s_72">transport mode</i>, <i id="_s_73">tunnel mode</i>].
-	    <div class="appnote"><span class="note-header">Application
-      Note:
-    </span><span class="note">
-	      If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is used to connect to a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> gateway for the purposes of establishing a
-	      secure connection to a private network, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall select
-	      tunnel mode. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> uses IPsec to establish an end-to-end connection to
-	      another IPsec <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> Client, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall select transport mode. If
-	      the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> uses IPsec to establish a connection to a specific endpoint device for the
-	      purpose of secure remote administration, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall select
-	      transport mode.<p></p>
-	    </span></div></div></div>
-	  <div class="element"><div class="reqid" id="FCS_IPSEC_EXT.1.3"><a href="#FCS_IPSEC_EXT.1.3" class="abbr">FCS_IPSEC_EXT.1.3</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall have a nominal, final entry in the SPD that matches anything that is otherwise unmatched, 
-	    and discards it.
-	    </div></div>
-	  <div class="element"><div class="reqid" id="FCS_IPSEC_EXT.1.4"><a href="#FCS_IPSEC_EXT.1.4" class="abbr">FCS_IPSEC_EXT.1.4</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall implement the IPsec protocol ESP as defined by <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 4303 using the cryptographic 
-	    algorithms [<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM-128, <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM-256 (as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 4106),
-	    [<b>selection</b>: <i id="_s_74"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC-128 (specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 3602)</i>, <i id="_s_75"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC-256 (specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 3602)</i>, <i id="_s_76">no other algorithms</i>]] together with a Secure Hash Algorithm (<abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>)-based <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>.
-	    </div></div>
-	  <div class="element"><div class="reqid" id="FCS_IPSEC_EXT.1.5"><a href="#FCS_IPSEC_EXT.1.5" class="abbr">FCS_IPSEC_EXT.1.5</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall implement the protocol: <p></p>
-	    [<b>selection</b>: <ul><li style=""><i id="_s_77">IKEv1, using Main Mode for Phase 1 exchanges, as defined in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 2407, <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 2408, <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 2409, <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 4109, 
-	      [<b>selection</b>: <i id="_s_78">no other RFCs for extended sequence numbers</i>, <i id="_s_79"><abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 4304 for extended sequence numbers</i>],
-		[<b>selection</b>: <i id="_s_80">no other RFCs for hash functions</i>, <i id="_s_81"><abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 4868 for hash functions</i>], and 
-		  [<b>selection</b>: <i id="_s_82">support for XAUTH</i>, <i id="_s_83">no support for XAUTH</i>]
-	      </i>, </li><li style=""><i id="_s_84">IKEv2 as defined in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 7296 (with mandatory support for NAT traversal 
-	      as specified in section 2.23), <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 8784, <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 8247, and 
-	      [<b>selection</b>: <i id="_s_85">no other RFCs for hash functions</i>, <i id="_s_86"><abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 4868 for hash functions</i>].</i></li></ul>]
-	    <div class="appnote"><span class="note-header">Application
-      Note:
-    </span><span class="note">If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-2 hash algorithms for IKEv1 or IKEv2, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall
-	    select <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 4868. </span></div></div></div>
-	  <div class="element"><div class="reqid" id="FCS_IPSEC_EXT.1.6"><a href="#FCS_IPSEC_EXT.1.6" class="abbr">FCS_IPSEC_EXT.1.6</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall ensure the encrypted payload in the
-	    [<b>selection</b>: <i id="_s_87">IKEv1</i>, <i id="_s_88">IKEv2</i>] protocol uses the cryptographic algorithms <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC-128, <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC-256 as specified in 
-	      <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6379 and
-	      [<b>selection</b>: <i id="_s_89"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM-128 as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 5282</i>, <i id="_s_90"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM-256 as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 5282</i>, <i id="_s_91">no other algorithm</i>].
-	    </div></div>
-	  <div class="element"><div class="reqid" id="FCS_IPSEC_EXT.1.7"><a href="#FCS_IPSEC_EXT.1.7" class="abbr">FCS_IPSEC_EXT.1.7</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall ensure that 
-	    [<b>selection</b>: <ul><li style=""><i id="_s_92">IKEv2 SA lifetimes can be configured by
-	      [<b>selection</b>: <i id="_s_93">an Administrator</i>, <i id="_s_94">a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> Gateway</i>] based on 
-		[<b>selection</b>: <i id="_s_95">number of packets/number of bytes</i>, <i id="_s_96">length of time</i>]
-	      </i>, </li><li style=""><i id="_s_97">IKEv1 SA lifetimes can be configured by 
-	      [<b>selection</b>: <i id="_s_98">an Administrator</i>, <i id="_s_99">a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> Gateway</i>] based on 
-		[<b>selection</b>: <i id="_s_100">number of packets/number of bytes</i>, <i id="_s_101">length of time</i>]
-	      </i>, </li><li style=""><i id="_s_102">IKEv1 SA lifetimes are fixed based on 
-	      [<b>selection</b>: <i id="_s_103">number of packets/number of bytes</i>, <i id="_s_104">length of time</i>]. If length of time is used, it must include at least 
-		one option that is 24 hours or less for Phase 1 SAs and 8 hours or
-		less for Phase 2 SAs.
-	      </i></li></ul>]
-	    <div class="appnote"><span class="note-header">Application
-      Note:
-    </span><span class="note">
-	      The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author is afforded a selection based on the version of IKE in their
-	      implementation. There is a further selection within this selection that allows the
-	      <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author to specify which entity is responsible for “configuring” the life of the
-	      SA. An implementation that allows an administrator to configure the client or a
-	      <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> gateway that pushes the SA lifetime down to the client are both acceptable.<p></p>
-	      As far as SA lifetimes are concerned, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> can limit the lifetime based on the
-	      number of bytes transmitted, or the number of packets transmitted. Either
-	      packet-based or volume-based SA lifetimes are acceptable; the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author makes
-	      the appropriate selection to indicate which type of lifetime limits are supported.<p></p>
-	      The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author chooses either the IKEv1 requirements or IKEv2 requirements (or
-	      both, depending on the selection in <a href="#FCS_IPSEC_EXT.1.5">FCS_IPSEC_EXT.1.5</a>. The IKEv1 requirement
-	      can be accomplished either by providing Authorized Administrator-configurable
-	      lifetimes (with appropriate instructions in documents mandated by AGD_OPE),
-	      or by “hard coding” the limits in the implementation. For IKEv2, there are no
-	      hardcoded limits, but in this case it is required that an administrator be able to
-	      configure the values. In general, instructions for setting the parameters of the
-	      implementation, including lifetime of the SAs, should be included in the 
-	      operational guidance generated for AGD_OPE. It is appropriate to refine the
-	      requirement in terms of number of MB/KB instead of number of packets, as long
-	      as the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is capable of setting a limit on the amount of traffic that is protected
-	      by the same key (the total volume of all IPsec traffic protected by that key).
-	    </span></div></div></div>
-	  <div class="element"><div class="reqid" id="FCS_IPSEC_EXT.1.8"><a href="#FCS_IPSEC_EXT.1.8" class="abbr">FCS_IPSEC_EXT.1.8</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall ensure that all IKE protocols implement DH groups [19 (256-bit
-	    Random ECP), 20 (384-bit Random ECP), and 
-	    [<b>selection</b>: <i id="_s_105">24 (2048-bit MODP with 256-bit POS)</i>, <i id="_s_106">15 (3072-bit MODP)</i>, <i id="_s_107">14 (2048-bit MODP)</i>, <i id="_s_108">no other DH groups</i>]].
-	    <div class="appnote"><span class="note-header">Application
-      Note:
-    </span><span class="note">
-	      The selection is used to specify additional DH groups supported. This applies to
-	      IKEv1 and IKEv2 exchanges. It should be noted that if any additional DH groups
-	      are specified, they must comply with the requirements (in terms of the
-	      ephemeral keys that are established) listed in <a href="#FCS_CKM.1">FCS_CKM.1</a>.<p></p>
-	      Since the implementation may allow different Diffie-Hellman groups to be
-	      negotiated for use in forming the SAs, the assignments in <a href="#FCS_IPSEC_EXT.1.9">FCS_IPSEC_EXT.1.9</a>
-	      and <a href="#FCS_IPSEC_EXT.1.10">FCS_IPSEC_EXT.1.10</a> may contain multiple values. For each DH group
-	      supported, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author consults Table 2 in 800-57 to determine the “bits of
-	      security” associated with the DH group. Each unique value is then used to fill in
-	      the assignment (for 1.9 they are doubled; for 1.10 they are inserted directly into
-	      the assignment). For example, suppose the implementation supports DH group
-	      14 (2048-bit MODP) and group 20 (ECDH using <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> curve P-384). From Table 2,
-	      the bits of security value for group 14 is 112, and for group 20 it is 192. For
-	      <a href="#FCS_IPSEC_EXT.1.9">FCS_IPSEC_EXT.1.9</a>, then, the assignment would read “[224, 384]” and for
-	      <a href="#FCS_IPSEC_EXT.1.10">FCS_IPSEC_EXT.1.10</a> it would read “[112, 192]” (although in this case the
-	    requirement should probably be refined so that it makes sense mathematically).</span></div></div></div>
-	  <div class="element"><div class="reqid" id="FCS_IPSEC_EXT.1.9"><a href="#FCS_IPSEC_EXT.1.9" class="abbr">FCS_IPSEC_EXT.1.9</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall generate the secret value x used in the IKE Diffie-Hellman key
-	    exchange (“x” in gx mod p) using the random bit generator specified in
-	    <a href="#FCS_RBG_EXT.1">FCS_RBG_EXT.1</a>, and having a length of at least 
-	    [<b>assignment</b>: 
-     <span class="assignable-content">(one or more) number of bits that is at least twice the “bits of
-	    security” value associated with the negotiated Diffie-Hellman group as 
-	    listed in Table 2 of <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-57, Recommendation for Key Management – Part
-	    1: General</span>] bits.
-	    </div></div>
-	  <div class="element"><div class="reqid" id="FCS_IPSEC_EXT.1.10"><a href="#FCS_IPSEC_EXT.1.10" class="abbr">FCS_IPSEC_EXT.1.10</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall generate nonces used in IKE exchanges in a manner such that the
-	    probability that a specific nonce value will be repeated during the life a specific
-	    IPsec SA is less than 1 in 2^[<b>assignment</b>: 
-     <span class="assignable-content">(one or more) “bits of security” value
-	    associated with the negotiated Diffie-Hellman group as listed in Table 2 of <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr>
-	    SP 800-57, Recommendation for Key Management – Part 1: General</span>].
-	    </div></div>
-	  <div class="element"><div class="reqid" id="FCS_IPSEC_EXT.1.11"><a href="#FCS_IPSEC_EXT.1.11" class="abbr">FCS_IPSEC_EXT.1.11</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall ensure that all IKE protocols perform peer authentication using a
-	    [<b>selection</b>: <i id="_s_109">RSA</i>, <i id="_s_110"><abbr class="dyn-abbr"><a href="#abbr_ECDSA">ECDSA</a></abbr></i>] that use X.509v3 certificates that conform to <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 4945 and 
-	      [<b>selection</b>: <i id="_s_111">Pre-shared Keys</i>, <i id="_s_112">no other method</i>].
-	    <div class="appnote"><span class="note-header">Application
-      Note:
-    </span><span class="note">
-	      At least one public-key-based Peer Authentication method is required in order to
-	      conform to this <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr>; one or more of the public key schemes is chosen by
-	      the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author to reflect what is implemented. The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author also ensures that
-	      appropriate FCS requirements reflecting the algorithms used (and key
-	      generation capabilities, if provided) are listed to support those methods. Note
-	      that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> will elaborate on the way in which these algorithms are to be used 
-	      (for example, 2409 specifies three authentication methods using public keys;
-	      each one supported will be described in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>).<p></p>
-	      If “pre-shared keys” is selected, the selection-based requirement FIA_PSK_EXT.1
-	      must be claimed.
-	    </span></div></div></div>
-	  <div class="element"><div class="reqid" id="FCS_IPSEC_EXT.1.12"><a href="#FCS_IPSEC_EXT.1.12" class="abbr">FCS_IPSEC_EXT.1.12</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall not establish an SA if the 
-	    [<b>selection</b>: <i id="_s_113"><abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> address</i>, <i id="_s_114">Fully Qualified Domain Name (FQDN)</i>, <i id="_s_115">user FQDN</i>, <i id="_s_116">Distinguished Name (DN)</i>] and 
-	      [<b>selection</b>: <i id="_s_117">no other reference identifier type</i>, <i id="_s_118">[<b>assignment</b>: 
-     <span class="assignable-content">other supported reference identifier types</span>]</i>] contained in a certificate does not match the expected values for the
-		entity attempting to establish a connection.
-	    <div class="appnote"><span class="note-header">Application
-      Note:
-    </span><span class="note">
-	      The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> must support at least one of the following identifier types: <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> address,
-	      Fully Qualified Domain Name (FQDN), user FQDN, or Distinguished Name (DN).
-	      In the future, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> will be required to support all of these identifier types. The
-	      <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is expected to support as many <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> address formats (IPv4 and IPv6) as <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr>
-	      versions supported by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> in general. The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author may assign additional
-	      supported identifier types in the second selection.
-	    </span></div></div></div>
-	  <div class="element"><div class="reqid" id="FCS_IPSEC_EXT.1.13"><a href="#FCS_IPSEC_EXT.1.13" class="abbr">FCS_IPSEC_EXT.1.13</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall not establish an SA if the presented identifier does not match the
-	    configured reference identifier of the peer.
-	    <div class="appnote"><span class="note-header">Application
-      Note:
-    </span><span class="note">
-	      At this time, only the comparison between the presented identifier in the peer’s
-	      certificate and the peer’s reference identifier is mandated by the testing below.
-	      However, in the future, this requirement will address two aspects of the peer
-	      certificate validation: 1) comparison of the peer’s ID payload to the peer’s
-	      certificate which are both presented identifiers, as required by <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 4945 and 2)
-	      verification that the peer identified by the ID payload and the certificate is the
-	      peer expected by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> (per the reference identifier). At that time, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> will
-	      be required to demonstrate both aspects (i.e. that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> enforces that the
-	      peer’s ID payload matches the peer’s certificate which both match configured
-	      peer reference identifiers).<p></p>
-	      Excluding the DN identifier type (which is necessarily the Subject DN in the peer
-	      certificate), the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> may support the identifier in either the Common Name or
-	      Subject Alternative Name (<abbr class="dyn-abbr"><a href="#abbr_SAN">SAN</a></abbr>) or both. If both are supported, the preferred
-	      logic is to compare the reference identifier to a presented <abbr class="dyn-abbr"><a href="#abbr_SAN">SAN</a></abbr>, and only if the
-	      peer’s certificate does not contain a <abbr class="dyn-abbr"><a href="#abbr_SAN">SAN</a></abbr>, to fall back to a comparison against
-	      the Common Name. In the future, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> will be required to compare the
-	      reference identifier to the presented identifier in the <abbr class="dyn-abbr"><a href="#abbr_SAN">SAN</a></abbr> only, ignoring the
-	      Common Name.<p></p>
-	      The configuration of the peer reference identifier is addressed by
-	      FMT_SMF.1.1/<abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr>. <p></p>
-	    </span></div></div></div>
-	  <div class="element"><div class="reqid" id="FCS_IPSEC_EXT.1.14"><a href="#FCS_IPSEC_EXT.1.14" class="abbr">FCS_IPSEC_EXT.1.14</a></div><div class="reqdesc">The 
-	    [<b>selection</b>: <i id="_s_119"><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></i>, <i id="_s_120"><abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> Gateway</i>] shall be able to ensure by default that the
-	      strength of the symmetric algorithm (in terms of the number of bits in the key)
-	      negotiated to protect the 
-	      [<b>selection</b>: <i id="_s_121">IKEv1 Phase 1</i>, <i id="_s_122">IKEv2 IKE_SA</i>] connection is greater than or equal to the strength of the symmetric algorithm (in terms of
-		the number of bits in the key) negotiated to protect the [selection: IKEv1 Phase
-		2, IKEv2 CHILD_SA] connection.
-	    <div class="appnote"><span class="note-header">Application
-      Note:
-    </span><span class="note">
-	      If this functionality is configurable, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> may be configured by a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> Gateway
-	      or by an Administrator of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself.<p></p>
-	      The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author chooses either or both of the IKE selections based on what is
-	      implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. Obviously, the IKE versions chosen should be
-	      consistent not only in this element, but with other choices for other elements in
-	      this component. While it is acceptable for this capability to be configurable, the
-	      default configuration in the evaluated configuration (either "out of the box" or
-	      by configuration guidance in the AGD documentation) must enable this
-	      functionality.
-	    </span></div></div></div>
-	  
-	  
-	<div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_IPSEC_EXT.1">FCS_IPSEC_EXT.1</a></div>
-	      
-	      
-	      
-	      
-	    <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
-		In addition to the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> EAs for the individual <a href="#FCS_IPSEC_EXT.1">FCS_IPSEC_EXT.1</a> elements below, the
-		evaluator shall perform the following:<p></p>
-		If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> boundary includes a general-purpose operating system or mobile device, the evaluator shall
-		examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to ensure that it describes whether the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client capability is architecturally integrated
-		with the platform itself or whether it is a separate executable that is bundled with the platform.<p></p>
-	      <div class="eacategory">Guidance</div>
-		In addition to the Operational Guidance EAs for the individual <a href="#FCS_IPSEC_EXT.1">FCS_IPSEC_EXT.1</a> elements below, the
-		evaluator shall perform the following:<p></p>
-		If the configuration of the IPsec behavior is from an environmental source, most notably a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> gateway
-		(e.g through receipt of required connection parameters from a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> gateway), the evaluator shall ensure
-		that the operational guidance contains any appropriate information for ensuring that this configuration
-		can be properly applied.<p></p>
-		Note in this case that the implementation of the IPsec protocol must be enforced entirely within the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>
-		boundary; i.e. it is not permissible for a software application <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to be a graphical front-end for IPsec
-		functionality implemented totally or in part by the underlying <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> platform. The behavior referenced here
-		is for the possibility that the configuration of the IPsec connection is initiated from outside the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, which
-		is permissible so long as the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> is solely responsible for enforcing the configured behavior. However, it is
-		allowable for the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to rely on low-level platform-provided networking functions to implement the SPD
-		from the client (e.g., enforcement of packet routing decisions).<p></p>
-	      <div class="eacategory">Tests</div>
-		As a prerequisite for performing the Test EAs for the individual <a href="#FCS_IPSEC_EXT.1">FCS_IPSEC_EXT.1</a> elements below, the
-		evaluator shall do the following:<p></p>
-		The evaluator shall minimally create a test environment equivalent to the test environment illustrated
-		below. The traffic generator used to construct network packets should provide the
-		evaluator with the ability manipulate fields in the ICMP, IPv4, IPv6, UDP, and TCP packet headers. The
-		evaluator shall provide justification for any differences in the test environment.<p></p>
-		<div class="figure" id="figure-fig-ipsectest"><img id="fig-ipsectest" src="images/network.png" width="" height=""></img><br/><span class="ctr" data-myid="fig-ipsectest" data-counter-type="ct-figure">Figure <span class="counter">2</span></span>:
-      IPsec Test Environment</div><p></p>
-		Note that the evaluator shall perform all tests using the Virtualization System and a representative sample of
-		platforms listed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> (for TOEs that claim to support multiple platforms).<p></p>
-	      <div class="element-activity-header"><a href="#FCS_IPSEC_EXT.1.1">FCS_IPSEC_EXT.1.1</a></div>
-	      <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
-		The evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> and determine that it describes how the IPsec capabilities
-		are implemented.<p></p>
-		The evaluator shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes at a high level the architectural relationship between
-		the IPsec implementation and the rest of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> (e.g., is the IPsec implementation an integrated part 
-		of the VS or is it a standalone executable that is bundled into the VS).<p></p> 		    
-		The evaluator shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes how the SPD is implemented and the rules for processing
-		both inbound and outbound packets in terms of the IPsec policy. The <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes the rules that are
-		available and the resulting actions available after matching a rule. The <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes how the available
-		rules and actions form the SPD using terms defined in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 4301 such as BYPASS (e.g., no encryption),
-		DISCARD (e.g., drop the packet), and PROTECT (e.g., encrypt the packet) actions defined in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 4301.
-		<p></p>
-		As noted in section 4.4.1 of <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 4301, the processing of entries in the SPD is non-trivial and the evaluator
-		shall determine that the description in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> is sufficient to determine which rules will be applied given
-		the rule structure implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. For example, if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> allows specification of ranges,
-		conditional rules, etc., the evaluator shall determine that the description of rule processing (for both
-		inbound and outbound packets) is sufficient to determine the action that will be applied, especially in the
-		case where two different rules may apply. This description shall cover both the initial packets (that is, no
-		SA is established on the interface or for that particular packet) as well as packets that are part of an
-		established SA. <p></p>
-	      <br/>
-	      <div class="eacategory">Guidance</div>
-		The evaluator shall examine the operational guidance to verify it instructs the Administrator how 
-		to construct entries into the SPD that specify a rule for processing a packet. The description 
-		includes all three cases – a rule that ensures packets are encrypted/decrypted, dropped, and 
-		flow through the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> without being encrypted. The evaluator shall determine 
-		that the description in the operational guidance is consistent with the description in the 
-		<abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>, and that the level of detail in the operational guidance is sufficient to
-		allow the administrator to set up the SPD in an unambiguous fashion. This includes a discussion 
-		of how ordering of rules impacts the processing of an <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> packet.<p></p>
-	      <br/>
-	      <div class="eacategory">Tests</div>
-		The evaluator uses the operational guidance to configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to carry out the following tests:<p></p>
-		<ul>
-		  <li><b>Test 1: </b>The evaluator shall configure the SPD such that there is a rule for dropping a packet,
-		  encrypting a packet, and allowing a packet to flow in plaintext. The selectors used in
-		  the construction of the rule shall be different such that the evaluator can generate a
-		  packet and send packets to the gateway with the appropriate fields (fields that are used
-		  by the rule - e.g., the <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> addresses, TCP/UDP ports) in the packet header. The evaluator
-		  performs both positive and negative test cases for each type of rule (e.g., a packet that
-		  matches the rule and another that does not match the rule). The evaluator observes via the
-		  audit trail, and packet captures that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> exhibited the expected
-		  behavior: appropriate packets were dropped, allowed to flow without modification, 
-		  encrypted by the IPsec implementation.</li>
-		  <li><b>Test 2: </b>The evaluator shall devise several tests that cover a variety of scenarios for packet
-		  processing. As with Test 1, the evaluator ensures both positive and negative test cases
-		  are constructed. These scenarios shall exercise the range of possibilities for SPD entries 
-		  and processing modes as outlined in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> and operational guidance. Potential areas to
-		  cover include rules with overlapping ranges and conflicting entries, inbound and outbound
-		  packets, and packets that establish SAs as well as packets that belong to established SAs.
-		  The evaluator shall verify, via the audit trail and packet captures, for each scenario 
-		  that the expected behavior is exhibited, and is consistent with both the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> and the
-		  operational guidance.</li>
-		</ul>
-	      <br/>
-	    <div class="element-activity-header"><a href="#FCS_IPSEC_EXT.1.2">FCS_IPSEC_EXT.1.2</a></div>
-	      <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
-		The evaluator checks the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to ensure it states that an IPsec <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> can be 
-		established to operate in tunnel mode or transport mode (as selected).<p></p>
-	      <br/>
-	      <div class="eacategory">Guidance</div>
-		The evaluator shall confirm that the operational guidance contains instructions on how to 
-		configure the connection in each mode selected.<p></p>
-		If both transport mode and tunnel mode are implemented, the evaluator shall review the operational
-		guidance to determine how the use of a given mode is specified.<p></p>
-	      <br/>
-	      <div class="eacategory">Tests</div>
-		The evaluator shall perform the following tests based on the selections chosen:
-		<ul>
-		  <li><b>Test 1: </b>(conditional): If tunnel mode is selected, the evaluator uses the operational guidance to 
-		  configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>/platform to operate in tunnel mode and also configures 
-		  a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> peer to operate in tunnel mode. The evaluator configures the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>/platform and the
-		  <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> peer to use any of the allowable cryptographic algorithms, authentication methods,
-		  etc. to ensure an allowable SA can be negotiated. The evaluator shall then initiate a 
-		  connection from the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>/Platform to the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> peer. The evaluator observes (for example,
-		  in the audit trail and the captured packets) that a successful connection was established
-		  using the tunnel mode.</li>
-		  <li><b>Test 2: </b>(conditional): If transport mode is selected, the evaluator uses the operational guidance to
-		  configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>/platform to operate in 
-		  transport mode and also configures a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> peer to operate in transport mode. The evaluator 
-		  configures the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>/platform and the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> peer to use any of the allowed cryptographic
-		  algorithms, authentication methods, etc. to ensure an allowable SA can be negotiated. 
-		  The evaluator then initiates a connection from the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>/platform to connect to the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr>
-		  peer. The evaluator observes (for example, in the audit trail and the captured packets)
-		  that a successful connection was established using the transport mode.</li>
-		</ul>
-	      <br/>
-	    <div class="element-activity-header"><a href="#FCS_IPSEC_EXT.1.3">FCS_IPSEC_EXT.1.3</a></div>
-	      <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
-		If both transport mode and tunnel mode are implemented, the evaluator shall review the
-		operational guidance to determine how the use of a given mode is specified.<p></p>
-	      <br/>
-	      <div class="eacategory">Guidance</div>
-		The evaluator shall check that the operational guidance provides instructions on how to construct or
-		acquire the SPD and uses the guidance to configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> for the following test.<p></p>
-	      <br/>
-	      <div class="eacategory">Tests</div>
-		The evaluator shall perform the following test:
-		<ul>
-		  <li><b>Test 1: </b>The evaluator shall configure the SPD such that it has entries that contain operations that DISCARD,
-		  PROTECT, and (if applicable) BYPASS network packets. The evaluator may use the SPD that was created
-		  for verification of <a href="#FCS_IPSEC_EXT.1.1">FCS_IPSEC_EXT.1.1</a>. The evaluator shall construct a network packet that matches a
-		  BYPASS entry and send that packet. The evaluator should observe that the network packet is passed to
-		  the proper destination interface with no modification. The evaluator shall then modify a field in the packet
-		  header; such that it no longer matches the evaluator-created entries (there may be a “<abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>-created” final
-		  entry that discards packets that do not match any previous entries). The evaluator sends the packet, and
-		  observes that the packet was not permitted to flow to any of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s interfaces.</li>
-		</ul>
-	      <br/>
-	    <div class="element-activity-header"><a href="#FCS_IPSEC_EXT.1.4">FCS_IPSEC_EXT.1.4</a></div>
-	      <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
-		The evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to verify that the algorithms <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM-128 and 
-		<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM-256 are implemented. If the "<abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>" author has selected either 
-		<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC-128 or <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC-256 in the requirement, then the evaluator verifies the
-		<abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes these as well. In addition, the evaluator ensures that the 
-		<abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-based <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> algorithm conforms to the algorithms specified in FCS_COP.1/KeyedHash Cryptographic 
-		Operations (Keyed Hash Algorithms).<p></p>
-	      <br/>
-	      <div class="eacategory">Guidance</div>
-		The evaluator checks the operational guidance to ensure it provides instructions on how the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is
-		configured to use the algorithms selected in this component and whether this is performed through direct
-		configuration, defined during initial installation, or defined by acquiring configuration settings from an
-		environmental component.<p></p>
-	      <br/>
-	      <div class="eacategory">Tests</div>
-		<ul>
-		  <li><b>Test 1: </b>The evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>/platform as indicated in the 
-		  operational guidance configuring the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>/platform to use each of the supported
-		  algorithms, attempt to establish a connection using ESP, and verify that the attempt succeeds.
-		  </li>
-		</ul>
-	      <br/>
-	    <div class="element-activity-header"><a href="#FCS_IPSEC_EXT.1.5">FCS_IPSEC_EXT.1.5</a></div>
-	      <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
-		The evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to verify that IKEv1 or IKEv2 (as selected) are implemented. If IKEv1 is
-		implemented, the evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> indicates whether or not XAUTH is supported, and
-		that aggressive mode is not used for IKEv1 Phase 1 exchanges (i.e. only main mode is used). It may be that
-		these are configurable options.<p></p>
-	      <br/>
-	      <div class="eacategory">Guidance</div>
-		The evaluator shall check the operational guidance to ensure it instructs the administrator how to
-		configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to use IKEv1 or IKEv2 (as selected), and uses the guidance to configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to
-		perform NAT traversal for the test below. If XAUTH is implemented, the evaluator shall verify that the
-		operational guidance provides instructions on how it is enabled or disabled.<p></p>
-		If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supports IKEv1, the evaluator shall verify that the operational guidance either asserts that only
-		main mode is used for Phase 1 exchanges, or provides instructions for disabling aggressive mode.<p></p>
-	      <br/>
-	      <div class="eacategory">Tests</div>
-		Tests are performed in conjunction with the other IPsec evaluation activities with the exception
-		of the activities below:<p></p>
-		<ul>
-		  <li><b>Test 1: </b>The evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> so that it will perform NAT traversal processing as described
-		  in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> and <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 7296, section 2.23. The evaluator shall initiate an IPsec connection and determine that
-		  the NAT is successfully traversed. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supports IKEv1 with or without XAUTH, the evaluator shall
-		  verify that this test can be successfully repeated with XAUTH enabled and disabled in the manner specified
-		  by the operational guidance. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> only supports IKEv1 with XAUTH, the evaluator shall verify that
-		  connections not using XAUTH are unsuccessful. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> only supports IKEv1 without XAUTH, the
-		  evaluator shall verify that connections using XAUTH are unsuccessful.</li>
-		  <li><b>Test 2: </b>(conditional) If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supports IKEv1, the evaluator shall perform any applicable operational
-		  guidance steps to disable the use of aggressive mode and then attempt to establish a connection using an
-		  IKEv1 Phase 1 connection in aggressive mode. This attempt should fail. The evaluator shall show that the
-		  <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> will reject a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> gateway from initiating an IKEv1 Phase 1 connection in aggressive mode. The
-		  evaluator should then show that main mode exchanges are supported.</li>
-		</ul>
-	      <br/>
-	    <div class="element-activity-header"><a href="#FCS_IPSEC_EXT.1.6">FCS_IPSEC_EXT.1.6</a></div>
-	      <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
-		The evaluator shall ensure the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> identifies the algorithms used for encrypting the IKEv1 or IKEv2
-		payload, and that the algorithms <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC-128, <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC-256 are specified, and if others are chosen in the
-		selection of the requirement, those are included in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> discussion.<p></p>
-	      <br/>
-	      <div class="eacategory">Guidance</div>
-		The evaluator checks the operational guidance to ensure it provides instructions on how the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is
-		configured to use the algorithms selected in this component and whether this is performed through direct
-		configuration, defined during initial installation, or defined by acquiring configuration settings from an
-		environmental component. <p></p>
-	      <br/>
-	      <div class="eacategory">Tests</div>
-		The evaluator shall use the operational guidance to configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> (or to configure the Operational
-		Environment to have the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> receive configuration) to perform the following test for each ciphersuite
-		selected:<p></p>
-		<ul>
-		  <li><b>Test 1: </b>The evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to use the ciphersuite under test to encrypt the IKEv1 or
-		  IKEv2 payload and establish a connection with a peer device, which is configured to only accept the
-		  payload encrypted using the indicated ciphersuite. The evaluator will confirm the algorithm was that used
-		  in the negotiation. The evaluator will confirm that the connection is successful by confirming that data
-		  can be passed through the connection once it is established. For example, the evaluator may connect to
-		  a remote website and verify that it can be reached.</li>
-		</ul>
-	      <br/>
-	    <div class="element-activity-header"><a href="#FCS_IPSEC_EXT.1.7">FCS_IPSEC_EXT.1.7</a></div>
-	      <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
-		There are no <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> EAs for this requirement.<p></p>
-	      <br/>
-	      <div class="eacategory">Guidance</div>
-		The evaluator shall check the operational guidance to ensure it provides instructions on how the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>
-		configures the values for SA lifetimes. In addition, the evaluator shall check that the guidance has the
-		option for either the Administrator or <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> Gateway to configure Phase 1 SAs if time-based limits are
-		supported. Currently there are no values mandated for the number of packets or number of bytes, the
-		evaluator shall simply check the operational guidance to ensure that this can be configured if selected in
-		the requirement.
-	      <br/>
-	      <div class="eacategory">Tests</div>
-		When testing this functionality, the evaluator needs to ensure that both sides are configured
-		appropriately. From the <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> “A difference between IKEv1 and IKEv2 is that in IKEv1 SA lifetimes were
-		negotiated. In IKEv2, each end of the SA is responsible for enforcing its own lifetime policy on the SA and
-		rekeying the SA when necessary. If the two ends have different lifetime policies, the end with the shorter
-		lifetime will end up always being the one to request the rekeying. If the two ends have the same lifetime
-		policies, it is possible that both will initiate a rekeying at the same time (which will result in redundant
-		SAs). To reduce the probability of this happening, the timing of rekeying requests SHOULD be jittered.”<p></p>
-		Each of the following tests shall be performed for each version of IKE selected in the
-		<a href="#FCS_IPSEC_EXT.1.5">FCS_IPSEC_EXT.1.5</a> protocol selection:
-		<ul>
-		  <li><b>Test 1: </b>(conditional) The evaluator shall configure a maximum lifetime in terms of the # of packets (or
-		  bytes) allowed following the operational guidance. The evaluator shall establish an SA and determine that
-		  once the allowed # of packets (or bytes) through this SA is exceeded, the connection is closed.</li>
-		  <li><b>Test 2: </b>(conditional) The evaluator shall construct a test where a Phase 1 SA is established and attempted
-		  to be maintained for more than 24 hours before it is renegotiated. The evaluator shall observe that this
-		  SA is closed or renegotiated in 24 hours or less. If such an action requires that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> be configured in a
-		  specific way, the evaluator shall implement tests demonstrating that the configuration capability of the
-		  <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> works as documented in the operational guidance.</li>
-		  <li><b>Test 3: </b>(conditional) The evaluator shall perform a test similar to Test 2 
-		  for Phase 2 SAs, except that the lifetime will be 8 hours or less instead of 24 hours or less.</li>
-		  <li><b>Test 4: </b>(conditional) If a fixed limit for IKEv1 SAs is supported, the evaluator
-		  shall establish an SA and observe that the connection is closed after
-		  the fixed traffic or time value is reached.</li>
-		</ul>				    
-	      <br/>
-	    <div class="element-activity-header"><a href="#FCS_IPSEC_EXT.1.8">FCS_IPSEC_EXT.1.8</a></div>
-	      <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
-		The evaluator shall check to ensure that the DH groups specified in the requirement are listed as being
-		supported in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>. If there is more than one DH group supported, the evaluator checks to ensure the
-		<abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes how a particular DH group is specified/negotiated with a peer.
-	      <br/>
-	      <div class="eacategory">Guidance</div>
-		There are no AGD EAs for this requirement.
-	      <br/>
-	      <div class="eacategory">Tests</div>
-		The evaluator shall perform the following test: <p></p>
-		<ul>
-		  <li><b>Test 1: </b>For each supported DH group, the evaluator shall test to ensure that all supported IKE protocols
-		  can be successfully completed using that particular DH group.</li>
-		</ul>
-	      <br/>
-	    <div class="element-activity-header"><a href="#FCS_IPSEC_EXT.1.9">FCS_IPSEC_EXT.1.9</a></div>
-	      <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
-		The evaluator shall check to ensure that, for each DH group supported, the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes the process for
-		generating "x" (as defined in <a href="#FCS_IPSEC_EXT.1.9">FCS_IPSEC_EXT.1.9</a>) and each nonce. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
-		indicates that the random number generated that meets the requirements in this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> is used, and that the
-		length of "x" and the nonces meet the stipulations in the requirement.<p></p>
-	      <br/>
-	      <div class="eacategory">Guidance</div>
-		There are no AGD EAs for this requirement.<p></p>
-	      <br/>
-	      <div class="eacategory">Tests</div>
-		There are no test EAs for this requirement.<p></p>
-	      <br/>
-	    <div class="element-activity-header"><a href="#FCS_IPSEC_EXT.1.10">FCS_IPSEC_EXT.1.10</a></div>
-	      EAs for this element are tested through EAs for <a href="#FCS_IPSEC_EXT.1.9">FCS_IPSEC_EXT.1.9</a>.
-	    <div class="element-activity-header"><a href="#FCS_IPSEC_EXT.1.11">FCS_IPSEC_EXT.1.11</a></div>
-	      <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
-		The evaluator ensures that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> identifies RSA or <abbr class="dyn-abbr"><a href="#abbr_ECDSA">ECDSA</a></abbr> as being used to perform peer
-		authentication.<p></p>
-		If pre-shared keys are chosen in the selection, the evaluator shall check to ensure that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes
-		how pre-shared keys are established and used in authentication of IPsec connections. The description in
-		the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> shall also indicate how pre-shared key establishment is accomplished depending on whether the
-		<abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> can generate a pre-shared key, accept a pre-shared key, or both.<p></p>
-		The evaluator shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes how the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> compares the peer’s presented identifier
-		to the reference identifier. This description shall include whether the certificate presented identifier is
-		compared to the ID payload presented identifier, which fields of the certificate are used as the presented
-		identifier (DN, Common Name, or <abbr class="dyn-abbr"><a href="#abbr_SAN">SAN</a></abbr>) and, if multiple fields are supported, the logical order comparison.
-		If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author assigned an additional identifier type, the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> description shall also include a description
-		of that type and the method by which that type is compared to the peer’s presented certificate.<p></p>
-	      <br/>
-	      <div class="eacategory">Guidance</div>
-		The evaluator shall check that the operational guidance describes how pre-shared keys are to be
-		generated and established.<p></p>
-		The evaluator ensures the operational guidance describes how to set up the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to use the cryptographic
-		algorithms RSA or <abbr class="dyn-abbr"><a href="#abbr_ECDSA">ECDSA</a></abbr> (as selected).<p></p>
-		In order to construct the environment and configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> for the following tests, the evaluator will
-		ensure that the operational guidance also describes how to configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to connect to a trusted CA,
-		and ensure a valid certificate for that CA is loaded into the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> as a trusted CA.<p></p>
-		The evaluator shall also ensure that the operational guidance includes the configuration of the reference
-		identifiers for the peer.<p></p>
-	      <br/>
-	      <div class="eacategory">Tests</div>
-		For efficiency’s sake, the testing that is performed here has been combined with the testing for
-		<a href="#FIA_X509_EXT.2">FIA_X509_EXT.2</a> and FIA_X509_EXT.3 (for IPsec connections and depending on the <abbr class="dyn-abbr"><a href="#abbr_Base-PP">Base-PP</a></abbr>),
-		<a href="#FCS_IPSEC_EXT.1.12">FCS_IPSEC_EXT.1.12</a>, and <a href="#FCS_IPSEC_EXT.1.13">FCS_IPSEC_EXT.1.13</a>. The following tests shall be repeated for each peer
-		authentication protocol selected in the <a href="#FCS_IPSEC_EXT.1.11">FCS_IPSEC_EXT.1.11</a> selection above:<p></p>
-		<ul>
-		  <li><b>Test 1: </b>The evaluator shall have the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> generate a public-private key pair, and submit a CSR (Certificate
-		  Signing Request) to a CA (trusted by both the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and the peer <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> used to establish a connection) for
-		  its signature. The values for the DN (Common Name, Organization, Organizational Unit, and Country) will
-		  also be passed in the request. Alternatively, the evaluator may import to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> a previously generated
-		  private key and corresponding certificate.</li>
-		  <li><b>Test 2: </b>The evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to use a private key and associated certificate signed by a
-		  trusted CA and shall establish an IPsec connection with the peer.</li>
-		  <li><b>Test 3: </b>The evaluator shall test that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> can properly handle revoked certificates – conditional on
-		  whether <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> is selected; if both are selected, and then a test is performed for each method. For
-		  this current version of the <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr>, the evaluator has to only test one up in the trust chain (future
-		  drafts may require to ensure the validation is done up the entire chain). The evaluator shall ensure that a
-		  valid certificate is used, and that the SA is established. The evaluator then attempts the test with a
-		  certificate that will be revoked (for each method chosen in the selection) to ensure when the certificate
-		  is no longer valid that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> will not establish an SA.</li>
-		  <li><b>Test 4: </b>(conditional) The evaluator shall generate a pre-shared key and use it, as indicated in the
-		  operational guidance, to establish an IPsec connection with the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> GW peer. If the generation of the
-		  pre-shared key is supported, the evaluator shall ensure that establishment of the key is carried out for an
-		  instance of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> generating the key as well as an instance of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> merely taking in and using the
-		  key.<p></p>
-		  For each supported identifier type (excluding DNs), the evaluator shall repeat the following tests:<p></p> </li>
-		  <li><b>Test 5: </b>For each field of the certificate supported for comparison, the evaluator shall configure the peer’s
-		  reference identifier on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> (per the administrative guidance) to match the field in the peer’s
-		  presented certificate and shall verify that the IKE authentication succeeds.</li>
-		  <li><b>Test 6: </b>For each field of the certificate support for comparison, the evaluator shall configure the peer’s
-		  reference identifier on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> (per the administrative guidance) to not match the field in the peer’s
-		  presented certificate and shall verify that the IKE authentication fails.<p></p>
-		  The following tests are conditional:</li>
-		  <li><b>Test 7: </b>(conditional) If, according to the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supports both Common Name and <abbr class="dyn-abbr"><a href="#abbr_SAN">SAN</a></abbr> certificate
-		  fields and uses the preferred logic outlined in the Application Note, the tests above with the Common
-		  Name field shall be performed using peer certificates with no <abbr class="dyn-abbr"><a href="#abbr_SAN">SAN</a></abbr> extension. Additionally, the evaluator
-		  shall configure the peer’s reference identifier on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to not match the <abbr class="dyn-abbr"><a href="#abbr_SAN">SAN</a></abbr> in the peer’s presented
-		  certificate but to match the Common Name in the peer’s presented certificate, and verify that the IKE
-		  authentication fails.</li>
-		  <li><b>Test 8: </b>(conditional) If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supports DN identifier types, the evaluator shall configure the peer's
-		  reference identifier on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> (per the administrative guidance) to match the subject DN in the peer's
-		  presented certificate and shall verify that the IKE authentication succeeds. To demonstrate a bit-wise
-		  comparison of the DN, the evaluator shall change a single bit in the DN (preferably, in an Object Identifier
-		  (<abbr class="dyn-abbr"><a href="#abbr_OID">OID</a></abbr>) in the DN) and verify that the IKE authentication fails. To demonstrate a comparison of DN values,
-		  the evaluator shall change any one of the four DN values and verify that the IKE authentication fails.</li>
-		  <li><b>Test 9: </b>(conditional) If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supports both IPv4 and IPv6 and supports <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> address identifier types, the
-		  evaluator must repeat test 1 and 2 with both IPv4 address identifiers and IPv6 identifiers. Additionally,
-		  the evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> verifies that the <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> header matches the identifiers by setting the
-		  presented identifiers and the reference identifier with the same <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> address that differs from the actual <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr>
-		  address of the peer in the <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> headers and verifying that the IKE authentication fails.</li>
-		  <li><b>Test 10: </b>(conditional) If, according to the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> performs comparisons between the peer’s ID
-		  payload and the peer’s certificate, the evaluator shall repeat the following test for each combination of
-		  supported identifier types and supported certificate fields (as above). The evaluator shall configure the
-		  peer to present a different ID payload than the field in the peer’s presented certificate and verify that the
-		  <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fails to authenticate the IKE peer.</li>
-		</ul>
-	      <br/>
-	    <div class="element-activity-header"><a href="#FCS_IPSEC_EXT.1.12">FCS_IPSEC_EXT.1.12</a></div>
-	      EAs for this element are tested through EAs for <a href="#FCS_IPSEC_EXT.1.11">FCS_IPSEC_EXT.1.11</a>.
-	    <div class="element-activity-header"><a href="#FCS_IPSEC_EXT.1.13">FCS_IPSEC_EXT.1.13</a></div>
-	      
-		EAs for this element are tested through EAs for <a href="#FCS_IPSEC_EXT.1.11">FCS_IPSEC_EXT.1.11</a>.
-	      
-	    <div class="element-activity-header"><a href="#FCS_IPSEC_EXT.1.14">FCS_IPSEC_EXT.1.14</a></div>
-	      <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div>
-		The evaluator shall check that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes the potential strengths (in terms of the number of bits in
-		the symmetric key) of the algorithms that are allowed for the IKE and ESP exchanges. The <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> shall also
-		describe the checks that are done when negotiating IKEv1 Phase 2 and IKEv2 CHILD_SA suites to ensure
-		that the strength (in terms of the number of bits of key in the symmetric algorithm) of the negotiated
-		algorithm is less than or equal to that of the IKE SA that is protecting the negotiation.
-	      <br/>
-	      <div class="eacategory">Guidance</div>
-		There are no AGD EAs for this requirement.
-	      <br/>
-	      <div class="eacategory">Tests</div>
-		The evaluator follows the guidance to configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to perform the following tests:<p></p>
-		<ul>
-		  <li><b>Test 1: </b>This test shall be performed for each version of IKE supported. The evaluator shall successfully
-		  negotiate an IPsec connection using each of the supported algorithms and hash functions identified in the
-		  requirements.</li>         
-		  <li><b>Test 2: </b>(conditional) This test shall be performed for each version of IKE supported. The evaluator shall
-		  attempt to establish an SA for ESP that selects an encryption algorithm with more strength than that being
-		  used for the IKE SA (i.e., symmetric algorithm with a key size larger than that being used for the IKE SA).
-		  Such attempts should fail.</li>
-		  <li><b>Test 3: </b>This test shall be performed for each version of IKE supported. The evaluator shall attempt to
-		  establish an IKE SA using an algorithm that is not one of the supported algorithms and hash functions
-		  identified in the requirements. Such an attempt should fail.</li>
-		  <li><b>Test 4: </b>This test shall be performed for each version of IKE supported. The evaluator shall attempt to
-		  establish an SA for ESP (assumes the proper parameters where used to establish the IKE SA) that selects
-		  an encryption algorithm that is not identified in <a href="#FCS_IPSEC_EXT.1.4">FCS_IPSEC_EXT.1.4</a>. Such an attempt should fail.</li>
-		</ul>
-	      <br/>
-	    </div></div></div><h1 id="satisfiedreqs" class="indexable" data-level="A">Appendix C -  Implicitly Satisfied Requirements</h1><p>This appendix lists requirements that should be considered satisfied by products
+		 <p>This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> does not define any 
+            Selection-based requirements.</p><h1 id="satisfiedreqs" class="indexable" data-level="A">Appendix C -  Implicitly Satisfied Requirements</h1><p>This appendix lists requirements that should be considered satisfied by products
 	successfully evaluated against this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>. These requirements are not featured
 	explicitly as SFRs and should not be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. They are not included as 
 	standalone SFRs because it would increase the time, cost, and complexity of evaluation.
@@ -4810,6 +4192,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
   <h1 id="acronyms" class="indexable" data-level="A">Appendix E -  Acronyms</h1><table><tr class="header"><th>Acronym</th><th>Meaning</th></tr><tr><td><span class="term" id="abbr_AES"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr></span></td><td><span id="long_abbr_AES">Advanced Encryption Standard</span></td></tr>
 <tr><td><span class="term" id="abbr_API"><abbr class="dyn-abbr"><a href="#abbr_API">API</a></abbr></span></td><td><span id="long_abbr_API">Application Programming Interface</span></td></tr>
 <tr><td><span class="term" id="abbr_ASLR"><abbr class="dyn-abbr"><a href="#abbr_ASLR">ASLR</a></abbr></span></td><td><span id="long_abbr_ASLR">Address Space Layout Randomization</span></td></tr>
+<tr><td><span class="term" id="abbr_BAF" data-plural="BAFs"><abbr class="dyn-abbr"><a href="#abbr_BAF">BAF</a></abbr></span></td><td><span id="long_abbr_BAF">Biometric Authentication Factor</span></td></tr>
 <tr><td><span class="term" id="abbr_Base-PP"><abbr class="dyn-abbr"><a href="#abbr_Base-PP">Base-PP</a></abbr></span></td><td><span id="long_abbr_Base-PP">Base Protection Profile</span></td></tr>
 <tr><td><span class="term" id="abbr_CC"><abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr></span></td><td><span id="long_abbr_CC">Common Criteria</span></td></tr>
 <tr><td><span class="term" id="abbr_CEM"><abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr></span></td><td><span id="long_abbr_CEM">Common Evaluation Methodology</span></td></tr>
@@ -4852,6 +4235,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
 <tr><td><span class="term" id="abbr_OMB"><abbr class="dyn-abbr"><a href="#abbr_OMB">OMB</a></abbr></span></td><td><span id="long_abbr_OMB">Office of Management and Budget</span></td></tr>
 <tr><td><span class="term" id="abbr_OS"><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></span></td><td><span id="long_abbr_OS">Operating System</span></td></tr>
 <tr><td><span class="term" id="abbr_PII"><abbr class="dyn-abbr"><a href="#abbr_PII">PII</a></abbr></span></td><td><span id="long_abbr_PII">Personally Identifiable Information</span></td></tr>
+<tr><td><span class="term" id="abbr_PIN"><abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr></span></td><td><span id="long_abbr_PIN">Personal Identification Number</span></td></tr>
 <tr><td><span class="term" id="abbr_PKI"><abbr class="dyn-abbr"><a href="#abbr_PKI">PKI</a></abbr></span></td><td><span id="long_abbr_PKI">Public Key Infrastructure</span></td></tr>
 <tr><td><span class="term" id="abbr_PP"><abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr></span></td><td><span id="long_abbr_PP">Protection Profile</span></td></tr>
 <tr><td><span class="term" id="abbr_PP-Configuration"><abbr class="dyn-abbr"><a href="#abbr_PP-Configuration">PP-Configuration</a></abbr></span></td><td><span id="long_abbr_PP-Configuration">Protection Profile Configuration</span></td></tr>
