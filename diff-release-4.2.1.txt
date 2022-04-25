@@ -328,7 +328,7 @@ this document.										this document.
 |                                   | *[TOE](#abbr_TOE)* and            |	      |	|                                   | *OS* are interchangeable in this  |
 |                                   | *[OS](#abbr_OS)* are              |	      |	|                                   | document.                         |
 |                                   | interchangeable in this document. |	      |	+-----------------------------------+-----------------------------------+
-										      >	| ::: {#Personal_Identification_Num | An authetication factor that is   |
+										      >	| ::: {#Personal_Identification_Num | An authentication factor that is  |
 										      >	| ber}                              | comprised of a set of numeric or  |
 										      >	| Personal Identification Number    | alphabetic characters that may be |
 										      >	| (PIN)                             | used in addition to a biometric   |
@@ -1791,8 +1791,8 @@ The evaluator will test the decrypt functionality using the same test as		The ev
 for encrypt, exchanging CT and PT and replacing						for encrypt, exchanging CT and PT and replacing
 [AES](#abbr_AES)-CBC-Encrypt with [AES](#abbr_AES)-CBC-Decrypt.				[AES](#abbr_AES)-CBC-Encrypt with [AES](#abbr_AES)-CBC-Decrypt.
 
-**[AES](#abbr_AES)-GCM Monte Carlo Tests**						**[AES](#abbr_AES)-GCM Monte Carlo Tests**
-
+**[AES](#abbr_AES)-GCM Monte Carlo Tests**					      |	**[AES](#abbr_AES)-GCM Monte Carlo Tests**\
+										      <
 The evaluator will test the authenticated encrypt functionality of			The evaluator will test the authenticated encrypt functionality of
 [AES](#abbr_AES)-GCM for each combination of the following input			[AES](#abbr_AES)-GCM for each combination of the following input
 parameter lengths:									parameter lengths:
@@ -3440,6 +3440,78 @@ and installation of arbitrary files.						      |	signature and verify that the 
 :::											:::
 :::											:::
 										      >	:::
+										      >
+										      >	::: {#FPT_W^X_EXT.1 .comp}
+										      >	#### FPT\_W\^X\_EXT.1 Write XOR Execute Memory Pages
+										      >
+										      >	::: {.element}
+										      >	::: {#FPT_W^X_EXT.1.1 .reqid}
+										      >	[FPT\_W\^X\_EXT.1.1](#FPT_W%5EX_EXT.1.1){.abbr}
+										      >	:::
+										      >
+										      >	::: {.reqdesc}
+										      >	The [OS](#abbr_OS) shall prevent allocation of any memory region with
+										      >	both write and execute permissions except for \[**assignment**: [list of
+										      >	exceptions]{.assignable-content}\].
+										      >
+										      >	::: {.appnote}
+										      >	[Application Note: ]{.note-header}[Requesting a memory mapping with both
+										      >	write and execute permissions subverts the platform protection provided
+										      >	by [DEP](#abbr_DEP). If the [OS](#abbr_OS) provides no exceptions (such
+										      >	as for just-in-time compilation), then \"no exceptions\" should be
+										      >	indicated in the assignment. Full realization of this requirement
+										      >	requires hardware support, but this is commonly available. ]{.note}
+										      >	:::
+										      >	:::
+										      >	:::
+										      >
+										      >	::: {.activity_pane .hide}
+										      >	::: {.activity_pane_header}
+										      >	[[ Evaluation Activities ]{.activity_pane_label}[]{.toggler}](#)
+										      >	:::
+										      >
+										      >	::: {.activity_pane_body}
+										      >	::: {.component-activity-header}
+										      >	[FPT\_W\^X\_EXT.1](#FPT_W%5EX_EXT.1)
+										      >	:::
+										      >
+										      >	::: {.eacategory}
+										      >	[TSS](#abbr_TSS)
+										      >	:::
+										      >
+										      >	::: {.ea}
+										      >	The evaluator will inspect the vendor-provided developer documentation
+										      >	and verify that no memory-mapping can be made with write and execute
+										      >	permissions except for the cases listed in the assignment.
+										      >	:::
+										      >
+										      >	::: {.eacategory}
+										      >	Tests
+										      >	:::
+										      >
+										      >	::: {.ea}
+										      >	The evaluator will also perform the following tests.
+										      >
+										      >	-   **Test 1:** The evaluator will acquire or construct a test program
+										      >	    which attempts to allocate memory that is both writable and
+										      >	    executable. The evaluator will run the program and confirm that it
+										      >	    fails to allocate memory that is both writable and executable.
+										      >	-   **Test 2:** The evaluator will acquire or construct a test program
+										      >	    which allocates memory that is executable and then subsequently
+										      >	    requests additional write/modify permissions on that memory. The
+										      >	    evaluator will run the program and confirm that at no time during
+										      >	    the lifetime of the process is the memory both writable and
+										      >	    executable.
+										      >	-   **Test 3:** The evaluator will acquire or construct a test program
+										      >	    which allocates memory that is writable and then subsequently
+										      >	    requests additional execute permissions on that memory. The
+										      >	    evaluator will run the program and confirm that at no time during
+										      >	    the lifetime of the process is the memory both writable and
+										      >	    executable.
+										      >	:::
+										      >	:::
+										      >	:::
+										      >	:::
 
 ### 5.1.5 Audit Data Generation (FAU) {#fau .indexable data-level="3"}			### 5.1.5 Audit Data Generation (FAU) {#fau .indexable data-level="3"}
 
@@ -3696,9 +3768,7 @@ public key-based authentication as specified by the [EP](#abbr_EP) for		      |	
 Secure Shell\" selection can only be included, and must be included, if		      |	Package for Secure Shell (SSH), version
 [FTP\_ITC\_EXT.1.1](#FTP_ITC_EXT.1.1) selects \"SSH as conforming to the	      |	1.0](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&id=459)
 [EP](#abbr_EP) for Secure Shell\". ]{.note}					      |	selection can only be included, and must be included, if
-										      >	[FTP\_ITC\_EXT.1.1](#FTP_ITC_EXT.1.1) selects [SSH as conforming to
-										      >	the](#s-ftp_ssh) [Functional Package for Secure Shell (SSH), version
-										      >	1.0](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&id=459).
+										      >	[FTP\_ITC\_EXT.1.1](#FTP_ITC_EXT.1.1) selects [SSH](#s-ftp_ssh).
 										      >	]{.note}
 :::											:::
 :::											:::
@@ -4136,16 +4206,14 @@ detection of modification of the channel data.						detection of modification of
 include the security functional requirements for the trusted channel			include the security functional requirements for the trusted channel
 protocol selected in [FTP\_ITC\_EXT.1.1](#FTP_ITC_EXT.1.1) in the main			protocol selected in [FTP\_ITC\_EXT.1.1](#FTP_ITC_EXT.1.1) in the main
 body of the [ST](#abbr_ST).\								body of the [ST](#abbr_ST).\
-If the [ST](#abbr_ST) author selects [TLS](#abbr_TLS) or			      |	If the [ST](#abbr_ST) author selects [TLS as conforming to the](#tls)
-[DTLS](#abbr_DTLS), the [TSF](#abbr_TSF) shall be validated against		      |	[Functional Package for Transport Layer Security (TLS), version
-requirements from the [*Package for Transport Layer				      |	1.1](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&id=439) or
-Security*](https://www.niap-ccevs.org/pp/). The [TSF](#abbr_TSF) can act	      |	[DTLS as conforming to the](#dtls) [Functional Package for Transport
-as [TLS](#abbr_TLS) client or server, or both.\					      |	Layer Security (TLS), version
-If the [ST](#abbr_ST) author selects IPsec, the [TSF](#abbr_TSF) shall		      |	1.1](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&id=439), the
-be validated against the *[EP](#abbr_EP) for IPsec Virtual Private		      |	[TSF](#abbr_TSF) shall be validated against requirements from the
-Network (VPN) Clients*.\							      |	[Functional Package for Transport Layer Security (TLS), version
-										      >	1.1](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&id=439). The
-										      >	[TSF](#abbr_TSF) can act as [TLS](#abbr_TLS) client or server, or both.\
+If the [ST](#abbr_ST) author selects [TLS](#abbr_TLS) or			      |	If the [ST](#abbr_ST) author selects [TLS](#tls) or [DTLS](#dtls), the
+[DTLS](#abbr_DTLS), the [TSF](#abbr_TSF) shall be validated against		      |	[TSF](#abbr_TSF) shall be validated against requirements from the
+requirements from the [*Package for Transport Layer				      |	[Functional Package for Transport Layer Security (TLS), version
+Security*](https://www.niap-ccevs.org/pp/). The [TSF](#abbr_TSF) can act	      |	1.1](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&id=439). The
+as [TLS](#abbr_TLS) client or server, or both.\					      |	[TSF](#abbr_TSF) can act as [TLS](#abbr_TLS) client or server, or both.\
+If the [ST](#abbr_ST) author selects IPsec, the [TSF](#abbr_TSF) shall		      <
+be validated against the *[EP](#abbr_EP) for IPsec Virtual Private		      <
+Network (VPN) Clients*.\							      <
 If the [ST](#abbr_ST) author selects SSH, the [TSF](#abbr_TSF) shall be			If the [ST](#abbr_ST) author selects SSH, the [TSF](#abbr_TSF) shall be
 validated against the *[EP](#abbr_EP) for Secure Shell*. ]{.note}		      |	validated against the [Functional Package for Secure Shell (SSH),
 										      >	version
@@ -4334,11 +4402,11 @@ to meet and achieve the security objectives:\					      |	are suitable to meet a
 										      >	Objective
 										      >
 										      >	Addressed by
-
-  ----------------------------------------------------------------------------------- |	Rationale
-  Objective                                        Addressed by                       |
-  ------------------------------------------------ ---------------------------------- |	[O.ACCOUNTABILITY](#O.ACCOUNTABILITY)\
-  [O.ACCOUNTABILITY](#O.ACCOUNTABILITY)\           [FAU\_GEN.1](#FAU_GEN.1), [FTP\_IT |
+										      >
+										      >	Rationale
+										      >
+										      >	[O.ACCOUNTABILITY](#O.ACCOUNTABILITY)\
+										      >
 										      >	[FAU\_GEN.1](#FAU_GEN.1)
 										      >
 										      >	Supports the objective by requiring that critical event information be
@@ -4358,20 +4426,19 @@ to meet and achieve the security objectives:\					      |	are suitable to meet a
 										      >	hardened against buffer overflow attacks
 										      >
 										      >	[FPT\_TUD\_EXT.1](#FPT_TUD_EXT.1)
-
-  [O.INTEGRITY](#O.INTEGRITY)\                     [FPT\_SBOP\_EXT.1](#FPT_SBOP_EXT.1 |	Supports the objective by requiring that the [OS](#abbr_OS) be able to
+										      >
+										      >	Supports the objective by requiring that the [OS](#abbr_OS) be able to
 										      >	check for critical updates.
-
-  [O.MANAGEMENT](#O.MANAGEMENT)\                   [FMT\_MOF\_EXT.1](#FMT_MOF_EXT.1), |	[FPT\_TUD\_EXT.2](#FPT_TUD_EXT.2)
-
-  [O.PROTECTED\_​STORAGE](#O.PROTECTED_STORAGE)\   [FCS\_STO\_EXT.1](#FCS_STO_EXT.1),  |	Supports the objective by requiring that the [OS](#abbr_OS) verify
+										      >
+										      >	[FPT\_TUD\_EXT.2](#FPT_TUD_EXT.2)
+										      >
+										      >	Supports the objective by requiring that the [OS](#abbr_OS) verify
 										      >	updates before applying them.
-
-  [O.PROTECTED\_​COMMS](#O.PROTECTED_COMMS)\       [FCS\_RBG\_EXT.1](#FCS_RBG_EXT.1),  |	[FCS\_COP.1/HASH](#FCS_COP.1/HASH)
-  ----------------------------------------------------------------------------------- <
-
-  : [Table [2]{.counter}]{#t-obj_map .ctr data-myid="t-obj_map"			      |	Supports the objective by requiring the [TSF](#abbr_TSF) to implement
-  data-counter-type="ct-Table"}: [SFR](#abbr_SFR) Rationale			      |	hash algorithms that are used in support of protected communications.
+										      >
+										      >	[FCS\_COP.1/HASH](#FCS_COP.1/HASH)
+										      >
+										      >	Supports the objective by requiring the [TSF](#abbr_TSF) to implement
+										      >	hash algorithms that are used in support of protected communications.
 										      >
 										      >	[FCS\_COP.1/SIGN](#FCS_COP.1/SIGN)
 										      >
@@ -4384,11 +4451,11 @@ to meet and achieve the security objectives:\					      |	are suitable to meet a
 										      >	Supports the objective by requiring the [TSF](#abbr_TSF) to implement
 										      >	[HMAC](#abbr_HMAC) algorithms that are used in support of protected
 										      >	communications.
-										      >
-										      >	[FPT\_ACF\_EXT.1](#FPT_ACF_EXT.1)
-										      >
-										      >	Supports the objective by requiring the [TSF](#abbr_TSF) restrict
-										      >	unprivileged users from changing critical components.
+
+  ----------------------------------------------------------------------------------- |	[FPT\_ACF\_EXT.1](#FPT_ACF_EXT.1)
+  Objective                                        Addressed by                       |
+  ------------------------------------------------ ---------------------------------- |	Supports the objective by requiring the [TSF](#abbr_TSF) restrict
+  [O.ACCOUNTABILITY](#O.ACCOUNTABILITY)\           [FAU\_GEN.1](#FAU_GEN.1), [FTP\_IT |	unprivileged users from changing critical components.
 										      >
 										      >	[FPT\_SRP\_EXT.1](#FPT_SRP_EXT.1)
 										      >
@@ -4519,20 +4586,21 @@ to meet and achieve the security objectives:\					      |	are suitable to meet a
 										      >	compatible with at least one [VPN](#abbr_VPN).
 										      >
 										      >	[FIA\_X509\_EXT.1](#FIA_X509_EXT.1)
-										      >
-										      >	Supports the objective by requiring the [TSF](#abbr_TSF) to validate
+
+  [O.INTEGRITY](#O.INTEGRITY)\                     [FPT\_SBOP\_EXT.1](#FPT_SBOP_EXT.1 |	Supports the objective by requiring the [TSF](#abbr_TSF) to validate
 										      >	certificates using industry standards.
-										      >
-										      >	[FIA\_X509\_EXT.2](#FIA_X509_EXT.2)
-										      >
-										      >	Supports this objective by requiring the [TSF](#abbr_TSF) to validate
+
+  [O.MANAGEMENT](#O.MANAGEMENT)\                   [FMT\_MOF\_EXT.1](#FMT_MOF_EXT.1), |	[FIA\_X509\_EXT.2](#FIA_X509_EXT.2)
+
+  [O.PROTECTED\_​STORAGE](#O.PROTECTED_STORAGE)\   [FCS\_STO\_EXT.1](#FCS_STO_EXT.1),  |	Supports this objective by requiring the [TSF](#abbr_TSF) to validate
 										      >	[TLS](#abbr_TLS) and related encrypted connections with x509
 										      >	certificates.
-										      >
-										      >	[FTP\_ITC\_EXT.1](#FTP_ITC_EXT.1)
-										      >
-										      >	Supports the objective by requiring the [OS](#abbr_OS) to provide a
-										      >	trusted channel for critical communication.
+
+  [O.PROTECTED\_​COMMS](#O.PROTECTED_COMMS)\       [FCS\_RBG\_EXT.1](#FCS_RBG_EXT.1),  |	[FTP\_ITC\_EXT.1](#FTP_ITC_EXT.1)
+  ----------------------------------------------------------------------------------- <
+
+  : [Table [2]{.counter}]{#t-obj_map .ctr data-myid="t-obj_map"			      |	Supports the objective by requiring the [OS](#abbr_OS) to provide a
+  data-counter-type="ct-Table"}: [SFR](#abbr_SFR) Rationale			      |	trusted channel for critical communication.
 
 5.2 Security Assurance Requirements {#Security_Assurance_Requirements .indexable data	5.2 Security Assurance Requirements {#Security_Assurance_Requirements .indexable data
 -----------------------------------							-----------------------------------
@@ -5910,95 +5978,23 @@ permission to complete the action):							permission to complete the action):
 :::											:::
 										      >	:::
 
-::: {#FPT_W^X_EXT.1 .comp}								::: {#FPT_W^X_EXT.1 .comp}
-#### FPT\_W\^X\_EXT.1 Write XOR Execute Memory Pages					#### FPT\_W\^X\_EXT.1 Write XOR Execute Memory Pages
-
-::: {.element}										::: {.element}
-::: {#FPT_W^X_EXT.1.1 .reqid}								::: {#FPT_W^X_EXT.1.1 .reqid}
-[FPT\_W\^X\_EXT.1.1](#FPT_W%5EX_EXT.1.1){.abbr}						[FPT\_W\^X\_EXT.1.1](#FPT_W%5EX_EXT.1.1){.abbr}
-:::											:::
-
-::: {.reqdesc}										::: {.reqdesc}
-The [OS](#abbr_OS) shall prevent allocation of any memory region with			The [OS](#abbr_OS) shall prevent allocation of any memory region with
-both write and execute permissions except for \[**assignment**: [list of		both write and execute permissions except for \[**assignment**: [list of
-exceptions]{.assignable-content}\].							exceptions]{.assignable-content}\].
-
-::: {.appnote}										::: {.appnote}
-[Application Note: ]{.note-header}[Requesting a memory mapping with both		[Application Note: ]{.note-header}[Requesting a memory mapping with both
-write and execute permissions subverts the platform protection provided			write and execute permissions subverts the platform protection provided
-by [DEP](#abbr_DEP). If the [OS](#abbr_OS) provides no exceptions (such			by [DEP](#abbr_DEP). If the [OS](#abbr_OS) provides no exceptions (such
-as for just-in-time compilation), then \"no exceptions\" should be			as for just-in-time compilation), then \"no exceptions\" should be
-indicated in the assignment. Full realization of this requirement			indicated in the assignment. Full realization of this requirement
-requires hardware support, but this is commonly available. ]{.note}			requires hardware support, but this is commonly available. ]{.note}
-:::											:::
-:::											:::
-:::											:::
-
-::: {.activity_pane .hide}								::: {.activity_pane .hide}
-::: {.activity_pane_header}								::: {.activity_pane_header}
-[[ Evaluation Activities ]{.activity_pane_label}[]{.toggler}](#)			[[ Evaluation Activities ]{.activity_pane_label}[]{.toggler}](#)
-:::											:::
-
-::: {.activity_pane_body}								::: {.activity_pane_body}
-::: {.component-activity-header}							::: {.component-activity-header}
-[FPT\_W\^X\_EXT.1](#FPT_W%5EX_EXT.1)							[FPT\_W\^X\_EXT.1](#FPT_W%5EX_EXT.1)
-:::											:::
-
-::: {.eacategory}									::: {.eacategory}
-[TSS](#abbr_TSS)									[TSS](#abbr_TSS)
-:::											:::
-
-										      >	::: {.ea}
-The evaluator will inspect the vendor-provided developer documentation			The evaluator will inspect the vendor-provided developer documentation
-and verify that no memory-mapping can be made with write and execute			and verify that no memory-mapping can be made with write and execute
-permissions except for the cases listed in the assignment.				permissions except for the cases listed in the assignment.
-										      >	:::
-
-::: {.eacategory}									::: {.eacategory}
-Tests											Tests
-:::											:::
-
-										      >	::: {.ea}
-The evaluator will also perform the following tests.					The evaluator will also perform the following tests.
-
--   **Test 1:** The evaluator will acquire or construct a test program			-   **Test 1:** The evaluator will acquire or construct a test program
-    which attempts to allocate memory that is both writable and				    which attempts to allocate memory that is both writable and
-    executable. The evaluator will run the program and confirm that it			    executable. The evaluator will run the program and confirm that it
-    fails to allocate memory that is both writable and executable.			    fails to allocate memory that is both writable and executable.
--   **Test 2:** The evaluator will acquire or construct a test program			-   **Test 2:** The evaluator will acquire or construct a test program
-    which allocates memory that is executable and then subsequently			    which allocates memory that is executable and then subsequently
-    requests additional write/modify permissions on that memory. The			    requests additional write/modify permissions on that memory. The
-    evaluator will run the program and confirm that at no time during			    evaluator will run the program and confirm that at no time during
-    the lifetime of the process is the memory both writable and				    the lifetime of the process is the memory both writable and
-    executable.										    executable.
--   **Test 3:** The evaluator will acquire or construct a test program			-   **Test 3:** The evaluator will acquire or construct a test program
-    which allocates memory that is writable and then subsequently			    which allocates memory that is writable and then subsequently
-    requests additional execute permissions on that memory. The				    requests additional execute permissions on that memory. The
-    evaluator will run the program and confirm that at no time during			    evaluator will run the program and confirm that at no time during
-    the lifetime of the process is the memory both writable and				    the lifetime of the process is the memory both writable and
-    executable.										    executable.
-:::											:::
-:::											:::
-:::											:::
-										      >	:::
-
-A.3 Implementation-based Requirements {#feat-based-reqs .indexable data-level="2"}    |	A.3 Implementation-dependent Requirements {#feat-based-reqs .indexable data-level="2"
--------------------------------------						      |	-----------------------------------------
-
-This [PP](#abbr_PP) does not define any Implementation-based			      |	This [PP](#abbr_PP) does not define any Implementation-dependent
-requirements.										requirements.
-
-Appendix B - Selection-based Requirements {#sel-based-reqs .indexable data-level="A"}	Appendix B - Selection-based Requirements {#sel-based-reqs .indexable data-level="A"}
-=========================================						=========================================
-
-As indicated in the introduction to this [PP](#abbr_PP), the baseline			As indicated in the introduction to this [PP](#abbr_PP), the baseline
-requirements (those that must be performed by the [TOE](#abbr_TOE) or			requirements (those that must be performed by the [TOE](#abbr_TOE) or
-its underlying platform) are contained in the body of this				its underlying platform) are contained in the body of this
-[PP](#abbr_PP). There are additional requirements based on selections in		[PP](#abbr_PP). There are additional requirements based on selections in
-the body of the [PP](#abbr_PP): if certain selections are made, then			the body of the [PP](#abbr_PP): if certain selections are made, then
-additional requirements below must be included.						additional requirements below must be included.
-
-This [PP](#abbr_PP) does not define any Selection-based requirements.		      |	B.1 User Data Protection (FDP) {#fdp-sel-based .indexable data-level="2"}
+::: {#FPT_W^X_EXT.1 .comp}							      |	A.3 Implementation-dependent Requirements {#feat-based-reqs .indexable data-level="2"
+#### FPT\_W\^X\_EXT.1 Write XOR Execute Memory Pages				      |	-----------------------------------------
+										      >
+										      >	This [PP](#abbr_PP) does not define any Implementation-dependent
+										      >	requirements.
+										      >
+										      >	Appendix B - Selection-based Requirements {#sel-based-reqs .indexable data-level="A"}
+										      >	=========================================
+										      >
+										      >	As indicated in the introduction to this [PP](#abbr_PP), the baseline
+										      >	requirements (those that must be performed by the [TOE](#abbr_TOE) or
+										      >	its underlying platform) are contained in the body of this
+										      >	[PP](#abbr_PP). There are additional requirements based on selections in
+										      >	the body of the [PP](#abbr_PP): if certain selections are made, then
+										      >	additional requirements below must be included.
+										      >
+										      >	B.1 User Data Protection (FDP) {#fdp-sel-based .indexable data-level="2"}
 										      >	------------------------------
 										      >
 										      >	::: {#FDP_IFC_EXT.1 .comp}
@@ -6011,31 +6007,31 @@ This [PP](#abbr_PP) does not define any Selection-based requirements.		      |	B
 										      >	***This component may also be included in the [ST](#abbr_ST) as if
 										      >	optional.***
 										      >	:::
-										      >
-										      >	::: {.element}
-										      >	::: {#FDP_IFC_EXT.1.1 .reqid}
-										      >	[FDP\_IFC\_EXT.1.1](#FDP_IFC_EXT.1.1){.abbr}
-										      >	:::
-										      >
-										      >	::: {.reqdesc}
-										      >	The [OS](#abbr_OS) shall \[**selection**:
-										      >
-										      >	-   *provide an interface which allows a [VPN](#abbr_VPN) client to
+
+::: {.element}										::: {.element}
+::: {#FPT_W^X_EXT.1.1 .reqid}							      |	::: {#FDP_IFC_EXT.1.1 .reqid}
+[FPT\_W\^X\_EXT.1.1](#FPT_W%5EX_EXT.1.1){.abbr}					      |	[FDP\_IFC\_EXT.1.1](#FDP_IFC_EXT.1.1){.abbr}
+:::											:::
+
+::: {.reqdesc}										::: {.reqdesc}
+The [OS](#abbr_OS) shall prevent allocation of any memory region with		      |	The [OS](#abbr_OS) shall \[**selection**:
+both write and execute permissions except for \[**assignment**: [list of	      |
+exceptions]{.assignable-content}\].						      |	-   *provide an interface which allows a [VPN](#abbr_VPN) client to
 										      >	    protect all [IP](#abbr_IP) traffic using IPsec*,
-										      >	-   *provide a [VPN](#abbr_VPN) client which can protects all
+										      >	-   *provide a [VPN](#abbr_VPN) client which can protect all
 										      >	    [IP](#abbr_IP) traffic using IPsec*
 										      >
 										      >	\] with the exception of [IP](#abbr_IP) traffic required to establish
 										      >	the [VPN](#abbr_VPN) connection and \[**selection**: *signed updates
 										      >	directly from the [OS](#abbr_OS) vendor*, *no other traffic*\] .
-										      >
-										      >	::: {.appnote}
-										      >	[Application Note: ]{.note-header}[ ]{.note}
-										      >
-										      >	Typically, the traffic required to establish the [VPN](#abbr_VPN)
-										      >	connection is referred to as \"Control Plane\" traffic, whereas the
-										      >	[IP](#abbr_IP) traffic protected by the IPsec [VPN](#abbr_VPN) is
-										      >	referred to as \"Data Plane\" traffic. All Data Plane traffic must flow
+
+::: {.appnote}										::: {.appnote}
+[Application Note: ]{.note-header}[Requesting a memory mapping with both	      |	[Application Note: ]{.note-header}[ ]{.note}
+write and execute permissions subverts the platform protection provided		      |
+by [DEP](#abbr_DEP). If the [OS](#abbr_OS) provides no exceptions (such		      |	Typically, the traffic required to establish the [VPN](#abbr_VPN)
+as for just-in-time compilation), then \"no exceptions\" should be		      |	connection is referred to as \"Control Plane\" traffic, whereas the
+indicated in the assignment. Full realization of this requirement		      |	[IP](#abbr_IP) traffic protected by the IPsec [VPN](#abbr_VPN) is
+requires hardware support, but this is commonly available. ]{.note}		      |	referred to as \"Data Plane\" traffic. All Data Plane traffic must flow
 										      >	through the [VPN](#abbr_VPN) connection and the [VPN](#abbr_VPN) must
 										      >	not split-tunnel.
 										      >
@@ -6047,39 +6043,33 @@ This [PP](#abbr_PP) does not define any Selection-based requirements.		      |	B
 										      >	perform the required Information Flow Control.
 										      >
 										      >	The [ST](#abbr_ST) author will select the second option if the
-										      >	[TSF](#abbr_TSF) implements a native [VPN](#abbr_VPN) client (IPsec is
-										      >	selected in [FTP\_ITC\_EXT.1](#FTP_ITC_EXT.1)). If the native
-										      >	[VPN](#abbr_VPN) client is to be validated ([IPsec](#s-itc-ipsec) is
-										      >	selected in [FTP\_ITC\_EXT.1.1](#FTP_ITC_EXT.1.1) and the
-										      >	[TSF](#abbr_TSF) is validated against the *Module for Virtual Private
-										      >	Network ([VPN](#abbr_VPN)) Clients*), the [ST](#abbr_ST) author will
-										      >	also include [FDP\_IFC\_EXT.1](#FDP_IFC_EXT.1) from this package. In the
+										      >	[TSF](#abbr_TSF) implements a native [VPN](#abbr_VPN) client. The In the
 										      >	future, this requirement may also make a distinction between the current
 										      >	requirement (which requires that when the IPsec trusted channel is
 										      >	enabled, all traffic from the [TSF](#abbr_TSF) is routed through that
 										      >	channel) and having an option to force the establishment of an IPsec
 										      >	trusted channel to allow any communication by the [TSF](#abbr_TSF).
-										      >	:::
-										      >	:::
-										      >	:::
-										      >
-										      >	::: {.activity_pane .hide}
-										      >	::: {.activity_pane_header}
-										      >	[[ Evaluation Activities ]{.activity_pane_label}[]{.toggler}](#)
-										      >	:::
-										      >
-										      >	::: {.activity_pane_body}
-										      >	::: {.component-activity-header}
-										      >	[FDP\_IFC\_EXT.1](#FDP_IFC_EXT.1)
-										      >	:::
-										      >
-										      >	::: {.eacategory}
-										      >	[TSS](#abbr_TSS)
-										      >	:::
-										      >
-										      >	::: {.ea}
-										      >	The evaluator will verify that the [TSS](#abbr_TSS) section of the
-										      >	[ST](#abbr_ST) describes the routing of [IP](#abbr_IP) traffic when a
+:::											:::
+:::											:::
+:::											:::
+
+::: {.activity_pane .hide}								::: {.activity_pane .hide}
+::: {.activity_pane_header}								::: {.activity_pane_header}
+[[ Evaluation Activities ]{.activity_pane_label}[]{.toggler}](#)			[[ Evaluation Activities ]{.activity_pane_label}[]{.toggler}](#)
+:::											:::
+
+::: {.activity_pane_body}								::: {.activity_pane_body}
+::: {.component-activity-header}							::: {.component-activity-header}
+[FPT\_W\^X\_EXT.1](#FPT_W%5EX_EXT.1)						      |	[FDP\_IFC\_EXT.1](#FDP_IFC_EXT.1)
+:::											:::
+
+::: {.eacategory}									::: {.eacategory}
+[TSS](#abbr_TSS)									[TSS](#abbr_TSS)
+:::											:::
+
+The evaluator will inspect the vendor-provided developer documentation		      |	::: {.ea}
+and verify that no memory-mapping can be made with write and execute		      |	The evaluator will verify that the [TSS](#abbr_TSS) section of the
+permissions except for the cases listed in the assignment.			      |	[ST](#abbr_ST) describes the routing of [IP](#abbr_IP) traffic when a
 										      >	[VPN](#abbr_VPN) client is enabled. The evaluator will ensure that the
 										      >	description indicates which traffic does not go through the
 										      >	[VPN](#abbr_VPN) and which traffic does, and that a configuration exists
@@ -6088,30 +6078,30 @@ This [PP](#abbr_PP) does not define any Selection-based requirements.		      |	B
 										      >	(IKE traffic and perhaps [HTTPS](#abbr_HTTPS) or [DNS](#abbr_DNS)
 										      >	traffic) is not encapsulated by the [VPN](#abbr_VPN) protocol (IPsec).
 										      >	:::
-										      >
-										      >	::: {.eacategory}
-										      >	Tests
-										      >	:::
-										      >
-										      >	::: {.ea}
+
+::: {.eacategory}									::: {.eacategory}
+Tests											Tests
+:::											:::
+
+The evaluator will also perform the following tests.				      |	::: {.ea}
 										      >	The evaluator will perform the following test:
-										      >
-										      >	-   **Test 1:**
-										      >	    -   **Step 1:** The evaluator will enable a network connection. The
-										      >	        evaluator will sniff packets while performing running
-										      >	        applications that use the network such as web browsers and email
-										      >	        clients. The evaluator will verify that the sniffer captures the
-										      >	        traffic generated by these actions, turn off the sniffing tool,
-										      >	        and save the session data.
-										      >	    -   **Step 2:** The evaluator will configure an IPsec
-										      >	        [VPN](#abbr_VPN) client that supports the routing specified in
-										      >	        this requirement. The evaluator will turn on the sniffing tool,
-										      >	        establish the [VPN](#abbr_VPN) connection, and perform the same
-										      >	        actions with the device as performed in the first step. The
-										      >	        evaluator will verify that the sniffing tool captures traffic
-										      >	        generated by these actions, turn off the sniffing tool, and save
-										      >	        the session data.
-										      >	    -   **Step 3:** The evaluator will examine the traffic from both
+
+-   **Test 1:** The evaluator will acquire or construct a test program		      |	-   **Test 1:**
+    which attempts to allocate memory that is both writable and			      |	    -   **Step 1:** The evaluator will enable a network connection. The
+    executable. The evaluator will run the program and confirm that it		      |	        evaluator will sniff packets while performing running
+    fails to allocate memory that is both writable and executable.		      |	        applications that use the network such as web browsers and email
+-   **Test 2:** The evaluator will acquire or construct a test program		      |	        clients. The evaluator will verify that the sniffer captures the
+    which allocates memory that is executable and then subsequently		      |	        traffic generated by these actions, turn off the sniffing tool,
+    requests additional write/modify permissions on that memory. The		      |	        and save the session data.
+    evaluator will run the program and confirm that at no time during		      |	    -   **Step 2:** The evaluator will configure an IPsec
+    the lifetime of the process is the memory both writable and			      |	        [VPN](#abbr_VPN) client that supports the routing specified in
+    executable.									      |	        this requirement. The evaluator will turn on the sniffing tool,
+-   **Test 3:** The evaluator will acquire or construct a test program		      |	        establish the [VPN](#abbr_VPN) connection, and perform the same
+    which allocates memory that is writable and then subsequently		      |	        actions with the device as performed in the first step. The
+    requests additional execute permissions on that memory. The			      |	        evaluator will verify that the sniffing tool captures traffic
+    evaluator will run the program and confirm that at no time during		      |	        generated by these actions, turn off the sniffing tool, and save
+    the lifetime of the process is the memory both writable and			      |	        the session data.
+    executable.									      |	    -   **Step 3:** The evaluator will examine the traffic from both
 										      >	        step one and step two to verify that all non-excepted Data Plane
 										      >	        traffic in Step 2 is encapsulated by IPsec. The evaluator will
 										      >	        examine the Security Parameter Index (SPI) value present in the
@@ -6130,9 +6120,27 @@ This [PP](#abbr_PP) does not define any Selection-based requirements.		      |	B
 										      >	        gateway), including from the local network, and verify that the
 										      >	        [TOE](#abbr_TOE) discards them.
 										      >	:::
-										      >	:::
-										      >	:::
-										      >	:::
+:::											:::
+:::											:::
+:::											:::
+										      <
+A.3 Implementation-based Requirements {#feat-based-reqs .indexable data-level="2"}    <
+-------------------------------------						      <
+										      <
+This [PP](#abbr_PP) does not define any Implementation-based			      <
+requirements.									      <
+										      <
+Appendix B - Selection-based Requirements {#sel-based-reqs .indexable data-level="A"} <
+=========================================					      <
+										      <
+As indicated in the introduction to this [PP](#abbr_PP), the baseline		      <
+requirements (those that must be performed by the [TOE](#abbr_TOE) or		      <
+its underlying platform) are contained in the body of this			      <
+[PP](#abbr_PP). There are additional requirements based on selections in	      <
+the body of the [PP](#abbr_PP): if certain selections are made, then		      <
+additional requirements below must be included.					      <
+										      <
+This [PP](#abbr_PP) does not define any Selection-based requirements.		      <
 
 Appendix C - Implicitly Satisfied Requirements {#satisfiedreqs .indexable data-level=	Appendix C - Implicitly Satisfied Requirements {#satisfiedreqs .indexable data-level=
 ==============================================						==============================================
