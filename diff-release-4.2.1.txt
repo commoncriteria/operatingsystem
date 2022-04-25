@@ -49,12 +49,13 @@ Guidance Documentation](#agd)[5.2.4Class ALC: Life-cycle				Guidance Documentati
 Support](#alc)[5.2.5Class ATE: Tests](#ate)[5.2.6Class AVA:				Support](#alc)[5.2.5Class ATE: Tests](#ate)[5.2.6Class AVA:
 Vulnerability Assessment](#ava)[Appendix A - Optional					Vulnerability Assessment](#ava)[Appendix A - Optional
 Requirements](#opt-app)[A.1Strictly Optional Requirements				Requirements](#opt-app)[A.1Strictly Optional Requirements
-](#optional-reqs)[A.1.1User Data Protection						](#optional-reqs)[A.1.1User Data Protection
-(FDP)](#fdp-optional)[A.1.2TOE Access (FTA)](#fta-optional)[A.2Objective		(FDP)](#fdp-optional)[A.1.2TOE Access (FTA)](#fta-optional)[A.2Objective
+](#optional-reqs)[A.1.1User Data Protection					      |	](#optional-reqs)[A.1.1TOE Access (FTA)](#fta-optional)[A.2Objective
+(FDP)](#fdp-optional)[A.1.2TOE Access (FTA)](#fta-optional)[A.2Objective	      <
 Requirements ](#objective-reqs)[A.2.1Protection of the TSF				Requirements ](#objective-reqs)[A.2.1Protection of the TSF
-(FPT)](#fpt-objective)[A.3Implementation-based Requirements				(FPT)](#fpt-objective)[A.3Implementation-based Requirements
+(FPT)](#fpt-objective)[A.3Implementation-based Requirements			      |	(FPT)](#fpt-objective)[A.3Implementation-dependent Requirements
 ](#feat-based-reqs)[Appendix B - Selection-based Requirements				](#feat-based-reqs)[Appendix B - Selection-based Requirements
-](#sel-based-reqs)[Appendix C - Implicitly Satisfied					](#sel-based-reqs)[Appendix C - Implicitly Satisfied
+](#sel-based-reqs)[Appendix C - Implicitly Satisfied				      |	](#sel-based-reqs)[B.1User Data Protection
+										      >	(FDP)](#fdp-sel-based)[Appendix C - Implicitly Satisfied
 Requirements](#satisfiedreqs)[Appendix D - Entropy Documentation and			Requirements](#satisfiedreqs)[Appendix D - Entropy Documentation and
 Assessment](#entropyappendix)[D.1Design							Assessment](#entropyappendix)[D.1Design
 Description](#entropydesign)[D.2Entropy							Description](#entropydesign)[D.2Entropy
@@ -77,6 +78,7 @@ An operating system is software that manages computer hardware and			An operatin
 software resources, and provides common services for application			software resources, and provides common services for application
 programs. The hardware it manages may be physical or virtual.				programs. The hardware it manages may be physical or virtual.
 
+										      >	::: {.no-link}
 1.2 Terms {#glossary .indexable data-level="2"}						1.2 Terms {#glossary .indexable data-level="2"}
 ---------										---------
 
@@ -86,112 +88,112 @@ this document.										this document.
 ### 1.2.1 Common Criteria Terms {#cc-terms .indexable data-level="3"}			### 1.2.1 Common Criteria Terms {#cc-terms .indexable data-level="3"}
 
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
-| ::: {#Assurance}                  | Grounds for confidence that a     |		| ::: {#Assurance}                  | Grounds for confidence that a     |
-| Assurance                         | [TOE](#abbr_TOE) meets the SFRs   |		| Assurance                         | [TOE](#abbr_TOE) meets the SFRs   |
-| :::                               | [\[CC\]](#bibCC).                 |		| :::                               | [\[CC\]](#bibCC).                 |
+| ::: {#Assurance}                  | Grounds for confidence that a     |	      |	| ::: {#Assurance}                  | Grounds for confidence that a TOE |
+| Assurance                         | [TOE](#abbr_TOE) meets the SFRs   |	      |	| Assurance                         | meets the SFRs [\[CC\]](#bibCC).  |
+| :::                               | [\[CC\]](#bibCC).                 |	      |	| :::                               |                                   |
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 | ::: {#Base_Protection_Profile}    | Protection Profile used as a      |		| ::: {#Base_Protection_Profile}    | Protection Profile used as a      |
-| Base Protection Profile           | basis to build a                  |		| Base Protection Profile           | basis to build a                  |
-| ([Base-PP](#abbr_Base-PP))        | [PP-Configuration](#abbr_PP-Confi |		| ([Base-PP](#abbr_Base-PP))        | [PP-Configuration](#abbr_PP-Confi |
-| :::                               | guration).                        |		| :::                               | guration).                        |
+| Base Protection Profile           | basis to build a                  |	      |	| Base Protection Profile (Base-PP) | basis to build a                  |
+| ([Base-PP](#abbr_Base-PP))        | [PP-Configuration](#abbr_PP-Confi |	      |	| :::                               | PP-Configuration.                 |
+| :::                               | guration).                        |	      <
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 | ::: {#Collaborative_Protection_Pr | A Protection Profile developed by |		| ::: {#Collaborative_Protection_Pr | A Protection Profile developed by |
 | ofile}                            | international technical           |		| ofile}                            | international technical           |
 | Collaborative Protection Profile  | communities and approved by       |		| Collaborative Protection Profile  | communities and approved by       |
-| ([cPP](#abbr_cPP))                | multiple schemes                  |		| ([cPP](#abbr_cPP))                | multiple schemes                  |
+| ([cPP](#abbr_cPP))                | multiple schemes                  |	      |	| (cPP)                             | multiple schemes.                 |
 | :::                               |                                   |		| :::                               |                                   |
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 | ::: {#Common_Criteria}            | Common Criteria for Information   |		| ::: {#Common_Criteria}            | Common Criteria for Information   |
-| Common Criteria ([CC](#abbr_CC))  | Technology Security Evaluation    |		| Common Criteria ([CC](#abbr_CC))  | Technology Security Evaluation    |
-| :::                               | (International Standard           |		| :::                               | (International Standard           |
-|                                   | [ISO](#abbr_ISO)/IEC 15408).      |		|                                   | [ISO](#abbr_ISO)/IEC 15408).      |
+| Common Criteria ([CC](#abbr_CC))  | Technology Security Evaluation    |	      |	| Common Criteria (CC)              | Technology Security Evaluation    |
+| :::                               | (International Standard           |	      |	| :::                               | (International Standard ISO/IEC   |
+|                                   | [ISO](#abbr_ISO)/IEC 15408).      |	      |	|                                   | 15408).                           |
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 | ::: {#Common_Criteria_Testing_Lab | Within the context of the Common  |		| ::: {#Common_Criteria_Testing_Lab | Within the context of the Common  |
 | oratory}                          | Criteria Evaluation and           |		| oratory}                          | Criteria Evaluation and           |
-| Common Criteria Testing           | Validation Scheme (CCEVS), an     |		| Common Criteria Testing           | Validation Scheme (CCEVS), an     |
-| Laboratory                        | [IT](#abbr_IT) security           |		| Laboratory                        | [IT](#abbr_IT) security           |
-| :::                               | evaluation facility, accredited   |		| :::                               | evaluation facility, accredited   |
-|                                   | by the National Voluntary         |		|                                   | by the National Voluntary         |
-|                                   | Laboratory Accreditation Program  |		|                                   | Laboratory Accreditation Program  |
-|                                   | (NVLAP) and approved by the       |		|                                   | (NVLAP) and approved by the       |
-|                                   | [NIAP](#abbr_NIAP) Validation     |		|                                   | [NIAP](#abbr_NIAP) Validation     |
+| Common Criteria Testing           | Validation Scheme (CCEVS), an     |	      |	| Common Criteria Testing           | Validation Scheme (CCEVS), an IT  |
+| Laboratory                        | [IT](#abbr_IT) security           |	      |	| Laboratory                        | security evaluation facility      |
+| :::                               | evaluation facility, accredited   |	      |	| :::                               | accredited by the National        |
+|                                   | by the National Voluntary         |	      |	|                                   | Voluntary Laboratory              |
+|                                   | Laboratory Accreditation Program  |	      |	|                                   | Accreditation Program (NVLAP) and |
+|                                   | (NVLAP) and approved by the       |	      |	|                                   | approved by the NIAP Validation   |
+|                                   | [NIAP](#abbr_NIAP) Validation     |	      <
 |                                   | Body to conduct Common            |		|                                   | Body to conduct Common            |
 |                                   | Criteria-based evaluations.       |		|                                   | Criteria-based evaluations.       |
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 | ::: {#Common_Evaluation_Methodolo | Common Evaluation Methodology for |		| ::: {#Common_Evaluation_Methodolo | Common Evaluation Methodology for |
 | gy}                               | Information Technology Security   |		| gy}                               | Information Technology Security   |
 | Common Evaluation Methodology     | Evaluation.                       |		| Common Evaluation Methodology     | Evaluation.                       |
-| ([CEM](#abbr_CEM))                |                                   |		| ([CEM](#abbr_CEM))                |                                   |
+| ([CEM](#abbr_CEM))                |                                   |	      |	| (CEM)                             |                                   |
 | :::                               |                                   |		| :::                               |                                   |
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
-| ::: {#Distributed_TOE}            | A [TOE](#abbr_TOE) composed of    |		| ::: {#Distributed_TOE}            | A [TOE](#abbr_TOE) composed of    |
-| Distributed [TOE](#abbr_TOE)      | multiple components operating as  |		| Distributed [TOE](#abbr_TOE)      | multiple components operating as  |
-| :::                               | a logical whole.                  |		| :::                               | a logical whole.                  |
+| ::: {#Distributed_TOE}            | A [TOE](#abbr_TOE) composed of    |	      |	| ::: {#Distributed_TOE}            | A TOE composed of multiple        |
+| Distributed [TOE](#abbr_TOE)      | multiple components operating as  |	      |	| Distributed TOE                   | components operating as a logical |
+| :::                               | a logical whole.                  |	      |	| :::                               | whole.                            |
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 | ::: {#Extended_Package}           | A deprecated document form for    |		| ::: {#Extended_Package}           | A deprecated document form for    |
-| Extended Package ([EP](#abbr_EP)) | collecting SFRs that implement a  |		| Extended Package ([EP](#abbr_EP)) | collecting SFRs that implement a  |
+| Extended Package ([EP](#abbr_EP)) | collecting SFRs that implement a  |	      |	| Extended Package (EP)             | collecting SFRs that implement a  |
 | :::                               | particular protocol, technology,  |		| :::                               | particular protocol, technology,  |
 |                                   | or functionality. See Functional  |		|                                   | or functionality. See Functional  |
 |                                   | Packages.                         |		|                                   | Packages.                         |
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 | ::: {#Functional_Package}         | A document that collects SFRs for |		| ::: {#Functional_Package}         | A document that collects SFRs for |
-| Functional Package                | a particular protocol,            |		| Functional Package                | a particular protocol,            |
-| ([FP](#abbr_FP))                  | technology, or functionality.     |		| ([FP](#abbr_FP))                  | technology, or functionality.     |
-| :::                               |                                   |		| :::                               |                                   |
+| Functional Package                | a particular protocol,            |	      |	| Functional Package (FP)           | a particular protocol,            |
+| ([FP](#abbr_FP))                  | technology, or functionality.     |	      |	| :::                               | technology, or functionality.     |
+| :::                               |                                   |	      <
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 | ::: {#Operational_Environment}    | Hardware and software that are    |		| ::: {#Operational_Environment}    | Hardware and software that are    |
-| Operational Environment           | outside the [TOE](#abbr_TOE)      |		| Operational Environment           | outside the [TOE](#abbr_TOE)      |
-| ([OE](#abbr_OE))                  | boundary that support the         |		| ([OE](#abbr_OE))                  | boundary that support the         |
-| :::                               | [TOE](#abbr_TOE) functionality    |		| :::                               | [TOE](#abbr_TOE) functionality    |
-|                                   | and security policy.              |		|                                   | and security policy.              |
+| Operational Environment           | outside the [TOE](#abbr_TOE)      |	      |	| Operational Environment (OE)      | outside the TOE boundary that     |
+| ([OE](#abbr_OE))                  | boundary that support the         |	      |	| :::                               | support the TOE functionality and |
+| :::                               | [TOE](#abbr_TOE) functionality    |	      |	|                                   | security policy.                  |
+|                                   | and security policy.              |	      <
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 | ::: {#Protection_Profile}         | An implementation-independent set |		| ::: {#Protection_Profile}         | An implementation-independent set |
-| Protection Profile                | of security requirements for a    |		| Protection Profile                | of security requirements for a    |
-| ([PP](#abbr_PP))                  | category of products.             |		| ([PP](#abbr_PP))                  | category of products.             |
-| :::                               |                                   |		| :::                               |                                   |
+| Protection Profile                | of security requirements for a    |	      |	| Protection Profile (PP)           | of security requirements for a    |
+| ([PP](#abbr_PP))                  | category of products.             |	      |	| :::                               | category of products.             |
+| :::                               |                                   |	      <
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 | ::: {#Protection_Profile_Configur | A comprehensive set of security   |		| ::: {#Protection_Profile_Configur | A comprehensive set of security   |
 | ation}                            | requirements for a product type   |		| ation}                            | requirements for a product type   |
 | Protection Profile Configuration  | that consists of at least one     |		| Protection Profile Configuration  | that consists of at least one     |
-| ([PP-Configuration](#abbr_PP-Conf | [Base-PP](#abbr_Base-PP) and at   |		| ([PP-Configuration](#abbr_PP-Conf | [Base-PP](#abbr_Base-PP) and at   |
-| iguration))                       | least one                         |		| iguration))                       | least one                         |
-| :::                               | [PP-Module](#abbr_PP-Module).     |		| :::                               | [PP-Module](#abbr_PP-Module).     |
+| ([PP-Configuration](#abbr_PP-Conf | [Base-PP](#abbr_Base-PP) and at   |	      |	| (PP-Configuration)                | Base-PP and at least one          |
+| iguration))                       | least one                         |	      |	| :::                               | PP-Module.                        |
+| :::                               | [PP-Module](#abbr_PP-Module).     |	      <
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 | ::: {#Protection_Profile_Module}  | An implementation-independent     |		| ::: {#Protection_Profile_Module}  | An implementation-independent     |
 | Protection Profile Module         | statement of security needs for a |		| Protection Profile Module         | statement of security needs for a |
-| ([PP-Module](#abbr_PP-Module))    | [TOE](#abbr_TOE) type             |		| ([PP-Module](#abbr_PP-Module))    | [TOE](#abbr_TOE) type             |
-| :::                               | complementary to one or more Base |		| :::                               | complementary to one or more Base |
-|                                   | Protection Profiles.              |		|                                   | Protection Profiles.              |
+| ([PP-Module](#abbr_PP-Module))    | [TOE](#abbr_TOE) type             |	      |	| (PP-Module)                       | TOE type complementary to one or  |
+| :::                               | complementary to one or more Base |	      |	| :::                               | more Base-PPs.                    |
+|                                   | Protection Profiles.              |	      <
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 | ::: {#Security_Assurance_Requirem | A requirement to assure the       |		| ::: {#Security_Assurance_Requirem | A requirement to assure the       |
-| ent}                              | security of the [TOE](#abbr_TOE). |		| ent}                              | security of the [TOE](#abbr_TOE). |
+| ent}                              | security of the [TOE](#abbr_TOE). |	      |	| ent}                              | security of the TOE.              |
 | Security Assurance Requirement    |                                   |		| Security Assurance Requirement    |                                   |
-| ([SAR](#abbr_SAR))                |                                   |		| ([SAR](#abbr_SAR))                |                                   |
+| ([SAR](#abbr_SAR))                |                                   |	      |	| (SAR)                             |                                   |
 | :::                               |                                   |		| :::                               |                                   |
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 | ::: {#Security_Functional_Require | A requirement for security        |		| ::: {#Security_Functional_Require | A requirement for security        |
-| ment}                             | enforcement by the                |		| ment}                             | enforcement by the                |
-| Security Functional Requirement   | [TOE](#abbr_TOE).                 |		| Security Functional Requirement   | [TOE](#abbr_TOE).                 |
-| ([SFR](#abbr_SFR))                |                                   |		| ([SFR](#abbr_SFR))                |                                   |
+| ment}                             | enforcement by the                |	      |	| ment}                             | enforcement by the TOE.           |
+| Security Functional Requirement   | [TOE](#abbr_TOE).                 |	      |	| Security Functional Requirement   |                                   |
+| ([SFR](#abbr_SFR))                |                                   |	      |	| (SFR)                             |                                   |
 | :::                               |                                   |		| :::                               |                                   |
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 | ::: {#Security_Target}            | A set of implementation-dependent |		| ::: {#Security_Target}            | A set of implementation-dependent |
-| Security Target ([ST](#abbr_ST))  | security requirements for a       |		| Security Target ([ST](#abbr_ST))  | security requirements for a       |
+| Security Target ([ST](#abbr_ST))  | security requirements for a       |	      |	| Security Target (ST)              | security requirements for a       |
 | :::                               | specific product.                 |		| :::                               | specific product.                 |
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 | ::: {#Target_of_Evaluation}       | The product under evaluation.     |		| ::: {#Target_of_Evaluation}       | The product under evaluation.     |
-| Target of Evaluation              |                                   |		| Target of Evaluation              |                                   |
-| ([TOE](#abbr_TOE))                |                                   |		| ([TOE](#abbr_TOE))                |                                   |
+| Target of Evaluation              |                                   |	      |	| Target of Evaluation (TOE)        |                                   |
+| ([TOE](#abbr_TOE))                |                                   |	      <
 | :::                               |                                   |		| :::                               |                                   |
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 | ::: {#TOE_Security_Functionality} | The security functionality of the |		| ::: {#TOE_Security_Functionality} | The security functionality of the |
-| [TOE](#abbr_TOE) Security         | product under evaluation.         |		| [TOE](#abbr_TOE) Security         | product under evaluation.         |
-| Functionality ([TSF](#abbr_TSF))  |                                   |		| Functionality ([TSF](#abbr_TSF))  |                                   |
+| [TOE](#abbr_TOE) Security         | product under evaluation.         |	      |	| TOE Security Functionality (TSF)  | product under evaluation.         |
+| Functionality ([TSF](#abbr_TSF))  |                                   |	      <
 | :::                               |                                   |		| :::                               |                                   |
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
-| ::: {#TOE_Summary_Specification}  | A description of how a            |		| ::: {#TOE_Summary_Specification}  | A description of how a            |
-| [TOE](#abbr_TOE) Summary          | [TOE](#abbr_TOE) satisfies the    |		| [TOE](#abbr_TOE) Summary          | [TOE](#abbr_TOE) satisfies the    |
-| Specification ([TSS](#abbr_TSS))  | SFRs in an [ST](#abbr_ST).        |		| Specification ([TSS](#abbr_TSS))  | SFRs in an [ST](#abbr_ST).        |
+| ::: {#TOE_Summary_Specification}  | A description of how a            |	      |	| ::: {#TOE_Summary_Specification}  | A description of how a TOE        |
+| [TOE](#abbr_TOE) Summary          | [TOE](#abbr_TOE) satisfies the    |	      |	| TOE Summary Specification (TSS)   | satisfies the SFRs in an ST.      |
+| Specification ([TSS](#abbr_TSS))  | SFRs in an [ST](#abbr_ST).        |	      <
 | :::                               |                                   |		| :::                               |                                   |
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 
@@ -200,12 +202,12 @@ this document.										this document.
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 | ::: {#Address_Space_Layout_Random | An anti-exploitation feature      |		| ::: {#Address_Space_Layout_Random | An anti-exploitation feature      |
 | ization}                          | which loads memory mappings into  |		| ization}                          | which loads memory mappings into  |
-| Address Space Layout              | unpredictable locations.          |		| Address Space Layout              | unpredictable locations.          |
-| Randomization                     | [ASLR](#abbr_ASLR) makes it more  |		| Randomization                     | [ASLR](#abbr_ASLR) makes it more  |
-| ([ASLR](#abbr_ASLR))              | difficult for an attacker to      |		| ([ASLR](#abbr_ASLR))              | difficult for an attacker to      |
-| :::                               | redirect control to code that     |		| :::                               | redirect control to code that     |
-|                                   | they have introduced into the     |		|                                   | they have introduced into the     |
-|                                   | address space of a process.       |		|                                   | address space of a process.       |
+| Address Space Layout              | unpredictable locations.          |	      |	| Address Space Layout              | unpredictable locations. ASLR     |
+| Randomization                     | [ASLR](#abbr_ASLR) makes it more  |	      |	| Randomization (ASLR)              | makes it more difficult for an    |
+| ([ASLR](#abbr_ASLR))              | difficult for an attacker to      |	      |	| :::                               | attacker to redirect control to   |
+| :::                               | redirect control to code that     |	      |	|                                   | code that they have introduced    |
+|                                   | they have introduced into the     |	      |	|                                   | into the address space of a       |
+|                                   | address space of a process.       |	      |	|                                   | process.                          |
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 | ::: {#Administrator}              | An administrator is responsible   |		| ::: {#Administrator}              | An administrator is responsible   |
 | Administrator                     | for management activities,        |		| Administrator                     | for management activities,        |
@@ -222,7 +224,7 @@ this document.										this document.
 |                                   | non-administrator users.          |		|                                   | non-administrator users.          |
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 | ::: {#Application}                | Software that runs on a platform  |		| ::: {#Application}                | Software that runs on a platform  |
-| Application ([app](#abbr_app))    | and performs tasks on behalf of   |		| Application ([app](#abbr_app))    | and performs tasks on behalf of   |
+| Application ([app](#abbr_app))    | and performs tasks on behalf of   |	      |	| Application (app)                 | and performs tasks on behalf of   |
 | :::                               | the user or owner of the          |		| :::                               | the user or owner of the          |
 |                                   | platform, as well as its          |		|                                   | platform, as well as its          |
 |                                   | supporting documentation.         |		|                                   | supporting documentation.         |
@@ -230,7 +232,7 @@ this document.										this document.
 | ::: {#Application_Programming_Int | A specification of routines, data |		| ::: {#Application_Programming_Int | A specification of routines, data |
 | erface}                           | structures, object classes, and   |		| erface}                           | structures, object classes, and   |
 | Application Programming Interface | variables that allows an          |		| Application Programming Interface | variables that allows an          |
-| ([API](#abbr_API))                | application to make use of        |		| ([API](#abbr_API))                | application to make use of        |
+| ([API](#abbr_API))                | application to make use of        |	      |	| (API)                             | application to make use of        |
 | :::                               | services provided by another      |		| :::                               | services provided by another      |
 |                                   | software component, such as a     |		|                                   | software component, such as a     |
 |                                   | library. APIs are often provided  |		|                                   | library. APIs are often provided  |
@@ -240,7 +242,7 @@ this document.										this document.
 										      >	| ::: {#Biometric_Authentication_Fa | Authentication factor, which uses |
 										      >	| ctor}                             | biometric sample, matched to a    |
 										      >	| Biometric Authentication Factor   | biometric authentication template |
-										      >	| ([BAF](#abbr_BAF))                | to help establish identity.       |
+										      >	| (BAF)                             | to help establish identity.       |
 										      >	| :::                               |                                   |
 										      >	+-----------------------------------+-----------------------------------+
 | ::: {#Credential}                 | Data that establishes the         |		| ::: {#Credential}                 | Data that establishes the         |
@@ -250,7 +252,7 @@ this document.										this document.
 | ::: {#Critical_Security_Parameter | Information that is either user   |		| ::: {#Critical_Security_Parameter | Information that is either user   |
 | s}                                | or system defined and is used to  |		| s}                                | or system defined and is used to  |
 | Critical Security Parameters      | operate a cryptographic module in |		| Critical Security Parameters      | operate a cryptographic module in |
-| ([CSP](#abbr_CSP))                | processing encryption functions   |		| ([CSP](#abbr_CSP))                | processing encryption functions   |
+| ([CSP](#abbr_CSP))                | processing encryption functions   |	      |	| (CSP)                             | processing encryption functions   |
 | :::                               | including cryptographic keys and  |		| :::                               | including cryptographic keys and  |
 |                                   | authentication data, such as      |		|                                   | authentication data, such as      |
 |                                   | passwords, the disclosure or      |		|                                   | passwords, the disclosure or      |
@@ -261,29 +263,29 @@ this document.										this document.
 |                                   | protected by the module.          |		|                                   | protected by the module.          |
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 | ::: {#DAR_Protection}             | Countermeasures that prevent      |		| ::: {#DAR_Protection}             | Countermeasures that prevent      |
-| [DAR](#abbr_DAR) Protection       | attackers, even those with        |		| [DAR](#abbr_DAR) Protection       | attackers, even those with        |
+| [DAR](#abbr_DAR) Protection       | attackers, even those with        |	      |	| DAR Protection                    | attackers, even those with        |
 | :::                               | physical access, from extracting  |		| :::                               | physical access, from extracting  |
 |                                   | data from non-volatile storage.   |		|                                   | data from non-volatile storage.   |
 |                                   | Common techniques include data    |		|                                   | Common techniques include data    |
 |                                   | encryption and wiping.            |		|                                   | encryption and wiping.            |
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 | ::: {#Data_Execution_Prevention}  | An anti-exploitation feature of   |		| ::: {#Data_Execution_Prevention}  | An anti-exploitation feature of   |
-| Data Execution Prevention         | modern operating systems          |		| Data Execution Prevention         | modern operating systems          |
-| ([DEP](#abbr_DEP))                | executing on modern computer      |		| ([DEP](#abbr_DEP))                | executing on modern computer      |
-| :::                               | hardware, which enforces a        |		| :::                               | hardware, which enforces a        |
+| Data Execution Prevention         | modern operating systems          |	      |	| Data Execution Prevention (DEP)   | modern operating systems          |
+| ([DEP](#abbr_DEP))                | executing on modern computer      |	      |	| :::                               | executing on modern computer      |
+| :::                               | hardware, which enforces a        |	      |	|                                   | hardware, which enforces a        |
 |                                   | non-execute permission on pages   |		|                                   | non-execute permission on pages   |
-|                                   | of memory. [DEP](#abbr_DEP)       |		|                                   | of memory. [DEP](#abbr_DEP)       |
-|                                   | prevents pages of memory from     |		|                                   | prevents pages of memory from     |
-|                                   | containing both data and          |		|                                   | containing both data and          |
-|                                   | instructions, which makes it more |		|                                   | instructions, which makes it more |
-|                                   | difficult for an attacker to      |		|                                   | difficult for an attacker to      |
+|                                   | of memory. [DEP](#abbr_DEP)       |	      |	|                                   | of memory. DEP prevents pages of  |
+|                                   | prevents pages of memory from     |	      |	|                                   | memory from containing both data  |
+|                                   | containing both data and          |	      |	|                                   | and instructions, which makes it  |
+|                                   | instructions, which makes it more |	      |	|                                   | more difficult for an attacker to |
+|                                   | difficult for an attacker to      |	      <
 |                                   | introduce and execute code.       |		|                                   | introduce and execute code.       |
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
-| ::: {#Developer}                  | An entity that writes             |		| ::: {#Developer}                  | An entity that writes             |
-| Developer                         | [OS](#abbr_OS) software. For the  |		| Developer                         | [OS](#abbr_OS) software. For the  |
-| :::                               | purposes of this document,        |		| :::                               | purposes of this document,        |
-|                                   | vendors and developers are the    |		|                                   | vendors and developers are the    |
-|                                   | same.                             |		|                                   | same.                             |
+| ::: {#Developer}                  | An entity that writes             |	      |	| ::: {#Developer}                  | An entity that writes OS          |
+| Developer                         | [OS](#abbr_OS) software. For the  |	      |	| Developer                         | software. For the purposes of     |
+| :::                               | purposes of this document,        |	      |	| :::                               | this document, vendors and        |
+|                                   | vendors and developers are the    |	      |	|                                   | developers are the same.          |
+|                                   | same.                             |	      <
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 | ::: {#General_Purpose_Operating_S | A class of OSes designed to       |		| ::: {#General_Purpose_Operating_S | A class of OSes designed to       |
 | ystem}                            | support a wide-variety of         |		| ystem}                            | support a wide-variety of         |
@@ -304,51 +306,48 @@ this document.										this document.
 |                                   | switches, and embedded devices.   |		|                                   | switches, and embedded devices.   |
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 | ::: {#Host-based_Firewall}        | A software-based firewall         |		| ::: {#Host-based_Firewall}        | A software-based firewall         |
-| Host-based Firewall               | implementation running on the     |		| Host-based Firewall               | implementation running on the     |
-| :::                               | [OS](#abbr_OS) for filtering      |		| :::                               | [OS](#abbr_OS) for filtering      |
-|                                   | inbound and outbound network      |		|                                   | inbound and outbound network      |
-|                                   | traffic to and from processes     |		|                                   | traffic to and from processes     |
-|                                   | running on the [OS](#abbr_OS).    |		|                                   | running on the [OS](#abbr_OS).    |
-+-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
+| Host-based Firewall               | implementation running on the     |	      |	| Host-based Firewall               | implementation running on the OS  |
+| :::                               | [OS](#abbr_OS) for filtering      |	      |	| :::                               | for filtering inbound and         |
+|                                   | inbound and outbound network      |	      |	|                                   | outbound network traffic to and   |
+|                                   | traffic to and from processes     |	      |	|                                   | from processes running on the OS. |
+|                                   | running on the [OS](#abbr_OS).    |	      |	+-----------------------------------+-----------------------------------+
 										      >	| ::: {#Hybrid_Authentication}      | A hybrid authentication factor is |
 										      >	| Hybrid Authentication             | one where a user has to submit a  |
 										      >	| :::                               | combination of a biometric sample |
-										      >	|                                   | and a [PIN](#abbr_PIN) or         |
-										      >	|                                   | password and both must pass. If   |
-										      >	|                                   | either factor fails, the entire   |
-										      >	|                                   | attempt fails. The user shall not |
-										      >	|                                   | be made aware of which factor     |
-										      >	|                                   | failed, if either fails.          |
-										      >	+-----------------------------------+-----------------------------------+
-| ::: {#Operating_System}           | Software that manages physical    |		| ::: {#Operating_System}           | Software that manages physical    |
-| Operating System ([OS](#abbr_OS)) | and logical resources and         |		| Operating System ([OS](#abbr_OS)) | and logical resources and         |
-| :::                               | provides services for             |		| :::                               | provides services for             |
-|                                   | applications. The terms           |		|                                   | applications. The terms           |
-|                                   | *[TOE](#abbr_TOE)* and            |		|                                   | *[TOE](#abbr_TOE)* and            |
-|                                   | *[OS](#abbr_OS)* are              |		|                                   | *[OS](#abbr_OS)* are              |
-|                                   | interchangeable in this document. |		|                                   | interchangeable in this document. |
+										      >	|                                   | and a PIN or password and both    |
+										      >	|                                   | must pass. If either factor       |
+										      >	|                                   | fails, the entire attempt fails.  |
+										      >	|                                   | The user shall not be made aware  |
+										      >	|                                   | of which factor failed, if either |
+										      >	|                                   | fails.                            |
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
+| ::: {#Operating_System}           | Software that manages physical    |		| ::: {#Operating_System}           | Software that manages physical    |
+| Operating System ([OS](#abbr_OS)) | and logical resources and         |	      |	| Operating System (OS)             | and logical resources and         |
+| :::                               | provides services for             |		| :::                               | provides services for             |
+|                                   | applications. The terms           |	      |	|                                   | applications. The terms *TOE* and |
+|                                   | *[TOE](#abbr_TOE)* and            |	      |	|                                   | *OS* are interchangeable in this  |
+|                                   | *[OS](#abbr_OS)* are              |	      |	|                                   | document.                         |
+|                                   | interchangeable in this document. |	      |	+-----------------------------------+-----------------------------------+
 										      >	| ::: {#Personal_Identification_Num | An authetication factor that is   |
 										      >	| ber}                              | comprised of a set of numeric or  |
 										      >	| Personal Identification Number    | alphabetic characters that may be |
-										      >	| ([PIN](#abbr_PIN))                | used in addition to a biometric   |
+										      >	| (PIN)                             | used in addition to a biometric   |
 										      >	| :::                               | factor or cryptographic token to  |
 										      >	|                                   | provide a hybrid authentication   |
 										      >	|                                   | factor. At this time it is not    |
 										      >	|                                   | considered as a stand-alone       |
-										      >	|                                   | authentication mechanism. A       |
-										      >	|                                   | [PIN](#abbr_PIN) is distinct from |
-										      >	|                                   | a password in that the allowed    |
-										      >	|                                   | character set and required length |
-										      >	|                                   | of a [PIN](#abbr_PIN) is          |
+										      >	|                                   | authentication mechanism. A PIN   |
+										      >	|                                   | is distinct from a password in    |
+										      >	|                                   | that the allowed character set    |
+										      >	|                                   | and required length of a PIN is   |
 										      >	|                                   | typically smaller than that of a  |
 										      >	|                                   | password as it is designed to be  |
 										      >	|                                   | input quickly.                    |
-										      >	+-----------------------------------+-----------------------------------+
++-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 | ::: {#Personally_Identifiable_Inf | Any information about an          |		| ::: {#Personally_Identifiable_Inf | Any information about an          |
 | ormation}                         | individual maintained by an       |		| ormation}                         | individual maintained by an       |
 | Personally Identifiable           | agency, including, but not        |		| Personally Identifiable           | agency, including, but not        |
-| Information ([PII](#abbr_PII))    | limited to, education, financial  |		| Information ([PII](#abbr_PII))    | limited to, education, financial  |
+| Information ([PII](#abbr_PII))    | limited to, education, financial  |	      |	| Information (PII)                 | limited to, education, financial  |
 | :::                               | transactions, medical history,    |		| :::                               | transactions, medical history,    |
 |                                   | and criminal or employment        |		|                                   | and criminal or employment        |
 |                                   | history and information which can |		|                                   | history and information which can |
@@ -365,15 +364,15 @@ this document.										this document.
 | ::: {#Sensitive_Data}             | Sensitive data may include all    |		| ::: {#Sensitive_Data}             | Sensitive data may include all    |
 | Sensitive Data                    | user or enterprise data or may be |		| Sensitive Data                    | user or enterprise data or may be |
 | :::                               | specific application data such as |		| :::                               | specific application data such as |
-|                                   | [PII](#abbr_PII), emails,         |		|                                   | [PII](#abbr_PII), emails,         |
-|                                   | messaging, documents, calendar    |		|                                   | messaging, documents, calendar    |
-|                                   | items, and contacts. Sensitive    |		|                                   | items, and contacts. Sensitive    |
-|                                   | data must minimally include       |		|                                   | data must minimally include       |
-|                                   | credentials and keys. Sensitive   |		|                                   | credentials and keys. Sensitive   |
-|                                   | data shall be identified in the   |		|                                   | data shall be identified in the   |
-|                                   | [OS](#abbr_OS)\'s                 |		|                                   | [OS](#abbr_OS)\'s                 |
-|                                   | [TSS](#abbr_TSS) by the           |		|                                   | [TSS](#abbr_TSS) by the           |
-|                                   | [ST](#abbr_ST) author.            |		|                                   | [ST](#abbr_ST) author.            |
+|                                   | [PII](#abbr_PII), emails,         |	      |	|                                   | PII, emails, messaging,           |
+|                                   | messaging, documents, calendar    |	      |	|                                   | documents, calendar items, and    |
+|                                   | items, and contacts. Sensitive    |	      |	|                                   | contacts. Sensitive data must     |
+|                                   | data must minimally include       |	      |	|                                   | minimally include credentials and |
+|                                   | credentials and keys. Sensitive   |	      |	|                                   | keys. Sensitive data shall be     |
+|                                   | data shall be identified in the   |	      |	|                                   | identified in the OS\'s TSS by    |
+|                                   | [OS](#abbr_OS)\'s                 |	      |	|                                   | the ST author.                    |
+|                                   | [TSS](#abbr_TSS) by the           |	      <
+|                                   | [ST](#abbr_ST) author.            |	      <
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
 | ::: {#User}                       | A user is subject to              |		| ::: {#User}                       | A user is subject to              |
 | User                              | configuration policies applied to |		| User                              | configuration policies applied to |
@@ -386,6 +385,7 @@ this document.										this document.
 |                                   | a user should be considered an    |		|                                   | a user should be considered an    |
 |                                   | administrator.                    |		|                                   | administrator.                    |
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
+										      >	:::
 
 1.3 Compliant Targets of Evaluation {#TOEdescription .indexable data-level="2"}	      |	1.3 Compliant Targets of Evaluation {#Compliant_Targets_of_Evaluation .indexable data
 -----------------------------------							-----------------------------------
@@ -470,8 +470,8 @@ Conformance Statement									Conformance Statement
 :   An [ST](#abbr_ST) must claim exact conformance to this				:   An [ST](#abbr_ST) must claim exact conformance to this
     [PP](#abbr_PP), as defined in the [CC](#abbr_CC) and				    [PP](#abbr_PP), as defined in the [CC](#abbr_CC) and
     [CEM](#abbr_CEM) addenda for Exact Conformance, Selection-based		      |	    [CEM](#abbr_CEM) addenda for Exact Conformance, Selection-Based
-    SFRs, and Optional SFRs (dated May 2017).						    SFRs, and Optional SFRs (dated May 2017).
-
+    SFRs, and Optional SFRs (dated May 2017).					      |	    [SFRs](#abbr_SFR), and Optional [SFRs](#abbr_SFR) (dated May 2017).
+										      >
 										      >	    The following [PP](#abbr_PP)-Modules are allowed to be specified in
 										      >	    a [PP-Configuration](#abbr_PP-Configuration) with this
 										      >	    [PP](#abbr_PP).
@@ -482,7 +482,7 @@ Conformance Statement									Conformance Statement
 										      >	    -   [PP-Module](#abbr_PP-Module) for MDM Agent, Version 1.0
 										      >	    -   [cPP](#abbr_cPP)-Module for Biometric Enrollment and
 										      >	        Verification, Version 1.1
-										      >
+
 CC Conformance Claims									CC Conformance Claims
 :   This [PP](#abbr_PP) is conformant to Parts 2 (extended) and 3			:   This [PP](#abbr_PP) is conformant to Parts 2 (extended) and 3
     (conformant) of Common Criteria Version 3.1, Revision 5.			      |	    (extended) of Common Criteria Version 3.1, Revision 5.
@@ -814,6 +814,7 @@ key generation.										key generation.
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will ensure that the [TSS](#abbr_TSS) identifies the key			The evaluator will ensure that the [TSS](#abbr_TSS) identifies the key
 sizes supported by the [OS](#abbr_OS). If the [ST](#abbr_ST) specifies			sizes supported by the [OS](#abbr_OS). If the [ST](#abbr_ST) specifies
 more than one scheme, the evaluator will examine the [TSS](#abbr_TSS) to		more than one scheme, the evaluator will examine the [TSS](#abbr_TSS) to
@@ -1009,6 +1010,7 @@ for each FFC parameter set and key pair.						for each FFC parameter set and key
 										      >	</div>
 										      >	:::
 										      >	:::
+										      >	:::
 :::											:::
 :::											:::
 :::											:::
@@ -1088,6 +1090,7 @@ scheme are specified by the key generation according to					scheme are specified
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will ensure that the supported key establishment schemes			The evaluator will ensure that the supported key establishment schemes
 correspond to the key generation schemes identified in					correspond to the key generation schemes identified in
 [FCS\_CKM.1.1](#FCS_CKM.1.1) If the [ST](#abbr_ST) specifies more than			[FCS\_CKM.1.1](#FCS_CKM.1.1) If the [ST](#abbr_ST) specifies more than
@@ -1302,6 +1305,7 @@ message is identical for each.							      |	-   [Finite field-based key establi
 										      >	</div>
 										      >	:::
 										      >	:::
+										      >	:::
 :::											:::
 :::											:::
 :::											:::
@@ -1436,6 +1440,7 @@ Key destruction procedures are performed in accordance with				Key destruction p
 [TSS](#abbr_TSS)									[TSS](#abbr_TSS)
 :::											:::
 
+										      >	::: {.ea}
 The evaluator examines the [TSS](#abbr_TSS) to ensure it describes how			The evaluator examines the [TSS](#abbr_TSS) to ensure it describes how
 the keys are managed in volatile memory. This description includes			the keys are managed in volatile memory. This description includes
 details of how each identified key is introduced into volatile memory			details of how each identified key is introduced into volatile memory
@@ -1471,11 +1476,13 @@ specified key destruction method in							specified key destruction method in
 [FCS\_CKM\_EXT.4.1](#FCS_CKM_EXT.4.1). The evaluator shall verify that			[FCS\_CKM\_EXT.4.1](#FCS_CKM_EXT.4.1). The evaluator shall verify that
 all of the keys capable of decrypting the target key are not able to be			all of the keys capable of decrypting the target key are not able to be
 derived to reestabish the keychain after their destruction.			      |	derived to reestablish the keychain after their destruction.
+										      >	:::
 
 ::: {.eacategory}									::: {.eacategory}
 Guidance										Guidance
 :::											:::
 
+										      >	::: {.ea}
 ### Operational Guidance								### Operational Guidance
 
 There are a variety of concerns that may prevent or delay key				There are a variety of concerns that may prevent or delay key
@@ -1515,11 +1522,13 @@ The drive should be healthy and contains minimal corrupted data and			The drive 
 should be end-of-lifed before a significant amount of damage to drive			should be end-of-lifed before a significant amount of damage to drive
 health occurs, this minimizes the risk that small amounts of potentially		health occurs, this minimizes the risk that small amounts of potentially
 recoverable data may remain in damaged areas of the drive.				recoverable data may remain in damaged areas of the drive.
+										      >	:::
 
 ::: {.eacategory}									::: {.eacategory}
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 -   **Test 1:** Applied to each key held as in volatile memory and			-   **Test 1:** Applied to each key held as in volatile memory and
     subject to destruction by overwrite by the [TOE](#abbr_TOE) (whether		    subject to destruction by overwrite by the [TOE](#abbr_TOE) (whether
     or not the value is subsequently encrypted for storage in volatile			    or not the value is subsequently encrypted for storage in volatile
@@ -1597,6 +1606,7 @@ Tests											Tests
 :::											:::
 :::											:::
 :::											:::
+										      >	:::
 
 ::: {#FCS_COP.1/ENCRYPT .comp}								::: {#FCS_COP.1/ENCRYPT .comp}
 #### FCS\_COP.1/ENCRYPT Cryptographic Operation - Encryption/Decryption (Refined)	#### FCS\_COP.1/ENCRYPT Cryptographic Operation - Encryption/Decryption (Refined)
@@ -1665,6 +1675,7 @@ are supported by this functionality.							are supported by this functionality.
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will verify that the AGD documents contains instructions			The evaluator will verify that the AGD documents contains instructions
 required to configure the [OS](#abbr_OS) to use the required modes and			required to configure the [OS](#abbr_OS) to use the required modes and
 key sizes. The evaluator will execute all instructions as specified to			key sizes. The evaluator will execute all instructions as specified to
@@ -1986,6 +1997,7 @@ values and [AES](#abbr_AES)-KWP authenticated-encryption with				values and [AES
 :::											:::
 :::											:::
 :::											:::
+										      >	:::
 
 ::: {#FCS_COP.1/HASH .comp}								::: {#FCS_COP.1/HASH .comp}
 #### FCS\_COP.1/HASH Cryptographic Operation - Hashing (Refined)			#### FCS\_COP.1/HASH Cryptographic Operation - Hashing (Refined)
@@ -2054,6 +2066,7 @@ algorithm used.										algorithm used.
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will check that the association of the hash function with			The evaluator will check that the association of the hash function with
 other application cryptographic functions (for example, the digital			other application cryptographic functions (for example, the digital
 signature verification function) is documented in the [TSS](#abbr_TSS).			signature verification function) is documented in the [TSS](#abbr_TSS).
@@ -2115,6 +2128,7 @@ not found in the production application.						not found in the production applic
 :::											:::
 :::											:::
 :::											:::
+										      >	:::
 
 ::: {#FCS_COP.1/SIGN .comp}								::: {#FCS_COP.1/SIGN .comp}
 #### FCS\_COP.1/SIGN Cryptographic Operation - Signing (Refined)			#### FCS\_COP.1/SIGN Cryptographic Operation - Signing (Refined)
@@ -2165,6 +2179,7 @@ parameters that are implemented for that algorithm. ]{.note}				parameters that 
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will perform the following activities based on the			The evaluator will perform the following activities based on the
 selections in the [ST](#abbr_ST).							selections in the [ST](#abbr_ST).
 
@@ -2214,6 +2229,7 @@ not found in the production application.						not found in the production applic
 :::											:::
 :::											:::
 :::											:::
+										      >	:::
 
 ::: {#FCS_COP.1/KEYHMAC .comp}								::: {#FCS_COP.1/KEYHMAC .comp}
 #### FCS\_COP.1/KEYHMAC Cryptographic Operation - Keyed-Hash Message Authentication (	#### FCS\_COP.1/KEYHMAC Cryptographic Operation - Keyed-Hash Message Authentication (
@@ -2266,6 +2282,7 @@ ciphersuites that may be selected in the [TLS](#abbr_TLS) Package.			ciphersuite
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will perform the following activities based on the			The evaluator will perform the following activities based on the
 selections in the [ST](#abbr_ST).							selections in the [ST](#abbr_ST).
 
@@ -2278,6 +2295,7 @@ key and IV using a known-good implementation.						key and IV using a known-good
 :::											:::
 :::											:::
 :::											:::
+										      >	:::
 
 ::: {#FCS_RBG_EXT.1 .comp}								::: {#FCS_RBG_EXT.1 .comp}
 #### FCS\_RBG\_EXT.1 Random Bit Generation						#### FCS\_RBG\_EXT.1 Random Bit Generation
@@ -2369,6 +2387,7 @@ select 256 bits.									select 256 bits.
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will perform the following tests:						The evaluator will perform the following tests:
 
 The evaluator will perform 15 trials for the [RNG](#abbr_RNG)				The evaluator will perform 15 trials for the [RNG](#abbr_RNG)
@@ -2433,6 +2452,7 @@ estimates.										estimates.
 :::											:::
 :::											:::
 :::											:::
+										      >	:::
 
 ::: {#FCS_STO_EXT.1 .comp}								::: {#FCS_STO_EXT.1 .comp}
 #### FCS\_STO\_EXT.1 Storage of Sensitive Data						#### FCS\_STO\_EXT.1 Storage of Sensitive Data
@@ -2472,6 +2492,7 @@ credentials stored as files. ]{.note}							credentials stored as files. ]{.note
 [TSS](#abbr_TSS)									[TSS](#abbr_TSS)
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will check the [TSS](#abbr_TSS) to ensure that it lists			The evaluator will check the [TSS](#abbr_TSS) to ensure that it lists
 all persistent sensitive data for which the [OS](#abbr_OS) provides a			all persistent sensitive data for which the [OS](#abbr_OS) provides a
 storage capability. For each of these items, the evaluator will confirm			storage capability. For each of these items, the evaluator will confirm
@@ -2485,6 +2506,7 @@ that an interface exists for applications to securely store credentials.		that a
 :::											:::
 :::											:::
 :::											:::
+										      >	:::
 
 ### 5.1.2 User Data Protection (FDP) {#fdp .indexable data-level="3"}			### 5.1.2 User Data Protection (FDP) {#fdp .indexable data-level="3"}
 
@@ -2525,6 +2547,7 @@ in that system. ]{.note}								in that system. ]{.note}
 [TSS](#abbr_TSS)									[TSS](#abbr_TSS)
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will confirm that the [TSS](#abbr_TSS) comprehensively			The evaluator will confirm that the [TSS](#abbr_TSS) comprehensively
 describes the access control policy enforced by the [OS](#abbr_OS). The			describes the access control policy enforced by the [OS](#abbr_OS). The
 description must include the rules by which accesses to particular files		description must include the rules by which accesses to particular files
@@ -2533,11 +2556,13 @@ inspect the [TSS](#abbr_TSS) to ensure that it describes the access			inspect th
 control rules in such detail that given any possible scenario between a			control rules in such detail that given any possible scenario between a
 user and a file governed by the [OS](#abbr_OS) the access control			user and a file governed by the [OS](#abbr_OS) the access control
 decision is unambiguous.								decision is unambiguous.
+										      >	:::
 
 ::: {.eacategory}									::: {.eacategory}
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will create two new standard user accounts on the system			The evaluator will create two new standard user accounts on the system
 and conduct the following tests:							and conduct the following tests:
 
@@ -2574,6 +2599,7 @@ and conduct the following tests:							and conduct the following tests:
 :::											:::
 :::											:::
 :::											:::
+										      >	:::
 
 ### 5.1.3 Security Management (FMT) {#fmt .indexable data-level="3"}			### 5.1.3 Security Management (FMT) {#fmt .indexable data-level="3"}
 
@@ -2617,15 +2643,18 @@ author indicates this by replacing an \"O\" with an \"X\" in the			author indica
 [TSS](#abbr_TSS)									[TSS](#abbr_TSS)
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will verify that the [TSS](#abbr_TSS) describes those			The evaluator will verify that the [TSS](#abbr_TSS) describes those
 management functions that are restricted to Administrators, including			management functions that are restricted to Administrators, including
 how the user is prevented from performing those functions, or not able			how the user is prevented from performing those functions, or not able
 to use any interfaces that allow access to that function.				to use any interfaces that allow access to that function.
+										      >	:::
 
 ::: {.eacategory}									::: {.eacategory}
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will also perform the following test.					The evaluator will also perform the following test.
 
 -   **Test 1:** For each function that is indicated as restricted to the		-   **Test 1:** For each function that is indicated as restricted to the
@@ -2639,6 +2668,7 @@ The evaluator will also perform the following test.					The evaluator will also 
 :::											:::
 :::											:::
 :::											:::
+										      >	:::
 
 ::: {#FMT_SMF_EXT.1 .comp}								::: {#FMT_SMF_EXT.1 .comp}
 #### FMT\_SMF\_EXT.1 Specification of Management Functions				#### FMT\_SMF\_EXT.1 Specification of Management Functions
@@ -2852,15 +2882,18 @@ such policies by binding to a directory server.						such policies by binding to
 Guidance										Guidance
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will verify that every management function captured in the		The evaluator will verify that every management function captured in the
 [ST](#abbr_ST) is described in the operational guidance and that the			[ST](#abbr_ST) is described in the operational guidance and that the
 description contains the information required to perform the management			description contains the information required to perform the management
 duties associated with the management function.						duties associated with the management function.
+										      >	:::
 
 ::: {.eacategory}									::: {.eacategory}
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will test the [OS](#abbr_OS)\'s ability to provide the			The evaluator will test the [OS](#abbr_OS)\'s ability to provide the
 management functions by configuring the operating system and testing			management functions by configuring the operating system and testing
 each option selected from above. The evaluator is expected to test these		each option selected from above. The evaluator is expected to test these
@@ -2869,6 +2902,7 @@ documentation state the configuration can be managed.					documentation state th
 :::											:::
 :::											:::
 :::											:::
+										      >	:::
 
 ### 5.1.4 Protection of the TSF (FPT) {#fpt .indexable data-level="3"}			### 5.1.4 Protection of the TSF (FPT) {#fpt .indexable data-level="3"}
 
@@ -2932,16 +2966,19 @@ in this case, to structures containing cryptographic keys or passwords.			in thi
 [TSS](#abbr_TSS)									[TSS](#abbr_TSS)
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will confirm that the [TSS](#abbr_TSS) specifies the			The evaluator will confirm that the [TSS](#abbr_TSS) specifies the
 locations of kernel drivers/modules, security audit logs, shared			locations of kernel drivers/modules, security audit logs, shared
 libraries, system executables, and system configuration files. Every			libraries, system executables, and system configuration files. Every
 file does not need to be individually identified, but the system\'s			file does not need to be individually identified, but the system\'s
 conventions for storing and protecting such files must be specified.			conventions for storing and protecting such files must be specified.
+										      >	:::
 
 ::: {.eacategory}									::: {.eacategory}
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will create an unprivileged user account. Using this			The evaluator will create an unprivileged user account. Using this
 account, the evaluator will ensure that the following tests result in a			account, the evaluator will ensure that the following tests result in a
 negative outcome (i.e., the action results in the [OS](#abbr_OS) denying		negative outcome (i.e., the action results in the [OS](#abbr_OS) denying
@@ -2974,6 +3011,7 @@ the evaluator permission to complete the action):					the evaluator permission t
 :::											:::
 :::											:::
 :::											:::
+										      >	:::
 
 ::: {#FPT_ASLR_EXT.1 .comp}								::: {#FPT_ASLR_EXT.1 .comp}
 #### FPT\_ASLR\_EXT.1 Address Space Layout Randomization				#### FPT\_ASLR\_EXT.1 Address Space Layout Randomization
@@ -3005,6 +3043,7 @@ than 8]{.assignable-content}\]*\] bits of entropy except for				than 8]{.assigna
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will select 3 executables included with the				The evaluator will select 3 executables included with the
 [TSF](#abbr_TSF). If the [TSF](#abbr_TSF) includes a web browser it must		[TSF](#abbr_TSF). If the [TSF](#abbr_TSF) includes a web browser it must
 be selected. If the [TSF](#abbr_TSF) includes a mail client it must be			be selected. If the [TSF](#abbr_TSF) includes a mail client it must be
@@ -3020,6 +3059,7 @@ hardware and rebooting between application launches.					hardware and rebooting 
 :::											:::
 :::											:::
 :::											:::
+										      >	:::
 
 ::: {#FPT_SBOP_EXT.1 .comp}								::: {#FPT_SBOP_EXT.1 .comp}
 #### FPT\_SBOP\_EXT.1 Stack Buffer Overflow Protection					#### FPT\_SBOP\_EXT.1 Stack Buffer Overflow Protection
@@ -3061,6 +3101,7 @@ stack protections. ]{.note}								stack protections. ]{.note}
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 For stack-based OSes, the evaluator will determine that the				For stack-based OSes, the evaluator will determine that the
 [TSS](#abbr_TSS) contains a description of stack-based buffer overflow			[TSS](#abbr_TSS) contains a description of stack-based buffer overflow
 protections used by the [OS](#abbr_OS). These are referred to by a			protections used by the [OS](#abbr_OS). These are referred to by a
@@ -3083,6 +3124,7 @@ variables do not intermix with control flow values.					variables do not intermi
 :::											:::
 :::											:::
 :::											:::
+										      >	:::
 
 ::: {#FPT_TST_EXT.1 .comp}								::: {#FPT_TST_EXT.1 .comp}
 #### FPT\_TST\_EXT.1 Boot Integrity							#### FPT\_TST\_EXT.1 Boot Integrity
@@ -3153,6 +3195,7 @@ selected.										selected.
 [TSS](#abbr_TSS)									[TSS](#abbr_TSS)
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will verify that the [TSS](#abbr_TSS) section of the			The evaluator will verify that the [TSS](#abbr_TSS) section of the
 [ST](#abbr_ST) includes a comprehensive description of the boot				[ST](#abbr_ST) includes a comprehensive description of the boot
 procedures, including a description of the entire bootchain, for the			procedures, including a description of the entire bootchain, for the
@@ -3168,11 +3211,13 @@ verified.										verified.
 The evaluator will verify that the [TSS](#abbr_TSS) contains a				The evaluator will verify that the [TSS](#abbr_TSS) contains a
 description of the protection afforded to the mechanism performing the			description of the protection afforded to the mechanism performing the
 cryptographic verification.								cryptographic verification.
+										      >	:::
 
 ::: {.eacategory}									::: {.eacategory}
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will also perform the following tests:					The evaluator will also perform the following tests:
 
 -   **Test 1:** The evaluator will perform actions to cause				-   **Test 1:** The evaluator will perform actions to cause
@@ -3199,6 +3244,7 @@ The evaluator will also perform the following tests:					The evaluator will also
 										      >	    information is available to the [TOE](#abbr_TOE) during the
 										      >	    bootstrap mechanism (before the [TOE](#abbr_TOE) becomes fully
 										      >	    operational).
+										      >	:::
 :::											:::
 :::											:::
 :::											:::
@@ -3261,6 +3307,7 @@ are applied to the [TOE](#abbr_TOE).]{.note}						are applied to the [TOE](#abbr
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will check for an update using procedures described in the		The evaluator will check for an update using procedures described in the
 documentation and verify that the [OS](#abbr_OS) provides a list of			documentation and verify that the [OS](#abbr_OS) provides a list of
 available updates. Testing this capability may require installing and			available updates. Testing this capability may require installing and
@@ -3298,6 +3345,7 @@ for the update must be indicated in the [TSS](#abbr_TSS) and evaluated.			for th
 :::											:::
 :::											:::
 :::											:::
+										      >	:::
 
 ::: {#FPT_TUD_EXT.2 .comp}								::: {#FPT_TUD_EXT.2 .comp}
 #### FPT\_TUD\_EXT.2 Trusted Update for Application Software				#### FPT\_TUD\_EXT.2 Trusted Update for Application Software
@@ -3349,6 +3397,7 @@ updates to applications using a digital signature specified by				updates to app
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will check for updates to application software using			The evaluator will check for updates to application software using
 procedures described in the documentation and verify that the				procedures described in the documentation and verify that the
 [OS](#abbr_OS) provides a list of available updates. Testing this			[OS](#abbr_OS) provides a list of available updates. Testing this
@@ -3390,6 +3439,7 @@ and installation of arbitrary files.						      |	signature and verify that the 
 :::											:::
 :::											:::
 :::											:::
+										      >	:::
 
 ### 5.1.5 Audit Data Generation (FAU) {#fau .indexable data-level="3"}			### 5.1.5 Audit Data Generation (FAU) {#fau .indexable data-level="3"}
 
@@ -3480,6 +3530,7 @@ no additional audit-relevant information is required. ]{.note}				no additional 
 Guidance										Guidance
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will check the administrative guide and ensure that it			The evaluator will check the administrative guide and ensure that it
 lists all of the auditable events. The evaluator will check to make sure		lists all of the auditable events. The evaluator will check to make sure
 that every audit event type selected in the [ST](#abbr_ST) is included.			that every audit event type selected in the [ST](#abbr_ST) is included.
@@ -3488,11 +3539,13 @@ The evaluator will check the administrative guide and ensure that it			The evalu
 provides a format for audit records. Each audit record format type must			provides a format for audit records. Each audit record format type must
 be covered, along with a brief description of each field. The evaluator			be covered, along with a brief description of each field. The evaluator
 will ensure that the fields contains the information required.				will ensure that the fields contains the information required.
+										      >	:::
 
 ::: {.eacategory}									::: {.eacategory}
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will test the [OS](#abbr_OS)\'s ability to correctly			The evaluator will test the [OS](#abbr_OS)\'s ability to correctly
 generate audit records by having the [TOE](#abbr_TOE) generate audit			generate audit records by having the [TOE](#abbr_TOE) generate audit
 records for the events listed in the [ST](#abbr_ST). This should include		records for the events listed in the [ST](#abbr_ST). This should include
@@ -3510,6 +3563,7 @@ record provide the required information.						record provide the required inform
 :::											:::
 :::											:::
 :::											:::
+										      >	:::
 
 ### 5.1.6 Identification and Authentication (FIA) {#fia .indexable data-level="3"}	### 5.1.6 Identification and Authentication (FIA) {#fia .indexable data-level="3"}
 
@@ -3577,6 +3631,7 @@ administrator guidance. ]{.note}							administrator guidance. ]{.note}
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will set an administrator-configurable threshold for			The evaluator will set an administrator-configurable threshold for
 failed attempts, or note the [ST](#abbr_ST)-specified assignment. The			failed attempts, or note the [ST](#abbr_ST)-specified assignment. The
 evaluator will then (per selection) repeatedly attempt to authenticate			evaluator will then (per selection) repeatedly attempt to authenticate
@@ -3610,6 +3665,7 @@ and lockouts must also be logged as specified in				      |	attempts and lockout
 :::											:::
 :::											:::
 :::											:::
+										      >	:::
 
 ::: {#FIA_UAU.5 .comp}									::: {#FIA_UAU.5 .comp}
 #### FIA\_UAU.5 Multiple Authentication Mechanisms (Refined)				#### FIA\_UAU.5 Multiple Authentication Mechanisms (Refined)
@@ -3691,21 +3747,26 @@ unsuccessful authentication are covered in [FIA\_AFL.1](#FIA_AFL.1).			unsuccess
 [TSS](#abbr_TSS)									[TSS](#abbr_TSS)
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will ensure that the [TSS](#abbr_TSS) describes each			The evaluator will ensure that the [TSS](#abbr_TSS) describes each
 mechanism provided to support user authentication and the rules				mechanism provided to support user authentication and the rules
 describing how the authentication mechanism(s) provide authentication.			describing how the authentication mechanism(s) provide authentication.
+										      >	:::
 
 ::: {.eacategory}									::: {.eacategory}
 Guidance										Guidance
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will verify that configuration guidance for each				The evaluator will verify that configuration guidance for each
 authentication mechanism is addressed in the AGD guidance.				authentication mechanism is addressed in the AGD guidance.
+										      >	:::
 
 ::: {.eacategory}									::: {.eacategory}
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 If user name and password authentication is selected, the evaluator will		If user name and password authentication is selected, the evaluator will
 configure the [OS](#abbr_OS) with a known user name and password and			configure the [OS](#abbr_OS) with a known user name and password and
 conduct the following tests:								conduct the following tests:
@@ -3766,6 +3827,7 @@ tests:											tests:
 :::											:::
 :::											:::
 :::											:::
+										      >	:::
 
 ::: {#FIA_X509_EXT.1 .comp}								::: {#FIA_X509_EXT.1 .comp}
 #### FIA\_X509\_EXT.1 X.509 Certificate Validation					#### FIA\_X509\_EXT.1 X.509 Certificate Validation
@@ -3868,15 +3930,18 @@ restricts the certificates that may be added as trusted CA certificates.		restri
 [TSS](#abbr_TSS)									[TSS](#abbr_TSS)
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will ensure the [TSS](#abbr_TSS) describes where the check		The evaluator will ensure the [TSS](#abbr_TSS) describes where the check
 of validity of the certificates takes place. The evaluator ensures the			of validity of the certificates takes place. The evaluator ensures the
 [TSS](#abbr_TSS) also provides a description of the certificate path			[TSS](#abbr_TSS) also provides a description of the certificate path
 validation algorithm.									validation algorithm.
+										      >	:::
 
 ::: {.eacategory}									::: {.eacategory}
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 The tests described must be performed in conjunction with the other			The tests described must be performed in conjunction with the other
 certificate services evaluation activities, including the functions in			certificate services evaluation activities, including the functions in
 [FIA\_X509\_EXT.2.1](#FIA_X509_EXT.2.1). The tests for the				[FIA\_X509\_EXT.2.1](#FIA_X509_EXT.2.1). The tests for the
@@ -3988,6 +4053,7 @@ two Intermediate CAs, and the self-signed Root CA.					two Intermediate CAs, and
 :::											:::
 :::											:::
 :::											:::
+										      >	:::
 
 ::: {#FIA_X509_EXT.2 .comp}								::: {#FIA_X509_EXT.2 .comp}
 #### FIA\_X509\_EXT.2 X.509 Certificate Authentication					#### FIA\_X509\_EXT.2 X.509 Certificate Authentication
@@ -4020,6 +4086,7 @@ protocols*\] connections.								protocols*\] connections.
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will acquire or develop an application that uses the			The evaluator will acquire or develop an application that uses the
 [OS](#abbr_OS) [TLS](#abbr_TLS) mechanism with an X.509v3 certificate.			[OS](#abbr_OS) [TLS](#abbr_TLS) mechanism with an X.509v3 certificate.
 The evaluator will then run the application and ensure that the provided		The evaluator will then run the application and ensure that the provided
@@ -4029,6 +4096,7 @@ The evaluator will repeat the activity for any other selections listed.			The ev
 :::											:::
 :::											:::
 :::											:::
+										      >	:::
 
 ### 5.1.7 Trusted Path/Channels (FTP) {#ftp .indexable data-level="3"}			### 5.1.7 Trusted Path/Channels (FTP) {#ftp .indexable data-level="3"}
 
@@ -4068,18 +4136,20 @@ detection of modification of the channel data.						detection of modification of
 include the security functional requirements for the trusted channel			include the security functional requirements for the trusted channel
 protocol selected in [FTP\_ITC\_EXT.1.1](#FTP_ITC_EXT.1.1) in the main			protocol selected in [FTP\_ITC\_EXT.1.1](#FTP_ITC_EXT.1.1) in the main
 body of the [ST](#abbr_ST).\								body of the [ST](#abbr_ST).\
-If the [ST](#abbr_ST) author selects [TLS](#abbr_TLS) or				If the [ST](#abbr_ST) author selects [TLS](#abbr_TLS) or
-[DTLS](#abbr_DTLS), the [TSF](#abbr_TSF) shall be validated against			[DTLS](#abbr_DTLS), the [TSF](#abbr_TSF) shall be validated against
-requirements from the [*Package for Transport Layer				      |	requirements from the [Functional Package for Transport Layer Security
-Security*](https://www.niap-ccevs.org/pp/). The [TSF](#abbr_TSF) can act	      |	(TLS), version
-as [TLS](#abbr_TLS) client or server, or both.\					      |	1.1](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&id=439) The
-If the [ST](#abbr_ST) author selects IPsec, the [TSF](#abbr_TSF) shall		      |	[TSF](#abbr_TSF) can act as [TLS](#abbr_TLS) client or server, or both.\
-be validated against the *[EP](#abbr_EP) for IPsec Virtual Private		      <
-Network (VPN) Clients*.\							      <
+If the [ST](#abbr_ST) author selects [TLS](#abbr_TLS) or			      |	If the [ST](#abbr_ST) author selects [TLS as conforming to the](#tls)
+[DTLS](#abbr_DTLS), the [TSF](#abbr_TSF) shall be validated against		      |	[Functional Package for Transport Layer Security (TLS), version
+requirements from the [*Package for Transport Layer				      |	1.1](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&id=439) or
+Security*](https://www.niap-ccevs.org/pp/). The [TSF](#abbr_TSF) can act	      |	[DTLS as conforming to the](#dtls) [Functional Package for Transport
+as [TLS](#abbr_TLS) client or server, or both.\					      |	Layer Security (TLS), version
+If the [ST](#abbr_ST) author selects IPsec, the [TSF](#abbr_TSF) shall		      |	1.1](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&id=439), the
+be validated against the *[EP](#abbr_EP) for IPsec Virtual Private		      |	[TSF](#abbr_TSF) shall be validated against requirements from the
+Network (VPN) Clients*.\							      |	[Functional Package for Transport Layer Security (TLS), version
+										      >	1.1](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&id=439). The
+										      >	[TSF](#abbr_TSF) can act as [TLS](#abbr_TLS) client or server, or both.\
 If the [ST](#abbr_ST) author selects SSH, the [TSF](#abbr_TSF) shall be			If the [ST](#abbr_ST) author selects SSH, the [TSF](#abbr_TSF) shall be
 validated against the *[EP](#abbr_EP) for Secure Shell*. ]{.note}		      |	validated against the [Functional Package for Secure Shell (SSH),
 										      >	version
-										      >	1.0](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&id=459)
+										      >	1.0](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&id=459).
 										      >	]{.note}
 :::											:::
 :::											:::
@@ -4099,6 +4169,7 @@ validated against the *[EP](#abbr_EP) for Secure Shell*. ]{.note}		      |	valid
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will configure the [OS](#abbr_OS) to communicate with			The evaluator will configure the [OS](#abbr_OS) to communicate with
 another trusted [IT](#abbr_IT) product as identified in the second			another trusted [IT](#abbr_IT) product as identified in the second
 selection. The evaluator will monitor network traffic while the				selection. The evaluator will monitor network traffic while the
@@ -4109,6 +4180,7 @@ protocols identified in the first selection.						protocols identified in the fi
 :::											:::
 :::											:::
 :::											:::
+										      >	:::
 
 ::: {#FTP_TRP.1 .comp}									::: {#FTP_TRP.1 .comp}
 #### FTP\_TRP.1 Trusted Path								#### FTP\_TRP.1 Trusted Path
@@ -4205,25 +4277,30 @@ The evaluation activities for this requirement also test requirements			The eval
 [TSS](#abbr_TSS)									[TSS](#abbr_TSS)
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will examine the [TSS](#abbr_TSS) to determine that the			The evaluator will examine the [TSS](#abbr_TSS) to determine that the
 methods of remote [OS](#abbr_OS) administration are indicated, along			methods of remote [OS](#abbr_OS) administration are indicated, along
 with how those communications are protected. The evaluator will also			with how those communications are protected. The evaluator will also
 confirm that all protocols listed in the [TSS](#abbr_TSS) in support of			confirm that all protocols listed in the [TSS](#abbr_TSS) in support of
 [OS](#abbr_OS) administration are consistent with those specified in the		[OS](#abbr_OS) administration are consistent with those specified in the
 requirement, and are included in the requirements in the [ST](#abbr_ST).		requirement, and are included in the requirements in the [ST](#abbr_ST).
+										      >	:::
 
 ::: {.eacategory}									::: {.eacategory}
 Guidance										Guidance
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will confirm that the operational guidance contains			The evaluator will confirm that the operational guidance contains
 instructions for establishing the remote administrative sessions for			instructions for establishing the remote administrative sessions for
 each supported method.									each supported method.
+										      >	:::
 
 ::: {.eacategory}									::: {.eacategory}
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will also perform the following tests:					The evaluator will also perform the following tests:
 
 -   **Test 1:** The evaluator will ensure that communications using each		-   **Test 1:** The evaluator will ensure that communications using each
@@ -4243,24 +4320,25 @@ The evaluator will also perform the following tests:					The evaluator will also
 :::											:::
 :::											:::
 :::											:::
+										      >	:::
 
 ### 5.1.8 TOE Security Functional Requirements Rationale {#obj-req-map .indexable dat	### 5.1.8 TOE Security Functional Requirements Rationale {#obj-req-map .indexable dat
 
 The following rationale provides justification for each security			The following rationale provides justification for each security
-objective for the [TOE](#abbr_TOE), showing that the SFRs are suitable			objective for the [TOE](#abbr_TOE), showing that the SFRs are suitable
-to meet and achieve the security objectives:\						to meet and achieve the security objectives:\
-
-  ----------------------------------------------------------------------------------- |	[Table [2]{.counter}]{#t-obj_map .ctr data-myid="t-obj_map"
-  Objective                                        Addressed by                       |	data-counter-type="ct-Table"}: [SFR](#abbr_SFR) Rationale
-  ------------------------------------------------ ---------------------------------- |
-  [O.ACCOUNTABILITY](#O.ACCOUNTABILITY)\           [FAU\_GEN.1](#FAU_GEN.1), [FTP\_IT |	Objective
+objective for the [TOE](#abbr_TOE), showing that the SFRs are suitable		      |	objective for the [TOE](#abbr_TOE), showing that the [SFRs](#abbr_SFR)
+to meet and achieve the security objectives:\					      |	are suitable to meet and achieve the security objectives:\
+										      >
+										      >	[Table [2]{.counter}]{#t-obj_map .ctr data-myid="t-obj_map"
+										      >	data-counter-type="ct-Table"}: [SFR](#abbr_SFR) Rationale
+										      >
+										      >	Objective
 										      >
 										      >	Addressed by
 
-  [O.INTEGRITY](#O.INTEGRITY)\                     [FPT\_SBOP\_EXT.1](#FPT_SBOP_EXT.1 |	Rationale
-										      >
-										      >	[O.ACCOUNTABILITY](#O.ACCOUNTABILITY)\
-										      >
+  ----------------------------------------------------------------------------------- |	Rationale
+  Objective                                        Addressed by                       |
+  ------------------------------------------------ ---------------------------------- |	[O.ACCOUNTABILITY](#O.ACCOUNTABILITY)\
+  [O.ACCOUNTABILITY](#O.ACCOUNTABILITY)\           [FAU\_GEN.1](#FAU_GEN.1), [FTP\_IT |
 										      >	[FAU\_GEN.1](#FAU_GEN.1)
 										      >
 										      >	Supports the objective by requiring that critical event information be
@@ -4280,19 +4358,20 @@ to meet and achieve the security objectives:\						to meet and achieve the secur
 										      >	hardened against buffer overflow attacks
 										      >
 										      >	[FPT\_TUD\_EXT.1](#FPT_TUD_EXT.1)
-										      >
-										      >	Supports the objective by requiring that the [OS](#abbr_OS) be able to
+
+  [O.INTEGRITY](#O.INTEGRITY)\                     [FPT\_SBOP\_EXT.1](#FPT_SBOP_EXT.1 |	Supports the objective by requiring that the [OS](#abbr_OS) be able to
 										      >	check for critical updates.
-										      >
-										      >	[FPT\_TUD\_EXT.2](#FPT_TUD_EXT.2)
-										      >
-										      >	Supports the objective by requiring that the [OS](#abbr_OS) verify
+
+  [O.MANAGEMENT](#O.MANAGEMENT)\                   [FMT\_MOF\_EXT.1](#FMT_MOF_EXT.1), |	[FPT\_TUD\_EXT.2](#FPT_TUD_EXT.2)
+
+  [O.PROTECTED\_​STORAGE](#O.PROTECTED_STORAGE)\   [FCS\_STO\_EXT.1](#FCS_STO_EXT.1),  |	Supports the objective by requiring that the [OS](#abbr_OS) verify
 										      >	updates before applying them.
-										      >
-										      >	[FCS\_COP.1/HASH](#FCS_COP.1/HASH)
-										      >
-										      >	Supports the objective by requiring the [TSF](#abbr_TSF) to implement
-										      >	hash algorithms that are used in support of protected communications.
+
+  [O.PROTECTED\_​COMMS](#O.PROTECTED_COMMS)\       [FCS\_RBG\_EXT.1](#FCS_RBG_EXT.1),  |	[FCS\_COP.1/HASH](#FCS_COP.1/HASH)
+  ----------------------------------------------------------------------------------- <
+
+  : [Table [2]{.counter}]{#t-obj_map .ctr data-myid="t-obj_map"			      |	Supports the objective by requiring the [TSF](#abbr_TSF) to implement
+  data-counter-type="ct-Table"}: [SFR](#abbr_SFR) Rationale			      |	hash algorithms that are used in support of protected communications.
 										      >
 										      >	[FCS\_COP.1/SIGN](#FCS_COP.1/SIGN)
 										      >
@@ -4354,8 +4433,8 @@ to meet and achieve the security objectives:\						to meet and achieve the secur
 										      >	Supports this objective by requiring the [TOE](#abbr_TOE) to restrict
 										      >	the ability to perform certain management functions to a privileged
 										      >	user.
-
-  [O.MANAGEMENT](#O.MANAGEMENT)\                   [FMT\_MOF\_EXT.1](#FMT_MOF_EXT.1), |	[FMT\_SMF\_EXT.1](#FMT_SMF_EXT.1)
+										      >
+										      >	[FMT\_SMF\_EXT.1](#FMT_SMF_EXT.1)
 										      >
 										      >	Supports this objective by requiring the [TOE](#abbr_TOE) to implement
 										      >	specific management functions.
@@ -4378,12 +4457,12 @@ to meet and achieve the security objectives:\						to meet and achieve the secur
 										      >	encrypted storage.
 										      >
 										      >	[FCS\_RBG\_EXT.1](#FCS_RBG_EXT.1)
-
-  [O.PROTECTED\_​STORAGE](#O.PROTECTED_STORAGE)\   [FCS\_STO\_EXT.1](#FCS_STO_EXT.1),  |	Supports this objective by requiring the [OS](#abbr_OS) to generate
+										      >
+										      >	Supports this objective by requiring the [OS](#abbr_OS) to generate
 										      >	random bits according to industry standards.
-
-  [O.PROTECTED\_​COMMS](#O.PROTECTED_COMMS)\       [FCS\_RBG\_EXT.1](#FCS_RBG_EXT.1),  |	[FCS\_COP.1/ENCRYPT](#FCS_COP.1/ENCRYPT)
-  ----------------------------------------------------------------------------------- |
+										      >
+										      >	[FCS\_COP.1/ENCRYPT](#FCS_COP.1/ENCRYPT)
+										      >
 										      >	Supports this objective requiring the [OS](#abbr_OS) to perform
 										      >	encryption according to industry stands.
 										      >
@@ -4451,9 +4530,9 @@ to meet and achieve the security objectives:\						to meet and achieve the secur
 										      >	certificates.
 										      >
 										      >	[FTP\_ITC\_EXT.1](#FTP_ITC_EXT.1)
-
-  : [Table [2]{.counter}]{#t-obj_map .ctr data-myid="t-obj_map"			      |	Supports the objective by requiring the [OS](#abbr_OS) to provide a
-  data-counter-type="ct-Table"}: [SFR](#abbr_SFR) Rationale			      |	trusted channel for critical communication.
+										      >
+										      >	Supports the objective by requiring the [OS](#abbr_OS) to provide a
+										      >	trusted channel for critical communication.
 
 5.2 Security Assurance Requirements {#Security_Assurance_Requirements .indexable data	5.2 Security Assurance Requirements {#Security_Assurance_Requirements .indexable data
 -----------------------------------							-----------------------------------
@@ -4461,28 +4540,29 @@ to meet and achieve the security objectives:\						to meet and achieve the secur
 The Security Objectives in [Section 4 Security						The Security Objectives in [Section 4 Security
 Objectives](#Security_Objectives){.dynref} were constructed to address			Objectives](#Security_Objectives){.dynref} were constructed to address
 threats identified in [Section 3.1 Threats](#Threats){.dynref}. The			threats identified in [Section 3.1 Threats](#Threats){.dynref}. The
-Security Functional Requirements (SFRs) in [Section 5.1 Security			Security Functional Requirements (SFRs) in [Section 5.1 Security
-Functional Requirements](#SFRs){.dynref} are a formal instantiation of			Functional Requirements](#SFRs){.dynref} are a formal instantiation of
-the Security Objectives. The [PP](#abbr_PP) identifies the Security			the Security Objectives. The [PP](#abbr_PP) identifies the Security
-Assurance Requirements (SARs) to frame the extent to which the evaluator		Assurance Requirements (SARs) to frame the extent to which the evaluator
-assesses the documentation applicable for the evaluation and performs			assesses the documentation applicable for the evaluation and performs
-independent testing.									independent testing.
-
-This section lists the set of SARs from [CC](#abbr_CC) part 3 that are			This section lists the set of SARs from [CC](#abbr_CC) part 3 that are
-required in evaluations against this [PP](#abbr_PP). Individual				required in evaluations against this [PP](#abbr_PP). Individual
-evaluation activities to be performed are specified both in [Section 5			evaluation activities to be performed are specified both in [Section 5
-Security Requirements](#Security_Requirements){.dynref} as well as in			Security Requirements](#Security_Requirements){.dynref} as well as in
-this section.										this section.
-
-The general model for evaluation of TOEs against STs written to conform			The general model for evaluation of TOEs against STs written to conform
-to this [PP](#abbr_PP) is as follows:\							to this [PP](#abbr_PP) is as follows:\
+Security Functional Requirements (SFRs) in [Section 5.1 Security		      |	Security Functional Requirements ([SFRs](#abbr_SFR)) in [Section 5.1
+Functional Requirements](#SFRs){.dynref} are a formal instantiation of		      |	Security Functional Requirements](#SFRs){.dynref} are a formal
+the Security Objectives. The [PP](#abbr_PP) identifies the Security		      |	instantiation of the Security Objectives. The [PP](#abbr_PP) identifies
+Assurance Requirements (SARs) to frame the extent to which the evaluator	      |	the Security Assurance Requirements ([SARs](#abbr_SAR)) to frame the
+assesses the documentation applicable for the evaluation and performs		      |	extent to which the evaluator assesses the documentation applicable for
+independent testing.								      |	the evaluation and performs independent testing.
+										      |
+This section lists the set of SARs from [CC](#abbr_CC) part 3 that are		      |	This section lists the set of [SARs](#abbr_SAR) from [CC](#abbr_CC) part
+required in evaluations against this [PP](#abbr_PP). Individual			      |	3 that are required in evaluations against this [PP](#abbr_PP).
+evaluation activities to be performed are specified both in [Section 5		      |	Individual evaluation activities to be performed are specified both in
+Security Requirements](#Security_Requirements){.dynref} as well as in		      |	[Section 5 Security Requirements](#Security_Requirements){.dynref} as
+this section.									      |	well as in this section.
+										      |
+The general model for evaluation of TOEs against STs written to conform		      |	The general model for evaluation of [TOEs](#abbr_TOE) against
+to this [PP](#abbr_PP) is as follows:\						      |	[STs](#abbr_ST) written to conform to this [PP](#abbr_PP) is as
+										      >	follows:\
 After the [ST](#abbr_ST) has been approved for evaluation, the				After the [ST](#abbr_ST) has been approved for evaluation, the
 [ITSEF](#abbr_ITSEF) will obtain the [OS](#abbr_OS), supporting				[ITSEF](#abbr_ITSEF) will obtain the [OS](#abbr_OS), supporting
 environmental [IT](#abbr_IT), and the administrative/user guides for the		environmental [IT](#abbr_IT), and the administrative/user guides for the
 [OS](#abbr_OS). The [ITSEF](#abbr_ITSEF) is expected to perform actions			[OS](#abbr_OS). The [ITSEF](#abbr_ITSEF) is expected to perform actions
 mandated by the Common Evaluation Methodology ([CEM](#abbr_CEM)) for the		mandated by the Common Evaluation Methodology ([CEM](#abbr_CEM)) for the
-ASE and ALC SARs. The [ITSEF](#abbr_ITSEF) also performs the evaluation			ASE and ALC SARs. The [ITSEF](#abbr_ITSEF) also performs the evaluation
-activities contained within [Section 5 Security						activities contained within [Section 5 Security
+ASE and ALC SARs. The [ITSEF](#abbr_ITSEF) also performs the evaluation		      |	ASE and ALC [SARs](#abbr_SAR). The [ITSEF](#abbr_ITSEF) also performs
+activities contained within [Section 5 Security					      |	the evaluation activities contained within [Section 5 Security
 Requirements](#Security_Requirements){.dynref}, which are intended to be		Requirements](#Security_Requirements){.dynref}, which are intended to be
 an interpretation of the other [CEM](#abbr_CEM) assurance requirements			an interpretation of the other [CEM](#abbr_CEM) assurance requirements
 as they apply to the specific technology instantiated in the				as they apply to the specific technology instantiated in the
@@ -4558,7 +4638,7 @@ The developer shall provide a functional specification.					The developer shall 
 
 ::: {.reqdesc}										::: {.reqdesc}
 The developer shall provide a tracing from the functional specification			The developer shall provide a tracing from the functional specification
-to the SFRs.										to the SFRs.
+to the SFRs.									      |	to the [SFRs](#abbr_SFR).
 
 ::: {.appnote}										::: {.appnote}
 [Application Note: ]{.note-header}[As indicated in the introduction to			[Application Note: ]{.note-header}[As indicated in the introduction to
@@ -4568,9 +4648,9 @@ developer may reference a website accessible to application developers			develop
 and the evaluator. The evaluation activities in the functional				and the evaluator. The evaluation activities in the functional
 requirements point to evidence that should exist in the documentation			requirements point to evidence that should exist in the documentation
 and [TSS](#abbr_TSS) section; since these are directly associated with			and [TSS](#abbr_TSS) section; since these are directly associated with
-the SFRs, the tracing in element [ADV\_FSP.1.2D](#ADV_FSP.1.2D) is			the SFRs, the tracing in element [ADV\_FSP.1.2D](#ADV_FSP.1.2D) is
-implicitly already done and no additional documentation is				implicitly already done and no additional documentation is
-necessary.]{.note}									necessary.]{.note}
+the SFRs, the tracing in element [ADV\_FSP.1.2D](#ADV_FSP.1.2D) is		      |	the [SFRs](#abbr_SFR), the tracing in element
+implicitly already done and no additional documentation is			      |	[ADV\_FSP.1.2D](#ADV_FSP.1.2D) is implicitly already done and no
+necessary.]{.note}								      |	additional documentation is necessary.]{.note}
 :::											:::
 :::											:::
 :::											:::
@@ -4618,8 +4698,8 @@ categorization of interfaces as [SFR](#abbr_SFR)-non-interfering.			categorizati
 :::											:::
 
 ::: {.reqdesc}										::: {.reqdesc}
-The tracing shall demonstrate that the SFRs trace to [TSFIs](#abbr_TSFI)		The tracing shall demonstrate that the SFRs trace to [TSFIs](#abbr_TSFI)
-in the functional specification.							in the functional specification.
+The tracing shall demonstrate that the SFRs trace to [TSFIs](#abbr_TSFI)	      |	The tracing shall demonstrate that the [SFRs](#abbr_SFR) trace to
+in the functional specification.						      |	[TSFIs](#abbr_TSFI) in the functional specification.
 :::											:::
 :::											:::
 
@@ -4643,7 +4723,7 @@ requirements for content and presentation of evidence.					requirements for cont
 
 ::: {.reqdesc}										::: {.reqdesc}
 The evaluator will determine that the functional specification is an			The evaluator will determine that the functional specification is an
-accurate and complete instantiation of the SFRs.					accurate and complete instantiation of the SFRs.
+accurate and complete instantiation of the SFRs.				      |	accurate and complete instantiation of the [SFRs](#abbr_SFR).
 :::											:::
 :::											:::
 
@@ -4657,16 +4737,17 @@ accurate and complete instantiation of the SFRs.					accurate and complete insta
 [ADV\_FSP.1](#ADV_FSP.1)								[ADV\_FSP.1](#ADV_FSP.1)
 :::											:::
 
-There are no specific evaluation activities associated with these SARs,			There are no specific evaluation activities associated with these SARs,
-except ensuring the information is provided. The functional				except ensuring the information is provided. The functional
-specification documentation is provided to support the evaluation			specification documentation is provided to support the evaluation
-activities described in [Section 5.1 Security Functional				activities described in [Section 5.1 Security Functional
+There are no specific evaluation activities associated with these SARs,		      |	There are no specific evaluation activities associated with these
+except ensuring the information is provided. The functional			      |	[SARs](#abbr_SAR), except ensuring the information is provided. The
+specification documentation is provided to support the evaluation		      |	functional specification documentation is provided to support the
+activities described in [Section 5.1 Security Functional			      |	evaluation activities described in [Section 5.1 Security Functional
 Requirements](#SFRs){.dynref}, and other activities described for AGD,			Requirements](#SFRs){.dynref}, and other activities described for AGD,
-ATE, and AVA SARs. The requirements on the content of the functional			ATE, and AVA SARs. The requirements on the content of the functional
-specification information is implicitly assessed by virtue of the other			specification information is implicitly assessed by virtue of the other
-evaluation activities being performed; if the evaluator is unable to			evaluation activities being performed; if the evaluator is unable to
-perform an activity because there is insufficient interface information,		perform an activity because there is insufficient interface information,
-then an adequate functional specification has not been provided.			then an adequate functional specification has not been provided.
+ATE, and AVA SARs. The requirements on the content of the functional		      |	ATE, and AVA [SARs](#abbr_SAR). The requirements on the content of the
+specification information is implicitly assessed by virtue of the other		      |	functional specification information is implicitly assessed by virtue of
+evaluation activities being performed; if the evaluator is unable to		      |	the other evaluation activities being performed; if the evaluator is
+perform an activity because there is insufficient interface information,	      |	unable to perform an activity because there is insufficient interface
+then an adequate functional specification has not been provided.		      |	information, then an adequate functional specification has not been
+										      >	provided.
 :::											:::
 :::											:::
 :::											:::
@@ -5080,7 +5161,7 @@ The developer shall provide a configuration list for the [OS](#abbr_OS).		The de
 
 ::: {.reqdesc}										::: {.reqdesc}
 The configuration list shall include the following: the [OS](#abbr_OS)			The configuration list shall include the following: the [OS](#abbr_OS)
-itself; and the evaluation evidence required by the SARs.				itself; and the evaluation evidence required by the SARs.
+itself; and the evaluation evidence required by the SARs.			      |	itself; and the evaluation evidence required by the [SARs](#abbr_SAR).
 :::											:::
 :::											:::
 
@@ -5117,10 +5198,10 @@ requirements for content and presentation of evidence.					requirements for cont
 [ALC\_CMS.1](#ALC_CMS.1)								[ALC\_CMS.1](#ALC_CMS.1)
 :::											:::
 
-The \"evaluation evidence required by the SARs\" in this [PP](#abbr_PP)			The \"evaluation evidence required by the SARs\" in this [PP](#abbr_PP)
-is limited to the information in the [ST](#abbr_ST) coupled with the			is limited to the information in the [ST](#abbr_ST) coupled with the
-guidance provided to administrators and users under the AGD				guidance provided to administrators and users under the AGD
-requirements. By ensuring that the [OS](#abbr_OS) is specifically			requirements. By ensuring that the [OS](#abbr_OS) is specifically
+The \"evaluation evidence required by the SARs\" in this [PP](#abbr_PP)		      |	The \"evaluation evidence required by the [SARs](#abbr_SAR)\" in this
+is limited to the information in the [ST](#abbr_ST) coupled with the		      |	[PP](#abbr_PP) is limited to the information in the [ST](#abbr_ST)
+guidance provided to administrators and users under the AGD			      |	coupled with the guidance provided to administrators and users under the
+requirements. By ensuring that the [OS](#abbr_OS) is specifically		      |	AGD requirements. By ensuring that the [OS](#abbr_OS) is specifically
 identified and that this identification is consistent in the				identified and that this identification is consistent in the
 [ST](#abbr_ST) and in the AGD guidance (as done in the evaluation			[ST](#abbr_ST) and in the AGD guidance (as done in the evaluation
 activity for [ALC\_CMC.1](#ALC_CMC.1)), the evaluator implicitly			activity for [ALC\_CMC.1](#ALC_CMC.1)), the evaluator implicitly
@@ -5289,13 +5370,14 @@ Testing is performed to confirm the functionality described in the			Testing is 
 and operational) documentation provided. The focus of the testing is to			and operational) documentation provided. The focus of the testing is to
 confirm that the requirements specified in [Section 5.1 Security			confirm that the requirements specified in [Section 5.1 Security
 Functional Requirements](#SFRs){.dynref} being met, although some			Functional Requirements](#SFRs){.dynref} being met, although some
-additional testing is specified for SARs in [Section 5.2 Security			additional testing is specified for SARs in [Section 5.2 Security
-Assurance Requirements](#Security_Assurance_Requirements){.dynref}. The			Assurance Requirements](#Security_Assurance_Requirements){.dynref}. The
-evaluation activities identify the additional testing activities			evaluation activities identify the additional testing activities
-associated with these components. The evaluator produces a test report			associated with these components. The evaluator produces a test report
-documenting the plan for and results of testing, as well as coverage			documenting the plan for and results of testing, as well as coverage
-arguments focused on the platform/[OS](#abbr_OS) combinations that are			arguments focused on the platform/[OS](#abbr_OS) combinations that are
-claiming conformance to this [PP](#abbr_PP). Given the scope of the			claiming conformance to this [PP](#abbr_PP). Given the scope of the
+additional testing is specified for SARs in [Section 5.2 Security		      |	additional testing is specified for [SARs](#abbr_SAR) in [Section 5.2
+Assurance Requirements](#Security_Assurance_Requirements){.dynref}. The		      |	Security Assurance
+evaluation activities identify the additional testing activities		      |	Requirements](#Security_Assurance_Requirements){.dynref}. The evaluation
+associated with these components. The evaluator produces a test report		      |	activities identify the additional testing activities associated with
+documenting the plan for and results of testing, as well as coverage		      |	these components. The evaluator produces a test report documenting the
+arguments focused on the platform/[OS](#abbr_OS) combinations that are		      |	plan for and results of testing, as well as coverage arguments focused
+claiming conformance to this [PP](#abbr_PP). Given the scope of the		      |	on the platform/[OS](#abbr_OS) combinations that are claiming
+										      >	conformance to this [PP](#abbr_PP). Given the scope of the
 [OS](#abbr_OS) and its associated evaluation evidence requirements, this		[OS](#abbr_OS) and its associated evaluation evidence requirements, this
 component\'s evaluation activities are covered by the evaluation			component\'s evaluation activities are covered by the evaluation
 activities listed for [ALC\_CMC.1](#ALC_CMC.1).						activities listed for [ALC\_CMC.1](#ALC_CMC.1).
@@ -5543,8 +5625,8 @@ Requirements](#optional-reqs){.dynref}) are strictly optional				Requirements](#
 requirements that are independent of the [TOE](#abbr_TOE) implementing			requirements that are independent of the [TOE](#abbr_TOE) implementing
 any function. If the [TOE](#abbr_TOE) fulfills any of these requirements		any function. If the [TOE](#abbr_TOE) fulfills any of these requirements
 or supports a certain functionality, the vendor is encouraged to include		or supports a certain functionality, the vendor is encouraged to include
-the SFRs in the [ST](#abbr_ST), but are not required in order to conform		the SFRs in the [ST](#abbr_ST), but are not required in order to conform
-to this [PP](#abbr_PP).\								to this [PP](#abbr_PP).\
+the SFRs in the [ST](#abbr_ST), but are not required in order to conform	      |	the [SFRs](#abbr_SFR) in the [ST](#abbr_ST), but are not required in
+to this [PP](#abbr_PP).\							      |	order to conform to this [PP](#abbr_PP).\
 \											\
 The second type ([A.2 Objective Requirements](#objective-reqs){.dynref})		The second type ([A.2 Objective Requirements](#objective-reqs){.dynref})
 are objective requirements that describe security functionality not yet			are objective requirements that describe security functionality not yet
@@ -5554,7 +5636,7 @@ included in the baseline requirements in future versions of this			included in t
 [PP](#abbr_PP). Adoption by vendors is encouraged and expected as soon			[PP](#abbr_PP). Adoption by vendors is encouraged and expected as soon
 as possible.\										as possible.\
 \											\
-The third type ([A.3 Implementation-based						The third type ([A.3 Implementation-based
+The third type ([A.3 Implementation-based					      |	The third type ([A.3 Implementation-dependent
 Requirements](#feat-based-reqs){.dynref}) are dependent on the				Requirements](#feat-based-reqs){.dynref}) are dependent on the
 [TOE](#abbr_TOE) implementing a particular function. If the				[TOE](#abbr_TOE) implementing a particular function. If the
 [TOE](#abbr_TOE) fulfills any of these requirements, the vendor must			[TOE](#abbr_TOE) fulfills any of these requirements, the vendor must
@@ -5564,130 +5646,126 @@ the evaluated configuration.								the evaluated configuration.
 A.1 Strictly Optional Requirements {#optional-reqs .indexable data-level="2"}		A.1 Strictly Optional Requirements {#optional-reqs .indexable data-level="2"}
 ----------------------------------							----------------------------------
 
-### A.1.1 User Data Protection (FDP) {#fdp-optional .indexable data-level="3"}		### A.1.1 User Data Protection (FDP) {#fdp-optional .indexable data-level="3"}
-
-::: {#FDP_IFC_EXT.1 .comp}								::: {#FDP_IFC_EXT.1 .comp}
-#### FDP\_IFC\_EXT.1 Information flow control						#### FDP\_IFC\_EXT.1 Information flow control
-
-::: {.element}										::: {.element}
-::: {#FDP_IFC_EXT.1.1 .reqid}								::: {#FDP_IFC_EXT.1.1 .reqid}
-[FDP\_IFC\_EXT.1.1](#FDP_IFC_EXT.1.1){.abbr}						[FDP\_IFC\_EXT.1.1](#FDP_IFC_EXT.1.1){.abbr}
-:::											:::
-
-::: {.reqdesc}										::: {.reqdesc}
-The [OS](#abbr_OS) shall \[**selection**:						The [OS](#abbr_OS) shall \[**selection**:
-
--   *provide an interface which allows a VPN client to protect all		      |	-   *provide an interface which allows a [VPN](#abbr_VPN) client to
-    [IP](#abbr_IP) traffic using IPsec*,					      |	    protect all [IP](#abbr_IP) traffic using IPsec*,
--   *provide a VPN client which can protects all [IP](#abbr_IP) traffic		      |	-   *provide a [VPN](#abbr_VPN) client which can protects all
-    using IPsec*								      |	    [IP](#abbr_IP) traffic using IPsec*
-
-\] with the exception of [IP](#abbr_IP) traffic required to establish			\] with the exception of [IP](#abbr_IP) traffic required to establish
-the VPN connection and \[**selection**: *signed updates directly from		      |	the [VPN](#abbr_VPN) connection and \[**selection**: *signed updates
-the [OS](#abbr_OS) vendor*, *no other traffic*\] .				      |	directly from the [OS](#abbr_OS) vendor*, *no other traffic*\] .
-
-::: {.appnote}										::: {.appnote}
-[Application Note: ]{.note-header}[ ]{.note}						[Application Note: ]{.note-header}[ ]{.note}
-
-Typically, the traffic required to establish the VPN connection is		      |	Typically, the traffic required to establish the [VPN](#abbr_VPN)
-referred to as \"Control Plane\" traffic, whereas the [IP](#abbr_IP)		      |	connection is referred to as \"Control Plane\" traffic, whereas the
-traffic protected by the IPsec VPN is referred to as \"Data Plane\"		      |	[IP](#abbr_IP) traffic protected by the IPsec [VPN](#abbr_VPN) is
-traffic. All Data Plane traffic must flow through the VPN connection and	      |	referred to as \"Data Plane\" traffic. All Data Plane traffic must flow
-the VPN must not split-tunnel.							      |	through the [VPN](#abbr_VPN) connection and the [VPN](#abbr_VPN) must
-										      |	not split-tunnel.
-If no native IPsec client is validated or third-party VPN clients may		      |
-also implement the required Information Flow Control, the first option		      |	If no native IPsec client is validated or third-party [VPN](#abbr_VPN)
-shall be selected. In these cases, the [TOE](#abbr_TOE) provides an		      |	clients may also implement the required Information Flow Control, the
-[API](#abbr_API) to third-party VPN clients that allows them to			      |	first option shall be selected. In these cases, the [TOE](#abbr_TOE)
-configure the [TOE](#abbr_TOE)\'s network stack to perform the required		      |	provides an [API](#abbr_API) to third-party [VPN](#abbr_VPN) clients
-Information Flow Control.							      |	that allows them to configure the [TOE](#abbr_TOE)\'s network stack to
-										      |	perform the required Information Flow Control.
-The [ST](#abbr_ST) author shall select the second option if the			      |
-[TSF](#abbr_TSF) implements a native VPN client (IPsec is selected in		      |	The [ST](#abbr_ST) author will select the second option if the
-[FTP\_ITC\_EXT.1](#FTP_ITC_EXT.1)). If the native VPN client is to be		      |	[TSF](#abbr_TSF) implements a native [VPN](#abbr_VPN) client (IPsec is
-validated (IPsec is selected in [FTP\_ITC\_EXT.1.1](#FTP_ITC_EXT.1.1)		      |	selected in [FTP\_ITC\_EXT.1](#FTP_ITC_EXT.1)). If the native
-and the [TSF](#abbr_TSF) is validated against the *[EP](#abbr_EP) for		      |	[VPN](#abbr_VPN) client is to be validated (IPsec is selected in
-IPsec Virtual Private Network (VPN) Clients*), the [ST](#abbr_ST) author	      |	[FTP\_ITC\_EXT.1.1](#FTP_ITC_EXT.1.1) and the [TSF](#abbr_TSF) is
-shall also include [FDP\_IFC\_EXT.1](#FDP_IFC_EXT.1) from this package.		      |	validated against the *[EP](#abbr_EP) for IPsec Virtual Private Network
-In the future, this requirement may also make a distinction between the		      |	([VPN](#abbr_VPN)) Clients*), the [ST](#abbr_ST) author will also
-current requirement (which requires that when the IPsec trusted channel		      |	include [FDP\_IFC\_EXT.1](#FDP_IFC_EXT.1) from this package. In the
-is enabled, all traffic from the [TSF](#abbr_TSF) is routed through that	      |	future, this requirement may also make a distinction between the current
-										      >	requirement (which requires that when the IPsec trusted channel is
-										      >	enabled, all traffic from the [TSF](#abbr_TSF) is routed through that
-channel) and having an option to force the establishment of an IPsec			channel) and having an option to force the establishment of an IPsec
-trusted channel to allow any communication by the [TSF](#abbr_TSF).			trusted channel to allow any communication by the [TSF](#abbr_TSF).
-:::											:::
-:::											:::
-:::											:::
-
-::: {.activity_pane .hide}								::: {.activity_pane .hide}
-::: {.activity_pane_header}								::: {.activity_pane_header}
-[[ Evaluation Activities ]{.activity_pane_label}[]{.toggler}](#)			[[ Evaluation Activities ]{.activity_pane_label}[]{.toggler}](#)
-:::											:::
-
-::: {.activity_pane_body}								::: {.activity_pane_body}
-::: {.component-activity-header}							::: {.component-activity-header}
-[FDP\_IFC\_EXT.1](#FDP_IFC_EXT.1)							[FDP\_IFC\_EXT.1](#FDP_IFC_EXT.1)
-:::											:::
-
-::: {.eacategory}									::: {.eacategory}
-[TSS](#abbr_TSS)									[TSS](#abbr_TSS)
-:::											:::
-
-The evaluator will verify that the [TSS](#abbr_TSS) section of the			The evaluator will verify that the [TSS](#abbr_TSS) section of the
-[ST](#abbr_ST) describes the routing of [IP](#abbr_IP) traffic when a			[ST](#abbr_ST) describes the routing of [IP](#abbr_IP) traffic when a
-VPN client is enabled. The evaluator will ensure that the description		      |	[VPN](#abbr_VPN) client is enabled. The evaluator will ensure that the
-indicates which traffic does not go through the VPN and which traffic		      |	description indicates which traffic does not go through the
-does, and that a configuration exists for each in which only the traffic	      |	[VPN](#abbr_VPN) and which traffic does, and that a configuration exists
-identified by the [ST](#abbr_ST) author as necessary for establishing		      |	for each in which only the traffic identified by the [ST](#abbr_ST)
-the VPN connection (IKE traffic and perhaps [HTTPS](#abbr_HTTPS) or		      |	author as necessary for establishing the [VPN](#abbr_VPN) connection
-[DNS](#abbr_DNS) traffic) is not encapsulated by the VPN protocol		      |	(IKE traffic and perhaps [HTTPS](#abbr_HTTPS) or [DNS](#abbr_DNS)
-(IPsec).									      |	traffic) is not encapsulated by the [VPN](#abbr_VPN) protocol (IPsec).
-
-::: {.eacategory}									::: {.eacategory}
-Tests											Tests
-:::											:::
-
-The evaluator will perform the following test:						The evaluator will perform the following test:
-
--   **Test 1:**										-   **Test 1:**
-    -   **Step 1:** The evaluator will enable a network connection. The			    -   **Step 1:** The evaluator will enable a network connection. The
-        evaluator will sniff packets while performing running				        evaluator will sniff packets while performing running
-        applications that use the network such as web browsers and email		        applications that use the network such as web browsers and email
-        clients. The evaluator will verify that the sniffer captures the		        clients. The evaluator will verify that the sniffer captures the
-        traffic generated by these actions, turn off the sniffing tool,			        traffic generated by these actions, turn off the sniffing tool,
-        and save the session data.							        and save the session data.
-    -   **Step 2:** The evaluator will configure an IPsec VPN client		      |	    -   **Step 2:** The evaluator will configure an IPsec
-        that supports the routing specified in this requirement. The		      |	        [VPN](#abbr_VPN) client that supports the routing specified in
-        evaluator will turn on the sniffing tool, establish the VPN		      |	        this requirement. The evaluator will turn on the sniffing tool,
-        connection, and perform the same actions with the device as		      |	        establish the [VPN](#abbr_VPN) connection, and perform the same
-        performed in the first step. The evaluator will verify that the		      |	        actions with the device as performed in the first step. The
-        sniffing tool captures traffic generated by these actions, turn		      |	        evaluator will verify that the sniffing tool captures traffic
-        off the sniffing tool, and save the session data.			      |	        generated by these actions, turn off the sniffing tool, and save
-										      >	        the session data.
-    -   **Step 3:** The evaluator will examine the traffic from both			    -   **Step 3:** The evaluator will examine the traffic from both
-        step one and step two to verify that all non-excepted Data Plane		        step one and step two to verify that all non-excepted Data Plane
-        traffic in Step 2 is encapsulated by IPsec. The evaluator will			        traffic in Step 2 is encapsulated by IPsec. The evaluator will
-        examine the Security Parameter Index (SPI) value present in the			        examine the Security Parameter Index (SPI) value present in the
-        encapsulated packets captured in Step 2 from the				        encapsulated packets captured in Step 2 from the
-        [TOE](#abbr_TOE) to the Gateway and shall verify this value is			        [TOE](#abbr_TOE) to the Gateway and shall verify this value is
-        the same for all actions used to generate traffic through the			        the same for all actions used to generate traffic through the
-        VPN. Note that it is expected that the SPI value for packets		      |	        [VPN](#abbr_VPN). Note that it is expected that the SPI value
-        from the Gateway to the [TOE](#abbr_TOE) is different than the		      |	        for packets from the Gateway to the [TOE](#abbr_TOE) is
-        SPI value for packets from the [TOE](#abbr_TOE) to the Gateway.		      |	        different than the SPI value for packets from the
-										      >	        [TOE](#abbr_TOE) to the Gateway.
-    -   **Step 4:** The evaluator will perform a ping on the				    -   **Step 4:** The evaluator will perform a ping on the
-        [TOE](#abbr_TOE) host on the local network and verify that no			        [TOE](#abbr_TOE) host on the local network and verify that no
-        packets sent are captured with the sniffer. The evaluator will			        packets sent are captured with the sniffer. The evaluator will
-        attempt to send packets to the [TOE](#abbr_TOE) outside the VPN		      |	        attempt to send packets to the [TOE](#abbr_TOE) outside the
-        tunnel (i.e. not through the VPN gateway), including from the		      |	        [VPN](#abbr_VPN) tunnel (i.e. not through the [VPN](#abbr_VPN)
-        local network, and verify that the [TOE](#abbr_TOE) discards		      |	        gateway), including from the local network, and verify that the
-        them.									      |	        [TOE](#abbr_TOE) discards them.
-:::											:::
-:::											:::
-:::											:::
-
-### A.1.2 TOE Access (FTA) {#fta-optional .indexable data-level="3"}			### A.1.2 TOE Access (FTA) {#fta-optional .indexable data-level="3"}
+### A.1.1 User Data Protection (FDP) {#fdp-optional .indexable data-level="3"}	      |	### A.1.1 TOE Access (FTA) {#fta-optional .indexable data-level="3"}
+										      <
+::: {#FDP_IFC_EXT.1 .comp}							      <
+#### FDP\_IFC\_EXT.1 Information flow control					      <
+										      <
+::: {.element}									      <
+::: {#FDP_IFC_EXT.1.1 .reqid}							      <
+[FDP\_IFC\_EXT.1.1](#FDP_IFC_EXT.1.1){.abbr}					      <
+:::										      <
+										      <
+::: {.reqdesc}									      <
+The [OS](#abbr_OS) shall \[**selection**:					      <
+										      <
+-   *provide an interface which allows a VPN client to protect all		      <
+    [IP](#abbr_IP) traffic using IPsec*,					      <
+-   *provide a VPN client which can protects all [IP](#abbr_IP) traffic		      <
+    using IPsec*								      <
+										      <
+\] with the exception of [IP](#abbr_IP) traffic required to establish		      <
+the VPN connection and \[**selection**: *signed updates directly from		      <
+the [OS](#abbr_OS) vendor*, *no other traffic*\] .				      <
+										      <
+::: {.appnote}									      <
+[Application Note: ]{.note-header}[ ]{.note}					      <
+										      <
+Typically, the traffic required to establish the VPN connection is		      <
+referred to as \"Control Plane\" traffic, whereas the [IP](#abbr_IP)		      <
+traffic protected by the IPsec VPN is referred to as \"Data Plane\"		      <
+traffic. All Data Plane traffic must flow through the VPN connection and	      <
+the VPN must not split-tunnel.							      <
+										      <
+If no native IPsec client is validated or third-party VPN clients may		      <
+also implement the required Information Flow Control, the first option		      <
+shall be selected. In these cases, the [TOE](#abbr_TOE) provides an		      <
+[API](#abbr_API) to third-party VPN clients that allows them to			      <
+configure the [TOE](#abbr_TOE)\'s network stack to perform the required		      <
+Information Flow Control.							      <
+										      <
+The [ST](#abbr_ST) author shall select the second option if the			      <
+[TSF](#abbr_TSF) implements a native VPN client (IPsec is selected in		      <
+[FTP\_ITC\_EXT.1](#FTP_ITC_EXT.1)). If the native VPN client is to be		      <
+validated (IPsec is selected in [FTP\_ITC\_EXT.1.1](#FTP_ITC_EXT.1.1)		      <
+and the [TSF](#abbr_TSF) is validated against the *[EP](#abbr_EP) for		      <
+IPsec Virtual Private Network (VPN) Clients*), the [ST](#abbr_ST) author	      <
+shall also include [FDP\_IFC\_EXT.1](#FDP_IFC_EXT.1) from this package.		      <
+In the future, this requirement may also make a distinction between the		      <
+current requirement (which requires that when the IPsec trusted channel		      <
+is enabled, all traffic from the [TSF](#abbr_TSF) is routed through that	      <
+channel) and having an option to force the establishment of an IPsec		      <
+trusted channel to allow any communication by the [TSF](#abbr_TSF).		      <
+:::										      <
+:::										      <
+:::										      <
+										      <
+::: {.activity_pane .hide}							      <
+::: {.activity_pane_header}							      <
+[[ Evaluation Activities ]{.activity_pane_label}[]{.toggler}](#)		      <
+:::										      <
+										      <
+::: {.activity_pane_body}							      <
+::: {.component-activity-header}						      <
+[FDP\_IFC\_EXT.1](#FDP_IFC_EXT.1)						      <
+:::										      <
+										      <
+::: {.eacategory}								      <
+[TSS](#abbr_TSS)								      <
+:::										      <
+										      <
+The evaluator will verify that the [TSS](#abbr_TSS) section of the		      <
+[ST](#abbr_ST) describes the routing of [IP](#abbr_IP) traffic when a		      <
+VPN client is enabled. The evaluator will ensure that the description		      <
+indicates which traffic does not go through the VPN and which traffic		      <
+does, and that a configuration exists for each in which only the traffic	      <
+identified by the [ST](#abbr_ST) author as necessary for establishing		      <
+the VPN connection (IKE traffic and perhaps [HTTPS](#abbr_HTTPS) or		      <
+[DNS](#abbr_DNS) traffic) is not encapsulated by the VPN protocol		      <
+(IPsec).									      <
+										      <
+::: {.eacategory}								      <
+Tests										      <
+:::										      <
+										      <
+The evaluator will perform the following test:					      <
+										      <
+-   **Test 1:**									      <
+    -   **Step 1:** The evaluator will enable a network connection. The		      <
+        evaluator will sniff packets while performing running			      <
+        applications that use the network such as web browsers and email	      <
+        clients. The evaluator will verify that the sniffer captures the	      <
+        traffic generated by these actions, turn off the sniffing tool,		      <
+        and save the session data.						      <
+    -   **Step 2:** The evaluator will configure an IPsec VPN client		      <
+        that supports the routing specified in this requirement. The		      <
+        evaluator will turn on the sniffing tool, establish the VPN		      <
+        connection, and perform the same actions with the device as		      <
+        performed in the first step. The evaluator will verify that the		      <
+        sniffing tool captures traffic generated by these actions, turn		      <
+        off the sniffing tool, and save the session data.			      <
+    -   **Step 3:** The evaluator will examine the traffic from both		      <
+        step one and step two to verify that all non-excepted Data Plane	      <
+        traffic in Step 2 is encapsulated by IPsec. The evaluator will		      <
+        examine the Security Parameter Index (SPI) value present in the		      <
+        encapsulated packets captured in Step 2 from the			      <
+        [TOE](#abbr_TOE) to the Gateway and shall verify this value is		      <
+        the same for all actions used to generate traffic through the		      <
+        VPN. Note that it is expected that the SPI value for packets		      <
+        from the Gateway to the [TOE](#abbr_TOE) is different than the		      <
+        SPI value for packets from the [TOE](#abbr_TOE) to the Gateway.		      <
+    -   **Step 4:** The evaluator will perform a ping on the			      <
+        [TOE](#abbr_TOE) host on the local network and verify that no		      <
+        packets sent are captured with the sniffer. The evaluator will		      <
+        attempt to send packets to the [TOE](#abbr_TOE) outside the VPN		      <
+        tunnel (i.e. not through the VPN gateway), including from the		      <
+        local network, and verify that the [TOE](#abbr_TOE) discards		      <
+        them.									      <
+:::										      <
+:::										      <
+:::										      <
+										      <
+### A.1.2 TOE Access (FTA) {#fta-optional .indexable data-level="3"}		      <
 
 ::: {#FTA_TAB.1 .comp}									::: {#FTA_TAB.1 .comp}
 #### FTA\_TAB.1 Default TOE access banners						#### FTA\_TAB.1 Default TOE access banners
@@ -5718,6 +5796,7 @@ an advisory warning message regarding unauthorized use of the				an advisory war
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will configure the [OS](#abbr_OS), per instructions in the		The evaluator will configure the [OS](#abbr_OS), per instructions in the
 [OS](#abbr_OS) manual, to display the advisory warning message \"TEST			[OS](#abbr_OS) manual, to display the advisory warning message \"TEST
 TEST Warning Message TEST TEST\". The evaluator will then log out and			TEST Warning Message TEST TEST\". The evaluator will then log out and
@@ -5726,6 +5805,7 @@ occur.											occur.
 :::											:::
 :::											:::
 :::											:::
+										      >	:::
 
 A.2 Objective Requirements {#objective-reqs .indexable data-level="2"}			A.2 Objective Requirements {#objective-reqs .indexable data-level="2"}
 --------------------------								--------------------------
@@ -5777,6 +5857,7 @@ computation. ]{.note}									computation. ]{.note}
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 For each selection specified in the [ST](#abbr_ST), the evaluator will			For each selection specified in the [ST](#abbr_ST), the evaluator will
 ensure that the corresponding tests result in a negative outcome (i.e.,			ensure that the corresponding tests result in a negative outcome (i.e.,
 the action results in the [OS](#abbr_OS) denying the evaluator				the action results in the [OS](#abbr_OS) denying the evaluator
@@ -5827,6 +5908,7 @@ permission to complete the action):							permission to complete the action):
 :::											:::
 :::											:::
 :::											:::
+										      >	:::
 
 ::: {#FPT_W^X_EXT.1 .comp}								::: {#FPT_W^X_EXT.1 .comp}
 #### FPT\_W\^X\_EXT.1 Write XOR Execute Memory Pages					#### FPT\_W\^X\_EXT.1 Write XOR Execute Memory Pages
@@ -5866,14 +5948,17 @@ requires hardware support, but this is commonly available. ]{.note}			requires h
 [TSS](#abbr_TSS)									[TSS](#abbr_TSS)
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will inspect the vendor-provided developer documentation			The evaluator will inspect the vendor-provided developer documentation
 and verify that no memory-mapping can be made with write and execute			and verify that no memory-mapping can be made with write and execute
 permissions except for the cases listed in the assignment.				permissions except for the cases listed in the assignment.
+										      >	:::
 
 ::: {.eacategory}									::: {.eacategory}
 Tests											Tests
 :::											:::
 
+										      >	::: {.ea}
 The evaluator will also perform the following tests.					The evaluator will also perform the following tests.
 
 -   **Test 1:** The evaluator will acquire or construct a test program			-   **Test 1:** The evaluator will acquire or construct a test program
@@ -5895,11 +5980,12 @@ The evaluator will also perform the following tests.					The evaluator will also
 :::											:::
 :::											:::
 :::											:::
+										      >	:::
 
-A.3 Implementation-based Requirements {#feat-based-reqs .indexable data-level="2"}	A.3 Implementation-based Requirements {#feat-based-reqs .indexable data-level="2"}
--------------------------------------							-------------------------------------
+A.3 Implementation-based Requirements {#feat-based-reqs .indexable data-level="2"}    |	A.3 Implementation-dependent Requirements {#feat-based-reqs .indexable data-level="2"
+-------------------------------------						      |	-----------------------------------------
 
-This [PP](#abbr_PP) does not define any Implementation-based				This [PP](#abbr_PP) does not define any Implementation-based
+This [PP](#abbr_PP) does not define any Implementation-based			      |	This [PP](#abbr_PP) does not define any Implementation-dependent
 requirements.										requirements.
 
 Appendix B - Selection-based Requirements {#sel-based-reqs .indexable data-level="A"}	Appendix B - Selection-based Requirements {#sel-based-reqs .indexable data-level="A"}
@@ -5912,18 +5998,152 @@ its underlying platform) are contained in the body of this				its underlying pla
 the body of the [PP](#abbr_PP): if certain selections are made, then			the body of the [PP](#abbr_PP): if certain selections are made, then
 additional requirements below must be included.						additional requirements below must be included.
 
-This [PP](#abbr_PP) does not define any Selection-based requirements.			This [PP](#abbr_PP) does not define any Selection-based requirements.
+This [PP](#abbr_PP) does not define any Selection-based requirements.		      |	B.1 User Data Protection (FDP) {#fdp-sel-based .indexable data-level="2"}
+										      >	------------------------------
+										      >
+										      >	::: {#FDP_IFC_EXT.1 .comp}
+										      >	#### FDP\_IFC\_EXT.1 Information flow control
+										      >
+										      >	::: {.statustag}
+										      >	***The inclusion of this selection-based component depends upon
+										      >	selection in [FTP\_ITC\_EXT.1.1](#FTP_ITC_EXT.1.1).***
+										      >
+										      >	***This component may also be included in the [ST](#abbr_ST) as if
+										      >	optional.***
+										      >	:::
+										      >
+										      >	::: {.element}
+										      >	::: {#FDP_IFC_EXT.1.1 .reqid}
+										      >	[FDP\_IFC\_EXT.1.1](#FDP_IFC_EXT.1.1){.abbr}
+										      >	:::
+										      >
+										      >	::: {.reqdesc}
+										      >	The [OS](#abbr_OS) shall \[**selection**:
+										      >
+										      >	-   *provide an interface which allows a [VPN](#abbr_VPN) client to
+										      >	    protect all [IP](#abbr_IP) traffic using IPsec*,
+										      >	-   *provide a [VPN](#abbr_VPN) client which can protects all
+										      >	    [IP](#abbr_IP) traffic using IPsec*
+										      >
+										      >	\] with the exception of [IP](#abbr_IP) traffic required to establish
+										      >	the [VPN](#abbr_VPN) connection and \[**selection**: *signed updates
+										      >	directly from the [OS](#abbr_OS) vendor*, *no other traffic*\] .
+										      >
+										      >	::: {.appnote}
+										      >	[Application Note: ]{.note-header}[ ]{.note}
+										      >
+										      >	Typically, the traffic required to establish the [VPN](#abbr_VPN)
+										      >	connection is referred to as \"Control Plane\" traffic, whereas the
+										      >	[IP](#abbr_IP) traffic protected by the IPsec [VPN](#abbr_VPN) is
+										      >	referred to as \"Data Plane\" traffic. All Data Plane traffic must flow
+										      >	through the [VPN](#abbr_VPN) connection and the [VPN](#abbr_VPN) must
+										      >	not split-tunnel.
+										      >
+										      >	If no native IPsec client is validated or third-party [VPN](#abbr_VPN)
+										      >	clients may also implement the required Information Flow Control, the
+										      >	first option shall be selected. In these cases, the [TOE](#abbr_TOE)
+										      >	provides an [API](#abbr_API) to third-party [VPN](#abbr_VPN) clients
+										      >	that allows them to configure the [TOE](#abbr_TOE)\'s network stack to
+										      >	perform the required Information Flow Control.
+										      >
+										      >	The [ST](#abbr_ST) author will select the second option if the
+										      >	[TSF](#abbr_TSF) implements a native [VPN](#abbr_VPN) client (IPsec is
+										      >	selected in [FTP\_ITC\_EXT.1](#FTP_ITC_EXT.1)). If the native
+										      >	[VPN](#abbr_VPN) client is to be validated ([IPsec](#s-itc-ipsec) is
+										      >	selected in [FTP\_ITC\_EXT.1.1](#FTP_ITC_EXT.1.1) and the
+										      >	[TSF](#abbr_TSF) is validated against the *Module for Virtual Private
+										      >	Network ([VPN](#abbr_VPN)) Clients*), the [ST](#abbr_ST) author will
+										      >	also include [FDP\_IFC\_EXT.1](#FDP_IFC_EXT.1) from this package. In the
+										      >	future, this requirement may also make a distinction between the current
+										      >	requirement (which requires that when the IPsec trusted channel is
+										      >	enabled, all traffic from the [TSF](#abbr_TSF) is routed through that
+										      >	channel) and having an option to force the establishment of an IPsec
+										      >	trusted channel to allow any communication by the [TSF](#abbr_TSF).
+										      >	:::
+										      >	:::
+										      >	:::
+										      >
+										      >	::: {.activity_pane .hide}
+										      >	::: {.activity_pane_header}
+										      >	[[ Evaluation Activities ]{.activity_pane_label}[]{.toggler}](#)
+										      >	:::
+										      >
+										      >	::: {.activity_pane_body}
+										      >	::: {.component-activity-header}
+										      >	[FDP\_IFC\_EXT.1](#FDP_IFC_EXT.1)
+										      >	:::
+										      >
+										      >	::: {.eacategory}
+										      >	[TSS](#abbr_TSS)
+										      >	:::
+										      >
+										      >	::: {.ea}
+										      >	The evaluator will verify that the [TSS](#abbr_TSS) section of the
+										      >	[ST](#abbr_ST) describes the routing of [IP](#abbr_IP) traffic when a
+										      >	[VPN](#abbr_VPN) client is enabled. The evaluator will ensure that the
+										      >	description indicates which traffic does not go through the
+										      >	[VPN](#abbr_VPN) and which traffic does, and that a configuration exists
+										      >	for each in which only the traffic identified by the [ST](#abbr_ST)
+										      >	author as necessary for establishing the [VPN](#abbr_VPN) connection
+										      >	(IKE traffic and perhaps [HTTPS](#abbr_HTTPS) or [DNS](#abbr_DNS)
+										      >	traffic) is not encapsulated by the [VPN](#abbr_VPN) protocol (IPsec).
+										      >	:::
+										      >
+										      >	::: {.eacategory}
+										      >	Tests
+										      >	:::
+										      >
+										      >	::: {.ea}
+										      >	The evaluator will perform the following test:
+										      >
+										      >	-   **Test 1:**
+										      >	    -   **Step 1:** The evaluator will enable a network connection. The
+										      >	        evaluator will sniff packets while performing running
+										      >	        applications that use the network such as web browsers and email
+										      >	        clients. The evaluator will verify that the sniffer captures the
+										      >	        traffic generated by these actions, turn off the sniffing tool,
+										      >	        and save the session data.
+										      >	    -   **Step 2:** The evaluator will configure an IPsec
+										      >	        [VPN](#abbr_VPN) client that supports the routing specified in
+										      >	        this requirement. The evaluator will turn on the sniffing tool,
+										      >	        establish the [VPN](#abbr_VPN) connection, and perform the same
+										      >	        actions with the device as performed in the first step. The
+										      >	        evaluator will verify that the sniffing tool captures traffic
+										      >	        generated by these actions, turn off the sniffing tool, and save
+										      >	        the session data.
+										      >	    -   **Step 3:** The evaluator will examine the traffic from both
+										      >	        step one and step two to verify that all non-excepted Data Plane
+										      >	        traffic in Step 2 is encapsulated by IPsec. The evaluator will
+										      >	        examine the Security Parameter Index (SPI) value present in the
+										      >	        encapsulated packets captured in Step 2 from the
+										      >	        [TOE](#abbr_TOE) to the Gateway and shall verify this value is
+										      >	        the same for all actions used to generate traffic through the
+										      >	        [VPN](#abbr_VPN). Note that it is expected that the SPI value
+										      >	        for packets from the Gateway to the [TOE](#abbr_TOE) is
+										      >	        different than the SPI value for packets from the
+										      >	        [TOE](#abbr_TOE) to the Gateway.
+										      >	    -   **Step 4:** The evaluator will perform a ping on the
+										      >	        [TOE](#abbr_TOE) host on the local network and verify that no
+										      >	        packets sent are captured with the sniffer. The evaluator will
+										      >	        attempt to send packets to the [TOE](#abbr_TOE) outside the
+										      >	        [VPN](#abbr_VPN) tunnel (i.e. not through the [VPN](#abbr_VPN)
+										      >	        gateway), including from the local network, and verify that the
+										      >	        [TOE](#abbr_TOE) discards them.
+										      >	:::
+										      >	:::
+										      >	:::
+										      >	:::
 
 Appendix C - Implicitly Satisfied Requirements {#satisfiedreqs .indexable data-level=	Appendix C - Implicitly Satisfied Requirements {#satisfiedreqs .indexable data-level=
 ==============================================						==============================================
 
 This appendix lists requirements that should be considered satisfied by			This appendix lists requirements that should be considered satisfied by
 products successfully evaluated against this [PP](#abbr_PP). These			products successfully evaluated against this [PP](#abbr_PP). These
-requirements are not featured explicitly as SFRs and should not be			requirements are not featured explicitly as SFRs and should not be
-included in the [ST](#abbr_ST). They are not included as standalone SFRs		included in the [ST](#abbr_ST). They are not included as standalone SFRs
-because it would increase the time, cost, and complexity of evaluation.			because it would increase the time, cost, and complexity of evaluation.
-This approach is permitted by [\[CC\]](#bibCC) Part 1, 8.2 Dependencies			This approach is permitted by [\[CC\]](#bibCC) Part 1, 8.2 Dependencies
-between components.									between components.
+requirements are not featured explicitly as SFRs and should not be		      |	requirements are not featured explicitly as [SFRs](#abbr_SFR) and should
+included in the [ST](#abbr_ST). They are not included as standalone SFRs	      |	not be included in the [ST](#abbr_ST). They are not included as
+because it would increase the time, cost, and complexity of evaluation.		      |	standalone [SFRs](#abbr_SFR) because it would increase the time, cost,
+This approach is permitted by [\[CC\]](#bibCC) Part 1, 8.2 Dependencies		      |	and complexity of evaluation. This approach is permitted by
+between components.								      |	[\[CC\]](#bibCC) Part 1, 8.2 Dependencies between components.
 
 This information benefits systems engineering activities which call for			This information benefits systems engineering activities which call for
 inclusion of particular security controls. Evaluation against the			inclusion of particular security controls. Evaluation against the
@@ -6066,8 +6286,8 @@ Appendix E - Acronyms {#acronyms .indexable data-level="A"}				Appendix E - Acro
   [[AES](#abbr_AES)]{#abbr_AES .term}                                          [Advan	  [[AES](#abbr_AES)]{#abbr_AES .term}                                          [Advan
   [[API](#abbr_API)]{#abbr_API .term}                                          [Appli	  [[API](#abbr_API)]{#abbr_API .term}                                          [Appli
   [[ASLR](#abbr_ASLR)]{#abbr_ASLR .term}                                       [Addre	  [[ASLR](#abbr_ASLR)]{#abbr_ASLR .term}                                       [Addre
-										      >	  [[BAF](#abbr_BAF)]{#abbr_BAF .term data-plural="BAFs"}                       [Biome
-  [[Base-PP](#abbr_Base-PP)]{#abbr_Base-PP .term}                              [Base 	  [[Base-PP](#abbr_Base-PP)]{#abbr_Base-PP .term}                              [Base 
+  [[Base-PP](#abbr_Base-PP)]{#abbr_Base-PP .term}                              [Base  |	  [[BAF](#abbr_BAF)]{#abbr_BAF .term data-plural="BAFs"}                       [Biome
+										      >	  [[Base-PP](#abbr_Base-PP)]{#abbr_Base-PP .term data-plural="Base-PPs"}       [Base 
   [[CC](#abbr_CC)]{#abbr_CC .term}                                             [Commo	  [[CC](#abbr_CC)]{#abbr_CC .term}                                             [Commo
   [[CEM](#abbr_CEM)]{#abbr_CEM .term}                                          [Commo	  [[CEM](#abbr_CEM)]{#abbr_CEM .term}                                          [Commo
   [[CESG](#abbr_CESG)]{#abbr_CESG .term}                                       [Commu	  [[CESG](#abbr_CESG)]{#abbr_CESG .term}                                       [Commu
@@ -6111,7 +6331,7 @@ Appendix E - Acronyms {#acronyms .indexable data-level="A"}				Appendix E - Acro
   [[PII](#abbr_PII)]{#abbr_PII .term}                                          [Perso	  [[PII](#abbr_PII)]{#abbr_PII .term}                                          [Perso
 										      >	  [[PIN](#abbr_PIN)]{#abbr_PIN .term}                                          [Perso
   [[PKI](#abbr_PKI)]{#abbr_PKI .term}                                          [Publi	  [[PKI](#abbr_PKI)]{#abbr_PKI .term}                                          [Publi
-  [[PP](#abbr_PP)]{#abbr_PP .term}                                             [Prote	  [[PP](#abbr_PP)]{#abbr_PP .term}                                             [Prote
+  [[PP](#abbr_PP)]{#abbr_PP .term}                                             [Prote |	  [[PP](#abbr_PP)]{#abbr_PP .term data-plural="PPs"}                           [Prote
   [[PP-Configuration](#abbr_PP-Configuration)]{#abbr_PP-Configuration .term}   [Prote	  [[PP-Configuration](#abbr_PP-Configuration)]{#abbr_PP-Configuration .term}   [Prote
   [[PP-Module](#abbr_PP-Module)]{#abbr_PP-Module .term}                        [Prote	  [[PP-Module](#abbr_PP-Module)]{#abbr_PP-Module .term}                        [Prote
   [[RBG](#abbr_RBG)]{#abbr_RBG .term}                                          [Rando	  [[RBG](#abbr_RBG)]{#abbr_RBG .term}                                          [Rando
@@ -6120,14 +6340,14 @@ Appendix E - Acronyms {#acronyms .indexable data-level="A"}				Appendix E - Acro
   [[RNGVS](#abbr_RNGVS)]{#abbr_RNGVS .term}                                    [Rando	  [[RNGVS](#abbr_RNGVS)]{#abbr_RNGVS .term}                                    [Rando
   [[S/MIME](#abbr_S/MIME)]{#abbr_S/MIME .term}                                 [Secur	  [[S/MIME](#abbr_S/MIME)]{#abbr_S/MIME .term}                                 [Secur
   [[SAN](#abbr_SAN)]{#abbr_SAN .term}                                          [Subje	  [[SAN](#abbr_SAN)]{#abbr_SAN .term}                                          [Subje
-  [[SAR](#abbr_SAR)]{#abbr_SAR .term}                                          [Secur	  [[SAR](#abbr_SAR)]{#abbr_SAR .term}                                          [Secur
-  [[SFR](#abbr_SFR)]{#abbr_SFR .term}                                          [Secur	  [[SFR](#abbr_SFR)]{#abbr_SFR .term}                                          [Secur
+  [[SAR](#abbr_SAR)]{#abbr_SAR .term}                                          [Secur |	  [[SAR](#abbr_SAR)]{#abbr_SAR .term data-plural="SARs"}                       [Secur
+  [[SFR](#abbr_SFR)]{#abbr_SFR .term}                                          [Secur |	  [[SFR](#abbr_SFR)]{#abbr_SFR .term data-plural="SFRs"}                       [Secur
   [[SHA](#abbr_SHA)]{#abbr_SHA .term}                                          [Secur	  [[SHA](#abbr_SHA)]{#abbr_SHA .term}                                          [Secur
   [[SIP](#abbr_SIP)]{#abbr_SIP .term}                                          [Sessi	  [[SIP](#abbr_SIP)]{#abbr_SIP .term}                                          [Sessi
-  [[ST](#abbr_ST)]{#abbr_ST .term}                                             [Secur	  [[ST](#abbr_ST)]{#abbr_ST .term}                                             [Secur
+  [[ST](#abbr_ST)]{#abbr_ST .term}                                             [Secur |	  [[ST](#abbr_ST)]{#abbr_ST .term data-plural="STs"}                           [Secur
   [[SWID](#abbr_SWID)]{#abbr_SWID .term}                                       [Softw	  [[SWID](#abbr_SWID)]{#abbr_SWID .term}                                       [Softw
   [[TLS](#abbr_TLS)]{#abbr_TLS .term}                                          [Trans	  [[TLS](#abbr_TLS)]{#abbr_TLS .term}                                          [Trans
-  [[TOE](#abbr_TOE)]{#abbr_TOE .term}                                          [Targe	  [[TOE](#abbr_TOE)]{#abbr_TOE .term}                                          [Targe
+  [[TOE](#abbr_TOE)]{#abbr_TOE .term}                                          [Targe |	  [[TOE](#abbr_TOE)]{#abbr_TOE .term data-plural="TOEs"}                       [Targe
   [[TSF](#abbr_TSF)]{#abbr_TSF .term}                                          [[TOE]	  [[TSF](#abbr_TSF)]{#abbr_TSF .term}                                          [[TOE]
   [[TSFI](#abbr_TSFI)]{#abbr_TSFI .term data-plural="TSFIs"}                   [[TSF]	  [[TSFI](#abbr_TSFI)]{#abbr_TSFI .term data-plural="TSFIs"}                   [[TSF]
   [[TSS](#abbr_TSS)]{#abbr_TSS .term}                                          [[TOE]	  [[TSS](#abbr_TSS)]{#abbr_TSS .term}                                          [[TOE]
