@@ -469,31 +469,34 @@ Conformance Statement									Conformance Statement
 										      >
 :   An [ST](#abbr_ST) must claim exact conformance to this				:   An [ST](#abbr_ST) must claim exact conformance to this
     [PP](#abbr_PP), as defined in the [CC](#abbr_CC) and				    [PP](#abbr_PP), as defined in the [CC](#abbr_CC) and
-    [CEM](#abbr_CEM) addenda for Exact Conformance, Selection-based		      |	    [CEM](#abbr_CEM) addenda for Exact Conformance, Selection-Based
+    [CEM](#abbr_CEM) addenda for Exact Conformance, Selection-based			    [CEM](#abbr_CEM) addenda for Exact Conformance, Selection-based
     SFRs, and Optional SFRs (dated May 2017).					      |	    [SFRs](#abbr_SFR), and Optional [SFRs](#abbr_SFR) (dated May 2017).
 										      >
 										      >	    The following [PP](#abbr_PP)-Modules are allowed to be specified in
 										      >	    a [PP-Configuration](#abbr_PP-Configuration) with this
 										      >	    [PP](#abbr_PP).
 										      >
-										      >	    -   [PP-Module](#abbr_PP-Module) for [VPN](#abbr_VPN) Client,
-										      >	        Version 2.3
-										      >	    -   [PP-Module](#abbr_PP-Module) for Bluetooth, Version 1.0
-										      >	    -   [PP-Module](#abbr_PP-Module) for MDM Agent, Version 1.0
-										      >	    -   [cPP](#abbr_cPP)-Module for Biometric Enrollment and
-										      >	        Verification, Version 1.1
+										      >	    -   [PP-Module for Virtual Private Network (VPN) Clients, version
+										      >	        2.4](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=467&id=467)
+										      >	    -   [PP-Module for PP-Module for Bluetooth, version
+										      >	        1.0](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=425&id=425)
+										      >	    -   [PP-Module for Mobile Device Management Agent, version
+										      >	        1.0](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=441&id=441)
+										      >	    -   [cPP for Biometrics, version
+										      >	        1.1](https://biometricitc.github.io/v1.1/1.1PRE/MOD-BIO-v1.1.pdf)
 
 CC Conformance Claims									CC Conformance Claims
 :   This [PP](#abbr_PP) is conformant to Parts 2 (extended) and 3			:   This [PP](#abbr_PP) is conformant to Parts 2 (extended) and 3
-    (conformant) of Common Criteria Version 3.1, Revision 5.			      |	    (extended) of Common Criteria Version 3.1, Revision 5.
+    (conformant) of Common Criteria Version 3.1, Revision 5.				    (conformant) of Common Criteria Version 3.1, Revision 5.
 
-PP Claim 									      |	PP Claim
+PP Claim 										PP Claim 
 :   This [PP](#abbr_PP) does not claim conformance to any Protection			:   This [PP](#abbr_PP) does not claim conformance to any Protection
     Profile.										    Profile.
 
 Package Claim										Package Claim
-:   This [PP](#abbr_PP) is [Functional Package for Transport Layer		      |	:   This [PP](#abbr_PP) is [TLS](#abbr_TLS) Package Conformant.\
-    Security (TLS), version 1.1]() Conformant .					      |	    This [PP](#abbr_PP) is SSH Package Conformant.
+:   This [PP](#abbr_PP) is [Functional Package for Transport Layer		      |	:   This [PP](#abbr_PP) is [Functional Package for Secure Shell (SSH),
+    Security (TLS), version 1.1]() Conformant .					      |	    version 1.0]() Conformant and [Functional Package for Transport
+										      >	    Layer Security (TLS), version 1.1]() Conformant .
 
 3 Security Problem Description {#Security_Problem_Description .indexable data-level="	3 Security Problem Description {#Security_Problem_Description .indexable data-level="
 ==============================								==============================
@@ -4402,11 +4405,11 @@ to meet and achieve the security objectives:\					      |	are suitable to meet a
 										      >	Objective
 										      >
 										      >	Addressed by
-										      >
-										      >	Rationale
-										      >
-										      >	[O.ACCOUNTABILITY](#O.ACCOUNTABILITY)\
-										      >
+
+  ----------------------------------------------------------------------------------- |	Rationale
+  Objective                                        Addressed by                       |
+  ------------------------------------------------ ---------------------------------- |	[O.ACCOUNTABILITY](#O.ACCOUNTABILITY)\
+  [O.ACCOUNTABILITY](#O.ACCOUNTABILITY)\           [FAU\_GEN.1](#FAU_GEN.1), [FTP\_IT |
 										      >	[FAU\_GEN.1](#FAU_GEN.1)
 										      >
 										      >	Supports the objective by requiring that critical event information be
@@ -4445,27 +4448,28 @@ to meet and achieve the security objectives:\					      |	are suitable to meet a
 										      >	Supports the objective by requiring the [TSF](#abbr_TSF) to implement
 										      >	digital signature algorithms that are used in support of protected
 										      >	communications.
-										      >
-										      >	[FCS\_COP.1/KEYHMAC](#FCS_COP.1/KEYHMAC)
+
+  [O.INTEGRITY](#O.INTEGRITY)\                     [FPT\_SBOP\_EXT.1](#FPT_SBOP_EXT.1 |	[FCS\_COP.1/KEYHMAC](#FCS_COP.1/KEYHMAC)
 										      >
 										      >	Supports the objective by requiring the [TSF](#abbr_TSF) to implement
 										      >	[HMAC](#abbr_HMAC) algorithms that are used in support of protected
 										      >	communications.
-
-  ----------------------------------------------------------------------------------- |	[FPT\_ACF\_EXT.1](#FPT_ACF_EXT.1)
-  Objective                                        Addressed by                       |
-  ------------------------------------------------ ---------------------------------- |	Supports the objective by requiring the [TSF](#abbr_TSF) restrict
-  [O.ACCOUNTABILITY](#O.ACCOUNTABILITY)\           [FAU\_GEN.1](#FAU_GEN.1), [FTP\_IT |	unprivileged users from changing critical components.
 										      >
-										      >	[FPT\_SRP\_EXT.1](#FPT_SRP_EXT.1)
+										      >	[FPT\_ACF\_EXT.1](#FPT_ACF_EXT.1)
+
+  [O.MANAGEMENT](#O.MANAGEMENT)\                   [FMT\_MOF\_EXT.1](#FMT_MOF_EXT.1), |	Supports the objective by requiring the [TSF](#abbr_TSF) restrict
+										      >	unprivileged users from changing critical components.
+
+  [O.PROTECTED\_​STORAGE](#O.PROTECTED_STORAGE)\   [FCS\_STO\_EXT.1](#FCS_STO_EXT.1),  |	[FPT\_SRP\_EXT.1](#FPT_SRP_EXT.1)
 										      >
 										      >	Supports the objective by requiring the [TSF](#abbr_TSF) to implement a
 										      >	configurable whitelisting mechanism.
-										      >
-										      >	[FIA\_X509\_EXT.1](#FIA_X509_EXT.1)
-										      >
-										      >	Supports the objective by requiring the [TSF](#abbr_TSF) to validate
-										      >	certificates using industry standards.
+
+  [O.PROTECTED\_​COMMS](#O.PROTECTED_COMMS)\       [FCS\_RBG\_EXT.1](#FCS_RBG_EXT.1),  |	[FIA\_X509\_EXT.1](#FIA_X509_EXT.1)
+  ----------------------------------------------------------------------------------- <
+
+  : [Table [2]{.counter}]{#t-obj_map .ctr data-myid="t-obj_map"			      |	Supports the objective by requiring the [TSF](#abbr_TSF) to validate
+  data-counter-type="ct-Table"}: [SFR](#abbr_SFR) Rationale			      |	certificates using industry standards.
 										      >
 										      >	[FPT\_TST\_EXT.1](#FPT_TST_EXT.1)
 										      >
@@ -4586,21 +4590,20 @@ to meet and achieve the security objectives:\					      |	are suitable to meet a
 										      >	compatible with at least one [VPN](#abbr_VPN).
 										      >
 										      >	[FIA\_X509\_EXT.1](#FIA_X509_EXT.1)
-
-  [O.INTEGRITY](#O.INTEGRITY)\                     [FPT\_SBOP\_EXT.1](#FPT_SBOP_EXT.1 |	Supports the objective by requiring the [TSF](#abbr_TSF) to validate
+										      >
+										      >	Supports the objective by requiring the [TSF](#abbr_TSF) to validate
 										      >	certificates using industry standards.
-
-  [O.MANAGEMENT](#O.MANAGEMENT)\                   [FMT\_MOF\_EXT.1](#FMT_MOF_EXT.1), |	[FIA\_X509\_EXT.2](#FIA_X509_EXT.2)
-
-  [O.PROTECTED\_​STORAGE](#O.PROTECTED_STORAGE)\   [FCS\_STO\_EXT.1](#FCS_STO_EXT.1),  |	Supports this objective by requiring the [TSF](#abbr_TSF) to validate
+										      >
+										      >	[FIA\_X509\_EXT.2](#FIA_X509_EXT.2)
+										      >
+										      >	Supports this objective by requiring the [TSF](#abbr_TSF) to validate
 										      >	[TLS](#abbr_TLS) and related encrypted connections with x509
 										      >	certificates.
-
-  [O.PROTECTED\_​COMMS](#O.PROTECTED_COMMS)\       [FCS\_RBG\_EXT.1](#FCS_RBG_EXT.1),  |	[FTP\_ITC\_EXT.1](#FTP_ITC_EXT.1)
-  ----------------------------------------------------------------------------------- <
-
-  : [Table [2]{.counter}]{#t-obj_map .ctr data-myid="t-obj_map"			      |	Supports the objective by requiring the [OS](#abbr_OS) to provide a
-  data-counter-type="ct-Table"}: [SFR](#abbr_SFR) Rationale			      |	trusted channel for critical communication.
+										      >
+										      >	[FTP\_ITC\_EXT.1](#FTP_ITC_EXT.1)
+										      >
+										      >	Supports the objective by requiring the [OS](#abbr_OS) to provide a
+										      >	trusted channel for critical communication.
 
 5.2 Security Assurance Requirements {#Security_Assurance_Requirements .indexable data	5.2 Security Assurance Requirements {#Security_Assurance_Requirements .indexable data
 -----------------------------------							-----------------------------------
@@ -6018,7 +6021,7 @@ The [OS](#abbr_OS) shall prevent allocation of any memory region with		      |	T
 both write and execute permissions except for \[**assignment**: [list of	      |
 exceptions]{.assignable-content}\].						      |	-   *provide an interface which allows a [VPN](#abbr_VPN) client to
 										      >	    protect all [IP](#abbr_IP) traffic using IPsec*,
-										      >	-   *provide a [VPN](#abbr_VPN) client which can protect all
+										      >	-   *provide a [VPN](#abbr_VPN) client that can protect all
 										      >	    [IP](#abbr_IP) traffic using IPsec*
 										      >
 										      >	\] with the exception of [IP](#abbr_IP) traffic required to establish
@@ -6042,11 +6045,15 @@ requires hardware support, but this is commonly available. ]{.note}		      |	ref
 										      >	that allows them to configure the [TOE](#abbr_TOE)\'s network stack to
 										      >	perform the required Information Flow Control.
 										      >
-										      >	The [ST](#abbr_ST) author will select the second option if the
-										      >	[TSF](#abbr_TSF) implements a native [VPN](#abbr_VPN) client. The In the
-										      >	future, this requirement may also make a distinction between the current
-										      >	requirement (which requires that when the IPsec trusted channel is
-										      >	enabled, all traffic from the [TSF](#abbr_TSF) is routed through that
+										      >	If the [TSF](#abbr_TSF) implements a native [VPN](#abbr_VPN) client,
+										      >	then the [ST](#abbr_ST) author will select [provide a VPN client that
+										      >	can protect all IP traffic using IPsec](#s-provides-vpnclient) and
+										      >	includes the [PP-Module](#abbr_PP-Module) for [VPN](#abbr_VPN) Client as
+										      >	part of the [ST](#abbr_ST).
+										      >
+										      >	In the future, this requirement may also make a distinction between the
+										      >	current requirement (which requires that when the IPsec trusted channel
+										      >	is enabled, all traffic from the [TSF](#abbr_TSF) is routed through that
 										      >	channel) and having an option to force the establishment of an IPsec
 										      >	trusted channel to allow any communication by the [TSF](#abbr_TSF).
 :::											:::
