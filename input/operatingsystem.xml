@@ -54,6 +54,23 @@
     <raw-url>https://raw.githubusercontent.com/commoncriteria/tls/v1.1/input/tls.xml</raw-url>
     <url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439</url>
   </include-pkg>
+  <modules>
+    <module id="mod-vpnclient">
+      <raw-url>https://raw.githubusercontent.com/commoncriteria/vpnclient/master/input/vpnclient.xml</raw-url>
+      <url><![CDATA[https://www.niap-ccevs.org/Profile/Info.cfm?PPID=467&id=467]]></url>
+    </module>
+    <module id="mod-bluetooth">
+      <raw-url>https://raw.githubusercontent.com/commoncriteria/bluetooth/master/input/bluetooth.xml</raw-url>
+      <url><![CDATA[https://www.niap-ccevs.org/Profile/Info.cfm?PPID=425&id=425]]></url>
+    </module>
+    <module id="mod-mdmagent">
+      <raw-url>https://raw.githubusercontent.com/commoncriteria/mdmagent/master/input/mdmagent.xml</raw-url>
+      <url><![CDATA[https://www.niap-ccevs.org/Profile/Info.cfm?PPID=441&id=441]]></url>
+    </module>
+    <module id="mod-biometric" version="1.1" name="cPP for Biometrics" product="Biometric Devices" short="BMcPP">
+      <url>https://biometricitc.github.io/v1.1/1.1PRE/MOD-BIO-v1.1.pdf</url>
+    </module>
+  </modules>
   <sec:Introduction>
     <sec:Overview>
 The scope of this Protection Profile (PP) is to
@@ -279,38 +296,39 @@ it manages may be physical or virtual.
       </usecases>
     </sec:Use_Cases>
   </sec:Introduction>
-  <sec:Conformance_Claims boilerplate="no">
-    <cclaims>
-      <cclaim name="Conformance Statement">
-        <description>
-	  <h:p>An ST must claim exact conformance to this PP, as defined in the CC and CEM
-          addenda for Exact Conformance, Selection-Based SFRs, and Optional SFRs (dated May 2017).
-	  </h:p>
-	  <h:p>
-          The following PP-Modules are allowed to be specified in a PP-Configuration with this PP.
-          <h:ul>
-                <h:li>PP-Module for VPN Client, Version 2.3</h:li>
-                <h:li>PP-Module for Bluetooth,  Version 1.0</h:li>
-                <h:li>PP-Module for MDM Agent,  Version 1.0</h:li>
-                <h:li>cPP-Module for Biometric Enrollment and Verification, Version 1.1</h:li>
-              </h:ul>
-	  </h:p>
-        </description>
-      </cclaim>
-      <cclaim name="CC Conformance Claims">
-        <description>This PP is conformant to Parts 2 (extended) and 3 (extended) of Common
-          Criteria Version 3.1, Revision 5.</description>
-      </cclaim>
-      <cclaim name="PP Claim">
-        <description>This PP does not claim conformance to any Protection Profile.</description>
-      </cclaim>
-      <cclaim name="Package Claim">
-        <description>This PP is TLS Package Conformant.<h:br/>
-	This PP is SSH Package Conformant.</description>
-      </cclaim>
-    </cclaims>
-
-  </sec:Conformance_Claims>
+    <sec:Conformance_Claims/>
+  <!-- <sec:Conformance_Claims> -->
+  <!-- <sec:Conformance_Claims boilerplate="no"> -->
+    <!-- <cclaims> -->
+    <!--   <cclaim name="Conformance Statement"> -->
+    <!--     <description> -->
+    <!-- 	  <h:p>An ST must claim exact conformance to this PP, as defined in the CC and CEM -->
+    <!--       addenda for Exact Conformance, Selection-Based SFRs, and Optional SFRs (dated May 2017). -->
+    <!-- 	  </h:p> -->
+    <!-- 	  <h:p> -->
+    <!--       The following PP-Modules are allowed to be specified in a PP-Configuration with this PP. -->
+    <!--       <h:ul> -->
+    <!--             <h:li>PP-Module for VPN Client, Version 2.3</h:li> -->
+    <!--             <h:li>PP-Module for Bluetooth,  Version 1.0</h:li> -->
+    <!--             <h:li>PP-Module for MDM Agent,  Version 1.0</h:li> -->
+    <!--             <h:li>cPP-Module for Biometric Enrollment and Verification, Version 1.1</h:li> -->
+    <!--           </h:ul> -->
+    <!-- 	  </h:p> -->
+    <!--     </description> -->
+    <!--   </cclaim> -->
+    <!--   <cclaim name="CC Conformance Claims"> -->
+    <!--     <description>This PP is conformant to Parts 2 (extended) and 3 (extended) of Common -->
+    <!--       Criteria Version 3.1, Revision 5.</description> -->
+    <!--   </cclaim> -->
+    <!--   <cclaim name="PP Claim"> -->
+    <!--     <description>This PP does not claim conformance to any Protection Profile.</description> -->
+    <!--   </cclaim> -->
+    <!--   <cclaim name="Package Claim"> -->
+    <!--     <description>This PP is TLS Package Conformant.<h:br/> -->
+    <!-- 	This PP is SSH Package Conformant.</description> -->
+    <!--   </cclaim> -->
+    <!-- </cclaims> -->
+  <!-- </sec:Conformance_Claims> -->
   <sec:Security_Problem_Description>The security problem is described in terms
     of the threats that the OS is expected to address, assumptions about the
     operational environment, and any organizational security policies that the OS
@@ -1881,7 +1899,7 @@ only AES-based implementations for CTR_DRBG are allowed.
             <title> The OS shall
 	    <selectables linebreak="yes">
               <selectable>provide an interface which allows a VPN client to protect all IP traffic using IPsec</selectable>
-              <selectable id="s-provides-vpnclient">provide a VPN client which can protect all IP traffic using IPsec</selectable>
+              <selectable id="s-provides-vpnclient">provide a VPN client that can protect all IP traffic using IPsec</selectable>
             </selectables>
 	    with the exception of IP traffic required to establish the VPN connection
 	    and
@@ -1905,16 +1923,17 @@ only AES-based implementations for CTR_DRBG are allowed.
 		  network stack to perform the required Information Flow Control.
 	      </h:p>
 	      <h:p>
-		  The ST author will select the second option if the TSF implements a
-		  native VPN client. 
-		  The
-		  
+		If the TSF implements a native VPN client, then the ST author will select 
+		<xref to="s-provides-vpnclient"/> and includes the PP-Module for VPN Client
+		as part of the ST.
 		  <!-- If the native VPN client is to be validated  -->
 		  <!-- (<xref to="s-itc-ipsec"/> is selected in <xref to="fel-trust-comms"/> -->
 		  <!-- and the TSF is validated against the  -->
 		  <!-- <h:i>Module for Virtual Private Network (VPN) Clients</h:i>), -->
 		  <!-- the ST author will also -->
 		  <!-- include FDP_IFC_EXT.1 from this package. -->
+	      </h:p>
+	      <h:p>
 		  In the future, this requirement may also make a distinction between the
 		  current requirement (which requires that when the IPsec trusted
 		  channel is enabled, all traffic from the TSF is routed through that
