@@ -21,7 +21,10 @@
     <entry>
       <version>4.3</version>
       <date>2022-04-22</date>
-      <subject>Added compatibility with MDM Agent, Bluetooth, and TLS Modules.</subject>
+      <subject>
+	Added compatibility with MDM Agent, Bluetooth, and TLS Modules.<h:br/>
+	Two factor auth
+      </subject>
     </entry>
     <entry>
       <version>4.2.1</version>
@@ -66,9 +69,9 @@
       <raw-url>https://raw.githubusercontent.com/commoncriteria/mdmagent/master/input/mdmagent.xml</raw-url>
       <url><![CDATA[https://www.niap-ccevs.org/Profile/Info.cfm?PPID=441&id=441]]></url>
     </module>
-    <module id="mod-biometric" version="1.1" name="cPP for Biometrics" product="Biometric Devices" short="BMcPP">
-      <url>https://biometricitc.github.io/v1.1/1.1PRE/MOD-BIO-v1.1.pdf</url>
-    </module>
+    <!-- <module id="mod-biometric" version="1.1" name="cPP for Biometrics" product="Biometric Devices" short="BMcPP"> -->
+    <!--   <url>https://biometricitc.github.io/v1.1/1.1PRE/MOD-BIO-v1.1.pdf</url> -->
+    <!-- </module> -->
   </modules>
   <sec:Introduction>
     <sec:Overview>
@@ -158,8 +161,12 @@ it manages may be physical or virtual.
 	General Purpose Operating Systems also lack the real-time constraint that defines Real Time Operating Systems that 
 	RTOSes typically power routers, switches, and embedded devices.
       </term>
-      <term full="Hybrid Authentication"> A hybrid authentication factor is one where a user has to
-        submit a combination of a biometric sample and a PIN or password and both must pass. If either factor fails, the entire attempt fails. The user shall not be made aware of which factor failed, if either fails.</term>
+      <term full="Hybrid Authentication">
+	A hybrid authentication factor is one where a user has to
+	submit a combination of a biometric sample and a PIN or password and both must pass.
+	If either factor fails, the entire attempt fails.
+	The user shall not be made aware of which factor failed, if either fails.
+      </term>
       <term abbr='HMAC' full="Hash-based Message Authentication Code"/>
       <term full="Host-based Firewall">
 	A software-based firewall implementation running on the OS for filtering inbound and
@@ -2833,11 +2840,13 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
         <f-component cc-id="fia_uau.5" name="Multiple Authentication Mechanisms (Refined)">
           <f-element id="fel-mult-auth">
             <title>
-The <h:b>OS</h:b> shall provide the following authentication mechanisms
+The <refinement>OS</refinement> shall provide the following authentication mechanisms
 <h:b><selectables linebreak='yes'>
   <selectable>authentication based on user name and password</selectable>
   <selectable>authentication based on user name and a PIN that releases an asymmetric key stored
   in OE-protected storage</selectable>
+  <selectable>combination of authentication based on user name, password, and time-based one-time password</selectable>
+  <selectable>combination of authentication based on user name, password, and biometric identification factor </selectable>
   <selectable>authentication based on X.509 certificates</selectable>
   <selectable id="s-uau-ssh">for use in SSH only, SSH public key-based authentication as specified by the <xref to="pkg-ssh"/></selectable>
 </selectables>
