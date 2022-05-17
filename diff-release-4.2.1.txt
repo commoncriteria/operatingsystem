@@ -11,13 +11,20 @@ Version: 4.2.1\									      |	Version: 4.3-DRAFT\
 Revision History {#revision-history style="page-break-before:always;"}			Revision History {#revision-history style="page-break-before:always;"}
 ----------------									----------------
 
+										      >	  -----------------------------------------------------------------------------------
   Version   Date         Comment							  Version   Date         Comment
   --------- ------------ ------------------------------------------------------------ |	  --------- ------------ ------------------------------------------------------------
 										      >	  4.3       2022-04-22   Added compatibility with MDM Agent, Bluetooth, and [TLS](#ab
+										      >	                         Two factor auth
+										      >
   4.2.1     2019-04-22   Formatting changes as a result of [PP](#abbr_PP) evaluation	  4.2.1     2019-04-22   Formatting changes as a result of [PP](#abbr_PP) evaluation
+										      >
   4.2       2018-05-22   Multiple Technical Decisions applied				  4.2       2018-05-22   Multiple Technical Decisions applied
+										      >
   4.1       2016-03-09   Minor updates - cryptographic modes				  4.1       2016-03-09   Minor updates - cryptographic modes
+										      >
   4.0       2015-08-14   Release - significant revision					  4.0       2015-08-14   Release - significant revision
+										      >	  -----------------------------------------------------------------------------------
 
 Contents										Contents
 --------										--------
@@ -482,8 +489,6 @@ Conformance Statement									Conformance Statement
 										      >	        1.0](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=425&id=425)
 										      >	    -   [PP-Module for Mobile Device Management Agent, version
 										      >	        1.0](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=441&id=441)
-										      >	    -   [cPP for Biometrics, version
-										      >	        1.1](https://biometricitc.github.io/v1.1/1.1PRE/MOD-BIO-v1.1.pdf)
 
 CC Conformance Claims									CC Conformance Claims
 :   This [PP](#abbr_PP) is conformant to Parts 2 (extended) and 3			:   This [PP](#abbr_PP) is conformant to Parts 2 (extended) and 3
@@ -766,21 +771,26 @@ The **[OS](#abbr_OS)** shall generate **asymmetric** cryptographic keys			The **
 in accordance with a specified cryptographic key generation algorithm			in accordance with a specified cryptographic key generation algorithm
 **\[**selection**:**									**\[**selection**:**
 
--   *RSA schemes using cryptographic key sizes of 2048-bit or greater			-   *RSA schemes using cryptographic key sizes of 2048-bit or greater
+-   *RSA schemes using cryptographic key sizes of 2048-bit or greater		      |	-   [RSA schemes using cryptographic key sizes of 2048-bit or greater
     that f-component meet the following: [FIPS](#abbr_FIPS) PUB 186-4,			    that f-component meet the following: [FIPS](#abbr_FIPS) PUB 186-4,
-    \"Digital Signature Standard ([DSS](#abbr_DSS))\", Appendix B.3* ,			    \"Digital Signature Standard ([DSS](#abbr_DSS))\", Appendix B.3* ,
--   *ECC schemes using \"[NIST](#abbr_NIST) curves\" P-256, P-384 and			-   *ECC schemes using \"[NIST](#abbr_NIST) curves\" P-256, P-384 and
-    \[**selection**: *P-521*, *no other curves*\] that meet the				    \[**selection**: *P-521*, *no other curves*\] that meet the
-    following: [FIPS](#abbr_FIPS) PUB 186-4, \"Digital Signature			    following: [FIPS](#abbr_FIPS) PUB 186-4, \"Digital Signature
-    Standard ([DSS](#abbr_DSS))\", Appendix B.4* ,					    Standard ([DSS](#abbr_DSS))\", Appendix B.4* ,
--   *FFC schemes using cryptographic key sizes of 2048-bit or greater			-   *FFC schemes using cryptographic key sizes of 2048-bit or greater
+    \"Digital Signature Standard ([DSS](#abbr_DSS))\", Appendix B.3* ,		      |	    \"Digital Signature Standard ([DSS](#abbr_DSS))\", Appendix B.3
+-   *ECC schemes using \"[NIST](#abbr_NIST) curves\" P-256, P-384 and		      |	    ]{#s-keygen-rsa .selectable-content}
+    \[**selection**: *P-521*, *no other curves*\] that meet the			      |	-   [ECC schemes using \"[NIST](#abbr_NIST) curves\" P-256, P-384 and
+    following: [FIPS](#abbr_FIPS) PUB 186-4, \"Digital Signature		      |	    \[**selection**: [P-521]{#_s_3 .selectable-content}, [ no other
+    Standard ([DSS](#abbr_DSS))\", Appendix B.4* ,				      |	    curves]{#_s_4 .selectable-content}, \] that meet the following:
+-   *FFC schemes using cryptographic key sizes of 2048-bit or greater		      |	    [FIPS](#abbr_FIPS) PUB 186-4, \"Digital Signature Standard
+										      >	    ([DSS](#abbr_DSS))\", Appendix B.4 ]{#s-keygen-ecc
+										      >	    .selectable-content}
+										      >	-   [FFC schemes using cryptographic key sizes of 2048-bit or greater
     that meet the following: [FIPS](#abbr_FIPS) PUB 186-4, \"Digital			    that meet the following: [FIPS](#abbr_FIPS) PUB 186-4, \"Digital
-    Signature Standard ([DSS](#abbr_DSS))\", Appendix B.1*			      |	    Signature Standard ([DSS](#abbr_DSS))\", Appendix B.1*,
-										      >	-   *FFC Schemes using Diffie-Hellman Group 14 that meet the following:
-										      >	    [RFC](#abbr_RFC) 3526* ,
-										      >	-   *FFC Schemes using safe primes that meet the following:
+    Signature Standard ([DSS](#abbr_DSS))\", Appendix B.1*			      |	    Signature Standard ([DSS](#abbr_DSS))\", Appendix B.1]{#s-keygen-ffc
+										      >	    .selectable-content}
+										      >	-   [FFC Schemes using Diffie-Hellman Group 14 that meet the following:
+										      >	    [RFC](#abbr_RFC) 3526 ]{#s-keygen-ffc-dh .selectable-content}
+										      >	-   [ FFC Schemes using safe primes that meet the following:
 										      >	    '[NIST](#abbr_NIST) Special Publication 800-56A Revision 3,
-										      >	    "Recommendation for Pair-Wise Key Establishment Schemes*
+										      >	    "Recommendation for Pair-Wise Key Establishment Schemes
+										      >	    ]{#s-keygen-ffc-safeprime .selectable-content}
 
 \] ~~and specified cryptographic key sizes \[assignment: cryptographic		      |	\] .
 key sizes\] that meet the following: \[assignment: list of standards\]~~	      <
@@ -1030,28 +1040,25 @@ for each FFC parameter set and key pair.						for each FFC parameter set and key
 The [OS](#abbr_OS) shall **implement functionality to perform				The [OS](#abbr_OS) shall **implement functionality to perform
 cryptographic key establishment** in accordance with a specified			cryptographic key establishment** in accordance with a specified
 cryptographic key **establishment** method:					      |	cryptographic key **establishment** method: \[**selection**:
-										      <
-\[*RSA-based key establishment schemes*\] that meets the following:		      <
-\[*[NIST](#abbr_NIST) Special Publication 800-56B, \"Recommendation for		      <
-Pair-Wise Key Establishment Schemes Using Integer Factorization			      <
-Cryptography\"*\]								      <
-										      <
-**and \[**selection**:**							      <
 
-										      >	-   *RSA-based key establishment schemes that meets the following:
-										      >	    RSAES-PKCS1-v1\_5 as specified in Section 7.2 of [RFC](#abbr_RFC)
-										      >	    8017, "Public-Key Cryptography Standards (PKCS) \#1: RSA
-										      >	    Cryptography Specifications Version 2.2*,
--   *Elliptic curve-based key establishment schemes that meets the			-   *Elliptic curve-based key establishment schemes that meets the
-    following: [NIST](#abbr_NIST) Special Publication 800-56A,			      |	    following: [NIST](#abbr_NIST) Special Publication 800-56A Revision
-    \"Recommendation for Pair-Wise Key Establishment Schemes Using		      |	    3, "Recommendation for Pair-Wise Key Establishment Schemes Using
-    Discrete Logarithm Cryptography\"*,						      |	    Discrete Logarithm Cryptography"*,
--   *Finite field-based key establishment schemes that meets the			-   *Finite field-based key establishment schemes that meets the
-    following: [NIST](#abbr_NIST) Special Publication 800-56A,			      |	    following: [NIST](#abbr_NIST) Special Publication 800-56A Revision
-    \"Recommendation for Pair-Wise Key Establishment Schemes Using		      |	    3, "Recommendation for Pair-Wise Key Establishment Schemes Using
-    Discrete Logarithm Cryptography\"*,						      |	    Discrete Logarithm Cryptography"*,
--   *No other schemes*								      |	-   *Key establishment scheme using Diffie-Hellman group 14 that meets
-										      >	    the following: [RFC](#abbr_RFC) 3526*
+\[*RSA-based key establishment schemes*\] that meets the following:		      |	-   [RSA-based key establishment schemes that meets the following:
+\[*[NIST](#abbr_NIST) Special Publication 800-56B, \"Recommendation for		      |	    RSAES-PKCS1-v1\_5 as specified in Section 7.2 of [RFC](#abbr_RFC)
+Pair-Wise Key Establishment Schemes Using Integer Factorization			      |	    8017, "Public-Key Cryptography Standards (PKCS) \#1: RSA
+Cryptography\"*\]								      |	    Cryptography Specifications Version 2.2]{#s-keyestab-rsa
+										      |	    .selectable-content}
+**and \[**selection**:**							      |	-   [Elliptic curve-based key establishment schemes that meets the
+										      |	    following: [NIST](#abbr_NIST) Special Publication 800-56A Revision
+-   *Elliptic curve-based key establishment schemes that meets the		      |	    3, "Recommendation for Pair-Wise Key Establishment Schemes Using
+    following: [NIST](#abbr_NIST) Special Publication 800-56A,			      |	    Discrete Logarithm Cryptography"]{#s-keyestab-ecc
+    \"Recommendation for Pair-Wise Key Establishment Schemes Using		      |	    .selectable-content}
+    Discrete Logarithm Cryptography\"*,						      |	-   [Finite field-based key establishment schemes that meets the
+-   *Finite field-based key establishment schemes that meets the		      |	    following: [NIST](#abbr_NIST) Special Publication 800-56A Revision
+    following: [NIST](#abbr_NIST) Special Publication 800-56A,			      |	    3, "Recommendation for Pair-Wise Key Establishment Schemes Using
+    \"Recommendation for Pair-Wise Key Establishment Schemes Using		      |	    Discrete Logarithm Cryptography"]{#s-keyestab-ffc
+    Discrete Logarithm Cryptography\"*,						      |	    .selectable-content}
+-   *No other schemes*								      |	-   [Key establishment scheme using Diffie-Hellman group 14 that meets
+										      >	    the following: [RFC](#abbr_RFC) 3526]{#s-keyestab-dh
+										      >	    .selectable-content}
 
 \] ~~that meets the following: \[assignment: list of standards\]~~ .		      |	\].
 
@@ -1326,34 +1333,44 @@ The [OS](#abbr_OS) shall destroy cryptographic keys and key material in			The [O
 accordance with a specified cryptographic key destruction method			accordance with a specified cryptographic key destruction method
 \[**selection**:									\[**selection**:
 
--   *For volatile memory, the destruction shall be executed by a			-   *For volatile memory, the destruction shall be executed by a
-    \[**selection**:*									    \[**selection**:*
-    -   *single overwrite consisting of \[**selection**: *a				    -   *single overwrite consisting of \[**selection**: *a
+-   *For volatile memory, the destruction shall be executed by a		      |	-   [For volatile memory, the destruction shall be executed by a
+    \[**selection**:*								      |	    \[**selection**: ]{#_s_12 .selectable-content}
+    -   *single overwrite consisting of \[**selection**: *a			      |	    -   [single overwrite consisting of \[**selection**: [a
         pseudo-random pattern using the [TSF](#abbr_TSF)\'s				        pseudo-random pattern using the [TSF](#abbr_TSF)\'s
-        [RBG](#abbr_RBG)*, *zeroes*, *ones*, *a new value of a key*,			        [RBG](#abbr_RBG)*, *zeroes*, *ones*, *a new value of a key*,
-        *\[**assignment**: [ any value that does not contain any			        *\[**assignment**: [ any value that does not contain any
-        [CSP](#abbr_CSP)]{.assignable-content}\]*\]*,					        [CSP](#abbr_CSP)]{.assignable-content}\]*\]*,
-    -   *removal of power to the memory*,						    -   *removal of power to the memory*,
-    -   *destruction of reference to the key directly followed by a			    -   *destruction of reference to the key directly followed by a
-        request for garbage collection*							        request for garbage collection*
-
-    \],											    \],
--   *For non-volatile memory that consists of \[**selection**:*				-   *For non-volatile memory that consists of \[**selection**:*
-    -   *destruction of all key encrypting keys protecting the target			    -   *destruction of all key encrypting keys protecting the target
+        [RBG](#abbr_RBG)*, *zeroes*, *ones*, *a new value of a key*,		      |	        [RBG](#abbr_RBG)]{#_s_14 .selectable-content}, [zeroes]{#_s_15
+        *\[**assignment**: [ any value that does not contain any		      |	        .selectable-content}, [ones]{#_s_16 .selectable-content}, [a new
+        [CSP](#abbr_CSP)]{.assignable-content}\]*\]*,				      |	        value of a key]{#_s_17 .selectable-content}, [\[**assignment**:
+    -   *removal of power to the memory*,					      |	        [ any value that does not contain any
+    -   *destruction of reference to the key directly followed by a		      |	        [CSP](#abbr_CSP)]{.assignable-content}\]]{#_s_18
+        request for garbage collection*						      |	        .selectable-content}\]]{#_s_13 .selectable-content}
+										      |	    -   [removal of power to the memory]{#_s_19 .selectable-content}
+    \],										      |	    -   [destruction of reference to the key directly followed by a
+-   *For non-volatile memory that consists of \[**selection**:*			      |	        request for garbage collection]{#_s_20 .selectable-content}
+    -   *destruction of all key encrypting keys protecting the target		      |
+										      >	    \]
+										      >	-   [For non-volatile memory that consists of \[**selection**: ]{#_s_21
+										      >	    .selectable-content}
+										      >	    -   [destruction of all key encrypting keys protecting the target
         key according to [FCS\_CKM\_EXT.4.1](#FCS_CKM_EXT.4.1), where			        key according to [FCS\_CKM\_EXT.4.1](#FCS_CKM_EXT.4.1), where
-        none of the KEKs protecting the target key are derived* ,			        none of the KEKs protecting the target key are derived* ,
-    -   *the invocation of an interface provided by the underlying			    -   *the invocation of an interface provided by the underlying
-        platform that \[**selection**:*							        platform that \[**selection**:*
-        -   *logically addresses the storage location of the key and			        -   *logically addresses the storage location of the key and
-            performs a \[**selection**: *single*, *\[**assignment**:			            performs a \[**selection**: *single*, *\[**assignment**:
-            [[ST](#abbr_ST) author defined						            [[ST](#abbr_ST) author defined
-            multi-pass]{.assignable-content}\]*\]overwrite consisting of		            multi-pass]{.assignable-content}\]*\]overwrite consisting of
-            \[**selection**: *zeroes*, *ones*, *pseudo-random pattern*,			            \[**selection**: *zeroes*, *ones*, *pseudo-random pattern*,
-            *a new value of a key of the same size*, *\[**assignment**:			            *a new value of a key of the same size*, *\[**assignment**:
-            [any value that does not contain any					            [any value that does not contain any
-            [CSP](#abbr_CSP)]{.assignable-content}\]*\]*,				            [CSP](#abbr_CSP)]{.assignable-content}\]*\]*,
-        -   *instructs the underlying platform to destroy the				        -   *instructs the underlying platform to destroy the
-            abstraction that represents the key*					            abstraction that represents the key*
+        none of the KEKs protecting the target key are derived* ,		      |	        none of the KEKs protecting the target key are derived
+    -   *the invocation of an interface provided by the underlying		      |	        ]{#s-kek-kill .selectable-content}
+        platform that \[**selection**:*						      |	    -   [the invocation of an interface provided by the underlying
+        -   *logically addresses the storage location of the key and		      |	        platform that \[**selection**: ]{#_s_23 .selectable-content}
+            performs a \[**selection**: *single*, *\[**assignment**:		      |	        -   [logically addresses the storage location of the key and
+            [[ST](#abbr_ST) author defined					      |	            performs a \[**selection**: [single]{#_s_25
+            multi-pass]{.assignable-content}\]*\]overwrite consisting of	      |	            .selectable-content}, [\[**assignment**: [[ST](#abbr_ST)
+            \[**selection**: *zeroes*, *ones*, *pseudo-random pattern*,		      |	            author defined multi-pass]{.assignable-content}\]]{#_s_26
+            *a new value of a key of the same size*, *\[**assignment**:		      |	            .selectable-content}, \]overwrite consisting of
+            [any value that does not contain any				      |	            \[**selection**: [zeroes]{#_s_27 .selectable-content},
+            [CSP](#abbr_CSP)]{.assignable-content}\]*\]*,			      |	            [ones]{#_s_28 .selectable-content}, [pseudo-random
+        -   *instructs the underlying platform to destroy the			      |	            pattern]{#_s_29 .selectable-content}, [a new value of a key
+            abstraction that represents the key*				      |	            of the same size]{#_s_30 .selectable-content},
+										      >	            [\[**assignment**: [any value that does not contain any
+										      >	            [CSP](#abbr_CSP)]{.assignable-content}\]]{#_s_31
+										      >	            .selectable-content}\]]{#_s_24 .selectable-content}
+										      >	        -   [instructs the underlying platform to destroy the
+										      >	            abstraction that represents the key]{#_s_32
+										      >	            .selectable-content}
 
         \]										        \]
 
@@ -1624,30 +1641,33 @@ The **[OS](#abbr_OS)** shall perform \[*encryption/decryption services			The **[
 for data*\] in accordance with a specified cryptographic algorithm			for data*\] in accordance with a specified cryptographic algorithm
 **\[**selection**:**									**\[**selection**:**
 
--   *[AES](#abbr_AES)-XTS (as defined in [NIST](#abbr_NIST) SP				-   *[AES](#abbr_AES)-XTS (as defined in [NIST](#abbr_NIST) SP
-    800-38E)*,										    800-38E)*,
--   *[AES](#abbr_AES)-CBC (as defined in [NIST](#abbr_NIST) SP 800-38A)*		-   *[AES](#abbr_AES)-CBC (as defined in [NIST](#abbr_NIST) SP 800-38A)*
+-   *[AES](#abbr_AES)-XTS (as defined in [NIST](#abbr_NIST) SP			      |	-   [[AES](#abbr_AES)-XTS (as defined in [NIST](#abbr_NIST) SP
+    800-38E)*,									      |	    800-38E)]{#_s_33 .selectable-content}
+-   *[AES](#abbr_AES)-CBC (as defined in [NIST](#abbr_NIST) SP 800-38A)*	      |	-   [[AES](#abbr_AES)-CBC (as defined in [NIST](#abbr_NIST) SP
+										      >	    800-38A)]{#_s_34 .selectable-content}
 
 \] and \[**selection**:									\] and \[**selection**:
 
--   *[AES](#abbr_AES)-CCMP (as defined in [FIPS](#abbr_FIPS) PUB 197,			-   *[AES](#abbr_AES)-CCMP (as defined in [FIPS](#abbr_FIPS) PUB 197,
-    [NIST](#abbr_NIST) SP 800-38C and IEEE 802.11-2012)*,				    [NIST](#abbr_NIST) SP 800-38C and IEEE 802.11-2012)*,
--   *[AES](#abbr_AES) Key Wrap (KW) (as defined in [NIST](#abbr_NIST) SP		-   *[AES](#abbr_AES) Key Wrap (KW) (as defined in [NIST](#abbr_NIST) SP
-    800-38F)*,										    800-38F)*,
--   *[AES](#abbr_AES) Key Wrap with Padding (KWP) (as defined in			-   *[AES](#abbr_AES) Key Wrap with Padding (KWP) (as defined in
-    [NIST](#abbr_NIST) SP 800-38F)*,							    [NIST](#abbr_NIST) SP 800-38F)*,
--   *[AES](#abbr_AES)-GCM (as defined in [NIST](#abbr_NIST) SP				-   *[AES](#abbr_AES)-GCM (as defined in [NIST](#abbr_NIST) SP
-    800-38D)*,										    800-38D)*,
--   *[AES](#abbr_AES)-CCM (as defined in [NIST](#abbr_NIST) SP				-   *[AES](#abbr_AES)-CCM (as defined in [NIST](#abbr_NIST) SP
-    800-38C)*,										    800-38C)*,
--   *[AES](#abbr_AES)-CCMP-256 (as defined in [NIST](#abbr_NIST)			-   *[AES](#abbr_AES)-CCMP-256 (as defined in [NIST](#abbr_NIST)
-    SP800-38C and IEEE 802.11ac-2013)*,							    SP800-38C and IEEE 802.11ac-2013)*,
--   *[AES](#abbr_AES)-GCMP-256 (as defined in [NIST](#abbr_NIST)			-   *[AES](#abbr_AES)-GCMP-256 (as defined in [NIST](#abbr_NIST)
-    SP800-38D and IEEE 802.11ac-2013)*,							    SP800-38D and IEEE 802.11ac-2013)*,
--   *no other modes*									-   *no other modes*
-
-\] and cryptographic key sizes \[**selection**: *128-bit*, *256-bit*\]			\] and cryptographic key sizes \[**selection**: *128-bit*, *256-bit*\]
-~~that meet the following: \[assignment: list of standards\]~~.				~~that meet the following: \[assignment: list of standards\]~~.
+-   *[AES](#abbr_AES)-CCMP (as defined in [FIPS](#abbr_FIPS) PUB 197,		      |	-   [[AES](#abbr_AES)-CCMP (as defined in [FIPS](#abbr_FIPS) PUB 197,
+    [NIST](#abbr_NIST) SP 800-38C and IEEE 802.11-2012)*,			      |	    [NIST](#abbr_NIST) SP 800-38C and IEEE 802.11-2012)]{#_s_35
+-   *[AES](#abbr_AES) Key Wrap (KW) (as defined in [NIST](#abbr_NIST) SP	      |	    .selectable-content}
+    800-38F)*,									      |	-   [[AES](#abbr_AES) Key Wrap (KW) (as defined in [NIST](#abbr_NIST) SP
+-   *[AES](#abbr_AES) Key Wrap with Padding (KWP) (as defined in		      |	    800-38F)]{#_s_36 .selectable-content}
+    [NIST](#abbr_NIST) SP 800-38F)*,						      |	-   [[AES](#abbr_AES) Key Wrap with Padding (KWP) (as defined in
+-   *[AES](#abbr_AES)-GCM (as defined in [NIST](#abbr_NIST) SP			      |	    [NIST](#abbr_NIST) SP 800-38F)]{#_s_37 .selectable-content}
+    800-38D)*,									      |	-   [[AES](#abbr_AES)-GCM (as defined in [NIST](#abbr_NIST) SP
+-   *[AES](#abbr_AES)-CCM (as defined in [NIST](#abbr_NIST) SP			      |	    800-38D)]{#_s_38 .selectable-content}
+    800-38C)*,									      |	-   [[AES](#abbr_AES)-CCM (as defined in [NIST](#abbr_NIST) SP
+-   *[AES](#abbr_AES)-CCMP-256 (as defined in [NIST](#abbr_NIST)		      |	    800-38C)]{#_s_39 .selectable-content}
+    SP800-38C and IEEE 802.11ac-2013)*,						      |	-   [[AES](#abbr_AES)-CCMP-256 (as defined in [NIST](#abbr_NIST)
+-   *[AES](#abbr_AES)-GCMP-256 (as defined in [NIST](#abbr_NIST)		      |	    SP800-38C and IEEE 802.11ac-2013)]{#_s_40 .selectable-content}
+    SP800-38D and IEEE 802.11ac-2013)*,						      |	-   [[AES](#abbr_AES)-GCMP-256 (as defined in [NIST](#abbr_NIST)
+-   *no other modes*								      |	    SP800-38D and IEEE 802.11ac-2013)]{#_s_41 .selectable-content}
+										      |	-   [no other modes]{#_s_42 .selectable-content}
+\] and cryptographic key sizes \[**selection**: *128-bit*, *256-bit*\]		      |
+~~that meet the following: \[assignment: list of standards\]~~.			      |	\] and cryptographic key sizes \[**selection**: [128-bit]{#_s_43
+										      >	.selectable-content}, [256-bit]{#_s_44 .selectable-content}, \] ~~that
+										      >	meet the following: \[assignment: list of standards\]~~.
 
 ::: {.appnote}										::: {.appnote}
 [Application Note: ]{.note-header}[ ]{.note}						[Application Note: ]{.note-header}[ ]{.note}
@@ -2015,18 +2035,17 @@ The **[OS](#abbr_OS)** shall perform \[*cryptographic hashing				The **[OS](#abb
 services*\] in accordance with a specified cryptographic algorithm			services*\] in accordance with a specified cryptographic algorithm
 **\[**selection**:**									**\[**selection**:**
 
--   *[SHA](#abbr_SHA)-1*,								-   *[SHA](#abbr_SHA)-1*,
--   *[SHA](#abbr_SHA)-256*,								-   *[SHA](#abbr_SHA)-256*,
--   *[SHA](#abbr_SHA)-384*,								-   *[SHA](#abbr_SHA)-384*,
--   *[SHA](#abbr_SHA)-512*,							      |	-   *[SHA](#abbr_SHA)-512*
--   *no other algorithms*							      <
-
-\] and message digest sizes 160 bits and \[**selection**:			      |	\] and message digest sizes \[**selection**:
-
-										      >	-   *160 bits*,
--   *256 bits*,										-   *256 bits*,
--   *384 bits*,										-   *384 bits*,
--   *512 bits*,									      |	-   *512 bits*
+-   *[SHA](#abbr_SHA)-1*,							      |	-   [[SHA](#abbr_SHA)-1]{#_s_45 .selectable-content}
+-   *[SHA](#abbr_SHA)-256*,							      |	-   [[SHA](#abbr_SHA)-256]{#_s_46 .selectable-content}
+-   *[SHA](#abbr_SHA)-384*,							      |	-   [[SHA](#abbr_SHA)-384]{#_s_47 .selectable-content}
+-   *[SHA](#abbr_SHA)-512*,							      |	-   [[SHA](#abbr_SHA)-512]{#_s_48 .selectable-content}
+-   *no other algorithms*							      |
+										      |	\] and message digest sizes \[**selection**:
+\] and message digest sizes 160 bits and \[**selection**:			      |
+										      |	-   [160 bits]{#_s_49 .selectable-content}
+-   *256 bits*,									      |	-   [256 bits]{#_s_50 .selectable-content}
+-   *384 bits*,									      |	-   [384 bits]{#_s_51 .selectable-content}
+-   *512 bits*,									      |	-   [512 bits]{#_s_52 .selectable-content}
 -   *no other sizes*								      <
 
 \] that meet the following: \[*[FIPS](#abbr_FIPS) Pub 180-4*\].				\] that meet the following: \[*[FIPS](#abbr_FIPS) Pub 180-4*\].
@@ -2146,13 +2165,16 @@ The **[OS](#abbr_OS)** shall perform \[*cryptographic signature services		The **
 (generation and verification)*\] in accordance with a specified				(generation and verification)*\] in accordance with a specified
 cryptographic algorithm **\[**selection**:**						cryptographic algorithm **\[**selection**:**
 
--   *RSA schemes using cryptographic key sizes of 2048-bit or greater			-   *RSA schemes using cryptographic key sizes of 2048-bit or greater
+-   *RSA schemes using cryptographic key sizes of 2048-bit or greater		      |	-   [RSA schemes using cryptographic key sizes of 2048-bit or greater
     that meet the following: [FIPS](#abbr_FIPS) PUB 186-4, \"Digital			    that meet the following: [FIPS](#abbr_FIPS) PUB 186-4, \"Digital
-    Signature Standard ([DSS](#abbr_DSS))\", Section 4*,				    Signature Standard ([DSS](#abbr_DSS))\", Section 4*,
--   *[ECDSA](#abbr_ECDSA) schemes using \"[NIST](#abbr_NIST) curves\"			-   *[ECDSA](#abbr_ECDSA) schemes using \"[NIST](#abbr_NIST) curves\"
-    P-256, P-384 and \[**selection**: *P-521*, *no other curves*\] that			    P-256, P-384 and \[**selection**: *P-521*, *no other curves*\] that
-    meet the following: [FIPS](#abbr_FIPS) PUB 186-4, \"Digital				    meet the following: [FIPS](#abbr_FIPS) PUB 186-4, \"Digital
-    Signature Standard ([DSS](#abbr_DSS))\", Section 5*					    Signature Standard ([DSS](#abbr_DSS))\", Section 5*
+    Signature Standard ([DSS](#abbr_DSS))\", Section 4*,			      |	    Signature Standard ([DSS](#abbr_DSS))\", Section 4]{#_s_53
+-   *[ECDSA](#abbr_ECDSA) schemes using \"[NIST](#abbr_NIST) curves\"		      |	    .selectable-content}
+    P-256, P-384 and \[**selection**: *P-521*, *no other curves*\] that		      |	-   [[ECDSA](#abbr_ECDSA) schemes using \"[NIST](#abbr_NIST) curves\"
+    meet the following: [FIPS](#abbr_FIPS) PUB 186-4, \"Digital			      |	    P-256, P-384 and \[**selection**: [P-521]{#_s_55
+    Signature Standard ([DSS](#abbr_DSS))\", Section 5*				      |	    .selectable-content}, [no other curves]{#_s_56 .selectable-content},
+										      >	    \] that meet the following: [FIPS](#abbr_FIPS) PUB 186-4, \"Digital
+										      >	    Signature Standard ([DSS](#abbr_DSS))\", Section 5]{#s-ec-certs
+										      >	    .selectable-content}
 
 \] ~~and cryptographic key sizes \[assignment: cryptographic algorithm\]		\] ~~and cryptographic key sizes \[assignment: cryptographic algorithm\]
 that meet the following: \[assignment: list of standards\]~~.				that meet the following: \[assignment: list of standards\]~~.
@@ -2245,11 +2267,15 @@ not found in the production application.						not found in the production applic
 ::: {.reqdesc}										::: {.reqdesc}
 The **[OS](#abbr_OS)** shall perform \[*keyed-hash message				The **[OS](#abbr_OS)** shall perform \[*keyed-hash message
 authentication services*\] in accordance with a specified cryptographic			authentication services*\] in accordance with a specified cryptographic
-algorithm **\[**selection**: *[SHA](#abbr_SHA)-1*,					algorithm **\[**selection**: *[SHA](#abbr_SHA)-1*,
-*[SHA](#abbr_SHA)-256*, *[SHA](#abbr_SHA)-384*, *[SHA](#abbr_SHA)-512*\]		*[SHA](#abbr_SHA)-256*, *[SHA](#abbr_SHA)-384*, *[SHA](#abbr_SHA)-512*\]
-with key sizes \[**assignment**: [key size (in bits) used in				with key sizes \[**assignment**: [key size (in bits) used in
-[HMAC](#abbr_HMAC)]{.assignable-content}\] and message digest** sizes			[HMAC](#abbr_HMAC)]{.assignable-content}\] and message digest** sizes
-\[**selection**: *160 bits*, *256 bits*, *384 bits*, *512 bits*\] that			\[**selection**: *160 bits*, *256 bits*, *384 bits*, *512 bits*\] that
+algorithm **\[**selection**: *[SHA](#abbr_SHA)-1*,				      |	algorithm **\[**selection**: [[SHA](#abbr_SHA)-1]{#_s_57
+*[SHA](#abbr_SHA)-256*, *[SHA](#abbr_SHA)-384*, *[SHA](#abbr_SHA)-512*\]	      |	.selectable-content}, [[SHA](#abbr_SHA)-256]{#_s_58
+with key sizes \[**assignment**: [key size (in bits) used in			      |	.selectable-content}, [[SHA](#abbr_SHA)-384]{#_s_59
+[HMAC](#abbr_HMAC)]{.assignable-content}\] and message digest** sizes		      |	.selectable-content}, [[SHA](#abbr_SHA)-512]{#_s_60
+\[**selection**: *160 bits*, *256 bits*, *384 bits*, *512 bits*\] that		      |	.selectable-content}, \] with key sizes \[**assignment**: [key size (in
+										      >	bits) used in [HMAC](#abbr_HMAC)]{.assignable-content}\] and message
+										      >	digest** sizes \[**selection**: [160 bits]{#_s_61 .selectable-content},
+										      >	[256 bits]{#_s_62 .selectable-content}, [384 bits]{#_s_63
+										      >	.selectable-content}, [512 bits]{#_s_64 .selectable-content}, \] that
 meet the following: \[*[FIPS](#abbr_FIPS) Pub 198-1 The Keyed-Hash			meet the following: \[*[FIPS](#abbr_FIPS) Pub 198-1 The Keyed-Hash
 Message Authentication Code and [FIPS](#abbr_FIPS) Pub 180-4 Secure Hash		Message Authentication Code and [FIPS](#abbr_FIPS) Pub 180-4 Secure Hash
 Standard*\].										Standard*\].
@@ -2313,9 +2339,9 @@ The [OS](#abbr_OS) shall perform all deterministic random bit generation		The [O
 ([DRBG](#abbr_DRBG)) services in accordance with [NIST](#abbr_NIST)			([DRBG](#abbr_DRBG)) services in accordance with [NIST](#abbr_NIST)
 Special Publication 800-90A using \[**selection**:					Special Publication 800-90A using \[**selection**:
 
--   *Hash\_DRBG (any)*,									-   *Hash\_DRBG (any)*,
--   *HMAC\_DRBG (any)*,									-   *HMAC\_DRBG (any)*,
--   *CTR\_DRBG ([AES](#abbr_AES))*							-   *CTR\_DRBG ([AES](#abbr_AES))*
+-   *Hash\_DRBG (any)*,								      |	-   [Hash\_DRBG (any)]{#_s_65 .selectable-content}
+-   *HMAC\_DRBG (any)*,								      |	-   [HMAC\_DRBG (any)]{#_s_66 .selectable-content}
+-   *CTR\_DRBG ([AES](#abbr_AES))*						      |	-   [CTR\_DRBG ([AES](#abbr_AES))]{#_s_67 .selectable-content}
 
 \] .											\] .
 
@@ -2344,13 +2370,13 @@ The deterministic [RBG](#abbr_RBG) used by the [OS](#abbr_OS) shall be			The det
 seeded by an entropy source that accumulates entropy from a				seeded by an entropy source that accumulates entropy from a
 \[**selection**:									\[**selection**:
 
--   *software-based noise source*,							-   *software-based noise source*,
--   *platform-based noise source*							-   *platform-based noise source*
+-   *software-based noise source*,						      |	-   [software-based noise source]{#_s_68 .selectable-content}
+-   *platform-based noise source*						      |	-   [platform-based noise source]{#_s_69 .selectable-content}
 
 \] with a minimum of \[**selection**:							\] with a minimum of \[**selection**:
 
--   *128 bits*,										-   *128 bits*,
--   *256 bits*										-   *256 bits*
+-   *128 bits*,									      |	-   [128 bits]{#_s_70 .selectable-content}
+-   *256 bits*									      |	-   [256 bits]{#_s_71 .selectable-content}
 
 \] of entropy at least equal to the greatest security strength				\] of entropy at least equal to the greatest security strength
 (according to [NIST](#abbr_NIST) SP 800-57) of the keys and hashes that			(according to [NIST](#abbr_NIST) SP 800-57) of the keys and hashes that
@@ -2692,15 +2718,26 @@ management functions:\									management functions:\
 | 1               | Enable/disable  | ::: {.tooltippe | ::: {.tooltippe |		| 1               | Enable/disable  | ::: {.tooltippe | ::: {.tooltippe |
 |                 | \[**selection** | d}              | d}              |		|                 | \[**selection** | d}              | d}              |
 |                 | :               | M[Mandatory]{.t | O[Optional]{.to |		|                 | :               | M[Mandatory]{.t | O[Optional]{.to |
-|                 | *screen lock*,  | ooltiptext}     | oltiptext}      |		|                 | *screen lock*,  | ooltiptext}     | oltiptext}      |
-|                 | *session        | :::             | :::             |		|                 | *session        | :::             | :::             |
-|                 | timeout*\]      |                 |                 |		|                 | timeout*\]      |                 |                 |
+|                 | *screen lock*,  | ooltiptext}     | oltiptext}      |	      |	|                 | [screen         | ooltiptext}     | oltiptext}      |
+|                 | *session        | :::             | :::             |	      |	|                 | lock]{#_s_76    | :::             | :::             |
+|                 | timeout*\]      |                 |                 |	      |	|                 | .selectable-con |                 |                 |
+										      >	|                 | tent},          |                 |                 |
+										      >	|                 | [session        |                 |                 |
+										      >	|                 | timeout]{#_s_77 |                 |                 |
+										      >	|                 | .selectable-con |                 |                 |
+										      >	|                 | tent}\]         |                 |                 |
 +-----------------+-----------------+-----------------+-----------------+		+-----------------+-----------------+-----------------+-----------------+
 | 2               | Configure       | ::: {.tooltippe | ::: {.tooltippe |		| 2               | Configure       | ::: {.tooltippe | ::: {.tooltippe |
 |                 | \[**selection** | d}              | d}              |		|                 | \[**selection** | d}              | d}              |
 |                 | :               | M[Mandatory]{.t | O[Optional]{.to |		|                 | :               | M[Mandatory]{.t | O[Optional]{.to |
-|                 | *screen lock*,  | ooltiptext}     | oltiptext}      |		|                 | *screen lock*,  | ooltiptext}     | oltiptext}      |
-|                 | *session*\]     | :::             | :::             |		|                 | *session*\]     | :::             | :::             |
+|                 | *screen lock*,  | ooltiptext}     | oltiptext}      |	      |	|                 | [screen         | ooltiptext}     | oltiptext}      |
+|                 | *session*\]     | :::             | :::             |	      |	|                 | lock]{#_s_78    | :::             | :::             |
+										      >	|                 | .selectable-con |                 |                 |
+										      >	|                 | tent},          |                 |                 |
+										      >	|                 | [session]{#_s_7 |                 |                 |
+										      >	|                 | 9               |                 |                 |
+										      >	|                 | .selectable-con |                 |                 |
+										      >	|                 | tent}\]         |                 |                 |
 |                 | inactivity      |                 |                 |		|                 | inactivity      |                 |                 |
 |                 | timeout         |                 |                 |		|                 | timeout         |                 |                 |
 +-----------------+-----------------+-----------------+-----------------+		+-----------------+-----------------+-----------------+-----------------+
@@ -2755,14 +2792,20 @@ management functions:\									management functions:\
 |                 | through         |                 |                 |		|                 | through         |                 |                 |
 |                 | \[**selection** |                 |                 |		|                 | \[**selection** |                 |                 |
 |                 | :               |                 |                 |		|                 | :               |                 |                 |
-|                 | *timeouts       |                 |                 |		|                 | *timeouts       |                 |                 |
+|                 | *timeouts       |                 |                 |	      |	|                 | [timeouts       |                 |                 |
 |                 | between         |                 |                 |		|                 | between         |                 |                 |
-|                 | attempts*,      |                 |                 |		|                 | attempts*,      |                 |                 |
-|                 | *limiting       |                 |                 |		|                 | *limiting       |                 |                 |
+|                 | attempts*,      |                 |                 |	      |	|                 | attempts]{#_s_8 |                 |                 |
+|                 | *limiting       |                 |                 |	      |	|                 | 0               |                 |                 |
+										      >	|                 | .selectable-con |                 |                 |
+										      >	|                 | tent},          |                 |                 |
+										      >	|                 | [limiting       |                 |                 |
 |                 | number of       |                 |                 |		|                 | number of       |                 |                 |
 |                 | attempts during |                 |                 |		|                 | attempts during |                 |                 |
 |                 | a time          |                 |                 |		|                 | a time          |                 |                 |
-|                 | period*\]       |                 |                 |		|                 | period*\]       |                 |                 |
+|                 | period*\]       |                 |                 |	      |	|                 | period]{#_s_81  |                 |                 |
+										      >	|                 | .selectable-con |                 |                 |
+										      >	|                 | tent},          |                 |                 |
+										      >	|                 | \]              |                 |                 |
 +-----------------+-----------------+-----------------+-----------------+		+-----------------+-----------------+-----------------+-----------------+
 | 10              | Configure       | ::: {.tooltippe | ::: {.tooltippe |	      |	| 11              | Configure       | ::: {.tooltippe | ::: {.tooltippe |
 |                 | host-based      | d}              | d}              |		|                 | host-based      | d}              | d}              |
@@ -3026,9 +3069,11 @@ the evaluator permission to complete the action):					the evaluator permission t
 
 ::: {.reqdesc}										::: {.reqdesc}
 The [OS](#abbr_OS) shall always randomize process address space memory			The [OS](#abbr_OS) shall always randomize process address space memory
-locations with \[**selection**: *8*, *\[**assignment**: [number greater			locations with \[**selection**: *8*, *\[**assignment**: [number greater
-than 8]{.assignable-content}\]*\] bits of entropy except for				than 8]{.assignable-content}\]*\] bits of entropy except for
-\[**assignment**: [list of explicit exceptions]{.assignable-content}\].			\[**assignment**: [list of explicit exceptions]{.assignable-content}\].
+locations with \[**selection**: *8*, *\[**assignment**: [number greater		      |	locations with \[**selection**: [8]{#_s_82 .selectable-content},
+than 8]{.assignable-content}\]*\] bits of entropy except for			      |	[\[**assignment**: [number greater than
+\[**assignment**: [list of explicit exceptions]{.assignable-content}\].		      |	8]{.assignable-content}\]]{#_s_83 .selectable-content}, \] bits of
+										      >	entropy except for \[**assignment**: [list of explicit
+										      >	exceptions]{.assignable-content}\].
 :::											:::
 :::											:::
 
@@ -3073,9 +3118,10 @@ hardware and rebooting between application launches.					hardware and rebooting 
 :::											:::
 
 ::: {.reqdesc}										::: {.reqdesc}
-The [OS](#abbr_OS) shall \[**selection**: *employ stack-based buffer			The [OS](#abbr_OS) shall \[**selection**: *employ stack-based buffer
-overflow protections*, *not store parameters/variables in the same data			overflow protections*, *not store parameters/variables in the same data
-structures as control flow values*\].							structures as control flow values*\].
+The [OS](#abbr_OS) shall \[**selection**: *employ stack-based buffer		      |	The [OS](#abbr_OS) shall \[**selection**: [employ stack-based buffer
+overflow protections*, *not store parameters/variables in the same data		      |	overflow protections]{#_s_84 .selectable-content}, [not store
+structures as control flow values*\].						      |	parameters/variables in the same data structures as control flow
+										      >	values]{#_s_85 .selectable-content}, \].
 
 ::: {.appnote}										::: {.appnote}
 [Application Note: ]{.note-header}[ Many OSes store control flow values			[Application Note: ]{.note-header}[ Many OSes store control flow values
@@ -3141,17 +3187,19 @@ variables do not intermix with control flow values.					variables do not intermi
 The [OS](#abbr_OS) shall verify the integrity of the bootchain up			The [OS](#abbr_OS) shall verify the integrity of the bootchain up
 through the [OS](#abbr_OS) kernel and \[**selection**:					through the [OS](#abbr_OS) kernel and \[**selection**:
 
--   *all executable code stored in mutable media*,					-   *all executable code stored in mutable media*,
--   *\[**assignment**: [list of other executable					-   *\[**assignment**: [list of other executable
-    code]{.assignable-content}\]*,							    code]{.assignable-content}\]*,
--   *no other executable code*								-   *no other executable code*
+-   *all executable code stored in mutable media*,				      |	-   [all executable code stored in mutable media]{#_s_91
+-   *\[**assignment**: [list of other executable				      |	    .selectable-content}
+    code]{.assignable-content}\]*,						      |	-   [\[**assignment**: [list of other executable
+-   *no other executable code*							      |	    code]{.assignable-content}\]]{#_s_92 .selectable-content}
+										      >	-   [no other executable code]{#_s_93 .selectable-content}
 
 \] prior to its execution through the use of \[**selection**:				\] prior to its execution through the use of \[**selection**:
 
--   *a digital signature using a hardware-protected asymmetric key and		      |	-   *a digital signature using a hardware-protected asymmetric key* ,
-    X.509 certificates*,							      |	-   *a digital signature using an X509 certificate with hardware-based
-										      >	    protection*,
--   *a hardware-protected hash*								-   *a hardware-protected hash*
+-   *a digital signature using a hardware-protected asymmetric key and		      |	-   [a digital signature using a hardware-protected asymmetric key
+    X.509 certificates*,							      |	    ]{#_s_94 .selectable-content}
+-   *a hardware-protected hash*							      |	-   [a digital signature using an X509 certificate with hardware-based
+										      >	    protection]{#s-boot-x509 .selectable-content}
+										      >	-   [a hardware-protected hash]{#_s_96 .selectable-content}
 
 \] .											\] .
 
@@ -3283,10 +3331,11 @@ installation of authentic updates is covered by						installation of authentic u
 :::											:::
 
 ::: {.reqdesc}										::: {.reqdesc}
-The [OS](#abbr_OS) shall \[**selection**: *cryptographically verify*,			The [OS](#abbr_OS) shall \[**selection**: *cryptographically verify*,
-*invoke platform-provided functionality to cryptographically verify*\]			*invoke platform-provided functionality to cryptographically verify*\]
-updates to itself using a digital signature prior to installation using			updates to itself using a digital signature prior to installation using
-schemes specified in [FCS\_COP.1/SIGN](#FCS_COP.1/SIGN).				schemes specified in [FCS\_COP.1/SIGN](#FCS_COP.1/SIGN).
+The [OS](#abbr_OS) shall \[**selection**: *cryptographically verify*,		      |	The [OS](#abbr_OS) shall \[**selection**: [cryptographically
+*invoke platform-provided functionality to cryptographically verify*\]		      |	verify]{#_s_97 .selectable-content}, [invoke platform-provided
+updates to itself using a digital signature prior to installation using		      |	functionality to cryptographically verify]{#_s_98 .selectable-content},
+schemes specified in [FCS\_COP.1/SIGN](#FCS_COP.1/SIGN).			      |	\] updates to itself using a digital signature prior to installation
+										      >	using schemes specified in [FCS\_COP.1/SIGN](#FCS_COP.1/SIGN).
 
 ::: {.appnote}										::: {.appnote}
 [Application Note: ]{.note-header}[The intent of the requirement is to			[Application Note: ]{.note-header}[The intent of the requirement is to
@@ -3539,24 +3588,28 @@ c.  											c.
         unsuccessful security, audit, and configuration changes);			        unsuccessful security, audit, and configuration changes);
     -   Privilege or role escalation events (Success/Failure);				    -   Privilege or role escalation events (Success/Failure);
     -   \[**selection**:								    -   \[**selection**:
-        -   *File and object events (Successful and unsuccessful			        -   *File and object events (Successful and unsuccessful
+        -   *File and object events (Successful and unsuccessful		      |	        -   [File and object events (Successful and unsuccessful
             attempts to create, access, delete, modify, modify				            attempts to create, access, delete, modify, modify
-            permissions)*,								            permissions)*,
-        -   *User and Group management events (Successful and				        -   *User and Group management events (Successful and
+            permissions)*,							      |	            permissions)]{#_s_99 .selectable-content}
+        -   *User and Group management events (Successful and			      |	        -   [User and Group management events (Successful and
             unsuccessful add, delete, modify, disable, enable, and			            unsuccessful add, delete, modify, disable, enable, and
-            credential change)*,							            credential change)*,
-        -   *Audit and log data access events (Success/Failure)*,			        -   *Audit and log data access events (Success/Failure)*,
-        -   *Cryptographic verification of software (Success/Failure)*,			        -   *Cryptographic verification of software (Success/Failure)*,
-        -   *Attempted application invocation with arguments				        -   *Attempted application invocation with arguments
-            (Success/Failure e.g. due to software restriction policy)*,			            (Success/Failure e.g. due to software restriction policy)*,
-        -   *System reboot, restart, and shutdown events				        -   *System reboot, restart, and shutdown events
-            (Success/Failure)*,								            (Success/Failure)*,
-        -   *Kernel module loading and unloading events					        -   *Kernel module loading and unloading events
-            (Success/Failure)*,								            (Success/Failure)*,
-        -   *Administrator or root-level access events					        -   *Administrator or root-level access events
-            (Success/Failure)*,								            (Success/Failure)*,
-        -   *\[**assignment**: [other specifically defined auditable			        -   *\[**assignment**: [other specifically defined auditable
-            events]{.assignable-content}\].*						            events]{.assignable-content}\].*
+            credential change)*,						      |	            credential change)]{#_s_100 .selectable-content}
+        -   *Audit and log data access events (Success/Failure)*,		      |	        -   [Audit and log data access events (Success/Failure)]{#_s_101
+        -   *Cryptographic verification of software (Success/Failure)*,		      |	            .selectable-content}
+        -   *Attempted application invocation with arguments			      |	        -   [Cryptographic verification of software
+            (Success/Failure e.g. due to software restriction policy)*,		      |	            (Success/Failure)]{#_s_102 .selectable-content}
+        -   *System reboot, restart, and shutdown events			      |	        -   [Attempted application invocation with arguments
+            (Success/Failure)*,							      |	            (Success/Failure e.g. due to software restriction
+        -   *Kernel module loading and unloading events				      |	            policy)]{#_s_103 .selectable-content}
+            (Success/Failure)*,							      |	        -   [System reboot, restart, and shutdown events
+        -   *Administrator or root-level access events				      |	            (Success/Failure)]{#_s_104 .selectable-content}
+            (Success/Failure)*,							      |	        -   [Kernel module loading and unloading events
+        -   *\[**assignment**: [other specifically defined auditable		      |	            (Success/Failure)]{#_s_105 .selectable-content}
+            events]{.assignable-content}\].*					      |	        -   [Administrator or root-level access events
+										      >	            (Success/Failure)]{#_s_106 .selectable-content}
+										      >	        -   [\[**assignment**: [other specifically defined auditable
+										      >	            events]{.assignable-content}\].]{#_s_107
+										      >	            .selectable-content}
 
         \]										        \]
 
@@ -3653,20 +3706,22 @@ record provide the required information.						record provide the required inform
 ::: {.reqdesc}										::: {.reqdesc}
 The **[OS](#abbr_OS)** shall detect when \[**selection**:				The **[OS](#abbr_OS)** shall detect when \[**selection**:
 
--   *\[**assignment**: [positive integer						-   *\[**assignment**: [positive integer
-    number]{.assignable-content}\]*,							    number]{.assignable-content}\]*,
--   *an administrator configurable positive integer within				-   *an administrator configurable positive integer within
+-   *\[**assignment**: [positive integer					      |	-   [\[**assignment**: [positive integer
+    number]{.assignable-content}\]*,						      |	    number]{.assignable-content}\]]{#_s_108 .selectable-content}
+-   *an administrator configurable positive integer within			      |	-   [an administrator configurable positive integer within
     \[**assignment**: [range of acceptable						    \[**assignment**: [range of acceptable
-    values]{.assignable-content}\]*							    values]{.assignable-content}\]*
+    values]{.assignable-content}\]*						      |	    values]{.assignable-content}\]]{#_s_109 .selectable-content}
 
 \] unsuccessful authentication attempts occur related to **events with			\] unsuccessful authentication attempts occur related to **events with
 \[**selection**:**									\[**selection**:**
 
--   *authentication based on user name and password*,					-   *authentication based on user name and password*,
--   *authentication based on user name and a PIN that releases an		      |	-   *authentication based on user name and a [PIN](#abbr_PIN) that
-    asymmetric key stored in [OE](#abbr_OE)-protected storage*,			      |	    releases an asymmetric key stored in [OE](#abbr_OE)-protected
-										      >	    storage*,
--   *authentication based on X.509 certificates*					-   *authentication based on X.509 certificates*
+-   *authentication based on user name and password*,				      |	-   [authentication based on user name and password]{#_s_110
+-   *authentication based on user name and a PIN that releases an		      |	    .selectable-content}
+    asymmetric key stored in [OE](#abbr_OE)-protected storage*,			      |	-   [authentication based on user name and a [PIN](#abbr_PIN) that
+-   *authentication based on X.509 certificates*				      |	    releases an asymmetric key stored in [OE](#abbr_OE)-protected
+										      >	    storage]{#_s_111 .selectable-content}
+										      >	-   [authentication based on X.509 certificates]{#_s_112
+										      >	    .selectable-content}
 
 \] .											\] .
 :::											:::
@@ -3680,9 +3735,10 @@ The **[OS](#abbr_OS)** shall detect when \[**selection**:				The **[OS](#abbr_OS
 ::: {.reqdesc}										::: {.reqdesc}
 When the defined number of unsuccessful authentication attempts for an			When the defined number of unsuccessful authentication attempts for an
 account has been **met**, the **[OS](#abbr_OS)** shall:					account has been **met**, the **[OS](#abbr_OS)** shall:
-**\[**selection**: *Account Lockout*, *Account Disablement*, *Mandatory			**\[**selection**: *Account Lockout*, *Account Disablement*, *Mandatory
-Credential Reset*, *\[**assignment**: [list of						Credential Reset*, *\[**assignment**: [list of
-actions]{.assignable-content}\]*\]** .							actions]{.assignable-content}\]*\]** .
+**\[**selection**: *Account Lockout*, *Account Disablement*, *Mandatory		      |	**\[**selection**: [Account Lockout]{#_s_113 .selectable-content},
+Credential Reset*, *\[**assignment**: [list of					      |	[Account Disablement]{#_s_114 .selectable-content}, [Mandatory
+actions]{.assignable-content}\]*\]** .						      |	Credential Reset]{#_s_115 .selectable-content}, [\[**assignment**: [list
+										      >	of actions]{.assignable-content}\]]{#_s_116 .selectable-content}, \]** .
 
 ::: {.appnote}										::: {.appnote}
 [Application Note: ]{.note-header}[ The action to be taken shall be			[Application Note: ]{.note-header}[ The action to be taken shall be
@@ -3751,17 +3807,24 @@ and lockouts must also be logged as specified in				      |	attempts and lockout
 :::											:::
 
 ::: {.reqdesc}										::: {.reqdesc}
-The **[OS](#abbr_OS)** shall provide the following authentication			The **[OS](#abbr_OS)** shall provide the following authentication
-mechanisms **\[**selection**:**								mechanisms **\[**selection**:**
+The **[OS](#abbr_OS)** shall provide the following authentication		      |	The [[OS](#abbr_OS)]{.refinement} shall provide the following
+mechanisms **\[**selection**:**							      |	authentication mechanisms **\[**selection**:**
 
--   *authentication based on user name and password*,					-   *authentication based on user name and password*,
--   *authentication based on user name and a PIN that releases an		      |	-   *authentication based on user name and a [PIN](#abbr_PIN) that
-    asymmetric key stored in [OE](#abbr_OE)-protected storage*,			      |	    releases an asymmetric key stored in [OE](#abbr_OE)-protected
-										      >	    storage*,
--   *authentication based on X.509 certificates*,					-   *authentication based on X.509 certificates*,
--   *for use in SSH only, SSH public key-based authentication as			-   *for use in SSH only, SSH public key-based authentication as
-    specified by the [EP](#abbr_EP) for Secure Shell*				      |	    specified by the [Functional Package for Secure Shell (SSH), version
-										      >	    1.0](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&id=459)*
+-   *authentication based on user name and password*,				      |	-   [authentication based on user name and password]{#_s_117
+-   *authentication based on user name and a PIN that releases an		      |	    .selectable-content}
+    asymmetric key stored in [OE](#abbr_OE)-protected storage*,			      |	-   [authentication based on user name and a [PIN](#abbr_PIN) that
+-   *authentication based on X.509 certificates*,				      |	    releases an asymmetric key stored in [OE](#abbr_OE)-protected
+-   *for use in SSH only, SSH public key-based authentication as		      |	    storage]{#_s_118 .selectable-content}
+    specified by the [EP](#abbr_EP) for Secure Shell*				      |	-   [combination of authentication based on user name, password, and
+										      >	    time-based one-time password]{#_s_119 .selectable-content}
+										      >	-   [combination of authentication based on user name, password, and
+										      >	    biometric identification factor ]{#_s_120 .selectable-content}
+										      >	-   [authentication based on X.509 certificates]{#_s_121
+										      >	    .selectable-content}
+										      >	-   [for use in SSH only, SSH public key-based authentication as
+										      >	    specified by the [Functional Package for Secure Shell (SSH), version
+										      >	    1.0](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&id=459)]{#s-uau-ssh
+										      >	    .selectable-content}
 
 \] to support user authentication.							\] to support user authentication.
 
@@ -3924,13 +3987,15 @@ certificates in accordance with the following rules:					certificates in accorda
 										      >	-   The [TSF](#abbr_TSF) shall validate that any CA certificate includes
 										      >	    \"Certificate Signing\" as a purpose the key usage field
 -   The [OS](#abbr_OS) shall validate the revocation status of the			-   The [OS](#abbr_OS) shall validate the revocation status of the
-    certificate using \[**selection**: *the Online Certificate Status		      |	    certificate using \[**selection**: *[OCSP](#abbr_OCSP) as specified
-    Protocol ([OCSP](#abbr_OCSP)) as specified in [RFC](#abbr_RFC)		      |	    in [RFC](#abbr_RFC) 6960*, *[CRL](#abbr_CRL) as specified in
-    2560*, *a Certificate Revocation List ([CRL](#abbr_CRL)) as			      |	    [RFC](#abbr_RFC) 5759*, *an [OCSP](#abbr_OCSP) [TLS](#abbr_TLS)
-    specified in [RFC](#abbr_RFC) 5759*, *an [OCSP](#abbr_OCSP)			      |	    Status Request Extension ([OCSP](#abbr_OCSP) stapling) as specified
-    [TLS](#abbr_TLS) Status Request Extension (i.e., [OCSP](#abbr_OCSP)		      |	    in [RFC](#abbr_RFC) 6066*, *[OCSP](#abbr_OCSP) [TLS](#abbr_TLS)
-    stapling) as specified in [RFC](#abbr_RFC) 6066*\].				      |	    Multi-Certificate Status Request Extension (i.e., [OCSP](#abbr_OCSP)
--   The [OS](#abbr_OS) shall validate the *extendedKeyUsage* field		      |	    Multi-Stapling) as specified in [RFC](#abbr_RFC) 6961*\]
+    certificate using \[**selection**: *the Online Certificate Status		      |	    certificate using \[**selection**: [[OCSP](#abbr_OCSP) as specified
+    Protocol ([OCSP](#abbr_OCSP)) as specified in [RFC](#abbr_RFC)		      |	    in [RFC](#abbr_RFC) 6960]{#_s_123 .selectable-content},
+    2560*, *a Certificate Revocation List ([CRL](#abbr_CRL)) as			      |	    [[CRL](#abbr_CRL) as specified in [RFC](#abbr_RFC) 5759]{#_s_124
+    specified in [RFC](#abbr_RFC) 5759*, *an [OCSP](#abbr_OCSP)			      |	    .selectable-content}, [an [OCSP](#abbr_OCSP) [TLS](#abbr_TLS) Status
+    [TLS](#abbr_TLS) Status Request Extension (i.e., [OCSP](#abbr_OCSP)		      |	    Request Extension ([OCSP](#abbr_OCSP) stapling) as specified in
+    stapling) as specified in [RFC](#abbr_RFC) 6066*\].				      |	    [RFC](#abbr_RFC) 6066]{#_s_125 .selectable-content}, [
+-   The [OS](#abbr_OS) shall validate the *extendedKeyUsage* field		      |	    [OCSP](#abbr_OCSP) [TLS](#abbr_TLS) Multi-Certificate Status Request
+										      >	    Extension (i.e., [OCSP](#abbr_OCSP) Multi-Stapling) as specified in
+										      >	    [RFC](#abbr_RFC) 6961]{#_s_126 .selectable-content}, \]
 										      >	-   The [OS](#abbr_OS) shall validate the extendedKeyUsage field
     according to the following rules:							    according to the following rules:
     -   Certificates used for trusted updates and executable code			    -   Certificates used for trusted updates and executable code
@@ -4077,9 +4142,10 @@ and the self-signed Root CA.								and the self-signed Root CA.
 										      >	The following content should be included if:
 										      >
 										      >	-   [ECDSA schemes using \"NIST curves\" P-256, P-384 and
-										      >	    \[**selection**: *P-521*, *no other curves*\] that meet the
-										      >	    following: FIPS PUB 186-4, \"Digital Signature Standard (DSS)\",
-										      >	    Section 5](#s-ec-certs), is selected from
+										      >	    \[**selection**: [P-521]{#_s_55 .selectable-content}, [no other
+										      >	    curves]{#_s_56 .selectable-content}, \] that meet the following:
+										      >	    FIPS PUB 186-4, \"Digital Signature Standard (DSS)\", Section
+										      >	    5](#s-ec-certs), is selected from
 										      >	    [FCS\_COP.1.1/SIGN](#FCS_COP.1.1/SIGN)
 										      >
 										      >	::: {.dependent-content}
@@ -4139,9 +4205,10 @@ two Intermediate CAs, and the self-signed Root CA.					two Intermediate CAs, and
 ::: {.reqdesc}										::: {.reqdesc}
 The [OS](#abbr_OS) shall use X.509v3 certificates as defined by				The [OS](#abbr_OS) shall use X.509v3 certificates as defined by
 [RFC](#abbr_RFC) 5280 to support authentication for [TLS](#abbr_TLS) and		[RFC](#abbr_RFC) 5280 to support authentication for [TLS](#abbr_TLS) and
-\[**selection**: *[DTLS](#abbr_DTLS)*, *[HTTPS](#abbr_HTTPS)*,				\[**selection**: *[DTLS](#abbr_DTLS)*, *[HTTPS](#abbr_HTTPS)*,
-*\[**assignment**: [other protocols]{.assignable-content}\]*, *no other			*\[**assignment**: [other protocols]{.assignable-content}\]*, *no other
-protocols*\] connections.								protocols*\] connections.
+\[**selection**: *[DTLS](#abbr_DTLS)*, *[HTTPS](#abbr_HTTPS)*,			      |	\[**selection**: [[DTLS](#abbr_DTLS)]{#_s_127 .selectable-content},
+*\[**assignment**: [other protocols]{.assignable-content}\]*, *no other		      |	[[HTTPS](#abbr_HTTPS)]{#_s_128 .selectable-content}, [\[**assignment**:
+protocols*\] connections.							      |	[other protocols]{.assignable-content}\]]{#_s_129 .selectable-content},
+										      >	[no other protocols]{#_s_130 .selectable-content}, \] connections.
 :::											:::
 :::											:::
 
@@ -4184,25 +4251,30 @@ The evaluator will repeat the activity for any other selections listed.			The ev
 ::: {.reqdesc}										::: {.reqdesc}
 The [OS](#abbr_OS) shall use \[**selection**:						The [OS](#abbr_OS) shall use \[**selection**:
 
--   *[TLS](#abbr_TLS) as conforming to the [*Package for Transport Layer	      |	-   *[TLS](#abbr_TLS) as conforming to the [Functional Package for
+-   *[TLS](#abbr_TLS) as conforming to the [*Package for Transport Layer	      |	-   [[TLS](#abbr_TLS) as conforming to the [Functional Package for
     Security*](https://www.niap-ccevs.org/pp/)*,				      |	    Transport Layer Security (TLS), version
--   *[DTLS](#abbr_DTLS) as conforming to the [*Package for Transport		      |	    1.1](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&id=439)*,
-    Layer Security*](https://www.niap-ccevs.org/pp/)*,				      |	-   *[DTLS](#abbr_DTLS) as conforming to the [Functional Package for
--   *IPsec as conforming to the [*EP for IPsec VPN				      |	    Transport Layer Security (TLS), version
-    Clients*](https://www.niap-ccevs.org/pp/)*,					      |	    1.1](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&id=439)*,
--   *SSH as conforming to the [*EP for Secure					      |	-   *IPsec*,
-    Shell*](https://www.niap-ccevs.org/pp/)*					      |	-   *SSH as conforming to the [Functional Package for Secure Shell
+-   *[DTLS](#abbr_DTLS) as conforming to the [*Package for Transport		      |	    1.1](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&id=439)]{#tls
+    Layer Security*](https://www.niap-ccevs.org/pp/)*,				      |	    .selectable-content}
+-   *IPsec as conforming to the [*EP for IPsec VPN				      |	-   [[DTLS](#abbr_DTLS) as conforming to the [Functional Package for
+    Clients*](https://www.niap-ccevs.org/pp/)*,					      |	    Transport Layer Security (TLS), version
+-   *SSH as conforming to the [*EP for Secure					      |	    1.1](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&id=439)]{#dtls
+    Shell*](https://www.niap-ccevs.org/pp/)*					      |	    .selectable-content}
+										      >	-   [IPsec]{#s-itc-ipsec .selectable-content}
+										      >	-   [SSH as conforming to the [Functional Package for Secure Shell
 										      >	    (SSH), version
-										      >	    1.0](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&id=459)*
+										      >	    1.0](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&id=459)]{#s-ftp_ssh
+										      >	    .selectable-content}
 
 \] to provide a trusted communication channel between itself and			\] to provide a trusted communication channel between itself and
 authorized [IT](#abbr_IT) entities supporting the following				authorized [IT](#abbr_IT) entities supporting the following
-capabilities: \[**selection**: *audit server*, *authentication server*,			capabilities: \[**selection**: *audit server*, *authentication server*,
-*management server*, *\[**assignment**: [other						*management server*, *\[**assignment**: [other
-capabilities]{.assignable-content}\]*\] that is logically distinct from			capabilities]{.assignable-content}\]*\] that is logically distinct from
-other communication channels and provides assured identification of its			other communication channels and provides assured identification of its
-end points and protection of the channel data from disclosure and			end points and protection of the channel data from disclosure and
-detection of modification of the channel data.						detection of modification of the channel data.
+capabilities: \[**selection**: *audit server*, *authentication server*,		      |	capabilities: \[**selection**: [audit server]{#_s_135
+*management server*, *\[**assignment**: [other					      |	.selectable-content}, [authentication server]{#_s_136
+capabilities]{.assignable-content}\]*\] that is logically distinct from		      |	.selectable-content}, [management server]{#_s_137 .selectable-content},
+other communication channels and provides assured identification of its		      |	[\[**assignment**: [other capabilities]{.assignable-content}\]]{#_s_138
+end points and protection of the channel data from disclosure and		      |	.selectable-content}, \] that is logically distinct from other
+detection of modification of the channel data.					      |	communication channels and provides assured identification of its end
+										      >	points and protection of the channel data from disclosure and detection
+										      >	of modification of the channel data.
 
 ::: {.appnote}										::: {.appnote}
 [Application Note: ]{.note-header}[ The [ST](#abbr_ST) author must			[Application Note: ]{.note-header}[ The [ST](#abbr_ST) author must
@@ -4263,10 +4335,11 @@ protocols identified in the first selection.						protocols identified in the fi
 
 ::: {.reqdesc}										::: {.reqdesc}
 The **[OS](#abbr_OS)** shall provide a communication path between itself		The **[OS](#abbr_OS)** shall provide a communication path between itself
-and \[**selection**: *remote*, *local*\] users that is logically			and \[**selection**: *remote*, *local*\] users that is logically
-distinct from other communication paths and provides assured				distinct from other communication paths and provides assured
-identification of its endpoints and protection of the communicated data			identification of its endpoints and protection of the communicated data
-from \[modification, disclosure\].							from \[modification, disclosure\].
+and \[**selection**: *remote*, *local*\] users that is logically		      |	and \[**selection**: [remote]{#_s_139 .selectable-content},
+distinct from other communication paths and provides assured			      |	[local]{#_s_140 .selectable-content}\] users that is logically distinct
+identification of its endpoints and protection of the communicated data		      |	from other communication paths and provides assured identification of
+from \[modification, disclosure\].						      |	its endpoints and protection of the communicated data from
+										      >	\[modification, disclosure\].
 
 ::: {.appnote}										::: {.appnote}
 [Application Note: ]{.note-header}[ ]{.note}						[Application Note: ]{.note-header}[ ]{.note}
@@ -4297,9 +4370,10 @@ This requirement is tested with the evaluation activities for				This requiremen
 :::											:::
 
 ::: {.reqdesc}										::: {.reqdesc}
-The **[OS](#abbr_OS)** shall permit \[**selection**: *the				The **[OS](#abbr_OS)** shall permit \[**selection**: *the
-[TSF](#abbr_TSF)*, *local users*, *remote users*\] to initiate				[TSF](#abbr_TSF)*, *local users*, *remote users*\] to initiate
-communication via the trusted path.							communication via the trusted path.
+The **[OS](#abbr_OS)** shall permit \[**selection**: *the			      |	The **[OS](#abbr_OS)** shall permit \[**selection**: [the
+[TSF](#abbr_TSF)*, *local users*, *remote users*\] to initiate			      |	[TSF](#abbr_TSF)]{#_s_141 .selectable-content}, [local users]{#_s_142
+communication via the trusted path.						      |	.selectable-content}, [remote users]{#_s_143 .selectable-content}, \] to
+										      >	initiate communication via the trusted path.
 
 ::: {.appnote}										::: {.appnote}
 [Application Note: ]{.note-header}[ ]{.note}						[Application Note: ]{.note-header}[ ]{.note}
@@ -4405,11 +4479,11 @@ to meet and achieve the security objectives:\					      |	are suitable to meet a
 										      >	Objective
 										      >
 										      >	Addressed by
-
-  ----------------------------------------------------------------------------------- |	Rationale
-  Objective                                        Addressed by                       |
-  ------------------------------------------------ ---------------------------------- |	[O.ACCOUNTABILITY](#O.ACCOUNTABILITY)\
-  [O.ACCOUNTABILITY](#O.ACCOUNTABILITY)\           [FAU\_GEN.1](#FAU_GEN.1), [FTP\_IT |
+										      >
+										      >	Rationale
+										      >
+										      >	[O.ACCOUNTABILITY](#O.ACCOUNTABILITY)\
+										      >
 										      >	[FAU\_GEN.1](#FAU_GEN.1)
 										      >
 										      >	Supports the objective by requiring that critical event information be
@@ -4448,32 +4522,31 @@ to meet and achieve the security objectives:\					      |	are suitable to meet a
 										      >	Supports the objective by requiring the [TSF](#abbr_TSF) to implement
 										      >	digital signature algorithms that are used in support of protected
 										      >	communications.
-
-  [O.INTEGRITY](#O.INTEGRITY)\                     [FPT\_SBOP\_EXT.1](#FPT_SBOP_EXT.1 |	[FCS\_COP.1/KEYHMAC](#FCS_COP.1/KEYHMAC)
+										      >
+										      >	[FCS\_COP.1/KEYHMAC](#FCS_COP.1/KEYHMAC)
 										      >
 										      >	Supports the objective by requiring the [TSF](#abbr_TSF) to implement
 										      >	[HMAC](#abbr_HMAC) algorithms that are used in support of protected
 										      >	communications.
 										      >
 										      >	[FPT\_ACF\_EXT.1](#FPT_ACF_EXT.1)
-
-  [O.MANAGEMENT](#O.MANAGEMENT)\                   [FMT\_MOF\_EXT.1](#FMT_MOF_EXT.1), |	Supports the objective by requiring the [TSF](#abbr_TSF) restrict
+										      >
+										      >	Supports the objective by requiring the [TSF](#abbr_TSF) restrict
 										      >	unprivileged users from changing critical components.
-
-  [O.PROTECTED\_​STORAGE](#O.PROTECTED_STORAGE)\   [FCS\_STO\_EXT.1](#FCS_STO_EXT.1),  |	[FPT\_SRP\_EXT.1](#FPT_SRP_EXT.1)
+										      >
+										      >	[FPT\_SRP\_EXT.1](#FPT_SRP_EXT.1)
 										      >
 										      >	Supports the objective by requiring the [TSF](#abbr_TSF) to implement a
 										      >	configurable whitelisting mechanism.
 
-  [O.PROTECTED\_​COMMS](#O.PROTECTED_COMMS)\       [FCS\_RBG\_EXT.1](#FCS_RBG_EXT.1),  |	[FIA\_X509\_EXT.1](#FIA_X509_EXT.1)
-  ----------------------------------------------------------------------------------- <
-
-  : [Table [2]{.counter}]{#t-obj_map .ctr data-myid="t-obj_map"			      |	Supports the objective by requiring the [TSF](#abbr_TSF) to validate
-  data-counter-type="ct-Table"}: [SFR](#abbr_SFR) Rationale			      |	certificates using industry standards.
+  ----------------------------------------------------------------------------------- |	[FIA\_X509\_EXT.1](#FIA_X509_EXT.1)
+  Objective                                        Addressed by                       |
+  ------------------------------------------------ ---------------------------------- |	Supports the objective by requiring the [TSF](#abbr_TSF) to validate
+  [O.ACCOUNTABILITY](#O.ACCOUNTABILITY)\           [FAU\_GEN.1](#FAU_GEN.1), [FTP\_IT |	certificates using industry standards.
 										      >
 										      >	[FPT\_TST\_EXT.1](#FPT_TST_EXT.1)
-										      >
-										      >	Supports the objective by requiring the [TSF](#abbr_TSF) to verify
+
+  [O.INTEGRITY](#O.INTEGRITY)\                     [FPT\_SBOP\_EXT.1](#FPT_SBOP_EXT.1 |	Supports the objective by requiring the [TSF](#abbr_TSF) to verify
 										      >	executable code critical to its operation.
 										      >
 										      >	[FTP\_ITC\_EXT.1](#FTP_ITC_EXT.1)
@@ -4516,14 +4589,14 @@ to meet and achieve the security objectives:\					      |	are suitable to meet a
 										      >	trusted path between the itself and users.
 										      >
 										      >	[FTP\_TRP.1](#FTP_TRP.1)
-										      >
-										      >	Supports this objective by requiring a trusted path between users and
+
+  [O.MANAGEMENT](#O.MANAGEMENT)\                   [FMT\_MOF\_EXT.1](#FMT_MOF_EXT.1), |	Supports this objective by requiring a trusted path between users and
 										      >	the [OS](#abbr_OS).
-										      >
-										      >	[O.PROTECTED\_​STORAGE](#O.PROTECTED_STORAGE)\
-										      >
-										      >	[FCS\_STO\_EXT.1](#FCS_STO_EXT.1)
-										      >
+
+  [O.PROTECTED\_​STORAGE](#O.PROTECTED_STORAGE)\   [FCS\_STO\_EXT.1](#FCS_STO_EXT.1),  |	[O.PROTECTED\_​STORAGE](#O.PROTECTED_STORAGE)\
+
+  [O.PROTECTED\_​COMMS](#O.PROTECTED_COMMS)\       [FCS\_RBG\_EXT.1](#FCS_RBG_EXT.1),  |	[FCS\_STO\_EXT.1](#FCS_STO_EXT.1)
+  ----------------------------------------------------------------------------------- |
 										      >	Supports this objective by requiring the [OS](#abbr_OS) to provide
 										      >	encrypted storage.
 										      >
@@ -4575,9 +4648,9 @@ to meet and achieve the security objectives:\					      |	are suitable to meet a
 										      >	according to industry standards.
 										      >
 										      >	[FCS\_COP.1/SIGN](#FCS_COP.1/SIGN)
-										      >
-										      >	Supports this objective by requiring the [TSF](#abbr_TSF) to
-										      >	cryptographically sign data according to industry standards.
+
+  : [Table [2]{.counter}]{#t-obj_map .ctr data-myid="t-obj_map"			      |	Supports this objective by requiring the [TSF](#abbr_TSF) to
+  data-counter-type="ct-Table"}: [SFR](#abbr_SFR) Rationale			      |	cryptographically sign data according to industry standards.
 										      >
 										      >	[FCS\_COP.1/KEYHMAC](#FCS_COP.1/KEYHMAC)
 										      >
@@ -5895,11 +5968,12 @@ A.2 Objective Requirements {#objective-reqs .indexable data-level="2"}			A.2 Obj
 The [OS](#abbr_OS) shall restrict execution to only programs which match		The [OS](#abbr_OS) shall restrict execution to only programs which match
 an administrator-specified \[**selection**:						an administrator-specified \[**selection**:
 
--   *file path*,									-   *file path*,
--   *file digital signature*,								-   *file digital signature*,
--   *version*,										-   *version*,
--   *hash*,										-   *hash*,
--   *\[**assignment**: [other characteristics]{.assignable-content}\]*			-   *\[**assignment**: [other characteristics]{.assignable-content}\]*
+-   *file path*,								      |	-   [file path]{#_s_86 .selectable-content}
+-   *file digital signature*,							      |	-   [file digital signature]{#_s_87 .selectable-content}
+-   *version*,									      |	-   [version]{#_s_88 .selectable-content}
+-   *hash*,									      |	-   [hash]{#_s_89 .selectable-content}
+-   *\[**assignment**: [other characteristics]{.assignable-content}\]*		      |	-   [\[**assignment**: [other
+										      >	    characteristics]{.assignable-content}\]]{#_s_90 .selectable-content}
 
 \] .											\] .
 
@@ -6019,14 +6093,17 @@ permission to complete the action):							permission to complete the action):
 ::: {.reqdesc}										::: {.reqdesc}
 The [OS](#abbr_OS) shall prevent allocation of any memory region with		      |	The [OS](#abbr_OS) shall \[**selection**:
 both write and execute permissions except for \[**assignment**: [list of	      |
-exceptions]{.assignable-content}\].						      |	-   *provide an interface which allows a [VPN](#abbr_VPN) client to
-										      >	    protect all [IP](#abbr_IP) traffic using IPsec*,
-										      >	-   *provide a [VPN](#abbr_VPN) client that can protect all
-										      >	    [IP](#abbr_IP) traffic using IPsec*
+exceptions]{.assignable-content}\].						      |	-   [provide an interface which allows a [VPN](#abbr_VPN) client to
+										      >	    protect all [IP](#abbr_IP) traffic using IPsec]{#_s_72
+										      >	    .selectable-content}
+										      >	-   [provide a [VPN](#abbr_VPN) client that can protect all
+										      >	    [IP](#abbr_IP) traffic using IPsec]{#s-provides-vpnclient
+										      >	    .selectable-content}
 										      >
 										      >	\] with the exception of [IP](#abbr_IP) traffic required to establish
-										      >	the [VPN](#abbr_VPN) connection and \[**selection**: *signed updates
-										      >	directly from the [OS](#abbr_OS) vendor*, *no other traffic*\] .
+										      >	the [VPN](#abbr_VPN) connection and \[**selection**: [signed updates
+										      >	directly from the [OS](#abbr_OS) vendor]{#_s_74 .selectable-content},
+										      >	[no other traffic]{#_s_75 .selectable-content}, \] .
 
 ::: {.appnote}										::: {.appnote}
 [Application Note: ]{.note-header}[Requesting a memory mapping with both	      |	[Application Note: ]{.note-header}[ ]{.note}
