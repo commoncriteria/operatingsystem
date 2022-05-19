@@ -55,18 +55,18 @@ jobs:
       run: |
         echo "##[set-output name=TDATE;]$(cd transforms && git log -1 --format=%cs)"
       
-      - name: Setup Java JDK
-        uses: actions/setup-java@v1.4.3
+    - name: Setup Java JDK
+      uses: actions/setup-java@v1.4.3
         with:
           java-version: 1.8
-      - name: Get DaisyDiff
-        run: wget -O- https://github.com/AndroidKitKat/ExecuteDaisy/archive/master.zip | jar -x
-      - name: Make tmp dir
-        run: mkdir tmp
-      - name: Diff against 2 Days ago
-        run: TMP=tmp DAISY_DIR=ExecuteDaisy-master make -d little-diff
-      - name: Diff against specified versions
-        run: DAISY_DIR=ExecuteDaisy-master make diff
+    - name: Get DaisyDiff
+      run: wget -O- https://github.com/AndroidKitKat/ExecuteDaisy/archive/master.zip | jar -x
+    - name: Make tmp dir
+      run: mkdir tmp
+    - name: Diff against 2 Days ago
+      run: TMP=tmp DAISY_DIR=ExecuteDaisy-master make -d little-diff
+    - name: Diff against specified versions
+      run: DAISY_DIR=ExecuteDaisy-master make diff
     - name: Make a directory listing
       run: >
           cd output;
