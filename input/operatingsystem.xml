@@ -23,7 +23,7 @@
       <date>2022-04-22</date>
       <subject>
 	Added compatibility with MDM Agent, Bluetooth, and TLS Modules.<h:br/>
-	Two factor auth
+	Two factor authentication.
       </subject>
     </entry>
     <entry>
@@ -1128,7 +1128,9 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 <selectable>AES-CCM (as defined in NIST SP 800-38C)</selectable>
                 <selectable>AES-CCMP-256 (as defined in NIST SP 800-38C and IEEE 802.11ac-2013)</selectable>
                 <selectable>AES-GCMP-256 (as defined in NIST SP 800-38D and IEEE 802.11ac-2013)</selectable>
-		<selectable id="s-aes-ctr"><depends on="s-ftp_ssh"/><snip>AES-CTR</snip> (as defined in NIST SP 800-38A)</selectable>
+		<selectable id="s-aes-ctr"><snip>AES-CTR</snip> (as defined in NIST SP 800-38A)</selectable>
+<!-- <depends on="s-ftp_ssh"/> Could have added this to the previous, but choose to use rules.-->
+		
                 <selectable exclusive="yes">no other modes</selectable>
               </selectables></h:b>
               and cryptographic key sizes
@@ -1456,7 +1458,14 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               ciphertext values and AES-KWP authenticated-encryption with AES-KWP authenticated-decryption.
               </h:p>
 	      </Tests>
-	  </aactivity>
+	    </aactivity>
+	    <rule id="r-aes-ctr-for-ssh">
+	      <!-- <if><ref-id>s-ftp_ssh</ref-id></if> -->
+	      <!-- <then><ref-id>s-aes-ctr</ref-id></then> -->
+	      <or><and><ref-id>s-aes-ctr</ref-id><ref-id>s-ftp_ssh</ref-id></and>
+	      <not><ref-id>s-ftp_ssh</ref-id></not>
+	      </or>
+	    </rule>
           </f-element>
         </f-component>
         <f-component cc-id="fcs_cop.1" iteration="HASH" name="Cryptographic Operation - Hashing (Refined)">
