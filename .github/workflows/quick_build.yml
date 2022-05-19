@@ -17,7 +17,7 @@ jobs:
         submodules: true
 
     - name: Install Build Packages
-      run: "sudo apt-get update && sudo apt-get install -y xsltproc hunspell"
+      run: "sudo apt-get update && sudo apt-get install -y xsltproc hunspell pandoc"
 
     - name: Install Jing
       run: wget -O - https://github.com/relaxng/jing-trang/releases/download/V20181222/jing-20181222.zip | jar -x
@@ -67,10 +67,6 @@ jobs:
         run: TMP=tmp DAISY_DIR=ExecuteDaisy-master make -d little-diff
       - name: Diff against specified versions
         run: DAISY_DIR=ExecuteDaisy-master make diff
-# The following works 
-#    - name: diff
-#      run: make diff || true; 
-
     - name: Make a directory listing
       run: >
           cd output;
