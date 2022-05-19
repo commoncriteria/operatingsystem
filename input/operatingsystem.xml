@@ -60,6 +60,7 @@
     <module id="mod-vpnclient">
       <raw-url>https://raw.githubusercontent.com/commoncriteria/vpnclient/master/input/vpnclient.xml</raw-url>
       <url><![CDATA[https://www.niap-ccevs.org/Profile/Info.cfm?PPID=467&id=467]]></url>
+      <depends on="s-provides-vpnclient"/>
     </module>
     <module id="mod-bluetooth">
       <raw-url>https://raw.githubusercontent.com/commoncriteria/bluetooth/master/input/bluetooth.xml</raw-url>
@@ -1125,8 +1126,9 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 <selectable>AES Key Wrap with Padding (KWP) (as defined in NIST SP 800-38F)</selectable>
                 <selectable>AES-GCM (as defined in NIST SP 800-38D)</selectable>
                 <selectable>AES-CCM (as defined in NIST SP 800-38C)</selectable>
-                <selectable>AES-CCMP-256 (as defined in NIST SP800-38C and IEEE 802.11ac-2013)</selectable>
-                <selectable>AES-GCMP-256 (as defined in NIST SP800-38D and IEEE 802.11ac-2013)</selectable>
+                <selectable>AES-CCMP-256 (as defined in NIST SP 800-38C and IEEE 802.11ac-2013)</selectable>
+                <selectable>AES-GCMP-256 (as defined in NIST SP 800-38D and IEEE 802.11ac-2013)</selectable>
+		<selectable id="s-aes-ctr"><depends on="s-ftp_ssh"/><snip>AES-CTR</snip> (as defined in NIST SP 800-38A)</selectable>
                 <selectable exclusive="yes">no other modes</selectable>
               </selectables></h:b>
               and cryptographic key sizes
@@ -1142,10 +1144,13 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               be selected if the ST includes the WLAN Client EP.
 	      </h:p>
 	      <h:p>
-	            For the second selection, the ST author should choose the mode
-              or modes in which AES operates. For the third selection, the ST author should choose
+	        For the second selection, the ST author should choose the mode
+		or modes in which AES operates. For the third selection, the ST author should choose
               the key sizes that are supported by this functionality.
 	      </h:p>
+	      <h:p>If <xref to="s-ftp_ssh"/> is selected in <xref to="fel-trust-comms"/>,
+	      then <xref to="s-aes-ctr"/> must be selected.</h:p>
+	      
 	    </note>
             <aactivity>
 	      <Tests>
