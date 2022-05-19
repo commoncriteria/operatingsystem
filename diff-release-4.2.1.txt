@@ -15,7 +15,7 @@ Revision History {#revision-history style="page-break-before:always;"}			Revisio
   Version   Date         Comment							  Version   Date         Comment
   --------- ------------ ------------------------------------------------------------ |	  --------- ------------ ------------------------------------------------------------
 										      >	  4.3       2022-04-22   Added compatibility with MDM Agent, Bluetooth, and [TLS](#ab
-										      >	                         Two factor auth
+										      >	                         Two factor authentication.
 										      >
   4.2.1     2019-04-22   Formatting changes as a result of [PP](#abbr_PP) evaluation	  4.2.1     2019-04-22   Formatting changes as a result of [PP](#abbr_PP) evaluation
 										      >
@@ -68,8 +68,9 @@ Assessment](#entropyappendix)[D.1Design							Assessment](#entropyappendix)[D.1D
 Description](#entropydesign)[D.2Entropy							Description](#entropydesign)[D.2Entropy
 Justification](#entropyjustification)[D.3Operating					Justification](#entropyjustification)[D.3Operating
 Conditions](#entropyoperatingconditions)[D.4Health					Conditions](#entropyoperatingconditions)[D.4Health
-Testing](#entropyhealthtesting)[Appendix E -						Testing](#entropyhealthtesting)[Appendix E -
-Acronyms](#acronyms)[Appendix F - Bibliography](#appendix-bibliography)			Acronyms](#acronyms)[Appendix F - Bibliography](#appendix-bibliography)
+Testing](#entropyhealthtesting)[Appendix E -					      |	Testing](#entropyhealthtesting)[Appendix E - Validation
+Acronyms](#acronyms)[Appendix F - Bibliography](#appendix-bibliography)		      |	Guidelines](#appendix-rules)[Appendix F - Acronyms](#acronyms)[Appendix
+										      >	G - Bibliography](#appendix-bibliography)
 :::											:::
 
 1 Introduction {#Introduction .indexable data-level="1"}				1 Introduction {#Introduction .indexable data-level="1"}
@@ -1686,7 +1687,13 @@ are supported by this functionality.							are supported by this functionality.
 										      >	If [SSH](#s-ftp_ssh) is selected in
 										      >	[FTP\_ITC\_EXT.1.1](#FTP_ITC_EXT.1.1), then [AES-CTR](#s-aes-ctr) must
 										      >	be selected.
+										      >	:::
+										      >
+										      >	::: {.validationguidelines_label}
+										      >	Validation Guidelines:
 :::											:::
+										      >
+										      >	**[Rule \#1](#r-aes-ctr-for-ssh)**
 :::											:::
 :::											:::
 
@@ -4301,6 +4308,12 @@ validated against the *[EP](#abbr_EP) for Secure Shell*. ]{.note}		      |	valid
 										      >	1.0](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&id=459).
 										      >	]{.note}
 :::											:::
+										      >
+										      >	::: {.validationguidelines_label}
+										      >	Validation Guidelines:
+										      >	:::
+										      >
+										      >	**[Rule \#1](#r-aes-ctr-for-ssh)**
 :::											:::
 :::											:::
 
@@ -4478,24 +4491,22 @@ The evaluator will also perform the following tests:					The evaluator will also
 The following rationale provides justification for each security			The following rationale provides justification for each security
 objective for the [TOE](#abbr_TOE), showing that the SFRs are suitable		      |	objective for the [TOE](#abbr_TOE), showing that the [SFRs](#abbr_SFR)
 to meet and achieve the security objectives:\					      |	are suitable to meet and achieve the security objectives:\
-
-  ----------------------------------------------------------------------------------- |	[Table [2]{.counter}]{#t-obj_map .ctr data-myid="t-obj_map"
-  Objective                                        Addressed by                       |	data-counter-type="ct-Table"}: [SFR](#abbr_SFR) Rationale
-  ------------------------------------------------ ---------------------------------- <
-  [O.ACCOUNTABILITY](#O.ACCOUNTABILITY)\           [FAU\_GEN.1](#FAU_GEN.1), [FTP\_IT <
-
-  [O.INTEGRITY](#O.INTEGRITY)\                     [FPT\_SBOP\_EXT.1](#FPT_SBOP_EXT.1 |	Objective
-
-  [O.MANAGEMENT](#O.MANAGEMENT)\                   [FMT\_MOF\_EXT.1](#FMT_MOF_EXT.1), |	Addressed by
-
-  [O.PROTECTED\_​STORAGE](#O.PROTECTED_STORAGE)\   [FCS\_STO\_EXT.1](#FCS_STO_EXT.1),  |	Rationale
+										      >
+										      >	[Table [2]{.counter}]{#t-obj_map .ctr data-myid="t-obj_map"
+										      >	data-counter-type="ct-Table"}: [SFR](#abbr_SFR) Rationale
+										      >
+										      >	Objective
+										      >
+										      >	Addressed by
+										      >
+										      >	Rationale
 										      >
 										      >	[O.ACCOUNTABILITY](#O.ACCOUNTABILITY)\
-										      >
-										      >	[FAU\_GEN.1](#FAU_GEN.1)
-										      >
-										      >	Supports the objective by requiring that critical event information be
-										      >	gathered by the [TOE](#abbr_TOE).
+
+  ----------------------------------------------------------------------------------- |	[FAU\_GEN.1](#FAU_GEN.1)
+  Objective                                        Addressed by                       |
+  ------------------------------------------------ ---------------------------------- |	Supports the objective by requiring that critical event information be
+  [O.ACCOUNTABILITY](#O.ACCOUNTABILITY)\           [FAU\_GEN.1](#FAU_GEN.1), [FTP\_IT |	gathered by the [TOE](#abbr_TOE).
 										      >
 										      >	[FTP\_ITC\_EXT.1](#FTP_ITC_EXT.1)
 										      >
@@ -4521,31 +4532,31 @@ to meet and achieve the security objectives:\					      |	are suitable to meet a
 										      >	updates before applying them.
 										      >
 										      >	[FCS\_COP.1/HASH](#FCS_COP.1/HASH)
-										      >
-										      >	Supports the objective by requiring the [TSF](#abbr_TSF) to implement
+
+  [O.INTEGRITY](#O.INTEGRITY)\                     [FPT\_SBOP\_EXT.1](#FPT_SBOP_EXT.1 |	Supports the objective by requiring the [TSF](#abbr_TSF) to implement
 										      >	hash algorithms that are used in support of protected communications.
-										      >
-										      >	[FCS\_COP.1/SIGN](#FCS_COP.1/SIGN)
+
+  [O.MANAGEMENT](#O.MANAGEMENT)\                   [FMT\_MOF\_EXT.1](#FMT_MOF_EXT.1), |	[FCS\_COP.1/SIGN](#FCS_COP.1/SIGN)
 										      >
 										      >	Supports the objective by requiring the [TSF](#abbr_TSF) to implement
 										      >	digital signature algorithms that are used in support of protected
 										      >	communications.
-
-  [O.PROTECTED\_​COMMS](#O.PROTECTED_COMMS)\       [FCS\_RBG\_EXT.1](#FCS_RBG_EXT.1),  |	[FCS\_COP.1/KEYHMAC](#FCS_COP.1/KEYHMAC)
-  ----------------------------------------------------------------------------------- |
+										      >
+										      >	[FCS\_COP.1/KEYHMAC](#FCS_COP.1/KEYHMAC)
+										      >
 										      >	Supports the objective by requiring the [TSF](#abbr_TSF) to implement
 										      >	[HMAC](#abbr_HMAC) algorithms that are used in support of protected
 										      >	communications.
-										      >
-										      >	[FPT\_ACF\_EXT.1](#FPT_ACF_EXT.1)
 
-  : [Table [2]{.counter}]{#t-obj_map .ctr data-myid="t-obj_map"			      |	Supports the objective by requiring the [TSF](#abbr_TSF) restrict
-  data-counter-type="ct-Table"}: [SFR](#abbr_SFR) Rationale			      |	unprivileged users from changing critical components.
+  [O.PROTECTED\_​STORAGE](#O.PROTECTED_STORAGE)\   [FCS\_STO\_EXT.1](#FCS_STO_EXT.1),  |	[FPT\_ACF\_EXT.1](#FPT_ACF_EXT.1)
+										      >
+										      >	Supports the objective by requiring the [TSF](#abbr_TSF) restrict
+										      >	unprivileged users from changing critical components.
 										      >
 										      >	[FPT\_SRP\_EXT.1](#FPT_SRP_EXT.1)
-										      >
-										      >	Supports the objective by requiring the [TSF](#abbr_TSF) to implement a
-										      >	configurable whitelisting mechanism.
+
+  [O.PROTECTED\_​COMMS](#O.PROTECTED_COMMS)\       [FCS\_RBG\_EXT.1](#FCS_RBG_EXT.1),  |	Supports the objective by requiring the [TSF](#abbr_TSF) to implement a
+  ----------------------------------------------------------------------------------- |	configurable whitelisting mechanism.
 										      >
 										      >	[FIA\_X509\_EXT.1](#FIA_X509_EXT.1)
 										      >
@@ -4558,9 +4569,9 @@ to meet and achieve the security objectives:\					      |	are suitable to meet a
 										      >	executable code critical to its operation.
 										      >
 										      >	[FTP\_ITC\_EXT.1](#FTP_ITC_EXT.1)
-										      >
-										      >	Supports the objective by requiring the [OS](#abbr_OS) to provide a
-										      >	trusted channel for critical communication.
+
+  : [Table [2]{.counter}]{#t-obj_map .ctr data-myid="t-obj_map"			      |	Supports the objective by requiring the [OS](#abbr_OS) to provide a
+  data-counter-type="ct-Table"}: [SFR](#abbr_SFR) Rationale			      |	trusted channel for critical communication.
 										      >
 										      >	[FPT\_W\^X\_EXT.1](#FPT_W%5EX_EXT.1)
 										      >
@@ -6378,7 +6389,58 @@ start, continuously, or on-demand), the expected results for each health		start,
 test, and rationale indicating why each test is believed to be				test, and rationale indicating why each test is believed to be
 appropriate for detecting one or more failures in the entropy source.			appropriate for detecting one or more failures in the entropy source.
 
-Appendix E - Acronyms {#acronyms .indexable data-level="A"}				Appendix E - Acronyms {#acronyms .indexable data-level="A"}
+Appendix E - Acronyms {#acronyms .indexable data-level="A"}			      |	Appendix E - Validation Guidelines {#appendix-rules .indexable data-level="A"}
+										      >	==================================
+										      >
+										      >	This appendix contains \"rules\" specified by the [PP](#abbr_PP) Authors
+										      >	that indicate whether certain selections require the making of other
+										      >	selections in order for a Security Target to be valid. For example,
+										      >	selecting \"[HMAC](#abbr_HMAC)-SHA-3-384\" as a supported keyed-hash
+										      >	algorithm would require that \"[SHA](#abbr_SHA)-3-384\" be selected as a
+										      >	hash algorithm.
+										      >
+										      >	This appendix contains only such \"rules\" as have been defined by the
+										      >	[PP](#abbr_PP) Authors, and does not necessarily represent all such
+										      >	dependencies in the document.
+										      >
+										      >	Rule \#1 {#r-aes-ctr-for-ssh}
+										      >	--------
+										      >
+										      >	<div>
+										      >
+										      >	</div>
+										      >
+										      >	OR
+										      >
+										      >	::: {.uc_from_fel}
+										      >	From [FCS\_COP.1.1/ENCRYPT](#FCS_COP.1.1/ENCRYPT):
+										      >	:::
+										      >
+										      >	::: {.uc_sel}
+										      >	\* select [AES-CTR](#s-aes-ctr)
+										      >	:::
+										      >
+										      >	::: {.uc_from_fel}
+										      >	From [FTP\_ITC\_EXT.1.1](#FTP_ITC_EXT.1.1):
+										      >	:::
+										      >
+										      >	::: {.uc_sel}
+										      >	\* select [SSH](#s-ftp_ssh)
+										      >	:::
+										      >
+										      >	::: {.uc_from_fel}
+										      >	From [FTP\_ITC\_EXT.1.1](#FTP_ITC_EXT.1.1):
+										      >	:::
+										      >
+										      >	::: {.uc_not}
+										      >	Choose something other than:
+										      >
+										      >	::: {.uc_not_sel}
+										      >	\* [SSH](#s-ftp_ssh)
+										      >	:::
+										      >	:::
+										      >
+										      >	Appendix F - Acronyms {#acronyms .indexable data-level="A"}
 =====================									=====================
 
   Acronym                                                                      Meanin	  Acronym                                                                      Meanin
@@ -6460,7 +6522,7 @@ Appendix E - Acronyms {#acronyms .indexable data-level="A"}				Appendix E - Acro
   [[app](#abbr_app)]{#abbr_app .term}                                          [Appli	  [[app](#abbr_app)]{#abbr_app .term}                                          [Appli
   [[cPP](#abbr_cPP)]{#abbr_cPP .term data-plural="cPPs"}                       [Colla	  [[cPP](#abbr_cPP)]{#abbr_cPP .term data-plural="cPPs"}                       [Colla
 
-Appendix F - Bibliography {#appendix-bibliography .indexable data-level="A"}		Appendix F - Bibliography {#appendix-bibliography .indexable data-level="A"}
+Appendix F - Bibliography {#appendix-bibliography .indexable data-level="A"}	      |	Appendix G - Bibliography {#appendix-bibliography .indexable data-level="A"}
 =========================								=========================
 
 +-----------------------------------+-----------------------------------+		+-----------------------------------+-----------------------------------+
