@@ -17,7 +17,8 @@ jobs:
         submodules: true
 
     - name: Install Build Packages
-      run: "sudo apt-get update && sudo apt-get install -y xsltproc hunspell pandoc"
+#      run: "sudo apt-get update && sudo apt-get install -y xsltproc hunspell pandoc"
+      run: "sudo apt-get update && sudo apt-get install -y xsltproc hunspell"
 
     - name: Install Jing
       run: wget -O - https://github.com/relaxng/jing-trang/releases/download/V20181222/jing-20181222.zip | jar -x
@@ -55,12 +56,6 @@ jobs:
       run: |
         echo "##[set-output name=TDATE;]$(cd transforms && git log -1 --format=%cs)"
       
-    - name: diff
-      run: make diff || true; 
-    # Little diff depends on having a git history. 
-    # The current checkout has  depth=1 and has no history
-    #- name: little diff
-    #  run: make little-diff || true
 
     - name: Make a directory listing
       run: >
