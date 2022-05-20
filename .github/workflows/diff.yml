@@ -3,7 +3,13 @@ name: Diff
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
-on: [workflow_dispatch]
+on:
+  push:
+    branches:
+    - '*'
+    - '!gh-pages'
+
+  #workflow_dispatch
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:  
@@ -34,8 +40,6 @@ jobs:
         run: wget -O- https://github.com/AndroidKitKat/ExecuteDaisy/archive/master.zip | jar -x
       - name: Make tmp dir
         run: mkdir tmp
-      - name: Diff against 2 Days ago
-        run: TMP=tmp DAISY_DIR=ExecuteDaisy-master make -d little-diff
       - name: Diff against specified versions
         run: DAISY_DIR=ExecuteDaisy-master make diff
       - name: Make a directory listing
