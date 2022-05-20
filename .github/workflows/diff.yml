@@ -48,7 +48,7 @@ jobs:
           (echo "<html><head><title>PP-Template</title></head><body>";
            date;
            echo "<br/><ol>";
-           for aa in $(find . -name '*.html'); do
+           for aa in $(find . \( -name '*.html' -o -name '*.pdf'); do
                 echo "<li><a href='$aa'>$aa</a></li>";
            done;
            echo "</ol></body></html>") > index.html
