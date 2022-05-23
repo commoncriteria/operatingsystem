@@ -715,7 +715,6 @@ The following sections list Common Criteria and technology terms used in this do
 	A hybrid authentication factor is one where a user has to
 	submit a combination of a biometric sample and a PIN or password and both must pass.
 	If either factor fails, the entire attempt fails.
-	The user shall not be made aware of which factor failed, if either fails.
       </td></tr>
 <tr><td><div id="Operating_System">Operating System (OS)</div></td><td>
 	Software that manages physical and logical resources and provides services
@@ -960,7 +959,7 @@ users of the same system.
       Note:
     </span><span class="note">
 	      <p>
-	      The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall select all key generation schemes used for key establishment and entity authentication.
+	      The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author will select all key generation schemes used for key establishment and entity authentication.
 		  When key generation is used for key establishment, the schemes in
 	      <a href="#FCS_CKM.2">FCS_CKM.2</a> and selected cryptographic protocols must match the selection.
 		  When key generation is used for entity authentication, the public key is
@@ -1156,7 +1155,7 @@ users of the same system.
       Note:
     </span><span class="note">
 	      <p>
-	      The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall select all key establishment schemes used
+	      The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author will select all key establishment schemes used
               for the selected cryptographic protocols.
 	      </p>
 	      <p>
@@ -1215,7 +1214,8 @@ users of the same system.
 		  <b>Function Test</b>
 		  <p>The Function test verifies the ability of the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to implement the key agreement schemes correctly.
 To conduct this test the evaluator will generate or obtain test vectors from a known good implementation of the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s supported schemes.
-For each supported key agreement scheme-key agreement role combination, KDF type, and, if supported, key confirmation role- key confirmation type combination, the tester shall generate 10 sets of test vectors.
+For each supported key agreement scheme-key agreement role combination, KDF type, and, if supported, key confirmation role- key confirmation type combination,
+the tester will generate 10 sets of test vectors.
 The data set consists of the <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> approved curve (ECC) per 10 sets of public keys.
 These keys are static, ephemeral or both depending on the scheme being tested.
 	      </p>
@@ -1234,7 +1234,7 @@ These keys are static, ephemeral or both depending on the scheme being tested.
                 the keying material DKM, and compare hashes or MAC tags generated from these values.
 	      </p>
 	      <p>
-                If key confirmation is supported, the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall perform the above for each
+                If key confirmation is supported, the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> will perform the above for each
                 implemented approved MAC algorithm.
 	      </p>
 	      <p>
@@ -1258,12 +1258,13 @@ These keys are static, ephemeral or both depending on the scheme being tested.
                 validation, the evaluator will also individually inject errors in both parties'
                 static public keys, both parties' ephemeral public keys and the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s static private
                 key to assure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> detects errors in the public key validation function and/or
-                the partial key validation function (in ECC only). At least two of the test vectors
-                shall remain unmodified and therefore should result in valid key agreement results
+                the partial key validation function (in ECC only).
+		At least two of the test vectors will remain unmodified and therefore
+		should result in valid key agreement results
                 (they should pass).
 		</p>
 		<p>
-		  The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall use these modified test vectors to emulate
+		  The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> will use these modified test vectors to emulate
                   the key agreement scheme using the corresponding parameters. The evaluator will
                   compare the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s results with the results using a known good implementation
                   verifying that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> detects these errors.
@@ -1277,7 +1278,7 @@ These keys are static, ephemeral or both depending on the scheme being tested.
            <a href="#FCS_CKM.2.1">FCS_CKM.2.1</a></li></ul><div class="dependent-content"><div>
 			<b>RSAES-PKCS1-v1_5 Key Establishment Schemes</b><br/>
 	<p>
-The evaluator shall verify the correctness of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>'s implementation of RSAES-PKCS1-v1_5 by using a known good implementation for each protocol selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> that uses RSAES-PKCS1-v1_5.
+The evaluator wll verify the correctness of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>'s implementation of RSAES-PKCS1-v1_5 by using a known good implementation for each protocol selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> that uses RSAES-PKCS1-v1_5.
 			</p>
 			  </div></div></div>
 		<div class="dependent">The following content should be included if:<ul><li><a href="#s-keyestab-dh">Key establishment scheme using Diffie-Hellman group 14 that meets the following: RFC 3526</a>,
@@ -1286,7 +1287,7 @@ The evaluator shall verify the correctness of the <abbr class="dyn-abbr"><a href
            <a href="#FCS_CKM.2.1">FCS_CKM.2.1</a></li></ul><div class="dependent-content"><div>
 			<b>Diffie-Hellman Group 14</b><br/>
 
-			<p>The evaluator shall verify the correctness of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>'s implementation of Diffie-Hellman group 14 by using a known good implementation for each protocol selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> that uses Diffie-Hellman Group 14.</p>
+			<p>The evaluator will verify the correctness of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>'s implementation of Diffie-Hellman group 14 by using a known good implementation for each protocol selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> that uses Diffie-Hellman Group 14.</p>
 			  </div></div></div>
 
 <div class="dependent">The following content should be included if:<ul><li><a href="#s-keyestab-ffc">Finite field-based key establishment schemes that meets the following: NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</a>,
@@ -1296,7 +1297,7 @@ The evaluator shall verify the correctness of the <abbr class="dyn-abbr"><a href
 	
 	<b>FFC Schemes using "safe-prime" groups (identified in Appendix D of SP 800-56A Revision 3) </b><br/>
     <p>
-The evaluator shall verify the correctness of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>'s implementation of "safe-prime" groups by using a known good implementation for each protocol selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> that uses "safe-prime" groups. This test must be performed for each "safe-prime" group that each protocol uses.
+The evaluator will verify the correctness of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>'s implementation of "safe-prime" groups by using a known good implementation for each protocol selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> that uses "safe-prime" groups. This test must be performed for each "safe-prime" group that each protocol uses.
 	</p>
     </div></div></div>
 			  </div></div></div>
@@ -1388,11 +1389,11 @@ The evaluator will check that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS
 	        </p>
 	        <p>
 If the selection <a href="#FCS_CKM_EXT.4.1">FCS_CKM_EXT.4.1</a> is included 
-the evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s keychain in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> and identify each instance when a 
+the evaluator will examine the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s keychain in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> and identify each instance when a 
 key is destroyed by this method.
-In each instance the evaluator shall verify all keys capable of decrypting the target key are 
+In each instance the evaluator will verify all keys capable of decrypting the target key are 
 destroyed in accordance with a specified key destruction method in <a href="#FCS_CKM_EXT.4.1">FCS_CKM_EXT.4.1</a>.
-The evaluator shall verify that all of the keys capable of decrypting the target key are not
+The evaluator will verify that all of the keys capable of decrypting the target key are not
 able to be derived to reestablish the keychain after their destruction. 	      
 	        </p>      
 	      </div><div class="eacategory">Guidance</div><div class="ea">
@@ -1521,7 +1522,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      </p>
 	      <p>
 		There are four Known Answer Tests (KATs), described below. In all KATs, the
-              plaintext, ciphertext, and IV values shall be 128-bit blocks. The results from each
+              plaintext, ciphertext, and IV values will be 128-bit blocks. The results from each
               test may either be obtained by the evaluator directly or by supplying the inputs to
               the implementer and receiving the results in response. To determine correctness, the
               evaluator will compare the resulting values to those obtained by submitting the same
@@ -1529,38 +1530,38 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 <li>KAT-1. To test the encrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will supply
                   a set of 10 plaintext values and obtain the ciphertext value that results from
                   <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC encryption of the given plaintext using a key value of all zeros and an IV
-                  of all zeros. Five plaintext values shall be encrypted with a 128-bit all-zeros
-                  key, and the other five shall be encrypted with a 256-bit all- zeros key. To test
+                  of all zeros. Five plaintext values will be encrypted with a 128-bit all-zeros
+                  key, and the other five will be encrypted with a 256-bit all- zeros key. To test
                   the decrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will perform the same test as
                   for encrypt, using 10 ciphertext values as input and <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC decryption.</li>
                 <li>KAT-2. To test the encrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will supply
                   a set of 10 key values and obtain the ciphertext value that results from <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC
                   encryption of an all-zeros plaintext using the given key value and an IV of all
-                  zeros. Five of the keys shall be 128-bit keys, and the other five shall be 256-bit
+                  zeros. Five of the keys will be 128-bit keys, and the other five will be 256-bit
                   keys. To test the decrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will perform
                   the same test as for encrypt, using an all-zero ciphertext value as input and
                   <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC decryption.</li>
                 <li>KAT-3. To test the encrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will supply
                   the two sets of key values described below and obtain the ciphertext value that
                   results from <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> encryption of an all-zeros plaintext using the given key value
-                  and an IV of all zeros. The first set of keys shall have 128 128-bit keys, and the
-                  second set shall have 256 256-bit keys. Key i in each set shall have the leftmost
+                  and an IV of all zeros. The first set of keys will have 128 128-bit keys, and the
+                  second set will have 256 256-bit keys. Key i in each set will have the leftmost
                   i bits be ones and the rightmost N-i bits be zeros, for i in [1,N]. To test the
                   decrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will supply the two sets of key
                   and ciphertext value pairs described below and obtain the plaintext value that
                   results from <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC decryption of the given ciphertext using the given key and an
-                  IV of all zeros. The first set of key/ciphertext pairs shall have 128 128-bit
-                  key/ciphertext pairs, and the second set of key/ciphertext pairs shall have 256
-                  256-bit key/ciphertext pairs. Key i in each set shall have the leftmost i bits be
+                  IV of all zeros. The first set of key/ciphertext pairs will have 128 128-bit
+                  key/ciphertext pairs, and the second set of key/ciphertext pairs will have 256
+                  256-bit key/ciphertext pairs. Key i in each set will have the leftmost i bits be
                   ones and the rightmost N-i bits be zeros, for i in [1,N]. The ciphertext value in
-                  each pair shall be the value that results in an all-zeros plaintext when decrypted
+                  each pair will be the value that results in an all-zeros plaintext when decrypted
                   with its corresponding key.</li>
                 <li>KAT-4. To test the encrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will supply
                   the set of 128 plaintext values described below and obtain the two ciphertext
                   values that result from <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC encryption of the given plaintext using a 128-bit
                   key value of all zeros with an IV of all zeros and using a 256-bit key value of
                   all zeros with an IV of all zeros, respectively. Plaintext value i in each set
-                  shall have the leftmost i bits be ones and the rightmost 128-i bits be zeros, for
+                  will have the leftmost i bits be ones and the rightmost 128-i bits be zeros, for
                   i in [1,128].</li>
               </ul>
 	      <br/>
@@ -1573,12 +1574,12 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               The evaluator will test the encrypt functionality by encrypting an i-block
               message where 1 &lt; i ≤ 10. The evaluator will choose a key, an IV and plaintext
               message of length i blocks and encrypt the message, using the mode to be tested, with
-              the chosen key and IV. The ciphertext shall be compared to the result of encrypting
+              the chosen key and IV. The ciphertext will be compared to the result of encrypting
               the same plaintext message with the same key and IV using a known good implementation.
               The evaluator will also test the decrypt functionality for each mode by decrypting an
               i-block message where 1 &lt; i ≤10. The evaluator will choose a key, an IV and a
               ciphertext message of length i blocks and decrypt the message, using the mode to be
-              tested, with the chosen key and IV. The plaintext shall be compared to the result of
+              tested, with the chosen key and IV. The plaintext will be compared to the result of
               decrypting the same ciphertext message with the same key and IV using a known good
               implementation.
 	    </p>
@@ -1587,9 +1588,9 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	    </p>
 	    <p>
 	      The evaluator will test the encrypt
-              functionality using a set of 200 plaintext, IV, and key 3- tuples. 100 of these shall
-              use 128 bit keys, and 100 shall use 256 bit keys. The plaintext and IV values shall be
-              128-bit blocks. For each 3-tuple, 1000 iterations shall be run as follows:
+              functionality using a set of 200 plaintext, IV, and key 3- tuples. 100 of these will
+              use 128 bit keys, and 100 will use 256 bit keys. The plaintext and IV values will be
+              128-bit blocks. For each 3-tuple, 1000 iterations will be run as follows:
               <pre>
               # Input: PT, IV, Key
               for i = 1 to 1000:
@@ -1601,7 +1602,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                   PT = CT[i-1]
               </pre>The
               ciphertext computed in the 1000th iteration (i.e., CT[1000]) is the result for that
-              trial. This result shall be compared to the result of running 1000 iterations with the
+              trial. This result will be compared to the result of running 1000 iterations with the
               same values using a known good implementation.
 	    </p>
 	    <p>
@@ -1615,18 +1616,18 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               The evaluator will test the authenticated encrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM for
               each combination of the following input parameter lengths: <ul>
                 <li>128 bit and 256 bit keys</li>
-                <li>Two plaintext lengths. One of the plaintext lengths shall be a non-zero integer
-                  multiple of 128 bits, if supported. The other plaintext length shall not be an
+                <li>Two plaintext lengths. One of the plaintext lengths will be a non-zero integer
+                  multiple of 128 bits, if supported. The other plaintext length will not be an
                   integer multiple of 128 bits, if supported.</li>
-                <li>Three AAD lengths. One AAD length shall be 0, if supported. One AAD length shall
-                  be a non-zero integer multiple of 128 bits, if supported. One AAD length shall not
+                <li>Three AAD lengths. One AAD length will be 0, if supported. One AAD length will
+                  be a non-zero integer multiple of 128 bits, if supported. One AAD length will not
                   be an integer multiple of 128 bits, if supported.</li>
-                <li>Two IV lengths. If 96 bit IV is supported, 96 bits shall be one of the two IV
+                <li>Two IV lengths. If 96 bit IV is supported, 96 bits will be one of the two IV
                   lengths tested.</li>
               </ul>The evaluator will test the encrypt functionality using a set of 10 key,
               plaintext, AAD, and IV tuples for each combination of parameter lengths above and
               obtain the ciphertext value and tag that results from <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM authenticated encrypt.
-              Each supported tag length shall be tested at least once per set of 10. The IV value
+              Each supported tag length will be tested at least once per set of 10. The IV value
               may be supplied by the evaluator or the implementation being tested, as long as it is
               known.
 	    </p>
@@ -1636,7 +1637,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      The evaluator will test the decrypt functionality using a set of 10 key,
               ciphertext, tag, AAD, and IV 5-tuples for each combination of parameter lengths above
               and obtain a Pass/Fail result on authentication and the decrypted plaintext if Pass.
-              The set shall include five tuples that Pass and five that Fail.
+              The set will include five tuples that Pass and five that Fail.
 	    </p>
 	    <p>
 	      The results from
@@ -1651,21 +1652,21 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               The evaluator will test the generation-encryption and decryption-verification
               functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCM for the following input parameter and tag lengths: <ul>
                 <li>128 bit and 256 bit keys</li>
-                <li>Two payload lengths. One payload length shall be the shortest supported payload
-                  length, greater than or equal to zero bytes. The other payload length shall be the
+                <li>Two payload lengths. One payload length will be the shortest supported payload
+                  length, greater than or equal to zero bytes. The other payload length will be the
                   longest supported payload length, less than or equal to 32 bytes (256 bits).
                 </li>
-                <li>Two or three associated data lengths. One associated data length shall be 0, if
-                  supported. One associated data length shall be the shortest supported payload length,
-                  greater than or equal to zero bytes. One associated data length shall be the longest
+                <li>Two or three associated data lengths. One associated data length will be 0, if
+                  supported. One associated data length will be the shortest supported payload length,
+                  greater than or equal to zero bytes. One associated data length will be the longest
                   supported payload length, less than or equal to 32 bytes (256 bits). If the
                   implementation supports an associated data length of 2
-                  16 bytes, an associated data length of 216 bytes shall be tested.
+                  16 bytes, an associated data length of 216 bytes will be tested.
                 </li>
-                <li>Nonce lengths. All supported nonce lengths between 7 and 13 bytes, inclusive, shall
+                <li>Nonce lengths. All supported nonce lengths between 7 and 13 bytes, inclusive, will
                   be tested.
                 </li>
-                <li>Tag lengths. All supported tag lengths of 4, 6, 8, 10, 12, 14 and 16 bytes shall be
+                <li>Tag lengths. All supported tag lengths of 4, 6, 8, 10, 12, 14 and 16 bytes will be
                   tested.
                 </li>
               </ul>
@@ -1700,7 +1701,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      <p>
               To test the decryption-verification functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCM, for EACH combination of
               supported associated data length, payload length, nonce length and tag length, the evaluator
-              shall supply a key value and 15 nonce, associated data and ciphertext 3-tuples and obtain
+              will supply a key value and 15 nonce, associated data and ciphertext 3-tuples and obtain
               either a FAIL result or a PASS result with the decrypted payload. The evaluator will supply
               10 tuples that should FAIL and 5 that should PASS per set of 15.
 	      </p>
@@ -1715,28 +1716,28 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 combination of the following input parameter lengths: <br/>
               <ul>
                 <li>128 bit and 256 bit keys</li>
-                <li>Two plaintext lengths. One of the plaintext lengths shall be a non-zero integer
-                  multiple of 128 bits, if supported. The other plaintext length shall not be an integer
+                <li>Two plaintext lengths. One of the plaintext lengths will be a non-zero integer
+                  multiple of 128 bits, if supported. The other plaintext length will not be an integer
                   multiple of 128 bits, if supported.
                 </li>
-                <li>Three AAD lengths. One AAD length shall be 0, if supported. One AAD length shall
-                  be a non-zero integer multiple of 128 bits, if supported. One AAD length shall not be
+                <li>Three AAD lengths. One AAD length will be 0, if supported. One AAD length will
+                  be a non-zero integer multiple of 128 bits, if supported. One AAD length will not be
                   an integer multiple of 128 bits, if supported.
                 </li>
-                <li>Two IV lengths. If 96 bit IV is supported, 96 bits shall be one of the two IV lengths
+                <li>Two IV lengths. If 96 bit IV is supported, 96 bits will be one of the two IV lengths
                   tested.
                 </li>
               </ul>
               The evaluator will test the encrypt functionality using a set of 10 key, plaintext, AAD, and
               IV tuples for each combination of parameter lengths above and obtain the ciphertext value
-              and tag that results from <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM authenticated encrypt. Each supported tag length shall be
+              and tag that results from <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM authenticated encrypt. Each supported tag length will be
               tested at least once per set of 10. The IV value may be supplied by the evaluator or the
               implementation being tested, as long as it is known.
 	      </p>
 	      <p>
               The evaluator will test the decrypt functionality using a set of 10 key, ciphertext, tag, AAD,
               and IV 5-tuples for each combination of parameter lengths above and obtain a Pass/Fail result
-              on authentication and the decrypted plaintext if Pass. The set shall include five tuples that
+              on authentication and the decrypted plaintext if Pass. The set will include five tuples that
               Pass and five that Fail.
 	      </p>
 	      <p>
@@ -1751,9 +1752,9 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               following input parameter lengths:
               <ul>
                 <li>256 bit (for <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-128) and 512 bit (for <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-256) keys</li>
-                <li>Three data unit (i.e., plaintext) lengths. One of the data unit lengths shall be a nonzero
-                  integer multiple of 128 bits, if supported. One of the data unit lengths shall be an
-                  integer multiple of 128 bits, if supported. The third data unit length shall be either the
+                <li>Three data unit (i.e., plaintext) lengths. One of the data unit lengths will be a nonzero
+                  integer multiple of 128 bits, if supported. One of the data unit lengths will be an
+                  integer multiple of 128 bits, if supported. The third data unit length will be either the
                   longest supported data unit length or 216 bits, whichever is smaller.
                 </li>
               </ul>
@@ -1776,9 +1777,9 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 		combination of the following input parameter lengths:
               <ul>
                 <li>128 and 256 bit key encryption keys (KEKs)</li>
-                <li>Three plaintext lengths. One of the plaintext lengths shall be two semi-blocks (128
-                  bits). One of the plaintext lengths shall be three semi-blocks (192 bits). The third data
-                  unit length shall be the longest supported plaintext length less than or equal to 64
+                <li>Three plaintext lengths. One of the plaintext lengths will be two semi-blocks (128
+                  bits). One of the plaintext lengths will be three semi-blocks (192 bits). The third data
+                  unit length will be the longest supported plaintext length less than or equal to 64
                   semi-blocks (4096 bits).
                 </li>
               </ul>
@@ -1797,10 +1798,10 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               same test as for <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KW authenticated-encryption with the following change in the three
               plaintext lengths:
               <ul>
-                <li>One plaintext length shall be one octet. One plaintext length shall be 20 octets (160
+                <li>One plaintext length will be one octet. One plaintext length will be 20 octets (160
                   bits).</li>
                 <li>
-                  One plaintext length shall be the longest supported plaintext length less than or equal
+                  One plaintext length will be the longest supported plaintext length less than or equal
                   to 512 octets (4096 bits).
                 </li>
               </ul>
@@ -1861,27 +1862,27 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 		tools that are typically not found in the production application.<ul>
                 <li><b>Test 1: </b>Short Messages Test (Bit oriented Mode) - The evaluator will generate an input set
                   consisting of m+1 messages, where m is the block length of the hash algorithm. The
-                  length of the messages range sequentially from 0 to m bits. The message text shall
+                  length of the messages range sequentially from 0 to m bits. The message text will
                   be pseudorandomly generated. The evaluator will compute the message digest for each of
                   the messages and ensure that the correct result is produced when the messages are
                   provided to the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.</li>
                 <li><b>Test 2: </b>Short Messages Test (Byte oriented Mode) - The evaluator will generate an input set
                   consisting of m/8+1 messages, where m is the block length of the hash algorithm.
                   The length of the messages range sequentially from 0 to m/8 bytes, with each
-                  message being an integral number of bytes. The message text shall be
+                  message being an integral number of bytes. The message text will be
                   pseudorandomly generated. The evaluator will compute the message digest for each of
                   the messages and ensure that the correct result is produced when the messages are
                   provided to the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.</li>
                 <li><b>Test 3: </b>Selected Long Messages Test (Bit oriented Mode) - The evaluator will generate an input
                   set consisting of m messages, where m is the block length of the hash algorithm.
                   The length of the <i>i</i>th message is 512 + 99⋅i, where 1 ≤ i ≤ m. The message
-                  text shall be pseudorandomly generated. The evaluator will compute the message digest
+                  text will be pseudorandomly generated. The evaluator will compute the message digest
                   for each of the messages and ensure that the correct result is produced when the
                   messages are provided to the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.</li>
                 <li><b>Test 4: </b>Selected Long Messages Test (Byte oriented Mode) - The evaluator will generate an
                   input set consisting of m/8 messages, where m is the block length of the hash
                   algorithm. The length of the <i>i</i>th message is 512 + 8⋅99⋅i,
-		  where 1 ≤ i ≤ m/8. The message text shall be pseudorandomly generated.
+		  where 1 ≤ i ≤ m/8. The message text will be pseudorandomly generated.
 		  The evaluator will compute
                   the message digest for each of the messages and ensure that the correct result is
                   produced when the messages are provided to the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.</li>
@@ -1999,9 +2000,10 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
 	      </p><p>
 	      For each of the supported parameter sets, the
-              evaluator will compose 15 sets of test data. Each set shall consist of a key and
-              message data. The evaluator will have the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> generate <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> tags for these sets of
-              test data. The resulting MAC tags shall be compared against the result of generating <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>
+              evaluator will compose 15 sets of test data.
+	      Each set consists of a key and message data.
+	      The evaluator will have the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> generate <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> tags for these sets of test data.
+	      The resulting MAC tags will be compared against the result of generating <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>
               tags with the same key and IV using a known-good implementation.
 	    </p>
 	      </div></div></div></div>
@@ -2102,7 +2104,7 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
 	      </p>
 	      
 	      <p>
-		Documentation shall be produced - and the evaluator will perform the
+		Documentation will be produced - and the evaluator will perform the
 		activities - in accordance with <a href="#entropyappendix" class="dynref">Appendix C -  Entropy Documentation and Assessment</a> and
 		the
 		<a href="https://www.niap-ccevs.org/Documents_and_Guidance/ccevs/Entropy%20Documentation%20and%20Assessment%20Clarification.pdf">Clarification to the Entropy Documentation and Assessment Annex</a>.
@@ -2118,7 +2120,7 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
 	      stored in non-volatile storage and provide interfaces to applications to invoke this functionality.
             <div class="appnote"><span class="note-header">Application
       Note:
-    </span><span class="note">Sensitive data shall be identified in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> by the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>
+    </span><span class="note">Sensitive data will be identified in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> by the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>
 			author, and minimally includes credentials and keys.  The interface for invoking the
 			functionality could take a variety of forms: it could consist of an <abbr class="dyn-abbr"><a href="#abbr_API">API</a></abbr>,
 			or simply well-documented conventions for accessing credentials stored as files.
@@ -2224,7 +2226,7 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
 	      <p>
 		  If no native IPsec client is validated or third-party <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> clients may
 		  also implement the required Information Flow Control, the first
-		  option shall be selected. In these cases, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> provides an <abbr class="dyn-abbr"><a href="#abbr_API">API</a></abbr> to
+		  option will be selected. In these cases, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> provides an <abbr class="dyn-abbr"><a href="#abbr_API">API</a></abbr> to
 		  third-party <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> clients that allows them to configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s
 		  network stack to perform the required Information Flow Control.
 	      </p>
@@ -2272,7 +2274,7 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
                   </li>
                   <li><b>Step 3: </b>
 		  The evaluator will examine the traffic from both step one and step two to verify that all non-excepted Data Plane traffic in Step 2 is encapsulated by IPsec.
-		  The evaluator will examine the Security Parameter Index (SPI) value present in the encapsulated packets captured in Step 2 from the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to the Gateway and shall verify this value is the same for all actions used to generate traffic through the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr>.
+		  The evaluator will examine the Security Parameter Index (SPI) value present in the encapsulated packets captured in Step 2 from the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to the Gateway and will verify this value is the same for all actions used to generate traffic through the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr>.
 		  Note that it is expected that the SPI value for packets from the Gateway to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is different than the SPI value for packets from the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to the Gateway.
 		  </li>
 		  <li><b>Step 4: </b>
@@ -2311,7 +2313,7 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
 	      </div><div class="eacategory">Tests</div><div class="ea">
 		The evaluator will also perform the following test.
   	      <ul><li><b>Test 1: </b>For each function that is indicated as restricted to the administrator,
-              the evaluation shall perform the function as an administrator, as specified in the
+              the evaluation will perform the function as an administrator, as specified in the
               Operational Guidance, and determine that it has the expected effect as outlined by
               the Operational Guidance and the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr>.  The evaluator will then perform the function
               (or otherwise attempt to access the function) as a non-administrator and observe
@@ -2972,7 +2974,7 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall be able
 	      </p>
               
 	      <p>
-			  The evaluator shall test the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s ability to correctly generate
+			  The evaluator will test the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s ability to correctly generate
 			  audit records by having the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> generate audit records for the
 			  events listed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
 			  The evaluator will
@@ -3006,7 +3008,7 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall be able
             <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-            	The action to be taken shall be populated in the assignment of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> and defined
+            	The action to be taken will be populated in the assignment of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> and defined
             	in the administrator guidance.
             </span></div></div></div>
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FIA_AFL.1">FIA_AFL.1</a></div>
@@ -3075,7 +3077,7 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall authent
       Note:
     </span><span class="note">
 For all authentication mechanisms specified in <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a>,
-the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> shall describe the rules as to how each authentication mechanism is used.
+the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> will describe the rules as to how each authentication mechanism is used.
 Example rules are how the authentication mechanism authenticates the user (i.e.
 how does the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> verify that the correct password or authentication
 factor is used), the result of a successful authentication (i.e.
@@ -3206,7 +3208,7 @@ the authentication mechanism(s) behave as documented in the <abbr class="dyn-abb
       Note:
     </span><span class="note">
 	          <a href="#FIA_X509_EXT.1.1">FIA_X509_EXT.1.1</a> lists the rules for validating certificates.
-			  The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall select whether revocation status is verified using <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> or CRLs.
+			  The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author will select whether revocation status is verified using <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> or CRLs.
 			  <a href="#FIA_X509_EXT.2">FIA_X509_EXT.2</a> requires that certificates are used for <abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr>, and <abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr>;
 				this use requires that the <i>extendedKeyUsage</i> rules are verified.
             </span></div></div></div>
@@ -3234,28 +3236,28 @@ The tests described must be performed in conjunction with the other certificate 
 The tests for the extendedKeyUsage rules are performed in conjunction with the uses that require those rules.
 The evaluator will create a chain of at least four certificates: the node certificate to be tested, two Intermediate CAs, and the self-signed Root CA.
 	<ul>
-<li><b>Test 1: </b> The evaluator shall demonstrate that validating a certificate without a valid certification path results in the function failing, for each of the following reasons, in turn:
+<li><b>Test 1: </b> The evaluator will demonstrate that validating a certificate without a valid certification path results in the function failing, for each of the following reasons, in turn:
 by establishing a certificate path in which one of the issuing certificates is not a CA certificate,
 by omitting the basicConstraints field in one of the issuing certificates,
 by setting the basicConstraints field in an issuing certificate to have CA=False,
 by omitting the CA signing bit of the key usage field in an issuing certificate, and
 by setting the path length field of a valid CA field to a value strictly less than the certificate path.
-The evaluator shall then establish a valid certificate path consisting of valid CA certificates, and demonstrate that the function succeeds.
-The evaluator shall then remove trust in one of the CA certificates, and show that the function fails.
+The evaluator will then establish a valid certificate path consisting of valid CA certificates, and demonstrate that the function succeeds.
+The evaluator will then remove trust in one of the CA certificates, and show that the function fails.
 </li>
 <li><b>Test 2: </b> The evaluator will demonstrate that validating an expired certificate results in the function failing.</li>
-<li><b>Test 3: </b> The evaluator will test that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can properly handle revoked certificates - conditional on whether <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling, or <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> multi-stapling is selected; if multiple methods are selected, then a test shall be performed for each method.
+<li><b>Test 3: </b> The evaluator will test that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can properly handle revoked certificates - conditional on whether <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling, or <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> multi-stapling is selected; if multiple methods are selected, then a test will be performed for each method.
 The evaluator will test revocation of the node certificate and revocation of the intermediate CA certificate (i.e. the intermediate CA certificate should be revoked by the root CA).
 If <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling per <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6066 is the only supported revocation method, testing revocation of the intermediate CA certificate is omitted.
 The evaluator will ensure that a valid certificate is used, and that the validation function succeeds.
 The evaluator then attempts the test with a certificate that has been revoked (for each method chosen in the selection) to ensure when the certificate is no longer valid that the validation function fails.</li>
-<li><b>Test 4: </b> If any <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> option is selected, the evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> server or use a man-in-the-middle tool to present a certificate that does not have the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> signing purpose and verify that validation of the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> response fails.
-If <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> is selected, the evaluator shall configure the CA to sign a <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> with a certificate that does not have the cRLsign key usage bit set and verify that validation of the <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> fails.</li>
-<li><b>Test 5: </b> The evaluator shall modify any byte in the first eight bytes of the certificate and demonstrate that the certificate fails to validate.
+<li><b>Test 4: </b> If any <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> option is selected, the evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> server or use a man-in-the-middle tool to present a certificate that does not have the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> signing purpose and verify that validation of the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> response fails.
+If <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> is selected, the evaluator will configure the CA to sign a <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> with a certificate that does not have the cRLsign key usage bit set and verify that validation of the <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> fails.</li>
+<li><b>Test 5: </b> The evaluator will modify any byte in the first eight bytes of the certificate and demonstrate that the certificate fails to validate.
 (The certificate will fail to parse correctly.)</li>
-<li><b>Test 6: </b> The evaluator shall modify any byte in the last byte of the certificate and demonstrate that the certificate fails to validate.
+<li><b>Test 6: </b> The evaluator will modify any byte in the last byte of the certificate and demonstrate that the certificate fails to validate.
 (The signature on the certificate will not validate.)</li>
-<li><b>Test 7: </b> The evaluator shall modify any byte in the public key of the certificate and demonstrate that the certificate fails to validate.
+<li><b>Test 7: </b> The evaluator will modify any byte in the public key of the certificate and demonstrate that the certificate fails to validate.
 (The signature of the certificate will not validate.)</li>
 	</ul>
 <div class="dependent">The following content should be included if:<ul><li><a href="#s-ec-certs">ECDSA schemes using "NIST curves" P-256, P-384 and [<b>selection</b>: <span class="selectable-content" id="_s_56">P-521</span>,  <span class="selectable-content" id="_s_57">no other curves</span> ]
@@ -3357,12 +3359,12 @@ the node certificate to be tested, two Intermediate CAs, and the
               channel protocol selected in <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a> in the main body of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
               <br/>
               If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects <a href="#tls">TLS</a> or <a href="#dtls">DTLS</a>, 
-	      the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be validated against requirements from the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS),
+	      the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> will be validated against requirements from the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS),
         version 
         1.1</a>.
               The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> can act as <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> client or server, or both.
               <br/>
-              If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects SSH, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be validated against
+              If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects SSH, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> will be validated against
               the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
         version 
         1.0</a>.
@@ -3680,9 +3682,9 @@ The evaluator will also perform the following
               for content and presentation of evidence. </div></div><div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#AGD_OPE.1">AGD_OPE.1</a></div>Some of the contents of the operational guidance are verified by the
               evaluation activities in <a href="#SFRs" class="dynref">Section 5.1 Security Functional Requirements</a> and evaluation of the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> according to the <a href="#bibCEM">[CEM]</a>.
               The following additional information is also required.
-              If cryptographic functions are provided by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>, the operational guidance shall contain instructions for configuring
+              If cryptographic functions are provided by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>, the operational guidance ill contain instructions for configuring
               the cryptographic engine associated with the evaluated configuration of the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>.
-              It shall provide a warning to the administrator that use of other
+              It will provide a warning to the administrator that use of other
               cryptographic engines was not evaluated nor tested during the <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr> evaluation of the
               <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>.
               The documentation must describe the process for verifying
@@ -3698,7 +3700,7 @@ The evaluator will also perform the following
               This includes generation of the hash/digital signature.
               The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> will likely contain security functionality that does not
               fall in the scope of evaluation under this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>.
-              The operational guidance shall make it
+              The operational guidance will make it
               clear to an administrator which security functionality is covered by the evaluation
               activities. </div></div></div>
         <div class="comp" id="AGD_PRE.1"><h4>AGD_PRE.1 Preparative Procedures (AGD_PRE.1)</h4>
@@ -3727,7 +3729,7 @@ The evaluator will also perform the following
               for content and presentation of evidence.</div></div><div class="element"><div class="reqid" id="AGD_PRE.1.2E"><a href="#AGD_PRE.1.2E" class="abbr">AGD_PRE.1.2E</a></div><div class="reqdesc">The evaluator will apply the preparative procedures to confirm that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can be prepared securely for operation.</div></div><div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#AGD_PRE.1">AGD_PRE.1</a></div>As indicated in the introduction above, there are significant expectations
               with respect to the documentation—especially when configuring the operational
               environment to support <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> functional requirements. The evaluator
-              shall check to ensure that the guidance provided for the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>
+              will check to ensure that the guidance provided for the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>
               adequately addresses all platforms claimed for the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. </div></div></div>
       
       <h3 class="indexable" data-level="3" id="alc">5.2.4 Class ALC: Life-cycle Support</h3> At the assurance level provided
@@ -3804,7 +3806,7 @@ The evaluator will also perform the following
               identified (in guidance documentation for application developers concerning the
               targeted platform) one or more development environments appropriate for use in
               developing applications for the developer's platform. For each of these development
-              environments, the developer shall provide information on how to configure the
+              environments, the developer will provide information on how to configure the
               environment to ensure that buffer overflow protection mechanisms in the environment(s)
               are invoked (e.g., compiler and linker flags). The evaluator will ensure that this documentation
               also includes an indication of whether such protections are on by default, or have to
@@ -3862,7 +3864,7 @@ The evaluator will also perform the following
 	      The evaluator will verify that
               this description includes the publicly available mechanisms (including either an email
               address or website) for reporting security issues related to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>. The evaluator
-              shall verify that the description of this mechanism includes a method for protecting
+              will verify that the description of this mechanism includes a method for protecting
               the report either using a public key for encrypting email or a trusted channel for a
               website.
 	    </p>
@@ -3908,7 +3910,7 @@ The evaluator will also perform the following
 		<p>
 		  The evaluator will prepare a test plan and report documenting the testing
               aspects of the system, including any application crashes during testing. The evaluator
-              shall determine the root cause of any application crashes and include that information
+              will determine the root cause of any application crashes and include that information
               in the report.
               The test plan covers all of the testing actions contained in the <a href="#bibCEM">[CEM]</a>
               and the body of this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>'s evaluation activities.
@@ -3941,7 +3943,7 @@ The evaluator will also perform the following
 	      </p><p>
               The test report (which could just be an annotated version of the test plan) details
               the activities that took place when the test procedures were executed, and includes
-              the actual results of the tests. This shall be a cumulative account, so if there was a
+              the actual results of the tests. This will be a cumulative account, so if there was a
               test run that resulted in a failure; a fix installed; and then a successful re-run of
               the test, the report would show a "fail" and "pass" result (and the supporting
               details), and not just the "pass" result.
@@ -4104,7 +4106,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
     </p>
     <h2 class="indexable" data-level="2" id="entropydesign">C.1 Design Description</h2>
       <p>
-      Documentation shall include the design of the entropy source as a whole, including the
+      Documentation will include the design of the entropy source as a whole, including the
       interaction of all entropy source components. Any information that can be shared regarding the
       design should also be included for any third-party entropy sources that are included in the
       product.
@@ -4122,8 +4124,8 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
       outside the boundary cannot affect the entropy rate.
       </p>
       <p>If implemented, the design
-      description shall include a description of how third-party applications can add entropy to the
-      <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr>. A description of any <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> state saving between power-off and power-on shall be included.
+      description will include a description of how third-party applications can add entropy to the
+      <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr>. A description of any <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> state saving between power-off and power-on will be included.
       </p>
     
     <h2 class="indexable" data-level="2" id="entropyjustification">C.2 Entropy Justification</h2>
@@ -4168,7 +4170,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
       considered complete.
       </p>
       <p>
-	The entropy justification shall not include any data added from any
+	The entropy justification will not include any data added from any
 	third-party application or from any state saving between restarts.
       </p>
     
@@ -4178,9 +4180,9 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
       affect the operation of the entropy source. As such, documentation will also include the range
       of operating conditions under which the entropy source is expected to generate random data. It
       will clearly describe the measures that have been taken in the system design to ensure the
-      entropy source continues to operate under those conditions. Similarly, documentation shall
+      entropy source continues to operate under those conditions. Similarly, documentation will
       describe the conditions under which the entropy source is known to malfunction or become
-      inconsistent. Methods used to detect failure or degradation of the source shall be included. 
+      inconsistent. Methods used to detect failure or degradation of the source will be included. 
     <h2 class="indexable" data-level="2" id="entropyhealthtesting">C.4 Health Testing</h2> More specifically, all entropy source
       health tests and their rationale will be documented. This includes a description of the health
       tests, the rate and conditions under which each health test is performed (e.g., at start,
