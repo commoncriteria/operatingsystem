@@ -951,10 +951,7 @@ users of the same system.
               specified cryptographic key generation algorithm <b>[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-keygen-rsa">RSA schemes using cryptographic key sizes of 2048-bit or greater that
          f-component    meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)", Appendix B.3
                 </span></li><li style=""><span class="selectable-content" id="s-keygen-ecc">ECC schemes using "<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> curves" P-256, P-384 and
-                  [<b>selection</b>: 
-                    <span class="selectable-content" id="_s_3">P-521</span>, 
-                    <span class="selectable-content" id="_s_4"> no other curves</span>, 
-                  ] that meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)",
+                  [<b>selection</b>: <span class="selectable-content" id="_s_3">P-521</span>,  <span class="selectable-content" id="_s_4"> no other curves</span> ] that meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)",
                   Appendix B.4
                 </span></li><li style=""><span class="selectable-content" id="s-keygen-ffc">FFC schemes using cryptographic key sizes of 2048-bit
                   or greater that meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature
@@ -1314,29 +1311,17 @@ The evaluator shall verify the correctness of the <abbr class="dyn-abbr"><a href
           <div class="element"><div class="reqid" id="FCS_CKM_EXT.4.1"><a href="#FCS_CKM_EXT.4.1" class="abbr">FCS_CKM_EXT.4.1</a></div><div class="reqdesc">
 The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall destroy cryptographic keys and key material in accordance with a specified cryptographic key destruction method
               [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_12">For volatile memory, the destruction shall be executed by a
-		[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_13">single overwrite consisting of [<b>selection</b>: 
-		      <span class="selectable-content" id="_s_14">a pseudo-random pattern using the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>'s <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr></span>, 
-		      <span class="selectable-content" id="_s_15">zeroes</span>, 
-		      <span class="selectable-content" id="_s_16">ones</span>, 
-		      <span class="selectable-content" id="_s_17">a new value of a key</span>, 
-		      <span class="selectable-content" id="_s_18">[<b>assignment</b>: 
-     <span class="assignable-content"> any value that does not contain any <abbr class="dyn-abbr"><a href="#abbr_CSP">CSP</a></abbr></span>]</span>]</span></li><li style=""><span class="selectable-content" id="_s_19">removal of power to the memory</span></li><li style=""><span class="selectable-content" id="_s_20">destruction of reference to the key directly followed by a request for garbage collection</span></li></ul>]</span></li><li style=""><span class="selectable-content" id="_s_21">For non-volatile memory that consists of 
+		[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_13">single overwrite consisting of [<b>selection</b>: <span class="selectable-content" id="_s_14">a pseudo-random pattern using the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>'s <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr></span>,  <span class="selectable-content" id="_s_15">zeroes</span>,  <span class="selectable-content" id="_s_16">ones</span>,  <span class="selectable-content" id="_s_17">a new value of a key</span>,  <span class="selectable-content" id="_s_18">[<b>assignment</b>: 
+     <span class="assignable-content"> any value that does not contain any <abbr class="dyn-abbr"><a href="#abbr_CSP">CSP</a></abbr></span>]</span> ]</span></li><li style=""><span class="selectable-content" id="_s_19">removal of power to the memory</span></li><li style=""><span class="selectable-content" id="_s_20">destruction of reference to the key directly followed by a request for garbage collection</span></li></ul>]</span></li><li style=""><span class="selectable-content" id="_s_21">For non-volatile memory that consists of 
 		    [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-kek-kill">destruction
 			of all key encrypting keys protecting the target key
 			according to <a href="#FCS_CKM_EXT.4.1">FCS_CKM_EXT.4.1</a>, where none of the KEKs protecting the target key are derived
 			</span></li><li style=""><span class="selectable-content" id="_s_23">the invocation of an interface provided by the underlying platform that
 				[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_24">logically addresses the storage location of the key and performs a 
-						[<b>selection</b>: 
-							<span class="selectable-content" id="_s_25">single</span>, 
-							<span class="selectable-content" id="_s_26">[<b>assignment</b>: 
-     <span class="assignable-content"><abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author defined multi-pass</span>]</span>, 
-						]overwrite consisting of
-						[<b>selection</b>: 
-							<span class="selectable-content" id="_s_27">zeroes</span>, <span class="selectable-content" id="_s_28">ones</span>, 
-							<span class="selectable-content" id="_s_29">pseudo-random pattern</span>, 
-							<span class="selectable-content" id="_s_30">a new value of a key of the same size</span>, 
-							<span class="selectable-content" id="_s_31">[<b>assignment</b>: 
-     <span class="assignable-content">any value that does not contain any <abbr class="dyn-abbr"><a href="#abbr_CSP">CSP</a></abbr></span>]</span>]</span></li><li style=""><span class="selectable-content" id="_s_32">instructs the underlying platform to destroy the abstraction that represents the key</span></li></ul>]
+						[<b>selection</b>: <span class="selectable-content" id="_s_25">single</span>,  <span class="selectable-content" id="_s_26">[<b>assignment</b>: 
+     <span class="assignable-content"><abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author defined multi-pass</span>]</span> ]overwrite consisting of
+						[<b>selection</b>: <span class="selectable-content" id="_s_27">zeroes</span>,  <span class="selectable-content" id="_s_28">ones</span>,  <span class="selectable-content" id="_s_29">pseudo-random pattern</span>,  <span class="selectable-content" id="_s_30">a new value of a key of the same size</span>,  <span class="selectable-content" id="_s_31">[<b>assignment</b>: 
+     <span class="assignable-content">any value that does not contain any <abbr class="dyn-abbr"><a href="#abbr_CSP">CSP</a></abbr></span>]</span> ]</span></li><li style=""><span class="selectable-content" id="_s_32">instructs the underlying platform to destroy the abstraction that represents the key</span></li></ul>]
 			</span></li></ul>]
 		</span></li></ul>]
 	      .
@@ -1505,10 +1490,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      and
 	      [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_35"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCMP (as defined in <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 197, <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38C and IEEE 802.11-2012)</span></li><li style=""><span class="selectable-content" id="_s_36"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> Key Wrap (KW) (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38F)</span></li><li style=""><span class="selectable-content" id="_s_37"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> Key Wrap with Padding (KWP) (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38F)</span></li><li style=""><span class="selectable-content" id="_s_38"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38D)</span></li><li style=""><span class="selectable-content" id="_s_39"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCM (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38C)</span></li><li style=""><span class="selectable-content" id="_s_40"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCMP-256 (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38C and IEEE 802.11ac-2013)</span></li><li style=""><span class="selectable-content" id="_s_41"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCMP-256 (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38D and IEEE 802.11ac-2013)</span></li><li style=""><span class="selectable-content" id="s-aes-ctr"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CTR (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38A)</span></li><li style=""><span class="selectable-content" id="_s_43">no other modes</span></li></ul>]</b>
               and cryptographic key sizes
-              [<b>selection</b>: 
-                <span class="selectable-content" id="_s_44">128-bit</span>, 
-                <span class="selectable-content" id="_s_45">256-bit</span>, 
-              ]
+              [<b>selection</b>: <span class="selectable-content" id="_s_44">128-bit</span>,  <span class="selectable-content" id="_s_45">256-bit</span> ]
         <strike>that meet the following: [assignment: list of standards]</strike>.
 	    <div class="appnote"><span class="note-header">Application
       Note:
@@ -1921,10 +1903,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
         <div class="comp" id="FCS_COP.1/SIGN"><h4>FCS_COP.1/SIGN Cryptographic Operation - Signing (Refined)</h4>
           <div class="element"><div class="reqid" id="FCS_COP.1.1/SIGN"><a href="#FCS_COP.1.1/SIGN" class="abbr">FCS_COP.1.1/SIGN</a></div><div class="reqdesc">The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall perform [<i>cryptographic signature services (generation and
               verification)</i>] in accordance with a specified cryptographic algorithm <b>[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_54">RSA schemes using cryptographic key sizes of 2048-bit or greater
-                  that meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)",  Section 4</span></li><li style=""><span class="selectable-content" id="s-ec-certs"><abbr class="dyn-abbr"><a href="#abbr_ECDSA">ECDSA</a></abbr> schemes using "<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> curves" P-256, P-384 and [<b>selection</b>: 
-                    <span class="selectable-content" id="_s_56">P-521</span>, 
-                    <span class="selectable-content" id="_s_57">no other curves</span>, 
-                  ]
+                  that meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)",  Section 4</span></li><li style=""><span class="selectable-content" id="s-ec-certs"><abbr class="dyn-abbr"><a href="#abbr_ECDSA">ECDSA</a></abbr> schemes using "<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> curves" P-256, P-384 and [<b>selection</b>: <span class="selectable-content" id="_s_56">P-521</span>,  <span class="selectable-content" id="_s_57">no other curves</span> ]
 		  that meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature   Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)", Section 5</span></li></ul>]</b>
               <strike>and cryptographic key sizes [assignment: cryptographic algorithm]
                 that meet the following: [assignment: list of standards]</strike>.
@@ -1994,21 +1973,11 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
         <div class="comp" id="FCS_COP.1/KEYHMAC"><h4>FCS_COP.1/KEYHMAC Cryptographic Operation - Keyed-Hash Message Authentication (Refined)</h4>
           <div class="element"><div class="reqid" id="FCS_COP.1.1/KEYHMAC"><a href="#FCS_COP.1.1/KEYHMAC" class="abbr">FCS_COP.1.1/KEYHMAC</a></div><div class="reqdesc">The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall perform [<i>keyed-hash message authentication services</i>]
             in accordance with a specified cryptographic algorithm<b>
-              [<b>selection</b>: 
-                <span class="selectable-content" id="_s_58"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-1</span>, 
-                <span class="selectable-content" id="_s_59"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-256</span>, 
-                <span class="selectable-content" id="_s_60"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384</span>, 
-                <span class="selectable-content" id="_s_61"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512</span>, 
-              ]
+              [<b>selection</b>: <span class="selectable-content" id="_s_58"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-1</span>,  <span class="selectable-content" id="_s_59"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-256</span>,  <span class="selectable-content" id="_s_60"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384</span>,  <span class="selectable-content" id="_s_61"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512</span> ]
               with key sizes [<b>assignment</b>: 
      <span class="assignable-content">key size (in bits) used in <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr></span>]
               and message digest</b> sizes
-	      [<b>selection</b>: 
-                <span class="selectable-content" id="_s_62">160 bits</span>, 
-                <span class="selectable-content" id="_s_63">256 bits</span>, 
-                <span class="selectable-content" id="_s_64">384 bits</span>, 
-                <span class="selectable-content" id="_s_65">512 bits</span>, 
-	      ] that meet the following: [<i><abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> Pub 198-1 The Keyed-Hash Message
+	      [<b>selection</b>: <span class="selectable-content" id="_s_62">160 bits</span>,  <span class="selectable-content" id="_s_63">256 bits</span>,  <span class="selectable-content" id="_s_64">384 bits</span>,  <span class="selectable-content" id="_s_65">512 bits</span> ] that meet the following: [<i><abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> Pub 198-1 The Keyed-Hash Message
                 Authentication Code and <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> Pub 180-4 Secure Hash Standard</i>]. <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -2280,8 +2249,8 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
 	      The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall be capable of performing the following management functions:
 	      <br/>
 	      <table class="mfs" style="width: 100%;"><tr class="header"><td>#</td><td>Management Function</td><td>Administrator</td><td>User</td></tr>
-<tr id="_mf_1"><td>1</td><td style="text-align:left">Enable/disable [<b>selection</b>: <span class="selectable-content" id="_s_77">screen lock</span>, <span class="selectable-content" id="_s_78">session timeout</span>]</td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
-<tr id="_mf_2"><td>2</td><td style="text-align:left">Configure [<b>selection</b>: <span class="selectable-content" id="_s_79">screen lock</span>, <span class="selectable-content" id="_s_80">session</span>] inactivity timeout</td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+<tr id="_mf_1"><td>1</td><td style="text-align:left">Enable/disable [<b>selection</b>: <span class="selectable-content" id="_s_77">screen lock</span>,  <span class="selectable-content" id="_s_78">session timeout</span> ]</td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+<tr id="_mf_2"><td>2</td><td style="text-align:left">Configure [<b>selection</b>: <span class="selectable-content" id="_s_79">screen lock</span>,  <span class="selectable-content" id="_s_80">session</span> ] inactivity timeout</td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_3"><td>3</td><td style="text-align:left">import keys/secrets into  the secure key storage</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_4"><td>4</td><td style="text-align:left">Configure local audit storage capacity</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_5"><td>5</td><td style="text-align:left">Configure minimum password length</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
@@ -2291,10 +2260,7 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
 <tr id="_mf_9"><td>9</td><td style="text-align:left">Configure minimum number of lowercase characters in password</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_10"><td>10</td><td style="text-align:left">
 Configure lockout policy for unsuccessful authentication attempts through
-                  [<b>selection</b>: 
-		    <span class="selectable-content" id="_s_81">timeouts between attempts</span>, 
-		    <span class="selectable-content" id="_s_82">limiting number of attempts during a time period</span>, 
-		  ]
+                  [<b>selection</b>: <span class="selectable-content" id="_s_81">timeouts between attempts</span>,  <span class="selectable-content" id="_s_82">limiting number of attempts during a time period</span> ]
 		</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_11"><td>11</td><td style="text-align:left">Configure host-based firewall</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_12"><td>12</td><td style="text-align:left">Configure name/address of directory server with which to bind</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
@@ -2403,11 +2369,8 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can enroll in such a
 	      </div></div></div></div>
         <div class="comp" id="FPT_ASLR_EXT.1"><h4>FPT_ASLR_EXT.1 Address Space Layout Randomization</h4>
           <div class="element"><div class="reqid" id="FPT_ASLR_EXT.1.1"><a href="#FPT_ASLR_EXT.1.1" class="abbr">FPT_ASLR_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall always randomize process address space memory locations with
-	    [<b>selection</b>: 
-	      <span class="selectable-content" id="_s_83">8</span>, 
-	      <span class="selectable-content" id="_s_84">[<b>assignment</b>: 
-     <span class="assignable-content">number greater than 8</span>]</span>, 
-	    ]
+	    [<b>selection</b>: <span class="selectable-content" id="_s_83">8</span>,  <span class="selectable-content" id="_s_84">[<b>assignment</b>: 
+     <span class="assignable-content">number greater than 8</span>]</span> ]
 	    bits of entropy except for
                 [<b>assignment</b>: 
      <span class="assignable-content">list of explicit exceptions</span>].
@@ -2507,10 +2470,7 @@ This test can also be completed on the same hardware and rebooting between appli
         
         <div class="comp" id="FPT_SBOP_EXT.1"><h4>FPT_SBOP_EXT.1 Stack Buffer Overflow Protection</h4>
           <div class="element"><div class="reqid" id="FPT_SBOP_EXT.1.1"><a href="#FPT_SBOP_EXT.1.1" class="abbr">FPT_SBOP_EXT.1.1</a></div><div class="reqdesc">
-The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall [<b>selection</b>: 
-  <span class="selectable-content" id="_s_85">employ stack-based buffer overflow protections</span>, 
-  <span class="selectable-content" id="_s_86">not store parameters/variables in the same data structures as control flow values</span>, 
-].
+The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall [<b>selection</b>: <span class="selectable-content" id="_s_85">employ stack-based buffer overflow protections</span>,  <span class="selectable-content" id="_s_86">not store parameters/variables in the same data structures as control flow values</span> ].
 <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -2635,10 +2595,7 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
 			</span></div></div></div>
           <div class="element"><div class="reqid" id="FPT_TUD_EXT.1.2"><a href="#FPT_TUD_EXT.1.2" class="abbr">FPT_TUD_EXT.1.2</a></div><div class="reqdesc">
               The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall 
-		[<b>selection</b>: 
-			<span class="selectable-content" id="_s_98">cryptographically verify</span>, 
-			<span class="selectable-content" id="_s_99">invoke platform-provided functionality to cryptographically verify</span>, 
-		]
+		[<b>selection</b>: <span class="selectable-content" id="_s_98">cryptographically verify</span>,  <span class="selectable-content" id="_s_99">invoke platform-provided functionality to cryptographically verify</span> ]
               updates to itself using a digital
               signature prior to installation using schemes specified in <a href="#FCS_COP.1/SIGN">FCS_COP.1/SIGN</a>.
 	    <div class="appnote"><span class="note-header">Application
@@ -2897,13 +2854,8 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall be able
 	      When the defined number of unsuccessful authentication attempts for an
 	      account has been <b>met</b>, the <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall:
 	      <b>
-	      [<b>selection</b>: 
-		<span class="selectable-content" id="_s_114">Account Lockout</span>, 
-		<span class="selectable-content" id="_s_115">Account Disablement</span>, 
-		<span class="selectable-content" id="_s_116">Mandatory Credential Reset</span>, 
-		<span class="selectable-content" id="_s_117">[<b>assignment</b>: 
-     <span class="assignable-content">list of actions</span>]</span>, 
-	      ]
+	      [<b>selection</b>: <span class="selectable-content" id="_s_114">Account Lockout</span>,  <span class="selectable-content" id="_s_115">Account Disablement</span>,  <span class="selectable-content" id="_s_116">Mandatory Credential Reset</span>,  <span class="selectable-content" id="_s_117">[<b>assignment</b>: 
+     <span class="assignable-content">list of actions</span>]</span> ]
 	      </b>.
             <div class="appnote"><span class="note-header">Application
       Note:
@@ -3086,14 +3038,9 @@ the authentication mechanism(s) behave as documented in the <abbr class="dyn-abb
                     <li>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall validate that any CA certificate includes "Certificate Signing" as a  purpose the key usage field</li>
 
                     <li>The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall validate the revocation status of the certificate using 
-						[<b>selection</b>: 
-						  <span class="selectable-content" id="_s_124"><abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6960</span>, 
-					    	<span class="selectable-content" id="_s_125"><abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 5759</span>, 
-						  <span class="selectable-content" id="_s_126">an <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Status Request Extension (<abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling) as specified
-						      in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6066</span>, 
-						  <span class="selectable-content" id="_s_127"> <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Multi-Certificate Status Request Extension 
-							  (i.e., <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> Multi-Stapling) as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6961</span>, 
-						]
+						[<b>selection</b>: <span class="selectable-content" id="_s_124"><abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6960</span>,  <span class="selectable-content" id="_s_125"><abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 5759</span>,  <span class="selectable-content" id="_s_126">an <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Status Request Extension (<abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling) as specified
+						      in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6066</span>,  <span class="selectable-content" id="_s_127"> <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Multi-Certificate Status Request Extension 
+							  (i.e., <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> Multi-Stapling) as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6961</span> ]
 							  
 					<li>The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall validate the extendedKeyUsage field according to the following rules:
 						<ul>
@@ -3165,10 +3112,7 @@ If <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> is selected, the ev
 <li><b>Test 7: </b> The evaluator shall modify any byte in the public key of the certificate and demonstrate that the certificate fails to validate.
 (The signature of the certificate will not validate.)</li>
 	</ul>
-<div class="dependent">The following content should be included if:<ul><li><a href="#s-ec-certs">ECDSA schemes using "NIST curves" P-256, P-384 and [<b>selection</b>: 
-                    <span class="selectable-content" id="_s_56">P-521</span>, 
-                    <span class="selectable-content" id="_s_57">no other curves</span>, 
-                  ]
+<div class="dependent">The following content should be included if:<ul><li><a href="#s-ec-certs">ECDSA schemes using "NIST curves" P-256, P-384 and [<b>selection</b>: <span class="selectable-content" id="_s_56">P-521</span>,  <span class="selectable-content" id="_s_57">no other curves</span> ]
 		  that meet the following: FIPS PUB 186-4, "Digital Signature   Standard (DSS)", Section 5</a>,
            
            is selected from 
@@ -3209,13 +3153,8 @@ the node certificate to be tested, two Intermediate CAs, and the
         <div class="comp" id="FIA_X509_EXT.2"><h4>FIA_X509_EXT.2 X.509 Certificate Authentication</h4>
           <div class="element"><div class="reqid" id="FIA_X509_EXT.2.1"><a href="#FIA_X509_EXT.2.1" class="abbr">FIA_X509_EXT.2.1</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall use X.509v3 certificates as defined by <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 5280 to support
               authentication for <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> and
-			  [<b>selection</b>: 
-			  <span class="selectable-content" id="_s_128"><abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr></span>, 
-			  <span class="selectable-content" id="_s_129"><abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr></span>, 
-			  <span class="selectable-content" id="_s_130">[<b>assignment</b>: 
-     <span class="assignable-content">other protocols</span>]</span>, 
-			  <span class="selectable-content" id="_s_131">no other protocols</span>, 
-			  ]
+			  [<b>selection</b>: <span class="selectable-content" id="_s_128"><abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr></span>,  <span class="selectable-content" id="_s_129"><abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr></span>,  <span class="selectable-content" id="_s_130">[<b>assignment</b>: 
+     <span class="assignable-content">other protocols</span>]</span>,  <span class="selectable-content" id="_s_131">no other protocols</span> ]
 			  connections.
 			</div></div>
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FIA_X509_EXT.2">FIA_X509_EXT.2</a></div>
@@ -3246,13 +3185,8 @@ the node certificate to be tested, two Intermediate CAs, and the
         1.0</a></span></li></ul>]
 		    to provide a trusted communication channel between itself and
 		    authorized <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr> entities supporting the following capabilities:
-		    [<b>selection</b>: 
-		      <span class="selectable-content" id="_s_136">audit server</span>, 
-		      <span class="selectable-content" id="_s_137">authentication server</span>, 
-		      <span class="selectable-content" id="_s_138">management server</span>, 
-		      <span class="selectable-content" id="_s_139">[<b>assignment</b>: 
-     <span class="assignable-content">other capabilities</span>]</span>, 
-		    ]
+		    [<b>selection</b>: <span class="selectable-content" id="_s_136">audit server</span>,  <span class="selectable-content" id="_s_137">authentication server</span>,  <span class="selectable-content" id="_s_138">management server</span>,  <span class="selectable-content" id="_s_139">[<b>assignment</b>: 
+     <span class="assignable-content">other capabilities</span>]</span> ]
 		    that is logically distinct from other communication
 		    channels and provides assured identification of its end points and protection of the channel
 		    data from disclosure and detection of modification of the channel data.
@@ -3286,7 +3220,7 @@ the node certificate to be tested, two Intermediate CAs, and the
         <div class="comp" id="FTP_TRP.1"><h4>FTP_TRP.1 Trusted Path</h4>
             <div class="element"><div class="reqid" id="FTP_TRP.1.1"><a href="#FTP_TRP.1.1" class="abbr">FTP_TRP.1.1</a></div><div class="reqdesc">
 The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall provide a communication path between itself and
-[<b>selection</b>: <span class="selectable-content" id="_s_140">remote</span>, <span class="selectable-content" id="_s_141">local</span>]
+[<b>selection</b>: <span class="selectable-content" id="_s_140">remote</span>,  <span class="selectable-content" id="_s_141">local</span> ]
 users that is logically distinct from other communication paths and provides assured
 identification of its endpoints and protection of the communicated data from
 [modification, disclosure].
@@ -3310,11 +3244,7 @@ This requirement is tested with the  evaluation activities for  <a href="#FTP_TR
 		</p>
 	      </span></div></div></div>
             <div class="element"><div class="reqid" id="FTP_TRP.1.2"><a href="#FTP_TRP.1.2" class="abbr">FTP_TRP.1.2</a></div><div class="reqdesc"> The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall permit
-                [<b>selection</b>: 
-                  <span class="selectable-content" id="_s_142">the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></span>, 
-                  <span class="selectable-content" id="_s_143">local users</span>, 
-                  <span class="selectable-content" id="_s_144">remote users</span>, 
-                ]
+                [<b>selection</b>: <span class="selectable-content" id="_s_142">the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></span>,  <span class="selectable-content" id="_s_143">local users</span>,  <span class="selectable-content" id="_s_144">remote users</span> ]
                 to initiate communication via the trusted path.
               <div class="appnote"><span class="note-header">Application
       Note:
@@ -4037,10 +3967,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
 	    [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_73">provide an interface which allows a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client to protect all <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic using IPsec</span></li><li style=""><span class="selectable-content" id="s-provides-vpnclient">provide a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client that can protect all <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic using IPsec</span></li></ul>]
 	    with the exception of <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic required to establish the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> connection
 	    and
-	    [<b>selection</b>: 
-	      <span class="selectable-content" id="_s_75">signed updates directly from the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor</span>, 
-	      <span class="selectable-content" id="_s_76">no other traffic</span>, 
-	    ]
+	    [<b>selection</b>: <span class="selectable-content" id="_s_75">signed updates directly from the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor</span>,  <span class="selectable-content" id="_s_76">no other traffic</span> ]
 	    .
             <div class="appnote"><span class="note-header">Application
       Note:
