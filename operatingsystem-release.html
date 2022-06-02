@@ -617,7 +617,7 @@ function showTarget(id){
     </span></a><a href="#fta-optional" style="text-indent:20px">A.1.1<span>TOE Access (FTA)</span></a><a href="#objective-reqs" style="text-indent:10px">A.2<span>Objective  Requirements
     </span></a><a href="#fpt-objective" style="text-indent:20px">A.2.1<span>Protection of the TSF (FPT)</span></a><a href="#feat-based-reqs" style="text-indent:10px">A.3<span>Implementation-dependent  Requirements
     </span></a><a href="#sel-based-reqs" style="text-indent:0px">Appendix B - <span>Selection-based  Requirements
-    </span></a><a href="#fdp-sel-based" style="text-indent:10px">B.1<span>User Data Protection (FDP)</span></a><a href="#satisfiedreqs" style="text-indent:0px">Appendix C - <span>Implicitly Satisfied Requirements</span></a><a href="#entropyappendix" style="text-indent:0px">Appendix D - <span>Entropy Documentation and Assessment</span></a><a href="#entropydesign" style="text-indent:10px">D.1<span>Design Description</span></a><a href="#entropyjustification" style="text-indent:10px">D.2<span>Entropy Justification</span></a><a href="#entropyoperatingconditions" style="text-indent:10px">D.3<span>Operating Conditions</span></a><a href="#entropyhealthtesting" style="text-indent:10px">D.4<span>Health Testing</span></a><a href="#appendix-rules" style="text-indent:0px">Appendix E - <span>Validation Guidelines</span></a><a href="#acronyms" style="text-indent:0px">Appendix F - <span>Acronyms</span></a><a href="#appendix-bibliography" style="text-indent:0px">Appendix G - <span>Bibliography</span></a></div><h1 class="indexable" data-level="1" id="Introduction">1 Introduction</h1>
+    </span></a><a href="#fdp-sel-based" style="text-indent:10px">B.1<span>User Data Protection (FDP)</span></a><a href="#ext-comp-defs" style="text-indent:0px">Appendix C - <span>Extended Component Definitions</span></a><a href="#ext-comp-defs-bg" style="text-indent:10px">C.1<span>Extended Components Table</span></a><a href="#ext-comp-defs-bg" style="text-indent:10px">C.2<span>Extended Component Definitions</span></a><a href="#ext-comp-FPT" style="text-indent:20px">C.2.1<span>Protection of the TSF (FPT)</span></a><a href="#ext-comp-FPT_BLT_EXT" style="text-indent:30px">C.2.1.1<span>FPT_BLT_EXT Limitation of Bluetooth Profile Support</span></a><a href="#satisfiedreqs" style="text-indent:0px">Appendix D - <span>Implicitly Satisfied Requirements</span></a><a href="#entropyappendix" style="text-indent:0px">Appendix E - <span>Entropy Documentation and Assessment</span></a><a href="#entropydesign" style="text-indent:10px">E.1<span>Design Description</span></a><a href="#entropyjustification" style="text-indent:10px">E.2<span>Entropy Justification</span></a><a href="#entropyoperatingconditions" style="text-indent:10px">E.3<span>Operating Conditions</span></a><a href="#entropyhealthtesting" style="text-indent:10px">E.4<span>Health Testing</span></a><a href="#appendix-rules" style="text-indent:0px">Appendix F - <span>Validation Guidelines</span></a><a href="#acronyms" style="text-indent:0px">Appendix G - <span>Acronyms</span></a><a href="#appendix-bibliography" style="text-indent:0px">Appendix H - <span>Bibliography</span></a></div><h1 class="indexable" data-level="1" id="Introduction">1 Introduction</h1>
     <h2 class="indexable" data-level="2" id="Overview">1.1 Overview</h2>
 The scope of this Protection Profile (<abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>) is to
 describe the security functionality of operating systems in terms of <a href="#bibCC">[CC]</a>
@@ -675,9 +675,6 @@ The following sections list Common Criteria and technology terms used in this do
 	component, such as a library. APIs are often provided for a set of libraries included
 	with the platform.
       </td></tr>
-<tr><td><div id="Biometric_Authentication_Factor">Biometric Authentication Factor (BAF)</div></td><td> Authentication factor, which uses
-        biometric sample, matched to a biometric authentication template to help establish
-        identity.</td></tr>
 <tr><td><div id="Credential">Credential</div></td><td>
 	Data that establishes the identity of a user, e.g. a cryptographic key or
 	password.
@@ -717,7 +714,7 @@ The following sections list Common Criteria and technology terms used in this do
       </td></tr>
 <tr><td><div id="Hybrid_Authentication">Hybrid Authentication</div></td><td>
 	A hybrid authentication factor is one where a user has to
-	submit a combination of a biometric sample and a PIN or password and both must pass.
+	submit a combination of a cryptographic token and a PIN or password and both must pass.
 	If either factor fails, the entire attempt fails.
       </td></tr>
 <tr><td><div id="Operating_System">Operating System (OS)</div></td><td>
@@ -726,9 +723,9 @@ The following sections list Common Criteria and technology terms used in this do
 	document. 
       </td></tr>
 <tr><td><div id="Personal_Identification_Number">Personal Identification Number (PIN)</div></td><td>
-	An authentication factor that is comprised of a set of numeric or alphabetic characters that may be used
-        in addition to a biometric factor or cryptographic token to provide a hybrid authentication factor. At this time it
-        is not considered as a stand-alone authentication mechanism.
+	An authentication factor that is comprised of a set of numeric or alphabetic characters
+	that may be used  in addition to a cryptographic token to provide a hybrid authentication factor.
+	At this time it  is not considered as a stand-alone authentication mechanism.
 	A PIN is distinct from a password in that the allowed character set and required length of a PIN
 	is typically smaller than that of a password as it is designed to be input quickly.
       </td></tr>
@@ -2109,7 +2106,7 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
 	      
 	      <p>
 		Documentation will be produced - and the evaluator will perform the
-		activities - in accordance with <a href="#entropyappendix" class="dynref">Appendix D -  Entropy Documentation and Assessment</a> and
+		activities - in accordance with <a href="#entropyappendix" class="dynref">Appendix E -  Entropy Documentation and Assessment</a> and
 		the
 		<a href="https://www.niap-ccevs.org/Documents_and_Guidance/ccevs/Entropy%20Documentation%20and%20Assessment%20Clarification.pdf">Clarification to the Entropy Documentation and Assessment Annex</a>.
 	      </p><p>
@@ -2271,7 +2268,7 @@ Configure lockout policy for unsuccessful authentication attempts through
 <tr id="_mf_15"><td>15</td><td style="text-align:left">Configure audit rules</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_16"><td>16</td><td style="text-align:left">Configure name/address of network time server</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_17"><td>17</td><td style="text-align:left">Enable/disable automatic software update</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
-<tr id="_mf_18"><td>18</td><td style="text-align:left">Configure WiFi interface</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+<tr id="_mf_18"><td>18</td><td style="text-align:left">Configure Wi-Fi interface</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_19"><td>19</td><td style="text-align:left">Enable/disable Bluetooth interface</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_20"><td>20</td><td style="text-align:left">Enable/disable [<b>assignment</b>: 
      <span class="assignable-content"> list of other external interfaces</span>]</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
@@ -2470,7 +2467,15 @@ This test can also be completed on the same hardware and rebooting between appli
         
         
         
-        <div class="comp" id="FPT_SBOP_EXT.1"><h4>FPT_SBOP_EXT.1 Stack Buffer Overflow Protection</h4>
+        
+        
+        
+        
+        
+
+
+
+	<div class="comp" id="FPT_SBOP_EXT.1"><h4>FPT_SBOP_EXT.1 Stack Buffer Overflow Protection</h4>
           <div class="element"><div class="reqid" id="FPT_SBOP_EXT.1.1"><a href="#FPT_SBOP_EXT.1.1" class="abbr">FPT_SBOP_EXT.1.1</a></div><div class="reqdesc">
 The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall [<b>selection</b>: <span class="selectable-content" id="_s_85">employ stack-based buffer overflow protections</span>,  <span class="selectable-content" id="_s_86">not store parameters/variables in the same data structures as control flow values</span> ].
 <div class="appnote"><span class="note-header">Application
@@ -2905,13 +2910,13 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall be able
               </div></div></div></div>
         <div class="comp" id="FIA_UAU.5"><h4>FIA_UAU.5 Multiple Authentication Mechanisms (Refined)</h4>
           <div class="element"><div class="reqid" id="FIA_UAU.5.1"><a href="#FIA_UAU.5.1" class="abbr">FIA_UAU.5.1</a></div><div class="reqdesc">
-The <span class="refinement"><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></span> shall provide the following authentication mechanisms
-<b>[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_118">authentication based on user name and password</span></li><li style=""><span class="selectable-content" id="_s_119">authentication based on user name and a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr> that releases an asymmetric key stored
-  in <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>-protected storage</span></li><li style=""><span class="selectable-content" id="_s_120">combination of authentication based on user name, password, and time-based one-time password</span></li><li style=""><span class="selectable-content" id="_s_121">combination of authentication based on user name, password, and biometric identification factor </span></li><li style=""><span class="selectable-content" id="_s_122">authentication based on X.509 certificates</span></li><li style=""><span class="selectable-content" id="s-uau-ssh">for use in SSH only, SSH public key-based authentication as specified by the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
+	      The <span class="refinement"><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></span> shall provide the following authentication mechanisms
+	      <b>[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_118">authentication based on user name and password</span></li><li style=""><span class="selectable-content" id="_s_119">authentication based on user name and a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr> that releases an asymmetric key stored
+		in <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>-protected storage</span></li><li style=""><span class="selectable-content" id="_s_120">combination of authentication based on user name, password, and time-based one-time password</span></li><li style=""><span class="selectable-content" id="_s_121">authentication based on X.509 certificates</span></li><li style=""><span class="selectable-content" id="s-uau-ssh">for use in SSH only, SSH public key-based authentication as specified by the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
         version 
         1.0</a></span></li></ul>]
-</b>
-to support user authentication.
+	      </b>
+	      to support user authentication.
             <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -3040,8 +3045,8 @@ the authentication mechanism(s) behave as documented in the <abbr class="dyn-abb
                     <li>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall validate that any CA certificate includes "Certificate Signing" as a  purpose the key usage field</li>
 
                     <li>The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall validate the revocation status of the certificate using 
-						[<b>selection</b>: <span class="selectable-content" id="_s_124"><abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6960</span>,  <span class="selectable-content" id="_s_125"><abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 5759</span>,  <span class="selectable-content" id="_s_126">an <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Status Request Extension (<abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling) as specified
-						      in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6066</span>,  <span class="selectable-content" id="_s_127"> <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Multi-Certificate Status Request Extension 
+						[<b>selection</b>: <span class="selectable-content" id="_s_123"><abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6960</span>,  <span class="selectable-content" id="_s_124"><abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 5759</span>,  <span class="selectable-content" id="_s_125">an <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Status Request Extension (<abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling) as specified
+						      in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6066</span>,  <span class="selectable-content" id="_s_126"> <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Multi-Certificate Status Request Extension 
 							  (i.e., <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> Multi-Stapling) as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6961</span> ]
 							  
 					<li>The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall validate the extendedKeyUsage field according to the following rules:
@@ -3155,8 +3160,8 @@ the node certificate to be tested, two Intermediate CAs, and the
         <div class="comp" id="FIA_X509_EXT.2"><h4>FIA_X509_EXT.2 X.509 Certificate Authentication</h4>
           <div class="element"><div class="reqid" id="FIA_X509_EXT.2.1"><a href="#FIA_X509_EXT.2.1" class="abbr">FIA_X509_EXT.2.1</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall use X.509v3 certificates as defined by <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 5280 to support
               authentication for <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> and
-			  [<b>selection</b>: <span class="selectable-content" id="_s_128"><abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr></span>,  <span class="selectable-content" id="_s_129"><abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr></span>,  <span class="selectable-content" id="_s_130">[<b>assignment</b>: 
-     <span class="assignable-content">other protocols</span>]</span>,  <span class="selectable-content" id="_s_131">no other protocols</span> ]
+			  [<b>selection</b>: <span class="selectable-content" id="_s_127"><abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr></span>,  <span class="selectable-content" id="_s_128"><abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr></span>,  <span class="selectable-content" id="_s_129">[<b>assignment</b>: 
+     <span class="assignable-content">other protocols</span>]</span>,  <span class="selectable-content" id="_s_130">no other protocols</span> ]
 			  connections.
 			</div></div>
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FIA_X509_EXT.2">FIA_X509_EXT.2</a></div>
@@ -3187,7 +3192,7 @@ the node certificate to be tested, two Intermediate CAs, and the
         1.0</a></span></li></ul>]
 		    to provide a trusted communication channel between itself and
 		    authorized <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr> entities supporting the following capabilities:
-		    [<b>selection</b>: <span class="selectable-content" id="_s_136">audit server</span>,  <span class="selectable-content" id="_s_137">authentication server</span>,  <span class="selectable-content" id="_s_138">management server</span>,  <span class="selectable-content" id="_s_139">[<b>assignment</b>: 
+		    [<b>selection</b>: <span class="selectable-content" id="_s_135">audit server</span>,  <span class="selectable-content" id="_s_136">authentication server</span>,  <span class="selectable-content" id="_s_137">management server</span>,  <span class="selectable-content" id="_s_138">[<b>assignment</b>: 
      <span class="assignable-content">other capabilities</span>]</span> ]
 		    that is logically distinct from other communication
 		    channels and provides assured identification of its end points and protection of the channel
@@ -3222,7 +3227,7 @@ the node certificate to be tested, two Intermediate CAs, and the
         <div class="comp" id="FTP_TRP.1"><h4>FTP_TRP.1 Trusted Path</h4>
             <div class="element"><div class="reqid" id="FTP_TRP.1.1"><a href="#FTP_TRP.1.1" class="abbr">FTP_TRP.1.1</a></div><div class="reqdesc">
 The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall provide a communication path between itself and
-[<b>selection</b>: <span class="selectable-content" id="_s_140">remote</span>,  <span class="selectable-content" id="_s_141">local</span> ]
+[<b>selection</b>: <span class="selectable-content" id="_s_139">remote</span>,  <span class="selectable-content" id="_s_140">local</span> ]
 users that is logically distinct from other communication paths and provides assured
 identification of its endpoints and protection of the communicated data from
 [modification, disclosure].
@@ -3246,7 +3251,7 @@ This requirement is tested with the  evaluation activities for  <a href="#FTP_TR
 		</p>
 	      </span></div></div></div>
             <div class="element"><div class="reqid" id="FTP_TRP.1.2"><a href="#FTP_TRP.1.2" class="abbr">FTP_TRP.1.2</a></div><div class="reqdesc"> The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall permit
-                [<b>selection</b>: <span class="selectable-content" id="_s_142">the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></span>,  <span class="selectable-content" id="_s_143">local users</span>,  <span class="selectable-content" id="_s_144">remote users</span> ]
+                [<b>selection</b>: <span class="selectable-content" id="_s_141">the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></span>,  <span class="selectable-content" id="_s_142">local users</span>,  <span class="selectable-content" id="_s_143">remote users</span> ]
                 to initiate communication via the trusted path.
               <div class="appnote"><span class="note-header">Application
       Note:
@@ -3313,7 +3318,7 @@ The evaluator will also perform the following
     <h3 id="obj-req-map" class="indexable" data-level="3">5.1.8 TOE Security Functional Requirements Rationale</h3><p>The following rationale provides justification for each security objective for the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, 
     showing that the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> are suitable to meet and achieve the security objectives:<br/><table><caption><span class="ctr" data-myid="t-obj_map" data-counter-type="ct-Table" id="t-obj_map">Table <span class="counter">2</span></span>: <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> Rationale</caption><tr><th>Objective</th><th>Addressed by</th><th>Rationale</th></tr><tr class="major-row"><td rowspan="2"><a href="#O.ACCOUNTABILITY">O.ACCOUNTABILITY</a><br/></td><td><a href="#FAU_GEN.1">FAU_GEN.1</a></td><td>Supports the objective by requiring that critical event information be gathered by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. </td></tr>
 <tr><td><a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a></td><td>Supports the objective by ensuring that audit information can be securely transmitted to remote systems for analysis.</td></tr>
-<tr class="major-row"><td rowspan="14"><a href="#O.INTEGRITY">O.INTEGRITY</a><br/></td><td><a href="#FPT_SBOP_EXT.1">FPT_SBOP_EXT.1</a><br/>
+<tr class="major-row"><td rowspan="15"><a href="#O.INTEGRITY">O.INTEGRITY</a><br/></td><td><a href="#FPT_SBOP_EXT.1">FPT_SBOP_EXT.1</a><br/>
 	                <a href="#FPT_ASLR_EXT.1">FPT_ASLR_EXT.1</a></td><td>Supports the objective by requiring that <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> applications be hardened against buffer overflow attacks </td></tr>
 <tr><td><a href="#FPT_TUD_EXT.1">FPT_TUD_EXT.1</a>    </td><td>Supports the objective by requiring that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> be able to check for critical updates.</td></tr>
 <tr><td><a href="#FPT_TUD_EXT.2">FPT_TUD_EXT.2</a>    </td><td>Supports the objective by requiring that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> verify updates before applying them.</td></tr>
@@ -3328,6 +3333,9 @@ The evaluator will also perform the following
 <tr><td><a href="#FPT_W^X_EXT.1">FPT_W^X_EXT.1</a>    </td><td>Supports the objective by requiring the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to executable only non-writable memory.</td></tr>
 <tr><td><a href="#FIA_AFL.1">FIA_AFL.1</a>        </td><td>Supports the objective by requiring the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to respond accordingly when the number of failed authentication attempts reaches a specified threshold.</td></tr>
 <tr><td><a href="#FIA_UAU.5">FIA_UAU.5</a>        </td><td>Supports the objective by requiring the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to provide standard authentication mechanisms.</td></tr>
+<tr><td><a href="#FPT_BLT_EXT.1">FPT_BLT_EXT.1</a> (Objective)</td><td>
+            <a href="#FPT_BLT_EXT.1">FPT_BLT_EXT.1</a> supports the objective by requiring the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to disable certain Bluetooth profiles when they are inactive such that explicit user authorization is required to re-enable them.
+	  </td></tr>
 <tr class="major-row"><td rowspan="4"><a href="#O.MANAGEMENT">O.MANAGEMENT</a><br/></td><td><a href="#FMT_MOF_EXT.1">FMT_MOF_EXT.1</a></td><td>Supports this objective by requiring the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to restrict the ability to perform certain management functions to a privileged user. </td></tr>
 <tr><td><a href="#FMT_SMF_EXT.1">FMT_SMF_EXT.1</a></td><td>Supports this objective by requiring the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to implement specific management functions.</td></tr>
 <tr><td><a href="#FTA_TAB.1">FTA_TAB.1</a></td><td>Supports this objective by requiring the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to implement a trusted path between the itself and users.</td></tr>
@@ -3877,7 +3885,63 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
             The evaluator will then log out and confirm that the advisory message is
             displayed before logging in can occur.
               </div></div></div></div><h2 id="objective-reqs" class="indexable" data-level="2">A.2 Objective  Requirements
-    </h2><h3 id="fpt-objective" class="indexable" data-level="3">A.2.1 Protection of the TSF (FPT)</h3><div class="comp" id="FPT_SRP_EXT.1"><h4>FPT_SRP_EXT.1 Software Restriction Policies</h4>
+    </h2><h3 id="fpt-objective" class="indexable" data-level="3">A.2.1 Protection of the TSF (FPT)</h3><div class="comp" id="FPT_BLT_EXT.1"><h4>FPT_BLT_EXT.1 Limitation of Bluetooth Profile Support</h4>
+          
+          
+          
+          
+          
+          
+          
+          <div class="element"><div class="reqid" id="FPT_BLT_EXT.1.1"><a href="#FPT_BLT_EXT.1.1" class="abbr">FPT_BLT_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall disable support for [<b>assignment</b>: 
+     <span class="assignable-content">list of Bluetooth
+                profiles</span>] Bluetooth profiles when they are not currently being used by
+              an application on the Mobile Device, and shall require explicit user action to enable
+              them.<div class="appnote"><span class="note-header">Application
+      Note:
+    </span><span class="note">
+		<p>
+		Some Bluetooth services incur more serious consequences if
+		unauthorized remote devices gain access to them.
+		Such services should be protected by measures like disabling support for
+		the associated Bluetooth profile unless it is actively being used by an application on the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>
+		(in order to prevent discovery by a Service Discovery Protocol search), and then requiring explicit user
+		action to enable those profiles in order to use the services.
+		It may be further appropriate to require additional user action before granting a remote device access
+		to that service.
+		</p>
+		<p>
+		  For example, it may be appropriate to disable the
+		  OBEX Push Profile until a user  pushes a button in an application
+		  indicating readiness to transfer an object.
+		  After completion of the object transfer,
+		  support for the OBEX profile should be suspended until the next time the user requests
+		  its use.
+		</p>
+	      </span></div></div></div>
+        <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FPT_BLT_EXT.1">FPT_BLT_EXT.1</a></div>
+              
+              
+	      
+            <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea">The evaluator shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> lists all Bluetooth profiles that are
+                disabled while not in use by an application and which need explicit user action in
+                order to become enabled.
+	      </div><div class="eacategory">Guidance</div><div class="ea">There are no guidance evaluation activities for this component.</div><div class="eacategory">Tests</div><div class="ea">The evaluator shall perform the following tests:
+	      <ul>
+                <li><b>Test 1: </b>While the service is not in active use by an application on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the
+                evaluator shall attempt to discover a service associated with a "protected"
+                Bluetooth profile (as specified by the requirement) on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> via a Service
+                Discovery Protocol search. The evaluator shall verify that the service does not
+                appear in the Service Discovery Protocol search results. Next, the evaluator
+                shall attempt to gain remote access to the service from a device that does not
+                currently have a trusted device relationship with the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. The evaluator shall
+                verify that this attempt fails due to the unavailability of the service and
+                profile. </li>
+                <li><b>Test 2: </b>The evaluator shall repeat Test 1 with a device that currently has a trusted
+                device relationship with the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and verify that the same behavior is exhibited.
+                </li>
+              </ul>
+              </div></div></div></div><div class="comp" id="FPT_SRP_EXT.1"><h4>FPT_SRP_EXT.1 Software Restriction Policies</h4>
           <div class="element"><div class="reqid" id="FPT_SRP_EXT.1.1"><a href="#FPT_SRP_EXT.1.1" class="abbr">FPT_SRP_EXT.1.1</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall restrict execution to only programs which match an administrator-specified
               [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_87">file path</span></li><li style=""><span class="selectable-content" id="_s_88">file digital signature</span></li><li style=""><span class="selectable-content" id="_s_89">version</span></li><li style=""><span class="selectable-content" id="_s_90">hash</span></li><li style=""><span class="selectable-content" id="_s_91">[<b>assignment</b>: 
      <span class="assignable-content">other characteristics</span>]</span></li></ul>]
@@ -4038,7 +4102,23 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
 		  The evaluator will attempt to send packets to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> outside the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> tunnel (i.e. not through the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> gateway), including from the local network, and verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> discards them.
 		  </li>
 	      </ul></li></ul>
-	      </div></div></div></div><h1 id="satisfiedreqs" class="indexable" data-level="A">Appendix C -  Implicitly Satisfied Requirements</h1><p>This appendix lists requirements that should be considered satisfied by products
+	      </div></div></div></div><h1 id="ext-comp-defs" class="indexable" data-level="A">Appendix C -  Extended Component Definitions</h1>
+	This appendix contains the definitions for all extended requirements specified in the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>.
+
+    <h2 id="ext-comp-defs-bg" class="indexable" data-level="2">C.1 Extended Components Table</h2>
+
+	All extended components specified in the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> are listed in this table:
+
+<table><caption><b><span class="ctr" data-myid="" data-counter-type="ct-Table" id="">Table <span class="counter">3</span></span>: Extended Component Definitions</b></caption><tr><th>Functional Class</th><th>Functional Components</th></tr><tr><td>Protection of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> (FPT)</td><td>FPT_BLT_EXT Limitation of Bluetooth Profile Support<br/></td></tr></table><h2 id="ext-comp-defs-bg" class="indexable" data-level="2">C.2 Extended Component Definitions</h2><h3 id="ext-comp-FPT" class="indexable" data-level="3">C.2.1 Protection of the TSF (FPT)</h3>This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> defines the following extended components as part of the
+	 FPT class originally defined by <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr> Part 2:
+	<h3 id="ext-comp-FPT_BLT_EXT" class="indexable" data-level="4">C.2.1.1 FPT_BLT_EXT Limitation of Bluetooth Profile Support</h3><div style="margin-left: 1em;"><h4>Family Behavior</h4><div>This family defines requirements for limiting Bluetooth capabilities without user action. 
+          </div><h4>Component Leveling</h4><svg style="max-height: 30px;"><text x="4" fill="black" font-size="15" y="24">FPT_BLT_EXT</text><rect x="2" y="11" width="150" height="16" fill="none" stroke="black"></rect><text x="234" fill="black" font-size="15" y="24">1</text><rect x="232" y="11" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="17" x2="231" y2="17" stroke="black"></line></svg><p><a href="#FPT_BLT_EXT.1">FPT_BLT_EXT.1</a>,
+             Limitation of Bluetooth Profile Support,
+              requires the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to maintain a disabled by default posture for Bluetooth profiles.</p><h4>Management: FPT_BLT_EXT.1</h4><p>There are no management activities foreseen.</p><h4>Audit: FPT_BLT_EXT.1</h4><p>There are no auditable events foreseen.</p><h4>FPT_BLT_EXT.1 Limitation of Bluetooth Profile Support</h4><div style="margin-left: 1em;"><p>Hierarchical to: No other components.</p><p>Dependencies to: No dependencies.</p><h4 id="ext-comp-FPT_BLT_EXT.1.1">FPT_BLT_EXT.1.1</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall disable support for [<b>assignment</b>: 
+     <span class="assignable-content">list of Bluetooth
+                profiles</span>] Bluetooth profiles when they are not currently being used by
+              an application on the Mobile Device, and shall require explicit user action to enable
+              them.</div></div><h1 id="satisfiedreqs" class="indexable" data-level="A">Appendix D -  Implicitly Satisfied Requirements</h1><p>This appendix lists requirements that should be considered satisfied by products
 	successfully evaluated against this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>. These requirements are not featured
 	explicitly as <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> and should not be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. They are not included as 
 	standalone <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> because it would increase the time, cost, and complexity of evaluation.
@@ -4125,7 +4205,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
 	</tr>
     </table>
 
-  <h1 id="entropyappendix" class="indexable" data-level="A">Appendix D -  Entropy Documentation and Assessment</h1>
+  <h1 id="entropyappendix" class="indexable" data-level="A">Appendix E -  Entropy Documentation and Assessment</h1>
     <p>
       This appendix describes the required supplementary information for the entropy source used by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>.
     </p>
@@ -4136,7 +4216,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
     description, entropy justification, operating conditions, and health testing. This documentation
     is not required to be part of the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>.
     </p>
-    <h2 class="indexable" data-level="2" id="entropydesign">D.1 Design Description</h2>
+    <h2 class="indexable" data-level="2" id="entropydesign">E.1 Design Description</h2>
       <p>
       Documentation will include the design of the entropy source as a whole, including the
       interaction of all entropy source components. Any information that can be shared regarding the
@@ -4160,7 +4240,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
       <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr>. A description of any <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> state saving between power-off and power-on will be included.
       </p>
     
-    <h2 class="indexable" data-level="2" id="entropyjustification">D.2 Entropy Justification</h2>
+    <h2 class="indexable" data-level="2" id="entropyjustification">E.2 Entropy Justification</h2>
       <p>
       There should be a technical
       argument for where the unpredictability in the source comes from and why there is confidence
@@ -4206,7 +4286,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
 	third-party application or from any state saving between restarts.
       </p>
     
-    <h2 class="indexable" data-level="2" id="entropyoperatingconditions">D.3 Operating Conditions</h2> The entropy rate may be
+    <h2 class="indexable" data-level="2" id="entropyoperatingconditions">E.3 Operating Conditions</h2> The entropy rate may be
       affected by conditions outside the control of the entropy source itself. For example, voltage,
       frequency, temperature, and elapsed time after power-on are just a few of the factors that may
       affect the operation of the entropy source. As such, documentation will also include the range
@@ -4215,14 +4295,14 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
       entropy source continues to operate under those conditions. Similarly, documentation will
       describe the conditions under which the entropy source is known to malfunction or become
       inconsistent. Methods used to detect failure or degradation of the source will be included. 
-    <h2 class="indexable" data-level="2" id="entropyhealthtesting">D.4 Health Testing</h2> More specifically, all entropy source
+    <h2 class="indexable" data-level="2" id="entropyhealthtesting">E.4 Health Testing</h2> More specifically, all entropy source
       health tests and their rationale will be documented. This includes a description of the health
       tests, the rate and conditions under which each health test is performed (e.g., at start,
       continuously, or on-demand), the expected results for each health test, and rationale
       indicating why each test is believed to be appropriate for detecting one or more failures in
       the entropy source.
     
-  <h1 id="appendix-rules" class="indexable" data-level="A">Appendix E -  Validation Guidelines</h1>
+  <h1 id="appendix-rules" class="indexable" data-level="A">Appendix F -  Validation Guidelines</h1>
      	This appendix contains "rules" specified by the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> Authors that indicate whether certain selections
 	  require the making of other selections in order for a Security Target to be valid. For example, selecting 
 	  "<abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-3-384" as a supported keyed-hash algorithm would require that "<abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-3-384" be selected
@@ -4233,10 +4313,9 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
       From <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>:</div><div class="uc_sel">* select <a href="#s-aes-ctr">AES-CTR</a></div><div class="uc_from_fel">
       From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#s-ftp_ssh">SSH</a></div></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
       From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_not">Choose something other than: 
-      <div class="uc_not_sel">* <a href="#s-ftp_ssh">SSH</a></div></div></td></tr></table><h1 id="acronyms" class="indexable" data-level="A">Appendix F -  Acronyms</h1><table><tr class="header"><th>Acronym</th><th>Meaning</th></tr><tr><td><span class="term" id="abbr_AES"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr></span></td><td><span id="long_abbr_AES">Advanced Encryption Standard</span></td></tr>
+      <div class="uc_not_sel">* <a href="#s-ftp_ssh">SSH</a></div></div></td></tr></table><h1 id="acronyms" class="indexable" data-level="A">Appendix G -  Acronyms</h1><table><tr class="header"><th>Acronym</th><th>Meaning</th></tr><tr><td><span class="term" id="abbr_AES"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr></span></td><td><span id="long_abbr_AES">Advanced Encryption Standard</span></td></tr>
 <tr><td><span class="term" id="abbr_API"><abbr class="dyn-abbr"><a href="#abbr_API">API</a></abbr></span></td><td><span id="long_abbr_API">Application Programming Interface</span></td></tr>
 <tr><td><span class="term" id="abbr_ASLR"><abbr class="dyn-abbr"><a href="#abbr_ASLR">ASLR</a></abbr></span></td><td><span id="long_abbr_ASLR">Address Space Layout Randomization</span></td></tr>
-<tr><td><span class="term" id="abbr_BAF" data-plural="BAFs"><abbr class="dyn-abbr"><a href="#abbr_BAF">BAF</a></abbr></span></td><td><span id="long_abbr_BAF">Biometric Authentication Factor</span></td></tr>
 <tr><td><span class="term" id="abbr_Base-PP" data-plural="Base-PPs"><abbr class="dyn-abbr"><a href="#abbr_Base-PP">Base-PP</a></abbr></span></td><td><span id="long_abbr_Base-PP">Base Protection Profile</span></td></tr>
 <tr><td><span class="term" id="abbr_CC"><abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr></span></td><td><span id="long_abbr_CC">Common Criteria</span></td></tr>
 <tr><td><span class="term" id="abbr_CEM"><abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr></span></td><td><span id="long_abbr_CEM">Common Evaluation Methodology</span></td></tr>
@@ -4308,7 +4387,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
 <tr><td><span class="term" id="abbr_XOR"><abbr class="dyn-abbr"><a href="#abbr_XOR">XOR</a></abbr></span></td><td><span id="long_abbr_XOR">Exclusive Or</span></td></tr>
 <tr><td><span class="term" id="abbr_app"><abbr class="dyn-abbr"><a href="#abbr_app">app</a></abbr></span></td><td><span id="long_abbr_app">Application</span></td></tr>
 <tr><td><span class="term" id="abbr_cPP" data-plural="cPPs"><abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr></span></td><td><span id="long_abbr_cPP">Collaborative Protection Profile</span></td></tr>
-</table><h1 id="appendix-bibliography" class="indexable" data-level="A">Appendix G -  Bibliography</h1><table><tr class="header"><th>Identifier</th><th>Title</th></tr><tr><td><span id="bibCC">[<abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>]</span></td><td>Common Criteria for Information Technology Security Evaluation - <ul>
+</table><h1 id="appendix-bibliography" class="indexable" data-level="A">Appendix H -  Bibliography</h1><table><tr class="header"><th>Identifier</th><th>Title</th></tr><tr><td><span id="bibCC">[<abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>]</span></td><td>Common Criteria for Information Technology Security Evaluation - <ul>
             <li><a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART1V3.1R5.pdf">Part
                 1: Introduction and General Model</a>, CCMB-2017-04-001, Version 3.1 Revision 5,
               April 2017.</li>
