@@ -107,9 +107,9 @@ it manages may be physical or virtual.
 	component, such as a library. APIs are often provided for a set of libraries included
 	with the platform.
       </term>
-      <term full="Biometric Authentication Factor" abbr="BAF" plural="BAFs"> Authentication factor, which uses
-        biometric sample, matched to a biometric authentication template to help establish
-        identity.</term>
+      <!-- <term full="Biometric Authentication Factor" abbr="BAF" plural="BAFs"> Authentication factor, which uses -->
+      <!--   biometric sample, matched to a biometric authentication template to help establish -->
+      <!--   identity.</term> -->
       <term abbr='CESG' full="Communications-Electronics Security Group"/>
       <term abbr='CMC' full="Certificate Management over CMS"/>
       <term abbr='CMS' full="Cryptographic Message Syntax"/>
@@ -164,7 +164,7 @@ it manages may be physical or virtual.
       </term>
       <term full="Hybrid Authentication">
 	A hybrid authentication factor is one where a user has to
-	submit a combination of a biometric sample and a PIN or password and both must pass.
+	submit a combination of a cryptographic token and a PIN or password and both must pass.
 	If either factor fails, the entire attempt fails.
       </term>
       <term abbr='HMAC' full="Hash-based Message Authentication Code"/>
@@ -190,9 +190,9 @@ it manages may be physical or virtual.
 	document. 
       </term>
       <term abbr="PIN" full="Personal Identification Number">
-	An authentication factor that is comprised of a set of numeric or alphabetic characters that may be used
-        in addition to a biometric factor or cryptographic token to provide a hybrid authentication factor. At this time it
-        is not considered as a stand-alone authentication mechanism.
+	An authentication factor that is comprised of a set of numeric or alphabetic characters
+	that may be used  in addition to a cryptographic token to provide a hybrid authentication factor.
+	At this time it  is not considered as a stand-alone authentication mechanism.
 	A PIN is distinct from a password in that the allowed character set and required length of a PIN
 	is typically smaller than that of a password as it is designed to be input quickly.
       </term>
@@ -478,11 +478,18 @@ it manages may be physical or virtual.
 	  <addressed-by>FPT_ACF_EXT.1    </addressed-by><rationale>Supports the objective by requiring the TSF restrict unprivileged users from changing critical components.</rationale>
 	  <addressed-by>FPT_SRP_EXT.1    </addressed-by><rationale>Supports the objective by requiring the TSF to implement a configurable whitelisting mechanism.</rationale>
 	  <addressed-by>FIA_X509_EXT.1   </addressed-by><rationale>Supports the objective by requiring the TSF to validate certificates using industry standards.</rationale>
+
+	  
 	  <addressed-by>FPT_TST_EXT.1    </addressed-by><rationale>Supports the objective by requiring the TSF to verify executable code critical to its operation.</rationale>
 	  <addressed-by>FTP_ITC_EXT.1    </addressed-by><rationale>Supports the objective by requiring the OS to provide a trusted channel for critical communication.</rationale>
 	  <addressed-by>FPT_W^X_EXT.1    </addressed-by><rationale>Supports the objective by requiring the OS to executable only non-writable memory.</rationale>
 	  <addressed-by>FIA_AFL.1        </addressed-by><rationale>Supports the objective by requiring the TSF to respond accordingly when the number of failed authentication attempts reaches a specified threshold.</rationale>
 	  <addressed-by>FIA_UAU.5        </addressed-by><rationale>Supports the objective by requiring the OS to provide standard authentication mechanisms.</rationale>
+	  <addressed-by>FPT_BLT_EXT.1 (Objective)</addressed-by>
+	  <rationale>
+            FPT_BLT_EXT.1 supports the objective by requiring the TSF to disable certain Bluetooth profiles when they are inactive such that explicit user authorization is required to re-enable them.
+	  </rationale>
+	  
         </SO>
         <SO name="O.MANAGEMENT">
           <description> To facilitate management by users and the enterprise, conformant OSes
@@ -2069,7 +2076,7 @@ Configure lockout policy for unsuccessful authentication attempts through
 		<management-function><text>Configure audit rules</text></management-function>
 		<management-function><text>Configure name/address of network time server</text></management-function>
 		<management-function><text>Enable/disable automatic software update</text></management-function>
-		<management-function><text>Configure WiFi interface</text></management-function>
+		<management-function><text>Configure Wi-Fi interface</text></management-function>
 		<management-function><text>Enable/disable Bluetooth interface</text></management-function>
 		<management-function><text>Enable/disable <assignable> list of other external interfaces</assignable></text></management-function>
 		<management-function><text><assignable>list of other management functions to be provided by the TSF</assignable></text></management-function>
@@ -2283,7 +2290,75 @@ This test can also be completed on the same hardware and rebooting between appli
         <!--     </aactivity> -->
         <!--   </f-element> -->
         <!-- </f-component> -->
-        <f-component cc-id="fpt_sbop_ext.1" name="Stack Buffer Overflow Protection">
+        
+        <ext-comp-def fam-id="FPT_BLT_EXT" title="Limitation of Bluetooth Profile Support">
+          <fam-behavior>This family defines requirements for limiting Bluetooth capabilities without user action. 
+          </fam-behavior>
+        </ext-comp-def>
+        
+        
+        <f-component cc-id="fpt_blt_ext.1" name="Limitation of Bluetooth Profile Support" status="objective">
+          
+          <comp-lev> requires the TSF to maintain a disabled by default posture for Bluetooth profiles.</comp-lev>
+          <management>There are no management activities foreseen.</management>
+          <audit>There are no auditable events foreseen.</audit>
+          <dependencies>No dependencies.</dependencies>
+          
+          
+          <f-element id="fel-bluetooth-stop">
+            <title>The TSF shall disable support for <assignable>list of Bluetooth
+                profiles</assignable> Bluetooth profiles when they are not currently being used by
+              an application on the Mobile Device, and shall require explicit user action to enable
+              them.</title>
+              <note role="application">
+		<h:p>
+		Some Bluetooth services incur more serious consequences if
+		unauthorized remote devices gain access to them.
+		Such services should be protected by measures like disabling support for
+		the associated Bluetooth profile unless it is actively being used by an application on the OS
+		(in order to prevent discovery by a Service Discovery Protocol search), and then requiring explicit user
+		action to enable those profiles in order to use the services.
+		It may be further appropriate to require additional user action before granting a remote device access
+		to that service.
+		</h:p>
+		<h:p>
+		  For example, it may be appropriate to disable the
+		  OBEX Push Profile until a user  pushes a button in an application
+		  indicating readiness to transfer an object.
+		  After completion of the object transfer,
+		  support for the OBEX profile should be suspended until the next time the user requests
+		  its use.
+		</h:p>
+	      </note>
+            <aactivity>
+              <TSS>The evaluator shall ensure that the TSS lists all Bluetooth profiles that are
+                disabled while not in use by an application and which need explicit user action in
+                order to become enabled.
+	      </TSS>
+              <Guidance>There are no guidance evaluation activities for this component.</Guidance>
+	      <Tests>The evaluator shall perform the following tests:
+	      <testlist>
+                <test>While the service is not in active use by an application on the TOE, the
+                evaluator shall attempt to discover a service associated with a "protected"
+                Bluetooth profile (as specified by the requirement) on the TOE via a Service
+                Discovery Protocol search. The evaluator shall verify that the service does not
+                appear in the Service Discovery Protocol search results. Next, the evaluator
+                shall attempt to gain remote access to the service from a device that does not
+                currently have a trusted device relationship with the TOE. The evaluator shall
+                verify that this attempt fails due to the unavailability of the service and
+                profile. </test>
+                <test>The evaluator shall repeat Test 1 with a device that currently has a trusted
+                device relationship with the TOE and verify that the same behavior is exhibited.
+                </test>
+              </testlist>
+              </Tests>
+            </aactivity>
+          </f-element>
+        </f-component>
+
+
+
+	<f-component cc-id="fpt_sbop_ext.1" name="Stack Buffer Overflow Protection">
           <f-element id="fel-sbop">
             <title>
 The OS shall <selectables>
@@ -2856,18 +2931,17 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
         <f-component cc-id="fia_uau.5" name="Multiple Authentication Mechanisms (Refined)">
           <f-element id="fel-mult-auth">
             <title>
-The <refinement>OS</refinement> shall provide the following authentication mechanisms
-<h:b><selectables linebreak='yes'>
-  <selectable>authentication based on user name and password</selectable>
-  <selectable>authentication based on user name and a PIN that releases an asymmetric key stored
-  in OE-protected storage</selectable>
-  <selectable>combination of authentication based on user name, password, and time-based one-time password</selectable>
-  <selectable>combination of authentication based on user name, password, and biometric identification factor </selectable>
-  <selectable>authentication based on X.509 certificates</selectable>
-  <selectable id="s-uau-ssh">for use in SSH only, SSH public key-based authentication as specified by the <xref to="pkg-ssh"/></selectable>
-</selectables>
-</h:b>
-to support user authentication.
+	      The <refinement>OS</refinement> shall provide the following authentication mechanisms
+	      <h:b><selectables linebreak='yes'>
+		<selectable>authentication based on user name and password</selectable>
+		<selectable>authentication based on user name and a PIN that releases an asymmetric key stored
+		in OE-protected storage</selectable>
+		<selectable>combination of authentication based on user name, password, and time-based one-time password</selectable>
+		<selectable>authentication based on X.509 certificates</selectable>
+		<selectable id="s-uau-ssh">for use in SSH only, SSH public key-based authentication as specified by the <xref to="pkg-ssh"/></selectable>
+	      </selectables>
+	      </h:b>
+	      to support user authentication.
             </title>
             <note role="application">
 	      The <xref to="s-uau-ssh"/> selection can only be included, and must be included, if
