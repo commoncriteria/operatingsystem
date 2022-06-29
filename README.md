@@ -28,7 +28,7 @@ A list of products that have passed evaluation against this Protection Profile c
 
 ## Release Version
 
-* [Protection Profile for General Purpose Operating System v4.2](https://www.niap-ccevs.org/Profile/Info.cfm?id=400)
+* [Protection Profile for General Purpose Operating System v4.2.1](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=442&id=442)
 
 ## Contributing
 
