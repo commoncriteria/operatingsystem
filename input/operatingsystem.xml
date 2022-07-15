@@ -581,7 +581,7 @@ users of the same system.
                 <selectable id="s-keygen-rsa"><snip>RSA schemes</snip> using cryptographic key sizes of 2048-bit or greater that
          f-component    meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.3
                 </selectable>
-                <selectable id="s-keygen-ecc"><snip>ECC schemes using "NIST curves"</snip> P-256, P-384 and
+                <selectable id="s-keygen-ecc"><snip>ECC schemes using "NIST curves"</snip> P-384 and
                   <selectables>
                     <selectable>P-521</selectable>
                     <selectable exclusive="yes"> no other curves</selectable>
@@ -687,7 +687,7 @@ users of the same system.
 			   <depends on="s-keygen-ecc"/>
                <h:b>Key Generation for Elliptic Curve Cryptography (ECC)</h:b><h:br/>
      	      <h:p> FIPS 186-4 ECC Key Generation Test</h:p>
-              <h:p>For each supported NIST curve, i.e., P-256, P-384 and P-521, the
+              <h:p>For each supported NIST curve, i.e., P-384 and P-521, the
               evaluator will require the implementation under test (IUT) to generate 10
               private/public key pairs. The private key shall be generated using an approved random
               bit generator (RBG). To determine correctness, the evaluator will submit the
@@ -697,7 +697,7 @@ users of the same system.
 	      <h:p>FIPS 186-4 Public Key Verification (PKV) Test</h:p>
 	      <h:p>
 	      For each supported
-              NIST curve, i.e., P-256, P-384 and P-521, the evaluator will generate 10
+              NIST curve, i.e., P-384 and P-521, the evaluator will generate 10
               private/public key pairs using the key generation function of a known good
               implementation and modify five of the public key values so that they are incorrect,
               leaving five values unchanged (i.e., correct). The evaluator will obtain in response
@@ -1679,7 +1679,7 @@ The evaluator uses the TOE to attempt an SSH connection to this server and obser
                 linebreak="yes">
                 <selectable>RSA schemes using cryptographic key sizes of 2048-bit or greater
                   that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)",  Section 4</selectable>
-                <selectable id="s-ec-certs">ECDSA schemes using "NIST curves" P-256, P-384 and <selectables>
+                <selectable id="s-ec-certs">ECDSA schemes using "NIST curves" P-384 and <selectables>
                     <selectable>P-521</selectable>
                     <selectable exclusive="yes">no other curves</selectable>
                   </selectables>
@@ -1709,13 +1709,13 @@ The evaluator uses the TOE to attempt an SSH connection to this server and obser
 	      <h:p>
 	      <testlist>
                 <test>ECDSA FIPS 186-4 Signature Generation Test. For each supported NIST curve
-                  (i.e., P-256, P-384 and P-521) and SHA function pair, the evaluator will generate
+                  (i.e., P-384 and P-521) and SHA function pair, the evaluator will generate
                   10 1024-bit long messages and obtain for each message a public key and the
                   resulting signature values R and S. To determine correctness, the evaluator will
                   use the signature verification function of a known good implementation. </test>
                 <test>
 		  ECDSA FIPS 186-4 Signature Verification Test. For each supported NIST curve
-                  (i.e., P-256, P-384 and P-521) and SHA function pair, the evaluator will generate
+                  (i.e., P-384 and P-521) and SHA function pair, the evaluator will generate
                   a set of 10 1024-bit message, public key and signature tuples and modify one of
                   the values (message, public key or signature) in five of the 10 tuples.
 		  The evaluator will verify that 5 responses indicate success and
