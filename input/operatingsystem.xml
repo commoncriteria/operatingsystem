@@ -577,8 +577,8 @@ users of the same system.
         <f-component cc-id="fcs_ckm.1" name="Cryptographic Key Generation (Refined)">
           <f-element id="fel-asym-gen">
             <title> The <h:b>OS</h:b> shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a
-              specified cryptographic key generation algorithm <h:b><selectables linebreak="yes">
-                <selectable id="s-keygen-rsa">RSA schemes using cryptographic key sizes of 2048-bit or greater that
+              specified cryptographic key generation algorithm <selectables linebreak="yes">
+                <selectable id="s-keygen-rsa"><snip>RSA schemes</snip> using cryptographic key sizes of 2048-bit or greater that
          f-component    meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.3
                 </selectable>
                 <selectable id="s-keygen-ecc"><snip>ECC schemes using "NIST curves"</snip> P-256, P-384 and
@@ -588,16 +588,19 @@ users of the same system.
                   </selectables> that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)",
                   Appendix B.4
                 </selectable>
-				<selectable id="s-keygen-ffc">FFC schemes using cryptographic key sizes of 2048-bit
-                  or greater that meet the following: FIPS PUB 186-4, "Digital Signature
+		<selectable id="s-keygen-ffc">
+		  <snip>FFC schemes</snip> using 
+		  <selectables>
+		    <selectable id="s-keygen-ffc-fips">cryptographic key sizes of 2048-bit
+                    or greater that meet the following: <snip>FIPS PUB 186-4</snip>, "Digital Signature
                   Standard (DSS)", Appendix B.1</selectable>
-				<selectable id="s-keygen-ffc-dh"><snip>FFC Schemes using Diffie-Hellman Group 14</snip> that meet the following: RFC 3526 </selectable>
-              <selectable id="s-keygen-ffc-safeprime"> FFC Schemes using safe primes that meet the following: 
+		  <!-- <selectable id="s-keygen-ffc-dh"><snip>Diffie-Hellman Group 14</snip> that meet the following: RFC 3526 </selectable> -->
+		  <selectable id="s-keygen-ffc-safeprime"><snip>safe primes</snip> that meet the following: 
 				  ‘NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes
-			  </selectable>
-              </selectables>
-
-			</h:b>.
+		  </selectable>
+		  </selectables>
+		</selectable>
+	      </selectables>.
             </title>
             <note role="application">
 	      <h:p>
@@ -703,7 +706,7 @@ users of the same system.
 	      </h:p>
 		  </h:div>
 		  <h:div>
-			  <depends on="s-keygen-ffc"/>
+			  <depends on="s-keygen-ffc-fips"/>
 	          <h:b>Key Generation for Finite-Field Cryptography (FFC)</h:b><h:br/>
               <h:p>
     
@@ -759,13 +762,13 @@ users of the same system.
               for each FFC parameter set and key pair.
               </h:p>
 			  </h:div>
-			  <h:div>
-				  <depends on="s-keygen-ffc-dh" also="s-keygen-ffc-safeprime"/>
-				  <h:b>Diffie-Hellman Group 14 and FFC Schemes using "safe-prime" groups</h:b><h:br/>
-				  Testing for FFC Schemes using Diffie-Hellman group 14 and/or "safe-prime" groups is done as part of testing in FCS_CKM.2.1
+			  <!-- <h:div> -->
+			  <!-- 	  <depends on="s-keygen-ffc-dh" also="s-keygen-ffc-safeprime"/> -->
+			  <!-- 	  <h:b>Diffie-Hellman Group 14 and FFC Schemes using "safe-prime" groups</h:b><h:br/> -->
+			  <!-- 	  Testing for FFC Schemes using Diffie-Hellman group 14 and/or "safe-prime" groups is done as part of testing in FCS_CKM.2.1 -->
 
 
-			  </h:div>
+			  <!-- </h:div> -->
 	      </Tests>
 	    </aactivity>
           </f-element>
@@ -775,12 +778,13 @@ users of the same system.
             <title>The OS shall <h:b>implement functionality to perform cryptographic key establishment</h:b>
               in accordance with a specified cryptographic key <h:b>establishment</h:b> method:
               <selectables linebreak="yes">
-				  <selectable id="s-keyestab-rsa"><snip>RSA-based</snip> key establishment schemes that meets the following: RSAES-PKCS1-v1_5 as specified in Section 7.2 of RFC 8017, “Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.2</selectable>
-
-				  <selectable id="s-keyestab-ecc"><snip>Elliptic curve-based</snip> key establishment schemes that meets the following: NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</selectable>
-
-				  <selectable id="s-keyestab-ffc"><snip>Finite field-based</snip> key establishment schemes that meets the following: NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</selectable>
-				  <selectable id="s-keyestab-dh">Key establishment scheme using <snip>Diffie-Hellman</snip> group 14 that meets the following: RFC 3526</selectable></selectables>.
+		<selectable id="s-keyestab-rsa"><snip>RSA-based</snip> key establishment schemes that meets the following: RSAES-PKCS1-v1_5 as specified in Section 7.2 of RFC 8017, “Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.2</selectable>
+		
+		<selectable id="s-keyestab-ecc"><snip>Elliptic curve-based</snip> key establishment schemes that meets the following: NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</selectable>
+		<selectable id="s-keyestab-ffc"><snip>Finite field-based</snip> key establishment schemes
+		  that meets <snip>NIST Special Publication 800-56A</snip> Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</selectable>
+		  <!-- <selectable id="s-keyestab-dh">using <snip>Diffie-Hellman</snip> group 14 that meets the following: RFC 3526</selectable> -->
+	      </selectables>.
             </title>
             <note role="application">
 	      <h:p>
@@ -898,11 +902,11 @@ users of the same system.
 The evaluator wll verify the correctness of the TSF's implementation of RSAES-PKCS1-v1_5 by using a known good implementation for each protocol selected in FTP_ITC_EXT.1 that uses RSAES-PKCS1-v1_5.
 			</h:p>
 			  </h:div>
-		<h:div><depends on="s-keyestab-dh"/>
-			<h:b>Diffie-Hellman Group 14</h:b><h:br/>
+		<!-- <h:div><depends on="s-keyestab-dh"/> -->
+		<!-- 	<h:b>Diffie-Hellman Group 14</h:b><h:br/> -->
 
-			<h:p>The evaluator will verify the correctness of the TSF's implementation of Diffie-Hellman group 14 by using a known good implementation for each protocol selected in FTP_ITC_EXT.1 that uses Diffie-Hellman Group 14.</h:p>
-			  </h:div>
+		<!-- 	<h:p>The evaluator will verify the correctness of the TSF's implementation of Diffie-Hellman group 14 by using a known good implementation for each protocol selected in FTP_ITC_EXT.1 that uses Diffie-Hellman Group 14.</h:p> -->
+		<!-- 	  </h:div> -->
 
 <h:div>
 	<depends on="s-keyestab-ffc"/>
@@ -914,6 +918,19 @@ The evaluator will verify the correctness of the TSF's implementation of "safe-p
 			  </h:div>
 	      </Tests>
 	    </aactivity>
+	    <rule id="r-key-rsa">
+	      <if><ref-id>s-keyestab-rsa</ref-id></if>
+	      <then><ref-id>s-keygen-rsa</ref-id></then>
+	    </rule>
+	    <rule id="r-key-ecc">
+	      <if><ref-id>s-keyestab-ecc</ref-id></if>
+	      <then><ref-id>s-keygen-ecc</ref-id></then>
+	    </rule>
+	    <rule id="r-key-ffc">
+	      <if><ref-id>s-keyestab-ffc</ref-id></if>
+	      <then><ref-id>s-keygen-ffc</ref-id></then>
+	    </rule>
+	    
           </f-element>
         </f-component>
                 
