@@ -2,11 +2,11 @@
 <?xml-stylesheet type="text/xsl" href="../transforms/pp2html.xsl"?>
 	
 	
-<PP xmlns="https://niap-ccevs.org/cc/v1" target-product="General Purpose Operating Systems"
+<PP xmlns="https://niap-ccevs.org/cc/v1" target-products="General Purpose Operating Systems"
     xmlns:sec="https://niap-ccevs.org/cc/v1/section"
     xmlns:h="http://www.w3.org/1999/xhtml" boilerplate="yes">
 	
-	<!-- Applied TD365, TD386,  TD441(n/a), TD463, TD493, TD525, TD578, TD600 -->
+	<!-- Applied TD365, TD386,  TD441(n/a), TD463, TD493, TD525, TD578, TD600, TD630 -->
   <PPReference>
     <ReferenceTable>
       <PPTitle>Protection Profile for General Purpose Operating Systems</PPTitle>
@@ -69,6 +69,10 @@
     <module id="mod-mdmagent">
       <raw-url>https://raw.githubusercontent.com/commoncriteria/mdmagent/Release-1.0/input/mdmagent.xml</raw-url>
       <url><![CDATA[https://www.niap-ccevs.org/Profile/Info.cfm?PPID=441&id=441]]></url>
+    </module>
+    <module id="mod-wlanclient">
+      <raw-url>https://raw.githubusercontent.com/commoncriteria/wlanclient/master/input/wlanclient.xml</raw-url>
+      <url><![CDATA[https://www.niap-ccevs.org/Profile/Info.cfm?PPID=386&id=386]]></url>
     </module>
     <!-- <module id="mod-biometric" version="1.1" name="cPP for Biometrics" product="Biometric Devices" short="BMcPP"> -->
     <!--   <url>https://biometricitc.github.io/v1.1/1.1PRE/MOD-BIO-v1.1.pdf</url> -->
@@ -1126,6 +1130,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      <selectables linebreak="yes">
 	              <selectable>AES-XTS (as defined in NIST SP 800-38E)</selectable>
 	              <selectable>AES-CBC (as defined in NIST SP 800-38A)</selectable>
+		      <selectable id="s-aes-ctr"><snip>AES-CTR</snip> (as defined in NIST SP 800-38A)</selectable>
               </selectables>
 	      and
 	      <selectables linebreak="yes">
@@ -1136,7 +1141,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 <selectable>AES-CCM (as defined in NIST SP 800-38C)</selectable>
                 <selectable>AES-CCMP-256 (as defined in NIST SP 800-38C and IEEE 802.11ac-2013)</selectable>
                 <selectable>AES-GCMP-256 (as defined in NIST SP 800-38D and IEEE 802.11ac-2013)</selectable>
-		<selectable id="s-aes-ctr"><snip>AES-CTR</snip> (as defined in NIST SP 800-38A)</selectable>
+
 <!-- <depends on="s-ftp_ssh"/> Could have added this to the previous, but choose to use rules.-->
 		
                 <selectable exclusive="yes">no other modes</selectable>
@@ -1150,8 +1155,11 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	    </title>
             <note role="application">
 	      <h:p>
+		<!-- AUTOMATION -->
               AES CCMP (which uses AES in CCM as specified in SP 800-38C) becomes mandatory and must
-              be selected if the ST includes the WLAN Client EP.
+              be selected if the ST includes the <xref to="mod-wlanclient"/>.
+	      <!-- AUTOMATION -->
+	      AES-CTR becomes mandatory and must be selected if the ST includes the <xref to="pkg-ssh"/>.
 	      </h:p>
 	      <h:p>
 	        For the second selection, the ST author should choose the mode
@@ -1266,8 +1274,86 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               decrypt functionality using the same test as for encrypt, exchanging CT and PT and
               replacing AES-CBC-Encrypt with AES-CBC-Decrypt.
 	    </h:p>
-	    <h:p>
+	    <h:br/>
+	    <h:br/>	    
+	      <h:b>AES-CTR Test</h:b><h:br/>
+	      <h:p><h:b>Test 1: Known Answer Tests (KATs)</h:b></h:p>
+	      <h:p>
+There are four Known Answer Tests (KATs) described below.
+For all KATs, the plaintext, initialization vector (IV), and ciphertext values shall be 128-bit blocks.
+The results from each test may either be obtained by the validator directly or by supplying the inputs to the implementer and receiving the results in response.
+To determine correctness, the evaluator will compare the resulting values to those obtained by submitting the same inputs to a known good implementation.
+	      </h:p>
+	      <h:p>
+<h:b>Test 1a</h:b>: To test the encrypt functionality, the evaluator will supply a set of 10 plaintext values and obtain the ciphertext value that results from encryption of the given plaintext using a key value of all zeros and an IV of all zeros.
+Five plaintext values shall be encrypted with a 128-bit all zeros key, and the other five shall be encrypted with a 256-bit all zeros key.
+To test the decrypt functionality, the evaluator will perform the same test as for encrypt, using 10 ciphertext values as input.
+	      </h:p>
+	      <h:p>
+		<h:b>Test 1b</h:b>:
+		To test the encrypt functionality, the evaluator will supply a set of 10 key values and obtain the ciphertext value that results from encryption of an all zeros plaintext using the given key value and an IV of all zeros.
+Five of the key values shall be 128-bit keys, and the other five shall be 256-bit keys.
+To test the decrypt functionality, the evaluator will perform the same test as for encrypt, using an all zero ciphertext value as input.
+	      </h:p>
+
+	      <h:p><h:b>Test 1c</h:b>:
+	      To test the encrypt functionality, the evaluator will supply the two sets of key values described below and obtain the ciphertext values that result from AES encryption of an all zeros plaintext using the given key values and an IV of all zeros.
+The first set of keys shall have 128 128-bit keys, and the second shall have 256 256-bit keys.
+Key_i in each set shall have the leftmost i bits be ones and the rightmost N-i bits be zeros, for i in [1, N].
+To test the decrypt functionality, the evaluator will supply the two sets of key and ciphertext value pairs described below and obtain the plaintext value that results from decryption of the given ciphertext using the given key values and an IV of all zeros.
+The first set of key/ciphertext pairs shall have 128 128-bit key/ciphertext pairs, and the second set of key/ciphertext pairs shall have 256 256-bit pairs.
+Key_i in each set shall have the leftmost i bits be ones and the rightmost N-i bits be zeros for i in [1, N].
+The ciphertext value in each pair shall be the value that results in an all zeros plaintext when decrypted with its corresponding key.
+	      </h:p>
+
+	      <h:p><h:b>Test 1d</h:b>:
+	      To test the encrypt functionality, the evaluator will supply the set of 128 plaintext values described below and obtain the two ciphertext values that result from encryption of the given plaintext using a 128-bit key value of all zeros and using a 256 bit key value of all zeros, respectively, and an IV of all zeros.
+Plaintext value i in each set shall have the leftmost bits be ones and the rightmost 128-i bits be zeros, for i in [1, 128].
+To test the decrypt functionality, the evaluator will perform the same test as for encrypt, using ciphertext values of the same form as the plaintext in the encrypt test as input.
+	      </h:p>
+
+	      <h:p><h:b>Test 2: Multi-Block Message Test</h:b></h:p>
 	      
+	      <h:p>The evaluator will test the encrypt functionality by encrypting an i-block message where 1 less-than i less-than-or-equal to 10.
+For each i the evaluator will choose a key, IV, and plaintext message of length i blocks and encrypt the message, using the mode to be tested, with the chosen key.
+The ciphertext shall be compared to the result of encrypting the same plaintext message with the same key and IV using a known good implementation.
+The evaluator will also test the decrypt functionality by decrypting an i-block message where 1 less-than i less-than-or-equal to 10.
+For each i the evaluator will choose a key and a ciphertext message of length i blocks and decrypt the message, using the mode to be tested, with the chosen key.
+The plaintext shall be compared to the result of decrypting the same ciphertext message with the same key using a known good implementation.</h:p>
+
+	      <h:p><h:b>Test 3: Monte-Carlo Test</h:b></h:p>
+
+	      <h:p>For AES-CTR mode perform the Monte Carlo Test for ECB Mode on the encryption engine of the counter mode implementation. There is no need to test the decryption engine.
+	      </h:p>
+	      <h:p>
+		The evaluator will test the encrypt functionality using 200 plaintext/key pairs. 100 of these shall use 128 bit keys, and 100 of these shall use 256 bit keys. The plaintext values shall be 128-bit blocks. For each pair, 1000 iterations shall be run as follows:
+	      </h:p>
+	      For AES-ECB mode<h:br/>
+<h:pre>
+# Input: PT, Key
+
+for i = 1 to 1000:
+CT[i] = AES-ECB-Encrypt(Key, PT)
+PT = CT[i]
+</h:pre>
+
+<h:p>The ciphertext computed in the 1000th iteration is the result for that trial.
+This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation.
+</h:p>
+
+<h:p>If "invoke platform-provided" is selected, the evaluator confirms that SSH connections are only successful if appropriate algorithms and appropriate key sizes are configured. To do this, the evaluator will perform the following tests:</h:p>
+
+<h:p><h:b>Test 1</h:b>: [Conditional: TOE is an SSH server]
+The evaluator will configure an SSH client to connect with an invalid cryptographic algorithm and key size for each listening SSH socket connection on the TOE.
+The evaluator initiates SSH client connections to each listening SSH socket connection on the TOE and observes that the connection fails in each attempt.
+</h:p>
+
+<h:p><h:b>Test 2</h:b>: [Conditional: TOE is an SSH client]
+The evaluator will configure a listening SSH socket on a remote SSH server that accepts only invalid cryptographic algorithms and keys.
+The evaluator uses the TOE to attempt an SSH connection to this server and observes that the connection fails.
+</h:p>
+	    <h:p>
+     
               <h:b>AES-GCM Monte Carlo Tests</h:b><h:br/>
               The evaluator will test the authenticated encrypt functionality of AES-GCM for
               each combination of the following input parameter lengths: <h:ul>
@@ -2331,23 +2417,23 @@ This test can also be completed on the same hardware and rebooting between appli
 		</h:p>
 	      </note>
             <aactivity>
-              <TSS>The evaluator shall ensure that the TSS lists all Bluetooth profiles that are
+              <TSS>The evaluator will ensure that the TSS lists all Bluetooth profiles that are
                 disabled while not in use by an application and which need explicit user action in
                 order to become enabled.
 	      </TSS>
               <Guidance>There are no guidance evaluation activities for this component.</Guidance>
-	      <Tests>The evaluator shall perform the following tests:
+	      <Tests>The evaluator will perform the following tests:
 	      <testlist>
                 <test>While the service is not in active use by an application on the TOE, the
-                evaluator shall attempt to discover a service associated with a "protected"
+                evaluator will attempt to discover a service associated with a "protected"
                 Bluetooth profile (as specified by the requirement) on the TOE via a Service
-                Discovery Protocol search. The evaluator shall verify that the service does not
+                Discovery Protocol search. The evaluator will verify that the service does not
                 appear in the Service Discovery Protocol search results. Next, the evaluator
                 shall attempt to gain remote access to the service from a device that does not
-                currently have a trusted device relationship with the TOE. The evaluator shall
+                currently have a trusted device relationship with the TOE. The evaluator will
                 verify that this attempt fails due to the unavailability of the service and
                 profile. </test>
-                <test>The evaluator shall repeat Test 1 with a device that currently has a trusted
+                <test>The evaluator will repeat Test 1 with a device that currently has a trusted
                 device relationship with the TOE and verify that the same behavior is exhibited.
                 </test>
               </testlist>
