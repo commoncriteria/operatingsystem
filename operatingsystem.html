@@ -606,8 +606,11 @@ function showTarget(id){
           }
     </style></head><body onLoad="init()"><h1 class="title" style="page-break-before:auto;">Protection Profile for General Purpose Operating Systems</h1><noscript><h1 style="text-align:center; border-style: dashed; border-width: medium; border-color: red;">This page is best viewed with JavaScript enabled!</h1></noscript><div class="center"><img src="images/niaplogo.png" alt="NIAP Logo"></img><br/>
       Version: 4.3-DRAFT<br/>2019-07-01<br/><b>National Information Assurance Partnership</b><br/></div><h2 style="page-break-before:always;">Revision History</h2><table><tr class="header"><th>Version</th><th>Date</th><th>Comment</th></tr><tr><td>4.3</td><td>2022-04-22</td><td>
-	Added compatibility with MDM Agent, Bluetooth, and <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Modules.<br/>
-	Two factor authentication.
+	<ul>
+	  <li>Added compatibility with MDM Agent, Bluetooth, and <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Modules.</li>
+	  <li>Two factor authentication.</li>
+	  <li>Aligned with CNSA</li>
+	</ul>
       </td></tr>
 <tr><td>4.2.1</td><td>2019-04-22</td><td>Formatting changes as a result of <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> evaluation</td></tr>
 <tr><td>4.2</td><td>2018-05-22</td><td>Multiple Technical Decisions applied</td></tr>
@@ -936,14 +939,14 @@ users of the same system.
       <h3 id="fcs" class="indexable" data-level="3">5.1.1 Cryptographic Support (FCS)</h3>
         <div class="comp" id="FCS_CKM.1"><h4>FCS_CKM.1 Cryptographic Key Generation (Refined)</h4>
           <div class="element"><div class="reqid" id="FCS_CKM.1.1"><a href="#FCS_CKM.1.1" class="abbr">FCS_CKM.1.1</a></div><div class="reqdesc"> The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall generate <b>asymmetric</b> cryptographic keys in accordance with a
-              specified cryptographic key generation algorithm [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-keygen-rsa">RSA schemes using cryptographic key sizes of 2048-bit or greater that
-         f-component    meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)", Appendix B.3
+              specified cryptographic key generation algorithm [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-keygen-rsa">RSA schemes using cryptographic key sizes of 3072-bit or greater that
+		meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)", Appendix B.3
                 </span></li><li style=""><span class="selectable-content" id="s-keygen-ecc">ECC schemes using "<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> curves" P-384 and
                   [<b>selection</b>: <span class="selectable-content" id="_s_3">P-521</span>,  <span class="selectable-content" id="_s_4"> no other curves</span> ] that meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)",
                   Appendix B.4
                 </span></li><li style=""><span class="selectable-content" id="s-keygen-ffc">
 		  FFC schemes using 
-		  [<b>selection</b>: <span class="selectable-content" id="s-keygen-ffc-fips">cryptographic key sizes of 2048-bit
+		  [<b>selection</b>: <span class="selectable-content" id="s-keygen-ffc-fips">cryptographic key sizes of 3072-bit
                     or greater that meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature
                   Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)", Appendix B.1</span>,  <span class="selectable-content" id="s-keygen-ffc-safeprime">safe primes that meet the following: 
 				  ‘<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes
@@ -1455,8 +1458,11 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_32"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-XTS (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38E)</span></li><li style=""><span class="selectable-content" id="_s_33"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38A)</span></li><li style=""><span class="selectable-content" id="s-aes-ctr"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CTR (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38A)</span></li></ul>]
 	      and
 	      [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_35"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCMP (as defined in <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 197, <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38C and IEEE 802.11-2012)</span></li><li style=""><span class="selectable-content" id="_s_36"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> Key Wrap (KW) (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38F)</span></li><li style=""><span class="selectable-content" id="_s_37"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> Key Wrap with Padding (KWP) (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38F)</span></li><li style=""><span class="selectable-content" id="_s_38"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38D)</span></li><li style=""><span class="selectable-content" id="_s_39"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCM (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38C)</span></li><li style=""><span class="selectable-content" id="_s_40"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCMP-256 (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38C and IEEE 802.11ac-2013)</span></li><li style=""><span class="selectable-content" id="_s_41"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCMP-256 (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38D and IEEE 802.11ac-2013)</span></li><li style=""><span class="selectable-content" id="_s_42">no other modes</span></li></ul>]</b>
-              and cryptographic key sizes
-              [<b>selection</b>: <span class="selectable-content" id="_s_43">128-bit</span>,  <span class="selectable-content" id="_s_44">256-bit</span> ]
+              and cryptographic key sizes 256-bit.
+              
+              
+              
+              
         <strike>that meet the following: [assignment: list of standards]</strike>.
 	    <div class="appnote"><span class="note-header">Application
       Note:
@@ -1475,7 +1481,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      <p>
 	        For the second selection, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author should choose the mode
 		or modes in which <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> operates. For the third selection, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author should choose
-              the key sizes that are supported by this functionality.
+		the key sizes that are supported by this functionality.
 	      </p>
 	      <p>If <a href="#s-ftp_ssh">SSH</a> is selected in <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>,
 	      then <a href="#s-aes-ctr">AES-CTR</a> must be selected.</p>
@@ -1498,47 +1504,45 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      </p>
 	      <p>
 		There are four Known Answer Tests (KATs), described below. In all KATs, the
-              plaintext, ciphertext, and IV values will be 128-bit blocks. The results from each
+              plaintext, ciphertext, and IV values will be 256-bit blocks. The results from each
               test may either be obtained by the evaluator directly or by supplying the inputs to
               the implementer and receiving the results in response. To determine correctness, the
               evaluator will compare the resulting values to those obtained by submitting the same
               inputs to a known good implementation. <ul>
                 <li>KAT-1. To test the encrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will supply
-                  a set of 10 plaintext values and obtain the ciphertext value that results from
+                  a set of 5 plaintext values and obtain the ciphertext value that results from
                   <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC encryption of the given plaintext using a key value of all zeros and an IV
-                  of all zeros. Five plaintext values will be encrypted with a 128-bit all-zeros
-                  key, and the other five will be encrypted with a 256-bit all- zeros key. To test
+                  of all zeros.
+		  The plaintext values will encrypted with a 256-bit all-zeros key. To test
                   the decrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will perform the same test as
-                  for encrypt, using 10 ciphertext values as input and <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC decryption.</li>
+                  for encrypt, using 5 ciphertext values as input and <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC decryption.</li>
                 <li>KAT-2. To test the encrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will supply
-                  a set of 10 key values and obtain the ciphertext value that results from <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC
+                  a set of five 256-keys and obtain the ciphertext value that results from <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC
                   encryption of an all-zeros plaintext using the given key value and an IV of all
-                  zeros. Five of the keys will be 128-bit keys, and the other five will be 256-bit
-                  keys. To test the decrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will perform
+                  zeros.
+		  To test the decrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will perform
                   the same test as for encrypt, using an all-zero ciphertext value as input and
                   <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC decryption.</li>
                 <li>KAT-3. To test the encrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will supply
-                  the two sets of key values described below and obtain the ciphertext value that
+                  the a sets of key values described below and obtain the ciphertext value that
                   results from <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> encryption of an all-zeros plaintext using the given key value
-                  and an IV of all zeros. The first set of keys will have 128 128-bit keys, and the
-                  second set will have 256 256-bit keys. Key i in each set will have the leftmost
-                  i bits be ones and the rightmost N-i bits be zeros, for i in [1,N]. To test the
-                  decrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will supply the two sets of key
+                  and an IV of all zeros.
+		  Key i will have the leftmost i bits be ones and the rightmost N-i bits be zeros, for i in [1,N].
+		  To test the decrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will supply the set of key
                   and ciphertext value pairs described below and obtain the plaintext value that
                   results from <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC decryption of the given ciphertext using the given key and an
-                  IV of all zeros. The first set of key/ciphertext pairs will have 128 128-bit
-                  key/ciphertext pairs, and the second set of key/ciphertext pairs will have 256
-                  256-bit key/ciphertext pairs. Key i in each set will have the leftmost i bits be
+                  IV of all zeros.
+		  The set of key/ciphertext pairs will have 256 256-bit key/ciphertext pairs.
+		  Key i in each set will have the leftmost i bits be
                   ones and the rightmost N-i bits be zeros, for i in [1,N]. The ciphertext value in
                   each pair will be the value that results in an all-zeros plaintext when decrypted
                   with its corresponding key.</li>
                 <li>KAT-4. To test the encrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will supply
-                  the set of 128 plaintext values described below and obtain the two ciphertext
-                  values that result from <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC encryption of the given plaintext using a 128-bit
-                  key value of all zeros with an IV of all zeros and using a 256-bit key value of
-                  all zeros with an IV of all zeros, respectively. Plaintext value i in each set
-                  will have the leftmost i bits be ones and the rightmost 128-i bits be zeros, for
-                  i in [1,128].</li>
+                  the set of 256 plaintext values described below and obtain the ciphertext
+                  values that result from <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC encryption of the given plaintext using a 256-bit key value of
+                  all zeros with an IV of all zeros.
+		  Plaintext value <i>i</i> in each set will have the leftmost <i>i</i> bits be ones and
+		  the rightmost 256-<i>i</i> bits be zeros, for <i>i</i> in [1,256].</li>
               </ul>
 	      <br/>
 	      To test the decrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will perform the
@@ -1564,9 +1568,9 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	    </p>
 	    <p>
 	      The evaluator will test the encrypt
-              functionality using a set of 200 plaintext, IV, and key 3- tuples. 100 of these will
-              use 128 bit keys, and 100 will use 256 bit keys. The plaintext and IV values will be
-              128-bit blocks. For each 3-tuple, 1000 iterations will be run as follows:
+              functionality using a set of 100 plaintext, IV, and key 3-tuples.
+	      The keys, plaintext, and IV values are each 256-bits.
+	      For each 3-tuple, 1000 iterations will be run as follows:
               <pre>
               # Input: PT, IV, Key
               for i = 1 to 1000:
@@ -1592,35 +1596,33 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      <p><b>Test 1: Known Answer Tests (KATs)</b></p>
 	      <p>
 There are four Known Answer Tests (KATs) described below.
-For all KATs, the plaintext, initialization vector (IV), and ciphertext values shall be 128-bit blocks.
+For all KATs, the plaintext, initialization vector (IV), and ciphertext values shall be 256-bit blocks.
 The results from each test may either be obtained by the validator directly or by supplying the inputs to the implementer and receiving the results in response.
 To determine correctness, the evaluator will compare the resulting values to those obtained by submitting the same inputs to a known good implementation.
 	      </p>
 	      <p>
-<b>Test 1a</b>: To test the encrypt functionality, the evaluator will supply a set of 10 plaintext values and obtain the ciphertext value that results from encryption of the given plaintext using a key value of all zeros and an IV of all zeros.
-Five plaintext values shall be encrypted with a 128-bit all zeros key, and the other five shall be encrypted with a 256-bit all zeros key.
-To test the decrypt functionality, the evaluator will perform the same test as for encrypt, using 10 ciphertext values as input.
+<b>Test 1a</b>: To test the encrypt functionality, the evaluator will supply 5 plaintext values and obtain the ciphertext value that results from encryption of the given plaintext using a 256-bit key value of all zeros and an IV of all zeros.
+To test the decrypt functionality, the evaluator will perform the same test as for encrypt, using the 5 ciphertext values as input.
 	      </p>
 	      <p>
 		<b>Test 1b</b>:
-		To test the encrypt functionality, the evaluator will supply a set of 10 key values and obtain the ciphertext value that results from encryption of an all zeros plaintext using the given key value and an IV of all zeros.
-Five of the key values shall be 128-bit keys, and the other five shall be 256-bit keys.
+		To test the encrypt functionality, the evaluator will supply 5 256-bit key values and obtain the ciphertext value that results from encryption of an all zeros plaintext using the given key value and an IV of all zeros.
 To test the decrypt functionality, the evaluator will perform the same test as for encrypt, using an all zero ciphertext value as input.
 	      </p>
 
 	      <p><b>Test 1c</b>:
-	      To test the encrypt functionality, the evaluator will supply the two sets of key values described below and obtain the ciphertext values that result from <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> encryption of an all zeros plaintext using the given key values and an IV of all zeros.
-The first set of keys shall have 128 128-bit keys, and the second shall have 256 256-bit keys.
-Key_i in each set shall have the leftmost i bits be ones and the rightmost N-i bits be zeros, for i in [1, N].
-To test the decrypt functionality, the evaluator will supply the two sets of key and ciphertext value pairs described below and obtain the plaintext value that results from decryption of the given ciphertext using the given key values and an IV of all zeros.
-The first set of key/ciphertext pairs shall have 128 128-bit key/ciphertext pairs, and the second set of key/ciphertext pairs shall have 256 256-bit pairs.
-Key_i in each set shall have the leftmost i bits be ones and the rightmost N-i bits be zeros for i in [1, N].
+	      To test the encrypt functionality, the evaluator will supply a set of key values described below and obtain the ciphertext values that result from <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> encryption of an all zeros plaintext using the given key values and an IV of all zeros.
+The set of keys shall have  shall have 256 256-bit keys.
+Key<i>i</i> shall have the leftmost i bits be ones and the rightmost 256-i bits be zeros, for i in [1, N].
+To test the decrypt functionality, the evaluator will supply the set of key and ciphertext value pairs described below and obtain the plaintext value that results from decryption of the given ciphertext using the given key values and an IV of all zeros.
+The  set of key/ciphertext pairs shall have 256 256-bit pairs.
+Key<i>i</i> shall have the leftmost i bits be ones and the rightmost 256-i bits be zeros for i in [1, N].
 The ciphertext value in each pair shall be the value that results in an all zeros plaintext when decrypted with its corresponding key.
 	      </p>
 
 	      <p><b>Test 1d</b>:
-	      To test the encrypt functionality, the evaluator will supply the set of 128 plaintext values described below and obtain the two ciphertext values that result from encryption of the given plaintext using a 128-bit key value of all zeros and using a 256 bit key value of all zeros, respectively, and an IV of all zeros.
-Plaintext value i in each set shall have the leftmost bits be ones and the rightmost 128-i bits be zeros, for i in [1, 128].
+	      To test the encrypt functionality, the evaluator will supply the set of 256 plaintext values described below and obtain the two ciphertext values that result from encryption of the given plaintext using a 256 bit key value of all zeros, respectively, and an IV of all zeros.
+Plaintext value i in each set shall have the leftmost bits be ones and the rightmost 256-i bits be zeros, for i in [1, 256].
 To test the decrypt functionality, the evaluator will perform the same test as for encrypt, using ciphertext values of the same form as the plaintext in the encrypt test as input.
 	      </p>
 
@@ -1638,7 +1640,10 @@ The plaintext shall be compared to the result of decrypting the same ciphertext 
 	      <p>For <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CTR mode perform the Monte Carlo Test for ECB Mode on the encryption engine of the counter mode implementation. There is no need to test the decryption engine.
 	      </p>
 	      <p>
-		The evaluator will test the encrypt functionality using 200 plaintext/key pairs. 100 of these shall use 128 bit keys, and 100 of these shall use 256 bit keys. The plaintext values shall be 128-bit blocks. For each pair, 1000 iterations shall be run as follows:
+		The evaluator will test the encrypt functionality using 100 plaintext/key pairs.
+		Each key shall be 256-bit.
+		The plaintext values shall be 256-bit blocks.
+		For each pair, 1000 iterations shall be run as follows:
 	      </p>
 	      For <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-ECB mode<br/>
 <pre>
@@ -1653,29 +1658,33 @@ PT = CT[i]
 This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation.
 </p>
 
-<p>If "invoke platform-provided" is selected, the evaluator confirms that SSH connections are only successful if appropriate algorithms and appropriate key sizes are configured. To do this, the evaluator will perform the following tests:</p>
 
-<p><b>Test 1</b>: [Conditional: <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is an SSH server]
-The evaluator will configure an SSH client to connect with an invalid cryptographic algorithm and key size for each listening SSH socket connection on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.
-The evaluator initiates SSH client connections to each listening SSH socket connection on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and observes that the connection fails in each attempt.
-</p>
 
-<p><b>Test 2</b>: [Conditional: <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is an SSH client]
-The evaluator will configure a listening SSH socket on a remote SSH server that accepts only invalid cryptographic algorithms and keys.
-The evaluator uses the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to attempt an SSH connection to this server and observes that the connection fails.
-</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
 	    <p>
      
               <b><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM Monte Carlo Tests</b><br/>
               The evaluator will test the authenticated encrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM for
               each combination of the following input parameter lengths: <ul>
-                <li>128 bit and 256 bit keys</li>
+                <li>256 bit keys</li>
                 <li>Two plaintext lengths. One of the plaintext lengths will be a non-zero integer
-                  multiple of 128 bits, if supported. The other plaintext length will not be an
-                  integer multiple of 128 bits, if supported.</li>
+                  multiple of 256 bits, if supported. The other plaintext length will not be an
+                  integer multiple of 256 bits, if supported.</li>
                 <li>Three AAD lengths. One AAD length will be 0, if supported. One AAD length will
-                  be a non-zero integer multiple of 128 bits, if supported. One AAD length will not
-                  be an integer multiple of 128 bits, if supported.</li>
+                  be a non-zero integer multiple of 256 bits, if supported. One AAD length will not
+                  be an integer multiple of 256 bits, if supported.</li>
                 <li>Two IV lengths. If 96 bit IV is supported, 96 bits will be one of the two IV
                   lengths tested.</li>
               </ul>The evaluator will test the encrypt functionality using a set of 10 key,
@@ -1705,7 +1714,7 @@ The evaluator uses the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>
 	      <p>
               The evaluator will test the generation-encryption and decryption-verification
               functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCM for the following input parameter and tag lengths: <ul>
-                <li>128 bit and 256 bit keys</li>
+                <li>256 bit key</li>
                 <li>Two payload lengths. One payload length will be the shortest supported payload
                   length, greater than or equal to zero bytes. The other payload length will be the
                   longest supported payload length, less than or equal to 32 bytes (256 bits).
@@ -1769,14 +1778,14 @@ The evaluator uses the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>
               <p>The evaluator will test the authenticated encrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM for each
                 combination of the following input parameter lengths: <br/>
               <ul>
-                <li>128 bit and 256 bit keys</li>
+                <li> 256 bit keys</li>
                 <li>Two plaintext lengths. One of the plaintext lengths will be a non-zero integer
-                  multiple of 128 bits, if supported. The other plaintext length will not be an integer
-                  multiple of 128 bits, if supported.
+                  multiple of 256 bits, if supported. The other plaintext length will not be an integer
+                  multiple of 256 bits, if supported.
                 </li>
                 <li>Three AAD lengths. One AAD length will be 0, if supported. One AAD length will
-                  be a non-zero integer multiple of 128 bits, if supported. One AAD length will not be
-                  an integer multiple of 128 bits, if supported.
+                  be a non-zero integer multiple of 256 bits, if supported. One AAD length will not be
+                  an integer multiple of 256 bits, if supported.
                 </li>
                 <li>Two IV lengths. If 96 bit IV is supported, 96 bits will be one of the two IV lengths
                   tested.
@@ -1805,14 +1814,14 @@ The evaluator uses the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>
 		The evaluator will test the encrypt functionality of XTS-AES for each combination of the
               following input parameter lengths:
               <ul>
-                <li>256 bit (for <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-128) and 512 bit (for <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-256) keys</li>
+                <li>512 bit (for <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-256) key</li>
                 <li>Three data unit (i.e., plaintext) lengths. One of the data unit lengths will be a nonzero
-                  integer multiple of 128 bits, if supported. One of the data unit lengths will be an
-                  integer multiple of 128 bits, if supported. The third data unit length will be either the
+                  integer multiple of 256 bits, if supported. One of the data unit lengths will be an
+                  integer multiple of 256 bits, if supported. The third data unit length will be either the
                   longest supported data unit length or 216 bits, whichever is smaller.
                 </li>
               </ul>
-              using a set of 100 (key, plaintext and 128-bit random tweak value) 3-tuples and obtain the
+              using a set of 100 (key, plaintext and 256-bit random tweak value) 3-tuples and obtain the
               ciphertext that results from XTS-AES encrypt.
 	      </p>
 	      <p>
@@ -1830,11 +1839,12 @@ The evaluator uses the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>
 		The evaluator will test the authenticated encryption functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KW for EACH
 		combination of the following input parameter lengths:
               <ul>
-                <li>128 and 256 bit key encryption keys (KEKs)</li>
-                <li>Three plaintext lengths. One of the plaintext lengths will be two semi-blocks (128
-                  bits). One of the plaintext lengths will be three semi-blocks (192 bits). The third data
-                  unit length will be the longest supported plaintext length less than or equal to 64
-                  semi-blocks (4096 bits).
+                <li>256 bit key encryption keys (KEKs)</li>
+                <li>Three plaintext lengths.
+		One of the plaintext lengths will be two semi-blocks (256 bits).
+		One of the plaintext lengths will be three semi-blocks (192 bits).
+		The third data unit length will be the longest supported plaintext
+		length less than or equal to 64 semi-blocks (4096 bits).
                 </li>
               </ul>
               using a set of 100 key and plaintext pairs and obtain the ciphertext that results from <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KW
@@ -1867,9 +1877,9 @@ The evaluator uses the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>
         <div class="comp" id="FCS_COP.1/HASH"><h4>FCS_COP.1/HASH Cryptographic Operation - Hashing (Refined)</h4>
           <div class="element"><div class="reqid" id="FCS_COP.1.1/HASH"><a href="#FCS_COP.1.1/HASH" class="abbr">FCS_COP.1.1/HASH</a></div><div class="reqdesc">The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall perform [<i>cryptographic hashing services</i>] in accordance with a
               specified cryptographic algorithm <b>
-              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_45"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-1</span></li><li style=""><span class="selectable-content" id="_s_46"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-256</span></li><li style=""><span class="selectable-content" id="_s_47"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384</span></li><li style=""><span class="selectable-content" id="_s_48"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512</span></li></ul>]
+              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_43"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-1</span></li><li style=""><span class="selectable-content" id="_s_44"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-256</span></li><li style=""><span class="selectable-content" id="_s_45"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384</span></li><li style=""><span class="selectable-content" id="_s_46"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512</span></li></ul>]
 			  and message digest sizes
-              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_49">160 bits</span></li><li style=""><span class="selectable-content" id="_s_50">256 bits</span></li><li style=""><span class="selectable-content" id="_s_51">384 bits</span></li><li style=""><span class="selectable-content" id="_s_52">512 bits</span></li></ul>]</b> that meet the following: [<i><abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> Pub 180-4</i>]. <div class="appnote"><span class="note-header">Application
+              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_47">160 bits</span></li><li style=""><span class="selectable-content" id="_s_48">256 bits</span></li><li style=""><span class="selectable-content" id="_s_49">384 bits</span></li><li style=""><span class="selectable-content" id="_s_50">512 bits</span></li></ul>]</b> that meet the following: [<i><abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> Pub 180-4</i>]. <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
 	      <p>
@@ -1953,8 +1963,8 @@ The evaluator uses the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>
 	      </div></div></div></div>
         <div class="comp" id="FCS_COP.1/SIGN"><h4>FCS_COP.1/SIGN Cryptographic Operation - Signing (Refined)</h4>
           <div class="element"><div class="reqid" id="FCS_COP.1.1/SIGN"><a href="#FCS_COP.1.1/SIGN" class="abbr">FCS_COP.1.1/SIGN</a></div><div class="reqdesc">The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall perform [<i>cryptographic signature services (generation and
-              verification)</i>] in accordance with a specified cryptographic algorithm <b>[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_53">RSA schemes using cryptographic key sizes of 2048-bit or greater
-                  that meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)",  Section 4</span></li><li style=""><span class="selectable-content" id="s-ec-certs"><abbr class="dyn-abbr"><a href="#abbr_ECDSA">ECDSA</a></abbr> schemes using "<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> curves" P-384 and [<b>selection</b>: <span class="selectable-content" id="_s_55">P-521</span>,  <span class="selectable-content" id="_s_56">no other curves</span> ]
+              verification)</i>] in accordance with a specified cryptographic algorithm <b>[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_51">RSA schemes using cryptographic key sizes of 2048-bit or greater
+                  that meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)",  Section 4</span></li><li style=""><span class="selectable-content" id="s-ec-certs"><abbr class="dyn-abbr"><a href="#abbr_ECDSA">ECDSA</a></abbr> schemes using "<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> curves" P-384 and [<b>selection</b>: <span class="selectable-content" id="_s_53">P-521</span>,  <span class="selectable-content" id="_s_54">no other curves</span> ]
 		  that meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature   Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)", Section 5</span></li></ul>]</b>
               <strike>and cryptographic key sizes [assignment: cryptographic algorithm]
                 that meet the following: [assignment: list of standards]</strike>.
@@ -2024,11 +2034,11 @@ The evaluator uses the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>
         <div class="comp" id="FCS_COP.1/KEYHMAC"><h4>FCS_COP.1/KEYHMAC Cryptographic Operation - Keyed-Hash Message Authentication (Refined)</h4>
           <div class="element"><div class="reqid" id="FCS_COP.1.1/KEYHMAC"><a href="#FCS_COP.1.1/KEYHMAC" class="abbr">FCS_COP.1.1/KEYHMAC</a></div><div class="reqdesc">The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall perform [<i>keyed-hash message authentication services</i>]
             in accordance with a specified cryptographic algorithm<b>
-              [<b>selection</b>: <span class="selectable-content" id="_s_57"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-1</span>,  <span class="selectable-content" id="_s_58"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-256</span>,  <span class="selectable-content" id="_s_59"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384</span>,  <span class="selectable-content" id="_s_60"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512</span> ]
+              [<b>selection</b>: <span class="selectable-content" id="_s_55"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-1</span>,  <span class="selectable-content" id="_s_56"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-256</span>,  <span class="selectable-content" id="_s_57"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384</span>,  <span class="selectable-content" id="_s_58"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512</span> ]
               with key sizes [<b>assignment</b>: 
      <span class="assignable-content">key size (in bits) used in <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr></span>]
               and message digest</b> sizes
-	      [<b>selection</b>: <span class="selectable-content" id="_s_61">160 bits</span>,  <span class="selectable-content" id="_s_62">256 bits</span>,  <span class="selectable-content" id="_s_63">384 bits</span>,  <span class="selectable-content" id="_s_64">512 bits</span> ] that meet the following: [<i><abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> Pub 198-1 The Keyed-Hash Message
+	      [<b>selection</b>: <span class="selectable-content" id="_s_59">160 bits</span>,  <span class="selectable-content" id="_s_60">256 bits</span>,  <span class="selectable-content" id="_s_61">384 bits</span>,  <span class="selectable-content" id="_s_62">512 bits</span> ] that meet the following: [<i><abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> Pub 198-1 The Keyed-Hash Message
                 Authentication Code and <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> Pub 180-4 Secure Hash Standard</i>]. <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -2066,7 +2076,7 @@ The evaluator uses the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>
           <div class="element"><div class="reqid" id="FCS_RBG_EXT.1.1"><a href="#FCS_RBG_EXT.1.1" class="abbr">FCS_RBG_EXT.1.1</a></div><div class="reqdesc">
               The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall perform all deterministic random bit generation (<abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr>) services in
               accordance with <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> Special Publication 800-90A using
-              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_65">Hash_DRBG (any)</span></li><li style=""><span class="selectable-content" id="_s_66">HMAC_DRBG (any)</span></li><li style=""><span class="selectable-content" id="_s_67">CTR_DRBG (<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>)</span></li></ul>]
+              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_63">Hash_DRBG (any)</span></li><li style=""><span class="selectable-content" id="_s_64">HMAC_DRBG (any)</span></li><li style=""><span class="selectable-content" id="_s_65">CTR_DRBG (<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>)</span></li></ul>]
 	      .
             <div class="appnote"><span class="note-header">Application
       Note:
@@ -2081,9 +2091,12 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
           <div class="element"><div class="reqid" id="FCS_RBG_EXT.1.2"><a href="#FCS_RBG_EXT.1.2" class="abbr">FCS_RBG_EXT.1.2</a></div><div class="reqdesc">
               The deterministic <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> used by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall be seeded by an entropy source that
               accumulates entropy from a
-              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_68">software-based noise source</span></li><li style=""><span class="selectable-content" id="_s_69">platform-based noise source</span></li></ul>]
-              with a minimum of
-              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_70">128 bits</span></li><li style=""><span class="selectable-content" id="_s_71">256 bits</span></li></ul>]
+              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_66">software-based noise source</span></li><li style=""><span class="selectable-content" id="_s_67">platform-based noise source</span></li></ul>]
+              with a minimum of 256 bits
+              
+              
+              
+              
               of entropy at least equal to the greatest security strength (according to <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-57)
               of the keys and hashes that it will generate.
 	    <div class="appnote"><span class="note-header">Application
@@ -2098,8 +2111,9 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
               appropriate number of bits of entropy that corresponds to the greatest security
               strength of the algorithms included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
 	      Security strength is defined in Tables
-              2 and 3 of <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-57A. For example, if the implementation includes 2048-bit RSA
-              (security strength of 112 bits), <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> 128 (security strength 128 bits), and
+              2 and 3 of <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-57A.
+	      For example, if the implementation includes 3072-bit RSA
+              (security strength of 128 bits), <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> 256 (security strength 256 bits), and
               <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-256 (security strength 256 bits), then the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author would select 256 bits.
 	    </p>
             </span></div></div></div>
@@ -2267,10 +2281,10 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
 	  
 	  
           <div class="element"><div class="reqid" id="FDP_IFC_EXT.1.1"><a href="#FDP_IFC_EXT.1.1" class="abbr">FDP_IFC_EXT.1.1</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall
-	    [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_72">provide an interface which allows a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client to protect all <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic using IPsec</span></li><li style=""><span class="selectable-content" id="s-provides-vpnclient">provide a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client that can protect all <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic using IPsec</span></li></ul>]
+	    [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_68">provide an interface which allows a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client to protect all <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic using IPsec</span></li><li style=""><span class="selectable-content" id="s-provides-vpnclient">provide a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client that can protect all <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic using IPsec</span></li></ul>]
 	    with the exception of <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic required to establish the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> connection
 	    and
-	    [<b>selection</b>: <span class="selectable-content" id="_s_74">signed updates directly from the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor</span>,  <span class="selectable-content" id="_s_75">no other traffic</span> ]
+	    [<b>selection</b>: <span class="selectable-content" id="_s_70">signed updates directly from the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor</span>,  <span class="selectable-content" id="_s_71">no other traffic</span> ]
 	    .
             <div class="appnote"><span class="note-header">Application
       Note:
@@ -2382,8 +2396,8 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
 	      The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall be capable of performing the following management functions:
 	      <br/>
 	      <table class="mfs" style="width: 100%;"><tr class="header"><td>#</td><td>Management Function</td><td>Administrator</td><td>User</td></tr>
-<tr id="_mf_1"><td>1</td><td style="text-align:left">Enable/disable [<b>selection</b>: <span class="selectable-content" id="_s_76">screen lock</span>,  <span class="selectable-content" id="_s_77">session timeout</span> ]</td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
-<tr id="_mf_2"><td>2</td><td style="text-align:left">Configure [<b>selection</b>: <span class="selectable-content" id="_s_78">screen lock</span>,  <span class="selectable-content" id="_s_79">session</span> ] inactivity timeout</td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+<tr id="_mf_1"><td>1</td><td style="text-align:left">Enable/disable [<b>selection</b>: <span class="selectable-content" id="_s_72">screen lock</span>,  <span class="selectable-content" id="_s_73">session timeout</span> ]</td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+<tr id="_mf_2"><td>2</td><td style="text-align:left">Configure [<b>selection</b>: <span class="selectable-content" id="_s_74">screen lock</span>,  <span class="selectable-content" id="_s_75">session</span> ] inactivity timeout</td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_3"><td>3</td><td style="text-align:left">import keys/secrets into  the secure key storage</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_4"><td>4</td><td style="text-align:left">Configure local audit storage capacity</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_5"><td>5</td><td style="text-align:left">Configure minimum password length</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
@@ -2393,7 +2407,7 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
 <tr id="_mf_9"><td>9</td><td style="text-align:left">Configure minimum number of lowercase characters in password</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_10"><td>10</td><td style="text-align:left">
 Configure lockout policy for unsuccessful authentication attempts through
-                  [<b>selection</b>: <span class="selectable-content" id="_s_80">timeouts between attempts</span>,  <span class="selectable-content" id="_s_81">limiting number of attempts during a time period</span> ]
+                  [<b>selection</b>: <span class="selectable-content" id="_s_76">timeouts between attempts</span>,  <span class="selectable-content" id="_s_77">limiting number of attempts during a time period</span> ]
 		</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_11"><td>11</td><td style="text-align:left">Configure host-based firewall</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_12"><td>12</td><td style="text-align:left">Configure name/address of directory server with which to bind</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
@@ -2502,7 +2516,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can enroll in such a
 	      </div></div></div></div>
         <div class="comp" id="FPT_ASLR_EXT.1"><h4>FPT_ASLR_EXT.1 Address Space Layout Randomization</h4>
           <div class="element"><div class="reqid" id="FPT_ASLR_EXT.1.1"><a href="#FPT_ASLR_EXT.1.1" class="abbr">FPT_ASLR_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall always randomize process address space memory locations with
-	    [<b>selection</b>: <span class="selectable-content" id="_s_82">8</span>,  <span class="selectable-content" id="_s_83">[<b>assignment</b>: 
+	    [<b>selection</b>: <span class="selectable-content" id="_s_78">8</span>,  <span class="selectable-content" id="_s_79">[<b>assignment</b>: 
      <span class="assignable-content">number greater than 8</span>]</span> ]
 	    bits of entropy except for
                 [<b>assignment</b>: 
@@ -2668,7 +2682,7 @@ This test can also be completed on the same hardware and rebooting between appli
 
 	<div class="comp" id="FPT_SBOP_EXT.1"><h4>FPT_SBOP_EXT.1 Stack Buffer Overflow Protection</h4>
           <div class="element"><div class="reqid" id="FPT_SBOP_EXT.1.1"><a href="#FPT_SBOP_EXT.1.1" class="abbr">FPT_SBOP_EXT.1.1</a></div><div class="reqdesc">
-The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall [<b>selection</b>: <span class="selectable-content" id="_s_84">employ stack-based buffer overflow protections</span>,  <span class="selectable-content" id="_s_85">not store parameters/variables in the same data structures as control flow values</span> ].
+The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall [<b>selection</b>: <span class="selectable-content" id="_s_80">employ stack-based buffer overflow protections</span>,  <span class="selectable-content" id="_s_81">not store parameters/variables in the same data structures as control flow values</span> ].
 <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -2699,7 +2713,7 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
         <div class="comp" id="FPT_SRP_EXT.1"><h4>FPT_SRP_EXT.1 Software Restriction Policies</h4><div class="statustag"><i><b> This is an objective component.
           </b></i></div>
           <div class="element"><div class="reqid" id="FPT_SRP_EXT.1.1"><a href="#FPT_SRP_EXT.1.1" class="abbr">FPT_SRP_EXT.1.1</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall restrict execution to only programs which match an administrator-specified
-              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_86">file path</span></li><li style=""><span class="selectable-content" id="_s_87">file digital signature</span></li><li style=""><span class="selectable-content" id="_s_88">version</span></li><li style=""><span class="selectable-content" id="_s_89">hash</span></li><li style=""><span class="selectable-content" id="_s_90">[<b>assignment</b>: 
+              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_82">file path</span></li><li style=""><span class="selectable-content" id="_s_83">file digital signature</span></li><li style=""><span class="selectable-content" id="_s_84">version</span></li><li style=""><span class="selectable-content" id="_s_85">hash</span></li><li style=""><span class="selectable-content" id="_s_86">[<b>assignment</b>: 
      <span class="assignable-content">other characteristics</span>]</span></li></ul>]
 	      .
             <div class="appnote"><span class="note-header">Application
@@ -2771,10 +2785,10 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
               </div></div></div></div>
         <div class="comp" id="FPT_TST_EXT.1"><h4>FPT_TST_EXT.1 Boot Integrity</h4>
           <div class="element"><div class="reqid" id="FPT_TST_EXT.1.1"><a href="#FPT_TST_EXT.1.1" class="abbr">FPT_TST_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall verify the integrity of the bootchain up through the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> kernel and
-              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-verify-all-code">all executable code stored in mutable media</span></li><li style=""><span class="selectable-content" id="_s_92">[<b>assignment</b>: 
-     <span class="assignable-content">list of other executable code</span>]</span></li><li style=""><span class="selectable-content" id="_s_93">no other executable code</span></li></ul>]
+              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-verify-all-code">all executable code stored in mutable media</span></li><li style=""><span class="selectable-content" id="_s_88">[<b>assignment</b>: 
+     <span class="assignable-content">list of other executable code</span>]</span></li><li style=""><span class="selectable-content" id="_s_89">no other executable code</span></li></ul>]
 	      prior to its execution through the use of
-              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_94">a digital signature using a hardware-protected asymmetric key</span></li><li style=""><span class="selectable-content" id="s-boot-x509">a digital signature using an X509 certificate with hardware-based protection</span></li><li style=""><span class="selectable-content" id="_s_96">a hardware-protected hash</span></li></ul>]
+              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_90">a digital signature using a hardware-protected asymmetric key</span></li><li style=""><span class="selectable-content" id="s-boot-x509">a digital signature using an X509 certificate with hardware-based protection</span></li><li style=""><span class="selectable-content" id="_s_92">a hardware-protected hash</span></li></ul>]
 	      .
             <div class="appnote"><span class="note-header">Application
       Note:
@@ -2868,7 +2882,7 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
 			</span></div></div></div>
           <div class="element"><div class="reqid" id="FPT_TUD_EXT.1.2"><a href="#FPT_TUD_EXT.1.2" class="abbr">FPT_TUD_EXT.1.2</a></div><div class="reqdesc">
               The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall 
-		[<b>selection</b>: <span class="selectable-content" id="_s_97">cryptographically verify</span>,  <span class="selectable-content" id="_s_98">invoke platform-provided functionality to cryptographically verify</span> ]
+		[<b>selection</b>: <span class="selectable-content" id="_s_93">cryptographically verify</span>,  <span class="selectable-content" id="_s_94">invoke platform-provided functionality to cryptographically verify</span> ]
               updates to itself using a digital
               signature prior to installation using schemes specified in <a href="#FCS_COP.1/SIGN">FCS_COP.1/SIGN</a>.
 	    <div class="appnote"><span class="note-header">Application
@@ -3038,7 +3052,7 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall be able
 		  <ul><li>Authentication events (Success/Failure);</li>
                   <li>Use of privileged/special rights events (Successful and unsuccessful security, audit, and configuration changes);</li>
                   <li>Privilege or role escalation events (Success/Failure);</li>
-		  <li>[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_99">File and object events (Successful and unsuccessful attempts to create, access, delete, modify, modify permissions)</span></li><li style=""><span class="selectable-content" id="_s_100">User and Group management events (Successful and unsuccessful add, delete, modify, disable, enable, and credential change)</span></li><li style=""><span class="selectable-content" id="_s_101">Audit and log data access events (Success/Failure)</span></li><li style=""><span class="selectable-content" id="_s_102">Cryptographic verification of software (Success/Failure)</span></li><li style=""><span class="selectable-content" id="_s_103">Attempted application invocation with arguments (Success/Failure e.g. due to software restriction policy)</span></li><li style=""><span class="selectable-content" id="_s_104">System reboot, restart, and shutdown events (Success/Failure)</span></li><li style=""><span class="selectable-content" id="_s_105">Kernel module loading and unloading events (Success/Failure)</span></li><li style=""><span class="selectable-content" id="_s_106">Administrator or root-level access events (Success/Failure)</span></li><li style=""><span class="selectable-content" id="_s_107">[<b>assignment</b>: 
+		  <li>[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_95">File and object events (Successful and unsuccessful attempts to create, access, delete, modify, modify permissions)</span></li><li style=""><span class="selectable-content" id="_s_96">User and Group management events (Successful and unsuccessful add, delete, modify, disable, enable, and credential change)</span></li><li style=""><span class="selectable-content" id="_s_97">Audit and log data access events (Success/Failure)</span></li><li style=""><span class="selectable-content" id="_s_98">Cryptographic verification of software (Success/Failure)</span></li><li style=""><span class="selectable-content" id="_s_99">Attempted application invocation with arguments (Success/Failure e.g. due to software restriction policy)</span></li><li style=""><span class="selectable-content" id="_s_100">System reboot, restart, and shutdown events (Success/Failure)</span></li><li style=""><span class="selectable-content" id="_s_101">Kernel module loading and unloading events (Success/Failure)</span></li><li style=""><span class="selectable-content" id="_s_102">Administrator or root-level access events (Success/Failure)</span></li><li style=""><span class="selectable-content" id="_s_103">[<b>assignment</b>: 
      <span class="assignable-content">other specifically defined auditable events</span>].</span></li></ul>]
 		  </li>
 		  </ul>
@@ -3113,21 +3127,21 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall be able
         <div class="comp" id="FIA_AFL.1"><h4>FIA_AFL.1 Authentication failure handling (Refined)</h4>
           <div class="element"><div class="reqid" id="FIA_AFL.1.1"><a href="#FIA_AFL.1.1" class="abbr">FIA_AFL.1.1</a></div><div class="reqdesc">
             The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall detect when
-            [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_108">[<b>assignment</b>: 
-     <span class="assignable-content">positive integer number</span>]</span></li><li style=""><span class="selectable-content" id="_s_109">an administrator configurable positive integer within [<b>assignment</b>: 
+            [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_104">[<b>assignment</b>: 
+     <span class="assignable-content">positive integer number</span>]</span></li><li style=""><span class="selectable-content" id="_s_105">an administrator configurable positive integer within [<b>assignment</b>: 
      <span class="assignable-content">range of acceptable values</span>]</span></li></ul>]
             unsuccessful authentication attempts occur related to
 	    <b>
 	      events with
-            [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_110">authentication based on user name and password</span></li><li style=""><span class="selectable-content" id="_s_111">authentication based on user name and a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr> that
-	      releases an asymmetric key stored in <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>-protected storage</span></li><li style=""><span class="selectable-content" id="_s_112">authentication based on X.509 certificates</span></li></ul>]
+            [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_106">authentication based on user name and password</span></li><li style=""><span class="selectable-content" id="_s_107">authentication based on user name and a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr> that
+	      releases an asymmetric key stored in <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>-protected storage</span></li><li style=""><span class="selectable-content" id="_s_108">authentication based on X.509 certificates</span></li></ul>]
 	    </b>.
 	    </div></div>
           <div class="element"><div class="reqid" id="FIA_AFL.1.2"><a href="#FIA_AFL.1.2" class="abbr">FIA_AFL.1.2</a></div><div class="reqdesc">
 	      When the defined number of unsuccessful authentication attempts for an
 	      account has been <b>met</b>, the <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall:
 	      <b>
-	      [<b>selection</b>: <span class="selectable-content" id="_s_113">Account Lockout</span>,  <span class="selectable-content" id="_s_114">Account Disablement</span>,  <span class="selectable-content" id="_s_115">Mandatory Credential Reset</span>,  <span class="selectable-content" id="_s_116">[<b>assignment</b>: 
+	      [<b>selection</b>: <span class="selectable-content" id="_s_109">Account Lockout</span>,  <span class="selectable-content" id="_s_110">Account Disablement</span>,  <span class="selectable-content" id="_s_111">Mandatory Credential Reset</span>,  <span class="selectable-content" id="_s_112">[<b>assignment</b>: 
      <span class="assignable-content">list of actions</span>]</span> ]
 	      </b>.
             <div class="appnote"><span class="note-header">Application
@@ -3177,8 +3191,8 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall be able
         <div class="comp" id="FIA_UAU.5"><h4>FIA_UAU.5 Multiple Authentication Mechanisms (Refined)</h4>
           <div class="element"><div class="reqid" id="FIA_UAU.5.1"><a href="#FIA_UAU.5.1" class="abbr">FIA_UAU.5.1</a></div><div class="reqdesc">
 	      The <span class="refinement"><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></span> shall provide the following authentication mechanisms
-	      <b>[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_117">authentication based on user name and password</span></li><li style=""><span class="selectable-content" id="_s_118">authentication based on user name and a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr> that releases an asymmetric key stored
-		in <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>-protected storage</span></li><li style=""><span class="selectable-content" id="_s_119">combination of authentication based on user name, password, and time-based one-time password</span></li><li style=""><span class="selectable-content" id="_s_120">authentication based on X.509 certificates</span></li><li style=""><span class="selectable-content" id="s-uau-ssh">for use in SSH only, SSH public key-based authentication as specified by the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
+	      <b>[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_113">authentication based on user name and password</span></li><li style=""><span class="selectable-content" id="_s_114">authentication based on user name and a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr> that releases an asymmetric key stored
+		in <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>-protected storage</span></li><li style=""><span class="selectable-content" id="_s_115">combination of authentication based on user name, password, and time-based one-time password</span></li><li style=""><span class="selectable-content" id="_s_116">authentication based on X.509 certificates</span></li><li style=""><span class="selectable-content" id="s-uau-ssh">for use in SSH only, SSH public key-based authentication as specified by the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
         version 
         1.0</a></span></li></ul>]
 	      </b>
@@ -3311,8 +3325,8 @@ the authentication mechanism(s) behave as documented in the <abbr class="dyn-abb
                     <li>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall validate that any CA certificate includes "Certificate Signing" as a  purpose the key usage field</li>
 
                     <li>The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall validate the revocation status of the certificate using 
-						[<b>selection</b>: <span class="selectable-content" id="_s_122"><abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6960</span>,  <span class="selectable-content" id="_s_123"><abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 5759</span>,  <span class="selectable-content" id="_s_124">an <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Status Request Extension (<abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling) as specified
-						      in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6066</span>,  <span class="selectable-content" id="_s_125"> <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Multi-Certificate Status Request Extension 
+						[<b>selection</b>: <span class="selectable-content" id="_s_118"><abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6960</span>,  <span class="selectable-content" id="_s_119"><abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 5759</span>,  <span class="selectable-content" id="_s_120">an <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Status Request Extension (<abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling) as specified
+						      in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6066</span>,  <span class="selectable-content" id="_s_121"> <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Multi-Certificate Status Request Extension 
 							  (i.e., <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> Multi-Stapling) as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6961</span> ]
 							  
 					<li>The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall validate the extendedKeyUsage field according to the following rules:
@@ -3385,7 +3399,7 @@ If <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> is selected, the ev
 <li><b>Test 7: </b> The evaluator will modify any byte in the public key of the certificate and demonstrate that the certificate fails to validate.
 (The signature of the certificate will not validate.)</li>
 	</ul>
-<div class="dependent">The following content should be included if:<ul><li><a href="#s-ec-certs">ECDSA schemes using "NIST curves" P-384 and [<b>selection</b>: <span class="selectable-content" id="_s_55">P-521</span>,  <span class="selectable-content" id="_s_56">no other curves</span> ]
+<div class="dependent">The following content should be included if:<ul><li><a href="#s-ec-certs">ECDSA schemes using "NIST curves" P-384 and [<b>selection</b>: <span class="selectable-content" id="_s_53">P-521</span>,  <span class="selectable-content" id="_s_54">no other curves</span> ]
 		  that meet the following: FIPS PUB 186-4, "Digital Signature   Standard (DSS)", Section 5</a>
              is selected from 
              <a href="#FCS_COP.1.1/SIGN">FCS_COP.1.1/SIGN</a></li></ul><div class="dependent-content"><div>
@@ -3425,8 +3439,8 @@ the node certificate to be tested, two Intermediate CAs, and the
         <div class="comp" id="FIA_X509_EXT.2"><h4>FIA_X509_EXT.2 X.509 Certificate Authentication</h4>
           <div class="element"><div class="reqid" id="FIA_X509_EXT.2.1"><a href="#FIA_X509_EXT.2.1" class="abbr">FIA_X509_EXT.2.1</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall use X.509v3 certificates as defined by <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 5280 to support
               authentication for <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> and
-			  [<b>selection</b>: <span class="selectable-content" id="_s_126"><abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr></span>,  <span class="selectable-content" id="_s_127"><abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr></span>,  <span class="selectable-content" id="_s_128">[<b>assignment</b>: 
-     <span class="assignable-content">other protocols</span>]</span>,  <span class="selectable-content" id="_s_129">no other protocols</span> ]
+			  [<b>selection</b>: <span class="selectable-content" id="_s_122"><abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr></span>,  <span class="selectable-content" id="_s_123"><abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr></span>,  <span class="selectable-content" id="_s_124">[<b>assignment</b>: 
+     <span class="assignable-content">other protocols</span>]</span>,  <span class="selectable-content" id="_s_125">no other protocols</span> ]
 			  connections.
 			</div></div>
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FIA_X509_EXT.2">FIA_X509_EXT.2</a></div>
@@ -3471,7 +3485,7 @@ the node certificate to be tested, two Intermediate CAs, and the
         1.0</a></span></li></ul>]
 		    to provide a trusted communication channel between itself and
 		    authorized <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr> entities supporting the following capabilities:
-		    [<b>selection</b>: <span class="selectable-content" id="_s_134">audit server</span>,  <span class="selectable-content" id="_s_135">authentication server</span>,  <span class="selectable-content" id="_s_136">management server</span>,  <span class="selectable-content" id="_s_137">[<b>assignment</b>: 
+		    [<b>selection</b>: <span class="selectable-content" id="_s_130">audit server</span>,  <span class="selectable-content" id="_s_131">authentication server</span>,  <span class="selectable-content" id="_s_132">management server</span>,  <span class="selectable-content" id="_s_133">[<b>assignment</b>: 
      <span class="assignable-content">other capabilities</span>]</span> ]
 		    that is logically distinct from other communication
 		    channels and provides assured identification of its end points and protection of the channel
@@ -3511,7 +3525,7 @@ the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Fu
         <div class="comp" id="FTP_TRP.1"><h4>FTP_TRP.1 Trusted Path</h4>
             <div class="element"><div class="reqid" id="FTP_TRP.1.1"><a href="#FTP_TRP.1.1" class="abbr">FTP_TRP.1.1</a></div><div class="reqdesc">
 The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall provide a communication path between itself and
-[<b>selection</b>: <span class="selectable-content" id="_s_138">remote</span>,  <span class="selectable-content" id="_s_139">local</span> ]
+[<b>selection</b>: <span class="selectable-content" id="_s_134">remote</span>,  <span class="selectable-content" id="_s_135">local</span> ]
 users that is logically distinct from other communication paths and provides assured
 identification of its endpoints and protection of the communicated data from
 [modification, disclosure].
@@ -3535,7 +3549,7 @@ This requirement is tested with the  evaluation activities for  <a href="#FTP_TR
 		</p>
 	      </span></div></div></div>
             <div class="element"><div class="reqid" id="FTP_TRP.1.2"><a href="#FTP_TRP.1.2" class="abbr">FTP_TRP.1.2</a></div><div class="reqdesc"> The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall permit
-                [<b>selection</b>: <span class="selectable-content" id="_s_140">the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></span>,  <span class="selectable-content" id="_s_141">local users</span>,  <span class="selectable-content" id="_s_142">remote users</span> ]
+                [<b>selection</b>: <span class="selectable-content" id="_s_136">the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></span>,  <span class="selectable-content" id="_s_137">local users</span>,  <span class="selectable-content" id="_s_138">remote users</span> ]
                 to initiate communication via the trusted path.
               <div class="appnote"><span class="note-header">Application
       Note:
