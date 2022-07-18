@@ -599,7 +599,7 @@ users of the same system.
                   Standard (DSS)", Appendix B.1</selectable>
 		  <!-- <selectable id="s-keygen-ffc-dh"><snip>Diffie-Hellman Group 14</snip> that meet the following: RFC 3526 </selectable> -->
 		  <selectable id="s-keygen-ffc-safeprime"><snip>safe primes</snip> that meet the following: 
-				  ‘NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes
+		  NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes"
 		  </selectable>
 		  </selectables>
 		</selectable>
@@ -781,7 +781,8 @@ users of the same system.
             <title>The OS shall <h:b>implement functionality to perform cryptographic key establishment</h:b>
               in accordance with a specified cryptographic key <h:b>establishment</h:b> method:
               <selectables linebreak="yes">
-		<selectable id="s-keyestab-rsa"><snip>RSA-based</snip> key establishment schemes that meets the following: RSAES-PKCS1-v1_5 as specified in Section 7.2 of RFC 8017, “Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.2</selectable>
+		<selectable id="s-keyestab-rsa"><snip>RSA-based</snip> key establishment schemes that meets the following:
+		RSAES-PKCS1-v1_5 as specified in Section 7.2 of RFC 8017, “Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.2"</selectable>
 		
 		<selectable id="s-keyestab-ecc"><snip>Elliptic curve-based</snip> key establishment schemes that meets the following: NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</selectable>
 		<selectable id="s-keyestab-ffc"><snip>Finite field-based</snip> key establishment schemes
@@ -844,7 +845,7 @@ users of the same system.
 		      To conduct this test the evaluator will generate or obtain test vectors from a known good implementation of the OS's supported schemes.
 		      For each supported key agreement scheme-key agreement role combination, KDF type, and, if supported, key confirmation role- key confirmation type combination,
 		      the tester will generate 10 sets of test vectors.
-		      The data set consists of the NIST approved curve (ECC) per 10 sets of public keys.
+		      The data set consists of one set of domain parameter values (FCC) or the NIST approved curve (ECC) per 10 sets of public keys.
 		      These keys are static, ephemeral or both depending on the scheme being tested.
 		      </h:p>
 		      <h:p> The evaluator will obtain the DKM, the
@@ -869,9 +870,10 @@ users of the same system.
 		<h:p> The Validity test verifies the ability of the OS to
                 recognize another party's valid and invalid key agreement results with or without
                 key confirmation. To conduct this test, the evaluator will obtain a list of the
-                supporting cryptographic functions included in the SP800-56A key agreement
-                implementation to determine which errors the OS should be able to recognize. The
-                evaluator generates a set of 30 test vectors consisting of data
+                supporting cryptographic functions included in the SP800-56A Revision 3 key agreement
+                implementation to determine which errors the OS should be able to recognize.
+		The
+                evaluator generates a set of 24 FCC or 30 ECC test vectors consisting of data
                 sets including domain parameter values or NIST approved curves, the evaluator's
                 public keys, the OS's public/private key pairs, MAC tag, and any inputs used in the
                 KDF, such as the other info and OS id fields.
@@ -880,10 +882,10 @@ users of the same system.
 		The evaluator will inject an
                 error in some of the test vectors to test that the OS recognizes invalid key
                 agreement results caused by the following fields being incorrect: the shared secret
-                value Z, the DKM, the other information field OI, the data to be MAC&apos;d, or the
+                value Z, the DKM, the other information field OI, the data to be MACed, or the
                 generated MAC tag. If the OS contains the full or partial (only ECC) public key
-                validation, the evaluator will also individually inject errors in both parties&apos;
-                static public keys, both parties&apos; ephemeral public keys and the OS&apos;s static private
+                validation, the evaluator will also individually inject errors in both parties'
+                static public keys, both parties' ephemeral public keys and the OS's static private
                 key to assure the OS detects errors in the public key validation function and/or
                 the partial key validation function (in ECC only).
 		At least two of the test vectors will remain unmodified and therefore
@@ -1631,7 +1633,7 @@ This result shall be compared to the result of running 1000 iterations with the 
               to be hashed is divisible by 8. The second mode is the bit-oriented mode. In this mode
               the TSF hashes messages of arbitrary length. As there are different
               tests for each mode, an indication is given in the following sections for the
-              bit-oriented vs. the byte-oriented testmacs. The evaluator will perform all of the
+              bit-oriented vs. the byte-oriented test MACs. The evaluator will perform all of the
               following tests for each hash algorithm implemented by the TSF and
               used to satisfy the requirements of this PP.
 	      </h:p>
@@ -1669,7 +1671,7 @@ This result shall be compared to the result of running 1000 iterations with the 
                   implementations only. The evaluator will randomly generate a seed that is n bits long,
                   where n is the length of the message digest produced by the hash function to be
                   tested. The evaluator will then formulate a set of 100 messages and associated digests
-                  by following the algorithm provided in Figure 1 of [SHAVS]. The evaluator will then
+                  by following the algorithm provided in Figure 1 of <xref to="bib-shavs"/>. The evaluator will then
                   ensure that the correct result is produced when the messages are provided to the
                   TSF.
 		</test>
@@ -4285,6 +4287,12 @@ The evaluator will also perform the following
             Cost for Security in Agency Information Technology Investments</h:a>, OMB M-06-19, July
           12, 2006.
         </description>
+    </entry>
+    <entry id="bib-shavs">
+      <tag>SHAVS</tag>
+      <description>
+	<h:a href="https://csrc.nist.gov/csrc/media/projects/cryptographic-algorithm-validation-program/documents/shs/shavs.pdf">The Secure Hash Algorithm Validation System, NIST, 22 July 2004</h:a>
+      </description>
     </entry>
     <entry id="bibx509">
       <tag>x509</tag>
