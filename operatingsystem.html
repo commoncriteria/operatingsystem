@@ -949,7 +949,7 @@ users of the same system.
 		  [<b>selection</b>: <span class="selectable-content" id="s-keygen-ffc-fips">cryptographic key sizes of 3072-bit
                     or greater that meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature
                   Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)", Appendix B.1</span>,  <span class="selectable-content" id="s-keygen-ffc-safeprime">safe primes that meet the following: 
-				  ‘<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes
+		  <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes"
 		  </span> ]
 		</span></li></ul>].
             <div class="appnote"><span class="note-header">Application
@@ -1132,7 +1132,8 @@ users of the same system.
         <div class="comp" id="FCS_CKM.2"><h4>FCS_CKM.2 Cryptographic Key Establishment (Refined)</h4>
           <div class="element"><div class="reqid" id="FCS_CKM.2.1"><a href="#FCS_CKM.2.1" class="abbr">FCS_CKM.2.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall <b>implement functionality to perform cryptographic key establishment</b>
               in accordance with a specified cryptographic key <b>establishment</b> method:
-              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-keyestab-rsa">RSA-based key establishment schemes that meets the following: RSAES-PKCS1-v1_5 as specified in Section 7.2 of <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 8017, “Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.2</span></li><li style=""><span class="selectable-content" id="s-keyestab-ecc">Elliptic curve-based key establishment schemes that meets the following: <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</span></li><li style=""><span class="selectable-content" id="s-keyestab-ffc">Finite field-based key establishment schemes
+              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-keyestab-rsa">RSA-based key establishment schemes that meets the following:
+		RSAES-PKCS1-v1_5 as specified in Section 7.2 of <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 8017, “Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.2"</span></li><li style=""><span class="selectable-content" id="s-keyestab-ecc">Elliptic curve-based key establishment schemes that meets the following: <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</span></li><li style=""><span class="selectable-content" id="s-keyestab-ffc">Finite field-based key establishment schemes
 		  that meets <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</span></li></ul>].
             <div class="appnote"><span class="note-header">Application
       Note:
@@ -1194,7 +1195,7 @@ users of the same system.
 		      To conduct this test the evaluator will generate or obtain test vectors from a known good implementation of the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s supported schemes.
 		      For each supported key agreement scheme-key agreement role combination, KDF type, and, if supported, key confirmation role- key confirmation type combination,
 		      the tester will generate 10 sets of test vectors.
-		      The data set consists of the <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> approved curve (ECC) per 10 sets of public keys.
+		      The data set consists of one set of domain parameter values (FCC) or the <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> approved curve (ECC) per 10 sets of public keys.
 		      These keys are static, ephemeral or both depending on the scheme being tested.
 		      </p>
 		      <p> The evaluator will obtain the DKM, the
@@ -1219,9 +1220,10 @@ users of the same system.
 		<p> The Validity test verifies the ability of the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to
                 recognize another party's valid and invalid key agreement results with or without
                 key confirmation. To conduct this test, the evaluator will obtain a list of the
-                supporting cryptographic functions included in the SP800-56A key agreement
-                implementation to determine which errors the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> should be able to recognize. The
-                evaluator generates a set of 30 test vectors consisting of data
+                supporting cryptographic functions included in the SP800-56A Revision 3 key agreement
+                implementation to determine which errors the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> should be able to recognize.
+		The
+                evaluator generates a set of 24 FCC or 30 ECC test vectors consisting of data
                 sets including domain parameter values or <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> approved curves, the evaluator's
                 public keys, the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s public/private key pairs, MAC tag, and any inputs used in the
                 KDF, such as the other info and <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> id fields.
@@ -1230,7 +1232,7 @@ users of the same system.
 		The evaluator will inject an
                 error in some of the test vectors to test that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> recognizes invalid key
                 agreement results caused by the following fields being incorrect: the shared secret
-                value Z, the DKM, the other information field OI, the data to be MAC'd, or the
+                value Z, the DKM, the other information field OI, the data to be MACed, or the
                 generated MAC tag. If the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> contains the full or partial (only ECC) public key
                 validation, the evaluator will also individually inject errors in both parties'
                 static public keys, both parties' ephemeral public keys and the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s static private
@@ -1916,7 +1918,7 @@ This result shall be compared to the result of running 1000 iterations with the 
               to be hashed is divisible by 8. The second mode is the bit-oriented mode. In this mode
               the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> hashes messages of arbitrary length. As there are different
               tests for each mode, an indication is given in the following sections for the
-              bit-oriented vs. the byte-oriented testmacs. The evaluator will perform all of the
+              bit-oriented vs. the byte-oriented test MACs. The evaluator will perform all of the
               following tests for each hash algorithm implemented by the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> and
               used to satisfy the requirements of this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>.
 	      </p>
@@ -1954,7 +1956,7 @@ This result shall be compared to the result of running 1000 iterations with the 
                   implementations only. The evaluator will randomly generate a seed that is n bits long,
                   where n is the length of the message digest produced by the hash function to be
                   tested. The evaluator will then formulate a set of 100 messages and associated digests
-                  by following the algorithm provided in Figure 1 of [SHAVS]. The evaluator will then
+                  by following the algorithm provided in Figure 1 of <a href="#bib-shavs">[SHAVS]</a>. The evaluator will then
                   ensure that the correct result is produced when the messages are provided to the
                   <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.
 		</li>
@@ -4466,7 +4468,9 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
           Evaluation Methodology for Information Technology Security - Evaluation Methodology</a>,
         CCMB-2017-04-004, Version 3.1, Revision 5, April 2017. </td></tr><tr><td><span id="bibNCSC">[NCSC]</span></td><td>National Cyber Security Centre - <a href="https://www.ncsc.gov.uk/collection/end-user-device-security">
             End User Device (EUD) Security Guidance
-            </a></td></tr><tr><td><span id="bibx509">[x509]</span></td><td>
+            </a></td></tr><tr><td><span id="bib-shavs">[SHAVS]</span></td><td>
+	<a href="https://csrc.nist.gov/csrc/media/projects/cryptographic-algorithm-validation-program/documents/shs/shavs.pdf">The Secure Hash Algorithm Validation System, NIST, 22 July 2004</a>
+      </td></tr><tr><td><span id="bibx509">[x509]</span></td><td>
         <a href="https://tools.ietf.org/html/rfc5280">
             Internet X.509 Public Key Infrastructure Certificate
              and Certificate Revocation List (CRL) Profile</a>, May 2008.
