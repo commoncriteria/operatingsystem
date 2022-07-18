@@ -22,8 +22,11 @@
       <version>4.3</version>
       <date>2022-04-22</date>
       <subject>
-	Added compatibility with MDM Agent, Bluetooth, and TLS Modules.<h:br/>
-	Two factor authentication.
+	<h:ul>
+	  <h:li>Added compatibility with MDM Agent, Bluetooth, and TLS Modules.</h:li>
+	  <h:li>Two factor authentication.</h:li>
+	  <h:li>Aligned with CNSA</h:li>
+	</h:ul>
       </subject>
     </entry>
     <entry>
@@ -578,8 +581,8 @@ users of the same system.
           <f-element id="fel-asym-gen">
             <title> The <h:b>OS</h:b> shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a
               specified cryptographic key generation algorithm <selectables linebreak="yes">
-                <selectable id="s-keygen-rsa"><snip>RSA schemes</snip> using cryptographic key sizes of 2048-bit or greater that
-         f-component    meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.3
+                <selectable id="s-keygen-rsa"><snip>RSA schemes</snip> using cryptographic key sizes of 3072-bit or greater that
+		meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.3
                 </selectable>
                 <selectable id="s-keygen-ecc"><snip>ECC schemes using "NIST curves"</snip> P-384 and
                   <selectables>
@@ -591,7 +594,7 @@ users of the same system.
 		<selectable id="s-keygen-ffc">
 		  <snip>FFC schemes</snip> using 
 		  <selectables>
-		    <selectable id="s-keygen-ffc-fips">cryptographic key sizes of 2048-bit
+		    <selectable id="s-keygen-ffc-fips">cryptographic key sizes of 3072-bit
                     or greater that meet the following: <snip>FIPS PUB 186-4</snip>, "Digital Signature
                   Standard (DSS)", Appendix B.1</selectable>
 		  <!-- <selectable id="s-keygen-ffc-dh"><snip>Diffie-Hellman Group 14</snip> that meet the following: RFC 3526 </selectable> -->
@@ -1157,11 +1160,11 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 		
                 <selectable exclusive="yes">no other modes</selectable>
               </selectables></h:b>
-              and cryptographic key sizes
-              <selectables>
-                <selectable>128-bit</selectable>
-                <selectable>256-bit</selectable>
-              </selectables>
+              and cryptographic key sizes 256-bit.
+              <!-- <selectables> -->
+              <!--   <selectable>128-bit</selectable> -->
+              <!--   <selectable>256-bit</selectable> -->
+              <!-- </selectables> -->
         <h:strike>that meet the following: [assignment: list of standards]</h:strike>.
 	    </title>
             <note role="application">
@@ -1175,7 +1178,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      <h:p>
 	        For the second selection, the ST author should choose the mode
 		or modes in which AES operates. For the third selection, the ST author should choose
-              the key sizes that are supported by this functionality.
+		the key sizes that are supported by this functionality.
 	      </h:p>
 	      <h:p>If <xref to="s-ftp_ssh"/> is selected in <xref to="fel-trust-comms"/>,
 	      then <xref to="s-aes-ctr"/> must be selected.</h:p>
@@ -1197,47 +1200,45 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      </h:p>
 	      <h:p>
 		There are four Known Answer Tests (KATs), described below. In all KATs, the
-              plaintext, ciphertext, and IV values will be 128-bit blocks. The results from each
+              plaintext, ciphertext, and IV values will be 256-bit blocks. The results from each
               test may either be obtained by the evaluator directly or by supplying the inputs to
               the implementer and receiving the results in response. To determine correctness, the
               evaluator will compare the resulting values to those obtained by submitting the same
               inputs to a known good implementation. <h:ul>
                 <h:li>KAT-1. To test the encrypt functionality of AES-CBC, the evaluator will supply
-                  a set of 10 plaintext values and obtain the ciphertext value that results from
+                  a set of 5 plaintext values and obtain the ciphertext value that results from
                   AES-CBC encryption of the given plaintext using a key value of all zeros and an IV
-                  of all zeros. Five plaintext values will be encrypted with a 128-bit all-zeros
-                  key, and the other five will be encrypted with a 256-bit all- zeros key. To test
+                  of all zeros.
+		  The plaintext values will encrypted with a 256-bit all-zeros key. To test
                   the decrypt functionality of AES-CBC, the evaluator will perform the same test as
-                  for encrypt, using 10 ciphertext values as input and AES-CBC decryption.</h:li>
+                  for encrypt, using 5 ciphertext values as input and AES-CBC decryption.</h:li>
                 <h:li>KAT-2. To test the encrypt functionality of AES-CBC, the evaluator will supply
-                  a set of 10 key values and obtain the ciphertext value that results from AES-CBC
+                  a set of five 256-keys and obtain the ciphertext value that results from AES-CBC
                   encryption of an all-zeros plaintext using the given key value and an IV of all
-                  zeros. Five of the keys will be 128-bit keys, and the other five will be 256-bit
-                  keys. To test the decrypt functionality of AES-CBC, the evaluator will perform
+                  zeros.
+		  To test the decrypt functionality of AES-CBC, the evaluator will perform
                   the same test as for encrypt, using an all-zero ciphertext value as input and
                   AES-CBC decryption.</h:li>
                 <h:li>KAT-3. To test the encrypt functionality of AES-CBC, the evaluator will supply
-                  the two sets of key values described below and obtain the ciphertext value that
+                  the a sets of key values described below and obtain the ciphertext value that
                   results from AES encryption of an all-zeros plaintext using the given key value
-                  and an IV of all zeros. The first set of keys will have 128 128-bit keys, and the
-                  second set will have 256 256-bit keys. Key i in each set will have the leftmost
-                  i bits be ones and the rightmost N-i bits be zeros, for i in [1,N]. To test the
-                  decrypt functionality of AES-CBC, the evaluator will supply the two sets of key
+                  and an IV of all zeros.
+		  Key i will have the leftmost i bits be ones and the rightmost N-i bits be zeros, for i in [1,N].
+		  To test the decrypt functionality of AES-CBC, the evaluator will supply the set of key
                   and ciphertext value pairs described below and obtain the plaintext value that
                   results from AES-CBC decryption of the given ciphertext using the given key and an
-                  IV of all zeros. The first set of key/ciphertext pairs will have 128 128-bit
-                  key/ciphertext pairs, and the second set of key/ciphertext pairs will have 256
-                  256-bit key/ciphertext pairs. Key i in each set will have the leftmost i bits be
+                  IV of all zeros.
+		  The set of key/ciphertext pairs will have 256 256-bit key/ciphertext pairs.
+		  Key i in each set will have the leftmost i bits be
                   ones and the rightmost N-i bits be zeros, for i in [1,N]. The ciphertext value in
                   each pair will be the value that results in an all-zeros plaintext when decrypted
                   with its corresponding key.</h:li>
                 <h:li>KAT-4. To test the encrypt functionality of AES-CBC, the evaluator will supply
-                  the set of 128 plaintext values described below and obtain the two ciphertext
-                  values that result from AES-CBC encryption of the given plaintext using a 128-bit
-                  key value of all zeros with an IV of all zeros and using a 256-bit key value of
-                  all zeros with an IV of all zeros, respectively. Plaintext value i in each set
-                  will have the leftmost i bits be ones and the rightmost 128-i bits be zeros, for
-                  i in [1,128].</h:li>
+                  the set of 256 plaintext values described below and obtain the ciphertext
+                  values that result from AES-CBC encryption of the given plaintext using a 256-bit key value of
+                  all zeros with an IV of all zeros.
+		  Plaintext value <h:i>i</h:i> in each set will have the leftmost <h:i>i</h:i> bits be ones and
+		  the rightmost 256-<h:i>i</h:i> bits be zeros, for <h:i>i</h:i> in [1,256].</h:li>
               </h:ul>
 	      <h:br/>
 	      To test the decrypt functionality of AES-CBC, the evaluator will perform the
@@ -1263,9 +1264,9 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	    </h:p>
 	    <h:p>
 	      The evaluator will test the encrypt
-              functionality using a set of 200 plaintext, IV, and key 3- tuples. 100 of these will
-              use 128 bit keys, and 100 will use 256 bit keys. The plaintext and IV values will be
-              128-bit blocks. For each 3-tuple, 1000 iterations will be run as follows:
+              functionality using a set of 100 plaintext, IV, and key 3-tuples.
+	      The keys, plaintext, and IV values are each 256-bits.
+	      For each 3-tuple, 1000 iterations will be run as follows:
               <h:pre>
               # Input: PT, IV, Key
               for i = 1 to 1000:
@@ -1291,35 +1292,33 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      <h:p><h:b>Test 1: Known Answer Tests (KATs)</h:b></h:p>
 	      <h:p>
 There are four Known Answer Tests (KATs) described below.
-For all KATs, the plaintext, initialization vector (IV), and ciphertext values shall be 128-bit blocks.
+For all KATs, the plaintext, initialization vector (IV), and ciphertext values shall be 256-bit blocks.
 The results from each test may either be obtained by the validator directly or by supplying the inputs to the implementer and receiving the results in response.
 To determine correctness, the evaluator will compare the resulting values to those obtained by submitting the same inputs to a known good implementation.
 	      </h:p>
 	      <h:p>
-<h:b>Test 1a</h:b>: To test the encrypt functionality, the evaluator will supply a set of 10 plaintext values and obtain the ciphertext value that results from encryption of the given plaintext using a key value of all zeros and an IV of all zeros.
-Five plaintext values shall be encrypted with a 128-bit all zeros key, and the other five shall be encrypted with a 256-bit all zeros key.
-To test the decrypt functionality, the evaluator will perform the same test as for encrypt, using 10 ciphertext values as input.
+<h:b>Test 1a</h:b>: To test the encrypt functionality, the evaluator will supply 5 plaintext values and obtain the ciphertext value that results from encryption of the given plaintext using a 256-bit key value of all zeros and an IV of all zeros.
+To test the decrypt functionality, the evaluator will perform the same test as for encrypt, using the 5 ciphertext values as input.
 	      </h:p>
 	      <h:p>
 		<h:b>Test 1b</h:b>:
-		To test the encrypt functionality, the evaluator will supply a set of 10 key values and obtain the ciphertext value that results from encryption of an all zeros plaintext using the given key value and an IV of all zeros.
-Five of the key values shall be 128-bit keys, and the other five shall be 256-bit keys.
+		To test the encrypt functionality, the evaluator will supply 5 256-bit key values and obtain the ciphertext value that results from encryption of an all zeros plaintext using the given key value and an IV of all zeros.
 To test the decrypt functionality, the evaluator will perform the same test as for encrypt, using an all zero ciphertext value as input.
 	      </h:p>
 
 	      <h:p><h:b>Test 1c</h:b>:
-	      To test the encrypt functionality, the evaluator will supply the two sets of key values described below and obtain the ciphertext values that result from AES encryption of an all zeros plaintext using the given key values and an IV of all zeros.
-The first set of keys shall have 128 128-bit keys, and the second shall have 256 256-bit keys.
-Key_i in each set shall have the leftmost i bits be ones and the rightmost N-i bits be zeros, for i in [1, N].
-To test the decrypt functionality, the evaluator will supply the two sets of key and ciphertext value pairs described below and obtain the plaintext value that results from decryption of the given ciphertext using the given key values and an IV of all zeros.
-The first set of key/ciphertext pairs shall have 128 128-bit key/ciphertext pairs, and the second set of key/ciphertext pairs shall have 256 256-bit pairs.
-Key_i in each set shall have the leftmost i bits be ones and the rightmost N-i bits be zeros for i in [1, N].
+	      To test the encrypt functionality, the evaluator will supply a set of key values described below and obtain the ciphertext values that result from AES encryption of an all zeros plaintext using the given key values and an IV of all zeros.
+The set of keys shall have  shall have 256 256-bit keys.
+Key<h:i>i</h:i> shall have the leftmost i bits be ones and the rightmost 256-i bits be zeros, for i in [1, N].
+To test the decrypt functionality, the evaluator will supply the set of key and ciphertext value pairs described below and obtain the plaintext value that results from decryption of the given ciphertext using the given key values and an IV of all zeros.
+The  set of key/ciphertext pairs shall have 256 256-bit pairs.
+Key<h:i>i</h:i> shall have the leftmost i bits be ones and the rightmost 256-i bits be zeros for i in [1, N].
 The ciphertext value in each pair shall be the value that results in an all zeros plaintext when decrypted with its corresponding key.
 	      </h:p>
 
 	      <h:p><h:b>Test 1d</h:b>:
-	      To test the encrypt functionality, the evaluator will supply the set of 128 plaintext values described below and obtain the two ciphertext values that result from encryption of the given plaintext using a 128-bit key value of all zeros and using a 256 bit key value of all zeros, respectively, and an IV of all zeros.
-Plaintext value i in each set shall have the leftmost bits be ones and the rightmost 128-i bits be zeros, for i in [1, 128].
+	      To test the encrypt functionality, the evaluator will supply the set of 256 plaintext values described below and obtain the two ciphertext values that result from encryption of the given plaintext using a 256 bit key value of all zeros, respectively, and an IV of all zeros.
+Plaintext value i in each set shall have the leftmost bits be ones and the rightmost 256-i bits be zeros, for i in [1, 256].
 To test the decrypt functionality, the evaluator will perform the same test as for encrypt, using ciphertext values of the same form as the plaintext in the encrypt test as input.
 	      </h:p>
 
@@ -1337,7 +1336,10 @@ The plaintext shall be compared to the result of decrypting the same ciphertext 
 	      <h:p>For AES-CTR mode perform the Monte Carlo Test for ECB Mode on the encryption engine of the counter mode implementation. There is no need to test the decryption engine.
 	      </h:p>
 	      <h:p>
-		The evaluator will test the encrypt functionality using 200 plaintext/key pairs. 100 of these shall use 128 bit keys, and 100 of these shall use 256 bit keys. The plaintext values shall be 128-bit blocks. For each pair, 1000 iterations shall be run as follows:
+		The evaluator will test the encrypt functionality using 100 plaintext/key pairs.
+		Each key shall be 256-bit.
+		The plaintext values shall be 256-bit blocks.
+		For each pair, 1000 iterations shall be run as follows:
 	      </h:p>
 	      For AES-ECB mode<h:br/>
 <h:pre>
@@ -1352,29 +1354,33 @@ PT = CT[i]
 This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation.
 </h:p>
 
-<h:p>If "invoke platform-provided" is selected, the evaluator confirms that SSH connections are only successful if appropriate algorithms and appropriate key sizes are configured. To do this, the evaluator will perform the following tests:</h:p>
+<!-- <h:p> -->
+<!--   If "invoke platform-provided" is selected, -->
+<!--   the evaluator confirms that SSH connections are only successful if appropriate algorithms and appropriate key sizes are configured. -->
+<!--   To do this, the evaluator will perform the following tests: -->
+<!-- </h:p> -->
 
-<h:p><h:b>Test 1</h:b>: [Conditional: TOE is an SSH server]
-The evaluator will configure an SSH client to connect with an invalid cryptographic algorithm and key size for each listening SSH socket connection on the TOE.
-The evaluator initiates SSH client connections to each listening SSH socket connection on the TOE and observes that the connection fails in each attempt.
-</h:p>
+<!-- <h:p><h:b>Test 1</h:b>: [Conditional: TOE is an SSH server] -->
+<!-- The evaluator will configure an SSH client to connect with an invalid cryptographic algorithm and key size for each listening SSH socket connection on the TOE. -->
+<!-- The evaluator initiates SSH client connections to each listening SSH socket connection on the TOE and observes that the connection fails in each attempt. -->
+<!-- </h:p> -->
 
-<h:p><h:b>Test 2</h:b>: [Conditional: TOE is an SSH client]
-The evaluator will configure a listening SSH socket on a remote SSH server that accepts only invalid cryptographic algorithms and keys.
-The evaluator uses the TOE to attempt an SSH connection to this server and observes that the connection fails.
-</h:p>
+<!-- <h:p><h:b>Test 2</h:b>: [Conditional: TOE is an SSH client] -->
+<!-- The evaluator will configure a listening SSH socket on a remote SSH server that accepts only invalid cryptographic algorithms and keys. -->
+<!-- The evaluator uses the TOE to attempt an SSH connection to this server and observes that the connection fails. -->
+<!-- </h:p> -->
 	    <h:p>
      
               <h:b>AES-GCM Monte Carlo Tests</h:b><h:br/>
               The evaluator will test the authenticated encrypt functionality of AES-GCM for
               each combination of the following input parameter lengths: <h:ul>
-                <h:li>128 bit and 256 bit keys</h:li>
+                <h:li>256 bit keys</h:li>
                 <h:li>Two plaintext lengths. One of the plaintext lengths will be a non-zero integer
-                  multiple of 128 bits, if supported. The other plaintext length will not be an
-                  integer multiple of 128 bits, if supported.</h:li>
+                  multiple of 256 bits, if supported. The other plaintext length will not be an
+                  integer multiple of 256 bits, if supported.</h:li>
                 <h:li>Three AAD lengths. One AAD length will be 0, if supported. One AAD length will
-                  be a non-zero integer multiple of 128 bits, if supported. One AAD length will not
-                  be an integer multiple of 128 bits, if supported.</h:li>
+                  be a non-zero integer multiple of 256 bits, if supported. One AAD length will not
+                  be an integer multiple of 256 bits, if supported.</h:li>
                 <h:li>Two IV lengths. If 96 bit IV is supported, 96 bits will be one of the two IV
                   lengths tested.</h:li>
               </h:ul>The evaluator will test the encrypt functionality using a set of 10 key,
@@ -1404,7 +1410,7 @@ The evaluator uses the TOE to attempt an SSH connection to this server and obser
 	      <h:p>
               The evaluator will test the generation-encryption and decryption-verification
               functionality of AES-CCM for the following input parameter and tag lengths: <h:ul>
-                <h:li>128 bit and 256 bit keys</h:li>
+                <h:li>256 bit key</h:li>
                 <h:li>Two payload lengths. One payload length will be the shortest supported payload
                   length, greater than or equal to zero bytes. The other payload length will be the
                   longest supported payload length, less than or equal to 32 bytes (256 bits).
@@ -1468,14 +1474,14 @@ The evaluator uses the TOE to attempt an SSH connection to this server and obser
               <h:p>The evaluator will test the authenticated encrypt functionality of AES-GCM for each
                 combination of the following input parameter lengths: <h:br/>
               <h:ul>
-                <h:li>128 bit and 256 bit keys</h:li>
+                <h:li> 256 bit keys</h:li>
                 <h:li>Two plaintext lengths. One of the plaintext lengths will be a non-zero integer
-                  multiple of 128 bits, if supported. The other plaintext length will not be an integer
-                  multiple of 128 bits, if supported.
+                  multiple of 256 bits, if supported. The other plaintext length will not be an integer
+                  multiple of 256 bits, if supported.
                 </h:li>
                 <h:li>Three AAD lengths. One AAD length will be 0, if supported. One AAD length will
-                  be a non-zero integer multiple of 128 bits, if supported. One AAD length will not be
-                  an integer multiple of 128 bits, if supported.
+                  be a non-zero integer multiple of 256 bits, if supported. One AAD length will not be
+                  an integer multiple of 256 bits, if supported.
                 </h:li>
                 <h:li>Two IV lengths. If 96 bit IV is supported, 96 bits will be one of the two IV lengths
                   tested.
@@ -1504,14 +1510,14 @@ The evaluator uses the TOE to attempt an SSH connection to this server and obser
 		The evaluator will test the encrypt functionality of XTS-AES for each combination of the
               following input parameter lengths:
               <h:ul>
-                <h:li>256 bit (for AES-128) and 512 bit (for AES-256) keys</h:li>
+                <h:li>512 bit (for AES-256) key</h:li>
                 <h:li>Three data unit (i.e., plaintext) lengths. One of the data unit lengths will be a nonzero
-                  integer multiple of 128 bits, if supported. One of the data unit lengths will be an
-                  integer multiple of 128 bits, if supported. The third data unit length will be either the
+                  integer multiple of 256 bits, if supported. One of the data unit lengths will be an
+                  integer multiple of 256 bits, if supported. The third data unit length will be either the
                   longest supported data unit length or 216 bits, whichever is smaller.
                 </h:li>
               </h:ul>
-              using a set of 100 (key, plaintext and 128-bit random tweak value) 3-tuples and obtain the
+              using a set of 100 (key, plaintext and 256-bit random tweak value) 3-tuples and obtain the
               ciphertext that results from XTS-AES encrypt.
 	      </h:p>
 	      <h:p>
@@ -1529,11 +1535,12 @@ The evaluator uses the TOE to attempt an SSH connection to this server and obser
 		The evaluator will test the authenticated encryption functionality of AES-KW for EACH
 		combination of the following input parameter lengths:
               <h:ul>
-                <h:li>128 and 256 bit key encryption keys (KEKs)</h:li>
-                <h:li>Three plaintext lengths. One of the plaintext lengths will be two semi-blocks (128
-                  bits). One of the plaintext lengths will be three semi-blocks (192 bits). The third data
-                  unit length will be the longest supported plaintext length less than or equal to 64
-                  semi-blocks (4096 bits).
+                <h:li>256 bit key encryption keys (KEKs)</h:li>
+                <h:li>Three plaintext lengths.
+		One of the plaintext lengths will be two semi-blocks (256 bits).
+		One of the plaintext lengths will be three semi-blocks (192 bits).
+		The third data unit length will be the longest supported plaintext
+		length less than or equal to 64 semi-blocks (4096 bits).
                 </h:li>
               </h:ul>
               using a set of 100 key and plaintext pairs and obtain the ciphertext that results from AES-KW
@@ -1884,11 +1891,11 @@ only AES-based implementations for CTR_DRBG are allowed.
                 <selectable>software-based noise source</selectable>
                 <selectable>platform-based noise source</selectable>
               </selectables>
-              with a minimum of
-              <selectables linebreak="yes">
-                <selectable>128 bits</selectable>
-                <selectable>256 bits</selectable>
-              </selectables>
+              with a minimum of 256 bits
+              <!-- <selectables linebreak="yes"> -->
+              <!--   <selectable>128 bits</selectable> -->
+              <!--   <selectable>256 bits</selectable> -->
+              <!-- </selectables> -->
               of entropy at least equal to the greatest security strength (according to NIST SP 800-57)
               of the keys and hashes that it will generate.
 	    </title>
@@ -1902,8 +1909,9 @@ only AES-based implementations for CTR_DRBG are allowed.
               appropriate number of bits of entropy that corresponds to the greatest security
               strength of the algorithms included in the ST.
 	      Security strength is defined in Tables
-              2 and 3 of NIST SP 800-57A. For example, if the implementation includes 2048-bit RSA
-              (security strength of 112 bits), AES 128 (security strength 128 bits), and
+              2 and 3 of NIST SP 800-57A.
+	      For example, if the implementation includes 3072-bit RSA
+              (security strength of 128 bits), AES 256 (security strength 256 bits), and
               HMAC-SHA-256 (security strength 256 bits), then the ST author would select 256 bits.
 	    </h:p>
             </note>
