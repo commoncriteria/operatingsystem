@@ -12,6 +12,7 @@ Protection Profile for General Purpose Operating System
 ![Transforms Version](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/transforms.svg)
 
 
+
 [![GitHub issues Open](https://img.shields.io/github/issues/commoncriteria/operatingsystem.svg?maxAge=2592000)](https://github.com/commoncriteria/operatingsystem/issues) 
 
 This repository hosts the draft version of the Protection Profile for a General Purpose Operating System based on the 
@@ -25,6 +26,9 @@ A list of products that have passed evaluation against this Protection Profile c
 * [Protection Profile for General Purpose Operating System](https://commoncriteria.github.io/pp/operatingsystem/operatingsystem-release.html) (html)
 * [Protection Profile for General Purpose Operating System](https://commoncriteria.github.io/pp/operatingsystem/operatingsystem-release.pdf) (pdf)
 * [Configuration Annex to the General Purpose Operating System](https://commoncriteria.github.io/pp/operatingsystem/configannex.html) (html)
+* [Diff against v4.2.1](https://commoncriteria.github.io/operatingsystem/diff-release-4.2.1.html) (html)
+* [Diff against v4.3-draft-1](https://commoncriteria.github.io/operatingsystem/diff-v4.3-comment-1.html) (html)
+
 
 ## Release Version
 
