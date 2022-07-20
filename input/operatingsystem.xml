@@ -1145,18 +1145,18 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      accordance with a specified cryptographic algorithm<h:b>
 	      <selectables linebreak="yes">
 	              <selectable>AES-XTS (as defined in NIST SP 800-38E)</selectable>
-	              <selectable>AES-CBC (as defined in NIST SP 800-38A)</selectable>
+	              <selectable id="s-aes-cbc"><snip>AES-CBC</snip> (as defined in NIST SP 800-38A)</selectable>
 		      <selectable id="s-aes-ctr"><snip>AES-CTR</snip> (as defined in NIST SP 800-38A)</selectable>
               </selectables>
 	      and
 	      <selectables linebreak="yes">
-	        <selectable>AES-CCMP (as defined in FIPS PUB 197, NIST SP 800-38C and IEEE 802.11-2012)</selectable>
+	        <!-- <selectable>AES-CCMP (as defined in FIPS PUB 197, NIST SP 800-38C and IEEE 802.11-2012)</selectable> -->
                 <selectable>AES Key Wrap (KW) (as defined in NIST SP 800-38F)</selectable>
                 <selectable>AES Key Wrap with Padding (KWP) (as defined in NIST SP 800-38F)</selectable>
-                <selectable>AES-GCM (as defined in NIST SP 800-38D)</selectable>
-                <selectable>AES-CCM (as defined in NIST SP 800-38C)</selectable>
-                <selectable>AES-CCMP-256 (as defined in NIST SP 800-38C and IEEE 802.11ac-2013)</selectable>
-                <selectable>AES-GCMP-256 (as defined in NIST SP 800-38D and IEEE 802.11ac-2013)</selectable>
+                <!-- <selectable>AES-GCM (as defined in NIST SP 800-38D)</selectable> -->
+                <!-- <selectable>AES-CCM (as defined in NIST SP 800-38C)</selectable> -->
+                <selectable id="s-aes-ccmp"><snip>AES-CCMP-256</snip> (as defined in NIST SP 800-38C and IEEE 802.11ac-2013)</selectable>
+                <selectable id="s-aes-gcmp"><snip>AES-GCMP-256</snip> (as defined in NIST SP 800-38D and IEEE 802.11ac-2013)</selectable>
 
 <!-- <depends on="s-ftp_ssh"/> Could have added this to the previous, but choose to use rules.-->
 		
@@ -1174,16 +1174,16 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 		<!-- AUTOMATION -->
               AES CCMP (which uses AES in CCM as specified in SP 800-38C) becomes mandatory and must
               be selected if the ST includes the <xref to="mod-wlanclient"/>.
-	      <!-- AUTOMATION -->
-	      AES-CTR becomes mandatory and must be selected if the ST includes the <xref to="pkg-ssh"/>.
+	      <!-- <!-\- AUTOMATION -\-> -->
+	      <!-- AES-CTR becomes mandatory and must be selected if the ST includes the <xref to="pkg-ssh"/>. -->
 	      </h:p>
 	      <h:p>
 	        For the second selection, the ST author should choose the mode
 		or modes in which AES operates. For the third selection, the ST author should choose
 		the key sizes that are supported by this functionality.
 	      </h:p>
-	      <h:p>If <xref to="s-ftp_ssh"/> is selected in <xref to="fel-trust-comms"/>,
-	      then <xref to="s-aes-ctr"/> must be selected.</h:p>
+	      <!-- <h:p>If <xref to="s-ftp_ssh"/> is selected in <xref to="fel-trust-comms"/>, -->
+	      <!-- then <xref to="s-aes-ctr"/> must be selected.</h:p> -->
 	      
 	    </note>
             <aactivity>
@@ -1573,13 +1573,22 @@ This result shall be compared to the result of running 1000 iterations with the 
               </h:p>
 	      </Tests>
 	    </aactivity>
-	    <rule id="r-aes-ctr-for-ssh">
-	      <if><ref-id>s-ftp_ssh</ref-id></if>
-	      <then><ref-id>s-aes-ctr</ref-id></then>
+	    <rule id="r-wlan-aes">
+	      <or>
+		<and><not><ref-id>mod-wlanclient</ref-id></not></and>
+		<and>
+		  <ref-id>mod-wlanclient</ref-id>
+		  <or><ref-id>s-aes-ccmp</ref-id><ref-id>s-aes-gcmp</ref-id></or>
+		</and>
+	      </or>
+	    </rule>
+	    <!-- <rule id="r-aes-ctr-for-ssh"> -->
+	    <!--   <if><ref-id>s-ftp_ssh</ref-id></if> -->
+	    <!--   <then><ref-id>s-aes-ctr</ref-id></then> -->
 	      <!-- <or><and><ref-id>s-aes-ctr</ref-id><ref-id>s-ftp_ssh</ref-id></and> -->
 	      <!-- <not><ref-id>s-ftp_ssh</ref-id></not> -->
 	      <!-- </or> -->
-	    </rule>
+	    <!-- </rule> -->
           </f-element>
         </f-component>
         <f-component cc-id="fcs_cop.1" iteration="HASH" name="Cryptographic Operation - Hashing (Refined)">
@@ -2124,7 +2133,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 	    <note role="application">
         The functions with an "X" in the "Administrator" column must be restricted
         to (or overridden by) the administrator in the TOE.
-	      The functions with an "O" in the "Administrator" column may be restricted
+	The functions with an "O" in the "Administrator" column may be restricted
         to (or overridden by) the administrator when implemented in the TOE at
         the discretion of the ST author.  For such functions, the ST author indicates this
         by replacing an "O" with an "X" in the ST.
@@ -2199,9 +2208,9 @@ Configure lockout policy for unsuccessful authentication attempts through
           how to indicate Administrator or User capability.
 	      </h:p>
 	      <h:p>
-          The terms "Administrator" and "User" are defined in <xref g="glossary"/>.
+          The terms "Administrator" and "User" are defined in the <xref g="glossary"/>.
           The intent of this requirement is to ensure that the ST is populated with the
-          relevant management functions that are provided by the OS.	      </h:p>
+          relevant management functions that are provided by the OS.</h:p>
 	      <h:p>
 Sophisticated account management policies, such as intricate password complexity requirements and handling of temporary accounts, are a function of directory servers.
 The OS can enroll in such account management and enable the overall information system to achieve such policies by binding to a directory server.
@@ -4273,6 +4282,7 @@ The evaluator will also perform the following
             End User Device (EUD) Security Guidance
             </h:a></description>
     </entry>
+      
     <entry id="bibCSA">
         <tag>CSA</tag>
         <description>
