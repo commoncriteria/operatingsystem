@@ -939,6 +939,9 @@ The evaluator will verify the correctness of the TSF's implementation of "safe-p
           </f-element>
         </f-component>
                 
+        <ext-comp-def fam-id="FCS_CKM_EXT" title="Crytographic Key Handling">
+          <fam-behavior>This family defines requirements for handling cryptographic keys.</fam-behavior>
+        </ext-comp-def>
 
 	<f-component cc-id="fcs_ckm_ext.4" name="Cryptographic Key Destruction" >
           <f-element id="fel-key-kill">
@@ -1821,6 +1824,10 @@ This result shall be compared to the result of running 1000 iterations with the 
           </f-element>
         </f-component>
 
+	<ext-comp-def fam-id="FCS_RBG_EXT" title="Random Bit Generation Services">
+	  <fam-behavior>This family defines requirements for generating random bits</fam-behavior>
+	</ext-comp-def>
+	
         <f-component cc-id="fcs_rbg_ext.1" name="Random Bit Generation">
           <f-element id="fel-rbg-how">
             <title>
@@ -1942,6 +1949,10 @@ only AES-based implementations for CTR_DRBG are allowed.
             </aactivity>
           </f-element>
         </f-component>
+
+	<ext-comp-def fam-id="FCS_STO_EXT" title="Storage of Special Data">
+	  <fam-behavior>This family defines requirements concerning the storage of certain types of data.</fam-behavior>
+	</ext-comp-def>
         
         <f-component cc-id="fcs_sto_ext.1" name="Storage of Sensitive Data">
           <f-element id="fel-store-sdata">
@@ -1972,6 +1983,9 @@ only AES-based implementations for CTR_DRBG are allowed.
 
       </section>
       <section title="User Data Protection (FDP)" id="fdp">
+	<ext-comp-def title="Access Controls for User Data" fam-id="FDP_ACF_EXT">
+	  <fam-behavior>This family defines requirements for controlling access to user data.</fam-behavior>
+	</ext-comp-def>
         <f-component cc-id="fdp_acf_ext.1" name="Access Controls for Protecting User Data">
           <f-element id="fel-protect-user-data">
             <title>
@@ -2036,6 +2050,11 @@ only AES-based implementations for CTR_DRBG are allowed.
             </aactivity>
           </f-element>
         </f-component>
+	  
+        <ext-comp-def fam-id="FDP_IFC_EXT" title="Information flow control">
+	  <fam-behavior>This family of requirements defines how flows of information are controlled.</fam-behavior>
+	</ext-comp-def>
+
         <f-component cc-id="fdp_ifc_ext.1" name="Information flow control" status="sel-based">
 	  <depends on="s-itc-ipsec"/>
 	  <depends><optional/></depends>
@@ -2123,6 +2142,9 @@ only AES-based implementations for CTR_DRBG are allowed.
         </f-component>
       </section>
       <section title="Security Management (FMT)" id="fmt">
+        <ext-comp-def fam-id="FMT_MOF_EXT" title="Management of security functions behavior">
+	  <fam-behavior>This family of requirements define the behavior of security function management.</fam-behavior>
+	</ext-comp-def>
         <f-component cc-id="fmt_mof_ext.1" name="Management of security functions behavior">
 	  <f-element id="fel-man-sec-func">
 	    <title>
@@ -2160,6 +2182,10 @@ only AES-based implementations for CTR_DRBG are allowed.
             </aactivity>
 	  </f-element>
 	</f-component>
+
+        <ext-comp-def fam-id="FMT_SMF_EXT" title="Specification of Management Functions">
+	  <fam-behavior>This fmaily of requirements defines the management of security functions. </fam-behavior>
+	</ext-comp-def>
 	<f-component cc-id="fmt_smf_ext.1" name="Specification of Management Functions">
 	  <f-element id="fel-manage-functions">
 	    <title>
@@ -2228,6 +2254,11 @@ The OS can enroll in such account management and enable the overall information 
 	</f-component>
       </section>
       <section title="Protection of the TSF (FPT)" id="fpt">
+
+        <ext-comp-def fam-id="FPT_ACF_EXT" title="Access controls">
+	  <fam-behavior>This family of requirements defines the access controls to system resources. </fam-behavior>
+	</ext-comp-def>
+	
         <f-component cc-id="fpt_acf_ext.1" name="Access controls">
           <f-element id="fel-protect-priv">
             <title> The OS shall implement access controls which prohibit unprivileged users from
@@ -2291,6 +2322,11 @@ The OS can enroll in such account management and enable the overall information 
             </aactivity>
           </f-element>
         </f-component>
+
+        <ext-comp-def fam-id="FPT_ASLR_EXT" title="Address Space Layout Randomization">
+	  <fam-behavior>This family of requirements defines the behavior of ASLR.</fam-behavior>
+	</ext-comp-def>
+	
         <f-component cc-id="fpt_aslr_ext.1" name="Address Space Layout Randomization">
           <f-element id="fel-aslr">
             <title>The OS shall always randomize process address space memory locations with
@@ -2407,13 +2443,10 @@ This test can also be completed on the same hardware and rebooting between appli
         <!-- </f-component> -->
         
         <ext-comp-def fam-id="FPT_BLT_EXT" title="Limitation of Bluetooth Profile Support">
-          <fam-behavior>This family defines requirements for limiting Bluetooth capabilities without user action. 
-          </fam-behavior>
+          <fam-behavior>This family defines requirements for limiting Bluetooth capabilities without user action.</fam-behavior>
         </ext-comp-def>
         
-        
         <f-component cc-id="fpt_blt_ext.1" name="Limitation of Bluetooth Profile Support" status="objective">
-          
           <comp-lev> requires the TSF to maintain a disabled by default posture for Bluetooth profiles.</comp-lev>
           <management>There are no management activities foreseen.</management>
           <audit>There are no auditable events foreseen.</audit>
@@ -2423,7 +2456,7 @@ This test can also be completed on the same hardware and rebooting between appli
           <f-element id="fel-bluetooth-stop">
             <title>The TSF shall disable support for <assignable>list of Bluetooth
                 profiles</assignable> Bluetooth profiles when they are not currently being used by
-              an application on the Mobile Device, and shall require explicit user action to enable
+              an application on the TOE and shall require explicit user action to enable
               them.</title>
               <note role="application">
 		<h:p>
@@ -2472,6 +2505,9 @@ This test can also be completed on the same hardware and rebooting between appli
         </f-component>
 
 
+        <ext-comp-def fam-id="FPT_SBOP_EXT" title="Stack Buffer Overflow Protection">
+	  <fam-behavior>This family of requirements defines the protections for the stack.</fam-behavior>
+	</ext-comp-def>
 
 	<f-component cc-id="fpt_sbop_ext.1" name="Stack Buffer Overflow Protection">
           <f-element id="fel-sbop">
@@ -2509,7 +2545,12 @@ The evaluator will also ensure that the TSS includes a description of the safegu
 	    </aactivity>
           </f-element>
         </f-component>
-        <f-component cc-id="fpt_srp_ext.1" name="Software Restriction Policies" status="objective">
+
+	<ext-comp-def fam-id="FPT_SRP_EXT" title="Software Restriction Policies">
+	  <fam-behavior>This family of requirements defines how access to executes is restricted.</fam-behavior>
+	</ext-comp-def>
+
+	<f-component cc-id="fpt_srp_ext.1" name="Software Restriction Policies" status="objective">
           <f-element id="fel-srp">
             <title> The OS shall restrict execution to only programs which match an administrator-specified
               <selectables linebreak="yes">
@@ -2588,6 +2629,10 @@ The evaluator will also ensure that the TSS includes a description of the safegu
 	    </aactivity>
           </f-element>
         </f-component>
+
+        <ext-comp-def fam-id="FPT_TST_EXT" title="Integrity Tests">
+	  <fam-behavior>This family of requirements defines how the TOE validates the integrity of critical components. </fam-behavior>
+	</ext-comp-def>
         <f-component cc-id="fpt_tst_ext.1" name="Boot Integrity">
           <f-element id="fel-boot">
             <title>The OS shall verify the integrity of the bootchain up through the OS kernel and
@@ -2687,6 +2732,10 @@ The evaluator will also ensure that the TSS includes a description of the safegu
           </f-element>
         </f-component>
 
+	<ext-comp-def fam-id="FPT_TUD_EXT" title="Trusted Update">
+	  <fam-behavior>This family of requirements defines how the TOE validates software updates.</fam-behavior>
+	</ext-comp-def>
+	
         <f-component cc-id="fpt_tud_ext.1" name="Trusted Update">
           <f-element id="fel-os-update">
             <title>The OS shall provide the ability to check for updates to the OS
@@ -2825,7 +2874,14 @@ The evaluator will also ensure that the TSS includes a description of the safegu
 	    </aactivity>
           </f-element>
         </f-component>
-        <f-component cc-id="fpt_w^x_ext.1" name="Write XOR Execute Memory Pages">
+
+
+        <ext-comp-def fam-id="FPT_W^X_EXT" title="Write XOR Execute">
+	  <fam-behavior>
+	    This family of requirements defines how the TOE ensures that it executes only those items that are non-writeable with specified exceptions.
+	  </fam-behavior>
+	</ext-comp-def>
+	<f-component cc-id="fpt_w^x_ext.1" name="Write XOR Execute Memory Pages">
           <f-element id="fel-no-rw-mem">
             <title> The OS shall prevent allocation of any memory region with both write and
               execute permissions except for <assignable>list of exceptions</assignable>.
@@ -3051,11 +3107,11 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
             <title>
 	      The <refinement>OS</refinement> shall provide the following authentication mechanisms
 	      <h:b><selectables linebreak='yes'>
-		<selectable>authentication based on user name and password</selectable>
-		<selectable>authentication based on user name and a PIN that releases an asymmetric key stored
+		<selectable id="s-pass">authentication based on user name and password</selectable>
+		<selectable id="s-pin">authentication based on <snip>user name and a PIN that releases an asymmetric key</snip> stored
 		in OE-protected storage</selectable>
-		<selectable>combination of authentication based on user name, password, and time-based one-time password</selectable>
-		<selectable>authentication based on X.509 certificates</selectable>
+		<selectable id="s-otp">combination of authentication based on user name, password, and time-based one-time password</selectable>
+		<selectable id="s-x509-auth">authentication based on X.509 certificates</selectable>
 		<selectable id="s-uau-ssh">for use in SSH only, SSH public key-based authentication as specified by the <xref to="pkg-ssh"/></selectable>
 	      </selectables>
 	      </h:b>
@@ -3067,8 +3123,10 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
 	    </note>
             <aactivity>
 	      <Tests>
-              If user name and password authentication is selected, the evaluator will configure the OS with a
-			  known user name and password and conduct the following tests:
+		<h:div>
+		  <depends on="s-pass"/>
+		  If <xref to="s-pass"/> is selected, the evaluator will configure the OS with a
+		  known user name and password and conduct the following tests:
               <testlist>
                 <test>
 				  The evaluator will attempt to authenticate to the OS using
@@ -3081,17 +3139,19 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
 				  will ensure that the authentication attempt is unsuccessful.
                 </test>
               </testlist>
-			  If user name and PIN that releases an asymmetric key is selected,
+		</h:div>
+		<h:div>
+		  <depends on="s-pin"/>
+			  If <xref to="s-pin"/> is selected,
 			  the evaluator will examine the TSS for guidance on supported
 			  protected storage and will then configure the TOE or OE to establish a PIN
 			  which enables release of the asymmetric key from the protected storage (such as a TPM, a hardware token, or
 			  isolated execution environment) with which the
 			  OS can interface.  The evaluator will then conduct the following tests:
 			  <testlist>
-			    <test> The evaluator will attempt to
-			    authenticate to the OS using the known user name and PIN. The
-			    evaluator will ensure that the authentication attempt is
-			    successful.
+			    <test>
+			      The evaluator will attempt to  authenticate to the OS using the known user name and PIN.
+			      The evaluator will ensure that the authentication attempt is successful.
 			    </test>
 				<test> The evaluator will attempt to
 			    authenticate to the OS using the known user name but an incorrect
@@ -3099,7 +3159,10 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
 			    unsuccessful.
 				</test>
 			  </testlist>
-			  If X.509 certificate authentication is selected, the evaluator
+		</h:div>
+		<h:div>
+		  <depends on="s-x509-auth"/>
+			  If <xref to="s-x509-auth"/>, the evaluator
 			  will generate an X.509v3 certificate for a user with the Client
 			  Authentication Extended Key Usage field set. The evaluator will
 			  provision the OS for authentication with the X.509v3 certificate.
@@ -3120,7 +3183,7 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
 				  will ensure that the authentication attempt is unsuccessful.
                 </test>
               </testlist>
-
+		</h:div>
               </Tests>
 	    </aactivity>
           </f-element>
@@ -3133,26 +3196,23 @@ The <h:b>OS</h:b> shall authenticate any user's claimed identity according to th
               </assignable>.
             </title>
             <note role="application">
-For all authentication mechanisms specified in <xref to="fel-mult-auth"/>,
-the TSS will describe the rules as to how each authentication mechanism is used.
-Example rules are how the authentication mechanism authenticates the user (i.e.
-how does the TSF verify that the correct password or authentication
-factor is used), the result of a successful authentication (i.e.
-is the user input used to derive or unlock a key) and which
-authentication mechanism can be used at which authentication factor
-interfaces (i.e. if there are times, for example, after a reboot,
-that only specific authentication mechanisms can be used).
-Rules regarding how the authentication factors interact in terms of
-unsuccessful authentication are covered in FIA_AFL.1.
 	    </note>
 
               <aactivity>
 		<TSS>
 		<h:p>
-		The evaluator will ensure that the TSS
-              describes each mechanism provided to support user authentication and
-              the rules describing how the authentication mechanism(s) provide
-              authentication.
+		  The evaluator will ensure that the TSS describes
+		   the rules as to how each authentication mechanism specified in <xref to="fel-mult-auth"/> is implemented and used.
+		   Example rules are how the authentication mechanism authenticates the user
+		   (i.e. how does the TSF verify that the correct password or authentication
+		   factor is used),
+		   the result of a successful authentication (i.e.
+		   is the user input used to derive or unlock a key) and which
+		   authentication mechanism can be used at which authentication factor
+		   interfaces (i.e. if there are times, for example, after a reboot,
+		   that only specific authentication mechanisms can be used).
+		   Rules regarding how the authentication factors interact in terms of
+		   unsuccessful authentication are covered in FIA_AFL.1.
 		</h:p>
 		</TSS>
 	      <Guidance>
@@ -3169,15 +3229,21 @@ unsuccessful authentication are covered in FIA_AFL.1.
 		mechanism and verify that it can be used to authenticate the user at
 		the specified authentication factor interfaces. </test>
 		<test>
-For each authentication mechanism rule, the evaluator will ensure that
-the authentication mechanism(s) behave as documented in the TSS.
+		  For each authentication mechanism rule, the evaluator will ensure that
+		  the authentication mechanism(s) behave as documented in the TSS.
 		</test>
               </testlist>
 	      </Tests>
           </aactivity>
           </f-element>
         </f-component>
-        <f-component cc-id="fia_x509_ext.1" name="X.509 Certificate Validation">
+
+
+        <ext-comp-def fam-id="FIA_X509_EXT" title="X.509 Certificate Validation">
+	  <fam-behavior>This family of requirements defines how the X.509 performs validation and what they should be used for.</fam-behavior>
+	</ext-comp-def>
+
+	<f-component cc-id="fia_x509_ext.1" name="X.509 Certificate Validation">
           <f-element id="fel-cert-val">
             <title>
 	      The OS shall implement functionality to validate certificates in accordance with the following rules:
@@ -3380,6 +3446,11 @@ the node certificate to be tested, two Intermediate CAs, and the
         </f-component>
       </section>
       <section title="Trusted Path/Channels (FTP)" id="ftp">
+
+        <ext-comp-def fam-id="FTP_ITC_EXT" title="Trusted channel communication">
+	  <fam-behavior>This family of requirements defines communication for trusted channels.</fam-behavior>
+	</ext-comp-def>
+	
       	<f-component cc-id="ftp_itc_ext.1" name="Trusted channel communication">
       	  <f-element id="fel-trust-comms">
       	    <title>
@@ -3434,7 +3505,7 @@ the <xref to="pkg-ssh"/>.
             <f-element id="fel-trust-ends">
 	      <title>
 The <h:b>OS</h:b> shall provide a communication path between itself and
-<selectables><selectable>remote</selectable><selectable>local</selectable></selectables>
+<selectables><selectable id="s-remote">remote</selectable><selectable id="s-local">local</selectable></selectables>
 users that is logically distinct from other communication paths and provides assured
 identification of its endpoints and protection of the communicated data from
 [modification, disclosure].
@@ -3446,8 +3517,9 @@ Authorized remote administrators must initiate all communication with the OS via
 a trusted path and all communication with the OS by remote administrators must
 be performed over this path. The data passed in this trusted communication
 channel is encrypted as defined in <xref to="fel-trust-comms"/>.
-If local users access is selected and no unprotected traffic is sent to remote
-users, then this requirement is met.  If remote users access is selected, the
+If <xref to="s-local"/> users access is selected and no unprotected traffic is sent to remote
+users, then this requirement is met.
+If <xref to="s-remote"/> users access is selected, the
 ST author must include the security functional requirements for the trusted
 channel protocol selected in
 <xref to="fel-trust-comms"/> in the main body of the ST.
@@ -3895,7 +3967,12 @@ The evaluator will also perform the following
           </a-element>
 	  
         </a-component>
-        <a-component cc-id="alc_tsu_ext.1" name="Timely Security Updates"> This component requires the
+
+        <!-- <ext-comp-def fam-id="ALC_TSU_EXT" title="Timely Security Updates"> -->
+	<!--   <fam-behavior>This family of requirements defines the scenarios when the vendor must issue updates.</fam-behavior> -->
+	<!-- </ext-comp-def> -->
+
+	<a-component cc-id="alc_tsu_ext.1" name="Timely Security Updates"> This component requires the
           OS developer, in conjunction with any other necessary parties, to provide information as
           to how the end-user devices are updated to address security issues in a timely manner. The
           documentation describes the process of providing updates to the public from the time a
