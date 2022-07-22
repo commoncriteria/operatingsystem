@@ -959,7 +959,7 @@ The OS shall destroy cryptographic keys and key material in accordance with a sp
 		<selectable>For non-volatile memory that consists of 
 		    <selectables>
 			<selectable id="s-kek-kill"><snip>destruction
-			of all key encrypting keys protecting the target key
+			of all key encrypting keys (KEKs) protecting the target key
 			according to <xref to="fel-key-kill"/></snip>, where none of the KEKs protecting the target key are derived
 			</selectable>
 			<selectable>the invocation of an interface provided by the underlying platform that
@@ -1012,7 +1012,7 @@ a key can be considered destroyed by destroying the key that protects the key.
 If a key is wrapped or encrypted it is not necessary to "overwrite" that key,
 overwriting the key that is used to wrap or encrypt the key used to encrypt/decrypt data,
 using the appropriate method for the memory type involved, will suffice.
-For example, if a product uses a Key Encryption Key (KEK) to encrypt a Data Encryption Key
+For example, if a product uses a KEK to encrypt a Data Encryption Key
 (DEK), destroying the KEK using one of the methods in FCS_CKM_EXT.4 is sufficient, 
 since the DEK would no longer be usable (of course, presumes the DEK is still encrypted 
 and the KEK cannot be recovered or re-derived.).
@@ -1424,11 +1424,11 @@ This result shall be compared to the result of running 1000 iterations with the 
                   implementation supports an associated data length of 2
                   16 bytes, an associated data length of 216 bytes will be tested.
                 </h:li>
-                <h:li>Nonce lengths. All supported nonce lengths between 7 and 13 bytes, inclusive, will
-                  be tested.
+                <h:li>Nonce lengths.
+		The evaluator will test all nonce lengths between 7 and 13 bytes, inclusive, that are supported by the OS.
                 </h:li>
-                <h:li>Tag lengths. All supported tag lengths of 4, 6, 8, 10, 12, 14 and 16 bytes will be
-                  tested.
+                <h:li>Tag lengths.
+		The evaluator will test all of the following tag length values that are supported by the OS: 4, 6, 8, 10, 12, 14 and 16 bytes.
                 </h:li>
               </h:ul>
               To test the generation-encryption functionality of AES-CCM, the evaluator will perform the
