@@ -1697,7 +1697,7 @@ This result shall be compared to the result of running 1000 iterations with the 
                 linebreak="yes">
                 <selectable>RSA schemes using cryptographic key sizes of 2048-bit or greater
                   that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)",  Section 4</selectable>
-                <selectable id="s-ec-certs">ECDSA schemes using "NIST curves" P-384 and <selectables>
+                <selectable id="s-ec-certs"><snip>ECDSA schemes</snip> using "NIST curves" P-384 and <selectables>
                     <selectable>P-521</selectable>
                     <selectable exclusive="yes">no other curves</selectable>
                   </selectables>
@@ -3193,12 +3193,15 @@ the authentication mechanism(s) behave as documented in the TSS.
                 <h:li>The OS shall validate the revocation status of the certificate using 
 		<selectables>
 		  <selectable>OCSP as specified in RFC 6960</selectable>
-		  <selectable>CRL as specified in RFC 5759</selectable>
+		  <selectable>CRL as specified in RFC 8603</selectable>
 		  <selectable>an OCSP TLS Status Request Extension (OCSP stapling) as specified
 		  in RFC 6066</selectable>
 		  <selectable> OCSP TLS Multi-Certificate Status Request Extension 
 		  (i.e., OCSP Multi-Stapling) as specified in RFC 6961</selectable>
 		</selectables>
+		with
+		<selectables><selectable>no exceptions</selectable>
+		<selectable id="s-revoc-exceptions"><readable>exceptional use cases</readable><assignable>exceptional use cases and alternative status check</assignable></selectable></selectables></h:li>
 		
 		<h:li>The OS shall validate the extendedKeyUsage field according to the following rules:
 		<h:ul>
@@ -3211,21 +3214,39 @@ the authentication mechanism(s) behave as documented in the TSS.
 		  <h:li>Server certificates presented for EST shall have the CMC Registration Authority (RA) purpose (id-kp-cmcRA with OID 1.3.6.1.5.5.7.3.28) in the EKU field. (conditional)</h:li>
 		</h:ul>
 		</h:li>
-		</h:li>
 	      </h:ul>				
 	      .
             </title>
             <note role="application">
-	      <xref to="fel-cert-val"/> lists the rules for validating certificates.
-	      The ST author will select whether revocation status is verified using OCSP or CRLs.
-	      FIA_X509_EXT.2 requires that certificates are used for HTTPS, TLS, and DTLS;
-	      this use requires that the <h:i>extendedKeyUsage</h:i> rules are verified.
+	      <h:p>
+		<xref to="fel-cert-val"/> lists the rules for validating certificates.
+		The ST author will select whether revocation status is verified using OCSP or CRLs.
+		FIA_X509_EXT.2 requires that certificates are used for HTTPS, TLS, and DTLS;
+		this use requires that the <h:i>extendedKeyUsage</h:i> rules are verified.
+	      </h:p>
+	      <h:p>
+		OCSP stapling and OCSP multi-stapling only support TLS server certificate validation. If other certificate types are validated, either OCSP or CRL should be claimed.
+		If OCSP is not supported the EKU provision for checking the OCSP Signing purpose is met by default.
+	      </h:p>
+	      <h:p>
+		If the OS receives server certificates presented for EST, then the ST author should make the selection for EST in the SFR.
+	      </h:p>
+
+	      <h:p>If the OS cannot perform revocation in accordance with one of the specified revocation methods, then the specific use cases where revocation checking is not possible must be described, along with any alternative to certificate status checking for each use case.
+	      For example, for the use case 'update functions when network connections are not available, notice of a compromised certificate disables automatic updates.'
+	      </h:p>
+	      
             </note>
             <aactivity>
 	      <TSS>
+		<h:p>
 		The evaluator will ensure the TSS describes where the
 		check of validity of the certificates takes place.
 		The evaluator ensures the TSS also provides a description of the certificate path validation algorithm.
+		</h:p>
+		<h:p>
+		  If the OS cannot perform revocation in accordance with one of the revocation methods, the evaluator will ensure the TSS describes each revocation checking exception use case, and for each exception, the alternate functionality the TOE implements to determine the status of the certificate and disable functionality dependent on the validity of the certificate.
+		</h:p>
 	      </TSS>
 	      <Tests> 
 The tests described must be performed in conjunction with the other certificate services evaluation activities, including the functions in FIA_X509_EXT.2.1.
@@ -3255,21 +3276,27 @@ If CRL is selected, the evaluator will configure the CA to sign a CRL with a cer
 (The signature on the certificate will not validate.)</test>
 <test> The evaluator will modify any byte in the public key of the certificate and demonstrate that the certificate fails to validate.
 (The signature of the certificate will not validate.)</test>
-	</testlist>
-<h:div>
-  <depends on="s-ec-certs"/>
-  <!-- (Conditional on support for EC certificates as indicated in FCS_COP.1(3)). -->
-  <testlist>
-    <test> The evaluator will establish a valid, trusted certificate chain consisting of an EC leaf certificate, an EC Intermediate CA certificate not designated as a trust anchor, and an EC certificate designated as a trusted anchor, where the elliptic curve parameters are specified as a named curve.
+
+    <test>
+      <depends on="s-ec-certs"/>
+      <testlist>
+	<test id="t-ecdsa-valid">
+      The evaluator will establish a valid, trusted certificate chain consisting of an EC leaf certificate, an EC Intermediate CA certificate not designated as a trust anchor, and an EC certificate designated as a trusted anchor, where the elliptic curve parameters are specified as a named curve.
     The evaluator will confirm that the TOE validates the certificate chain.
     </test>
     <test>
-      The evaluator will replace the intermediate certificate in the certificate chain for Test 8a with a modified certificate, where the modified intermediate CA has a public key information field where the EC parameters uses an explicit format version of the Elliptic Curve parameters in the public key information field of the intermediate CA certificate from Test 8a, and the modified Intermediate CA certificate is signed by the trusted EC root CA, but having no other changes.
+      <!-- <depends on="s-ec-certs"/> -->
+      The evaluator will replace the intermediate certificate in the certificate chain for <xref to="t-ecdsa-valid"/> with a modified certificate, where the modified intermediate CA has a public key information field where the EC parameters uses an explicit format version of the Elliptic Curve parameters in the public key information field of the intermediate CA certificate from Test 8a, and the modified Intermediate CA certificate is signed by the trusted EC root CA, but having no other changes.
 The evaluator will confirm the TOE treats the certificate as invalid.
-	  </test>
+    </test>
+      </testlist>
+    </test>
+
+<test>
+    <depends on="s-revoc-exceptions"/>
+    For each exceptional use case for revocation checking described in the ST, the evaluator shall attempt to establish the conditions of the use case, designate the certificate as invalid and perform the function relying on the certificate. The evaluator shall observe that the atlternate revocation checking mechanism successfully prevents performance of the function.
+</test>
 	</testlist>
-</h:div>
-	
 </Tests>
 
 			  
