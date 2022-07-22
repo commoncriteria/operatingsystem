@@ -3102,7 +3102,7 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
 			  </testlist>
 			  If X.509 certificate authentication is selected, the evaluator
 			  will generate an X.509v3 certificate for a user with the Client
-			  Authentication Enhanced Key Usage field set. The evaluator will
+			  Authentication Extended Key Usage field set. The evaluator will
 			  provision the OS for authentication with the X.509v3 certificate.
 			  The evaluator will ensure that the
 			  certificates are validated by the OS as per
@@ -3182,52 +3182,52 @@ the authentication mechanism(s) behave as documented in the TSS.
           <f-element id="fel-cert-val">
             <title>
 	      The OS shall implement functionality to validate certificates in accordance with the following rules:
-				<h:ul>
-					<h:li>RFC 5280 certificate validation and certificate path validation</h:li>
-					<h:li>The certificate path must terminate with a trusted CA certificate</h:li>
-                    <h:li>The OS shall validate a certificate path by ensuring the presence of the 
-	                      basicConstraints extension, that the CA flag is set to TRUE for all CA certificates,
-                          and that any path constraints are met.</h:li>
-                    <h:li>The TSF shall validate that any CA certificate includes "Certificate Signing" as a  purpose the key usage field</h:li>
+	      <h:ul>
+		<h:li>RFC 5280 certificate validation and certificate path validation</h:li>
+		<h:li>The certificate path must terminate with a trusted CA certificate</h:li>
+                <h:li>The OS shall validate a certificate path by ensuring the presence of the 
+	        basicConstraints extension, that the CA flag is set to TRUE for all CA certificates,
+                and that any path constraints are met.</h:li>
+                <h:li>The TSF shall validate that any CA certificate includes "Certificate Signing" as a  purpose the key usage field</h:li>
 
-                    <h:li>The OS shall validate the revocation status of the certificate using 
-						<selectables>
-						  <selectable>OCSP as specified in RFC 6960</selectable>
-					    	<selectable>CRL as specified in RFC 5759</selectable>
-						  <selectable>an OCSP TLS Status Request Extension (OCSP stapling) as specified
-						      in RFC 6066</selectable>
-						  <selectable> OCSP TLS Multi-Certificate Status Request Extension 
-							  (i.e., OCSP Multi-Stapling) as specified in RFC 6961</selectable>
-						</selectables>
-							  
-					<h:li>The OS shall validate the extendedKeyUsage field according to the following rules:
-						<h:ul>
+                <h:li>The OS shall validate the revocation status of the certificate using 
+		<selectables>
+		  <selectable>OCSP as specified in RFC 6960</selectable>
+		  <selectable>CRL as specified in RFC 5759</selectable>
+		  <selectable>an OCSP TLS Status Request Extension (OCSP stapling) as specified
+		  in RFC 6066</selectable>
+		  <selectable> OCSP TLS Multi-Certificate Status Request Extension 
+		  (i.e., OCSP Multi-Stapling) as specified in RFC 6961</selectable>
+		</selectables>
+		
+		<h:li>The OS shall validate the extendedKeyUsage field according to the following rules:
+		<h:ul>
 
-							<h:li> Certificates used for trusted updates and executable code integrity verification shall have the Code Signing Purpose (id-kp 3 with OID 1.3.6.1.5.5.7.3.3) in the extendedKeyUsage field.</h:li>
-							<h:li>Server certificates presented for TLS shall have the Server Authentication purpose (id-kp 1 with OID 1.3.6.1.5.5.7.3.1) in the extendedKeyUsage field.</h:li>	
-							<h:li>Client certificates presented for TLS shall have the Client Authentication purpose (id-kp 2 with OID 1.3.6.1.5.5.7.3.2) in the EKU field.</h:li>
-							<h:li>S/MIME certificates presented for email encryption and signature shall have the Email Protection purpose (id-kp 4 with OID 1.3.6.1.5.5.7.3.4) in the EKU field.</h:li>
-							<h:li>OCSP certificates presented for OCSP responses shall have the OCSP Signing Purpose (id-kp 9 with OID 1.3.6.1.5.5.7.3.9) in the EKU field.</h:li>
-							<h:li>Server certificates presented for EST shall have the CMC Registration Authority (RA) purpose (id-kp-cmcRA with OID 1.3.6.1.5.5.7.3.28) in the EKU field. (conditional)</h:li>
-						</h:ul>
-						</h:li>
-					</h:li>
-				</h:ul>				
+		  <h:li> Certificates used for trusted updates and executable code integrity verification shall have the Code Signing Purpose (id-kp 3 with OID 1.3.6.1.5.5.7.3.3) in the extendedKeyUsage field.</h:li>
+		  <h:li>Server certificates presented for TLS shall have the Server Authentication purpose (id-kp 1 with OID 1.3.6.1.5.5.7.3.1) in the extendedKeyUsage field.</h:li>	
+		  <h:li>Client certificates presented for TLS shall have the Client Authentication purpose (id-kp 2 with OID 1.3.6.1.5.5.7.3.2) in the EKU field.</h:li>
+		  <h:li>S/MIME certificates presented for email encryption and signature shall have the Email Protection purpose (id-kp 4 with OID 1.3.6.1.5.5.7.3.4) in the EKU field.</h:li>
+		  <h:li>OCSP certificates presented for OCSP responses shall have the OCSP Signing Purpose (id-kp 9 with OID 1.3.6.1.5.5.7.3.9) in the EKU field.</h:li>
+		  <h:li>Server certificates presented for EST shall have the CMC Registration Authority (RA) purpose (id-kp-cmcRA with OID 1.3.6.1.5.5.7.3.28) in the EKU field. (conditional)</h:li>
+		</h:ul>
+		</h:li>
+		</h:li>
+	      </h:ul>				
 	      .
             </title>
             <note role="application">
-	          <xref to="fel-cert-val"/> lists the rules for validating certificates.
-			  The ST author will select whether revocation status is verified using OCSP or CRLs.
-			  FIA_X509_EXT.2 requires that certificates are used for HTTPS, TLS, and DTLS;
-				this use requires that the <h:i>extendedKeyUsage</h:i> rules are verified.
+	      <xref to="fel-cert-val"/> lists the rules for validating certificates.
+	      The ST author will select whether revocation status is verified using OCSP or CRLs.
+	      FIA_X509_EXT.2 requires that certificates are used for HTTPS, TLS, and DTLS;
+	      this use requires that the <h:i>extendedKeyUsage</h:i> rules are verified.
             </note>
             <aactivity>
 	      <TSS>
-	      The evaluator will ensure the TSS describes where the
-              check of validity of the certificates takes place.
-	      The evaluator ensures the TSS also provides a description of the certificate path validation algorithm.
+		The evaluator will ensure the TSS describes where the
+		check of validity of the certificates takes place.
+		The evaluator ensures the TSS also provides a description of the certificate path validation algorithm.
 	      </TSS>
-<Tests> 
+	      <Tests> 
 The tests described must be performed in conjunction with the other certificate services evaluation activities, including the functions in FIA_X509_EXT.2.1.
 The tests for the extendedKeyUsage rules are performed in conjunction with the uses that require those rules.
 The evaluator will create a chain of at least four certificates: the node certificate to be tested, two Intermediate CAs, and the self-signed Root CA.
