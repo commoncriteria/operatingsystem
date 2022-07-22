@@ -774,11 +774,11 @@ The following sections list Common Criteria and technology terms used in this do
             An <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must claim exact conformance to this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, 
             as defined in the <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr> and <abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr> addenda for Exact Conformance, Selection-based <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr>, and 
             Optional <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> (dated May 2017)<a id="period_82" href="#period_82">. </a>	  </p><p>
-              The following <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-Modules are allowed to be specified in a <abbr class="dyn-abbr"><a href="#abbr_PP-Configuration">PP-Configuration</a></abbr> with this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr><a id="period_83" href="#period_83">. </a>              <ul><li><a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=467&amp;id=467">Virtual Private Network (VPN) Clients,
+              The following <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-Modules are allowed to be specified in a <abbr class="dyn-abbr"><a href="#abbr_PP-Configuration">PP-Configuration</a></abbr> with this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr><a id="period_83" href="#period_83">. </a>              <ul><li><a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=467&amp;id=467">PP-Module for Virtual Private Network (VPN) Clients,
         version 
         2.4</a></li><li><a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=425&amp;id=425">PP-Module for Bluetooth,
         version 
-        1.0</a></li><li><a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=441&amp;id=441">Mobile Device Management Agent,
+        1.0</a></li><li><a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=441&amp;id=441">PP-Module for Mobile Device Management Agent,
         version 
         1.0</a></li><li><a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=386&amp;id=386">PP-Module for Wireless LAN Clients,
         version 
@@ -1196,7 +1196,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall destroy crypto
 		[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_12">single overwrite consisting of [<b>selection</b>: <span class="selectable-content" id="_s_13">a pseudo-random pattern using the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>'s <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr></span>,  <span class="selectable-content" id="_s_14">zeroes</span>,  <span class="selectable-content" id="_s_15">ones</span>,  <span class="selectable-content" id="_s_16">a new value of a key</span>,  <span class="selectable-content" id="_s_17">[<b>assignment</b>: 
      <span class="assignable-content"> any value that does not contain any <abbr class="dyn-abbr"><a href="#abbr_CSP">CSP</a></abbr></span>]</span> ]</span></li><li style=""><span class="selectable-content" id="_s_18">removal of power to the memory</span></li><li style=""><span class="selectable-content" id="_s_19">destruction of reference to the key directly followed by a request for garbage collection</span></li></ul>]</span></li><li style=""><span class="selectable-content" id="_s_20">For non-volatile memory that consists of 
 		    [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-kek-kill">destruction
-			of all key encrypting keys protecting the target key
+			of all key encrypting keys (KEKs) protecting the target key
 			according to <a href="#FCS_CKM_EXT.4.1">FCS_CKM_EXT.4.1</a>, where none of the KEKs protecting the target key are derived
 			</span></li><li style=""><span class="selectable-content" id="_s_22">the invocation of an interface provided by the underlying platform that
 				[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_23">logically addresses the storage location of the key and performs a 
@@ -1227,11 +1227,11 @@ data is carefully selected, and not taken from a general 'pool' that might conta
 residual data that itself requires confidentiality protection<a id="period_212" href="#period_212">. </a>	      </p>
 	      <p>      
 For the selection <a href="#s-kek-kill">destruction
-			of all key encrypting keys protecting the target key
+			of all key encrypting keys (KEKs) protecting the target key
 			according to FCS_CKM_EXT.4.1</a>,
 a key can be considered destroyed by destroying the key that protects the key<a id="period_213" href="#period_213">. </a>If a key is wrapped or encrypted it is not necessary to "overwrite" that key,
 overwriting the key that is used to wrap or encrypt the key used to encrypt/decrypt data,
-using the appropriate method for the memory type involved, will suffice<a id="period_214" href="#period_214">. </a>For example, if a product uses a Key Encryption Key (KEK) to encrypt a Data Encryption Key
+using the appropriate method for the memory type involved, will suffice<a id="period_214" href="#period_214">. </a>For example, if a product uses a KEK to encrypt a Data Encryption Key
 (DEK), destroying the KEK using one of the methods in <a href="#FCS_CKM_EXT.4">FCS_CKM_EXT.4</a> is sufficient, 
 since the DEK would no longer be usable (of course, presumes the DEK is still encrypted 
 and the KEK cannot be recovered or re-derived.)<a id="period_215" href="#period_215">. </a>	      </p>
@@ -1552,10 +1552,8 @@ PT = CT[i]
                   supported payload length, less than or equal to 32 bytes (256 bits)<a id="period_368" href="#period_368">. </a>If the
                   implementation supports an associated data length of 2
                   16 bytes, an associated data length of 216 bytes will be tested<a id="period_369" href="#period_369">. </a>                </li>
-                <li>Nonce lengths<a id="period_370" href="#period_370">. </a>All supported nonce lengths between 7 and 13 bytes, inclusive, will
-                  be tested<a id="period_371" href="#period_371">. </a>                </li>
-                <li>Tag lengths<a id="period_372" href="#period_372">. </a>All supported tag lengths of 4, 6, 8, 10, 12, 14 and 16 bytes will be
-                  tested<a id="period_373" href="#period_373">. </a>                </li>
+                <li>Nonce lengths<a id="period_370" href="#period_370">. </a>		The evaluator will test all nonce lengths between 7 and 13 bytes, inclusive, that are supported by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr><a id="period_371" href="#period_371">. </a>                </li>
+                <li>Tag lengths<a id="period_372" href="#period_372">. </a>		The evaluator will test all of the following tag length values that are supported by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>: 4, 6, 8, 10, 12, 14 and 16 bytes<a id="period_373" href="#period_373">. </a>                </li>
               </ul>
               To test the generation-encryption functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCM, the evaluator will perform the
               following four tests:

@@ -812,11 +812,11 @@ The following sections list Common Criteria and technology terms used in this do
             Optional <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> (dated May 2017).
 	  </p><p>
               The following <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-Modules are allowed to be specified in a <abbr class="dyn-abbr"><a href="#abbr_PP-Configuration">PP-Configuration</a></abbr> with this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>.
-              <ul><li><a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=467&amp;id=467">Virtual Private Network (VPN) Clients,
+              <ul><li><a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=467&amp;id=467">PP-Module for Virtual Private Network (VPN) Clients,
         version 
         2.4</a></li><li><a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=425&amp;id=425">PP-Module for Bluetooth,
         version 
-        1.0</a></li><li><a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=441&amp;id=441">Mobile Device Management Agent,
+        1.0</a></li><li><a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=441&amp;id=441">PP-Module for Mobile Device Management Agent,
         version 
         1.0</a></li><li><a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=386&amp;id=386">PP-Module for Wireless LAN Clients,
         version 
@@ -1285,7 +1285,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall destroy crypto
 		[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_12">single overwrite consisting of [<b>selection</b>: <span class="selectable-content" id="_s_13">a pseudo-random pattern using the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>'s <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr></span>,  <span class="selectable-content" id="_s_14">zeroes</span>,  <span class="selectable-content" id="_s_15">ones</span>,  <span class="selectable-content" id="_s_16">a new value of a key</span>,  <span class="selectable-content" id="_s_17">[<b>assignment</b>: 
      <span class="assignable-content"> any value that does not contain any <abbr class="dyn-abbr"><a href="#abbr_CSP">CSP</a></abbr></span>]</span> ]</span></li><li style=""><span class="selectable-content" id="_s_18">removal of power to the memory</span></li><li style=""><span class="selectable-content" id="_s_19">destruction of reference to the key directly followed by a request for garbage collection</span></li></ul>]</span></li><li style=""><span class="selectable-content" id="_s_20">For non-volatile memory that consists of 
 		    [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-kek-kill">destruction
-			of all key encrypting keys protecting the target key
+			of all key encrypting keys (KEKs) protecting the target key
 			according to <a href="#FCS_CKM_EXT.4.1">FCS_CKM_EXT.4.1</a>, where none of the KEKs protecting the target key are derived
 			</span></li><li style=""><span class="selectable-content" id="_s_22">the invocation of an interface provided by the underlying platform that
 				[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_23">logically addresses the storage location of the key and performs a 
@@ -1324,13 +1324,13 @@ residual data that itself requires confidentiality protection.
 	      </p>
 	      <p>      
 For the selection <a href="#s-kek-kill">destruction
-			of all key encrypting keys protecting the target key
+			of all key encrypting keys (KEKs) protecting the target key
 			according to FCS_CKM_EXT.4.1</a>,
 a key can be considered destroyed by destroying the key that protects the key.
 If a key is wrapped or encrypted it is not necessary to "overwrite" that key,
 overwriting the key that is used to wrap or encrypt the key used to encrypt/decrypt data,
 using the appropriate method for the memory type involved, will suffice.
-For example, if a product uses a Key Encryption Key (KEK) to encrypt a Data Encryption Key
+For example, if a product uses a KEK to encrypt a Data Encryption Key
 (DEK), destroying the KEK using one of the methods in <a href="#FCS_CKM_EXT.4">FCS_CKM_EXT.4</a> is sufficient, 
 since the DEK would no longer be usable (of course, presumes the DEK is still encrypted 
 and the KEK cannot be recovered or re-derived.).
@@ -1726,11 +1726,11 @@ This result shall be compared to the result of running 1000 iterations with the 
                   implementation supports an associated data length of 2
                   16 bytes, an associated data length of 216 bytes will be tested.
                 </li>
-                <li>Nonce lengths. All supported nonce lengths between 7 and 13 bytes, inclusive, will
-                  be tested.
+                <li>Nonce lengths.
+		The evaluator will test all nonce lengths between 7 and 13 bytes, inclusive, that are supported by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>.
                 </li>
-                <li>Tag lengths. All supported tag lengths of 4, 6, 8, 10, 12, 14 and 16 bytes will be
-                  tested.
+                <li>Tag lengths.
+		The evaluator will test all of the following tag length values that are supported by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>: 4, 6, 8, 10, 12, 14 and 16 bytes.
                 </li>
               </ul>
               To test the generation-encryption functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCM, the evaluator will perform the
