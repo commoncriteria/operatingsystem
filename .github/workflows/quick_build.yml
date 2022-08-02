@@ -118,7 +118,7 @@ jobs:
         label: 'Misspellings'
         status: ${{ steps.spellcheck.outputs.LINES }}
         color: ${{ steps.coverage.outputs.spellcolor }}
-        path: spell-badge.svg
+        path: output/spell-badge.svg
 
     - name: Generate the built branch SVG
       uses: emibcn/badge-action@v1
@@ -126,7 +126,7 @@ jobs:
         label: 'Last Built'
         status: ${{ steps.extract_branch.outputs.branch }}
         color: black
-        path:  "build-branch-badge.svg"
+        path:  "output/build-branch-badge.svg"
 
 
     # - name: Upload badge as artifact
@@ -143,7 +143,7 @@ jobs:
         label: 'Warnings'
         status: ${{ steps.status.outputs.WORD }}
         color: ${{ steps.status.outputs.COLOR }}
-        path: warnings.svg
+        path: output/warnings.svg
 
         
     - name: Generate the transforms badge
@@ -152,7 +152,7 @@ jobs:
         label: 'Transforms'
         status: ${{ steps.tdate.outputs.TDATE }}
         color: gray
-        path: transforms.svg
+        path: output/transforms.svg
         
      # Use the output from the `coverage` step
     - name: Generate the validation badge SVG image
@@ -161,7 +161,7 @@ jobs:
         label: 'Validation'
         status: ${{ steps.validate.outputs.VALERRORS }}
         color: ${{ steps.coverage.outputs.valcolor }}
-        path: validation.svg
+        path: output/validation.svg
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@4.0.0
