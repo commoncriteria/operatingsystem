@@ -3075,8 +3075,8 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall authent
              is selected from 
              <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a></li></ul><div class="dependent-content"><div>
 		  
-		  If <a href="#s-pass">authentication based on user name and password</a> is selected, the evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> with a
-		  known user name and password and conduct the following tests:
+		  
+		  
               <ul>
                 <li id="_t_61"><b><a href="#_t_61" class="definition">Test 1</a>: </b>
 				  The evaluator will attempt to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using
@@ -3094,12 +3094,11 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall authent
              is selected from 
              <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a></li></ul><div class="dependent-content"><div>
 		  
-			  If <a href="#s-pin">user name and a PIN that releases an asymmetric key</a> is selected,
-			  the evaluator will examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> for guidance on supported
-			  protected storage and will then configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr> to establish a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr>
-			  which enables release of the asymmetric key from the protected storage (such as a TPM, a hardware token, or
-			  isolated execution environment) with which the
-			  <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can interface.  The evaluator will then conduct the following tests:
+		  The evaluator will examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> for guidance on supported
+		  protected storage and will then configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr> to establish a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr>
+		  which enables release of the asymmetric key from the protected storage (such as a TPM, a hardware token, or
+		  isolated execution environment) with which the
+		  <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can interface.  The evaluator will then conduct the following tests:
 			  <ul>
 			    <li id="_t_63"><b><a href="#_t_63" class="definition">Test 1</a>: </b>
 			      The evaluator will attempt to  authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the known user name and <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr>.
@@ -3116,7 +3115,7 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall authent
              is selected from 
              <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a></li></ul><div class="dependent-content"><div>
 		  
-			  If <a href="#s-x509-auth">authentication based on X.509 certificates</a>, the evaluator
+			  The evaluator
 			  will generate an X.509v3 certificate for a user with the Client
 			  Authentication Extended Key Usage field set. The evaluator will
 			  provision the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> for authentication with the X.509v3 certificate.
@@ -3344,7 +3343,9 @@ the node certificate to be tested, two Intermediate CAs, and the
         version 
         2.0-draft</a></span></li><li style=""><span class="selectable-content" id="dtls"><abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS),
         version 
-        2.0-draft</a></span></li><li style=""><span class="selectable-content" id="s-itc-ipsec">IPsec</span></li><li style=""><span class="selectable-content" id="s-ftp_ssh">SSH as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
+        2.0-draft</a></span></li><li style=""><span class="selectable-content" id="s-itc-ipsec">IPsec as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=467&amp;id=467">PP-Module for Virtual Private Network (VPN) Clients,
+        version 
+        2.4</a></span></li><li style=""><span class="selectable-content" id="s-ftp_ssh">SSH as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
         version 
         1.0</a></span></li></ul>]
 		    to provide a trusted communication channel between itself and
@@ -3367,13 +3368,16 @@ the node certificate to be tested, two Intermediate CAs, and the
               The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> can act as <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> client or server, or both.
 	      </p>
 	      <p>
-If <a href="#s-itc-ipsec">IPsec</a> is selected, then <a href="#FDP_IFC_EXT.1">FDP_IFC_EXT.1</a> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
+If <a href="#s-itc-ipsec">IPsec as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=467&amp;id=467">PP-Module for Virtual Private Network (VPN) Clients,
+        version 
+        2.4</a></a> is selected, then <a href="#FDP_IFC_EXT.1">FDP_IFC_EXT.1</a> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
 	      </p>
 	      <p>
 If <a href="#s-ftp_ssh">SSH</a> is selected, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> must be validated against
 the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
         version 
-        1.0</a>.
+        1.0</a> and the corresponding selection is expected to be made in <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a>.
+The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must include the security functional requirements for the trusted channel protocol selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> in the main body of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
 	      </p>
       	    </span></div></div></div>
       	<div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a></div>
@@ -4251,12 +4255,12 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
 	      <p>
 		  If no native IPsec client is validated or third-party <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> clients may
 		  also implement the required Information Flow Control, the first
-		  option will be selected. In these cases, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> provides an <abbr class="dyn-abbr"><a href="#abbr_API">API</a></abbr> to
+		  option must be selected. In these cases, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> provides an <abbr class="dyn-abbr"><a href="#abbr_API">API</a></abbr> to
 		  third-party <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> clients that allows them to configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s
 		  network stack to perform the required Information Flow Control.
 	      </p>
 	      <p>
-		If the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> implements a native <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client, then the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author will select 
+		If the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> implements a native <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client, then the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must select 
 		<a href="#s-provides-vpnclient">provide a VPN client</a> and includes the <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> Client
 		as part of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
 		  
