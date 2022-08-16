@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../transforms/pp2html.xsl"?>
 	
-	
+
 <PP xmlns="https://niap-ccevs.org/cc/v1" target-products="General Purpose Operating Systems"
     xmlns:sec="https://niap-ccevs.org/cc/v1/section"
     xmlns:h="http://www.w3.org/1999/xhtml" boilerplate="yes">
@@ -2455,11 +2455,14 @@ This test can also be completed on the same hardware and rebooting between appli
           
           
           <f-element id="fel-bluetooth-stop">
-            <title>The TSF shall disable support for <assignable>list of Bluetooth
-                profiles</assignable> Bluetooth profiles when they are not currently being used by
+            <title>
+	      The TSF shall disable support for
+ 	      <assignable>list of Bluetooth profiles</assignable>
+	      Bluetooth profiles when they are not currently being used by
               an application on the TOE and shall require explicit user action to enable
-              them.</title>
-              <note role="application">
+              them.
+	    </title>
+            <note role="application">
 		<h:p>
 		Some Bluetooth services incur more serious consequences if
 		unauthorized remote devices gain access to them.
@@ -2478,7 +2481,7 @@ This test can also be completed on the same hardware and rebooting between appli
 		  support for the OBEX profile should be suspended until the next time the user requests
 		  its use.
 		</h:p>
-	      </note>
+	    </note>
             <aactivity>
               <TSS>The evaluator will ensure that the TSS lists all Bluetooth profiles that are
                 disabled while not in use by an application and which need explicit user action in
@@ -2487,15 +2490,19 @@ This test can also be completed on the same hardware and rebooting between appli
               <Guidance>There are no guidance evaluation activities for this component.</Guidance>
 	      <Tests>The evaluator will perform the following tests:
 	      <testlist>
-                <test>While the service is not in active use by an application on the TOE, the
-                evaluator will attempt to discover a service associated with a "protected"
-                Bluetooth profile (as specified by the requirement) on the TOE via a Service
-                Discovery Protocol search. The evaluator will verify that the service does not
-                appear in the Service Discovery Protocol search results. Next, the evaluator
-                shall attempt to gain remote access to the service from a device that does not
-                currently have a trusted device relationship with the TOE. The evaluator will
-                verify that this attempt fails due to the unavailability of the service and
-                profile. </test>
+                <test>
+		  The evaluator will perform this test with a test device that does not have a trust relationship with the TOE.
+		  While the service is not in active use by an application on the TOE, the
+                  evaluator will attempt to discover a service associated with a "protected"
+                  Bluetooth profile (as specified by the requirement) on the TOE via a Service
+                  Discovery Protocol search.
+		  The evaluator will verify that the service does not
+                  appear in the Service Discovery Protocol search results.
+		  Next, the evaluator shall attempt to gain remote access to the service from a device that does not
+                  currently have a trusted device relationship with the TOE.
+		  The evaluator will verify that this attempt fails due to the unavailability of the service and
+                  profile.
+		</test>
                 <test>The evaluator will repeat Test 1 with a device that currently has a trusted
                 device relationship with the TOE and verify that the same behavior is exhibited.
                 </test>
@@ -2555,75 +2562,98 @@ The evaluator will also ensure that the TSS includes a description of the safegu
           <f-element id="fel-srp">
             <title> The OS shall restrict execution to only programs which match an administrator-specified
               <selectables linebreak="yes">
-                <selectable>file path</selectable>
-                <selectable>file digital signature</selectable>
-                <selectable>version</selectable>
-                <selectable>hash</selectable>
-                <selectable><assignable>other characteristics</assignable></selectable>
+                <selectable id="s-srp-path">file path</selectable>
+                <selectable id="s-srp-signature">file digital signature</selectable>
+                <selectable id="s-srp-version">version</selectable>
+                <selectable id="s-srp-hash">hash</selectable>
+                <selectable id="s-srp-other"><readable>other</readable><assignable>other characteristics</assignable></selectable>
               </selectables>
 	      .
             </title>
             <note role="application">
               The assignment permits implementations which provide a low
-              level of granularity such as a volume.  The restriction is only against direct execution of
-              executable programs.  It does not forbid interpreters which may take data as an input, even if
+              level of granularity such as a volume.
+	      The restriction is only against direct execution of
+              executable programs.
+	      It does not forbid interpreters which may take data as an input, even if
               this data can subsequently result in arbitrary computation.
             </note>
             <aactivity>
+	      <TSS>
+		The evaluator will ensure that the description of the supported characteristics in the TSS is consistent with the SFR.
+		The evaluator will also ensure that any characteristics specified by the ST-author are described in sufficient detail to understand how to test those characteristics.
+	      </TSS>
+	      <Guidance>
+		The evaluator will ensure that that the characteristics are described in sufficient detail for administrators to configure policies using them, and that the list of characteristics in the guidance is consistent with the information in the TSS.
+	      </Guidance>
 	      <Tests>
-	      For each selection specified in the ST, the evaluator will ensure that the corresponding tests result in a negative
-              outcome (i.e., the action results in the OS denying the evaluator permission to
-              complete the action):
+		There are two tests for each selection above.
               <testlist>
                 <test>
+		  <depends on="s-srp-path"/>
                   The evaluator will configure the OS to only allow code execution from the core
                   OS directories. The evaluator will then attempt to execute code from a directory
                   that is in the allowed list. The evaluator will ensure that the code they
                   attempted to execute has been executed.
                 </test>
                 <test>
+		  <depends on="s-srp-path"/>
                   The evaluator will configure the OS to only allow code execution from the core
                   OS directories. The evaluator will then attempt to execute code from a directory
                   that is not in the allowed list. The evaluator will ensure that the code they
                   attempted to execute has not been executed.
                 </test>
                 <test>
+		  <depends on="s-srp-signature"/>
                   The evaluator will configure the OS to only allow code that has been signed by
                   the OS vendor to execute. The evaluator will then attempt to execute code signed
                   by the OS vendor. The evaluator will ensure that the code they
                   attempted to execute has been executed.
                 </test>
                 <test>
+		  <depends on="s-srp-signature"/>
                   The evaluator will configure the OS to only allow code that has been signed by
                   the OS vendor to execute. The evaluator will then attempt to execute code signed
                   by another digital authority. The evaluator will ensure that the code they
                   attempted to execute has not been executed.
                 </test>
                 <test>
+		  <depends on="s-srp-version"/>
                   The evaluator will configure the OS to allow execution of a specific
                   application based on version. The evaluator will then attempt to execute the same
                   version of the application. The evaluator will ensure that the code they attempted
                   to execute has been executed.
                 </test>
                 <test>
+		  <depends on="s-srp-version"/>
                   The evaluator will configure the OS to allow execution of a specific
                   application based on version. The evaluator will then attempt to execute an older
                   version of the application. The evaluator will ensure that the code they attempted
                   to execute has not been executed.
                 </test>
                 <test>
+		  <depends on="s-srp-hash"/>
                   The evaluator will configure the OS to allow execution based on the hash of the application
                   executable. The evaluator will then attempt to execute
                   the application with the matching hash. The evaluator will
                   ensure that the code they attempted to execute has been executed.
                 </test>
                 <test>
+		  <depends on="s-srp-hash"/>
                   The evaluator will configure the OS to allow execution based on the hash of the application
                   executable. The evaluator will modify the
                   application in such a way that the application hash is changed. The evaluator
                   will then attempt to execute the application with the matching hash. The evaluator will
                   ensure that the code they attempted to execute has not been executed.
                 </test>
+		<test>
+		  <depends on="s-srp-other"/>
+		  The evaluator will attempt to run an application that should be allowed based on the defined software restriction policy and ensure that it runs.
+		</test>
+		<test>
+		  <depends on="s-srp-other"/>
+		  The evaluator will then attempt to run an application that should not be allowed the defined software restriction policy and ensure that it does not run.
+		</test>
               </testlist>
               
               </Tests>
@@ -3531,9 +3561,6 @@ ST author must include the security functional requirements for the trusted
 channel protocol selected in
 <xref to="fel-trust-comms"/> in the main body of the ST.
 		</h:p>
-		<h:p>
-This requirement is tested with the  evaluation activities for  <xref to="fel-trust-path"/>.
-		</h:p>
 	      </note>
             </f-element>
             <f-element id="fel-trust-users">
@@ -3545,11 +3572,6 @@ This requirement is tested with the  evaluation activities for  <xref to="fel-tr
                 </selectables>
                 to initiate communication via the trusted path.
               </title>
-	      <note role="application">
-		<h:p>
-This requirement is tested with the  evaluation activities for  <xref to="fel-trust-path"/>.
-		</h:p>
-	      </note>
             </f-element>
             <f-element id="fel-trust-path">
               <title> The <h:b>OS</h:b> shall require use of the trusted path for
@@ -3561,10 +3583,7 @@ This requirement is tested with the  evaluation activities for  <xref to="fel-tr
                 with the OS via a trusted path, and that all communication with the OS by remote administrators
                 is performed over this path. The data passed in this trusted communication channel is encrypted as
                 defined in FTP_ITC_EXT.1.
-	      </h:p><h:p>
-	      The evaluation activities for this requirement also test requirements
-	      <xref to="fel-trust-ends"/> and <xref to="fel-trust-users"/>
-	    </h:p>
+	      </h:p>
               </note>
               <aactivity>
 		<TSS>
