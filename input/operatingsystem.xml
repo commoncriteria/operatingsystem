@@ -2082,12 +2082,12 @@ only AES-based implementations for CTR_DRBG are allowed.
 	      <h:p>
 		  If no native IPsec client is validated or third-party VPN clients may
 		  also implement the required Information Flow Control, the first
-		  option will be selected. In these cases, the TOE provides an API to
+		  option must be selected. In these cases, the TOE provides an API to
 		  third-party VPN clients that allows them to configure the TOE's
 		  network stack to perform the required Information Flow Control.
 	      </h:p>
 	      <h:p>
-		If the TSF implements a native VPN client, then the ST author will select 
+		If the TSF implements a native VPN client, then the ST author must select 
 		<xref to="s-provides-vpnclient"/> and includes the PP-Module for VPN Client
 		as part of the ST.
 		  <!-- If the native VPN client is to be validated  -->
@@ -3495,7 +3495,7 @@ the node certificate to be tested, two Intermediate CAs, and the
       	      <selectables linebreak='yes'>
                 <selectable id="tls"><snip>TLS</snip> as conforming to the <xref to="pkg-tls"/></selectable>
                 <selectable id="dtls"><snip>DTLS</snip> as conforming to the <xref to="pkg-tls"/></selectable>
-      	        <selectable id="s-itc-ipsec">IPsec</selectable>
+      	        <selectable id="s-itc-ipsec">IPsec as conforming to the <xref to="mod-vpnclient"/></selectable>
       	        <selectable id="s-ftp_ssh"><snip>SSH</snip> as conforming to the <xref to="pkg-ssh"/></selectable>
         	    </selectables>
 		    to provide a trusted communication channel between itself and
@@ -3523,7 +3523,8 @@ If <xref to="s-itc-ipsec"/> is selected, then FDP_IFC_EXT.1 must be included in 
 	      </h:p>
 	      <h:p>
 If <xref to="s-ftp_ssh"/> is selected, the TSF must be validated against
-the <xref to="pkg-ssh"/>.
+the <xref to="pkg-ssh"/> and the corresponding selection is expected to be made in FIA_UAU.5.1.
+The ST author must include the security functional requirements for the trusted channel protocol selected in FTP_ITC_EXT.1 in the main body of the ST.
 	      </h:p>
       	    </note>
       	    <aactivity>
