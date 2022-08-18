@@ -3138,8 +3138,8 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
             <title>
 	      The <refinement>OS</refinement> shall provide the following authentication mechanisms
 	      <h:b><selectables linebreak='yes'>
-		<selectable id="s-pass">authentication based on user name and password</selectable>
-		<selectable id="s-pin">authentication based on <snip>user name and a PIN that releases an asymmetric key</snip> stored
+		<selectable id="s-pass">authentication based on username and password</selectable>
+		<selectable id="s-pin">authentication based on <snip>username and a PIN that releases an asymmetric key</snip> stored
 		in OE-protected storage</selectable>
 		<selectable id="s-otp">combination of authentication based on user name, password, and time-based one-time password</selectable>
 		<selectable id="s-x509-auth">authentication based on X.509 certificates</selectable>
@@ -3183,13 +3183,37 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
 			      The evaluator will attempt to  authenticate to the OS using the known user name and PIN.
 			      The evaluator will ensure that the authentication attempt is successful.
 			    </test>
-				<test> The evaluator will attempt to
-			    authenticate to the OS using the known user name but an incorrect
-			    PIN. The evaluator will ensure that the authentication attempt is
-			    unsuccessful.
-				</test>
+			    <test>
+			      The evaluator will attempt to  authenticate to the OS using the known user name but an incorrect
+			      PIN. The evaluator will ensure that the authentication attempt is
+			      unsuccessful.
+			    </test>
 			  </testlist>
 		</h:div>
+		<h:div><depends on="s-otp"/>
+		The evaluator will configure the OS to authentication to authenticate to the OS using
+		a username, password, and one-time password mechanism.
+		The evaluator will then perform the following tests.
+		<testlist>
+		  <test>
+	  	    The evaluator will attempt to authenticate using a valid username, valid password, and valid one-time password.
+		    The evaluator will ensure that the authentication attempt is successful.
+		  </test>
+		  <test>
+	  	    The evaluator will attempt to authenticate using a valid username, invalid password, and valid one-time password.
+		    The evaluator will ensure that the authentication attempt fails.
+		  </test>
+		  <test>
+	  	    The evaluator will attempt to authenticate using a valid username, valid password, and invalid one-time password.
+		    The evaluator will ensure that the authentication attempt fails.
+		  </test>
+		  <test>
+	  	    The evaluator will attempt to authenticate using a valid username, invalid password, and invalid one-time password.
+		    The evaluator will ensure that the authentication attempt fails.
+		  </test>
+		</testlist>
+		</h:div>
+		
 		<h:div>
 		  <depends on="s-x509-auth"/>
 			  The evaluator
@@ -3214,6 +3238,8 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
                 </test>
               </testlist>
 		</h:div>
+		<h:p> Authentication mechanisms related to <xref to="s-uau-ssh"/> are tested in the <xref to="pkg-ssh"/>.
+		</h:p>
               </Tests>
 	    </aactivity>
           </f-element>
@@ -3247,12 +3273,13 @@ The <h:b>OS</h:b> shall authenticate any user's claimed identity according to th
 		</TSS>
 	      <Guidance>
 	      <h:p>
-	      The evaluator will verify that
-              configuration guidance for each authentication mechanism is
-              addressed in the AGD guidance.
+		The evaluator will verify that
+		configuration guidance for each authentication mechanism is
+		addressed in the AGD guidance.
 	      </h:p>
 	      </Guidance>
 	      <Tests>
+		
               <testlist>
                 <test>For each
 		authentication mechanism selected, the evaluator will enable that
@@ -3492,11 +3519,18 @@ the node certificate to be tested, two Intermediate CAs, and the
       	    <title>
               The OS shall use
       	      <selectables linebreak='yes'>
-                <selectable id="tls"><snip>TLS</snip> as conforming to the <xref to="pkg-tls"/></selectable>
-                <selectable id="dtls"><snip>DTLS</snip> as conforming to the <xref to="pkg-tls"/></selectable>
+                <selectable id="tls">
+		  <snip>TLS</snip> as conforming to the <xref to="pkg-tls"/> as a
+    	  	  <selectables><selectable id="s-tls-client">client</selectable><selectable id="s-tls-server">server</selectable></selectables>
+		</selectable>
+                <selectable id="dtls"><snip>DTLS</snip> as conforming to the <xref to="pkg-tls"/> as a
+    	  	  <selectables><selectable>client</selectable><selectable>server</selectable></selectables>
+		</selectable>
       	        <selectable id="s-itc-ipsec">IPsec as conforming to the <xref to="mod-vpnclient"/></selectable>
-      	        <selectable id="s-ftp_ssh"><snip>SSH</snip> as conforming to the <xref to="pkg-ssh"/></selectable>
-        	    </selectables>
+      	        <selectable id="s-ftp_ssh"><snip>SSH</snip> as conforming to the <xref to="pkg-ssh"/> as a
+    	  	  <selectables><selectable id="s-ssh-client">client</selectable><selectable id="s-ssh-server">server</selectable></selectables>
+		</selectable>
+              </selectables>
 		    to provide a trusted communication channel between itself and
 		    authorized IT entities supporting the following capabilities:
 		    <selectables>
@@ -3523,6 +3557,11 @@ If <xref to="s-itc-ipsec"/> is selected, then FDP_IFC_EXT.1 must be included in 
 	      <h:p>
 If <xref to="s-ftp_ssh"/> is selected, the TSF must be validated against
 the <xref to="pkg-ssh"/> and the corresponding selection is expected to be made in FIA_UAU.5.1.
+<rule id="r-sshclient">
+  <if><ref-id>s-ssh-client</ref-id></if>
+  <then><doc ref="pkg-ssh"><ref-id>ssh-client</ref-id></doc></then>
+</rule>
+
 The ST author must include the security functional requirements for the trusted channel protocol selected in FTP_ITC_EXT.1 in the main body of the ST.
 	      </h:p>
       	    </note>
