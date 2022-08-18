@@ -1466,9 +1466,9 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
           <div class="element"><div class="reqid" id="FCS_COP.1.1/ENCRYPT"><a href="#FCS_COP.1.1/ENCRYPT" class="abbr">FCS_COP.1.1/ENCRYPT</a></div><div class="reqdesc">
               The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall perform [<i>encryption/decryption services for data</i>] in
 	      accordance with a specified cryptographic algorithm<b>
-	      [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_32"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-XTS (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38E)</span></li><li style=""><span class="selectable-content" id="s-aes-cbc"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38A)</span></li><li style=""><span class="selectable-content" id="s-aes-ctr"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CTR (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38A)</span></li></ul>]
+	      [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-aes-xts"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-XTS (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38E)</span></li><li style=""><span class="selectable-content" id="s-aes-cbc"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38A)</span></li><li style=""><span class="selectable-content" id="s-aes-ctr"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CTR (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38A)</span></li></ul>]
 	      and
-	      [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_35"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> Key Wrap (KW) (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38F)</span></li><li style=""><span class="selectable-content" id="_s_36"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> Key Wrap with Padding (KWP) (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38F)</span></li><li style=""><span class="selectable-content" id="s-aes-ccmp"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCMP-256 (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38C and IEEE 802.11ac-2013)</span></li><li style=""><span class="selectable-content" id="s-aes-gcmp"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCMP-256 (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38D and IEEE 802.11ac-2013)</span></li><li style=""><span class="selectable-content" id="_s_39">no other modes</span></li></ul>]</b>
+	      [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-aes-kw"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> Key Wrap (KW) (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38F)</span></li><li style=""><span class="selectable-content" id="s-aes-kwp"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> Key Wrap with Padding (KWP) (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38F)</span></li><li style=""><span class="selectable-content" id="s-aes-ccmp"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCMP-256 (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38C and IEEE 802.11ac-2013)</span></li><li style=""><span class="selectable-content" id="s-aes-gcmp"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCMP-256 (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38D and IEEE 802.11ac-2013)</span></li><li style=""><span class="selectable-content" id="_s_39">no other modes</span></li></ul>]</b>
               and cryptographic key sizes 256-bit.
               
               
@@ -1498,41 +1498,77 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	    </span></div><div class="validationguidelines_label">Validation Guidelines:</div><p></p><b><a href="#r-wlan-aes">Rule #4</a></b></div></div>
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_COP.1/ENCRYPT">FCS_COP.1/ENCRYPT</a></div>
 	      
-	    <div class="eacategory">Tests</div><div class="ea">
+	      
+	    <div class="eacategory">Guidance</div><div class="ea">
+		The evaluator will verify that the AGD documents contains instructions required
+		to configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to use the required modes and key sizes.
+	      </div><div class="eacategory">Tests</div><div class="ea">
 
 	      <p>
-	      The evaluator will verify that the AGD documents contains instructions required
-	      to configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to use the required modes and key sizes.
 	      The evaluator will execute all instructions as specified to configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>
 	      to the appropriate state.
 	      The evaluator will perform all of the following tests for each
               algorithm implemented by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> and used to satisfy the requirements of this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>:
 	      </p>
+	      <div class="dependent">The following content should be included if:<ul><li><a href="#s-aes-xts">AES-XTS</a>
+             is selected from 
+             <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a></li></ul><div class="dependent-content"><div>
+		
+	      
+	      <p><b>XTS-AES Test</b></p>
 	      <p>
-              <b><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC Known Answer Tests</b>
+		The evaluator will test the encrypt functionality of XTS-AES for each combination of the
+              following input parameter lengths:
+              <ul>
+                <li>512 bit (for <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-256) key</li>
+                <li>Three data unit (i.e., plaintext) lengths. One of the data unit lengths will be a nonzero
+                  integer multiple of 256 bits, if supported. One of the data unit lengths will be an
+                  integer multiple of 256 bits, if supported. The third data unit length will be either the
+                  longest supported data unit length or 216 bits, whichever is smaller.
+                </li>
+              </ul>
+              using a set of 100 (key, plaintext and 256-bit random tweak value) 3-tuples and obtain the
+              ciphertext that results from XTS-AES encrypt.
 	      </p>
+	      <p>
+		The evaluator may supply a data unit sequence number instead of the tweak value if the
+		implementation supports it. The data unit sequence number is a base-10 number ranging
+		between 0 and 255 that implementations convert to a tweak value internally.
+	      </p>
+	      <p>
+		The evaluator will test the decrypt functionality of XTS-AES using the same test as for
+		encrypt, replacing plaintext values with ciphertext values and XTS-AES encrypt with XTSAES
+              decrypt.
+	      </p>
+	      </div></div></div>
+	      <div class="dependent">The following content should be included if:<ul><li><a href="#s-aes-cbc">AES-CBC</a>
+             is selected from 
+             <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a></li></ul><div class="dependent-content"><div>
+		
+	      <p><b><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC Known Answer Tests</b></p>
 	      <p>
 		There are four Known Answer Tests (KATs), described below. In all KATs, the
               plaintext, ciphertext, and IV values will be 256-bit blocks. The results from each
               test may either be obtained by the evaluator directly or by supplying the inputs to
               the implementer and receiving the results in response. To determine correctness, the
               evaluator will compare the resulting values to those obtained by submitting the same
-              inputs to a known good implementation. <ul>
-                <li>KAT-1. To test the encrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will supply
+              inputs to a known good implementation.
+	      <span class="testlist-"><ul>
+                <li id="_t_5"><b><a href="#_t_5" class="definition">Test 2.1</a>: </b>To test the encrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will supply
                   a set of 5 plaintext values and obtain the ciphertext value that results from
                   <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC encryption of the given plaintext using a key value of all zeros and an IV
                   of all zeros.
 		  The plaintext values will encrypted with a 256-bit all-zeros key. To test
                   the decrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will perform the same test as
                   for encrypt, using 5 ciphertext values as input and <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC decryption.</li>
-                <li>KAT-2. To test the encrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will supply
+                <li id="_t_6"><b><a href="#_t_6" class="definition">Test 2.2</a>: </b>To test the encrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will supply
                   a set of five 256-keys and obtain the ciphertext value that results from <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC
                   encryption of an all-zeros plaintext using the given key value and an IV of all
                   zeros.
 		  To test the decrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will perform
                   the same test as for encrypt, using an all-zero ciphertext value as input and
                   <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC decryption.</li>
-                <li>KAT-3. To test the encrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will supply
+                <li id="_t_7"><b><a href="#_t_7" class="definition">Test 2.3</a>: </b>To test the encrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will supply
                   the a sets of key values described below and obtain the ciphertext value that
                   results from <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> encryption of an all-zeros plaintext using the given key value
                   and an IV of all zeros.
@@ -1546,13 +1582,13 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                   ones and the rightmost N-i bits be zeros, for i in [1,N]. The ciphertext value in
                   each pair will be the value that results in an all-zeros plaintext when decrypted
                   with its corresponding key.</li>
-                <li>KAT-4. To test the encrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will supply
+                <li id="_t_8"><b><a href="#_t_8" class="definition">Test 2.4</a>: </b>To test the encrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will supply
                   the set of 256 plaintext values described below and obtain the ciphertext
                   values that result from <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC encryption of the given plaintext using a 256-bit key value of
                   all zeros with an IV of all zeros.
 		  Plaintext value <i>i</i> in each set will have the leftmost <i>i</i> bits be ones and
-		  the rightmost 256-<i>i</i> bits be zeros, for <i>i</i> in [1,256].</li>
-              </ul>
+		the rightmost 256-<i>i</i> bits be zeros, for <i>i</i> in [1,256].</li>
+	      </ul></span>
 	      <br/>
 	      To test the decrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC, the evaluator will perform the
               same test as for encrypt, using ciphertext values of the same form as the plaintext in
@@ -1599,44 +1635,48 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               decrypt functionality using the same test as for encrypt, exchanging CT and PT and
               replacing <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC-Encrypt with <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC-Decrypt.
 	    </p>
-	    <br/>
-	    <br/>	    
+	  </div></div></div>
+	  <div class="dependent">The following content should be included if:<ul><li><a href="#s-aes-ctr">AES-CTR</a>
+             is selected from 
+             <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a></li></ul><div class="dependent-content"><div>
+	      
 	      <b><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CTR Test</b><br/>
-	      <p><b>Test 1: Known Answer Tests (KATs)</b></p>
+	      <p><b>Known Answer Tests (KATs)</b></p>
 	      <p>
 There are four Known Answer Tests (KATs) described below.
 For all KATs, the plaintext, initialization vector (IV), and ciphertext values shall be 256-bit blocks.
 The results from each test may either be obtained by the validator directly or by supplying the inputs to the implementer and receiving the results in response.
 To determine correctness, the evaluator will compare the resulting values to those obtained by submitting the same inputs to a known good implementation.
 	      </p>
+
 	      <p>
-<b>Test 1a</b>: To test the encrypt functionality, the evaluator will supply 5 plaintext values and obtain the ciphertext value that results from encryption of the given plaintext using a 256-bit key value of all zeros and an IV of all zeros.
-To test the decrypt functionality, the evaluator will perform the same test as for encrypt, using the 5 ciphertext values as input.
-	      </p>
-	      <p>
-		<b>Test 1b</b>:
+		<span class="testlist-"><ul>
+		  <li id="_t_9"><b><a href="#_t_9" class="definition">Test 3.1</a>: </b>
+		    To test the encrypt functionality, the evaluator will supply 5 plaintext values and obtain the ciphertext value that results from encryption of the given plaintext using a 256-bit key value of all zeros and an IV of all zeros.
+		    To test the decrypt functionality, the evaluator will perform the same test as for encrypt, using the 5 ciphertext values as input.
+		  </li>
+		  <li id="_t_10"><b><a href="#_t_10" class="definition">Test 3.2</a>: </b>
 		To test the encrypt functionality, the evaluator will supply 5 256-bit key values and obtain the ciphertext value that results from encryption of an all zeros plaintext using the given key value and an IV of all zeros.
 To test the decrypt functionality, the evaluator will perform the same test as for encrypt, using an all zero ciphertext value as input.
-	      </p>
-
-	      <p><b>Test 1c</b>:
-	      To test the encrypt functionality, the evaluator will supply a set of key values described below and obtain the ciphertext values that result from <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> encryption of an all zeros plaintext using the given key values and an IV of all zeros.
+		  </li>
+		  <li id="_t_11"><b><a href="#_t_11" class="definition">Test 3.3</a>: </b>
+To test the encrypt functionality, the evaluator will supply a set of key values described below and obtain the ciphertext values that result from <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> encryption of an all zeros plaintext using the given key values and an IV of all zeros.
 The set of keys shall have  shall have 256 256-bit keys.
 Key<i>i</i> shall have the leftmost i bits be ones and the rightmost 256-i bits be zeros, for i in [1, N].
 To test the decrypt functionality, the evaluator will supply the set of key and ciphertext value pairs described below and obtain the plaintext value that results from decryption of the given ciphertext using the given key values and an IV of all zeros.
 The  set of key/ciphertext pairs shall have 256 256-bit pairs.
 Key<i>i</i> shall have the leftmost i bits be ones and the rightmost 256-i bits be zeros for i in [1, N].
 The ciphertext value in each pair shall be the value that results in an all zeros plaintext when decrypted with its corresponding key.
-	      </p>
-
-	      <p><b>Test 1d</b>:
-	      To test the encrypt functionality, the evaluator will supply the set of 256 plaintext values described below and obtain the two ciphertext values that result from encryption of the given plaintext using a 256 bit key value of all zeros, respectively, and an IV of all zeros.
+		  </li>
+		  <li id="_t_12"><b><a href="#_t_12" class="definition">Test 3.4</a>: </b>
+To test the encrypt functionality, the evaluator will supply the set of 256 plaintext values described below and obtain the two ciphertext values that result from encryption of the given plaintext using a 256 bit key value of all zeros, respectively, and an IV of all zeros.
 Plaintext value i in each set shall have the leftmost bits be ones and the rightmost 256-i bits be zeros, for i in [1, 256].
 To test the decrypt functionality, the evaluator will perform the same test as for encrypt, using ciphertext values of the same form as the plaintext in the encrypt test as input.
+		  </li>
+		</ul></span>
 	      </p>
+	      <p><b>Multi-Block Message Test</b></p>
 
-	      <p><b>Test 2: Multi-Block Message Test</b></p>
-	      
 	      <p>The evaluator will test the encrypt functionality by encrypting an i-block message where 1 less-than i less-than-or-equal to 10.
 For each i the evaluator will choose a key, IV, and plaintext message of length i blocks and encrypt the message, using the mode to be tested, with the chosen key.
 The ciphertext shall be compared to the result of encrypting the same plaintext message with the same key and IV using a known good implementation.
@@ -1644,7 +1684,7 @@ The evaluator will also test the decrypt functionality by decrypting an i-block 
 For each i the evaluator will choose a key and a ciphertext message of length i blocks and decrypt the message, using the mode to be tested, with the chosen key.
 The plaintext shall be compared to the result of decrypting the same ciphertext message with the same key using a known good implementation.</p>
 
-	      <p><b>Test 3: Monte-Carlo Test</b></p>
+	      <p><b>Monte-Carlo Test</b></p>
 
 	      <p>For <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CTR mode perform the Monte Carlo Test for ECB Mode on the encryption engine of the counter mode implementation. There is no need to test the decryption engine.
 	      </p>
@@ -1682,43 +1722,59 @@ This result shall be compared to the result of running 1000 iterations with the 
 
 
 
-	    <p>
-     
-              <b><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM Monte Carlo Tests</b><br/>
-              The evaluator will test the authenticated encrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM for
-              each combination of the following input parameter lengths: <ul>
-                <li>256 bit keys</li>
-                <li>Two plaintext lengths. One of the plaintext lengths will be a non-zero integer
-                  multiple of 256 bits, if supported. The other plaintext length will not be an
-                  integer multiple of 256 bits, if supported.</li>
-                <li>Three AAD lengths. One AAD length will be 0, if supported. One AAD length will
-                  be a non-zero integer multiple of 256 bits, if supported. One AAD length will not
-                  be an integer multiple of 256 bits, if supported.</li>
-                <li>Two IV lengths. If 96 bit IV is supported, 96 bits will be one of the two IV
-                  lengths tested.</li>
-              </ul>The evaluator will test the encrypt functionality using a set of 10 key,
-              plaintext, AAD, and IV tuples for each combination of parameter lengths above and
-              obtain the ciphertext value and tag that results from <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM authenticated encrypt.
-              Each supported tag length will be tested at least once per set of 10. The IV value
-              may be supplied by the evaluator or the implementation being tested, as long as it is
-              known.
-	    </p>
-	    <p>
-
-
-	      The evaluator will test the decrypt functionality using a set of 10 key,
-              ciphertext, tag, AAD, and IV 5-tuples for each combination of parameter lengths above
-              and obtain a Pass/Fail result on authentication and the decrypted plaintext if Pass.
-              The set will include five tuples that Pass and five that Fail.
-	    </p>
-	    <p>
-	      The results from
-              each test may either be obtained by the evaluator directly or by supplying the inputs
-              to the implementer and receiving the results in response. To determine correctness,
-              the evaluator will compare the resulting values to those obtained by submitting the
-              same inputs to a known good implementation.
+</div></div></div>
+	      <div class="dependent">The following content should be included if:<ul><li><a href="#s-aes-kw">AES Key Wrap (KW) (as defined in NIST SP 800-38F)</a>, <a href="#s-aes-kwp">AES Key Wrap with Padding (KWP) (as defined in NIST SP 800-38F)</a>
+             is selected from 
+             <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a></li></ul><div class="dependent-content"><div>
+		
+	      <p><b><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> Key Wrap (<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KW) and Key Wrap with Padding (<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KWP) Test</b></p>
+              <p>
+		The evaluator will test the authenticated encryption functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KW for EACH
+		combination of the following input parameter lengths:
+              <ul>
+                <li>256 bit key encryption keys (KEKs)</li>
+                <li>Three plaintext lengths.
+		One of the plaintext lengths will be two semi-blocks (256 bits).
+		One of the plaintext lengths will be three semi-blocks (192 bits).
+		The third data unit length will be the longest supported plaintext
+		length less than or equal to 64 semi-blocks (4096 bits).
+                </li>
+              </ul>
+              using a set of 100 key and plaintext pairs and obtain the ciphertext that results from <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KW
+              authenticated encryption. To determine correctness, the evaluator will use the <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KW
+              authenticated-encryption function of a known good implementation.
 	      </p>
+	      <p>
 
+              The evaluator will test the authenticated-decryption functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KW using the
+              same test as for authenticated-encryption, replacing plaintext values with ciphertext values
+              and <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KW authenticated-encryption with <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KW authenticated-decryption.
+	      </p>
+	      </div></div></div>
+	      <div class="dependent">The following content should be included if:<ul><li><a href="#s-aes-kwp">AES Key Wrap with Padding (KWP) (as defined in NIST SP 800-38F)</a>
+             is selected from 
+             <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a></li></ul><div class="dependent-content"><div>
+	      <p>
+              The evaluator will test the authenticated-encryption functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KWP using the
+              same test as for <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KW authenticated-encryption with the following change in the three
+              plaintext lengths:
+              <ul>
+                <li>One plaintext length will be one octet. One plaintext length will be 20 octets (160
+                  bits).</li>
+                <li>
+                  One plaintext length will be the longest supported plaintext length less than or equal
+                  to 512 octets (4096 bits).
+                </li>
+              </ul>
+              The evaluator will test the authenticated-decryption functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KWP using the
+              same test as for <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KWP authenticated-encryption, replacing plaintext values with
+              ciphertext values and <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KWP authenticated-encryption with <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KWP authenticated-decryption.
+              </p>
+	      </div></div></div>
+	      <div class="dependent">The following content should be included if:<ul><li><a href="#s-aes-ccmp">AES-CCMP-256</a>
+             is selected from 
+             <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a></li></ul><div class="dependent-content"><div>
+		
               <p><b><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCM Tests</b></p>
 	      <p>
               The evaluator will test the generation-encryption and decryption-verification
@@ -1744,27 +1800,27 @@ This result shall be compared to the result of running 1000 iterations with the 
               </ul>
               To test the generation-encryption functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCM, the evaluator will perform the
               following four tests:
+	      </p>
 	      <span class="testlist-"><ul>
-		<li id="_t_5"><b><a href="#_t_5" class="definition">Test 2.1</a>: </b> For EACH supported key and associated data length and ANY supported
+		<li id="_t_13"><b><a href="#_t_13" class="definition">Test 4.1</a>: </b> For EACH supported key and associated data length and ANY supported
                   payload, nonce and tag length, the evaluator will supply one key value, one nonce
                   value and 10 pairs of associated data and payload values and obtain the resulting
                   ciphertext.
 		</li>
-		<li id="_t_6"><b><a href="#_t_6" class="definition">Test 2.2</a>: </b>For EACH supported key and payload length and ANY supported associated
+		<li id="_t_14"><b><a href="#_t_14" class="definition">Test 4.2</a>: </b>For EACH supported key and payload length and ANY supported associated
                   data, nonce and tag length, the evaluator will supply one key value, one nonce value
                   and 10 pairs of associated data and payload values and obtain the resulting ciphertext.
 		</li>
 
-                <li id="_t_7"><b><a href="#_t_7" class="definition">Test 2.3</a>: </b>For EACH supported key and nonce length and ANY supported associated
+                <li id="_t_15"><b><a href="#_t_15" class="definition">Test 4.3</a>: </b>For EACH supported key and nonce length and ANY supported associated
                   data, payload and tag length, the evaluator will supply one key value and 10
                   associated data, payload and nonce value 3-tuples and obtain the resulting ciphertext.
                 </li>
-                <li id="_t_8"><b><a href="#_t_8" class="definition">Test 2.4</a>: </b>For EACH supported key and tag length and ANY supported associated data,
+                <li id="_t_16"><b><a href="#_t_16" class="definition">Test 4.4</a>: </b>For EACH supported key and tag length and ANY supported associated data,
                   payload and nonce length, the evaluator will supply one key value, one nonce value
                   and 10 pairs of associated data and payload values and obtain the resulting ciphertext.
                 </li>
 	      </ul></span>
-	      </p>
 	      <p>
               To determine correctness in each of the above tests, the evaluator will compare the
               ciphertext with the result of generation-encryption of the same inputs with a known good
@@ -1783,7 +1839,12 @@ This result shall be compared to the result of running 1000 iterations with the 
               Encapsulation Example and Section 2.2 Additional <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> CCMP Test Vectors to
               further verify the IEEE 802.11-2007 implementation of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCMP.
 	      </p>
-	      <p> <b><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM Test</b></p>
+	      </div></div></div>
+	      <div class="dependent">The following content should be included if:<ul><li><a href="#s-aes-gcmp">AES-GCMP-256</a>
+             is selected from 
+             <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a></li></ul><div class="dependent-content"><div>
+		
+	      <p> <b><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCMP Test</b></p>
               <p>The evaluator will test the authenticated encrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM for each
                 combination of the following input parameter lengths: <br/>
               <ul>
@@ -1818,70 +1879,44 @@ This result shall be compared to the result of running 1000 iterations with the 
               the evaluator will compare the resulting values to those obtained by submitting the same
               inputs to a known good implementation.
 	      </p>
-	      <p><b>XTS-AES Test</b></p>
-	      <p>
-		The evaluator will test the encrypt functionality of XTS-AES for each combination of the
-              following input parameter lengths:
-              <ul>
-                <li>512 bit (for <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-256) key</li>
-                <li>Three data unit (i.e., plaintext) lengths. One of the data unit lengths will be a nonzero
-                  integer multiple of 256 bits, if supported. One of the data unit lengths will be an
-                  integer multiple of 256 bits, if supported. The third data unit length will be either the
-                  longest supported data unit length or 216 bits, whichever is smaller.
-                </li>
-              </ul>
-              using a set of 100 (key, plaintext and 256-bit random tweak value) 3-tuples and obtain the
-              ciphertext that results from XTS-AES encrypt.
-	      </p>
-	      <p>
-		The evaluator may supply a data unit sequence number instead of the tweak value if the
-		implementation supports it. The data unit sequence number is a base-10 number ranging
-		between 0 and 255 that implementations convert to a tweak value internally.
-	      </p>
-	      <p>
-		The evaluator will test the decrypt functionality of XTS-AES using the same test as for
-		encrypt, replacing plaintext values with ciphertext values and XTS-AES encrypt with XTSAES
-              decrypt.
-	      </p>
-	      <p><b><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> Key Wrap (<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KW) and Key Wrap with Padding (<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KWP) Test</b></p>
-              <p>
-		The evaluator will test the authenticated encryption functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KW for EACH
-		combination of the following input parameter lengths:
-              <ul>
-                <li>256 bit key encryption keys (KEKs)</li>
-                <li>Three plaintext lengths.
-		One of the plaintext lengths will be two semi-blocks (256 bits).
-		One of the plaintext lengths will be three semi-blocks (192 bits).
-		The third data unit length will be the longest supported plaintext
-		length less than or equal to 64 semi-blocks (4096 bits).
-                </li>
-              </ul>
-              using a set of 100 key and plaintext pairs and obtain the ciphertext that results from <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KW
-              authenticated encryption. To determine correctness, the evaluator will use the <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KW
-              authenticated-encryption function of a known good implementation.
-	      </p>
-	      <p>
 
-              The evaluator will test the authenticated-decryption functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KW using the
-              same test as for authenticated-encryption, replacing plaintext values with ciphertext values
-              and <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KW authenticated-encryption with <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KW authenticated-decryption.
-	      </p>
+              <b><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCMP Monte Carlo Tests</b><br/>
 	      <p>
-              The evaluator will test the authenticated-encryption functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KWP using the
-              same test as for <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KW authenticated-encryption with the following change in the three
-              plaintext lengths:
-              <ul>
-                <li>One plaintext length will be one octet. One plaintext length will be 20 octets (160
-                  bits).</li>
-                <li>
-                  One plaintext length will be the longest supported plaintext length less than or equal
-                  to 512 octets (4096 bits).
-                </li>
-              </ul>
-              The evaluator will test the authenticated-decryption functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KWP using the
-              same test as for <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KWP authenticated-encryption, replacing plaintext values with
-              ciphertext values and <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KWP authenticated-encryption with <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KWP authenticated-decryption.
-              </p>
+              The evaluator will test the authenticated encrypt functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM for
+              each combination of the following input parameter lengths: <ul>
+                <li>256 bit keys</li>
+                <li>Two plaintext lengths. One of the plaintext lengths will be a non-zero integer
+                  multiple of 256 bits, if supported. The other plaintext length will not be an
+                  integer multiple of 256 bits, if supported.</li>
+                <li>Three AAD lengths. One AAD length will be 0, if supported. One AAD length will
+                  be a non-zero integer multiple of 256 bits, if supported. One AAD length will not
+                  be an integer multiple of 256 bits, if supported.</li>
+                <li>Two IV lengths. If 96 bit IV is supported, 96 bits will be one of the two IV
+                  lengths tested.</li>
+              </ul>The evaluator will test the encrypt functionality using a set of 10 key,
+              plaintext, AAD, and IV tuples for each combination of parameter lengths above and
+              obtain the ciphertext value and tag that results from <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM authenticated encrypt.
+              Each supported tag length will be tested at least once per set of 10. The IV value
+              may be supplied by the evaluator or the implementation being tested, as long as it is
+              known.
+	    </p>
+	    <p>
+
+
+	      The evaluator will test the decrypt functionality using a set of 10 key,
+              ciphertext, tag, AAD, and IV 5-tuples for each combination of parameter lengths above
+              and obtain a Pass/Fail result on authentication and the decrypted plaintext if Pass.
+              The set will include five tuples that Pass and five that Fail.
+	    </p>
+	    <p>
+	      The results from
+              each test may either be obtained by the evaluator directly or by supplying the inputs
+              to the implementer and receiving the results in response. To determine correctness,
+              the evaluator will compare the resulting values to those obtained by submitting the
+              same inputs to a known good implementation.
+	      </p>
+
+	      </div></div></div>
 	      </div></div></div></div>
         <div class="comp" id="FCS_COP.1/HASH"><h4>FCS_COP.1/HASH Cryptographic Operation - Hashing (Refined)</h4>
           <div class="element"><div class="reqid" id="FCS_COP.1.1/HASH"><a href="#FCS_COP.1.1/HASH" class="abbr">FCS_COP.1.1/HASH</a></div><div class="reqdesc">The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall perform [<i>cryptographic hashing services</i>] in accordance with a
@@ -1933,33 +1968,33 @@ This result shall be compared to the result of running 1000 iterations with the 
 		The following tests require the
 		developer to provide access to a test application that provides the evaluator with
 		tools that are typically not found in the production application.<span class="testlist-"><ul>
-                <li id="_t_9"><b><a href="#_t_9" class="definition">Test 3.1</a>: </b>Short Messages Test (Bit oriented Mode) - The evaluator will generate an input set
+                <li id="_t_17"><b><a href="#_t_17" class="definition">Test 5.1</a>: </b>Short Messages Test (Bit oriented Mode) - The evaluator will generate an input set
                   consisting of m+1 messages, where m is the block length of the hash algorithm. The
                   length of the messages range sequentially from 0 to m bits. The message text will
                   be pseudorandomly generated. The evaluator will compute the message digest for each of
                   the messages and ensure that the correct result is produced when the messages are
                   provided to the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.</li>
-                <li id="_t_10"><b><a href="#_t_10" class="definition">Test 3.2</a>: </b>Short Messages Test (Byte oriented Mode) - The evaluator will generate an input set
+                <li id="_t_18"><b><a href="#_t_18" class="definition">Test 5.2</a>: </b>Short Messages Test (Byte oriented Mode) - The evaluator will generate an input set
                   consisting of m/8+1 messages, where m is the block length of the hash algorithm.
                   The length of the messages range sequentially from 0 to m/8 bytes, with each
                   message being an integral number of bytes. The message text will be
                   pseudorandomly generated. The evaluator will compute the message digest for each of
                   the messages and ensure that the correct result is produced when the messages are
                   provided to the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.</li>
-                <li id="_t_11"><b><a href="#_t_11" class="definition">Test 3.3</a>: </b>Selected Long Messages Test (Bit oriented Mode) - The evaluator will generate an input
+                <li id="_t_19"><b><a href="#_t_19" class="definition">Test 5.3</a>: </b>Selected Long Messages Test (Bit oriented Mode) - The evaluator will generate an input
                   set consisting of m messages, where m is the block length of the hash algorithm.
                   The length of the <i>i</i>th message is 512 + 99⋅i, where 1 ≤ i ≤ m. The message
                   text will be pseudorandomly generated. The evaluator will compute the message digest
                   for each of the messages and ensure that the correct result is produced when the
                   messages are provided to the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.</li>
-                <li id="_t_12"><b><a href="#_t_12" class="definition">Test 3.4</a>: </b>Selected Long Messages Test (Byte oriented Mode) - The evaluator will generate an
+                <li id="_t_20"><b><a href="#_t_20" class="definition">Test 5.4</a>: </b>Selected Long Messages Test (Byte oriented Mode) - The evaluator will generate an
                   input set consisting of m/8 messages, where m is the block length of the hash
                   algorithm. The length of the <i>i</i>th message is 512 + 8⋅99⋅i,
 		  where 1 ≤ i ≤ m/8. The message text will be pseudorandomly generated.
 		  The evaluator will compute
                   the message digest for each of the messages and ensure that the correct result is
                   produced when the messages are provided to the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.</li>
-                <li id="_t_13"><b><a href="#_t_13" class="definition">Test 3.5</a>: </b>Pseudorandomly Generated Messages Test -  This test is for byte-oriented
+                <li id="_t_21"><b><a href="#_t_21" class="definition">Test 5.5</a>: </b>Pseudorandomly Generated Messages Test -  This test is for byte-oriented
                   implementations only. The evaluator will randomly generate a seed that is n bits long,
                   where n is the length of the message digest produced by the hash function to be
                   tested. The evaluator will then formulate a set of 100 messages and associated digests
@@ -2000,12 +2035,12 @@ This result shall be compared to the result of running 1000 iterations with the 
 	      <p><b><abbr class="dyn-abbr"><a href="#abbr_ECDSA">ECDSA</a></abbr> Algorithm Tests</b></p>
 	      <p>
 	      <span class="testlist-"><ul>
-                <li id="_t_14"><b><a href="#_t_14" class="definition">Test 4.1</a>: </b><abbr class="dyn-abbr"><a href="#abbr_ECDSA">ECDSA</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> 186-4 Signature Generation Test. For each supported <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> curve
+                <li id="_t_22"><b><a href="#_t_22" class="definition">Test 6.1</a>: </b><abbr class="dyn-abbr"><a href="#abbr_ECDSA">ECDSA</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> 186-4 Signature Generation Test. For each supported <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> curve
                   (i.e., P-384 and P-521) and <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr> function pair, the evaluator will generate
                   10 1024-bit long messages and obtain for each message a public key and the
                   resulting signature values R and S. To determine correctness, the evaluator will
                   use the signature verification function of a known good implementation. </li>
-                <li id="_t_15"><b><a href="#_t_15" class="definition">Test 4.2</a>: </b>
+                <li id="_t_23"><b><a href="#_t_23" class="definition">Test 6.2</a>: </b>
 		  <abbr class="dyn-abbr"><a href="#abbr_ECDSA">ECDSA</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> 186-4 Signature Verification Test. For each supported <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> curve
                   (i.e., P-384 and P-521) and <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr> function pair, the evaluator will generate
                   a set of 10 1024-bit message, public key and signature tuples and modify one of
@@ -2018,7 +2053,7 @@ This result shall be compared to the result of running 1000 iterations with the 
 	      <p><b>RSA Signature Algorithm Tests </b></p>
 	      <p>
 	      <span class="testlist-"><ul>
-                <li id="_t_16"><b><a href="#_t_16" class="definition">Test 5.1</a>: </b>Signature Generation Test. The evaluator will verify the implementation of
+                <li id="_t_24"><b><a href="#_t_24" class="definition">Test 7.1</a>: </b>Signature Generation Test. The evaluator will verify the implementation of
                   RSA Signature Generation by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the Signature
                   Generation Test. To conduct this test the evaluator must generate or obtain 10
                   messages from a trusted reference implementation for each modulus size/<abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>
@@ -2028,7 +2063,7 @@ This result shall be compared to the result of running 1000 iterations with the 
                     messages. The evaluator will verify the correctness of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>'
 		    signature using a known good implementation and the associated public keys to
                   verify the signatures. </li>
-                <li id="_t_17"><b><a href="#_t_17" class="definition">Test 5.2</a>: </b>Signature Verification Test. The evaluator will perform the Signature
+                <li id="_t_25"><b><a href="#_t_25" class="definition">Test 7.2</a>: </b>Signature Verification Test. The evaluator will perform the Signature
                   Verification test to verify the ability of the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to recognize
                   another party' valid and invalid signatures. The evaluator will inject errors
                   into the test vectors produced during the Signature Verification Test by
@@ -2251,34 +2286,34 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
 	      <p>
               The evaluator will create two new standard user accounts on the system and conduct the following tests:
               <span class="testlist-"><ul>
-                <li id="_t_18"><b><a href="#_t_18" class="definition">Test 6.1</a>: </b>
+                <li id="_t_26"><b><a href="#_t_26" class="definition">Test 8.1</a>: </b>
                   The evaluator will authenticate to the system as the first user and create a file within that user's home directory.
 		  The evaluator will then log off the system and log in as the second user.
 		  The evaluator will then attempt to read the file created in the first user's home directory.
 		  The evaluator will ensure that the read attempt is denied.
                 </li>
-                <li id="_t_19"><b><a href="#_t_19" class="definition">Test 6.2</a>: </b>
+                <li id="_t_27"><b><a href="#_t_27" class="definition">Test 8.2</a>: </b>
                   The evaluator will authenticate to the system as the first user and create a file within that user's home directory.
 		  The evaluator will then log off the system and log in as the second user.
 		  The evaluator will then attempt to modify the file created in the first user's home directory.
 		  The evaluator will ensure that the modification is denied.
                 </li>
-                <li id="_t_20"><b><a href="#_t_20" class="definition">Test 6.3</a>: </b>
+                <li id="_t_28"><b><a href="#_t_28" class="definition">Test 8.3</a>: </b>
                   The evaluator will authenticate to the system as the first user and create a file within that user's user directory.
 		  The evaluator will then log off the system and log in as the second user.
 		  The evaluator will then attempt to delete the file created in the first user's home directory.
 		  The evaluator will ensure that the deletion is denied.
                 </li>
-                <li id="_t_21"><b><a href="#_t_21" class="definition">Test 6.4</a>: </b>
+                <li id="_t_29"><b><a href="#_t_29" class="definition">Test 8.4</a>: </b>
                   The evaluator will authenticate to the system as the first user.
 		  The evaluator will attempt to create a file in the second user's home directory.
                   The evaluator will ensure that the creation of the file is denied.
                 </li>
-                <li id="_t_22"><b><a href="#_t_22" class="definition">Test 6.5</a>: </b>
+                <li id="_t_30"><b><a href="#_t_30" class="definition">Test 8.5</a>: </b>
                   The evaluator will authenticate to the system as the first user and attempt to modify the file created in the first user's home directory.
                   The evaluator will ensure that the modification of the file is accepted.
                 </li>
-                <li id="_t_23"><b><a href="#_t_23" class="definition">Test 6.6</a>: </b>
+                <li id="_t_31"><b><a href="#_t_31" class="definition">Test 8.6</a>: </b>
                   The evaluator will authenticate to the system as the first user and attempt to delete the file created in the first user's directory.
                   The evaluator will ensure that the deletion of the file is accepted.
                 </li>
@@ -2319,7 +2354,7 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
 
 	      </div><div class="eacategory">Tests</div><div class="ea">
 		The evaluator will also perform the following test.
-  	      <span class="testlist-"><ul><li id="_t_25"><b><a href="#_t_25" class="definition">Test 8.1</a>: </b>For each function that is indicated as restricted to the administrator,
+  	      <span class="testlist-"><ul><li id="_t_33"><b><a href="#_t_33" class="definition">Test 10.1</a>: </b>For each function that is indicated as restricted to the administrator,
               the evaluation will perform the function as an administrator, as specified in the
               Operational Guidance, and determine that it has the expected effect as outlined by
               the Operational Guidance and the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr>.  The evaluator will then perform the function
@@ -2437,12 +2472,12 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can enroll in such a
               outcome (i.e., the action results in the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> denying the evaluator permission to
               complete the action):
               <span class="testlist-"><ul>
-                <li id="_t_26"><b><a href="#_t_26" class="definition">Test 9.1</a>: </b>The evaluator will attempt to modify all kernel drivers and modules.</li>
-                <li id="_t_27"><b><a href="#_t_27" class="definition">Test 9.2</a>: </b>The evaluator will attempt to modify all security audit logs generated by the logging subsystem.</li>
-                <li id="_t_28"><b><a href="#_t_28" class="definition">Test 9.3</a>: </b>The evaluator will attempt to modify all shared libraries that are used throughout the system.</li>
-                <li id="_t_29"><b><a href="#_t_29" class="definition">Test 9.4</a>: </b>The evaluator will attempt to modify all system executables.</li>
-                <li id="_t_30"><b><a href="#_t_30" class="definition">Test 9.5</a>: </b>The evaluator will attempt to modify all system configuration files.</li>
-                <li id="_t_31"><b><a href="#_t_31" class="definition">Test 9.6</a>: </b>The evaluator will attempt to modify any additional components selected.</li>
+                <li id="_t_34"><b><a href="#_t_34" class="definition">Test 11.1</a>: </b>The evaluator will attempt to modify all kernel drivers and modules.</li>
+                <li id="_t_35"><b><a href="#_t_35" class="definition">Test 11.2</a>: </b>The evaluator will attempt to modify all security audit logs generated by the logging subsystem.</li>
+                <li id="_t_36"><b><a href="#_t_36" class="definition">Test 11.3</a>: </b>The evaluator will attempt to modify all shared libraries that are used throughout the system.</li>
+                <li id="_t_37"><b><a href="#_t_37" class="definition">Test 11.4</a>: </b>The evaluator will attempt to modify all system executables.</li>
+                <li id="_t_38"><b><a href="#_t_38" class="definition">Test 11.5</a>: </b>The evaluator will attempt to modify all system configuration files.</li>
+                <li id="_t_39"><b><a href="#_t_39" class="definition">Test 11.6</a>: </b>The evaluator will attempt to modify any additional components selected.</li>
               </ul></span>
 	      
 	      The evaluator will create an unprivileged user account.
@@ -2450,9 +2485,9 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can enroll in such a
               outcome (i.e., the action results in the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> denying the evaluator permission to
               complete the action):
               <span class="testlist-"><ul>
-                <li id="_t_32"><b><a href="#_t_32" class="definition">Test 10.1</a>: </b>The evaluator will attempt to read security audit logs generated by the auditing subsystem</li>
-                <li id="_t_33"><b><a href="#_t_33" class="definition">Test 10.2</a>: </b>The evaluator will attempt to read system-wide credential repositories</li>
-                <li id="_t_34"><b><a href="#_t_34" class="definition">Test 10.3</a>: </b>The evaluator will attempt to read any other object specified in the assignment</li>
+                <li id="_t_40"><b><a href="#_t_40" class="definition">Test 12.1</a>: </b>The evaluator will attempt to read security audit logs generated by the auditing subsystem</li>
+                <li id="_t_41"><b><a href="#_t_41" class="definition">Test 12.2</a>: </b>The evaluator will attempt to read system-wide credential repositories</li>
+                <li id="_t_42"><b><a href="#_t_42" class="definition">Test 12.3</a>: </b>The evaluator will attempt to read any other object specified in the assignment</li>
               </ul></span>
 	      </div></div></div></div>
 
@@ -2585,7 +2620,7 @@ These are referred to by a variety of terms, such as stack cookie, stack guard, 
 The <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> must include a rationale for any binaries that are not protected in this manner.
 The evaluator will also preform the following test:
             <span class="testlist-"><ul>
-                <li id="_t_37"><b><a href="#_t_37" class="definition">Test 12.1</a>: </b>
+                <li id="_t_45"><b><a href="#_t_45" class="definition">Test 14.1</a>: </b>
                   The evaluator will inventory the kernel, libraries, and application binaries
                   to determine those that do not implement stack-based buffer overflow protections. This list should
                   match up with the list provided in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>.
@@ -2662,12 +2697,12 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
 	      <p>
               The evaluator will also perform the following tests:
               <span class="testlist-"><ul>
-                <li id="_t_48"><b><a href="#_t_48" class="definition">Test 14.1</a>: </b>
+                <li id="_t_56"><b><a href="#_t_56" class="definition">Test 16.1</a>: </b>
                   The evaluator will perform actions to cause <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> software to load and observe that the
                   integrity mechanism does not flag any executables as containing integrity errors and that the
                   <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> properly boots.
                 </li>
-                <li id="_t_49"><b><a href="#_t_49" class="definition">Test 14.2</a>: </b>
+                <li id="_t_57"><b><a href="#_t_57" class="definition">Test 16.2</a>: </b>
                   The evaluator will modify a <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> executable that is part of the bootchain verified by the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> (i.e. Not the first-stage bootloader)
 		  and attempt to boot.
 		  The evaluator will ensure that an integrity violation is triggered and the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> does not boot
@@ -2675,7 +2710,7 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
                   violation is determined to be the cause of the failure to load the module, and not the fact that
                   in such a way to invalidate the structure of the module.).
                 </li>
-                <li id="_t_50"><b><a href="#_t_50" class="definition">Test 14.3</a>[conditional, to be performed if<ul><li><a href="#s-boot-x509">a digital signature using an X509 certificate with hardware-based protection</a>
+                <li id="_t_58"><b><a href="#_t_58" class="definition">Test 16.3</a>[conditional, to be performed if<ul><li><a href="#s-boot-x509">a digital signature using an X509 certificate with hardware-based protection</a>
              is selected from 
              <a href="#FPT_TST_EXT.1.1">FPT_TST_EXT.1.1</a></li></ul>]: </b>
 		  
@@ -2736,7 +2771,7 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
 				  All supported origins
 				  for the update must be indicated in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> and evaluated.
               <span class="testlist-"><ul>
-                <li id="_t_51"><b><a href="#_t_51" class="definition">Test 15.1</a>: </b>
+                <li id="_t_59"><b><a href="#_t_59" class="definition">Test 17.1</a>: </b>
 				  The evaluator will ensure that the update has a digital
 				  signature belonging to the vendor prior to its installation.
 				  The evaluator will modify the downloaded update in such a way
@@ -2745,7 +2780,7 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
 				  evaluator will ensure that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> does not install the
 				  modified update.
                 </li>
-                <li id="_t_52"><b><a href="#_t_52" class="definition">Test 15.2</a>: </b>
+                <li id="_t_60"><b><a href="#_t_60" class="definition">Test 17.2</a>: </b>
 				  The evaluator will ensure that the update has a digital
 				  signature belonging to the vendor. The evaluator will then
 				  attempt to install the update (or permit installation to continue).
@@ -2801,7 +2836,7 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
 				  those mechanisms for which the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> is providing a trusted installation and update functionality.
 				  It does not include user or administrator-driven download and installation of arbitrary files.
               <span class="testlist-"><ul>
-                <li id="_t_53"><b><a href="#_t_53" class="definition">Test 16.1</a>: </b>
+                <li id="_t_61"><b><a href="#_t_61" class="definition">Test 18.1</a>: </b>
 				  The evaluator will ensure that the update has a digital
 				  signature which chains to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor or another trusted
 				  root managed through the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>.  The evaluator will modify the
@@ -2810,7 +2845,7 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
                   modified update. The evaluator will ensure that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> does not install the modified
                   update.
                 </li>
-                <li id="_t_54"><b><a href="#_t_54" class="definition">Test 16.2</a>: </b>
+                <li id="_t_62"><b><a href="#_t_62" class="definition">Test 18.2</a>: </b>
 				  The evaluator will ensure that the update has a digital
 				  signature belonging to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor or another trusted root
 				  managed through the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>. The evaluator will then attempt to
@@ -2844,20 +2879,20 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
 	      </div><div class="eacategory">Tests</div><div class="ea">
 	      The evaluator will also perform the following tests.
 	      <span class="testlist-"><ul>
-		<li id="_t_55"><b><a href="#_t_55" class="definition">Test 17.1</a>: </b>
+		<li id="_t_63"><b><a href="#_t_63" class="definition">Test 19.1</a>: </b>
                   The evaluator will acquire or construct a test program which attempts
 		  to allocate memory that is both writable and executable.
 		  The evaluator will run the program and confirm that it fails to
 		  allocate memory that is both writable and executable.
 		</li>
-		<li id="_t_56"><b><a href="#_t_56" class="definition">Test 17.2</a>: </b>
+		<li id="_t_64"><b><a href="#_t_64" class="definition">Test 19.2</a>: </b>
                   The evaluator will acquire or construct a test program which
 		  allocates memory that is executable and then
 		  subsequently requests additional write/modify permissions on that memory.
 		  The evaluator will run the program and confirm that at no time
 		  during the lifetime of the process is the memory both writable and executable.
 		</li>
-		<li id="_t_57"><b><a href="#_t_57" class="definition">Test 17.3</a>: </b>
+		<li id="_t_65"><b><a href="#_t_65" class="definition">Test 19.3</a>: </b>
                   The evaluator will acquire or construct a test program which
 		  allocates memory that is writable and then
 		  subsequently requests additional execute permissions on that memory.
@@ -2992,21 +3027,21 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall be able
 
 	      
               <span class="testlist-"><ul>
-                <li id="_t_58"><b><a href="#_t_58" class="definition">Test 18.1</a>: </b>
+                <li id="_t_66"><b><a href="#_t_66" class="definition">Test 20.1</a>: </b>
                   The evaluator will attempt to authenticate repeatedly to the system with a
                   known bad password. Once the defined number of failed authentication attempts has been
                   reached the evaluator will ensure that the account that was being used for testing
                   has had the actions detailed in the assignment list above applied to it. The evaluator will ensure that
                   an event has been logged to the security event log detailing that the account has had these actions applied.
                 </li>
-                <li id="_t_59"><b><a href="#_t_59" class="definition">Test 18.2</a>: </b>
+                <li id="_t_67"><b><a href="#_t_67" class="definition">Test 20.2</a>: </b>
                   The evaluator will attempt to authenticate repeatedly to the system with a
                   known bad certificate. Once the defined number of failed authentication attempts has been
                   reached the evaluator will ensure that the account that was being used for testing
                   has had the actions detailed in the assignment list above applied to it. The evaluator will ensure that
                   an event has been logged to the security event log detailing that the account has had these actions applied.
                 </li>
-                <li id="_t_60"><b><a href="#_t_60" class="definition">Test 18.3</a>: </b>
+                <li id="_t_68"><b><a href="#_t_68" class="definition">Test 20.3</a>: </b>
                   The evaluator will attempt to authenticate repeatedly to the system using both a bad password and a bad certificate.
                   Once the defined number of failed authentication attempts has been
                   reached the evaluator will ensure that the account that was being used for testing
@@ -3078,12 +3113,12 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall authent
 		  
 		  
               <span class="testlist-"><ul>
-                <li id="_t_61"><b><a href="#_t_61" class="definition">Test 19.1</a>: </b>
+                <li id="_t_69"><b><a href="#_t_69" class="definition">Test 21.1</a>: </b>
 				  The evaluator will attempt to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using
 				  the known user name and password. The evaluator will ensure
 				  that the authentication attempt is successful.
                 </li>
-                <li id="_t_62"><b><a href="#_t_62" class="definition">Test 19.2</a>: </b>
+                <li id="_t_70"><b><a href="#_t_70" class="definition">Test 21.2</a>: </b>
 				  The evaluator will attempt to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using
 				  the known user name but an incorrect password. The evaluator
 				  will ensure that the authentication attempt is unsuccessful.
@@ -3100,11 +3135,11 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall authent
 		  isolated execution environment) with which the
 		  <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can interface.  The evaluator will then conduct the following tests:
 			  <span class="testlist-"><ul>
-			    <li id="_t_63"><b><a href="#_t_63" class="definition">Test 20.1</a>: </b>
+			    <li id="_t_71"><b><a href="#_t_71" class="definition">Test 22.1</a>: </b>
 			      The evaluator will attempt to  authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the known user name and <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr>.
 			      The evaluator will ensure that the authentication attempt is successful.
 			    </li>
-			    <li id="_t_64"><b><a href="#_t_64" class="definition">Test 20.2</a>: </b>
+			    <li id="_t_72"><b><a href="#_t_72" class="definition">Test 22.2</a>: </b>
 			      The evaluator will attempt to  authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the known user name but an incorrect
 			      <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr>. The evaluator will ensure that the authentication attempt is
 			      unsuccessful.
@@ -3118,19 +3153,19 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall authent
 		a username, password, and one-time password mechanism.
 		The evaluator will then perform the following tests.
 		<span class="testlist-"><ul>
-		  <li id="_t_65"><b><a href="#_t_65" class="definition">Test 21.1</a>: </b>
+		  <li id="_t_73"><b><a href="#_t_73" class="definition">Test 23.1</a>: </b>
 	  	    The evaluator will attempt to authenticate using a valid username, valid password, and valid one-time password.
 		    The evaluator will ensure that the authentication attempt is successful.
 		  </li>
-		  <li id="_t_66"><b><a href="#_t_66" class="definition">Test 21.2</a>: </b>
+		  <li id="_t_74"><b><a href="#_t_74" class="definition">Test 23.2</a>: </b>
 	  	    The evaluator will attempt to authenticate using a valid username, invalid password, and valid one-time password.
 		    The evaluator will ensure that the authentication attempt fails.
 		  </li>
-		  <li id="_t_67"><b><a href="#_t_67" class="definition">Test 21.3</a>: </b>
+		  <li id="_t_75"><b><a href="#_t_75" class="definition">Test 23.3</a>: </b>
 	  	    The evaluator will attempt to authenticate using a valid username, valid password, and invalid one-time password.
 		    The evaluator will ensure that the authentication attempt fails.
 		  </li>
-		  <li id="_t_68"><b><a href="#_t_68" class="definition">Test 21.4</a>: </b>
+		  <li id="_t_76"><b><a href="#_t_76" class="definition">Test 23.4</a>: </b>
 	  	    The evaluator will attempt to authenticate using a valid username, invalid password, and invalid one-time password.
 		    The evaluator will ensure that the authentication attempt fails.
 		  </li>
@@ -3149,12 +3184,12 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall authent
 			  certificates are validated by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> as per
                           <a href="#FIA_X509_EXT.1.1">FIA_X509_EXT.1.1</a> and then conduct the following tests:
               <span class="testlist-"><ul>
-                 <li id="_t_69"><b><a href="#_t_69" class="definition">Test 22.1</a>: </b>
+                 <li id="_t_77"><b><a href="#_t_77" class="definition">Test 24.1</a>: </b>
 					The evaluator will attempt to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using
 					the X.509v3 certificate. The evaluator
 					will ensure that the authentication attempt is successful.
                   </li>
-                <li id="_t_70"><b><a href="#_t_70" class="definition">Test 22.2</a>: </b>
+                <li id="_t_78"><b><a href="#_t_78" class="definition">Test 24.2</a>: </b>
 				  The evaluator will generate a second certificate identical to
 				  the first except for the public key and any values derived
 				  from the public key. The evaluator will attempt to
@@ -3172,11 +3207,11 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall authent
               
 		
               <span class="testlist-"><ul>
-                <li id="_t_71"><b><a href="#_t_71" class="definition">Test 23.1</a>: </b>For each
+                <li id="_t_79"><b><a href="#_t_79" class="definition">Test 25.1</a>: </b>For each
 		authentication mechanism selected, the evaluator will enable that
 		mechanism and verify that it can be used to authenticate the user at
 		the specified authentication factor interfaces. </li>
-		<li id="_t_72"><b><a href="#_t_72" class="definition">Test 23.2</a>: </b>
+		<li id="_t_80"><b><a href="#_t_80" class="definition">Test 25.2</a>: </b>
 		  For each authentication mechanism rule, the evaluator will ensure that
 		  the authentication mechanism(s) behave as documented in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>.
 		</li>
@@ -3269,7 +3304,7 @@ The tests described must be performed in conjunction with the other certificate 
 The tests for the extendedKeyUsage rules are performed in conjunction with the uses that require those rules.
 The evaluator will create a chain of at least four certificates: the node certificate to be tested, two Intermediate CAs, and the self-signed Root CA.
 	<span class="testlist-"><ul>
-<li id="_t_73"><b><a href="#_t_73" class="definition">Test 24.1</a>: </b> The evaluator will demonstrate that validating a certificate without a valid certification path results in the function failing, for each of the following reasons, in turn:
+<li id="_t_81"><b><a href="#_t_81" class="definition">Test 26.1</a>: </b> The evaluator will demonstrate that validating a certificate without a valid certification path results in the function failing, for each of the following reasons, in turn:
 by establishing a certificate path in which one of the issuing certificates is not a CA certificate,
 by omitting the basicConstraints field in one of the issuing certificates,
 by setting the basicConstraints field in an issuing certificate to have CA=False,
@@ -3278,39 +3313,39 @@ by setting the path length field of a valid CA field to a value strictly less th
 The evaluator will then establish a valid certificate path consisting of valid CA certificates, and demonstrate that the function succeeds.
 The evaluator will then remove trust in one of the CA certificates, and show that the function fails.
 </li>
-<li id="_t_74"><b><a href="#_t_74" class="definition">Test 24.2</a>: </b> The evaluator will demonstrate that validating an expired certificate results in the function failing.</li>
-<li id="_t_75"><b><a href="#_t_75" class="definition">Test 24.3</a>: </b> The evaluator will test that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can properly handle revoked certificates - conditional on whether <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling, or <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> multi-stapling is selected; if multiple methods are selected, then a test will be performed for each method.
+<li id="_t_82"><b><a href="#_t_82" class="definition">Test 26.2</a>: </b> The evaluator will demonstrate that validating an expired certificate results in the function failing.</li>
+<li id="_t_83"><b><a href="#_t_83" class="definition">Test 26.3</a>: </b> The evaluator will test that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can properly handle revoked certificates - conditional on whether <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling, or <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> multi-stapling is selected; if multiple methods are selected, then a test will be performed for each method.
 The evaluator will test revocation of the node certificate and revocation of the intermediate CA certificate (i.e. the intermediate CA certificate should be revoked by the root CA).
 If <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling per <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6066 is the only supported revocation method, testing revocation of the intermediate CA certificate is omitted.
 The evaluator will ensure that a valid certificate is used, and that the validation function succeeds.
 The evaluator then attempts the test with a certificate that has been revoked (for each method chosen in the selection) to ensure when the certificate is no longer valid that the validation function fails.</li>
-<li id="_t_76"><b><a href="#_t_76" class="definition">Test 24.4</a>: </b> If any <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> option is selected, the evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> server or use a man-in-the-middle tool to present a certificate that does not have the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> signing purpose and verify that validation of the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> response fails.
+<li id="_t_84"><b><a href="#_t_84" class="definition">Test 26.4</a>: </b> If any <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> option is selected, the evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> server or use a man-in-the-middle tool to present a certificate that does not have the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> signing purpose and verify that validation of the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> response fails.
 If <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> is selected, the evaluator will configure the CA to sign a <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> with a certificate that does not have the cRLsign key usage bit set and verify that validation of the <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> fails.</li>
-<li id="_t_77"><b><a href="#_t_77" class="definition">Test 24.5</a>: </b> The evaluator will modify any byte in the first eight bytes of the certificate and demonstrate that the certificate fails to validate.
+<li id="_t_85"><b><a href="#_t_85" class="definition">Test 26.5</a>: </b> The evaluator will modify any byte in the first eight bytes of the certificate and demonstrate that the certificate fails to validate.
 (The certificate will fail to parse correctly.)</li>
-<li id="_t_78"><b><a href="#_t_78" class="definition">Test 24.6</a>: </b> The evaluator will modify any byte in the last byte of the certificate and demonstrate that the certificate fails to validate.
+<li id="_t_86"><b><a href="#_t_86" class="definition">Test 26.6</a>: </b> The evaluator will modify any byte in the last byte of the certificate and demonstrate that the certificate fails to validate.
 (The signature on the certificate will not validate.)</li>
-<li id="_t_79"><b><a href="#_t_79" class="definition">Test 24.7</a>: </b> The evaluator will modify any byte in the public key of the certificate and demonstrate that the certificate fails to validate.
+<li id="_t_87"><b><a href="#_t_87" class="definition">Test 26.7</a>: </b> The evaluator will modify any byte in the public key of the certificate and demonstrate that the certificate fails to validate.
 (The signature of the certificate will not validate.)</li>
 
-    <li id="_t_80"><b><a href="#_t_80" class="definition">Test 24.8</a>[conditional, to be performed if<ul><li><a href="#s-ec-certs">ECDSA schemes</a>
+    <li id="_t_88"><b><a href="#_t_88" class="definition">Test 26.8</a>[conditional, to be performed if<ul><li><a href="#s-ec-certs">ECDSA schemes</a>
              is selected from 
              <a href="#FCS_COP.1.1/SIGN">FCS_COP.1.1/SIGN</a></li></ul>]: </b>
       
       <span class="testlist-"><ul>
-	<li id="t-ecdsa-valid"><b><a href="#t-ecdsa-valid" class="definition">Test 25.8.1</a>: </b>
+	<li id="t-ecdsa-valid"><b><a href="#t-ecdsa-valid" class="definition">Test 27.8.1</a>: </b>
       The evaluator will establish a valid, trusted certificate chain consisting of an EC leaf certificate, an EC Intermediate CA certificate not designated as a trust anchor, and an EC certificate designated as a trusted anchor, where the elliptic curve parameters are specified as a named curve.
     The evaluator will confirm that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> validates the certificate chain.
     </li>
-    <li id="_t_82"><b><a href="#_t_82" class="definition">Test 25.8.2</a>: </b>
+    <li id="_t_90"><b><a href="#_t_90" class="definition">Test 27.8.2</a>: </b>
       
-      The evaluator will replace the intermediate certificate in the certificate chain for <a href="#t-ecdsa-valid" class="">Test 25.8.1</a> with a modified certificate, where the modified intermediate CA has a public key information field where the EC parameters uses an explicit format version of the Elliptic Curve parameters in the public key information field of the intermediate CA certificate from <a href="#t-ecdsa-valid" class="">Test 25.8.1</a>, and the modified Intermediate CA certificate is signed by the trusted EC root CA, but having no other changes.
+      The evaluator will replace the intermediate certificate in the certificate chain for <a href="#t-ecdsa-valid" class="">Test 27.8.1</a> with a modified certificate, where the modified intermediate CA has a public key information field where the EC parameters uses an explicit format version of the Elliptic Curve parameters in the public key information field of the intermediate CA certificate from <a href="#t-ecdsa-valid" class="">Test 27.8.1</a>, and the modified Intermediate CA certificate is signed by the trusted EC root CA, but having no other changes.
 The evaluator will confirm the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> treats the certificate as invalid.
     </li>
       </ul></span>
     </li>
 
-<li id="_t_83"><b><a href="#_t_83" class="definition">Test 25.9</a>[conditional, to be performed if<ul><li><a href="#s-revoc-exceptions">exceptional use cases</a>
+<li id="_t_91"><b><a href="#_t_91" class="definition">Test 27.9</a>[conditional, to be performed if<ul><li><a href="#s-revoc-exceptions">exceptional use cases</a>
              is selected from 
              <a href="#FIA_X509_EXT.1.1">FIA_X509_EXT.1.1</a></li></ul>]: </b>
     
@@ -3325,13 +3360,13 @@ The evaluator will create a chain of at least four certificates:
 the node certificate to be tested, two Intermediate CAs, and the
               self-signed Root CA.
 <span class="testlist-"><ul>
-  <li id="_t_84"><b><a href="#_t_84" class="definition">Test 26.1</a>: </b> The evaluator will construct a certificate path, such that the certificate
+  <li id="_t_92"><b><a href="#_t_92" class="definition">Test 28.1</a>: </b> The evaluator will construct a certificate path, such that the certificate
   of the CA issuing the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s certificate does not contain the
   <i>basicConstraints</i> extension. The validation of the certificate path fails. </li>
-  <li id="_t_85"><b><a href="#_t_85" class="definition">Test 26.2</a>: </b> The evaluator will construct a certificate path, such that the certificate
+  <li id="_t_93"><b><a href="#_t_93" class="definition">Test 28.2</a>: </b> The evaluator will construct a certificate path, such that the certificate
   of the CA issuing the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s certificate has the CA flag in the
   <i>basicConstraints</i> extension not set. The validation of the certificate path fails. </li>
-  <li id="_t_86"><b><a href="#_t_86" class="definition">Test 26.3</a>: </b> The evaluator will construct a certificate path, such that the certificate
+  <li id="_t_94"><b><a href="#_t_94" class="definition">Test 28.3</a>: </b> The evaluator will construct a certificate path, such that the certificate
   of the CA issuing the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s certificate has the CA flag in the
   <i>basicConstraints</i> extension set to TRUE. The validation of the certificate path
   succeeds. </li>
@@ -3493,22 +3528,22 @@ channel protocol selected in
 The evaluator will also perform the following
                 tests:
                 <span class="testlist-"><ul>
-                  <li id="_t_87"><b><a href="#_t_87" class="definition">Test 27.1</a>: </b>
+                  <li id="_t_95"><b><a href="#_t_95" class="definition">Test 29.1</a>: </b>
                     The evaluator will ensure that communications using each remote administration method is
                     tested during the course of the evaluation, setting up the connections as described in the
                     operational guidance and ensuring that communication is successful.
                   </li>
-                  <li id="_t_88"><b><a href="#_t_88" class="definition">Test 27.2</a>: </b>
+                  <li id="_t_96"><b><a href="#_t_96" class="definition">Test 29.2</a>: </b>
                     For each method of remote administration supported, the evaluator will
                     follow the operational guidance to ensure that there is no available interface that can be
                     used by a remote user to establish a remote administrative sessions without invoking the
                     trusted path.
                   </li>
-                  <li id="_t_89"><b><a href="#_t_89" class="definition">Test 27.3</a>: </b>
+                  <li id="_t_97"><b><a href="#_t_97" class="definition">Test 29.3</a>: </b>
                     The evaluator will ensure, for each method of remote administration, the
                     channel data is not sent in plaintext.
                   </li>
-                  <li id="_t_90"><b><a href="#_t_90" class="definition">Test 27.4</a>: </b>
+                  <li id="_t_98"><b><a href="#_t_98" class="definition">Test 29.4</a>: </b>
                     The evaluator will ensure, for each method of remote administration,
                     modification of the channel data is detected by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>.
                   </li>
@@ -4135,7 +4170,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
                 order to become enabled.
 	      </div><div class="eacategory">Guidance</div><div class="ea">There are no guidance evaluation activities for this component.</div><div class="eacategory">Tests</div><div class="ea">The evaluator will perform the following tests:
 	      <span class="testlist-"><ul>
-                <li id="_t_35"><b><a href="#_t_35" class="definition">Test 11.1</a>: </b>
+                <li id="_t_43"><b><a href="#_t_43" class="definition">Test 13.1</a>: </b>
 		  The evaluator will perform this test with a test device that does not have a trust relationship with the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.
 		  While the service is not in active use by an application on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the
                   evaluator will attempt to discover a service associated with a "protected"
@@ -4148,7 +4183,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
 		  The evaluator will verify that this attempt fails due to the unavailability of the service and
                   profile.
 		</li>
-                <li id="_t_36"><b><a href="#_t_36" class="definition">Test 11.2</a>: </b>The evaluator will repeat Test 1 with a device that currently has a trusted
+                <li id="_t_44"><b><a href="#_t_44" class="definition">Test 13.2</a>: </b>The evaluator will repeat Test 1 with a device that currently has a trusted
                 device relationship with the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and verify that the same behavior is exhibited.
                 </li>
               </ul></span>
@@ -4179,7 +4214,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
 	      </div><div class="eacategory">Tests</div><div class="ea">
 		There are two tests for each selection above.
               <span class="testlist-"><ul>
-                <li id="_t_38"><b><a href="#_t_38" class="definition">Test 13.1</a>[conditional, to be performed if<ul><li><a href="#s-srp-path">file path</a>
+                <li id="_t_46"><b><a href="#_t_46" class="definition">Test 15.1</a>[conditional, to be performed if<ul><li><a href="#s-srp-path">file path</a>
              is selected from 
              <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]: </b>
 		  
@@ -4188,7 +4223,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
                   that is in the allowed list. The evaluator will ensure that the code they
                   attempted to execute has been executed.
                 </li>
-                <li id="_t_39"><b><a href="#_t_39" class="definition">Test 13.2</a>[conditional, to be performed if<ul><li><a href="#s-srp-path">file path</a>
+                <li id="_t_47"><b><a href="#_t_47" class="definition">Test 15.2</a>[conditional, to be performed if<ul><li><a href="#s-srp-path">file path</a>
              is selected from 
              <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]: </b>
 		  
@@ -4197,7 +4232,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
                   that is not in the allowed list. The evaluator will ensure that the code they
                   attempted to execute has not been executed.
                 </li>
-                <li id="_t_40"><b><a href="#_t_40" class="definition">Test 13.3</a>[conditional, to be performed if<ul><li><a href="#s-srp-signature">file digital signature</a>
+                <li id="_t_48"><b><a href="#_t_48" class="definition">Test 15.3</a>[conditional, to be performed if<ul><li><a href="#s-srp-signature">file digital signature</a>
              is selected from 
              <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]: </b>
 		  
@@ -4206,7 +4241,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
                   by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor. The evaluator will ensure that the code they
                   attempted to execute has been executed.
                 </li>
-                <li id="_t_41"><b><a href="#_t_41" class="definition">Test 13.4</a>[conditional, to be performed if<ul><li><a href="#s-srp-signature">file digital signature</a>
+                <li id="_t_49"><b><a href="#_t_49" class="definition">Test 15.4</a>[conditional, to be performed if<ul><li><a href="#s-srp-signature">file digital signature</a>
              is selected from 
              <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]: </b>
 		  
@@ -4215,7 +4250,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
                   by another digital authority. The evaluator will ensure that the code they
                   attempted to execute has not been executed.
                 </li>
-                <li id="_t_42"><b><a href="#_t_42" class="definition">Test 13.5</a>[conditional, to be performed if<ul><li><a href="#s-srp-version">version</a>
+                <li id="_t_50"><b><a href="#_t_50" class="definition">Test 15.5</a>[conditional, to be performed if<ul><li><a href="#s-srp-version">version</a>
              is selected from 
              <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]: </b>
 		  
@@ -4224,7 +4259,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
                   version of the application. The evaluator will ensure that the code they attempted
                   to execute has been executed.
                 </li>
-                <li id="_t_43"><b><a href="#_t_43" class="definition">Test 13.6</a>[conditional, to be performed if<ul><li><a href="#s-srp-version">version</a>
+                <li id="_t_51"><b><a href="#_t_51" class="definition">Test 15.6</a>[conditional, to be performed if<ul><li><a href="#s-srp-version">version</a>
              is selected from 
              <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]: </b>
 		  
@@ -4233,7 +4268,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
                   version of the application. The evaluator will ensure that the code they attempted
                   to execute has not been executed.
                 </li>
-                <li id="_t_44"><b><a href="#_t_44" class="definition">Test 13.7</a>[conditional, to be performed if<ul><li><a href="#s-srp-hash">hash</a>
+                <li id="_t_52"><b><a href="#_t_52" class="definition">Test 15.7</a>[conditional, to be performed if<ul><li><a href="#s-srp-hash">hash</a>
              is selected from 
              <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]: </b>
 		  
@@ -4242,7 +4277,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
                   the application with the matching hash. The evaluator will
                   ensure that the code they attempted to execute has been executed.
                 </li>
-                <li id="_t_45"><b><a href="#_t_45" class="definition">Test 13.8</a>[conditional, to be performed if<ul><li><a href="#s-srp-hash">hash</a>
+                <li id="_t_53"><b><a href="#_t_53" class="definition">Test 15.8</a>[conditional, to be performed if<ul><li><a href="#s-srp-hash">hash</a>
              is selected from 
              <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]: </b>
 		  
@@ -4252,13 +4287,13 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
                   will then attempt to execute the application with the matching hash. The evaluator will
                   ensure that the code they attempted to execute has not been executed.
                 </li>
-		<li id="_t_46"><b><a href="#_t_46" class="definition">Test 13.9</a>[conditional, to be performed if<ul><li><a href="#s-srp-other">other</a>
+		<li id="_t_54"><b><a href="#_t_54" class="definition">Test 15.9</a>[conditional, to be performed if<ul><li><a href="#s-srp-other">other</a>
              is selected from 
              <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]: </b>
 		  
 		  The evaluator will attempt to run an application that should be allowed based on the defined software restriction policy and ensure that it runs.
 		</li>
-		<li id="_t_47"><b><a href="#_t_47" class="definition">Test 13.10</a>[conditional, to be performed if<ul><li><a href="#s-srp-other">other</a>
+		<li id="_t_55"><b><a href="#_t_55" class="definition">Test 15.10</a>[conditional, to be performed if<ul><li><a href="#s-srp-other">other</a>
              is selected from 
              <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]: </b>
 		  
@@ -4336,7 +4371,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
               not encapsulated by the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> protocol (IPsec).
 	      </div><div class="eacategory">Tests</div><div class="ea">
 	      The evaluator will perform the following test:
-	      <span class="testlist-"><ul><li id="_t_24"><b><a href="#_t_24" class="definition">Test 7.1</a>: </b><ul>
+	      <span class="testlist-"><ul><li id="_t_32"><b><a href="#_t_32" class="definition">Test 9.1</a>: </b><ul>
 		<li><b>Step 1: </b>The evaluator will enable a network connection.
 		  The evaluator will sniff packets while performing running applications that use the network such as web browsers and email clients.
 		  The evaluator will verify that the sniffer captures the traffic generated by these actions, turn off the sniffing tool, and save the session data.
