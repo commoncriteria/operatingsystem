@@ -1393,8 +1393,8 @@ Drive vendors implement garbage collection in a variety of different ways, as su
 The drive should be healthy and contains minimal corrupted data and should be end-of-lifed before a significant amount of damage to drive health occurs, this minimizes the risk that small amounts of potentially recoverable data may remain in damaged areas of the drive.
 	      </p>
 	      </div><div class="eacategory">Tests</div><div class="ea">
-		<ul>
-		  <li id="_t_1"><b><a href="#_t_1" class="definition">Test 1</a>: </b>Applied to each key held as in volatile memory and subject to destruction by overwrite by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> (whether or not the value is subsequently encrypted for storage in volatile or non-volatile memory). In the case where the only selection made for the destruction method key was removal of power, then this test is unnecessary. The evaluator will:
+		<span class="testlist-"><ul>
+		  <li id="_t_1"><b><a href="#_t_1" class="definition">Test 1.1</a>: </b>Applied to each key held as in volatile memory and subject to destruction by overwrite by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> (whether or not the value is subsequently encrypted for storage in volatile or non-volatile memory). In the case where the only selection made for the destruction method key was removal of power, then this test is unnecessary. The evaluator will:
 		  <ol>
 		    <li>Record the value of the key in the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> subject to clearing.</li>
 		    <li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to perform a normal cryptographic processing with the key from Step #1.</li>
@@ -1407,7 +1407,7 @@ The drive should be healthy and contains minimal corrupted data and should be en
 Steps 1-6 ensure that the complete key does not exist anywhere in volatile memory. If a copy is found, then the test fails.
 		  </p>
 </li>
-<li id="_t_2"><b><a href="#_t_2" class="definition">Test 2</a>: </b>Applied to each key help in non-volatile memory and subject to destruction by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. The evaluator will use special tools (as needed), provided by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> developer if necessary, to ensure the tests function as intended.
+<li id="_t_2"><b><a href="#_t_2" class="definition">Test 1.2</a>: </b>Applied to each key help in non-volatile memory and subject to destruction by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. The evaluator will use special tools (as needed), provided by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> developer if necessary, to ensure the tests function as intended.
 <ol>
   <li>Identify the purpose of the key and what access should fail when it is deleted. (e.g. the data encryption key being deleted would cause data decryption to fail.)</li>
   <li>Cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to clear the key.</li>
@@ -1418,7 +1418,7 @@ Steps 1-6 ensure that the complete key does not exist anywhere in volatile memor
   The test succeeds if step 3 fails.
 </p>
 </li>
-<li id="_t_3"><b><a href="#_t_3" class="definition">Test 3</a>: </b>
+<li id="_t_3"><b><a href="#_t_3" class="definition">Test 1.3</a>: </b>
   <p>
 Tests 3 and 4 do not apply for the selection 
 <i>instructing the underlying platform to destroy the representation of the key</i>
@@ -1441,7 +1441,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 </ol>
 </p>
 </li>
-<li id="_t_4"><b><a href="#_t_4" class="definition">Test 4</a>: </b> Applied to each key held as non-volatile memory and subject to destruction by overwrite by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. The evaluator will use a tool that provides a logical view of the media:
+<li id="_t_4"><b><a href="#_t_4" class="definition">Test 1.4</a>: </b> Applied to each key held as non-volatile memory and subject to destruction by overwrite by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. The evaluator will use a tool that provides a logical view of the media:
 <ol>
 <li>Record the logical storage location of the key in the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> subject to clearing.</li>
 
@@ -1455,7 +1455,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
   The test succeeds if correct pattern is used to overwrite the key in the memory location. If the pattern is not found the test fails.
 </p>
 </li>
-		</ul>
+		</ul></span>
 	      </div></div></div></div>
  
         <div class="comp" id="FCS_COP.1/ENCRYPT"><h4>FCS_COP.1/ENCRYPT Cryptographic Operation - Encryption/Decryption (Refined)</h4>
@@ -1740,26 +1740,26 @@ This result shall be compared to the result of running 1000 iterations with the 
               </ul>
               To test the generation-encryption functionality of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCM, the evaluator will perform the
               following four tests:
-	      <ul>
-		<li id="_t_5"><b><a href="#_t_5" class="definition">Test 1</a>: </b> For EACH supported key and associated data length and ANY supported
+	      <span class="testlist-"><ul>
+		<li id="_t_5"><b><a href="#_t_5" class="definition">Test 2.1</a>: </b> For EACH supported key and associated data length and ANY supported
                   payload, nonce and tag length, the evaluator will supply one key value, one nonce
                   value and 10 pairs of associated data and payload values and obtain the resulting
                   ciphertext.
 		</li>
-		<li id="_t_6"><b><a href="#_t_6" class="definition">Test 2</a>: </b>For EACH supported key and payload length and ANY supported associated
+		<li id="_t_6"><b><a href="#_t_6" class="definition">Test 2.2</a>: </b>For EACH supported key and payload length and ANY supported associated
                   data, nonce and tag length, the evaluator will supply one key value, one nonce value
                   and 10 pairs of associated data and payload values and obtain the resulting ciphertext.
 		</li>
 
-                <li id="_t_7"><b><a href="#_t_7" class="definition">Test 3</a>: </b>For EACH supported key and nonce length and ANY supported associated
+                <li id="_t_7"><b><a href="#_t_7" class="definition">Test 2.3</a>: </b>For EACH supported key and nonce length and ANY supported associated
                   data, payload and tag length, the evaluator will supply one key value and 10
                   associated data, payload and nonce value 3-tuples and obtain the resulting ciphertext.
                 </li>
-                <li id="_t_8"><b><a href="#_t_8" class="definition">Test 4</a>: </b>For EACH supported key and tag length and ANY supported associated data,
+                <li id="_t_8"><b><a href="#_t_8" class="definition">Test 2.4</a>: </b>For EACH supported key and tag length and ANY supported associated data,
                   payload and nonce length, the evaluator will supply one key value, one nonce value
                   and 10 pairs of associated data and payload values and obtain the resulting ciphertext.
                 </li>
-	      </ul>
+	      </ul></span>
 	      </p>
 	      <p>
               To determine correctness in each of the above tests, the evaluator will compare the
@@ -1928,34 +1928,34 @@ This result shall be compared to the result of running 1000 iterations with the 
 	      <p>
 		The following tests require the
 		developer to provide access to a test application that provides the evaluator with
-		tools that are typically not found in the production application.<ul>
-                <li id="_t_9"><b><a href="#_t_9" class="definition">Test 1</a>: </b>Short Messages Test (Bit oriented Mode) - The evaluator will generate an input set
+		tools that are typically not found in the production application.<span class="testlist-"><ul>
+                <li id="_t_9"><b><a href="#_t_9" class="definition">Test 3.1</a>: </b>Short Messages Test (Bit oriented Mode) - The evaluator will generate an input set
                   consisting of m+1 messages, where m is the block length of the hash algorithm. The
                   length of the messages range sequentially from 0 to m bits. The message text will
                   be pseudorandomly generated. The evaluator will compute the message digest for each of
                   the messages and ensure that the correct result is produced when the messages are
                   provided to the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.</li>
-                <li id="_t_10"><b><a href="#_t_10" class="definition">Test 2</a>: </b>Short Messages Test (Byte oriented Mode) - The evaluator will generate an input set
+                <li id="_t_10"><b><a href="#_t_10" class="definition">Test 3.2</a>: </b>Short Messages Test (Byte oriented Mode) - The evaluator will generate an input set
                   consisting of m/8+1 messages, where m is the block length of the hash algorithm.
                   The length of the messages range sequentially from 0 to m/8 bytes, with each
                   message being an integral number of bytes. The message text will be
                   pseudorandomly generated. The evaluator will compute the message digest for each of
                   the messages and ensure that the correct result is produced when the messages are
                   provided to the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.</li>
-                <li id="_t_11"><b><a href="#_t_11" class="definition">Test 3</a>: </b>Selected Long Messages Test (Bit oriented Mode) - The evaluator will generate an input
+                <li id="_t_11"><b><a href="#_t_11" class="definition">Test 3.3</a>: </b>Selected Long Messages Test (Bit oriented Mode) - The evaluator will generate an input
                   set consisting of m messages, where m is the block length of the hash algorithm.
                   The length of the <i>i</i>th message is 512 + 99⋅i, where 1 ≤ i ≤ m. The message
                   text will be pseudorandomly generated. The evaluator will compute the message digest
                   for each of the messages and ensure that the correct result is produced when the
                   messages are provided to the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.</li>
-                <li id="_t_12"><b><a href="#_t_12" class="definition">Test 4</a>: </b>Selected Long Messages Test (Byte oriented Mode) - The evaluator will generate an
+                <li id="_t_12"><b><a href="#_t_12" class="definition">Test 3.4</a>: </b>Selected Long Messages Test (Byte oriented Mode) - The evaluator will generate an
                   input set consisting of m/8 messages, where m is the block length of the hash
                   algorithm. The length of the <i>i</i>th message is 512 + 8⋅99⋅i,
 		  where 1 ≤ i ≤ m/8. The message text will be pseudorandomly generated.
 		  The evaluator will compute
                   the message digest for each of the messages and ensure that the correct result is
                   produced when the messages are provided to the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.</li>
-                <li id="_t_13"><b><a href="#_t_13" class="definition">Test 5</a>: </b>Pseudorandomly Generated Messages Test -  This test is for byte-oriented
+                <li id="_t_13"><b><a href="#_t_13" class="definition">Test 3.5</a>: </b>Pseudorandomly Generated Messages Test -  This test is for byte-oriented
                   implementations only. The evaluator will randomly generate a seed that is n bits long,
                   where n is the length of the message digest produced by the hash function to be
                   tested. The evaluator will then formulate a set of 100 messages and associated digests
@@ -1963,7 +1963,7 @@ This result shall be compared to the result of running 1000 iterations with the 
                   ensure that the correct result is produced when the messages are provided to the
                   <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.
 		</li>
-              </ul>
+              </ul></span>
 	      </p>
 	      </div></div></div></div>
         <div class="comp" id="FCS_COP.1/SIGN"><h4>FCS_COP.1/SIGN Cryptographic Operation - Signing (Refined)</h4>
@@ -1995,13 +1995,13 @@ This result shall be compared to the result of running 1000 iterations with the 
 	      </p>
 	      <p><b><abbr class="dyn-abbr"><a href="#abbr_ECDSA">ECDSA</a></abbr> Algorithm Tests</b></p>
 	      <p>
-	      <ul>
-                <li id="_t_14"><b><a href="#_t_14" class="definition">Test 1</a>: </b><abbr class="dyn-abbr"><a href="#abbr_ECDSA">ECDSA</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> 186-4 Signature Generation Test. For each supported <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> curve
+	      <span class="testlist-"><ul>
+                <li id="_t_14"><b><a href="#_t_14" class="definition">Test 4.1</a>: </b><abbr class="dyn-abbr"><a href="#abbr_ECDSA">ECDSA</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> 186-4 Signature Generation Test. For each supported <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> curve
                   (i.e., P-384 and P-521) and <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr> function pair, the evaluator will generate
                   10 1024-bit long messages and obtain for each message a public key and the
                   resulting signature values R and S. To determine correctness, the evaluator will
                   use the signature verification function of a known good implementation. </li>
-                <li id="_t_15"><b><a href="#_t_15" class="definition">Test 2</a>: </b>
+                <li id="_t_15"><b><a href="#_t_15" class="definition">Test 4.2</a>: </b>
 		  <abbr class="dyn-abbr"><a href="#abbr_ECDSA">ECDSA</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> 186-4 Signature Verification Test. For each supported <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> curve
                   (i.e., P-384 and P-521) and <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr> function pair, the evaluator will generate
                   a set of 10 1024-bit message, public key and signature tuples and modify one of
@@ -2009,12 +2009,12 @@ This result shall be compared to the result of running 1000 iterations with the 
 		  The evaluator will verify that 5 responses indicate success and
 		  5 responses indicate failure.
 		</li>
-              </ul>
+              </ul></span>
 	      </p>
 	      <p><b>RSA Signature Algorithm Tests </b></p>
 	      <p>
-	      <ul>
-                <li id="_t_16"><b><a href="#_t_16" class="definition">Test 1</a>: </b>Signature Generation Test. The evaluator will verify the implementation of
+	      <span class="testlist-"><ul>
+                <li id="_t_16"><b><a href="#_t_16" class="definition">Test 5.1</a>: </b>Signature Generation Test. The evaluator will verify the implementation of
                   RSA Signature Generation by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the Signature
                   Generation Test. To conduct this test the evaluator must generate or obtain 10
                   messages from a trusted reference implementation for each modulus size/<abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>
@@ -2024,7 +2024,7 @@ This result shall be compared to the result of running 1000 iterations with the 
                     messages. The evaluator will verify the correctness of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>'
 		    signature using a known good implementation and the associated public keys to
                   verify the signatures. </li>
-                <li id="_t_17"><b><a href="#_t_17" class="definition">Test 2</a>: </b>Signature Verification Test. The evaluator will perform the Signature
+                <li id="_t_17"><b><a href="#_t_17" class="definition">Test 5.2</a>: </b>Signature Verification Test. The evaluator will perform the Signature
                   Verification test to verify the ability of the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to recognize
                   another party' valid and invalid signatures. The evaluator will inject errors
                   into the test vectors produced during the Signature Verification Test by
@@ -2033,7 +2033,7 @@ This result shall be compared to the result of running 1000 iterations with the 
 		  The evaluator will verify that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> returns failure when
 		  validating each signature.
 		</li>
-              </ul>
+              </ul></span>
 	      </p>
 	      </div></div></div></div>
         <div class="comp" id="FCS_COP.1/KEYHMAC"><h4>FCS_COP.1/KEYHMAC Cryptographic Operation - Keyed-Hash Message Authentication (Refined)</h4>
@@ -2246,39 +2246,39 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
 	      </div><div class="eacategory">Tests</div><div class="ea">
 	      <p>
               The evaluator will create two new standard user accounts on the system and conduct the following tests:
-              <ul>
-                <li id="_t_18"><b><a href="#_t_18" class="definition">Test 1</a>: </b>
+              <span class="testlist-"><ul>
+                <li id="_t_18"><b><a href="#_t_18" class="definition">Test 6.1</a>: </b>
                   The evaluator will authenticate to the system as the first user and create a file within that user's home directory.
 		  The evaluator will then log off the system and log in as the second user.
 		  The evaluator will then attempt to read the file created in the first user's home directory.
 		  The evaluator will ensure that the read attempt is denied.
                 </li>
-                <li id="_t_19"><b><a href="#_t_19" class="definition">Test 2</a>: </b>
+                <li id="_t_19"><b><a href="#_t_19" class="definition">Test 6.2</a>: </b>
                   The evaluator will authenticate to the system as the first user and create a file within that user's home directory.
 		  The evaluator will then log off the system and log in as the second user.
 		  The evaluator will then attempt to modify the file created in the first user's home directory.
 		  The evaluator will ensure that the modification is denied.
                 </li>
-                <li id="_t_20"><b><a href="#_t_20" class="definition">Test 3</a>: </b>
+                <li id="_t_20"><b><a href="#_t_20" class="definition">Test 6.3</a>: </b>
                   The evaluator will authenticate to the system as the first user and create a file within that user's user directory.
 		  The evaluator will then log off the system and log in as the second user.
 		  The evaluator will then attempt to delete the file created in the first user's home directory.
 		  The evaluator will ensure that the deletion is denied.
                 </li>
-                <li id="_t_21"><b><a href="#_t_21" class="definition">Test 4</a>: </b>
+                <li id="_t_21"><b><a href="#_t_21" class="definition">Test 6.4</a>: </b>
                   The evaluator will authenticate to the system as the first user.
 		  The evaluator will attempt to create a file in the second user's home directory.
                   The evaluator will ensure that the creation of the file is denied.
                 </li>
-                <li id="_t_22"><b><a href="#_t_22" class="definition">Test 5</a>: </b>
+                <li id="_t_22"><b><a href="#_t_22" class="definition">Test 6.5</a>: </b>
                   The evaluator will authenticate to the system as the first user and attempt to modify the file created in the first user's home directory.
                   The evaluator will ensure that the modification of the file is accepted.
                 </li>
-                <li id="_t_23"><b><a href="#_t_23" class="definition">Test 6</a>: </b>
+                <li id="_t_23"><b><a href="#_t_23" class="definition">Test 6.6</a>: </b>
                   The evaluator will authenticate to the system as the first user and attempt to delete the file created in the first user's directory.
                   The evaluator will ensure that the deletion of the file is accepted.
                 </li>
-              </ul>
+              </ul></span>
 	      </p>
 	      </div></div></div></div>
 	  
@@ -2342,7 +2342,7 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
               not encapsulated by the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> protocol (IPsec).
 	      </div><div class="eacategory">Tests</div><div class="ea">
 	      The evaluator will perform the following test:
-	      <ul><li id="_t_24"><b><a href="#_t_24" class="definition">Test 1</a>: </b><ul>
+	      <span class="testlist-"><ul><li id="_t_24"><b><a href="#_t_24" class="definition">Test 7.1</a>: </b><ul>
 		<li><b>Step 1: </b>The evaluator will enable a network connection.
 		  The evaluator will sniff packets while performing running applications that use the network such as web browsers and email clients.
 		  The evaluator will verify that the sniffer captures the traffic generated by these actions, turn off the sniffing tool, and save the session data.
@@ -2361,7 +2361,7 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
                   The evaluator will perform a ping on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> host on the local network and verify that no packets sent are captured with the sniffer.
 		  The evaluator will attempt to send packets to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> outside the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> tunnel (i.e. not through the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> gateway), including from the local network, and verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> discards them.
 		  </li>
-	      </ul></li></ul>
+	      </ul></li></ul></span>
 	      </div></div></div></div>
       
       <h3 id="fmt" class="indexable" data-level="3">5.1.3 Security Management (FMT)</h3>
@@ -2393,13 +2393,13 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
 
 	      </div><div class="eacategory">Tests</div><div class="ea">
 		The evaluator will also perform the following test.
-  	      <ul><li id="_t_25"><b><a href="#_t_25" class="definition">Test 1</a>: </b>For each function that is indicated as restricted to the administrator,
+  	      <span class="testlist-"><ul><li id="_t_25"><b><a href="#_t_25" class="definition">Test 8.1</a>: </b>For each function that is indicated as restricted to the administrator,
               the evaluation will perform the function as an administrator, as specified in the
               Operational Guidance, and determine that it has the expected effect as outlined by
               the Operational Guidance and the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr>.  The evaluator will then perform the function
               (or otherwise attempt to access the function) as a non-administrator and observe
               that they are unable to invoke that functionality.
-              </li></ul>
+              </li></ul></span>
 		</div></div></div></div>
 
         
@@ -2510,24 +2510,24 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can enroll in such a
 	      Using this account, the evaluator will ensure that the following tests result in a negative
               outcome (i.e., the action results in the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> denying the evaluator permission to
               complete the action):
-              <ul>
-                <li id="_t_26"><b><a href="#_t_26" class="definition">Test 1</a>: </b>The evaluator will attempt to modify all kernel drivers and modules.</li>
-                <li id="_t_27"><b><a href="#_t_27" class="definition">Test 2</a>: </b>The evaluator will attempt to modify all security audit logs generated by the logging subsystem.</li>
-                <li id="_t_28"><b><a href="#_t_28" class="definition">Test 3</a>: </b>The evaluator will attempt to modify all shared libraries that are used throughout the system.</li>
-                <li id="_t_29"><b><a href="#_t_29" class="definition">Test 4</a>: </b>The evaluator will attempt to modify all system executables.</li>
-                <li id="_t_30"><b><a href="#_t_30" class="definition">Test 5</a>: </b>The evaluator will attempt to modify all system configuration files.</li>
-                <li id="_t_31"><b><a href="#_t_31" class="definition">Test 6</a>: </b>The evaluator will attempt to modify any additional components selected.</li>
-              </ul>
+              <span class="testlist-"><ul>
+                <li id="_t_26"><b><a href="#_t_26" class="definition">Test 9.1</a>: </b>The evaluator will attempt to modify all kernel drivers and modules.</li>
+                <li id="_t_27"><b><a href="#_t_27" class="definition">Test 9.2</a>: </b>The evaluator will attempt to modify all security audit logs generated by the logging subsystem.</li>
+                <li id="_t_28"><b><a href="#_t_28" class="definition">Test 9.3</a>: </b>The evaluator will attempt to modify all shared libraries that are used throughout the system.</li>
+                <li id="_t_29"><b><a href="#_t_29" class="definition">Test 9.4</a>: </b>The evaluator will attempt to modify all system executables.</li>
+                <li id="_t_30"><b><a href="#_t_30" class="definition">Test 9.5</a>: </b>The evaluator will attempt to modify all system configuration files.</li>
+                <li id="_t_31"><b><a href="#_t_31" class="definition">Test 9.6</a>: </b>The evaluator will attempt to modify any additional components selected.</li>
+              </ul></span>
 	      
 	      The evaluator will create an unprivileged user account.
 	      Using this account, the evaluator will ensure that the following tests result in a negative
               outcome (i.e., the action results in the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> denying the evaluator permission to
               complete the action):
-              <ul>
-                <li id="_t_32"><b><a href="#_t_32" class="definition">Test 1</a>: </b>The evaluator will attempt to read security audit logs generated by the auditing subsystem</li>
-                <li id="_t_33"><b><a href="#_t_33" class="definition">Test 2</a>: </b>The evaluator will attempt to read system-wide credential repositories</li>
-                <li id="_t_34"><b><a href="#_t_34" class="definition">Test 3</a>: </b>The evaluator will attempt to read any other object specified in the assignment</li>
-              </ul>
+              <span class="testlist-"><ul>
+                <li id="_t_32"><b><a href="#_t_32" class="definition">Test 10.1</a>: </b>The evaluator will attempt to read security audit logs generated by the auditing subsystem</li>
+                <li id="_t_33"><b><a href="#_t_33" class="definition">Test 10.2</a>: </b>The evaluator will attempt to read system-wide credential repositories</li>
+                <li id="_t_34"><b><a href="#_t_34" class="definition">Test 10.3</a>: </b>The evaluator will attempt to read any other object specified in the assignment</li>
+              </ul></span>
 	      </div></div></div></div>
 
         
@@ -2681,8 +2681,8 @@ This test can also be completed on the same hardware and rebooting between appli
                 disabled while not in use by an application and which need explicit user action in
                 order to become enabled.
 	      </div><div class="eacategory">Guidance</div><div class="ea">There are no guidance evaluation activities for this component.</div><div class="eacategory">Tests</div><div class="ea">The evaluator will perform the following tests:
-	      <ul>
-                <li id="_t_35"><b><a href="#_t_35" class="definition">Test 1</a>: </b>
+	      <span class="testlist-"><ul>
+                <li id="_t_35"><b><a href="#_t_35" class="definition">Test 11.1</a>: </b>
 		  The evaluator will perform this test with a test device that does not have a trust relationship with the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.
 		  While the service is not in active use by an application on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the
                   evaluator will attempt to discover a service associated with a "protected"
@@ -2695,10 +2695,10 @@ This test can also be completed on the same hardware and rebooting between appli
 		  The evaluator will verify that this attempt fails due to the unavailability of the service and
                   profile.
 		</li>
-                <li id="_t_36"><b><a href="#_t_36" class="definition">Test 2</a>: </b>The evaluator will repeat Test 1 with a device that currently has a trusted
+                <li id="_t_36"><b><a href="#_t_36" class="definition">Test 11.2</a>: </b>The evaluator will repeat Test 1 with a device that currently has a trusted
                 device relationship with the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and verify that the same behavior is exhibited.
                 </li>
-              </ul>
+              </ul></span>
               </div></div></div></div>
 
 
@@ -2721,13 +2721,13 @@ OSes that store parameters and variables separately from control flow values do 
 These are referred to by a variety of terms, such as stack cookie, stack guard, and stack canaries.
 The <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> must include a rationale for any binaries that are not protected in this manner.
 The evaluator will also preform the following test:
-            <ul>
-                <li id="_t_37"><b><a href="#_t_37" class="definition">Test 1</a>: </b>
+            <span class="testlist-"><ul>
+                <li id="_t_37"><b><a href="#_t_37" class="definition">Test 12.1</a>: </b>
                   The evaluator will inventory the kernel, libraries, and application binaries
                   to determine those that do not implement stack-based buffer overflow protections. This list should
                   match up with the list provided in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>.
                 </li>
-            </ul>
+            </ul></span>
 </p>
 
 <p>For OSes that store parameters/variables separately from control flow values, the evaluator will verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes what data structures control values, parameters, and variables are stored.
@@ -2764,8 +2764,8 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
 		The evaluator will ensure that that the characteristics are described in sufficient detail for administrators to configure policies using them, and that the list of characteristics in the guidance is consistent with the information in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>.
 	      </div><div class="eacategory">Tests</div><div class="ea">
 		There are two tests for each selection above.
-              <ul>
-                <li id="_t_38"><b><a href="#_t_38" class="definition">Test 1</a>[conditional, to be performed if<ul><li><a href="#s-srp-path">file path</a>
+              <span class="testlist-"><ul>
+                <li id="_t_38"><b><a href="#_t_38" class="definition">Test 13.1</a>[conditional, to be performed if<ul><li><a href="#s-srp-path">file path</a>
              is selected from 
              <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]: </b>
 		  
@@ -2774,7 +2774,7 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
                   that is in the allowed list. The evaluator will ensure that the code they
                   attempted to execute has been executed.
                 </li>
-                <li id="_t_39"><b><a href="#_t_39" class="definition">Test 2</a>[conditional, to be performed if<ul><li><a href="#s-srp-path">file path</a>
+                <li id="_t_39"><b><a href="#_t_39" class="definition">Test 13.2</a>[conditional, to be performed if<ul><li><a href="#s-srp-path">file path</a>
              is selected from 
              <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]: </b>
 		  
@@ -2783,7 +2783,7 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
                   that is not in the allowed list. The evaluator will ensure that the code they
                   attempted to execute has not been executed.
                 </li>
-                <li id="_t_40"><b><a href="#_t_40" class="definition">Test 3</a>[conditional, to be performed if<ul><li><a href="#s-srp-signature">file digital signature</a>
+                <li id="_t_40"><b><a href="#_t_40" class="definition">Test 13.3</a>[conditional, to be performed if<ul><li><a href="#s-srp-signature">file digital signature</a>
              is selected from 
              <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]: </b>
 		  
@@ -2792,7 +2792,7 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
                   by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor. The evaluator will ensure that the code they
                   attempted to execute has been executed.
                 </li>
-                <li id="_t_41"><b><a href="#_t_41" class="definition">Test 4</a>[conditional, to be performed if<ul><li><a href="#s-srp-signature">file digital signature</a>
+                <li id="_t_41"><b><a href="#_t_41" class="definition">Test 13.4</a>[conditional, to be performed if<ul><li><a href="#s-srp-signature">file digital signature</a>
              is selected from 
              <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]: </b>
 		  
@@ -2801,7 +2801,7 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
                   by another digital authority. The evaluator will ensure that the code they
                   attempted to execute has not been executed.
                 </li>
-                <li id="_t_42"><b><a href="#_t_42" class="definition">Test 5</a>[conditional, to be performed if<ul><li><a href="#s-srp-version">version</a>
+                <li id="_t_42"><b><a href="#_t_42" class="definition">Test 13.5</a>[conditional, to be performed if<ul><li><a href="#s-srp-version">version</a>
              is selected from 
              <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]: </b>
 		  
@@ -2810,7 +2810,7 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
                   version of the application. The evaluator will ensure that the code they attempted
                   to execute has been executed.
                 </li>
-                <li id="_t_43"><b><a href="#_t_43" class="definition">Test 6</a>[conditional, to be performed if<ul><li><a href="#s-srp-version">version</a>
+                <li id="_t_43"><b><a href="#_t_43" class="definition">Test 13.6</a>[conditional, to be performed if<ul><li><a href="#s-srp-version">version</a>
              is selected from 
              <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]: </b>
 		  
@@ -2819,7 +2819,7 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
                   version of the application. The evaluator will ensure that the code they attempted
                   to execute has not been executed.
                 </li>
-                <li id="_t_44"><b><a href="#_t_44" class="definition">Test 7</a>[conditional, to be performed if<ul><li><a href="#s-srp-hash">hash</a>
+                <li id="_t_44"><b><a href="#_t_44" class="definition">Test 13.7</a>[conditional, to be performed if<ul><li><a href="#s-srp-hash">hash</a>
              is selected from 
              <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]: </b>
 		  
@@ -2828,7 +2828,7 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
                   the application with the matching hash. The evaluator will
                   ensure that the code they attempted to execute has been executed.
                 </li>
-                <li id="_t_45"><b><a href="#_t_45" class="definition">Test 8</a>[conditional, to be performed if<ul><li><a href="#s-srp-hash">hash</a>
+                <li id="_t_45"><b><a href="#_t_45" class="definition">Test 13.8</a>[conditional, to be performed if<ul><li><a href="#s-srp-hash">hash</a>
              is selected from 
              <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]: </b>
 		  
@@ -2838,19 +2838,19 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
                   will then attempt to execute the application with the matching hash. The evaluator will
                   ensure that the code they attempted to execute has not been executed.
                 </li>
-		<li id="_t_46"><b><a href="#_t_46" class="definition">Test 9</a>[conditional, to be performed if<ul><li><a href="#s-srp-other">other</a>
+		<li id="_t_46"><b><a href="#_t_46" class="definition">Test 13.9</a>[conditional, to be performed if<ul><li><a href="#s-srp-other">other</a>
              is selected from 
              <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]: </b>
 		  
 		  The evaluator will attempt to run an application that should be allowed based on the defined software restriction policy and ensure that it runs.
 		</li>
-		<li id="_t_47"><b><a href="#_t_47" class="definition">Test 10</a>[conditional, to be performed if<ul><li><a href="#s-srp-other">other</a>
+		<li id="_t_47"><b><a href="#_t_47" class="definition">Test 13.10</a>[conditional, to be performed if<ul><li><a href="#s-srp-other">other</a>
              is selected from 
              <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]: </b>
 		  
 		  The evaluator will then attempt to run an application that should not be allowed the defined software restriction policy and ensure that it does not run.
 		</li>
-              </ul>
+              </ul></span>
               
               </div></div></div></div>
 
@@ -2913,13 +2913,13 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
 	      </div><div class="eacategory">Tests</div><div class="ea">
 	      <p>
               The evaluator will also perform the following tests:
-              <ul>
-                <li id="_t_48"><b><a href="#_t_48" class="definition">Test 1</a>: </b>
+              <span class="testlist-"><ul>
+                <li id="_t_48"><b><a href="#_t_48" class="definition">Test 14.1</a>: </b>
                   The evaluator will perform actions to cause <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> software to load and observe that the
                   integrity mechanism does not flag any executables as containing integrity errors and that the
                   <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> properly boots.
                 </li>
-                <li id="_t_49"><b><a href="#_t_49" class="definition">Test 2</a>: </b>
+                <li id="_t_49"><b><a href="#_t_49" class="definition">Test 14.2</a>: </b>
                   The evaluator will modify a <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> executable that is part of the bootchain verified by the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> (i.e. Not the first-stage bootloader)
 		  and attempt to boot.
 		  The evaluator will ensure that an integrity violation is triggered and the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> does not boot
@@ -2927,7 +2927,7 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
                   violation is determined to be the cause of the failure to load the module, and not the fact that
                   in such a way to invalidate the structure of the module.).
                 </li>
-                <li id="_t_50"><b><a href="#_t_50" class="definition">Test 3</a>[conditional, to be performed if<ul><li><a href="#s-boot-x509">a digital signature using an X509 certificate with hardware-based protection</a>
+                <li id="_t_50"><b><a href="#_t_50" class="definition">Test 14.3</a>[conditional, to be performed if<ul><li><a href="#s-boot-x509">a digital signature using an X509 certificate with hardware-based protection</a>
              is selected from 
              <a href="#FPT_TST_EXT.1.1">FPT_TST_EXT.1.1</a></li></ul>]: </b>
 		  
@@ -2939,7 +2939,7 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
 
  
                 </li>
-              </ul>
+              </ul></span>
 	      </p>
               </div></div></div></div>
 
@@ -2987,8 +2987,8 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
 				  update repository, or another system (e.g. network peer).
 				  All supported origins
 				  for the update must be indicated in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> and evaluated.
-              <ul>
-                <li id="_t_51"><b><a href="#_t_51" class="definition">Test 1</a>: </b>
+              <span class="testlist-"><ul>
+                <li id="_t_51"><b><a href="#_t_51" class="definition">Test 15.1</a>: </b>
 				  The evaluator will ensure that the update has a digital
 				  signature belonging to the vendor prior to its installation.
 				  The evaluator will modify the downloaded update in such a way
@@ -2997,14 +2997,14 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
 				  evaluator will ensure that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> does not install the
 				  modified update.
                 </li>
-                <li id="_t_52"><b><a href="#_t_52" class="definition">Test 2</a>: </b>
+                <li id="_t_52"><b><a href="#_t_52" class="definition">Test 15.2</a>: </b>
 				  The evaluator will ensure that the update has a digital
 				  signature belonging to the vendor. The evaluator will then
 				  attempt to install the update (or permit installation to continue).
 				  The evaluator will ensure that
 				  the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> successfully installs the update.
                 </li>
-              </ul>
+              </ul></span>
               </div></div></div></div>
         <div class="comp" id="FPT_TUD_EXT.2"><h4>FPT_TUD_EXT.2 Trusted Update for Application Software</h4>
           
@@ -3052,8 +3052,8 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
 				  All origins supported by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> must be indicated in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> and evaluated.  However, this only includes
 				  those mechanisms for which the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> is providing a trusted installation and update functionality.
 				  It does not include user or administrator-driven download and installation of arbitrary files.
-              <ul>
-                <li id="_t_53"><b><a href="#_t_53" class="definition">Test 1</a>: </b>
+              <span class="testlist-"><ul>
+                <li id="_t_53"><b><a href="#_t_53" class="definition">Test 16.1</a>: </b>
 				  The evaluator will ensure that the update has a digital
 				  signature which chains to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor or another trusted
 				  root managed through the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>.  The evaluator will modify the
@@ -3062,14 +3062,14 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
                   modified update. The evaluator will ensure that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> does not install the modified
                   update.
                 </li>
-                <li id="_t_54"><b><a href="#_t_54" class="definition">Test 2</a>: </b>
+                <li id="_t_54"><b><a href="#_t_54" class="definition">Test 16.2</a>: </b>
 				  The evaluator will ensure that the update has a digital
 				  signature belonging to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor or another trusted root
 				  managed through the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>. The evaluator will then attempt to
 				  install the update.  The evaluator will ensure that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>
 				  successfully installs the update.
                 </li>
-              </ul>
+              </ul></span>
               </div></div></div></div>
 
 
@@ -3095,28 +3095,28 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
               write and execute permissions except for the cases listed in the assignment.
 	      </div><div class="eacategory">Tests</div><div class="ea">
 	      The evaluator will also perform the following tests.
-	      <ul>
-		<li id="_t_55"><b><a href="#_t_55" class="definition">Test 1</a>: </b>
+	      <span class="testlist-"><ul>
+		<li id="_t_55"><b><a href="#_t_55" class="definition">Test 17.1</a>: </b>
                   The evaluator will acquire or construct a test program which attempts
 		  to allocate memory that is both writable and executable.
 		  The evaluator will run the program and confirm that it fails to
 		  allocate memory that is both writable and executable.
 		</li>
-		<li id="_t_56"><b><a href="#_t_56" class="definition">Test 2</a>: </b>
+		<li id="_t_56"><b><a href="#_t_56" class="definition">Test 17.2</a>: </b>
                   The evaluator will acquire or construct a test program which
 		  allocates memory that is executable and then
 		  subsequently requests additional write/modify permissions on that memory.
 		  The evaluator will run the program and confirm that at no time
 		  during the lifetime of the process is the memory both writable and executable.
 		</li>
-		<li id="_t_57"><b><a href="#_t_57" class="definition">Test 3</a>: </b>
+		<li id="_t_57"><b><a href="#_t_57" class="definition">Test 17.3</a>: </b>
                   The evaluator will acquire or construct a test program which
 		  allocates memory that is writable and then
 		  subsequently requests additional execute permissions on that memory.
 		  The evaluator will run the program and confirm that at no time
 		  during the lifetime of the process is the memory both writable and executable.
 		</li>
-	      </ul>
+	      </ul></span>
               </div></div></div></div>
       
       <h3 id="fau" class="indexable" data-level="3">5.1.5 Audit Data Generation (FAU)</h3>
@@ -3243,34 +3243,34 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall be able
 		  <a href="#FAU_GEN.1">FAU_GEN.1</a>.
 
 	      
-              <ul>
-                <li id="_t_58"><b><a href="#_t_58" class="definition">Test 1</a>: </b>
+              <span class="testlist-"><ul>
+                <li id="_t_58"><b><a href="#_t_58" class="definition">Test 18.1</a>: </b>
                   The evaluator will attempt to authenticate repeatedly to the system with a
                   known bad password. Once the defined number of failed authentication attempts has been
                   reached the evaluator will ensure that the account that was being used for testing
                   has had the actions detailed in the assignment list above applied to it. The evaluator will ensure that
                   an event has been logged to the security event log detailing that the account has had these actions applied.
                 </li>
-                <li id="_t_59"><b><a href="#_t_59" class="definition">Test 2</a>: </b>
+                <li id="_t_59"><b><a href="#_t_59" class="definition">Test 18.2</a>: </b>
                   The evaluator will attempt to authenticate repeatedly to the system with a
                   known bad certificate. Once the defined number of failed authentication attempts has been
                   reached the evaluator will ensure that the account that was being used for testing
                   has had the actions detailed in the assignment list above applied to it. The evaluator will ensure that
                   an event has been logged to the security event log detailing that the account has had these actions applied.
                 </li>
-                <li id="_t_60"><b><a href="#_t_60" class="definition">Test 3</a>: </b>
+                <li id="_t_60"><b><a href="#_t_60" class="definition">Test 18.3</a>: </b>
                   The evaluator will attempt to authenticate repeatedly to the system using both a bad password and a bad certificate.
                   Once the defined number of failed authentication attempts has been
                   reached the evaluator will ensure that the account that was being used for testing
                   has had the actions detailed in the assignment list above applied to it. The evaluator will ensure that
                   an event has been logged to the security event log detailing that the account has had these actions applied.
                 </li>
-              </ul>
+              </ul></span>
               </div></div></div></div>
         <div class="comp" id="FIA_UAU.5"><h4>FIA_UAU.5 Multiple Authentication Mechanisms (Refined)</h4>
           <div class="element"><div class="reqid" id="FIA_UAU.5.1"><a href="#FIA_UAU.5.1" class="abbr">FIA_UAU.5.1</a></div><div class="reqdesc">
 	      The <span class="refinement"><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></span> shall provide the following authentication mechanisms
-	      <b>[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-pass">authentication based on user name and password</span></li><li style=""><span class="selectable-content" id="s-pin">authentication based on user name and a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr> that releases an asymmetric key stored
+	      <b>[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-pass">authentication based on username and password</span></li><li style=""><span class="selectable-content" id="s-pin">authentication based on username and a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr> that releases an asymmetric key stored
 		in <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>-protected storage</span></li><li style=""><span class="selectable-content" id="s-otp">combination of authentication based on user name, password, and time-based one-time password</span></li><li style=""><span class="selectable-content" id="s-x509-auth">authentication based on X.509 certificates</span></li><li style=""><span class="selectable-content" id="s-uau-ssh">for use in SSH only, SSH public key-based authentication as specified by the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
         version 
         1.0</a></span></li></ul>]
@@ -3318,31 +3318,31 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall authent
 		</p>
 		</div><div class="eacategory">Guidance</div><div class="ea">
 	      <p>
-	      The evaluator will verify that
-              configuration guidance for each authentication mechanism is
-              addressed in the AGD guidance.
+		The evaluator will verify that
+		configuration guidance for each authentication mechanism is
+		addressed in the AGD guidance.
 	      </p>
 	      </div><div class="eacategory">Tests</div><div class="ea">
-		<div class="dependent">The following content should be included if:<ul><li><a href="#s-pass">authentication based on user name and password</a>
+		<div class="dependent">The following content should be included if:<ul><li><a href="#s-pass">authentication based on username and password</a>
              is selected from 
              <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a></li></ul><div class="dependent-content"><div>
 		  
 		  
 		  
-              <ul>
-                <li id="_t_61"><b><a href="#_t_61" class="definition">Test 1</a>: </b>
+              <span class="testlist-"><ul>
+                <li id="_t_61"><b><a href="#_t_61" class="definition">Test 19.1</a>: </b>
 				  The evaluator will attempt to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using
 				  the known user name and password. The evaluator will ensure
 				  that the authentication attempt is successful.
                 </li>
-                <li id="_t_62"><b><a href="#_t_62" class="definition">Test 2</a>: </b>
+                <li id="_t_62"><b><a href="#_t_62" class="definition">Test 19.2</a>: </b>
 				  The evaluator will attempt to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using
 				  the known user name but an incorrect password. The evaluator
 				  will ensure that the authentication attempt is unsuccessful.
                 </li>
-              </ul>
+              </ul></span>
 		</div></div></div>
-		<div class="dependent">The following content should be included if:<ul><li><a href="#s-pin">user name and a PIN that releases an asymmetric key</a>
+		<div class="dependent">The following content should be included if:<ul><li><a href="#s-pin">username and a PIN that releases an asymmetric key</a>
              is selected from 
              <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a></li></ul><div class="dependent-content"><div>
 		  
@@ -3351,18 +3351,44 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall authent
 		  which enables release of the asymmetric key from the protected storage (such as a TPM, a hardware token, or
 		  isolated execution environment) with which the
 		  <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can interface.  The evaluator will then conduct the following tests:
-			  <ul>
-			    <li id="_t_63"><b><a href="#_t_63" class="definition">Test 1</a>: </b>
+			  <span class="testlist-"><ul>
+			    <li id="_t_63"><b><a href="#_t_63" class="definition">Test 20.1</a>: </b>
 			      The evaluator will attempt to  authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the known user name and <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr>.
 			      The evaluator will ensure that the authentication attempt is successful.
 			    </li>
-				<li id="_t_64"><b><a href="#_t_64" class="definition">Test 2</a>: </b> The evaluator will attempt to
-			    authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the known user name but an incorrect
-			    <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr>. The evaluator will ensure that the authentication attempt is
-			    unsuccessful.
-				</li>
-			  </ul>
+			    <li id="_t_64"><b><a href="#_t_64" class="definition">Test 20.2</a>: </b>
+			      The evaluator will attempt to  authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the known user name but an incorrect
+			      <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr>. The evaluator will ensure that the authentication attempt is
+			      unsuccessful.
+			    </li>
+			  </ul></span>
 		</div></div></div>
+		<div class="dependent">The following content should be included if:<ul><li><a href="#s-otp">combination of authentication based on user name, password, and time-based one-time password</a>
+             is selected from 
+             <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a></li></ul><div class="dependent-content"><div>
+		The evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to authentication to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using
+		a username, password, and one-time password mechanism.
+		The evaluator will then perform the following tests.
+		<span class="testlist-"><ul>
+		  <li id="_t_65"><b><a href="#_t_65" class="definition">Test 21.1</a>: </b>
+	  	    The evaluator will attempt to authenticate using a valid username, valid password, and valid one-time password.
+		    The evaluator will ensure that the authentication attempt is successful.
+		  </li>
+		  <li id="_t_66"><b><a href="#_t_66" class="definition">Test 21.2</a>: </b>
+	  	    The evaluator will attempt to authenticate using a valid username, invalid password, and valid one-time password.
+		    The evaluator will ensure that the authentication attempt fails.
+		  </li>
+		  <li id="_t_67"><b><a href="#_t_67" class="definition">Test 21.3</a>: </b>
+	  	    The evaluator will attempt to authenticate using a valid username, valid password, and invalid one-time password.
+		    The evaluator will ensure that the authentication attempt fails.
+		  </li>
+		  <li id="_t_68"><b><a href="#_t_68" class="definition">Test 21.4</a>: </b>
+	  	    The evaluator will attempt to authenticate using a valid username, invalid password, and invalid one-time password.
+		    The evaluator will ensure that the authentication attempt fails.
+		  </li>
+		</ul></span>
+		</div></div></div>
+		
 		<div class="dependent">The following content should be included if:<ul><li><a href="#s-x509-auth">authentication based on X.509 certificates</a>
              is selected from 
              <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a></li></ul><div class="dependent-content"><div>
@@ -3374,32 +3400,39 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall authent
 			  The evaluator will ensure that the
 			  certificates are validated by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> as per
                           <a href="#FIA_X509_EXT.1.1">FIA_X509_EXT.1.1</a> and then conduct the following tests:
-              <ul>
-                 <li id="_t_65"><b><a href="#_t_65" class="definition">Test 1</a>: </b>
+              <span class="testlist-"><ul>
+                 <li id="_t_69"><b><a href="#_t_69" class="definition">Test 22.1</a>: </b>
 					The evaluator will attempt to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using
 					the X.509v3 certificate. The evaluator
 					will ensure that the authentication attempt is successful.
                   </li>
-                <li id="_t_66"><b><a href="#_t_66" class="definition">Test 2</a>: </b>
+                <li id="_t_70"><b><a href="#_t_70" class="definition">Test 22.2</a>: </b>
 				  The evaluator will generate a second certificate identical to
 				  the first except for the public key and any values derived
 				  from the public key. The evaluator will attempt to
 				  authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> with this certificate. The evaluator
 				  will ensure that the authentication attempt is unsuccessful.
                 </li>
-              </ul>
+              </ul></span>
 		</div></div></div>
+		<p> Authentication mechanisms related to <a href="#s-uau-ssh">for use in SSH only, SSH public key-based authentication as specified by the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
+        version 
+        1.0</a></a> are tested in the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
+        version 
+        1.0</a>.
+		</p>
               
-              <ul>
-                <li id="_t_67"><b><a href="#_t_67" class="definition">Test 1</a>: </b>For each
+		
+              <span class="testlist-"><ul>
+                <li id="_t_71"><b><a href="#_t_71" class="definition">Test 23.1</a>: </b>For each
 		authentication mechanism selected, the evaluator will enable that
 		mechanism and verify that it can be used to authenticate the user at
 		the specified authentication factor interfaces. </li>
-		<li id="_t_68"><b><a href="#_t_68" class="definition">Test 2</a>: </b>
+		<li id="_t_72"><b><a href="#_t_72" class="definition">Test 23.2</a>: </b>
 		  For each authentication mechanism rule, the evaluator will ensure that
 		  the authentication mechanism(s) behave as documented in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>.
 		</li>
-              </ul>
+              </ul></span>
 	      </div></div></div></div>
 
 
@@ -3487,8 +3520,8 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall only treat a c
 The tests described must be performed in conjunction with the other certificate services evaluation activities, including the functions in <a href="#FIA_X509_EXT.2.1">FIA_X509_EXT.2.1</a>.
 The tests for the extendedKeyUsage rules are performed in conjunction with the uses that require those rules.
 The evaluator will create a chain of at least four certificates: the node certificate to be tested, two Intermediate CAs, and the self-signed Root CA.
-	<ul>
-<li id="_t_69"><b><a href="#_t_69" class="definition">Test 1</a>: </b> The evaluator will demonstrate that validating a certificate without a valid certification path results in the function failing, for each of the following reasons, in turn:
+	<span class="testlist-"><ul>
+<li id="_t_73"><b><a href="#_t_73" class="definition">Test 24.1</a>: </b> The evaluator will demonstrate that validating a certificate without a valid certification path results in the function failing, for each of the following reasons, in turn:
 by establishing a certificate path in which one of the issuing certificates is not a CA certificate,
 by omitting the basicConstraints field in one of the issuing certificates,
 by setting the basicConstraints field in an issuing certificate to have CA=False,
@@ -3497,45 +3530,45 @@ by setting the path length field of a valid CA field to a value strictly less th
 The evaluator will then establish a valid certificate path consisting of valid CA certificates, and demonstrate that the function succeeds.
 The evaluator will then remove trust in one of the CA certificates, and show that the function fails.
 </li>
-<li id="_t_70"><b><a href="#_t_70" class="definition">Test 2</a>: </b> The evaluator will demonstrate that validating an expired certificate results in the function failing.</li>
-<li id="_t_71"><b><a href="#_t_71" class="definition">Test 3</a>: </b> The evaluator will test that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can properly handle revoked certificates - conditional on whether <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling, or <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> multi-stapling is selected; if multiple methods are selected, then a test will be performed for each method.
+<li id="_t_74"><b><a href="#_t_74" class="definition">Test 24.2</a>: </b> The evaluator will demonstrate that validating an expired certificate results in the function failing.</li>
+<li id="_t_75"><b><a href="#_t_75" class="definition">Test 24.3</a>: </b> The evaluator will test that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can properly handle revoked certificates - conditional on whether <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling, or <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> multi-stapling is selected; if multiple methods are selected, then a test will be performed for each method.
 The evaluator will test revocation of the node certificate and revocation of the intermediate CA certificate (i.e. the intermediate CA certificate should be revoked by the root CA).
 If <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling per <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6066 is the only supported revocation method, testing revocation of the intermediate CA certificate is omitted.
 The evaluator will ensure that a valid certificate is used, and that the validation function succeeds.
 The evaluator then attempts the test with a certificate that has been revoked (for each method chosen in the selection) to ensure when the certificate is no longer valid that the validation function fails.</li>
-<li id="_t_72"><b><a href="#_t_72" class="definition">Test 4</a>: </b> If any <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> option is selected, the evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> server or use a man-in-the-middle tool to present a certificate that does not have the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> signing purpose and verify that validation of the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> response fails.
+<li id="_t_76"><b><a href="#_t_76" class="definition">Test 24.4</a>: </b> If any <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> option is selected, the evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> server or use a man-in-the-middle tool to present a certificate that does not have the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> signing purpose and verify that validation of the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> response fails.
 If <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> is selected, the evaluator will configure the CA to sign a <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> with a certificate that does not have the cRLsign key usage bit set and verify that validation of the <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> fails.</li>
-<li id="_t_73"><b><a href="#_t_73" class="definition">Test 5</a>: </b> The evaluator will modify any byte in the first eight bytes of the certificate and demonstrate that the certificate fails to validate.
+<li id="_t_77"><b><a href="#_t_77" class="definition">Test 24.5</a>: </b> The evaluator will modify any byte in the first eight bytes of the certificate and demonstrate that the certificate fails to validate.
 (The certificate will fail to parse correctly.)</li>
-<li id="_t_74"><b><a href="#_t_74" class="definition">Test 6</a>: </b> The evaluator will modify any byte in the last byte of the certificate and demonstrate that the certificate fails to validate.
+<li id="_t_78"><b><a href="#_t_78" class="definition">Test 24.6</a>: </b> The evaluator will modify any byte in the last byte of the certificate and demonstrate that the certificate fails to validate.
 (The signature on the certificate will not validate.)</li>
-<li id="_t_75"><b><a href="#_t_75" class="definition">Test 7</a>: </b> The evaluator will modify any byte in the public key of the certificate and demonstrate that the certificate fails to validate.
+<li id="_t_79"><b><a href="#_t_79" class="definition">Test 24.7</a>: </b> The evaluator will modify any byte in the public key of the certificate and demonstrate that the certificate fails to validate.
 (The signature of the certificate will not validate.)</li>
 
-    <li id="_t_76"><b><a href="#_t_76" class="definition">Test 8</a>[conditional, to be performed if<ul><li><a href="#s-ec-certs">ECDSA schemes</a>
+    <li id="_t_80"><b><a href="#_t_80" class="definition">Test 24.8</a>[conditional, to be performed if<ul><li><a href="#s-ec-certs">ECDSA schemes</a>
              is selected from 
              <a href="#FCS_COP.1.1/SIGN">FCS_COP.1.1/SIGN</a></li></ul>]: </b>
       
-      <ul>
-	<li id="t-ecdsa-valid"><b><a href="#t-ecdsa-valid" class="definition">Test 8.1</a>: </b>
+      <span class="testlist-"><ul>
+	<li id="t-ecdsa-valid"><b><a href="#t-ecdsa-valid" class="definition">Test 25.8.1</a>: </b>
       The evaluator will establish a valid, trusted certificate chain consisting of an EC leaf certificate, an EC Intermediate CA certificate not designated as a trust anchor, and an EC certificate designated as a trusted anchor, where the elliptic curve parameters are specified as a named curve.
     The evaluator will confirm that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> validates the certificate chain.
     </li>
-    <li id="_t_78"><b><a href="#_t_78" class="definition">Test 8.2</a>: </b>
+    <li id="_t_82"><b><a href="#_t_82" class="definition">Test 25.8.2</a>: </b>
       
-      The evaluator will replace the intermediate certificate in the certificate chain for <a href="#t-ecdsa-valid" class="">Test 8.1</a> with a modified certificate, where the modified intermediate CA has a public key information field where the EC parameters uses an explicit format version of the Elliptic Curve parameters in the public key information field of the intermediate CA certificate from <a href="#t-ecdsa-valid" class="">Test 8.1</a>, and the modified Intermediate CA certificate is signed by the trusted EC root CA, but having no other changes.
+      The evaluator will replace the intermediate certificate in the certificate chain for <a href="#t-ecdsa-valid" class="">Test 25.8.1</a> with a modified certificate, where the modified intermediate CA has a public key information field where the EC parameters uses an explicit format version of the Elliptic Curve parameters in the public key information field of the intermediate CA certificate from <a href="#t-ecdsa-valid" class="">Test 25.8.1</a>, and the modified Intermediate CA certificate is signed by the trusted EC root CA, but having no other changes.
 The evaluator will confirm the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> treats the certificate as invalid.
     </li>
-      </ul>
+      </ul></span>
     </li>
 
-<li id="_t_79"><b><a href="#_t_79" class="definition">Test 9</a>[conditional, to be performed if<ul><li><a href="#s-revoc-exceptions">exceptional use cases</a>
+<li id="_t_83"><b><a href="#_t_83" class="definition">Test 25.9</a>[conditional, to be performed if<ul><li><a href="#s-revoc-exceptions">exceptional use cases</a>
              is selected from 
              <a href="#FIA_X509_EXT.1.1">FIA_X509_EXT.1.1</a></li></ul>]: </b>
     
     For each exceptional use case for revocation checking described in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, the evaluator shall attempt to establish the conditions of the use case, designate the certificate as invalid and perform the function relying on the certificate. The evaluator shall observe that the alternate revocation checking mechanism successfully prevents performance of the function.
 </li>
-	</ul>
+	</ul></span>
 
 The tests described must be performed in conjunction with the other
 certificate services evaluation activities, including the functions in
@@ -3543,18 +3576,18 @@ certificate services evaluation activities, including the functions in
 The evaluator will create a chain of at least four certificates:
 the node certificate to be tested, two Intermediate CAs, and the
               self-signed Root CA.
-<ul>
-  <li id="_t_80"><b><a href="#_t_80" class="definition">Test 1</a>: </b> The evaluator will construct a certificate path, such that the certificate
+<span class="testlist-"><ul>
+  <li id="_t_84"><b><a href="#_t_84" class="definition">Test 26.1</a>: </b> The evaluator will construct a certificate path, such that the certificate
   of the CA issuing the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s certificate does not contain the
   <i>basicConstraints</i> extension. The validation of the certificate path fails. </li>
-  <li id="_t_81"><b><a href="#_t_81" class="definition">Test 2</a>: </b> The evaluator will construct a certificate path, such that the certificate
+  <li id="_t_85"><b><a href="#_t_85" class="definition">Test 26.2</a>: </b> The evaluator will construct a certificate path, such that the certificate
   of the CA issuing the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s certificate has the CA flag in the
   <i>basicConstraints</i> extension not set. The validation of the certificate path fails. </li>
-  <li id="_t_82"><b><a href="#_t_82" class="definition">Test 3</a>: </b> The evaluator will construct a certificate path, such that the certificate
+  <li id="_t_86"><b><a href="#_t_86" class="definition">Test 26.3</a>: </b> The evaluator will construct a certificate path, such that the certificate
   of the CA issuing the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s certificate has the CA flag in the
   <i>basicConstraints</i> extension set to TRUE. The validation of the certificate path
   succeeds. </li>
-</ul>
+</ul></span>
               </div></div></div></div>
         <div class="comp" id="FIA_X509_EXT.2"><h4>FIA_X509_EXT.2 X.509 Certificate Authentication</h4>
           <div class="element"><div class="reqid" id="FIA_X509_EXT.2.1"><a href="#FIA_X509_EXT.2.1" class="abbr">FIA_X509_EXT.2.1</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall use X.509v3 certificates as defined by <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 5280 to support
@@ -3605,18 +3638,25 @@ the node certificate to be tested, two Intermediate CAs, and the
       	<div class="comp" id="FTP_ITC_EXT.1"><h4>FTP_ITC_EXT.1 Trusted channel communication</h4>
       	  <div class="element"><div class="reqid" id="FTP_ITC_EXT.1.1"><a href="#FTP_ITC_EXT.1.1" class="abbr">FTP_ITC_EXT.1.1</a></div><div class="reqdesc">
               The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall use
-      	      [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="tls"><abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS),
+      	      [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="tls">
+		  <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS),
         version 
-        2.0-draft</a></span></li><li style=""><span class="selectable-content" id="dtls"><abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS),
+        2.0-draft</a> as a
+    	  	  [<b>selection</b>: <span class="selectable-content" id="s-tls-client">client</span>,  <span class="selectable-content" id="s-tls-server">server</span> ]
+		</span></li><li style=""><span class="selectable-content" id="dtls"><abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS),
         version 
-        2.0-draft</a></span></li><li style=""><span class="selectable-content" id="s-itc-ipsec">IPsec as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=467&amp;id=467">PP-Module for Virtual Private Network (VPN) Clients,
+        2.0-draft</a> as a
+    	  	  [<b>selection</b>: <span class="selectable-content" id="_s_129">client</span>,  <span class="selectable-content" id="_s_130">server</span> ]
+		</span></li><li style=""><span class="selectable-content" id="s-itc-ipsec">IPsec as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=467&amp;id=467">PP-Module for Virtual Private Network (VPN) Clients,
         version 
         2.4</a></span></li><li style=""><span class="selectable-content" id="s-ftp_ssh">SSH as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
         version 
-        1.0</a></span></li></ul>]
+        1.0</a> as a
+    	  	  [<b>selection</b>: <span class="selectable-content" id="s-ssh-client">client</span>,  <span class="selectable-content" id="s-ssh-server">server</span> ]
+		</span></li></ul>]
 		    to provide a trusted communication channel between itself and
 		    authorized <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr> entities supporting the following capabilities:
-		    [<b>selection</b>: <span class="selectable-content" id="_s_129">audit server</span>,  <span class="selectable-content" id="_s_130">authentication server</span>,  <span class="selectable-content" id="_s_131">management server</span>,  <span class="selectable-content" id="_s_132">[<b>assignment</b>: 
+		    [<b>selection</b>: <span class="selectable-content" id="_s_135">audit server</span>,  <span class="selectable-content" id="_s_136">authentication server</span>,  <span class="selectable-content" id="_s_137">management server</span>,  <span class="selectable-content" id="_s_138">[<b>assignment</b>: 
      <span class="assignable-content">other capabilities</span>]</span> ]
 		    that is logically distinct from other communication
 		    channels and provides assured identification of its end points and protection of the channel
@@ -3643,9 +3683,14 @@ If <a href="#s-ftp_ssh">SSH</a> is selected, the <abbr class="dyn-abbr"><a href=
 the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
         version 
         1.0</a> and the corresponding selection is expected to be made in <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a>.
+
+  
+  
+
+
 The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must include the security functional requirements for the trusted channel protocol selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> in the main body of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
 	      </p>
-      	    </span></div></div></div>
+      	    </span></div><div class="validationguidelines_label">Validation Guidelines:</div><p></p><b><a href="#r-sshclient">Rule #6</a></b></div></div>
       	<div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a></div>
 	      
 	    <div class="eacategory">Tests</div><div class="ea">
@@ -3681,7 +3726,7 @@ channel protocol selected in
 		</p>
 	      </span></div></div></div>
             <div class="element"><div class="reqid" id="FTP_TRP.1.2"><a href="#FTP_TRP.1.2" class="abbr">FTP_TRP.1.2</a></div><div class="reqdesc"> The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall permit
-                [<b>selection</b>: <span class="selectable-content" id="_s_135">the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></span>,  <span class="selectable-content" id="_s_136">local users</span>,  <span class="selectable-content" id="_s_137">remote users</span> ]
+                [<b>selection</b>: <span class="selectable-content" id="_s_141">the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></span>,  <span class="selectable-content" id="_s_142">local users</span>,  <span class="selectable-content" id="_s_143">remote users</span> ]
                 to initiate communication via the trusted path.
               </div></div>
             <div class="element"><div class="reqid" id="FTP_TRP.1.3"><a href="#FTP_TRP.1.3" class="abbr">FTP_TRP.1.3</a></div><div class="reqdesc"> The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall require use of the trusted path for
@@ -3713,27 +3758,27 @@ channel protocol selected in
 
 The evaluator will also perform the following
                 tests:
-                <ul>
-                  <li id="_t_83"><b><a href="#_t_83" class="definition">Test 1</a>: </b>
+                <span class="testlist-"><ul>
+                  <li id="_t_87"><b><a href="#_t_87" class="definition">Test 27.1</a>: </b>
                     The evaluator will ensure that communications using each remote administration method is
                     tested during the course of the evaluation, setting up the connections as described in the
                     operational guidance and ensuring that communication is successful.
                   </li>
-                  <li id="_t_84"><b><a href="#_t_84" class="definition">Test 2</a>: </b>
+                  <li id="_t_88"><b><a href="#_t_88" class="definition">Test 27.2</a>: </b>
                     For each method of remote administration supported, the evaluator will
                     follow the operational guidance to ensure that there is no available interface that can be
                     used by a remote user to establish a remote administrative sessions without invoking the
                     trusted path.
                   </li>
-                  <li id="_t_85"><b><a href="#_t_85" class="definition">Test 3</a>: </b>
+                  <li id="_t_89"><b><a href="#_t_89" class="definition">Test 27.3</a>: </b>
                     The evaluator will ensure, for each method of remote administration, the
                     channel data is not sent in plaintext.
                   </li>
-                  <li id="_t_86"><b><a href="#_t_86" class="definition">Test 4</a>: </b>
+                  <li id="_t_90"><b><a href="#_t_90" class="definition">Test 27.4</a>: </b>
                     The evaluator will ensure, for each method of remote administration,
                     modification of the channel data is detected by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>.
                   </li>
-                </ul>
+                </ul></span>
 		</div></div></div></div>
       
     <h3 id="obj-req-map" class="indexable" data-level="3">5.1.9 TOE Security Functional Requirements Rationale</h3><p>The following rationale provides justification for each security objective for the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, 
@@ -4523,7 +4568,10 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
       From <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>:</div><div class="uc_sel">* select <a href="#s-aes-gcmp">AES-GCMP-256</a></div></td></tr></table>
 		</td></tr></table><h2 id="r-need-client-tls">
          Rule #5</h2><div></div><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: </div><div class="uc_from_fel">
-      From FCS_TLS_EXT.1.1:</div><div class="uc_sel">* select <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as a client</div><h1 id="acronyms" class="indexable" data-level="A">Appendix F -  Acronyms</h1><table><tr class="header"><th>Acronym</th><th>Meaning</th></tr><tr><td><span class="term" id="abbr_AES"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr></span></td><td><span id="long_abbr_AES">Advanced Encryption Standard</span></td></tr>
+      From FCS_TLS_EXT.1.1:</div><div class="uc_sel">* select <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as a client</div><h2 id="r-sshclient">
+         Rule #6</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">IF</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
+      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#s-ftp_ssh">SSH</a></div><div class="uc_sel">* select <a href="#s-ssh-client">client</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH)</a>: </div><div class="uc_from_fel">
+      From FCS_SSH_EXT.1.1:</div><div class="uc_sel">* select client</div></td></tr></table><h1 id="acronyms" class="indexable" data-level="A">Appendix F -  Acronyms</h1><table><tr class="header"><th>Acronym</th><th>Meaning</th></tr><tr><td><span class="term" id="abbr_AES"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr></span></td><td><span id="long_abbr_AES">Advanced Encryption Standard</span></td></tr>
 <tr><td><span class="term" id="abbr_API"><abbr class="dyn-abbr"><a href="#abbr_API">API</a></abbr></span></td><td><span id="long_abbr_API">Application Programming Interface</span></td></tr>
 <tr><td><span class="term" id="abbr_app"><abbr class="dyn-abbr"><a href="#abbr_app">app</a></abbr></span></td><td><span id="long_abbr_app">Application</span></td></tr>
 <tr><td><span class="term" id="abbr_ASLR"><abbr class="dyn-abbr"><a href="#abbr_ASLR">ASLR</a></abbr></span></td><td><span id="long_abbr_ASLR">Address Space Layout Randomization</span></td></tr>
