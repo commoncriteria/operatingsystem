@@ -2003,7 +2003,7 @@ This result shall be compared to the result of running 1000 iterations with the 
 	      </div></div></div></div>
         <div class="comp" id="FCS_COP.1/SIGN"><h4>FCS_COP.1/SIGN Cryptographic Operation - Signing (Refined)</h4>
           <div class="element"><div class="reqid" id="FCS_COP.1.1/SIGN"><a href="#FCS_COP.1.1/SIGN" class="abbr">FCS_COP.1.1/SIGN</a></div><div class="reqdesc">The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall perform [<i>cryptographic signature services (generation and
-              verification)</i>] in accordance with a specified cryptographic algorithm <b>[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_48">RSA schemes using cryptographic key sizes of 2048-bit or greater
+              verification)</i>] in accordance with a specified cryptographic algorithm <b>[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-rsa-certs">RSA schemes using cryptographic key sizes of 2048-bit or greater
                   that meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)",  Section 4</span></li><li style=""><span class="selectable-content" id="s-ec-certs"><abbr class="dyn-abbr"><a href="#abbr_ECDSA">ECDSA</a></abbr> schemes using "<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> curves" P-384 and [<b>selection</b>: <span class="selectable-content" id="_s_50">P-521</span>,  <span class="selectable-content" id="_s_51">no other curves</span> ]
 		  that meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature   Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)", Section 5</span></li></ul>]</b>
               <strike>and cryptographic key sizes [assignment: cryptographic algorithm]
@@ -2020,14 +2020,15 @@ This result shall be compared to the result of running 1000 iterations with the 
 	      
             <div class="eacategory">Tests</div><div class="ea">
 	      <p>
-		The evaluator will perform the following activities based on the selections
-		in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
-	      </p>
-	      <p>
 		The following tests require the developer to
 		provide access to a test application that provides the evaluator with tools that are
 		typically not found in the production application.
 	      </p>
+
+	      <div class="dependent">The following content should be included if:<ul><li><a href="#s-ec-certs">ECDSA schemes</a>
+             is selected from 
+             <a href="#FCS_COP.1.1/SIGN">FCS_COP.1.1/SIGN</a></li></ul><div class="dependent-content"><div>
+		
 	      <p><b><abbr class="dyn-abbr"><a href="#abbr_ECDSA">ECDSA</a></abbr> Algorithm Tests</b></p>
 	      <p>
 	      <span class="testlist-"><ul>
@@ -2046,6 +2047,12 @@ This result shall be compared to the result of running 1000 iterations with the 
 		</li>
               </ul></span>
 	      </p>
+	      </div></div></div>
+	      <div class="dependent">The following content should be included if:<ul><li><a href="#s-rsa-certs">RSA schemes using cryptographic key sizes of 2048-bit or greater
+                  that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)",  Section 4</a>
+             is selected from 
+             <a href="#FCS_COP.1.1/SIGN">FCS_COP.1.1/SIGN</a></li></ul><div class="dependent-content"><div>
+		
 	      <p><b>RSA Signature Algorithm Tests </b></p>
 	      <p>
 	      <span class="testlist-"><ul>
@@ -2070,6 +2077,7 @@ This result shall be compared to the result of running 1000 iterations with the 
 		</li>
               </ul></span>
 	      </p>
+	      </div></div></div>
 	      </div></div></div></div>
         <div class="comp" id="FCS_COP.1/KEYHMAC"><h4>FCS_COP.1/KEYHMAC Cryptographic Operation - Keyed-Hash Message Authentication (Refined)</h4>
           <div class="element"><div class="reqid" id="FCS_COP.1.1/KEYHMAC"><a href="#FCS_COP.1.1/KEYHMAC" class="abbr">FCS_COP.1.1/KEYHMAC</a></div><div class="reqdesc">The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall perform [<i>keyed-hash message authentication services</i>]
@@ -3364,18 +3372,18 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall authent
 		  
 		  
 		  
-              <span class="testlist-"><ul>
-                <li id="_t_69"><b><a href="#_t_69" class="definition">Test 21.1</a>: </b>
-				  The evaluator will attempt to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using
-				  the known user name and password. The evaluator will ensure
-				  that the authentication attempt is successful.
-                </li>
-                <li id="_t_70"><b><a href="#_t_70" class="definition">Test 21.2</a>: </b>
-				  The evaluator will attempt to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using
-				  the known user name but an incorrect password. The evaluator
-				  will ensure that the authentication attempt is unsuccessful.
-                </li>
-              </ul></span>
+		  <span class="testlist-"><ul>
+                    <li id="_t_69"><b><a href="#_t_69" class="definition">Test 21.1</a>: </b>
+		      The evaluator will attempt to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using
+		      the known user name and password. The evaluator will ensure
+		      that the authentication attempt is successful.
+                    </li>
+                    <li id="_t_70"><b><a href="#_t_70" class="definition">Test 21.2</a>: </b>
+		      The evaluator will attempt to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using
+		      the known user name but an incorrect password. The evaluator
+		      will ensure that the authentication attempt is unsuccessful.
+                    </li>
+		  </ul></span>
 		</div></div></div>
 		<div class="dependent">The following content should be included if:<ul><li><a href="#s-pin">username and a PIN that releases an asymmetric key</a>
              is selected from 
@@ -3386,69 +3394,64 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall authent
 		  which enables release of the asymmetric key from the protected storage (such as a TPM, a hardware token, or
 		  isolated execution environment) with which the
 		  <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can interface.  The evaluator will then conduct the following tests:
-			  <span class="testlist-"><ul>
-			    <li id="_t_71"><b><a href="#_t_71" class="definition">Test 22.1</a>: </b>
-			      The evaluator will attempt to  authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the known user name and <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr>.
-			      The evaluator will ensure that the authentication attempt is successful.
-			    </li>
-			    <li id="_t_72"><b><a href="#_t_72" class="definition">Test 22.2</a>: </b>
-			      The evaluator will attempt to  authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the known user name but an incorrect
-			      <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr>. The evaluator will ensure that the authentication attempt is
-			      unsuccessful.
-			    </li>
-			  </ul></span>
+		  <span class="testlist-"><ul>
+		    <li id="_t_71"><b><a href="#_t_71" class="definition">Test 22.1</a>: </b>
+		      The evaluator will attempt to  authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the known user name and <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr>.
+		      The evaluator will ensure that the authentication attempt is successful.
+		    </li>
+		    <li id="_t_72"><b><a href="#_t_72" class="definition">Test 22.2</a>: </b>
+		      The evaluator will attempt to  authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the known user name but an incorrect
+		      <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr>. The evaluator will ensure that the authentication attempt is
+		      unsuccessful.
+		    </li>
+		  </ul></span>
 		</div></div></div>
 		<div class="dependent">The following content should be included if:<ul><li><a href="#s-otp">combination of authentication based on user name, password, and time-based one-time password</a>
              is selected from 
              <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a></li></ul><div class="dependent-content"><div>
-		The evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to authentication to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using
-		a username, password, and one-time password mechanism.
-		The evaluator will then perform the following tests.
-		<span class="testlist-"><ul>
-		  <li id="_t_73"><b><a href="#_t_73" class="definition">Test 23.1</a>: </b>
-	  	    The evaluator will attempt to authenticate using a valid username, valid password, and valid one-time password.
-		    The evaluator will ensure that the authentication attempt is successful.
-		  </li>
-		  <li id="_t_74"><b><a href="#_t_74" class="definition">Test 23.2</a>: </b>
-	  	    The evaluator will attempt to authenticate using a valid username, invalid password, and valid one-time password.
-		    The evaluator will ensure that the authentication attempt fails.
-		  </li>
-		  <li id="_t_75"><b><a href="#_t_75" class="definition">Test 23.3</a>: </b>
-	  	    The evaluator will attempt to authenticate using a valid username, valid password, and invalid one-time password.
-		    The evaluator will ensure that the authentication attempt fails.
-		  </li>
-		  <li id="_t_76"><b><a href="#_t_76" class="definition">Test 23.4</a>: </b>
-	  	    The evaluator will attempt to authenticate using a valid username, invalid password, and invalid one-time password.
-		    The evaluator will ensure that the authentication attempt fails.
-		  </li>
-		</ul></span>
+		  The evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to authentication to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using
+		  a username, password, and one-time password mechanism.
+		  The evaluator will then perform the following tests.
+		  <span class="testlist-"><ul>
+		    <li id="_t_73"><b><a href="#_t_73" class="definition">Test 23.1</a>: </b>
+	  	      The evaluator will attempt to authenticate using a valid username, valid password, and valid one-time password.
+		      The evaluator will ensure that the authentication attempt is successful.
+		    </li>
+		    <li id="_t_74"><b><a href="#_t_74" class="definition">Test 23.2</a>: </b>
+	  	      The evaluator will attempt to authenticate using a valid username, invalid password, and valid one-time password.
+		      The evaluator will ensure that the authentication attempt fails.
+		    </li>
+		    <li id="_t_75"><b><a href="#_t_75" class="definition">Test 23.3</a>: </b>
+	  	      The evaluator will attempt to authenticate using a valid username, valid password, and invalid one-time password.
+		      The evaluator will ensure that the authentication attempt fails.
+		    </li>
+		    <li id="_t_76"><b><a href="#_t_76" class="definition">Test 23.4</a>: </b>
+	  	      The evaluator will attempt to authenticate using a valid username, invalid password, and invalid one-time password.
+		      The evaluator will ensure that the authentication attempt fails.
+		    </li>
+		  </ul></span>
 		</div></div></div>
-		
 		<div class="dependent">The following content should be included if:<ul><li><a href="#s-x509-auth">authentication based on X.509 certificates</a>
              is selected from 
              <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a></li></ul><div class="dependent-content"><div>
 		  
-			  The evaluator
-			  will generate an X.509v3 certificate for a user with the Client
-			  Authentication Extended Key Usage field set. The evaluator will
-			  provision the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> for authentication with the X.509v3 certificate.
-			  The evaluator will ensure that the
-			  certificates are validated by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> as per
-                          <a href="#FIA_X509_EXT.1.1">FIA_X509_EXT.1.1</a> and then conduct the following tests:
-              <span class="testlist-"><ul>
-                 <li id="_t_77"><b><a href="#_t_77" class="definition">Test 24.1</a>: </b>
-					The evaluator will attempt to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using
-					the X.509v3 certificate. The evaluator
-					will ensure that the authentication attempt is successful.
-                  </li>
-                <li id="_t_78"><b><a href="#_t_78" class="definition">Test 24.2</a>: </b>
-				  The evaluator will generate a second certificate identical to
-				  the first except for the public key and any values derived
-				  from the public key. The evaluator will attempt to
-				  authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> with this certificate. The evaluator
-				  will ensure that the authentication attempt is unsuccessful.
-                </li>
-              </ul></span>
+		  The evaluator will generate an X.509v3 certificate for a user with the Client Authentication Extended Key Usage field set.
+		  The evaluator will  provision the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> for authentication with the X.509v3 certificate.
+		  The evaluator will ensure that the certificates are validated by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> as per
+                  <a href="#FIA_X509_EXT.1.1">FIA_X509_EXT.1.1</a> and then conduct the following tests:
+		  <span class="testlist-"><ul>
+                    <li id="_t_77"><b><a href="#_t_77" class="definition">Test 24.1</a>: </b>
+		      The evaluator will attempt to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the X.509v3 certificate.
+		      The evaluator  will ensure that the authentication attempt is successful.
+                    </li>
+                    <li id="_t_78"><b><a href="#_t_78" class="definition">Test 24.2</a>: </b>
+		      The evaluator will generate a second certificate identical to
+		      the first except for the public key and any values derived
+		      from the public key.
+		      The evaluator will attempt to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> with this certificate.
+		      The evaluator will ensure that the authentication attempt is unsuccessful.
+                    </li>
+		  </ul></span>
 		</div></div></div>
 		<p> Authentication mechanisms related to <a href="#s-uau-ssh">for use in SSH only, SSH public key-based authentication as specified by the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
         version 
@@ -3584,24 +3587,21 @@ If <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> is selected, the ev
 <li id="_t_85"><b><a href="#_t_85" class="definition">Test 25.7</a>: </b> The evaluator will modify any byte in the public key of the certificate and demonstrate that the certificate fails to validate.
 (The signature of the certificate will not validate.)</li>
 
-    <li id="_t_86"><b><a href="#_t_86" class="definition">Test 25.8</a>[conditional, to be performed if<ul><li><a href="#s-ec-certs">ECDSA schemes</a>
+    <li id="t-ecdsa-valid"><b><a href="#t-ecdsa-valid" class="definition">Test 25.8</a>[conditional, to be performed if<ul><li><a href="#s-ec-certs">ECDSA schemes</a>
              is selected from 
              <a href="#FCS_COP.1.1/SIGN">FCS_COP.1.1/SIGN</a></li></ul>]: </b>
       
-      <span class="testlist-"><ul>
-	<li id="t-ecdsa-valid"><b><a href="#t-ecdsa-valid" class="definition">Test 26.8.1</a>: </b>
       The evaluator will establish a valid, trusted certificate chain consisting of an EC leaf certificate, an EC Intermediate CA certificate not designated as a trust anchor, and an EC certificate designated as a trusted anchor, where the elliptic curve parameters are specified as a named curve.
     The evaluator will confirm that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> validates the certificate chain.
     </li>
-    <li id="_t_88"><b><a href="#_t_88" class="definition">Test 26.8.2</a>: </b>
+    <li id="_t_87"><b><a href="#_t_87" class="definition">Test 25.9</a>[conditional, to be performed if<ul><li><a href="#s-ec-certs">ECDSA schemes</a>
+             is selected from 
+             <a href="#FCS_COP.1.1/SIGN">FCS_COP.1.1/SIGN</a></li></ul>]: </b>
       
-      The evaluator will replace the intermediate certificate in the certificate chain for <a href="#t-ecdsa-valid" class="">Test 26.8.1</a> with a modified certificate, where the modified intermediate CA has a public key information field where the EC parameters uses an explicit format version of the Elliptic Curve parameters in the public key information field of the intermediate CA certificate from <a href="#t-ecdsa-valid" class="">Test 26.8.1</a>, and the modified Intermediate CA certificate is signed by the trusted EC root CA, but having no other changes.
+      The evaluator will replace the intermediate certificate in the certificate chain for <a href="#t-ecdsa-valid" class="">Test 25.8</a> with a modified certificate, where the modified intermediate CA has a public key information field where the EC parameters uses an explicit format version of the Elliptic Curve parameters in the public key information field of the intermediate CA certificate from <a href="#t-ecdsa-valid" class="">Test 25.8</a>, and the modified Intermediate CA certificate is signed by the trusted EC root CA, but having no other changes.
 The evaluator will confirm the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> treats the certificate as invalid.
     </li>
-      </ul></span>
-    </li>
-
-<li id="_t_89"><b><a href="#_t_89" class="definition">Test 26.9</a>[conditional, to be performed if<ul><li><a href="#s-revoc-exceptions">exceptional use cases</a>
+    <li id="_t_88"><b><a href="#_t_88" class="definition">Test 25.10</a>[conditional, to be performed if<ul><li><a href="#s-revoc-exceptions">exceptional use cases</a>
              is selected from 
              <a href="#FIA_X509_EXT.1.1">FIA_X509_EXT.1.1</a></li></ul>]: </b>
     
@@ -3616,13 +3616,13 @@ The evaluator will create a chain of at least four certificates:
 the node certificate to be tested, two Intermediate CAs, and the
               self-signed Root CA.
 <span class="testlist-"><ul>
-  <li id="_t_90"><b><a href="#_t_90" class="definition">Test 27.1</a>: </b> The evaluator will construct a certificate path, such that the certificate
+  <li id="_t_89"><b><a href="#_t_89" class="definition">Test 26.1</a>: </b> The evaluator will construct a certificate path, such that the certificate
   of the CA issuing the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s certificate does not contain the
   <i>basicConstraints</i> extension. The validation of the certificate path fails. </li>
-  <li id="_t_91"><b><a href="#_t_91" class="definition">Test 27.2</a>: </b> The evaluator will construct a certificate path, such that the certificate
+  <li id="_t_90"><b><a href="#_t_90" class="definition">Test 26.2</a>: </b> The evaluator will construct a certificate path, such that the certificate
   of the CA issuing the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s certificate has the CA flag in the
   <i>basicConstraints</i> extension not set. The validation of the certificate path fails. </li>
-  <li id="_t_92"><b><a href="#_t_92" class="definition">Test 27.3</a>: </b> The evaluator will construct a certificate path, such that the certificate
+  <li id="_t_91"><b><a href="#_t_91" class="definition">Test 26.3</a>: </b> The evaluator will construct a certificate path, such that the certificate
   of the CA issuing the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s certificate has the CA flag in the
   <i>basicConstraints</i> extension set to TRUE. The validation of the certificate path
   succeeds. </li>
@@ -3634,13 +3634,7 @@ the node certificate to be tested, two Intermediate CAs, and the
 			  [<b>selection</b>: <span class="selectable-content" id="_s_121"><abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr></span>,  <span class="selectable-content" id="_s_122"><abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr></span>,  <span class="selectable-content" id="_s_123">[<b>assignment</b>: 
      <span class="assignable-content">other protocols</span>]</span>,  <span class="selectable-content" id="_s_124">no other protocols</span> ]
 			  connections.
-	    
-	      
-	    
-
-
-			  
-			</div></div>
+	    </div></div>
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FIA_X509_EXT.2">FIA_X509_EXT.2</a></div>
 	      
 	    <div class="eacategory">Tests</div><div class="ea">
@@ -3685,7 +3679,7 @@ the node certificate to be tested, two Intermediate CAs, and the
 		</span></li><li style=""><span class="selectable-content" id="dtls"><abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS),
         version 
         2.0-draft</a> as a
-    	  	  [<b>selection</b>: <span class="selectable-content" id="_s_129">client</span>,  <span class="selectable-content" id="_s_130">server</span> ]
+    	  	  [<b>selection</b>: <span class="selectable-content" id="s-dtls-client">client</span>,  <span class="selectable-content" id="s-dtls-server">server</span> ]
 		</span></li><li style=""><span class="selectable-content" id="s-itc-ipsec">IPsec as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=467&amp;id=467">PP-Module for Virtual Private Network (VPN) Clients,
         version 
         2.4</a></span></li><li style=""><span class="selectable-content" id="s-ftp_ssh">SSH as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
@@ -3706,11 +3700,27 @@ the node certificate to be tested, two Intermediate CAs, and the
               The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must include the security functional requirements for the trusted
               channel protocol selected in <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a> in the main body of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
 	      <p>
-              If <a href="#tls">TLS</a> or <a href="#dtls">DTLS</a> is selected, 
-	      the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> must be validated against requirements from the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS),
+		Regardless of the selections made in this requirement, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> must be validated against the client <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> requiremements in the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS),
         version 
         2.0-draft</a>.
-              The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> can act as <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> client or server, or both.
+		
+		  
+		
+		It must also be validated against additional requirements in the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS),
+        version 
+        2.0-draft</a> if <a href="#dtls">DTLS</a> selections are made or <a href="#s-tls-server">server(TLS)</a>.
+		
+		  
+		  
+		
+		
+		  
+		  
+		
+		
+		  
+		  
+		
 	      </p>
 	      <p>
 If <a href="#s-itc-ipsec">IPsec as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=467&amp;id=467">PP-Module for Virtual Private Network (VPN) Clients,
@@ -3727,9 +3737,13 @@ the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Fu
   
 
 
+  
+  
+
+
 The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must include the security functional requirements for the trusted channel protocol selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> in the main body of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
 	      </p>
-      	    </span></div><div class="validationguidelines_label">Validation Guidelines:</div><p></p><b><a href="#r-sshclient">Rule #6</a></b></div></div>
+      	    </span></div><div class="validationguidelines_label">Validation Guidelines:</div><p></p><b><a href="#r-tlss">Rule #6</a></b><p></p><b><a href="#r-dtlsc">Rule #7</a></b><p></p><b><a href="#r-dtlss">Rule #8</a></b><p></p><b><a href="#r-sshclient">Rule #9</a></b><p></p><b><a href="#r-sshserver">Rule #10</a></b></div></div>
       	<div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a></div>
 	      
 	    <div class="eacategory">Tests</div><div class="ea">
@@ -3798,22 +3812,22 @@ channel protocol selected in
 The evaluator will also perform the following
                 tests:
                 <span class="testlist-"><ul>
-                  <li id="_t_93"><b><a href="#_t_93" class="definition">Test 28.1</a>: </b>
+                  <li id="_t_92"><b><a href="#_t_92" class="definition">Test 27.1</a>: </b>
                     The evaluator will ensure that communications using each remote administration method is
                     tested during the course of the evaluation, setting up the connections as described in the
                     operational guidance and ensuring that communication is successful.
                   </li>
-                  <li id="_t_94"><b><a href="#_t_94" class="definition">Test 28.2</a>: </b>
+                  <li id="_t_93"><b><a href="#_t_93" class="definition">Test 27.2</a>: </b>
                     For each method of remote administration supported, the evaluator will
                     follow the operational guidance to ensure that there is no available interface that can be
                     used by a remote user to establish a remote administrative sessions without invoking the
                     trusted path.
                   </li>
-                  <li id="_t_95"><b><a href="#_t_95" class="definition">Test 28.3</a>: </b>
+                  <li id="_t_94"><b><a href="#_t_94" class="definition">Test 27.3</a>: </b>
                     The evaluator will ensure, for each method of remote administration, the
                     channel data is not sent in plaintext.
                   </li>
-                  <li id="_t_96"><b><a href="#_t_96" class="definition">Test 28.4</a>: </b>
+                  <li id="_t_95"><b><a href="#_t_95" class="definition">Test 27.4</a>: </b>
                     The evaluator will ensure, for each method of remote administration,
                     modification of the channel data is detected by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>.
                   </li>
@@ -4607,10 +4621,22 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
       From <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>:</div><div class="uc_sel">* select <a href="#s-aes-gcmp">AES-GCMP-256</a></div></td></tr></table>
 		</td></tr></table><h2 id="r-need-client-tls">
          Rule #5</h2><div></div><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: </div><div class="uc_from_fel">
-      From FCS_TLS_EXT.1.1:</div><div class="uc_sel">* select <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as a client</div><h2 id="r-sshclient">
+      From FCS_TLS_EXT.1.1:</div><div class="uc_sel">* select <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as a client</div><h2 id="r-tlss">
          Rule #6</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">IF</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
-      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#s-ftp_ssh">SSH</a></div><div class="uc_sel">* select <a href="#s-ssh-client">client</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH)</a>: </div><div class="uc_from_fel">
-      From FCS_SSH_EXT.1.1:</div><div class="uc_sel">* select client</div></td></tr></table><h1 id="acronyms" class="indexable" data-level="A">Appendix F -  Acronyms</h1><table><tr class="header"><th>Acronym</th><th>Meaning</th></tr><tr><td><span class="term" id="abbr_AES"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr></span></td><td><span id="long_abbr_AES">Advanced Encryption Standard</span></td></tr>
+      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#tls">TLS</a></div><div class="uc_sel">* select <a href="#s-tls-server">server(TLS)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: </div><div class="uc_from_fel">
+      From FCS_TLS_EXT.1.1:</div><div class="uc_sel">* select <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as a server</div></td></tr></table><h2 id="r-dtlsc">
+         Rule #7</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">IF</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
+      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#dtls">DTLS</a></div><div class="uc_sel">* select <a href="#s-dtls-client">client(DTLS)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: </div><div class="uc_from_fel">
+      From FCS_TLS_EXT.1.1:</div><div class="uc_sel">* select <abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as a client</div></td></tr></table><h2 id="r-dtlss">
+         Rule #8</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">IF</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
+      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#dtls">DTLS</a></div><div class="uc_sel">* select <a href="#s-dtls-server">server(DTLS)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: </div><div class="uc_from_fel">
+      From FCS_TLS_EXT.1.1:</div><div class="uc_sel">* select <abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as a server</div></td></tr></table><h2 id="r-sshclient">
+         Rule #9</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">IF</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
+      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#s-ftp_ssh">SSH</a></div><div class="uc_sel">* select <a href="#s-ssh-client">client(SSH)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH)</a>: </div><div class="uc_from_fel">
+      From FCS_SSH_EXT.1.1:</div><div class="uc_sel">* select client</div></td></tr></table><h2 id="r-sshserver">
+         Rule #10</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">IF</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
+      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#s-ftp_ssh">SSH</a></div><div class="uc_sel">* select <a href="#s-ssh-server">server(SSH)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH)</a>: </div><div class="uc_from_fel">
+      From FCS_SSH_EXT.1.1:</div><div class="uc_sel">* select server</div></td></tr></table><h1 id="acronyms" class="indexable" data-level="A">Appendix F -  Acronyms</h1><table><tr class="header"><th>Acronym</th><th>Meaning</th></tr><tr><td><span class="term" id="abbr_AES"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr></span></td><td><span id="long_abbr_AES">Advanced Encryption Standard</span></td></tr>
 <tr><td><span class="term" id="abbr_API"><abbr class="dyn-abbr"><a href="#abbr_API">API</a></abbr></span></td><td><span id="long_abbr_API">Application Programming Interface</span></td></tr>
 <tr><td><span class="term" id="abbr_app"><abbr class="dyn-abbr"><a href="#abbr_app">app</a></abbr></span></td><td><span id="long_abbr_app">Application</span></td></tr>
 <tr><td><span class="term" id="abbr_ASLR"><abbr class="dyn-abbr"><a href="#abbr_ASLR">ASLR</a></abbr></span></td><td><span id="long_abbr_ASLR">Address Space Layout Randomization</span></td></tr>
