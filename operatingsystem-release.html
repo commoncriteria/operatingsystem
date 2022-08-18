@@ -3206,16 +3206,18 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall authent
 		</p>
               
 		
-              <span class="testlist-"><ul>
-                <li id="_t_79"><b><a href="#_t_79" class="definition">Test 25.1</a>: </b>For each
-		authentication mechanism selected, the evaluator will enable that
-		mechanism and verify that it can be used to authenticate the user at
-		the specified authentication factor interfaces. </li>
-		<li id="_t_80"><b><a href="#_t_80" class="definition">Test 25.2</a>: </b>
+              
+              
+	      
+	      
+	      
+	      
+	      <p>
 		  For each authentication mechanism rule, the evaluator will ensure that
 		  the authentication mechanism(s) behave as documented in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>.
-		</li>
-              </ul></span>
+	      </p>
+	      
+              
 	      </div></div></div></div>
 
 
@@ -3306,7 +3308,7 @@ The tests described must be performed in conjunction with the other certificate 
 The tests for the extendedKeyUsage rules are performed in conjunction with the uses that require those rules.
 The evaluator will create a chain of at least four certificates: the node certificate to be tested, two Intermediate CAs, and the self-signed Root CA.
 	<span class="testlist-"><ul>
-<li id="_t_81"><b><a href="#_t_81" class="definition">Test 26.1</a>: </b> The evaluator will demonstrate that validating a certificate without a valid certification path results in the function failing, for each of the following reasons, in turn:
+<li id="_t_79"><b><a href="#_t_79" class="definition">Test 25.1</a>: </b> The evaluator will demonstrate that validating a certificate without a valid certification path results in the function failing, for each of the following reasons, in turn:
 by establishing a certificate path in which one of the issuing certificates is not a CA certificate,
 by omitting the basicConstraints field in one of the issuing certificates,
 by setting the basicConstraints field in an issuing certificate to have CA=False,
@@ -3315,39 +3317,39 @@ by setting the path length field of a valid CA field to a value strictly less th
 The evaluator will then establish a valid certificate path consisting of valid CA certificates, and demonstrate that the function succeeds.
 The evaluator will then remove trust in one of the CA certificates, and show that the function fails.
 </li>
-<li id="_t_82"><b><a href="#_t_82" class="definition">Test 26.2</a>: </b> The evaluator will demonstrate that validating an expired certificate results in the function failing.</li>
-<li id="_t_83"><b><a href="#_t_83" class="definition">Test 26.3</a>: </b> The evaluator will test that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can properly handle revoked certificates - conditional on whether <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling, or <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> multi-stapling is selected; if multiple methods are selected, then a test will be performed for each method.
+<li id="_t_80"><b><a href="#_t_80" class="definition">Test 25.2</a>: </b> The evaluator will demonstrate that validating an expired certificate results in the function failing.</li>
+<li id="_t_81"><b><a href="#_t_81" class="definition">Test 25.3</a>: </b> The evaluator will test that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can properly handle revoked certificates - conditional on whether <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling, or <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> multi-stapling is selected; if multiple methods are selected, then a test will be performed for each method.
 The evaluator will test revocation of the node certificate and revocation of the intermediate CA certificate (i.e. the intermediate CA certificate should be revoked by the root CA).
 If <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling per <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6066 is the only supported revocation method, testing revocation of the intermediate CA certificate is omitted.
 The evaluator will ensure that a valid certificate is used, and that the validation function succeeds.
 The evaluator then attempts the test with a certificate that has been revoked (for each method chosen in the selection) to ensure when the certificate is no longer valid that the validation function fails.</li>
-<li id="_t_84"><b><a href="#_t_84" class="definition">Test 26.4</a>: </b> If any <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> option is selected, the evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> server or use a man-in-the-middle tool to present a certificate that does not have the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> signing purpose and verify that validation of the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> response fails.
+<li id="_t_82"><b><a href="#_t_82" class="definition">Test 25.4</a>: </b> If any <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> option is selected, the evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> server or use a man-in-the-middle tool to present a certificate that does not have the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> signing purpose and verify that validation of the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> response fails.
 If <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> is selected, the evaluator will configure the CA to sign a <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> with a certificate that does not have the cRLsign key usage bit set and verify that validation of the <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> fails.</li>
-<li id="_t_85"><b><a href="#_t_85" class="definition">Test 26.5</a>: </b> The evaluator will modify any byte in the first eight bytes of the certificate and demonstrate that the certificate fails to validate.
+<li id="_t_83"><b><a href="#_t_83" class="definition">Test 25.5</a>: </b> The evaluator will modify any byte in the first eight bytes of the certificate and demonstrate that the certificate fails to validate.
 (The certificate will fail to parse correctly.)</li>
-<li id="_t_86"><b><a href="#_t_86" class="definition">Test 26.6</a>: </b> The evaluator will modify any byte in the last byte of the certificate and demonstrate that the certificate fails to validate.
+<li id="_t_84"><b><a href="#_t_84" class="definition">Test 25.6</a>: </b> The evaluator will modify any byte in the last byte of the certificate and demonstrate that the certificate fails to validate.
 (The signature on the certificate will not validate.)</li>
-<li id="_t_87"><b><a href="#_t_87" class="definition">Test 26.7</a>: </b> The evaluator will modify any byte in the public key of the certificate and demonstrate that the certificate fails to validate.
+<li id="_t_85"><b><a href="#_t_85" class="definition">Test 25.7</a>: </b> The evaluator will modify any byte in the public key of the certificate and demonstrate that the certificate fails to validate.
 (The signature of the certificate will not validate.)</li>
 
-    <li id="_t_88"><b><a href="#_t_88" class="definition">Test 26.8</a>[conditional, to be performed if<ul><li><a href="#s-ec-certs">ECDSA schemes</a>
+    <li id="_t_86"><b><a href="#_t_86" class="definition">Test 25.8</a>[conditional, to be performed if<ul><li><a href="#s-ec-certs">ECDSA schemes</a>
              is selected from 
              <a href="#FCS_COP.1.1/SIGN">FCS_COP.1.1/SIGN</a></li></ul>]: </b>
       
       <span class="testlist-"><ul>
-	<li id="t-ecdsa-valid"><b><a href="#t-ecdsa-valid" class="definition">Test 27.8.1</a>: </b>
+	<li id="t-ecdsa-valid"><b><a href="#t-ecdsa-valid" class="definition">Test 26.8.1</a>: </b>
       The evaluator will establish a valid, trusted certificate chain consisting of an EC leaf certificate, an EC Intermediate CA certificate not designated as a trust anchor, and an EC certificate designated as a trusted anchor, where the elliptic curve parameters are specified as a named curve.
     The evaluator will confirm that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> validates the certificate chain.
     </li>
-    <li id="_t_90"><b><a href="#_t_90" class="definition">Test 27.8.2</a>: </b>
+    <li id="_t_88"><b><a href="#_t_88" class="definition">Test 26.8.2</a>: </b>
       
-      The evaluator will replace the intermediate certificate in the certificate chain for <a href="#t-ecdsa-valid" class="">Test 27.8.1</a> with a modified certificate, where the modified intermediate CA has a public key information field where the EC parameters uses an explicit format version of the Elliptic Curve parameters in the public key information field of the intermediate CA certificate from <a href="#t-ecdsa-valid" class="">Test 27.8.1</a>, and the modified Intermediate CA certificate is signed by the trusted EC root CA, but having no other changes.
+      The evaluator will replace the intermediate certificate in the certificate chain for <a href="#t-ecdsa-valid" class="">Test 26.8.1</a> with a modified certificate, where the modified intermediate CA has a public key information field where the EC parameters uses an explicit format version of the Elliptic Curve parameters in the public key information field of the intermediate CA certificate from <a href="#t-ecdsa-valid" class="">Test 26.8.1</a>, and the modified Intermediate CA certificate is signed by the trusted EC root CA, but having no other changes.
 The evaluator will confirm the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> treats the certificate as invalid.
     </li>
       </ul></span>
     </li>
 
-<li id="_t_91"><b><a href="#_t_91" class="definition">Test 27.9</a>[conditional, to be performed if<ul><li><a href="#s-revoc-exceptions">exceptional use cases</a>
+<li id="_t_89"><b><a href="#_t_89" class="definition">Test 26.9</a>[conditional, to be performed if<ul><li><a href="#s-revoc-exceptions">exceptional use cases</a>
              is selected from 
              <a href="#FIA_X509_EXT.1.1">FIA_X509_EXT.1.1</a></li></ul>]: </b>
     
@@ -3362,13 +3364,13 @@ The evaluator will create a chain of at least four certificates:
 the node certificate to be tested, two Intermediate CAs, and the
               self-signed Root CA.
 <span class="testlist-"><ul>
-  <li id="_t_92"><b><a href="#_t_92" class="definition">Test 28.1</a>: </b> The evaluator will construct a certificate path, such that the certificate
+  <li id="_t_90"><b><a href="#_t_90" class="definition">Test 27.1</a>: </b> The evaluator will construct a certificate path, such that the certificate
   of the CA issuing the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s certificate does not contain the
   <i>basicConstraints</i> extension. The validation of the certificate path fails. </li>
-  <li id="_t_93"><b><a href="#_t_93" class="definition">Test 28.2</a>: </b> The evaluator will construct a certificate path, such that the certificate
+  <li id="_t_91"><b><a href="#_t_91" class="definition">Test 27.2</a>: </b> The evaluator will construct a certificate path, such that the certificate
   of the CA issuing the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s certificate has the CA flag in the
   <i>basicConstraints</i> extension not set. The validation of the certificate path fails. </li>
-  <li id="_t_94"><b><a href="#_t_94" class="definition">Test 28.3</a>: </b> The evaluator will construct a certificate path, such that the certificate
+  <li id="_t_92"><b><a href="#_t_92" class="definition">Test 27.3</a>: </b> The evaluator will construct a certificate path, such that the certificate
   of the CA issuing the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s certificate has the CA flag in the
   <i>basicConstraints</i> extension set to TRUE. The validation of the certificate path
   succeeds. </li>
@@ -3530,22 +3532,22 @@ channel protocol selected in
 The evaluator will also perform the following
                 tests:
                 <span class="testlist-"><ul>
-                  <li id="_t_95"><b><a href="#_t_95" class="definition">Test 29.1</a>: </b>
+                  <li id="_t_93"><b><a href="#_t_93" class="definition">Test 28.1</a>: </b>
                     The evaluator will ensure that communications using each remote administration method is
                     tested during the course of the evaluation, setting up the connections as described in the
                     operational guidance and ensuring that communication is successful.
                   </li>
-                  <li id="_t_96"><b><a href="#_t_96" class="definition">Test 29.2</a>: </b>
+                  <li id="_t_94"><b><a href="#_t_94" class="definition">Test 28.2</a>: </b>
                     For each method of remote administration supported, the evaluator will
                     follow the operational guidance to ensure that there is no available interface that can be
                     used by a remote user to establish a remote administrative sessions without invoking the
                     trusted path.
                   </li>
-                  <li id="_t_97"><b><a href="#_t_97" class="definition">Test 29.3</a>: </b>
+                  <li id="_t_95"><b><a href="#_t_95" class="definition">Test 28.3</a>: </b>
                     The evaluator will ensure, for each method of remote administration, the
                     channel data is not sent in plaintext.
                   </li>
-                  <li id="_t_98"><b><a href="#_t_98" class="definition">Test 29.4</a>: </b>
+                  <li id="_t_96"><b><a href="#_t_96" class="definition">Test 28.4</a>: </b>
                     The evaluator will ensure, for each method of remote administration,
                     modification of the channel data is detected by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>.
                   </li>
