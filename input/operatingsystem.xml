@@ -1720,7 +1720,7 @@ This result shall be compared to the result of running 1000 iterations with the 
             <title>The <h:b>OS</h:b> shall perform [<h:i>cryptographic signature services (generation and
               verification)</h:i>] in accordance with a specified cryptographic algorithm <h:b><selectables
                 linebreak="yes">
-                <selectable>RSA schemes using cryptographic key sizes of 2048-bit or greater
+                <selectable id="s-rsa-certs">RSA schemes using cryptographic key sizes of 2048-bit or greater
                   that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)",  Section 4</selectable>
                 <selectable id="s-ec-certs"><snip>ECDSA schemes</snip> using "NIST curves" P-384 and <selectables>
                     <selectable>P-521</selectable>
@@ -1740,14 +1740,13 @@ This result shall be compared to the result of running 1000 iterations with the 
             <aactivity>
 	      <Tests>
 	      <h:p>
-		The evaluator will perform the following activities based on the selections
-		in the ST.
-	      </h:p>
-	      <h:p>
 		The following tests require the developer to
 		provide access to a test application that provides the evaluator with tools that are
 		typically not found in the production application.
 	      </h:p>
+
+	      <h:div>
+		<depends on="s-ec-certs"/>
 	      <h:p><h:b>ECDSA Algorithm Tests</h:b></h:p>
 	      <h:p>
 	      <testlist>
@@ -1766,6 +1765,9 @@ This result shall be compared to the result of running 1000 iterations with the 
 		</test>
               </testlist>
 	      </h:p>
+	      </h:div>
+	      <h:div>
+		<depends on="s-rsa-certs"/>
 	      <h:p><h:b>RSA Signature Algorithm Tests </h:b></h:p>
 	      <h:p>
 	      <testlist>
@@ -1790,6 +1792,7 @@ This result shall be compared to the result of running 1000 iterations with the 
 		</test>
               </testlist>
 	      </h:p>
+	      </h:div>
 	      </Tests>
             </aactivity>
           </f-element>
@@ -3179,18 +3182,18 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
 		  <depends on="s-pass"/>
 		  <!-- If <xref to="s-pass"/> is selected, the evaluator will configure the OS with a -->
 		  <!-- known user name and password and conduct the following tests: -->
-              <testlist>
-                <test>
-				  The evaluator will attempt to authenticate to the OS using
-				  the known user name and password. The evaluator will ensure
-				  that the authentication attempt is successful.
-                </test>
-                <test>
-				  The evaluator will attempt to authenticate to the OS using
-				  the known user name but an incorrect password. The evaluator
-				  will ensure that the authentication attempt is unsuccessful.
-                </test>
-              </testlist>
+		  <testlist>
+                    <test>
+		      The evaluator will attempt to authenticate to the OS using
+		      the known user name and password. The evaluator will ensure
+		      that the authentication attempt is successful.
+                    </test>
+                    <test>
+		      The evaluator will attempt to authenticate to the OS using
+		      the known user name but an incorrect password. The evaluator
+		      will ensure that the authentication attempt is unsuccessful.
+                    </test>
+		  </testlist>
 		</h:div>
 		<h:div>
 		  <depends on="s-pin"/>
@@ -3199,65 +3202,60 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
 		  which enables release of the asymmetric key from the protected storage (such as a TPM, a hardware token, or
 		  isolated execution environment) with which the
 		  OS can interface.  The evaluator will then conduct the following tests:
-			  <testlist>
-			    <test>
-			      The evaluator will attempt to  authenticate to the OS using the known user name and PIN.
-			      The evaluator will ensure that the authentication attempt is successful.
-			    </test>
-			    <test>
-			      The evaluator will attempt to  authenticate to the OS using the known user name but an incorrect
-			      PIN. The evaluator will ensure that the authentication attempt is
-			      unsuccessful.
-			    </test>
-			  </testlist>
+		  <testlist>
+		    <test>
+		      The evaluator will attempt to  authenticate to the OS using the known user name and PIN.
+		      The evaluator will ensure that the authentication attempt is successful.
+		    </test>
+		    <test>
+		      The evaluator will attempt to  authenticate to the OS using the known user name but an incorrect
+		      PIN. The evaluator will ensure that the authentication attempt is
+		      unsuccessful.
+		    </test>
+		  </testlist>
 		</h:div>
 		<h:div><depends on="s-otp"/>
-		The evaluator will configure the OS to authentication to authenticate to the OS using
-		a username, password, and one-time password mechanism.
-		The evaluator will then perform the following tests.
-		<testlist>
-		  <test>
-	  	    The evaluator will attempt to authenticate using a valid username, valid password, and valid one-time password.
-		    The evaluator will ensure that the authentication attempt is successful.
-		  </test>
-		  <test>
-	  	    The evaluator will attempt to authenticate using a valid username, invalid password, and valid one-time password.
-		    The evaluator will ensure that the authentication attempt fails.
-		  </test>
-		  <test>
-	  	    The evaluator will attempt to authenticate using a valid username, valid password, and invalid one-time password.
-		    The evaluator will ensure that the authentication attempt fails.
-		  </test>
-		  <test>
-	  	    The evaluator will attempt to authenticate using a valid username, invalid password, and invalid one-time password.
-		    The evaluator will ensure that the authentication attempt fails.
-		  </test>
-		</testlist>
+		  The evaluator will configure the OS to authentication to authenticate to the OS using
+		  a username, password, and one-time password mechanism.
+		  The evaluator will then perform the following tests.
+		  <testlist>
+		    <test>
+	  	      The evaluator will attempt to authenticate using a valid username, valid password, and valid one-time password.
+		      The evaluator will ensure that the authentication attempt is successful.
+		    </test>
+		    <test>
+	  	      The evaluator will attempt to authenticate using a valid username, invalid password, and valid one-time password.
+		      The evaluator will ensure that the authentication attempt fails.
+		    </test>
+		    <test>
+	  	      The evaluator will attempt to authenticate using a valid username, valid password, and invalid one-time password.
+		      The evaluator will ensure that the authentication attempt fails.
+		    </test>
+		    <test>
+	  	      The evaluator will attempt to authenticate using a valid username, invalid password, and invalid one-time password.
+		      The evaluator will ensure that the authentication attempt fails.
+		    </test>
+		  </testlist>
 		</h:div>
-		
 		<h:div>
 		  <depends on="s-x509-auth"/>
-			  The evaluator
-			  will generate an X.509v3 certificate for a user with the Client
-			  Authentication Extended Key Usage field set. The evaluator will
-			  provision the OS for authentication with the X.509v3 certificate.
-			  The evaluator will ensure that the
-			  certificates are validated by the OS as per
-                          <xref to="fel-cert-val"/> and then conduct the following tests:
-              <testlist>
-                 <test>
-					The evaluator will attempt to authenticate to the OS using
-					the X.509v3 certificate. The evaluator
-					will ensure that the authentication attempt is successful.
-                  </test>
-                <test>
-				  The evaluator will generate a second certificate identical to
-				  the first except for the public key and any values derived
-				  from the public key. The evaluator will attempt to
-				  authenticate to the OS with this certificate. The evaluator
-				  will ensure that the authentication attempt is unsuccessful.
-                </test>
-              </testlist>
+		  The evaluator will generate an X.509v3 certificate for a user with the Client Authentication Extended Key Usage field set.
+		  The evaluator will  provision the OS for authentication with the X.509v3 certificate.
+		  The evaluator will ensure that the certificates are validated by the OS as per
+                  <xref to="fel-cert-val"/> and then conduct the following tests:
+		  <testlist>
+                    <test>
+		      The evaluator will attempt to authenticate to the OS using the X.509v3 certificate.
+		      The evaluator  will ensure that the authentication attempt is successful.
+                    </test>
+                    <test>
+		      The evaluator will generate a second certificate identical to
+		      the first except for the public key and any values derived
+		      from the public key.
+		      The evaluator will attempt to authenticate to the OS with this certificate.
+		      The evaluator will ensure that the authentication attempt is unsuccessful.
+                    </test>
+		  </testlist>
 		</h:div>
 		<h:p> Authentication mechanisms related to <xref to="s-uau-ssh"/> are tested in the <xref to="pkg-ssh"/>.
 		</h:p>
@@ -3424,22 +3422,17 @@ If CRL is selected, the evaluator will configure the CA to sign a CRL with a cer
 <test> The evaluator will modify any byte in the public key of the certificate and demonstrate that the certificate fails to validate.
 (The signature of the certificate will not validate.)</test>
 
-    <test>
+    <test id="t-ecdsa-valid">
       <depends on="s-ec-certs"/>
-      <testlist>
-	<test id="t-ecdsa-valid">
       The evaluator will establish a valid, trusted certificate chain consisting of an EC leaf certificate, an EC Intermediate CA certificate not designated as a trust anchor, and an EC certificate designated as a trusted anchor, where the elliptic curve parameters are specified as a named curve.
     The evaluator will confirm that the TOE validates the certificate chain.
     </test>
     <test>
-      <!-- <depends on="s-ec-certs"/> -->
+      <depends on="s-ec-certs"/>
       The evaluator will replace the intermediate certificate in the certificate chain for <xref to="t-ecdsa-valid"/> with a modified certificate, where the modified intermediate CA has a public key information field where the EC parameters uses an explicit format version of the Elliptic Curve parameters in the public key information field of the intermediate CA certificate from <xref to="t-ecdsa-valid"/>, and the modified Intermediate CA certificate is signed by the trusted EC root CA, but having no other changes.
 The evaluator will confirm the TOE treats the certificate as invalid.
     </test>
-      </testlist>
-    </test>
-
-<test>
+    <test>
     <depends on="s-revoc-exceptions"/>
     For each exceptional use case for revocation checking described in the ST, the evaluator shall attempt to establish the conditions of the use case, designate the certificate as invalid and perform the function relying on the certificate. The evaluator shall observe that the alternate revocation checking mechanism successfully prevents performance of the function.
 </test>
@@ -3492,13 +3485,7 @@ the node certificate to be tested, two Intermediate CAs, and the
 			  <selectable exclusive="yes">no other protocols</selectable>
 			  </selectables>
 			  connections.
-	    <rule id="r-need-client-tls">
-	      <doc ref="pkg-tls"><ref-id>tlsc_impl</ref-id></doc>
-	    </rule>
-
-
-			  
-			</title>
+	    </title>
             <aactivity>
 	      <Tests>
 	      <h:p>
@@ -3546,14 +3533,14 @@ the node certificate to be tested, two Intermediate CAs, and the
       	      <selectables linebreak='yes'>
                 <selectable id="tls">
 		  <snip>TLS</snip> as conforming to the <xref to="pkg-tls"/> as a
-    	  	  <selectables><selectable id="s-tls-client">client</selectable><selectable id="s-tls-server">server</selectable></selectables>
+    	  	  <selectables><selectable id="s-tls-client"><readable>client(TLS)</readable>client</selectable><selectable id="s-tls-server"><readable>server(TLS)</readable>server</selectable></selectables>
 		</selectable>
                 <selectable id="dtls"><snip>DTLS</snip> as conforming to the <xref to="pkg-tls"/> as a
-    	  	  <selectables><selectable>client</selectable><selectable>server</selectable></selectables>
+    	  	  <selectables><selectable id="s-dtls-client"><readable>client(DTLS)</readable>client</selectable><selectable id="s-dtls-server"><readable>server(DTLS)</readable>server</selectable></selectables>
 		</selectable>
       	        <selectable id="s-itc-ipsec">IPsec as conforming to the <xref to="mod-vpnclient"/></selectable>
       	        <selectable id="s-ftp_ssh"><snip>SSH</snip> as conforming to the <xref to="pkg-ssh"/> as a
-    	  	  <selectables><selectable id="s-ssh-client">client</selectable><selectable id="s-ssh-server">server</selectable></selectables>
+    	  	  <selectables><selectable id="s-ssh-client"><readable>client(SSH)</readable>client</selectable><selectable id="s-ssh-server"><readable>server(SSH)</readable>server</selectable></selectables>
 		</selectable>
               </selectables>
 		    to provide a trusted communication channel between itself and
@@ -3572,9 +3559,23 @@ the node certificate to be tested, two Intermediate CAs, and the
               The ST author must include the security functional requirements for the trusted
               channel protocol selected in <xref to="fel-trust-comms"/> in the main body of the ST.
 	      <h:p>
-              If <xref to="tls"/> or <xref to="dtls"/> is selected, 
-	      the TSF must be validated against requirements from the <xref to="pkg-tls"/>.
-              The TSF can act as TLS client or server, or both.
+		Regardless of the selections made in this requirement, the TSF must be validated against the client TLS requiremements in the <xref to="pkg-tls"/>.
+		<rule id="r-need-client-tls">
+		  <doc ref="pkg-tls"><ref-id>tlsc_impl</ref-id></doc>
+		</rule>
+		It must also be validated against additional requirements in the <xref to="pkg-tls"/> if <xref to="dtls"/> selections are made or <xref to="s-tls-server"/>.
+		<rule id="r-tlss">
+		  <if><ref-id>s-tls-server</ref-id></if>
+		  <then><doc ref="pkg-tls"><ref-id>tlss_impl</ref-id></doc></then>
+		</rule>
+		<rule id="r-dtlsc">
+		  <if><ref-id>s-dtls-client</ref-id></if>
+		  <then><doc ref="pkg-tls"><ref-id>dtlsc_impl</ref-id></doc></then>
+		</rule>
+		<rule id="r-dtlss">
+		  <if><ref-id>s-dtls-server</ref-id></if>
+		  <then><doc ref="pkg-tls"><ref-id>dtlss_impl</ref-id></doc></then>
+		</rule>
 	      </h:p>
 	      <h:p>
 If <xref to="s-itc-ipsec"/> is selected, then FDP_IFC_EXT.1 must be included in the ST.
@@ -3585,6 +3586,10 @@ the <xref to="pkg-ssh"/> and the corresponding selection is expected to be made 
 <rule id="r-sshclient">
   <if><ref-id>s-ssh-client</ref-id></if>
   <then><doc ref="pkg-ssh"><ref-id>ssh-client</ref-id></doc></then>
+</rule>
+<rule id="r-sshserver">
+  <if><ref-id>s-ssh-server</ref-id></if>
+  <then><doc ref="pkg-ssh"><ref-id>ssh-server</ref-id></doc></then>
 </rule>
 
 The ST author must include the security functional requirements for the trusted channel protocol selected in FTP_ITC_EXT.1 in the main body of the ST.
