@@ -28,6 +28,7 @@
 
   <ns1:Introduction>
     <ns0:section title="Overview" id="ppoverview">
+      <html:p>
 	  Transport Layer Security (TLS) and the closely-related Datagram TLS (DTLS) are
     cryptographic protocols designed to provide communications security over IP networks.
     Several versions of the protocol are in widespread use in software that provides functionality
@@ -40,17 +41,18 @@
     provide confidentiality and integrity of data transmitted
     between two communicating endpoints, as well as authentication of at least
     the server endpoint.
-    <html:p />
+    </html:p><html:p>
 	  TLS supports many different methods for exchanging keys, encrypting data,
 	  and authenticating message integrity. These methods are dynamically negotiated
     between the client and server when the TLS connection is established.
     As a result, evaluating the implementation of both endpoints is typically
     necessary to provide assurance for the operating environment.
-    <html:p />
+    </html:p><html:p>
 	  This "Functional Package for Transport Layer Security" (short name "TLS-PKG")
     defines functional requirements for the implementation of the Transport Layer Security (TLS)
     and Datagram TLS (DTLS) protocols. The requirements are
     intended to improve the security of products by enabling their evaluation.
+    </html:p>
     </ns0:section>
     <ns0:tech-terms>
       <ns0:term abbr="AES" full="Advanced Encryption Standard" />
@@ -92,18 +94,20 @@
       <ns0:term abbr="URL" full="Uniform Resource Locator" />
     </ns0:tech-terms>
 
-    <ns0:section title="Compliant Targets of Evaluation" id="TOEdescription">The Target of Evaluation
+    <ns0:section title="Compliant Targets of Evaluation" id="TOEdescription">
+      <html:p>
+      The Target of Evaluation
       (TOE) in this Package is a product which acts as a TLS client or server, or both.
       This Package describes the security functionality of TLS in terms of
       <ns0:xref g="CC" />.
-      <html:p />
+      </html:p><html:p>
       The contents of this Package must be appropriately
       combined with a PP or PP-Module".
       When this Package is instantiated by a PP or PP-Module, the Package must
       include selection-based requirements in accordance with the
       selections or assignments indicated in the PP or PP-Module.  These may be expanded by the
       the ST author.
-      <html:p />
+      </html:p><html:p>
       The PP or PP-Module which instantiates this Package must typically include
       the following components in order to satisfy dependencies of this Package. It is the responsibility
       of the PP or PP-Module author who instantiates this Package to ensure that dependence
@@ -142,10 +146,11 @@
           </ns0:notes>
       </ns0:componentneeded>
     </ns0:componentsneeded>
-    <html:p />
+    </html:p><html:p>
       An ST must identify the applicable version of the PP or
       PP-Module and this
       Package in its conformance claims.
+      </html:p>
     </ns0:section>
   </ns1:Introduction>
   <ns1:Conformance_Claims />
@@ -215,7 +220,10 @@
               </ns0:selectables> as a client that supports the cipher suites
           <ns0:selectables linebreak="yes">
             <ns0:selectable>TLS_RSA_WITH_AES_128_CBC_SHA as defined in RFC 5246</ns0:selectable>
-            <ns0:selectable>TLS_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</ns0:selectable>
+	    <ns0:selectable>TLS_RSA_WITH_AES_256_CBC_SHA as defined in RFC 5246</ns0:selectable>
+	    <ns0:selectable>TLS_RSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5288</ns0:selectable>
+	    <ns0:selectable>TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5288</ns0:selectable>
+	  <ns0:selectable>TLS_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</ns0:selectable>
             <ns0:selectable>TLS_RSA_WITH_AES_256_CBC_SHA256 as defined in RFC 5246</ns0:selectable>
             <ns0:selectable>TLS_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5288</ns0:selectable>
             <ns0:selectable>TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</ns0:selectable>
@@ -415,20 +423,23 @@
               setting the reference identifier to be used for the purposes of certificate validation
               in TLS.</ns0:Guidance>
               <ns0:Tests>
-              The evaluator shall
-              configure the reference identifier according to the AGD guidance and perform the
-              following tests during a TLS connection:
-              <ns0:testlist>
+		<html:p>
+The evaluator shall configure the reference identifier according to the AGD guidance and perform the following tests during a TLS connection.
+If the TOE supports certificate pinning, all pinned certificates must be removed before performing Tests 1 through 6. A pinned certificate must be added prior to performing Test 7.
+	    </html:p>
+	  <ns0:testlist>
                 <ns0:test> 
+		  <html:p>
                   The evaluator shall present a server certificate that contains
                   a CN that does not match the reference identifier and does not
                   contain the SAN extension. The evaluator shall verify that the
                   connection fails. 
-                  <html:p />Note that some systems might require the presence of the SAN extension.
+                  </html:p><html:p>Note that some systems might require the presence of the SAN extension.
                   In this case the connection would still fail but for the
                   reason of the missing SAN extension instead of the mismatch of
                   CN and reference identifier. Both reasons are acceptable to
                   pass Test 1.
+		  </html:p>
                 </ns0:test>
                 <ns0:test>
                   The evaluator shall present a server certificate that contains a CN that
@@ -547,13 +558,13 @@
               The evaluator shall demonstrate that using an invalid certificate (unless excepted)
               results in the function failing as follows, unless excepted:
               <ns0:testlist>
-                <ns0:test>The evaluator shall demonstrate that a server using a certificate without a
-                  valid certification path results in an authentication failure. Using the
-                  administrative guidance, the evaluator shall then load the trusted CA
-                  certificate(s) needed to validate the server's certificate, and demonstrate that the
-                  connection succeeds. The evaluator then shall delete one of the CA certificates,
-                  and show that the connection fails. </ns0:test>
-                <ns0:test> The evaluator shall demonstrate that a server using a certificate which has
+                <ns0:test>
+	      The evaluator will perform the following subtests:
+	      <ns0:test id="t-client-valid">The evaluator will demonstrate that a server using a certificate with a valid certification path successfully connects.</ns0:test>
+	      <ns0:test id="t-client-invalid">The evaluator will modify the certificate chain used by the server in test <ns0:xref to="t-client-valid" /> to be invalid and demonstrate that a server using a certificate without a valid certification path to a trust store element of the TOE results in an authentication failure.</ns0:test>
+	      <ns0:test>[conditional]: If the TOE trust store can be managed, the evaluator will modify the trust store element used in <ns0:xref to="t-client-valid" /> to be untrusted and demonstrate that a connection attempt from the same server used in <ns0:xref to="t-client-valid" /> results in an authentication failure.</ns0:test>
+	    </ns0:test>
+	  <ns0:test> The evaluator shall demonstrate that a server using a certificate which has
                   been revoked results in an authentication failure. </ns0:test>
                 <ns0:test> The evaluator shall demonstrate that a server using a certificate which has
                   passed its expiration date results in an authentication failure. </ns0:test>
@@ -766,7 +777,10 @@ during handshake.
               as a server that supports the cipher suites
               <ns0:selectables linebreak="yes">
                 <ns0:selectable>TLS_RSA_WITH_AES_128_CBC_SHA as defined in RFC 5246</ns0:selectable>
-                <ns0:selectable>TLS_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</ns0:selectable>
+	    <ns0:selectable>TLS_RSA_WITH_AES_256_CBC_SHA as defined in RFC 5246</ns0:selectable>
+	    <ns0:selectable>TLS_RSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5288</ns0:selectable>
+	    <ns0:selectable>TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5288</ns0:selectable>
+	  <ns0:selectable>TLS_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</ns0:selectable>
                 <ns0:selectable>TLS_RSA_WITH_AES_256_CBC_SHA256 as defined in RFC 5246</ns0:selectable>
                 <ns0:selectable>TLS_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5288</ns0:selectable>
                 <ns0:selectable>TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</ns0:selectable>
@@ -841,17 +855,6 @@ during handshake.
               The evaluator shall
               also perform the following tests:
               <ns0:testlist>
-                <ns0:test>
-                  The evaluator shall establish a
-                  TLS connection using each of the
-                  cipher suites specified by the requirement. This connection may be established as
-                  part of the establishment of a higher-level protocol, e.g., as part of an EAP
-                  session. It is sufficient to observe the successful negotiation of a cipher suite
-                  to satisfy the intent of the test; it is not necessary to examine the
-                  characteristics of the encrypted traffic in an attempt to discern the cipher suite
-                  being used (for example, that the cryptographic algorithm is 128-bit AES and not
-                  256-bit AES).
-                </ns0:test>
                 <ns0:test>
                   The evaluator shall send a Client Hello to the server with a list of
                   cipher suites that does not contain any of the cipher suites in the server’s ST
@@ -1282,7 +1285,10 @@ during handshake.
       </ns0:selectables> as a client that supports the cipher suites
     <ns0:selectables linebreak="yes">
       <ns0:selectable>TLS_RSA_WITH_AES_128_CBC_SHA as defined in RFC 5246</ns0:selectable>
-      <ns0:selectable>TLS_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</ns0:selectable>
+	    <ns0:selectable>TLS_RSA_WITH_AES_256_CBC_SHA as defined in RFC 5246</ns0:selectable>
+	    <ns0:selectable>TLS_RSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5288</ns0:selectable>
+	    <ns0:selectable>TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5288</ns0:selectable>
+	  <ns0:selectable>TLS_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</ns0:selectable>
       <ns0:selectable>TLS_RSA_WITH_AES_256_CBC_SHA256 as defined in RFC 5246</ns0:selectable>
       <ns0:selectable>TLS_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5288</ns0:selectable>
       <ns0:selectable>TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</ns0:selectable>
@@ -1413,7 +1419,10 @@ during handshake.
         as a server that supports the ciphersuites
         <ns0:selectables linebreak="yes">
           <ns0:selectable>TLS_RSA_WITH_AES_128_CBC_SHA as defined in RFC 5246</ns0:selectable>
-          <ns0:selectable>TLS_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</ns0:selectable>
+	    <ns0:selectable>TLS_RSA_WITH_AES_256_CBC_SHA as defined in RFC 5246</ns0:selectable>
+	    <ns0:selectable>TLS_RSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5288</ns0:selectable>
+	    <ns0:selectable>TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5288</ns0:selectable>
+	  <ns0:selectable>TLS_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</ns0:selectable>
           <ns0:selectable>TLS_RSA_WITH_AES_256_CBC_SHA256 as defined in RFC 5246</ns0:selectable>
           <ns0:selectable>TLS_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5288</ns0:selectable>
           <ns0:selectable>TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</ns0:selectable>
