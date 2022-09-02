@@ -25,7 +25,7 @@
 	<h:ul>
 	  <h:li>Added compatibility with MDM Agent, Bluetooth, and TLS Modules.</h:li>
 	  <h:li>Two factor authentication.</h:li>
-	  <h:li>Aligned with CNSA</h:li>
+	  <h:li>Aligned with CNSA.</h:li>
 	</h:ul>
       </subject>
     </entry>
@@ -1638,7 +1638,6 @@ This result shall be compared to the result of running 1000 iterations with the 
             <title>The <h:b>OS</h:b> shall perform [<h:i>cryptographic hashing services</h:i>] in accordance with a
               specified cryptographic algorithm <h:b>
               <selectables linebreak="yes">
-                <selectable>SHA-1</selectable>
                 <selectable>SHA-256</selectable>
                 <selectable>SHA-384</selectable>
                 <selectable>SHA-512</selectable>
@@ -1651,16 +1650,6 @@ This result shall be compared to the result of running 1000 iterations with the 
                 <selectable>512 bits</selectable>
               </selectables></h:b> that meet the following: [<h:i>FIPS Pub 180-4</h:i>]. </title>
             <note role="application">
-	      <h:p>
-	      Per NIST SP 800-131A, SHA-1 for generating digital signatures
-        is no longer allowed, and SHA-1 for verification of digital signatures is strongly
-        discouraged as there is risk in accepting these signatures.
-	      </h:p>
-	      <h:p>
-	      Vendors are strongly encouraged to implement updated protocols that support the SHA-2
-	      family; until updated protocols are supported, this PP allows support for SHA-1
-	      implementations in compliance with SP 800-131A.
-	      </h:p>
 	      <h:p>
 	      The intent of this requirement is to specify the hashing function.
 	      The hash selection must support the message digest
@@ -1819,7 +1808,6 @@ This result shall be compared to the result of running 1000 iterations with the 
             <title>The <h:b>OS</h:b> shall perform [<h:i>keyed-hash message authentication services</h:i>]
             in accordance with a specified cryptographic algorithm<h:b>
               <selectables>
-                <selectable>SHA-1</selectable>
                 <selectable>SHA-256</selectable>
                 <selectable>SHA-384</selectable>
                 <selectable>SHA-512</selectable>
@@ -1841,10 +1829,6 @@ This result shall be compared to the result of running 1000 iterations with the 
 	      The hash selection must support the message digest size selection.
 	      The hash selection should be consistent with the overall strength of the
 	      algorithm used for FCS_COP.1/HASH.
-	      </h:p>
-	      <h:p>
-        Evaluation of SHA-1 is currently permitted in order to allow for evaluation
-        of TLS or DTLS ciphersuites that may be selected in the TLS Package.
 	      </h:p>
 	    </note>
             <aactivity>
@@ -1886,7 +1870,7 @@ This result shall be compared to the result of running 1000 iterations with the 
 NIST SP 800-90A contains three different methods of generating random numbers;
 each of these, in turn, depends on underlying cryptographic primitives (hash functions/ciphers).
 The ST author will select the function used and include the specific underlying cryptographic primitives used in the requirement or in the TSS.
-While any of the identified hash functions (SHA-1, SHA-224, SHA-256, SHA-384, SHA-512) are allowed for Hash_DRBG or HMAC_DRBG,
+While any of the identified hash functions (SHA-224, SHA-256, SHA-384, SHA-512) are allowed for Hash_DRBG or HMAC_DRBG,
 only AES-based implementations for CTR_DRBG are allowed.
             </note>
             <aactivity>
