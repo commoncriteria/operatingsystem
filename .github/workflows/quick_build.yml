@@ -39,6 +39,7 @@ jobs:
       run: |
         WARN_PATH="output/SanityChecksOutput.md" make release 
 
+
     - name: PDFify
       if: ${{ github.ref_name != 'master' }}
       run: |
@@ -106,6 +107,7 @@ jobs:
          echo ::set-output name=COLOR::$(if [ -s output/SanityChecksOutput.md ]; then echo red; else echo green; fi )
       id: status
       
+
     # # This checkouts gh-pages branch
     # - uses: actions/checkout@v1
     #   with:
@@ -132,6 +134,7 @@ jobs:
         label: 'Last Built'
         status: ${{ steps.extract_branch.outputs.branch }}
         color: black
+
         path:  "output/build-branch-badge.svg"
 
 
