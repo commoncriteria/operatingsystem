@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<technical-decisions
+    xmlns="https://niap-ccevs.org/cc/v1"
+    xmlns:cc="https://niap-ccevs.org/cc/v1"
+    xmlns:h="http://www.w3.org/1999/xhtml">
+  <decision
+      url="https://www.niap-ccevs.org/Documents_and_Guidance/view_td.cfm?TD=0386"
+      date="2019.02.07" 
+      id="578">
+    <Issue_Description>
+      The hash being mandatory appears to be in contradiction with the FCS_TLSC_EXT.1 selection. However, SHA-1 is not required for TLS.
+    </Issue_Description>
+    <Resolution>
+
+FCS_COP.1(2) is replaced as follows:
+
+FCS_COP.1(2) Cryptographic Operation - Hashing (Refined)
+
+FCS_COP.1.1(2)
+
+The OS shall perform [cryptographic hashing services] in accordance with a specified cryptographic algorithm [selection:
+
+·       SHA-1,
+
+·       SHA-256,
+
+·       SHA-384,
+
+·       SHA-512]
+
+ and message digest sizes [selection:
+
+·       160 bits,
+
+·       256 bits,
+
+·       384 bits,
+
+·       512 bits]
+
+ that meet the following: [FIPS Pub 180-4].
+
+Application Note: 
+
+Per NIST SP 800-131A, SHA-1 for generating digital signatures is no longer allowed, and SHA-1 for verification of digital signatures is strongly discouraged as there may be risk in accepting these signatures.
+
+Vendors are strongly encouraged to implement updated protocols that support the SHA-2 family; until updated protocols are supported, this PP allows support for SHA-1 implementations in compliance with SP 800-131A.
+
+ 
+
+The intent of this requirement is to specify the hashing function. The hash selection must support the message digest size selection. The hash selection should be consistent with the overall strength of the algorithm used.
+
+    </Resolution>
+    <Justification>
+      SHA-1 is no longer mandatory.
+    </Justification>
+    <Protection_Profiles>
+      <Protection_Profile max-inclusive="4.2.1" name="gpos">
+	<replace>
+	  <xpath-specified xpath="//*[@id='fel-hash-how']/cc:title">
+            <title>qqqThe <h:b>OS</h:b> shall perform [<h:i>cryptographic hashing services</h:i>] in accordance with a
+              specified cryptographic algorithm <h:b>
+              <selectables linebreak="yes">
+                <selectable>SHA-1</selectable>
+                <selectable>SHA-256</selectable>
+                <selectable>SHA-384</selectable>
+                <selectable>SHA-512</selectable>
+		</selectables> and message digest sizes <selectables linebreak="yes">
+		<selectable>160 bits</selectable>
+                <selectable>256 bits</selectable>
+                <selectable>384 bits</selectable>
+                <selectable>512 bits</selectable>
+              </selectables></h:b> that meet the following: [<h:i>FIPS Pub 180-4</h:i>]. </title>
+	  </xpath-specified>
+	</replace>
+      </Protection_Profile>
+    </Protection_Profiles>
+  </decision>
+</technical-decisions>

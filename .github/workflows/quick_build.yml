@@ -38,6 +38,15 @@ jobs:
     - name: Quick Build
       run: |
         WARN_PATH="output/SanityChecksOutput.md" make release 
+        
+        
+    - name: Outstanding TDs
+      if: ${{steps.extract_branch.outputs.branch}} != "master"
+      id: tds
+      run: |
+        make effective
+        PP_XML=output/effective.xml RNG_OUT=output/TDValidationReport.txt make validate || true
+
 
 
     - name: PDFify
@@ -108,6 +117,7 @@ jobs:
       id: status
       
 
+
     # # This checkouts gh-pages branch
     # - uses: actions/checkout@v1
     #   with:
@@ -171,6 +181,7 @@ jobs:
         status: ${{ steps.validate.outputs.VALERRORS }}
         color: ${{ steps.coverage.outputs.valcolor }}
         path: output/validation.svg
+
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@4.0.0
