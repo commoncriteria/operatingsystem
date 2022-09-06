@@ -31,11 +31,16 @@ jobs:
     - name: Quick Build
       run: |
         WARN_PATH="output/SanityChecksOutput.md" make release 
-
+        
+        
     - name: Outstanding TDs
+      if: ${{steps.extract_branch.outputs.branch}} != "master"
+      id: tds
       run: |
         make effective
         PP_XML=output/effective.xml RNG_OUT=output/TDValidationReport.txt make validate || true
+
+
         
     - id: validate
       run: |
@@ -92,6 +97,8 @@ jobs:
       id: status
       
 
+        
+      
     - uses: actions/checkout@v1
       with:
         ref: ${{ steps.coverage.outputs.branch }}
@@ -146,6 +153,17 @@ jobs:
         color: ${{ steps.coverage.outputs.valcolor }}
         path: validation.svg
 
+
+    # - name: Generate the TDS badge SVG image
+    #   uses: emibcn/badge-action@v1
+    #   with:
+    #     label: 'Warnings'
+    #     status: ${{ steps.ids.outputs.WORD }}
+    #     color: ${{ steps.ids.outputs.COLOR }}
+    #     path: tds.svg
+        
+
+        
     - name: Commit badges
       continue-on-error: true
       env:
