@@ -60,7 +60,12 @@ jobs:
       with:
         java-version: 1.8
     - name: Get DaisyDiff
-      run: wget -O- https://github.com/AndroidKitKat/ExecuteDaisy/archive/master.zip | jar -x
+      run: |
+        wget -O- https://github.com/AndroidKitKat/ExecuteDaisy/archive/master.zip | jar -x
+        [ -d "out/images" ] || mkdir "out/images";
+        cp -u -r ExecuteDaisy-master/js ExecuteDaisy-master/css out;
+        cp -u ExecuteDaisy-master/images/* out/images;
+        
       
     - name: Make tmp dir
       run: mkdir tmp
