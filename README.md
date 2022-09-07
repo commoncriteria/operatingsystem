@@ -12,7 +12,6 @@ Protection Profile for General Purpose Operating System
 ![Transforms Version](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/transforms.svg)
 
 
-
 [![GitHub issues Open](https://img.shields.io/github/issues/commoncriteria/operatingsystem.svg?maxAge=2592000)](https://github.com/commoncriteria/operatingsystem/issues) 
 
 This repository hosts the draft version of the Protection Profile for a General Purpose Operating System based on the 
