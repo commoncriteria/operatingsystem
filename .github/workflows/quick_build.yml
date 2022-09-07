@@ -30,20 +30,17 @@ jobs:
 
     - name: Quick Build
       run: |
-        WARN_PATH="output/SanityChecksOutput.md" make release 
-        
-        
-    - name: Outstanding TDs
-      id: tds
+        WARN_PATH="output/SanityChecksOutput.md" make
+
+    - name: PDFify
+      if: ${{ github.ref_name != 'master' }}
       run: |
-        make effective
-        PP_XML=output/effective.xml RNG_OUT=output/TDValidationReport.txt make validate || true
-        if [ "${{steps.extract_branch.outputs.branch}}" == "master" ] &&
-           ls input/tds/*.xml ; then
-          echo "Master branch should not have TDs" >> output/TDValidationReport.txt
-        fi
-        PP_XML=output/effective.xml PP_RELEASE_HTML=output/AppliedTDs.html make release
-        
+        sudo apt-get install -y wkhtmltopdf xvfb
+        xvfb-run --auto-servernum --server-args='-screen 0, 1024x768x16' /usr/bin/wkhtmltopdf \
+          --javascript-delay 15000 --footer-right '[page]' \
+          file://${PWD}/output/${PWD##*/}.html?expand=on \
+        output/${PWD##*/}-paged.pdf
+
     - id: validate
       run: |
         RNG_OUT="output/ValidationReport.txt" make validate || true
@@ -53,6 +50,24 @@ jobs:
       run: |
         SPELL_OUT="output/SpellCheckReport.txt" make spellcheck
         echo ::set-output name=LINES::$(wc -l output/SpellCheckReport.txt | { read first rest ; echo $first ; } )
+
+    - id: tdate
+      run: |
+        echo "##[set-output name=TDATE;]$(cd transforms && git log -1 --format=%cs; cd -)"
+
+    - name: Setup Java JDK
+      uses: actions/setup-java@v1.4.3
+      with:
+        java-version: 1.8
+    - name: Get DaisyDiff
+      run: wget -O- https://github.com/AndroidKitKat/ExecuteDaisy/archive/master.zip | jar -x
+      
+    - name: Make tmp dir
+      run: mkdir tmp
+      
+    - name: Diff against specified versions
+      run: DAISY_DIR=ExecuteDaisy-master make diff
+
 
     - name: diff
       run: make diff || true; 
@@ -98,6 +113,7 @@ jobs:
          echo ::set-output name=COLOR::$(if [ -s output/SanityChecksOutput.md ]; then echo red; else echo green; fi )
       id: status
       
+
     - uses: actions/checkout@v1
       with:
         ref: ${{ steps.coverage.outputs.branch }}
@@ -108,6 +124,11 @@ jobs:
         BADGE_PATH: ${{ steps.coverage.outputs.path }}
       run: mkdir -p "${BADGE_PATH%/*}"
 
+    - name: debug
+      run: |
+        pwd
+        ls
+      
      # Use the output from the `coverage` step
     - name: Generate the spelling badge SVG image
       uses: emibcn/badge-action@v1
@@ -141,6 +162,14 @@ jobs:
         status: ${{ steps.status.outputs.WORD }}
         color: ${{ steps.status.outputs.COLOR }}
         path: warnings.svg
+
+    - name: Generate the transforms badge
+      uses: emibcn/badge-action@v1
+      with:
+        label: 'Transforms'
+        status: ${{ steps.tdate.outputs.TDATE }}
+        color: gray
+        path: transforms.svg
         
         
      # Use the output from the `coverage` step
@@ -152,17 +181,6 @@ jobs:
         color: ${{ steps.coverage.outputs.valcolor }}
         path: validation.svg
 
-
-    # - name: Generate the TDS badge SVG image
-    #   uses: emibcn/badge-action@v1
-    #   with:
-    #     label: 'Warnings'
-    #     status: ${{ steps.ids.outputs.WORD }}
-    #     color: ${{ steps.ids.outputs.COLOR }}
-    #     path: tds.svg
-        
-
-        
     - name: Commit badges
       continue-on-error: true
       env:
@@ -170,7 +188,7 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add warnings.svg validation.svg build-branch-badge.svg spell-badge.svg
+        git add warnings.svg validation.svg build-branch-badge.svg spell-badge.svg transforms.svg
         git commit -m "Add/Update badges"
         
         # - name: Upload badge as artifact
