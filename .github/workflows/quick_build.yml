@@ -87,7 +87,7 @@ jobs:
           echo "Master branch should not have TDs" >> output/TDValidationReport.txt
         fi
         echo "##[set-output name=TDCOLOR;]$(if [ -s output/TDValidationReport.txt ]; then echo orange; else echo green; fi)"
-        echo "##[set-output name=TDWARNS;]$(wc -l output/TDValidationReport.txt)"
+        echo "##[set-output name=TDWARNS;]$( wc -l output/TDValidationReport.txt | { read first rest ; echo $first;} )"
         PP_XML=output/effective.xml PP_RELEASE_HTML=output/AppliedTDs.html make release
     
     - name: Make a directory listing
