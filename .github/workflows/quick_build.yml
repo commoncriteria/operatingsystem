@@ -24,12 +24,13 @@ jobs:
 
     # Get current banch name to use it as dest directory
     - name: Extract branch name
+      id: extract_branch
       shell: bash
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-      id: extract_branch
 
     - name: Quick Build
       run: |
+        pwd
         WARN_PATH="output/SanityChecksOutput.md" make
 
     - name: PDFify
@@ -147,7 +148,11 @@ jobs:
     #     BADGE_PATH: ${{ steps.coverage.outputs.path }}
     #   run: mkdir -p "${BADGE_PATH%/*}"
 
-     
+    - id: debug
+      run: |
+        ls
+        pwd
+        
      # Use the output from the `coverage` step
     - name: Generate the spelling badge SVG image
       uses: emibcn/badge-action@v1
