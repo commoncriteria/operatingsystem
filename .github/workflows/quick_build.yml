@@ -34,12 +34,16 @@ jobs:
         
         
     - name: Outstanding TDs
-      if: ${{steps.extract_branch.outputs.branch}} != "master"
       id: tds
       run: |
         make effective
         PP_XML=output/effective.xml RNG_OUT=output/TDValidationReport.txt make validate || true
-
+        if [ "${{steps.extract_branch.outputs.branch}}" != "master" ] &&
+           ls input/tds/*.xml ; then
+          echo "Master branch should not have TDs" >> output/TDValidationReport.txt
+        fi
+        PP_XML=output/effective.xml PP_HTML=output/AppliedTDs.html make release
+        
 
         
     - id: validate
