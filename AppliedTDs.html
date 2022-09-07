@@ -613,7 +613,11 @@ function showTarget(id){
 <tr><td>4.2</td><td>2018-05-22</td><td>Multiple Technical Decisions applied</td></tr>
 <tr><td>4.1</td><td>2016-03-09</td><td>Minor updates - cryptographic modes</td></tr>
 <tr><td>4.0</td><td>2015-08-14</td><td>Release - significant revision</td></tr>
-</table><h2>Contents</h2><div class="toc" id="toc"><a href="#Introduction" style="text-indent:0px">1<span>Introduction</span></a><a href="#Overview" style="text-indent:10px">1.1<span>Overview</span></a><a href="#glossary" style="text-indent:10px">1.2<span>Terms</span></a><a href="#cc-terms" style="text-indent:20px">1.2.1<span>Common Criteria Terms</span></a><a href="#tech-terms" style="text-indent:20px">1.2.2<span>Technical Terms</span></a><a href="#TOEdescription" style="text-indent:10px">1.3<span>Compliant Targets of Evaluation</span></a><a href="#toeboundary" style="text-indent:20px">1.3.1<span>TOE Boundary</span></a><a href="#TOE_Platform" style="text-indent:20px">1.3.2<span>TOE Platform</span></a><a href="#Use_Cases" style="text-indent:10px">1.4<span>Use Cases</span></a><a href="#Conformance_Claims" style="text-indent:0px">2<span>Conformance Claims</span></a><a href="#Security_Problem_Description" style="text-indent:0px">3<span>Security Problem Description</span></a><a href="#Threats" style="text-indent:10px">3.1<span>Threats</span></a><a href="#Assumptions" style="text-indent:10px">3.2<span>Assumptions</span></a><a href="#Security_Objectives" style="text-indent:0px">4<span>Security Objectives</span></a><a href="#Security_Objectives_for_the_TOE" style="text-indent:10px">4.1<span>Security Objectives for the TOE</span></a><a href="#Security_Objectives_for_the_Operational_Environment" style="text-indent:10px">4.2<span>Security Objectives for the Operational Environment</span></a><a href="#" style="text-indent:10px">4.3<span>Security Objectives Rationale</span></a><a href="#Security_Requirements" style="text-indent:0px">5<span>Security Requirements</span></a><a href="#SFRs" style="text-indent:10px">5.1<span>Security Functional Requirements</span></a><a href="#fcs" style="text-indent:20px">5.1.1<span>Cryptographic Support (FCS)</span></a><a href="#fdp" style="text-indent:20px">5.1.2<span>User Data Protection (FDP)</span></a><a href="#fmt" style="text-indent:20px">5.1.3<span>Security Management (FMT)</span></a><a href="#fpt" style="text-indent:20px">5.1.4<span>Protection of the TSF (FPT)</span></a><a href="#fau" style="text-indent:20px">5.1.5<span>Audit Data Generation (FAU)</span></a><a href="#fia" style="text-indent:20px">5.1.6<span>Identification and Authentication (FIA)</span></a><a href="#fta" style="text-indent:20px">5.1.7<span>TOE Access (FTA)</span></a><a href="#ftp" style="text-indent:20px">5.1.8<span>Trusted Path/Channels (FTP)</span></a><a href="#obj-req-map" style="text-indent:20px">5.1.9<span>TOE Security Functional Requirements Rationale</span></a><a href="#Security_Assurance_Requirements" style="text-indent:10px">5.2<span>Security Assurance Requirements</span></a><a href="#ase" style="text-indent:20px">5.2.1<span>Class ASE: Security Target</span></a><a href="#adv" style="text-indent:20px">5.2.2<span>Class ADV: Development</span></a><a href="#agd" style="text-indent:20px">5.2.3<span>Class AGD: Guidance Documentation</span></a><a href="#alc" style="text-indent:20px">5.2.4<span>Class ALC: Life-cycle Support</span></a><a href="#ate" style="text-indent:20px">5.2.5<span>Class ATE: Tests</span></a><a href="#ava" style="text-indent:20px">5.2.6<span>Class AVA: Vulnerability Assessment</span></a><a href="#impl-reqs" style="text-indent:0px">Appendix A - <span>Implementation-based Requirements</span></a><a href="#satisfiedreqs" style="text-indent:0px">Appendix B - <span>Implicitly Satisfied Requirements</span></a><a href="#entropyappendix" style="text-indent:0px">Appendix C - <span>Entropy Documentation and Assessment</span></a><a href="#entropydesign" style="text-indent:10px">C.1<span>Design Description</span></a><a href="#entropyjustification" style="text-indent:10px">C.2<span>Entropy Justification</span></a><a href="#entropyoperatingconditions" style="text-indent:10px">C.3<span>Operating Conditions</span></a><a href="#entropyhealthtesting" style="text-indent:10px">C.4<span>Health Testing</span></a><a href="#acronyms" style="text-indent:0px">Appendix D - <span>Acronyms</span></a><a href="#appendix-bibliography" style="text-indent:0px">Appendix E - <span>Bibliography</span></a></div><h1 class="indexable" data-level="1" id="Introduction">1 Introduction</h1>
+</table><h2>Contents</h2><div class="toc" id="toc"><a href="#Introduction" style="text-indent:0px">1<span>Introduction</span></a><a href="#Overview" style="text-indent:10px">1.1<span>Overview</span></a><a href="#glossary" style="text-indent:10px">1.2<span>Terms</span></a><a href="#cc-terms" style="text-indent:20px">1.2.1<span>Common Criteria Terms</span></a><a href="#tech-terms" style="text-indent:20px">1.2.2<span>Technical Terms</span></a><a href="#TOEdescription" style="text-indent:10px">1.3<span>Compliant Targets of Evaluation</span></a><a href="#toeboundary" style="text-indent:20px">1.3.1<span>TOE Boundary</span></a><a href="#TOE_Platform" style="text-indent:20px">1.3.2<span>TOE Platform</span></a><a href="#Use_Cases" style="text-indent:10px">1.4<span>Use Cases</span></a><a href="#Conformance_Claims" style="text-indent:0px">2<span>Conformance Claims</span></a><a href="#Security_Problem_Description" style="text-indent:0px">3<span>Security Problem Description</span></a><a href="#Threats" style="text-indent:10px">3.1<span>Threats</span></a><a href="#Assumptions" style="text-indent:10px">3.2<span>Assumptions</span></a><a href="#Security_Objectives" style="text-indent:0px">4<span>Security Objectives</span></a><a href="#Security_Objectives_for_the_TOE" style="text-indent:10px">4.1<span>Security Objectives for the TOE</span></a><a href="#Security_Objectives_for_the_Operational_Environment" style="text-indent:10px">4.2<span>Security Objectives for the Operational Environment</span></a><a href="#" style="text-indent:10px">4.3<span>Security Objectives Rationale</span></a><a href="#Security_Requirements" style="text-indent:0px">5<span>Security Requirements</span></a><a href="#SFRs" style="text-indent:10px">5.1<span>Security Functional Requirements</span></a><a href="#fcs" style="text-indent:20px">5.1.1<span>Cryptographic Support (FCS)</span></a><a href="#fdp" style="text-indent:20px">5.1.2<span>User Data Protection (FDP)</span></a><a href="#fmt" style="text-indent:20px">5.1.3<span>Security Management (FMT)</span></a><a href="#fpt" style="text-indent:20px">5.1.4<span>Protection of the TSF (FPT)</span></a><a href="#fau" style="text-indent:20px">5.1.5<span>Audit Data Generation (FAU)</span></a><a href="#fia" style="text-indent:20px">5.1.6<span>Identification and Authentication (FIA)</span></a><a href="#ftp" style="text-indent:20px">5.1.7<span>Trusted Path/Channels (FTP)</span></a><a href="#obj-req-map" style="text-indent:20px">5.1.8<span>TOE Security Functional Requirements Rationale</span></a><a href="#Security_Assurance_Requirements" style="text-indent:10px">5.2<span>Security Assurance Requirements</span></a><a href="#ase" style="text-indent:20px">5.2.1<span>Class ASE: Security Target</span></a><a href="#adv" style="text-indent:20px">5.2.2<span>Class ADV: Development</span></a><a href="#agd" style="text-indent:20px">5.2.3<span>Class AGD: Guidance Documentation</span></a><a href="#alc" style="text-indent:20px">5.2.4<span>Class ALC: Life-cycle Support</span></a><a href="#ate" style="text-indent:20px">5.2.5<span>Class ATE: Tests</span></a><a href="#ava" style="text-indent:20px">5.2.6<span>Class AVA: Vulnerability Assessment</span></a><a href="#opt-app" style="text-indent:0px">Appendix A - <span>Optional Requirements</span></a><a href="#optional-reqs" style="text-indent:10px">A.1<span>Strictly Optional  Requirements
+    </span></a><a href="#fdp-optional" style="text-indent:20px">A.1.1<span>User Data Protection (FDP)</span></a><a href="#fta-optional" style="text-indent:20px">A.1.2<span>TOE Access (FTA)</span></a><a href="#objective-reqs" style="text-indent:10px">A.2<span>Objective  Requirements
+    </span></a><a href="#fpt-objective" style="text-indent:20px">A.2.1<span>Protection of the TSF (FPT)</span></a><a href="#feat-based-reqs" style="text-indent:10px">A.3<span>Implementation-dependent  Requirements
+    </span></a><a href="#sel-based-reqs" style="text-indent:0px">Appendix B - <span>Selection-based  Requirements
+    </span></a><a href="#satisfiedreqs" style="text-indent:0px">Appendix C - <span>Implicitly Satisfied Requirements</span></a><a href="#entropyappendix" style="text-indent:0px">Appendix D - <span>Entropy Documentation and Assessment</span></a><a href="#entropydesign" style="text-indent:10px">D.1<span>Design Description</span></a><a href="#entropyjustification" style="text-indent:10px">D.2<span>Entropy Justification</span></a><a href="#entropyoperatingconditions" style="text-indent:10px">D.3<span>Operating Conditions</span></a><a href="#entropyhealthtesting" style="text-indent:10px">D.4<span>Health Testing</span></a><a href="#acronyms" style="text-indent:0px">Appendix E - <span>Acronyms</span></a><a href="#appendix-bibliography" style="text-indent:0px">Appendix F - <span>Bibliography</span></a></div><h1 class="indexable" data-level="1" id="Introduction">1 Introduction</h1>
     <h2 class="indexable" data-level="2" id="Overview">1.1 Overview</h2>
 The scope of this Protection Profile (<abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>) is to
 describe the security functionality of operating systems in terms of <a href="#bibCC">[CC]</a>
@@ -1796,9 +1800,9 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               </p>
 	      </div></div></div></div>
         <div class="comp" id="FCS_COP.1/HASH"><h4>FCS_COP.1/HASH Cryptographic Operation - Hashing (Refined)</h4>
-          <div class="element"><div class="reqid" id="FCS_COP.1.1/HASH"><a href="#FCS_COP.1.1/HASH" class="abbr">FCS_COP.1.1/HASH</a></div><div class="reqdesc">The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall perform [<i>cryptographic hashing services</i>] in accordance with a
+          <div class="element"><div class="reqid" id="FCS_COP.1.1/HASH"><a href="#FCS_COP.1.1/HASH" class="abbr">FCS_COP.1.1/HASH</a></div><div class="reqdesc">qqqThe <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall perform [<i>cryptographic hashing services</i>] in accordance with a
               specified cryptographic algorithm <b>
-              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_42"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-1</span></li><li style=""><span class="selectable-content" id="_s_43"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-256</span></li><li style=""><span class="selectable-content" id="_s_44"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384</span></li><li style=""><span class="selectable-content" id="_s_45"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512</span></li><li style=""><span class="selectable-content" id="_s_46">no other algorithms</span></li></ul>] and message digest sizes 160 bits and [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_47">256 bits</span></li><li style=""><span class="selectable-content" id="_s_48">384 bits</span></li><li style=""><span class="selectable-content" id="_s_49">512 bits</span></li><li style=""><span class="selectable-content" id="_s_50">no other sizes</span></li></ul>]</b> that meet the following: [<i><abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> Pub 180-4</i>]. <div class="appnote"><span class="note-header">Application
+              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_42"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-1</span></li><li style=""><span class="selectable-content" id="_s_43"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-256</span></li><li style=""><span class="selectable-content" id="_s_44"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384</span></li><li style=""><span class="selectable-content" id="_s_45"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512</span></li></ul>] and message digest sizes [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_46">160 bits</span></li><li style=""><span class="selectable-content" id="_s_47">256 bits</span></li><li style=""><span class="selectable-content" id="_s_48">384 bits</span></li><li style=""><span class="selectable-content" id="_s_49">512 bits</span></li></ul>]</b> that meet the following: [<i><abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> Pub 180-4</i>]. <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
 	      <p>
@@ -1888,8 +1892,8 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      </div></div></div></div>
         <div class="comp" id="FCS_COP.1/SIGN"><h4>FCS_COP.1/SIGN Cryptographic Operation - Signing (Refined)</h4>
           <div class="element"><div class="reqid" id="FCS_COP.1.1/SIGN"><a href="#FCS_COP.1.1/SIGN" class="abbr">FCS_COP.1.1/SIGN</a></div><div class="reqdesc">The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall perform [<i>cryptographic signature services (generation and
-              verification)</i>] in accordance with a specified cryptographic algorithm <b>[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_51">RSA schemes using cryptographic key sizes of 2048-bit or greater
-                  that meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)",  Section 4</span></li><li style=""><span class="selectable-content" id="_s_52"><abbr class="dyn-abbr"><a href="#abbr_ECDSA">ECDSA</a></abbr> schemes using "<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> curves" P-256, P-384 and [<b>selection</b>: <span class="selectable-content" id="_s_53">P-521</span>,  <span class="selectable-content" id="_s_54">no other curves</span> ]
+              verification)</i>] in accordance with a specified cryptographic algorithm <b>[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_50">RSA schemes using cryptographic key sizes of 2048-bit or greater
+                  that meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)",  Section 4</span></li><li style=""><span class="selectable-content" id="_s_51"><abbr class="dyn-abbr"><a href="#abbr_ECDSA">ECDSA</a></abbr> schemes using "<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> curves" P-256, P-384 and [<b>selection</b>: <span class="selectable-content" id="_s_52">P-521</span>,  <span class="selectable-content" id="_s_53">no other curves</span> ]
 		  that meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature   Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)", Section 5</span></li></ul>]</b>
               <strike>and cryptographic key sizes [assignment: cryptographic algorithm]
                 that meet the following: [assignment: list of standards]</strike>.
@@ -1963,11 +1967,11 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
         <div class="comp" id="FCS_COP.1/KEYHMAC"><h4>FCS_COP.1/KEYHMAC Cryptographic Operation - Keyed-Hash Message Authentication (Refined)</h4>
           <div class="element"><div class="reqid" id="FCS_COP.1.1/KEYHMAC"><a href="#FCS_COP.1.1/KEYHMAC" class="abbr">FCS_COP.1.1/KEYHMAC</a></div><div class="reqdesc">The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall perform [<i>keyed-hash message authentication services</i>]
             in accordance with a specified cryptographic algorithm<b>
-              [<b>selection</b>: <span class="selectable-content" id="_s_55"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-1</span>,  <span class="selectable-content" id="_s_56"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-256</span>,  <span class="selectable-content" id="_s_57"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384</span>,  <span class="selectable-content" id="_s_58"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512</span> ]
+              [<b>selection</b>: <span class="selectable-content" id="_s_54"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-1</span>,  <span class="selectable-content" id="_s_55"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-256</span>,  <span class="selectable-content" id="_s_56"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384</span>,  <span class="selectable-content" id="_s_57"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512</span> ]
               with key sizes [<b>assignment</b>: 
      <span class="assignable-content">key size (in bits) used in <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr></span>]
               and message digest</b> sizes
-	      [<b>selection</b>: <span class="selectable-content" id="_s_59">160 bits</span>,  <span class="selectable-content" id="_s_60">256 bits</span>,  <span class="selectable-content" id="_s_61">384 bits</span>,  <span class="selectable-content" id="_s_62">512 bits</span> ] that meet the following: [<i><abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> Pub 198-1 The Keyed-Hash Message
+	      [<b>selection</b>: <span class="selectable-content" id="_s_58">160 bits</span>,  <span class="selectable-content" id="_s_59">256 bits</span>,  <span class="selectable-content" id="_s_60">384 bits</span>,  <span class="selectable-content" id="_s_61">512 bits</span> ] that meet the following: [<i><abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> Pub 198-1 The Keyed-Hash Message
                 Authentication Code and <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> Pub 180-4 Secure Hash Standard</i>]. <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -2004,7 +2008,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
           <div class="element"><div class="reqid" id="FCS_RBG_EXT.1.1"><a href="#FCS_RBG_EXT.1.1" class="abbr">FCS_RBG_EXT.1.1</a></div><div class="reqdesc">
               The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall perform all deterministic random bit generation (<abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr>) services in
               accordance with <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> Special Publication 800-90A using
-              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_63">Hash_DRBG (any)</span></li><li style=""><span class="selectable-content" id="_s_64">HMAC_DRBG (any)</span></li><li style=""><span class="selectable-content" id="_s_65">CTR_DRBG (<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>)</span></li></ul>]
+              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_62">Hash_DRBG (any)</span></li><li style=""><span class="selectable-content" id="_s_63">HMAC_DRBG (any)</span></li><li style=""><span class="selectable-content" id="_s_64">CTR_DRBG (<abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>)</span></li></ul>]
 	      .
             <div class="appnote"><span class="note-header">Application
       Note:
@@ -2019,9 +2023,9 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
           <div class="element"><div class="reqid" id="FCS_RBG_EXT.1.2"><a href="#FCS_RBG_EXT.1.2" class="abbr">FCS_RBG_EXT.1.2</a></div><div class="reqdesc">
               The deterministic <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> used by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall be seeded by an entropy source that
               accumulates entropy from a
-              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_66">software-based noise source</span></li><li style=""><span class="selectable-content" id="_s_67">platform-based noise source</span></li></ul>]
+              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_65">software-based noise source</span></li><li style=""><span class="selectable-content" id="_s_66">platform-based noise source</span></li></ul>]
               with a minimum of
-              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_68">128 bits</span></li><li style=""><span class="selectable-content" id="_s_69">256 bits</span></li></ul>]
+              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_67">128 bits</span></li><li style=""><span class="selectable-content" id="_s_68">256 bits</span></li></ul>]
               of entropy at least equal to the greatest security strength (according to <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-57)
               of the keys and hashes that it will generate.
 	    <div class="appnote"><span class="note-header">Application
@@ -2097,7 +2101,7 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
 	      
 	      <p>
 		Documentation shall be produced - and the evaluator will perform the
-		activities - in accordance with <a href="#entropyappendix" class="dynref">Appendix C -  Entropy Documentation and Assessment</a> and
+		activities - in accordance with <a href="#entropyappendix" class="dynref">Appendix D -  Entropy Documentation and Assessment</a> and
 		the
 		<a href="https://www.niap-ccevs.org/Documents_and_Guidance/ccevs/Entropy%20Documentation%20and%20Assessment%20Clarification.pdf">Clarification to the Entropy Documentation and Assessment Annex</a>.
 	      </p><p>
@@ -2201,78 +2205,7 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
               </ul></span>
 	      </p>
 	      </div></div></div></div>
-        <div class="comp" id="FDP_IFC_EXT.1"><h4>FDP_IFC_EXT.1 Information flow control</h4><div class="statustag"><i><b>This is an optional component. However, applied modules or packages might redefine it as mandatory.</b></i></div>
-          <div class="element"><div class="reqid" id="FDP_IFC_EXT.1.1"><a href="#FDP_IFC_EXT.1.1" class="abbr">FDP_IFC_EXT.1.1</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall
-	    [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_70">provide an interface which allows a VPN client to protect all <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic using IPsec</span></li><li style=""><span class="selectable-content" id="_s_71">provide a VPN client which can protects all <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic using IPsec</span></li></ul>]
-	    with the exception of <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic required to establish the VPN connection
-	    and
-	    [<b>selection</b>: <span class="selectable-content" id="_s_72">signed updates directly from the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor</span>,  <span class="selectable-content" id="_s_73">no other traffic</span> ]
-	    .
-            <div class="appnote"><span class="note-header">Application
-      Note:
-    </span><span class="note">
-	      <p>
-		Typically, the traffic required to establish the VPN connection is referred to as "Control Plane" traffic,
-		whereas the <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic protected by the IPsec VPN is referred to as "Data Plane" traffic.
-		All Data Plane traffic must flow through the VPN connection and the VPN must not split-tunnel.
-	      </p>
-	      <p>
-		  If no native IPsec client is validated or third-party VPN clients may
-		  also implement the required Information Flow Control, the first
-		  option shall be selected. In these cases, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> provides an <abbr class="dyn-abbr"><a href="#abbr_API">API</a></abbr> to
-		  third-party VPN clients that allows them to configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s
-		  network stack to perform the required Information Flow Control.
-	      </p>
-	      <p>
-		  The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall select the second option if the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> implements a
-		  native VPN client (IPsec is selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a>). If the native
-		  VPN client is to be validated (IPsec is selected in <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>
-		  and
-		  the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> is validated against the <i><abbr class="dyn-abbr"><a href="#abbr_EP">EP</a></abbr> for IPsec
-		  Virtual Private Network (VPN) Clients</i>), the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall also
-		  include <a href="#FDP_IFC_EXT.1">FDP_IFC_EXT.1</a> from this package.  In the
-		  future, this requirement may also make a distinction between the
-		  current requirement (which requires that when the IPsec trusted
-		  channel is enabled, all traffic from the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> is routed through that
-		  channel) and having an option to force the establishment of an IPsec
-		  trusted channel to allow any communication by the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.
-	      </p>
-	    </span></div></div></div>
-        <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FDP_IFC_EXT.1">FDP_IFC_EXT.1</a></div>
-	      
-	      
-	    <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea">
-	      The evaluator will verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> section of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> describes the
-              routing of <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic when a VPN client is enabled. The
-              evaluator will ensure that the description indicates which traffic does not go
-              through the VPN and which traffic does, and that a configuration exists for each
-              in which only the traffic identified by the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author as necessary
-              for establishing the VPN connection (IKE traffic and perhaps <abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_DNS">DNS</a></abbr> traffic) is
-              not encapsulated by the VPN protocol (IPsec).
-	      </div><div class="eacategory">Tests</div><div class="ea">
-	      The evaluator will perform the following test:
-	      <span class="testlist-"><ul><li class="test-" id="_t_24"><a href="#_t_24" class="definition">Test 24</a>:
-      <ul>
-		<li><b>Step 1: </b>The evaluator will enable a network connection.
-		  The evaluator will sniff packets while performing running applications that use the network such as web browsers and email clients.
-		  The evaluator will verify that the sniffer captures the traffic generated by these actions, turn off the sniffing tool, and save the session data.
-		  </li>
-		  <li><b>Step 2: </b>
-                  The evaluator will configure an IPsec VPN client that supports the routing specified in this requirement.
-		  The evaluator will turn on the sniffing tool, establish the VPN connection, and perform the same actions with the device as performed in the first step.
-		  The evaluator will verify that the sniffing tool captures traffic generated by these actions, turn off the sniffing tool, and save the session data.
-                  </li>
-                  <li><b>Step 3: </b>
-		  The evaluator will examine the traffic from both step one and step two to verify that all non-excepted Data Plane traffic in Step 2 is encapsulated by IPsec.
-		  The evaluator will examine the Security Parameter Index (SPI) value present in the encapsulated packets captured in Step 2 from the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to the Gateway and shall verify this value is the same for all actions used to generate traffic through the VPN.
-		  Note that it is expected that the SPI value for packets from the Gateway to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is different than the SPI value for packets from the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to the Gateway.
-		  </li>
-		  <li><b>Step 4: </b>
-                  The evaluator will perform a ping on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> host on the local network and verify that no packets sent are captured with the sniffer.
-		  The evaluator will attempt to send packets to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> outside the VPN tunnel (i.e. not through the VPN gateway), including from the local network, and verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> discards them.
-		  </li>
-	      </ul></li></ul></span>
-	      </div></div></div></div>
+        
       
       <h3 id="fmt" class="indexable" data-level="3">5.1.3 Security Management (FMT)</h3>
         <div class="comp" id="FMT_MOF_EXT.1"><h4>FMT_MOF_EXT.1 Management of security functions behavior</h4>
@@ -2302,7 +2235,7 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
 
 	      </div><div class="eacategory">Tests</div><div class="ea">
 		The evaluator will also perform the following test.
-  	      <span class="testlist-"><ul><li class="test-" id="_t_25"><a href="#_t_25" class="definition">Test 25</a>:
+  	      <span class="testlist-"><ul><li class="test-" id="_t_25"><a href="#_t_25" class="definition">Test 24</a>:
       For each function that is indicated as restricted to the administrator,
               the evaluation shall perform the function as an administrator, as specified in the
               Operational Guidance, and determine that it has the expected effect as outlined by
@@ -2316,8 +2249,8 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
 	      The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall be capable of performing the following management functions:
 	      <br/>
 	      <table class="mfs" style="width: 100%;"><tr class="header"><td>#</td><td>Management Function</td><td>Administrator</td><td>User</td></tr>
-<tr id="_mf_1"><td>1</td><td style="text-align:left">Enable/disable [<b>selection</b>: <span class="selectable-content" id="_s_74">screen lock</span>,  <span class="selectable-content" id="_s_75">session timeout</span> ]</td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
-<tr id="_mf_2"><td>2</td><td style="text-align:left">Configure [<b>selection</b>: <span class="selectable-content" id="_s_76">screen lock</span>,  <span class="selectable-content" id="_s_77">session</span> ] inactivity timeout</td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+<tr id="_mf_1"><td>1</td><td style="text-align:left">Enable/disable [<b>selection</b>: <span class="selectable-content" id="_s_73">screen lock</span>,  <span class="selectable-content" id="_s_74">session timeout</span> ]</td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+<tr id="_mf_2"><td>2</td><td style="text-align:left">Configure [<b>selection</b>: <span class="selectable-content" id="_s_75">screen lock</span>,  <span class="selectable-content" id="_s_76">session</span> ] inactivity timeout</td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_3"><td>3</td><td style="text-align:left">Configure local audit storage capacity</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_4"><td>4</td><td style="text-align:left">Configure minimum password length</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_5"><td>5</td><td style="text-align:left">Configure minimum number of special characters in password</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
@@ -2326,7 +2259,7 @@ only <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-based implementat
 <tr id="_mf_8"><td>8</td><td style="text-align:left">Configure minimum number of lowercase characters in password</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_9"><td>9</td><td style="text-align:left">
 Configure lockout policy for unsuccessful authentication attempts through
-                  [<b>selection</b>: <span class="selectable-content" id="_s_78">timeouts between attempts</span>,  <span class="selectable-content" id="_s_79">limiting number of attempts during a time period</span> ]
+                  [<b>selection</b>: <span class="selectable-content" id="_s_77">timeouts between attempts</span>,  <span class="selectable-content" id="_s_78">limiting number of attempts during a time period</span> ]
 		</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_10"><td>10</td><td style="text-align:left">Configure host-based firewall</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_11"><td>11</td><td style="text-align:left">Configure name/address of directory server with which to bind</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
@@ -2415,17 +2348,17 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can enroll in such a
               outcome (i.e., the action results in the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> denying the evaluator permission to
               complete the action):
               <span class="testlist-"><ul>
-                <li class="test-" id="_t_26"><a href="#_t_26" class="definition">Test 26</a>:
+                <li class="test-" id="_t_26"><a href="#_t_26" class="definition">Test 25</a>:
       The evaluator will attempt to modify all kernel drivers and modules.</li>
-                <li class="test-" id="_t_27"><a href="#_t_27" class="definition">Test 27</a>:
+                <li class="test-" id="_t_27"><a href="#_t_27" class="definition">Test 26</a>:
       The evaluator will attempt to modify all security audit logs generated by the logging subsystem.</li>
-                <li class="test-" id="_t_28"><a href="#_t_28" class="definition">Test 28</a>:
+                <li class="test-" id="_t_28"><a href="#_t_28" class="definition">Test 27</a>:
       The evaluator will attempt to modify all shared libraries that are used throughout the system.</li>
-                <li class="test-" id="_t_29"><a href="#_t_29" class="definition">Test 29</a>:
+                <li class="test-" id="_t_29"><a href="#_t_29" class="definition">Test 28</a>:
       The evaluator will attempt to modify all system executables.</li>
-                <li class="test-" id="_t_30"><a href="#_t_30" class="definition">Test 30</a>:
+                <li class="test-" id="_t_30"><a href="#_t_30" class="definition">Test 29</a>:
       The evaluator will attempt to modify all system configuration files.</li>
-                <li class="test-" id="_t_31"><a href="#_t_31" class="definition">Test 31</a>:
+                <li class="test-" id="_t_31"><a href="#_t_31" class="definition">Test 30</a>:
       The evaluator will attempt to modify any additional components selected.</li>
               </ul></span>
 	      
@@ -2434,17 +2367,17 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can enroll in such a
               outcome (i.e., the action results in the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> denying the evaluator permission to
               complete the action):
               <span class="testlist-"><ul>
-                <li class="test-" id="_t_32"><a href="#_t_32" class="definition">Test 32</a>:
+                <li class="test-" id="_t_32"><a href="#_t_32" class="definition">Test 31</a>:
       The evaluator will attempt to read security audit logs generated by the auditing subsystem</li>
-                <li class="test-" id="_t_33"><a href="#_t_33" class="definition">Test 33</a>:
+                <li class="test-" id="_t_33"><a href="#_t_33" class="definition">Test 32</a>:
       The evaluator will attempt to read system-wide credential repositories</li>
-                <li class="test-" id="_t_34"><a href="#_t_34" class="definition">Test 34</a>:
+                <li class="test-" id="_t_34"><a href="#_t_34" class="definition">Test 33</a>:
       The evaluator will attempt to read any other object specified in the assignment</li>
               </ul></span>
 	      </div></div></div></div>
         <div class="comp" id="FPT_ASLR_EXT.1"><h4>FPT_ASLR_EXT.1 Address Space Layout Randomization</h4>
           <div class="element"><div class="reqid" id="FPT_ASLR_EXT.1.1"><a href="#FPT_ASLR_EXT.1.1" class="abbr">FPT_ASLR_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall always randomize process address space memory locations with
-	    [<b>selection</b>: <span class="selectable-content" id="_s_80">8</span>,  <span class="selectable-content" id="_s_81">[<b>assignment</b>: 
+	    [<b>selection</b>: <span class="selectable-content" id="_s_79">8</span>,  <span class="selectable-content" id="_s_80">[<b>assignment</b>: 
      <span class="assignable-content">number greater than 8</span>]</span> ]
 	    bits of entropy except for
                 [<b>assignment</b>: 
@@ -2545,7 +2478,7 @@ This test can also be completed on the same hardware and rebooting between appli
         
         <div class="comp" id="FPT_SBOP_EXT.1"><h4>FPT_SBOP_EXT.1 Stack Buffer Overflow Protection</h4>
           <div class="element"><div class="reqid" id="FPT_SBOP_EXT.1.1"><a href="#FPT_SBOP_EXT.1.1" class="abbr">FPT_SBOP_EXT.1.1</a></div><div class="reqdesc">
-The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall [<b>selection</b>: <span class="selectable-content" id="_s_82">employ stack-based buffer overflow protections</span>,  <span class="selectable-content" id="_s_83">not store parameters/variables in the same data structures as control flow values</span> ].
+The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall [<b>selection</b>: <span class="selectable-content" id="_s_81">employ stack-based buffer overflow protections</span>,  <span class="selectable-content" id="_s_82">not store parameters/variables in the same data structures as control flow values</span> ].
 <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -2561,7 +2494,7 @@ These are referred to by a variety of terms, such as stack cookie, stack guard, 
 The <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> must include a rationale for any binaries that are not protected in this manner.
 The evaluator will also preform the following test:
             <span class="testlist-"><ul>
-                <li class="test-" id="_t_35"><a href="#_t_35" class="definition">Test 35</a>:
+                <li class="test-" id="_t_35"><a href="#_t_35" class="definition">Test 34</a>:
       
                   The evaluator will inventory the kernel, libraries, and application binaries
                   to determine those that do not implement stack-based buffer overflow protections. This list should
@@ -2574,93 +2507,13 @@ The evaluator will also preform the following test:
 The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> includes a description of the safeguards that ensure parameters and variables do not intermix with control flow values.
 </p>
               </div></div></div></div>
-        <div class="comp" id="FPT_SRP_EXT.1"><h4>FPT_SRP_EXT.1 Software Restriction Policies</h4><div class="statustag"><i><b> This is an objective component.
-          </b></i></div>
-          <div class="element"><div class="reqid" id="FPT_SRP_EXT.1.1"><a href="#FPT_SRP_EXT.1.1" class="abbr">FPT_SRP_EXT.1.1</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall restrict execution to only programs which match an administrator-specified
-              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_84">file path</span></li><li style=""><span class="selectable-content" id="_s_85">file digital signature</span></li><li style=""><span class="selectable-content" id="_s_86">version</span></li><li style=""><span class="selectable-content" id="_s_87">hash</span></li><li style=""><span class="selectable-content" id="_s_88">[<b>assignment</b>: 
-     <span class="assignable-content">other characteristics</span>]</span></li></ul>]
-	      .
-            <div class="appnote"><span class="note-header">Application
-      Note:
-    </span><span class="note">
-              The assignment permits implementations which provide a low
-              level of granularity such as a volume.  The restriction is only against direct execution of
-              executable programs.  It does not forbid interpreters which may take data as an input, even if
-              this data can subsequently result in arbitrary computation.
-            </span></div></div></div>
-        <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FPT_SRP_EXT.1">FPT_SRP_EXT.1</a></div>
-	      
-	    <div class="eacategory">Tests</div><div class="ea">
-	      For each selection specified in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, the evaluator will ensure that the corresponding tests result in a negative
-              outcome (i.e., the action results in the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> denying the evaluator permission to
-              complete the action):
-              <span class="testlist-"><ul>
-                <li class="test-" id="_t_36"><a href="#_t_36" class="definition">Test 36</a>:
-      
-                  The evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to only allow code execution from the core
-                  <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> directories. The evaluator will then attempt to execute code from a directory
-                  that is in the allowed list. The evaluator will ensure that the code they
-                  attempted to execute has been executed.
-                </li>
-                <li class="test-" id="_t_37"><a href="#_t_37" class="definition">Test 37</a>:
-      
-                  The evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to only allow code execution from the core
-                  <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> directories. The evaluator will then attempt to execute code from a directory
-                  that is not in the allowed list. The evaluator will ensure that the code they
-                  attempted to execute has not been executed.
-                </li>
-                <li class="test-" id="_t_38"><a href="#_t_38" class="definition">Test 38</a>:
-      
-                  The evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to only allow code that has been signed by
-                  the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor to execute. The evaluator will then attempt to execute code signed
-                  by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor. The evaluator will ensure that the code they
-                  attempted to execute has been executed.
-                </li>
-                <li class="test-" id="_t_39"><a href="#_t_39" class="definition">Test 39</a>:
-      
-                  The evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to only allow code that has been signed by
-                  the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor to execute. The evaluator will then attempt to execute code signed
-                  by another digital authority. The evaluator will ensure that the code they
-                  attempted to execute has not been executed.
-                </li>
-                <li class="test-" id="_t_40"><a href="#_t_40" class="definition">Test 40</a>:
-      
-                  The evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to allow execution of a specific
-                  application based on version. The evaluator will then attempt to execute the same
-                  version of the application. The evaluator will ensure that the code they attempted
-                  to execute has been executed.
-                </li>
-                <li class="test-" id="_t_41"><a href="#_t_41" class="definition">Test 41</a>:
-      
-                  The evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to allow execution of a specific
-                  application based on version. The evaluator will then attempt to execute an older
-                  version of the application. The evaluator will ensure that the code they attempted
-                  to execute has not been executed.
-                </li>
-                <li class="test-" id="_t_42"><a href="#_t_42" class="definition">Test 42</a>:
-      
-                  The evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to allow execution based on the hash of the application
-                  executable. The evaluator will then attempt to execute
-                  the application with the matching hash. The evaluator will
-                  ensure that the code they attempted to execute has been executed.
-                </li>
-                <li class="test-" id="_t_43"><a href="#_t_43" class="definition">Test 43</a>:
-      
-                  The evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to allow execution based on the hash of the application
-                  executable. The evaluator will modify the
-                  application in such a way that the application hash is changed. The evaluator
-                  will then attempt to execute the application with the matching hash. The evaluator will
-                  ensure that the code they attempted to execute has not been executed.
-                </li>
-              </ul></span>
-              
-              </div></div></div></div>
+        
         <div class="comp" id="FPT_TST_EXT.1"><h4>FPT_TST_EXT.1 Boot Integrity</h4>
           <div class="element"><div class="reqid" id="FPT_TST_EXT.1.1"><a href="#FPT_TST_EXT.1.1" class="abbr">FPT_TST_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall verify the integrity of the bootchain up through the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> kernel and
-              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_89">all executable code stored in mutable media</span></li><li style=""><span class="selectable-content" id="_s_90">[<b>assignment</b>: 
-     <span class="assignable-content">list of other executable code</span>]</span></li><li style=""><span class="selectable-content" id="_s_91">no other executable code</span></li></ul>]
+              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_88">all executable code stored in mutable media</span></li><li style=""><span class="selectable-content" id="_s_89">[<b>assignment</b>: 
+     <span class="assignable-content">list of other executable code</span>]</span></li><li style=""><span class="selectable-content" id="_s_90">no other executable code</span></li></ul>]
 	      prior to its execution through the use of
-              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_92">a digital signature using a hardware-protected asymmetric key and X.509 certificates</span></li><li style=""><span class="selectable-content" id="_s_93">a hardware-protected hash</span></li></ul>]
+              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_91">a digital signature using a hardware-protected asymmetric key and X.509 certificates</span></li><li style=""><span class="selectable-content" id="_s_92">a hardware-protected hash</span></li></ul>]
 	      .
             <div class="appnote"><span class="note-header">Application
       Note:
@@ -2710,13 +2563,13 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
 	      <p>
               The evaluator will also perform the following tests:
               <span class="testlist-"><ul>
-                <li class="test-" id="_t_44"><a href="#_t_44" class="definition">Test 44</a>:
+                <li class="test-" id="_t_44"><a href="#_t_44" class="definition">Test 35</a>:
       
                   The evaluator will perform actions to cause <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> software to load and observe that the
                   integrity mechanism does not flag any executables as containing integrity errors and that the
                   <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> properly boots.
                 </li>
-                <li class="test-" id="_t_45"><a href="#_t_45" class="definition">Test 45</a>:
+                <li class="test-" id="_t_45"><a href="#_t_45" class="definition">Test 36</a>:
       
                   The evaluator will modify a <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> executable that is part of the bootchain verified by the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> (i.e. Not the first-stage bootloader)
 		  and attempt to boot.
@@ -2725,7 +2578,7 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
                   violation is determined to be the cause of the failure to load the module, and not the fact that
                   in such a way to invalidate the structure of the module.).
                 </li>
-                <li class="test-" id="_t_46"><a href="#_t_46" class="definition">Test 46</a>:
+                <li class="test-" id="_t_46"><a href="#_t_46" class="definition">Test 37</a>:
       
                   If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author indicates that the integrity verification is performed
                   using a public key, the evaluator will verify that the update mechanism includes a certificate
@@ -2745,7 +2598,7 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
 			</span></div></div></div>
           <div class="element"><div class="reqid" id="FPT_TUD_EXT.1.2"><a href="#FPT_TUD_EXT.1.2" class="abbr">FPT_TUD_EXT.1.2</a></div><div class="reqdesc">
               The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall 
-		[<b>selection</b>: <span class="selectable-content" id="_s_94">cryptographically verify</span>,  <span class="selectable-content" id="_s_95">invoke platform-provided functionality to cryptographically verify</span> ]
+		[<b>selection</b>: <span class="selectable-content" id="_s_93">cryptographically verify</span>,  <span class="selectable-content" id="_s_94">invoke platform-provided functionality to cryptographically verify</span> ]
               updates to itself using a digital
               signature prior to installation using schemes specified in <a href="#FCS_COP.1/SIGN">FCS_COP.1/SIGN</a>.
 	    <div class="appnote"><span class="note-header">Application
@@ -2772,7 +2625,7 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
 				  All supported origins
 				  for the update must be indicated in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> and evaluated.
               <span class="testlist-"><ul>
-                <li class="test-" id="_t_47"><a href="#_t_47" class="definition">Test 47</a>:
+                <li class="test-" id="_t_47"><a href="#_t_47" class="definition">Test 38</a>:
       
 				  The evaluator will ensure that the update has a digital
 				  signature belonging to the vendor prior to its installation.
@@ -2782,7 +2635,7 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
 				  evaluator will ensure that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> does not install the
 				  modified update.
                 </li>
-                <li class="test-" id="_t_48"><a href="#_t_48" class="definition">Test 48</a>:
+                <li class="test-" id="_t_48"><a href="#_t_48" class="definition">Test 39</a>:
       
 				  The evaluator will ensure that the update has a digital
 				  signature belonging to the vendor. The evaluator will then
@@ -2828,7 +2681,7 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
 				  those mechanisms for which the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> is providing a trusted installation and update functionality.
 				  It does not include user or administrator-driven download and installation of arbitrary files.
               <span class="testlist-"><ul>
-                <li class="test-" id="_t_49"><a href="#_t_49" class="definition">Test 49</a>:
+                <li class="test-" id="_t_49"><a href="#_t_49" class="definition">Test 40</a>:
       
 				  The evaluator will ensure that the update has a digital
 				  signature which chains to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor or another trusted
@@ -2838,7 +2691,7 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
                   modified update. The evaluator will ensure that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> does not install the modified
                   update.
                 </li>
-                <li class="test-" id="_t_50"><a href="#_t_50" class="definition">Test 50</a>:
+                <li class="test-" id="_t_50"><a href="#_t_50" class="definition">Test 41</a>:
       
 				  The evaluator will ensure that the update has a digital
 				  signature belonging to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor or another trusted root
@@ -2848,54 +2701,7 @@ The evaluator will also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TS
                 </li>
               </ul></span>
               </div></div></div></div>
-        <div class="comp" id="FPT_W^X_EXT.1"><h4>FPT_W^X_EXT.1 Write XOR Execute Memory Pages</h4><div class="statustag"><i><b> This is an objective component.
-          </b></i></div>
-          <div class="element"><div class="reqid" id="FPT_W^X_EXT.1.1"><a href="#FPT_W^X_EXT.1.1" class="abbr">FPT_W^X_EXT.1.1</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall prevent allocation of any memory region with both write and
-              execute permissions except for [<b>assignment</b>: 
-     <span class="assignable-content">list of exceptions</span>].
-            <div class="appnote"><span class="note-header">Application
-      Note:
-    </span><span class="note">Requesting a memory mapping with both write and execute
-              permissions subverts the platform protection provided by <abbr class="dyn-abbr"><a href="#abbr_DEP">DEP</a></abbr>.
-	      If the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> provides no exceptions (such as for just-in-time compilation),
-	      then "no exceptions" should be indicated in the assignment.
-	      Full realization of this requirement requires hardware support, but this is commonly available.
-            </span></div></div></div>
-        <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FPT_W^X_EXT.1">FPT_W^X_EXT.1</a></div>
-	      
-	      
-	    <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea">
-              The evaluator will inspect the vendor-provided developer documentation and
-	      verify that no memory-mapping can be made with
-              write and execute permissions except for the cases listed in the assignment.
-	      </div><div class="eacategory">Tests</div><div class="ea">
-	      The evaluator will also perform the following tests.
-	      <span class="testlist-"><ul>
-		<li class="test-" id="_t_51"><a href="#_t_51" class="definition">Test 51</a>:
-      
-                  The evaluator will acquire or construct a test program which attempts
-		  to allocate memory that is both writable and executable.
-		  The evaluator will run the program and confirm that it fails to
-		  allocate memory that is both writable and executable.
-		</li>
-		<li class="test-" id="_t_52"><a href="#_t_52" class="definition">Test 52</a>:
-      
-                  The evaluator will acquire or construct a test program which
-		  allocates memory that is executable and then
-		  subsequently requests additional write/modify permissions on that memory.
-		  The evaluator will run the program and confirm that at no time
-		  during the lifetime of the process is the memory both writable and executable.
-		</li>
-		<li class="test-" id="_t_53"><a href="#_t_53" class="definition">Test 53</a>:
-      
-                  The evaluator will acquire or construct a test program which
-		  allocates memory that is writable and then
-		  subsequently requests additional execute permissions on that memory.
-		  The evaluator will run the program and confirm that at no time
-		  during the lifetime of the process is the memory both writable and executable.
-		</li>
-	      </ul></span>
-              </div></div></div></div>
+        
       
       <h3 id="fau" class="indexable" data-level="3">5.1.5 Audit Data Generation (FAU)</h3>
         <div class="comp" id="FAU_GEN.1"><h4>FAU_GEN.1 Audit Data Generation (Refined)</h4>
@@ -2909,7 +2715,7 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall be able
 		  <ul><li>Authentication events (Success/Failure);</li>
                   <li>Use of privileged/special rights events (Successful and unsuccessful security, audit, and configuration changes);</li>
                   <li>Privilege or role escalation events (Success/Failure);</li>
-		  <li>[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_96">File and object events (Successful and unsuccessful attempts to create, access, delete, modify, modify permissions)</span></li><li style=""><span class="selectable-content" id="_s_97">User and Group management events (Successful and unsuccessful add, delete, modify, disable, enable, and credential change)</span></li><li style=""><span class="selectable-content" id="_s_98">Audit and log data access events (Success/Failure)</span></li><li style=""><span class="selectable-content" id="_s_99">Cryptographic verification of software (Success/Failure)</span></li><li style=""><span class="selectable-content" id="_s_100">Attempted application invocation with arguments (Success/Failure e.g. due to software restriction policy)</span></li><li style=""><span class="selectable-content" id="_s_101">System reboot, restart, and shutdown events (Success/Failure)</span></li><li style=""><span class="selectable-content" id="_s_102">Kernel module loading and unloading events (Success/Failure)</span></li><li style=""><span class="selectable-content" id="_s_103">Administrator or root-level access events (Success/Failure)</span></li><li style=""><span class="selectable-content" id="_s_104">[<b>assignment</b>: 
+		  <li>[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_95">File and object events (Successful and unsuccessful attempts to create, access, delete, modify, modify permissions)</span></li><li style=""><span class="selectable-content" id="_s_96">User and Group management events (Successful and unsuccessful add, delete, modify, disable, enable, and credential change)</span></li><li style=""><span class="selectable-content" id="_s_97">Audit and log data access events (Success/Failure)</span></li><li style=""><span class="selectable-content" id="_s_98">Cryptographic verification of software (Success/Failure)</span></li><li style=""><span class="selectable-content" id="_s_99">Attempted application invocation with arguments (Success/Failure e.g. due to software restriction policy)</span></li><li style=""><span class="selectable-content" id="_s_100">System reboot, restart, and shutdown events (Success/Failure)</span></li><li style=""><span class="selectable-content" id="_s_101">Kernel module loading and unloading events (Success/Failure)</span></li><li style=""><span class="selectable-content" id="_s_102">Administrator or root-level access events (Success/Failure)</span></li><li style=""><span class="selectable-content" id="_s_103">[<b>assignment</b>: 
      <span class="assignable-content">other specifically defined auditable events</span>].</span></li></ul>]
 		  </li>
 		  </ul>
@@ -2984,21 +2790,21 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall be able
         <div class="comp" id="FIA_AFL.1"><h4>FIA_AFL.1 Authentication failure handling (Refined)</h4>
           <div class="element"><div class="reqid" id="FIA_AFL.1.1"><a href="#FIA_AFL.1.1" class="abbr">FIA_AFL.1.1</a></div><div class="reqdesc">
             The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall detect when
-            [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_105">[<b>assignment</b>: 
-     <span class="assignable-content">positive integer number</span>]</span></li><li style=""><span class="selectable-content" id="_s_106">an administrator configurable positive integer within [<b>assignment</b>: 
+            [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_104">[<b>assignment</b>: 
+     <span class="assignable-content">positive integer number</span>]</span></li><li style=""><span class="selectable-content" id="_s_105">an administrator configurable positive integer within [<b>assignment</b>: 
      <span class="assignable-content">range of acceptable values</span>]</span></li></ul>]
             unsuccessful authentication attempts occur related to
 	    <b>
 	      events with
-            [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_107">authentication based on user name and password</span></li><li style=""><span class="selectable-content" id="_s_108">authentication based on user name and a PIN that
-	      releases an asymmetric key stored in <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>-protected storage</span></li><li style=""><span class="selectable-content" id="_s_109">authentication based on X.509 certificates</span></li></ul>]
+            [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_106">authentication based on user name and password</span></li><li style=""><span class="selectable-content" id="_s_107">authentication based on user name and a PIN that
+	      releases an asymmetric key stored in <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>-protected storage</span></li><li style=""><span class="selectable-content" id="_s_108">authentication based on X.509 certificates</span></li></ul>]
 	    </b>.
 	    </div></div>
           <div class="element"><div class="reqid" id="FIA_AFL.1.2"><a href="#FIA_AFL.1.2" class="abbr">FIA_AFL.1.2</a></div><div class="reqdesc">
 	      When the defined number of unsuccessful authentication attempts for an
 	      account has been <b>met</b>, the <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall:
 	      <b>
-	      [<b>selection</b>: <span class="selectable-content" id="_s_110">Account Lockout</span>,  <span class="selectable-content" id="_s_111">Account Disablement</span>,  <span class="selectable-content" id="_s_112">Mandatory Credential Reset</span>,  <span class="selectable-content" id="_s_113">[<b>assignment</b>: 
+	      [<b>selection</b>: <span class="selectable-content" id="_s_109">Account Lockout</span>,  <span class="selectable-content" id="_s_110">Account Disablement</span>,  <span class="selectable-content" id="_s_111">Mandatory Credential Reset</span>,  <span class="selectable-content" id="_s_112">[<b>assignment</b>: 
      <span class="assignable-content">list of actions</span>]</span> ]
 	      </b>.
             <div class="appnote"><span class="note-header">Application
@@ -3022,7 +2828,7 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall be able
 
 	      
               <span class="testlist-"><ul>
-                <li class="test-" id="_t_54"><a href="#_t_54" class="definition">Test 54</a>:
+                <li class="test-" id="_t_54"><a href="#_t_54" class="definition">Test 42</a>:
       
                   The evaluator will attempt to authenticate repeatedly to the system with a
                   known bad password. Once the defined number of failed authentication attempts has been
@@ -3030,7 +2836,7 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall be able
                   has had the actions detailed in the assignment list above applied to it. The evaluator will ensure that
                   an event has been logged to the security event log detailing that the account has had these actions applied.
                 </li>
-                <li class="test-" id="_t_55"><a href="#_t_55" class="definition">Test 55</a>:
+                <li class="test-" id="_t_55"><a href="#_t_55" class="definition">Test 43</a>:
       
                   The evaluator will attempt to authenticate repeatedly to the system with a
                   known bad certificate. Once the defined number of failed authentication attempts has been
@@ -3038,7 +2844,7 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall be able
                   has had the actions detailed in the assignment list above applied to it. The evaluator will ensure that
                   an event has been logged to the security event log detailing that the account has had these actions applied.
                 </li>
-                <li class="test-" id="_t_56"><a href="#_t_56" class="definition">Test 56</a>:
+                <li class="test-" id="_t_56"><a href="#_t_56" class="definition">Test 44</a>:
       
                   The evaluator will attempt to authenticate repeatedly to the system using both a bad password and a bad certificate.
                   Once the defined number of failed authentication attempts has been
@@ -3051,8 +2857,8 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall be able
         <div class="comp" id="FIA_UAU.5"><h4>FIA_UAU.5 Multiple Authentication Mechanisms (Refined)</h4>
           <div class="element"><div class="reqid" id="FIA_UAU.5.1"><a href="#FIA_UAU.5.1" class="abbr">FIA_UAU.5.1</a></div><div class="reqdesc">
 The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall provide the following authentication mechanisms
-<b>[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_114">authentication based on user name and password</span></li><li style=""><span class="selectable-content" id="_s_115">authentication based on user name and a PIN that releases an asymmetric key stored
-  in <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>-protected storage</span></li><li style=""><span class="selectable-content" id="_s_116">authentication based on X.509 certificates</span></li><li style=""><span class="selectable-content" id="_s_117">for use in SSH only, SSH public key-based authentication as specified by the <abbr class="dyn-abbr"><a href="#abbr_EP">EP</a></abbr> for Secure Shell</span></li></ul>]
+<b>[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_113">authentication based on user name and password</span></li><li style=""><span class="selectable-content" id="_s_114">authentication based on user name and a PIN that releases an asymmetric key stored
+  in <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>-protected storage</span></li><li style=""><span class="selectable-content" id="_s_115">authentication based on X.509 certificates</span></li><li style=""><span class="selectable-content" id="_s_116">for use in SSH only, SSH public key-based authentication as specified by the <abbr class="dyn-abbr"><a href="#abbr_EP">EP</a></abbr> for Secure Shell</span></li></ul>]
 </b>
 to support user authentication.
             <div class="appnote"><span class="note-header">Application
@@ -3108,13 +2914,13 @@ unsuccessful authentication are covered in <a href="#FIA_AFL.1">FIA_AFL.1</a>.
               If user name and password authentication is selected, the evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> with a
 			  known user name and password and conduct the following tests:
               <span class="testlist-"><ul>
-                <li class="test-" id="_t_57"><a href="#_t_57" class="definition">Test 57</a>:
+                <li class="test-" id="_t_57"><a href="#_t_57" class="definition">Test 45</a>:
       
 				  The evaluator will attempt to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using
 				  the known user name and password. The evaluator will ensure
 				  that the authentication attempt is successful.
                 </li>
-                <li class="test-" id="_t_58"><a href="#_t_58" class="definition">Test 58</a>:
+                <li class="test-" id="_t_58"><a href="#_t_58" class="definition">Test 46</a>:
       
 				  The evaluator will attempt to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using
 				  the known user name but an incorrect password. The evaluator
@@ -3128,13 +2934,13 @@ unsuccessful authentication are covered in <a href="#FIA_AFL.1">FIA_AFL.1</a>.
 			  isolated execution environment) with which the
 			  <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can interface.  The evaluator will then conduct the following tests:
 			  <span class="testlist-"><ul>
-			    <li class="test-" id="_t_59"><a href="#_t_59" class="definition">Test 59</a>:
+			    <li class="test-" id="_t_59"><a href="#_t_59" class="definition">Test 47</a>:
        The evaluator will attempt to
 			    authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the known user name and PIN. The
 			    evaluator will ensure that the authentication attempt is
 			    successful.
 			    </li>
-				<li class="test-" id="_t_60"><a href="#_t_60" class="definition">Test 60</a>:
+				<li class="test-" id="_t_60"><a href="#_t_60" class="definition">Test 48</a>:
        The evaluator will attempt to
 			    authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the known user name but an incorrect
 			    PIN. The evaluator will ensure that the authentication attempt is
@@ -3149,13 +2955,13 @@ unsuccessful authentication are covered in <a href="#FIA_AFL.1">FIA_AFL.1</a>.
 			  certificates are validated by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> as per
                           <a href="#FIA_X509_EXT.1.1">FIA_X509_EXT.1.1</a> and then conduct the following tests:
               <span class="testlist-"><ul>
-                 <li class="test-" id="_t_61"><a href="#_t_61" class="definition">Test 61</a>:
+                 <li class="test-" id="_t_61"><a href="#_t_61" class="definition">Test 49</a>:
       
 					The evaluator will attempt to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using
 					the X.509v3 certificate. The evaluator
 					will ensure that the authentication attempt is successful.
                   </li>
-                <li class="test-" id="_t_62"><a href="#_t_62" class="definition">Test 62</a>:
+                <li class="test-" id="_t_62"><a href="#_t_62" class="definition">Test 50</a>:
       
 				  The evaluator will generate a second certificate identical to
 				  the first except for the public key and any values derived
@@ -3167,12 +2973,12 @@ unsuccessful authentication are covered in <a href="#FIA_AFL.1">FIA_AFL.1</a>.
 
               
               <span class="testlist-"><ul>
-                <li class="test-" id="_t_63"><a href="#_t_63" class="definition">Test 63</a>:
+                <li class="test-" id="_t_63"><a href="#_t_63" class="definition">Test 51</a>:
       For each
 		authentication mechanism selected, the evaluator will enable that
 		mechanism and verify that it can be used to authenticate the user at
 		the specified authentication factor interfaces. </li>
-		<li class="test-" id="_t_64"><a href="#_t_64" class="definition">Test 64</a>:
+		<li class="test-" id="_t_64"><a href="#_t_64" class="definition">Test 52</a>:
       
 For each authentication mechanism rule, the evaluator will ensure that
 the authentication mechanism(s) behave as documented in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>.
@@ -3188,7 +2994,7 @@ the following rules: <ul>
 <li> The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall validate a certificate path by ensuring the presence of the
 <i>basicConstraints</i> extension and that the <i>CA</i> flag is set to <code>TRUE</code> for all CA  certificates. </li>
 <li> The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall validate the revocation status of the certificate using
-[<b>selection</b>: <span class="selectable-content" id="_s_118">the Online Certificate Status Protocol (<abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr>) as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 2560</span>,  <span class="selectable-content" id="_s_119">a Certificate Revocation List (<abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr>) as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 5759</span>,  <span class="selectable-content" id="_s_120">an <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Status Request Extension (i.e., <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling) as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6066</span> ]. </li>
+[<b>selection</b>: <span class="selectable-content" id="_s_117">the Online Certificate Status Protocol (<abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr>) as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 2560</span>,  <span class="selectable-content" id="_s_118">a Certificate Revocation List (<abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr>) as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 5759</span>,  <span class="selectable-content" id="_s_119">an <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Status Request Extension (i.e., <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling) as specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6066</span> ]. </li>
 <li> The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall validate the <i>extendedKeyUsage</i> field according to the following rules:
 <ul>
   <li> Certificates used for trusted updates and executable code integrity
@@ -3247,16 +3053,16 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall only treat a c
               in conjunction with the uses that require those rules. The evaluator will create a
               chain of at least four certificates: the node certificate to be tested, two
               Intermediate CAs, and the self-signed Root CA. <span class="testlist-"><ul>
-                <li class="test-" id="_t_65"><a href="#_t_65" class="definition">Test 65</a>:
+                <li class="test-" id="_t_65"><a href="#_t_65" class="definition">Test 53</a>:
        The evaluator will demonstrate that validating a certificate without a valid
                   certification path results in the function failing. The evaluator will then load
                   a certificate or certificates as trusted CAs needed to validate the certificate to
                   be used in the function, and demonstrate that the function succeeds. The evaluator
                   shall then delete one of the certificates, and show that the function fails. </li>
-                <li class="test-" id="_t_66"><a href="#_t_66" class="definition">Test 66</a>:
+                <li class="test-" id="_t_66"><a href="#_t_66" class="definition">Test 54</a>:
        The evaluator will demonstrate that validating an expired certificate
                   results in the function failing. </li>
-                <li class="test-" id="_t_67"><a href="#_t_67" class="definition">Test 67</a>:
+                <li class="test-" id="_t_67"><a href="#_t_67" class="definition">Test 55</a>:
        The evaluator will test that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can properly handle
                   revoked certificates-–conditional on whether <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr>, or <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling is selected;
 		  if multiple methods are selected, then a test shall be performed for each method.
@@ -3267,22 +3073,22 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall only treat a c
                   validation function succeeds. The evaluator then attempts the test with a
                   certificate that has been revoked (for each method chosen in the selection) to
                   ensure when the certificate is no longer valid that the validation function fails. </li>
-                <li class="test-" id="_t_68"><a href="#_t_68" class="definition">Test 68</a>:
+                <li class="test-" id="_t_68"><a href="#_t_68" class="definition">Test 56</a>:
        If either <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> option is selected, the evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> server or use a
                   man-in-the-middle tool to present a certificate that does not have the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr>
                   signing purpose and verify that validation of the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> response fails. If <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> is
                   selected, the evaluator will configure the CA to sign a <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> with a certificate
                   that does not have the cRLsign key usage bit set, and verify that validation of
                   the <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> fails. </li>
-                <li class="test-" id="_t_69"><a href="#_t_69" class="definition">Test 69</a>:
+                <li class="test-" id="_t_69"><a href="#_t_69" class="definition">Test 57</a>:
        The evaluator will modify any byte in the first eight bytes of the
                   certificate and demonstrate that the certificate fails to validate. (The
                   certificate should fail to parse correctly.) </li>
-                <li class="test-" id="_t_70"><a href="#_t_70" class="definition">Test 70</a>:
+                <li class="test-" id="_t_70"><a href="#_t_70" class="definition">Test 58</a>:
        The evaluator will modify any byte in the last byte of the certificate and
                   demonstrate that the certificate fails to validate. (The signature on the
                   certificate should not validate.) </li>
-                <li class="test-" id="_t_71"><a href="#_t_71" class="definition">Test 71</a>:
+                <li class="test-" id="_t_71"><a href="#_t_71" class="definition">Test 59</a>:
        The evaluator will modify any byte in the public key of the certificate and
                   demonstrate that the certificate fails to validate. (The signature on the
                   certificate should not validate.) </li>
@@ -3296,15 +3102,15 @@ The evaluator will create a chain of at least four certificates:
 the node certificate to be tested, two Intermediate CAs, and the
               self-signed Root CA.
 <span class="testlist-"><ul>
-  <li class="test-" id="_t_72"><a href="#_t_72" class="definition">Test 72</a>:
+  <li class="test-" id="_t_72"><a href="#_t_72" class="definition">Test 60</a>:
        The evaluator will construct a certificate path, such that the certificate
   of the CA issuing the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s certificate does not contain the
   <i>basicConstraints</i> extension. The validation of the certificate path fails. </li>
-  <li class="test-" id="_t_73"><a href="#_t_73" class="definition">Test 73</a>:
+  <li class="test-" id="_t_73"><a href="#_t_73" class="definition">Test 61</a>:
        The evaluator will construct a certificate path, such that the certificate
   of the CA issuing the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s certificate has the CA flag in the
   <i>basicConstraints</i> extension not set. The validation of the certificate path fails. </li>
-  <li class="test-" id="_t_74"><a href="#_t_74" class="definition">Test 74</a>:
+  <li class="test-" id="_t_74"><a href="#_t_74" class="definition">Test 62</a>:
        The evaluator will construct a certificate path, such that the certificate
   of the CA issuing the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s certificate has the CA flag in the
   <i>basicConstraints</i> extension set to TRUE. The validation of the certificate path
@@ -3314,8 +3120,8 @@ the node certificate to be tested, two Intermediate CAs, and the
         <div class="comp" id="FIA_X509_EXT.2"><h4>FIA_X509_EXT.2 X.509 Certificate Authentication</h4>
           <div class="element"><div class="reqid" id="FIA_X509_EXT.2.1"><a href="#FIA_X509_EXT.2.1" class="abbr">FIA_X509_EXT.2.1</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall use X.509v3 certificates as defined by <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 5280 to support
               authentication for <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> and
-			  [<b>selection</b>: <span class="selectable-content" id="_s_121"><abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr></span>,  <span class="selectable-content" id="_s_122"><abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr></span>,  <span class="selectable-content" id="_s_123">[<b>assignment</b>: 
-     <span class="assignable-content">other protocols</span>]</span>,  <span class="selectable-content" id="_s_124">no other protocols</span> ]
+			  [<b>selection</b>: <span class="selectable-content" id="_s_120"><abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr></span>,  <span class="selectable-content" id="_s_121"><abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr></span>,  <span class="selectable-content" id="_s_122">[<b>assignment</b>: 
+     <span class="assignable-content">other protocols</span>]</span>,  <span class="selectable-content" id="_s_123">no other protocols</span> ]
 			  connections.
 			</div></div>
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FIA_X509_EXT.2">FIA_X509_EXT.2</a></div>
@@ -3332,29 +3138,15 @@ the node certificate to be tested, two Intermediate CAs, and the
 	      </p>
 	      </div></div></div></div>
       
-      <h3 id="fta" class="indexable" data-level="3">5.1.7 TOE Access (FTA)</h3>
-        <div class="comp" id="FTA_TAB.1"><h4>FTA_TAB.1 Default TOE access banners</h4><div class="statustag"><i><b>This is an optional component. However, applied modules or packages might redefine it as mandatory.</b></i></div>
-          <div class="element"><div class="reqid" id="FTA_TAB.1.1"><a href="#FTA_TAB.1.1" class="abbr">FTA_TAB.1.1</a></div><div class="reqdesc">
-            Before establishing a user session, the <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall display an advisory
-            warning message regarding unauthorized use of the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>.
-            </div></div>
-        <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FTA_TAB.1">FTA_TAB.1</a></div>
-	      
-	    <div class="eacategory">Tests</div><div class="ea">
-            The evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>, per instructions in the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> manual,
-            to display the advisory warning message "TEST TEST Warning Message TEST TEST".
-            The evaluator will then log out and confirm that the advisory message is
-            displayed before logging in can occur.
-              </div></div></div></div>
       
-      <h3 id="ftp" class="indexable" data-level="3">5.1.8 Trusted Path/Channels (FTP)</h3>
+      <h3 id="ftp" class="indexable" data-level="3">5.1.7 Trusted Path/Channels (FTP)</h3>
       	<div class="comp" id="FTP_ITC_EXT.1"><h4>FTP_ITC_EXT.1 Trusted channel communication</h4>
       	  <div class="element"><div class="reqid" id="FTP_ITC_EXT.1.1"><a href="#FTP_ITC_EXT.1.1" class="abbr">FTP_ITC_EXT.1.1</a></div><div class="reqdesc">
               The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall use
-      	      [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="tls"><abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as conforming to the <a href="https://www.niap-ccevs.org/pp/"><i>Package for Transport Layer Security</i></a></span></li><li style=""><span class="selectable-content" id="dtls"><abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as conforming to the <a href="https://www.niap-ccevs.org/pp/"><i>Package for Transport Layer Security</i></a></span></li><li style=""><span class="selectable-content" id="_s_127">IPsec as conforming to the <a href="https://www.niap-ccevs.org/pp/"><i>EP for IPsec VPN Clients</i></a></span></li><li style=""><span class="selectable-content" id="_s_128">SSH as conforming to the <a href="https://www.niap-ccevs.org/pp/"><i>EP for Secure Shell</i></a></span></li></ul>]
+      	      [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="tls"><abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as conforming to the <a href="https://www.niap-ccevs.org/pp/"><i>Package for Transport Layer Security</i></a></span></li><li style=""><span class="selectable-content" id="dtls"><abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as conforming to the <a href="https://www.niap-ccevs.org/pp/"><i>Package for Transport Layer Security</i></a></span></li><li style=""><span class="selectable-content" id="_s_126">IPsec as conforming to the <a href="https://www.niap-ccevs.org/pp/"><i>EP for IPsec VPN Clients</i></a></span></li><li style=""><span class="selectable-content" id="_s_127">SSH as conforming to the <a href="https://www.niap-ccevs.org/pp/"><i>EP for Secure Shell</i></a></span></li></ul>]
 		    to provide a trusted communication channel between itself and
 		    authorized <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr> entities supporting the following capabilities:
-		    [<b>selection</b>: <span class="selectable-content" id="_s_129">audit server</span>,  <span class="selectable-content" id="_s_130">authentication server</span>,  <span class="selectable-content" id="_s_131">management server</span>,  <span class="selectable-content" id="_s_132">[<b>assignment</b>: 
+		    [<b>selection</b>: <span class="selectable-content" id="_s_128">audit server</span>,  <span class="selectable-content" id="_s_129">authentication server</span>,  <span class="selectable-content" id="_s_130">management server</span>,  <span class="selectable-content" id="_s_131">[<b>assignment</b>: 
      <span class="assignable-content">other capabilities</span>]</span> ]
 		    that is logically distinct from other communication
 		    channels and provides assured identification of its end points and protection of the channel
@@ -3389,7 +3181,7 @@ the node certificate to be tested, two Intermediate CAs, and the
         <div class="comp" id="FTP_TRP.1"><h4>FTP_TRP.1 Trusted Path</h4>
             <div class="element"><div class="reqid" id="FTP_TRP.1.1"><a href="#FTP_TRP.1.1" class="abbr">FTP_TRP.1.1</a></div><div class="reqdesc">
 The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall provide a communication path between itself and
-[<b>selection</b>: <span class="selectable-content" id="_s_133">remote</span>,  <span class="selectable-content" id="_s_134">local</span> ]
+[<b>selection</b>: <span class="selectable-content" id="_s_132">remote</span>,  <span class="selectable-content" id="_s_133">local</span> ]
 users that is logically distinct from other communication paths and provides assured
 identification of its endpoints and protection of the communicated data from
 [modification, disclosure].
@@ -3413,7 +3205,7 @@ This requirement is tested with the  evaluation activities for  <a href="#FTP_TR
 		</p>
 	      </span></div></div></div>
             <div class="element"><div class="reqid" id="FTP_TRP.1.2"><a href="#FTP_TRP.1.2" class="abbr">FTP_TRP.1.2</a></div><div class="reqdesc"> The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall permit
-                [<b>selection</b>: <span class="selectable-content" id="_s_135">the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></span>,  <span class="selectable-content" id="_s_136">local users</span>,  <span class="selectable-content" id="_s_137">remote users</span> ]
+                [<b>selection</b>: <span class="selectable-content" id="_s_134">the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></span>,  <span class="selectable-content" id="_s_135">local users</span>,  <span class="selectable-content" id="_s_136">remote users</span> ]
                 to initiate communication via the trusted path.
               <div class="appnote"><span class="note-header">Application
       Note:
@@ -3455,25 +3247,25 @@ This requirement is tested with the  evaluation activities for  <a href="#FTP_TR
 The evaluator will also perform the following
                 tests:
                 <span class="testlist-"><ul>
-                  <li class="test-" id="_t_75"><a href="#_t_75" class="definition">Test 75</a>:
+                  <li class="test-" id="_t_75"><a href="#_t_75" class="definition">Test 63</a>:
       
                     The evaluator will ensure that communications using each remote administration method is
                     tested during the course of the evaluation, setting up the connections as described in the
                     operational guidance and ensuring that communication is successful.
                   </li>
-                  <li class="test-" id="_t_76"><a href="#_t_76" class="definition">Test 76</a>:
+                  <li class="test-" id="_t_76"><a href="#_t_76" class="definition">Test 64</a>:
       
                     For each method of remote administration supported, the evaluator will
                     follow the operational guidance to ensure that there is no available interface that can be
                     used by a remote user to establish a remote administrative sessions without invoking the
                     trusted path.
                   </li>
-                  <li class="test-" id="_t_77"><a href="#_t_77" class="definition">Test 77</a>:
+                  <li class="test-" id="_t_77"><a href="#_t_77" class="definition">Test 65</a>:
       
                     The evaluator will ensure, for each method of remote administration, the
                     channel data is not sent in plaintext.
                   </li>
-                  <li class="test-" id="_t_78"><a href="#_t_78" class="definition">Test 78</a>:
+                  <li class="test-" id="_t_78"><a href="#_t_78" class="definition">Test 66</a>:
       
                     The evaluator will ensure, for each method of remote administration,
                     modification of the channel data is detected by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>.
@@ -3481,7 +3273,7 @@ The evaluator will also perform the following
                 </ul></span>
 		</div></div></div></div>
       
-    <h3 id="obj-req-map" class="indexable" data-level="3">5.1.9 TOE Security Functional Requirements Rationale</h3><p>The following rationale provides justification for each security objective for the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, 
+    <h3 id="obj-req-map" class="indexable" data-level="3">5.1.8 TOE Security Functional Requirements Rationale</h3><p>The following rationale provides justification for each security objective for the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, 
     showing that the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> are suitable to meet and achieve the security objectives:<br/><table><caption><span class="ctr" data-myid="t-obj_map" data-counter-type="ct-Table" id="t-obj_map">Table <span class="counter">2</span></span>: <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> Rationale</caption><tr><th>Objective</th><th>Addressed by</th><th>Rationale</th></tr><tr class="major-row"><td rowspan="1"><a href="#O.ACCOUNTABILITY">O.ACCOUNTABILITY</a><br/></td><td><a href="#FAU_GEN.1">FAU_GEN.1</a>, <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a></td><td>QQQ </td></tr>
 <tr class="major-row"><td rowspan="1"><a href="#O.INTEGRITY">O.INTEGRITY</a><br/></td><td>
               <a href="#FPT_SBOP_EXT.1">FPT_SBOP_EXT.1</a>, <a href="#FPT_ASLR_EXT.1">FPT_ASLR_EXT.1</a>, <a href="#FPT_TUD_EXT.1">FPT_TUD_EXT.1</a>, <a href="#FPT_TUD_EXT.2">FPT_TUD_EXT.2</a>, <a href="#FCS_COP.1/HASH">FCS_COP.1/HASH</a>,
@@ -3990,12 +3782,252 @@ The evaluator will also perform the following
 	    </div></div></div>
       
     
-  <h1 id="impl-reqs" class="indexable" data-level="A">Appendix A -  Implementation-based Requirements</h1>
-                Implementation-based Requirements 
+  <h1 id="opt-app" class="indexable" data-level="A">Appendix A -  Optional Requirements</h1>
+    As indicated in the introduction to this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, the baseline requirements (those that must be
+	  performed by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>) are contained in the body of this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>.
+    This appendix contains three other types of optional requirements that may be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, but are not required in order
+	  to conform to this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>.
+    However, applied modules, packages and/or use cases may refine specific requirements as mandatory. <br/><br/>
+
+   The first type (<a href="#optional-reqs" class="dynref">A.1 Strictly Optional  Requirements</a>) are strictly optional requirements that are independent of the
+	  <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implementing any function.
+   If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of these requirements or supports a certain functionality, the vendor is encouraged to include the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr>
+	  in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, but are not required in order to conform to this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>.<br/><br/>
+
+  The second type (<a href="#objective-reqs" class="dynref">A.2 Objective  Requirements</a>) are objective requirements that describe security functionality not yet 
+	  widely available in commercial technology.
+   The requirements are not currently mandated in the body of this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, but will be included in
+	  the baseline requirements in future versions of this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>. Adoption by vendors is
+	  encouraged and expected as soon as possible.<br/><br/>
+
+  The third type (<a href="#feat-based-reqs" class="dynref">A.3 Implementation-dependent  Requirements</a>) 
 are dependent on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implementing a particular function.
 If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of these requirements, the vendor must either add the related <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> or disable the functionality for the
 	  evaluated configuration. 
-  <h1 id="satisfiedreqs" class="indexable" data-level="A">Appendix B -  Implicitly Satisfied Requirements</h1><p>This appendix lists requirements that should be considered satisfied by products
+  <h2 id="optional-reqs" class="indexable" data-level="2">A.1 Strictly Optional  Requirements
+    </h2><h3 id="fdp-optional" class="indexable" data-level="3">A.1.1 User Data Protection (FDP)</h3><div class="comp" id="FDP_IFC_EXT.1"><h4>FDP_IFC_EXT.1 Information flow control</h4>
+          <div class="element"><div class="reqid" id="FDP_IFC_EXT.1.1"><a href="#FDP_IFC_EXT.1.1" class="abbr">FDP_IFC_EXT.1.1</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall
+	    [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_69">provide an interface which allows a VPN client to protect all <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic using IPsec</span></li><li style=""><span class="selectable-content" id="_s_70">provide a VPN client which can protects all <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic using IPsec</span></li></ul>]
+	    with the exception of <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic required to establish the VPN connection
+	    and
+	    [<b>selection</b>: <span class="selectable-content" id="_s_71">signed updates directly from the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor</span>,  <span class="selectable-content" id="_s_72">no other traffic</span> ]
+	    .
+            <div class="appnote"><span class="note-header">Application
+      Note:
+    </span><span class="note">
+	      <p>
+		Typically, the traffic required to establish the VPN connection is referred to as "Control Plane" traffic,
+		whereas the <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic protected by the IPsec VPN is referred to as "Data Plane" traffic.
+		All Data Plane traffic must flow through the VPN connection and the VPN must not split-tunnel.
+	      </p>
+	      <p>
+		  If no native IPsec client is validated or third-party VPN clients may
+		  also implement the required Information Flow Control, the first
+		  option shall be selected. In these cases, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> provides an <abbr class="dyn-abbr"><a href="#abbr_API">API</a></abbr> to
+		  third-party VPN clients that allows them to configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s
+		  network stack to perform the required Information Flow Control.
+	      </p>
+	      <p>
+		  The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall select the second option if the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> implements a
+		  native VPN client (IPsec is selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a>). If the native
+		  VPN client is to be validated (IPsec is selected in <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>
+		  and
+		  the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> is validated against the <i><abbr class="dyn-abbr"><a href="#abbr_EP">EP</a></abbr> for IPsec
+		  Virtual Private Network (VPN) Clients</i>), the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall also
+		  include <a href="#FDP_IFC_EXT.1">FDP_IFC_EXT.1</a> from this package.  In the
+		  future, this requirement may also make a distinction between the
+		  current requirement (which requires that when the IPsec trusted
+		  channel is enabled, all traffic from the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> is routed through that
+		  channel) and having an option to force the establishment of an IPsec
+		  trusted channel to allow any communication by the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.
+	      </p>
+	    </span></div></div></div>
+        <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FDP_IFC_EXT.1">FDP_IFC_EXT.1</a></div>
+	      
+	      
+	    <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea">
+	      The evaluator will verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> section of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> describes the
+              routing of <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic when a VPN client is enabled. The
+              evaluator will ensure that the description indicates which traffic does not go
+              through the VPN and which traffic does, and that a configuration exists for each
+              in which only the traffic identified by the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author as necessary
+              for establishing the VPN connection (IKE traffic and perhaps <abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_DNS">DNS</a></abbr> traffic) is
+              not encapsulated by the VPN protocol (IPsec).
+	      </div><div class="eacategory">Tests</div><div class="ea">
+	      The evaluator will perform the following test:
+	      <span class="testlist-"><ul><li class="test-" id="_t_24"><a href="#_t_24" class="definition">Test 67</a>:
+      <ul>
+		<li><b>Step 1: </b>The evaluator will enable a network connection.
+		  The evaluator will sniff packets while performing running applications that use the network such as web browsers and email clients.
+		  The evaluator will verify that the sniffer captures the traffic generated by these actions, turn off the sniffing tool, and save the session data.
+		  </li>
+		  <li><b>Step 2: </b>
+                  The evaluator will configure an IPsec VPN client that supports the routing specified in this requirement.
+		  The evaluator will turn on the sniffing tool, establish the VPN connection, and perform the same actions with the device as performed in the first step.
+		  The evaluator will verify that the sniffing tool captures traffic generated by these actions, turn off the sniffing tool, and save the session data.
+                  </li>
+                  <li><b>Step 3: </b>
+		  The evaluator will examine the traffic from both step one and step two to verify that all non-excepted Data Plane traffic in Step 2 is encapsulated by IPsec.
+		  The evaluator will examine the Security Parameter Index (SPI) value present in the encapsulated packets captured in Step 2 from the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to the Gateway and shall verify this value is the same for all actions used to generate traffic through the VPN.
+		  Note that it is expected that the SPI value for packets from the Gateway to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is different than the SPI value for packets from the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to the Gateway.
+		  </li>
+		  <li><b>Step 4: </b>
+                  The evaluator will perform a ping on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> host on the local network and verify that no packets sent are captured with the sniffer.
+		  The evaluator will attempt to send packets to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> outside the VPN tunnel (i.e. not through the VPN gateway), including from the local network, and verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> discards them.
+		  </li>
+	      </ul></li></ul></span>
+	      </div></div></div></div><h3 id="fta-optional" class="indexable" data-level="3">A.1.2 TOE Access (FTA)</h3><div class="comp" id="FTA_TAB.1"><h4>FTA_TAB.1 Default TOE access banners</h4>
+          <div class="element"><div class="reqid" id="FTA_TAB.1.1"><a href="#FTA_TAB.1.1" class="abbr">FTA_TAB.1.1</a></div><div class="reqdesc">
+            Before establishing a user session, the <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall display an advisory
+            warning message regarding unauthorized use of the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>.
+            </div></div>
+        <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FTA_TAB.1">FTA_TAB.1</a></div>
+	      
+	    <div class="eacategory">Tests</div><div class="ea">
+            The evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>, per instructions in the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> manual,
+            to display the advisory warning message "TEST TEST Warning Message TEST TEST".
+            The evaluator will then log out and confirm that the advisory message is
+            displayed before logging in can occur.
+              </div></div></div></div><h2 id="objective-reqs" class="indexable" data-level="2">A.2 Objective  Requirements
+    </h2><h3 id="fpt-objective" class="indexable" data-level="3">A.2.1 Protection of the TSF (FPT)</h3><div class="comp" id="FPT_SRP_EXT.1"><h4>FPT_SRP_EXT.1 Software Restriction Policies</h4>
+          <div class="element"><div class="reqid" id="FPT_SRP_EXT.1.1"><a href="#FPT_SRP_EXT.1.1" class="abbr">FPT_SRP_EXT.1.1</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall restrict execution to only programs which match an administrator-specified
+              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_83">file path</span></li><li style=""><span class="selectable-content" id="_s_84">file digital signature</span></li><li style=""><span class="selectable-content" id="_s_85">version</span></li><li style=""><span class="selectable-content" id="_s_86">hash</span></li><li style=""><span class="selectable-content" id="_s_87">[<b>assignment</b>: 
+     <span class="assignable-content">other characteristics</span>]</span></li></ul>]
+	      .
+            <div class="appnote"><span class="note-header">Application
+      Note:
+    </span><span class="note">
+              The assignment permits implementations which provide a low
+              level of granularity such as a volume.  The restriction is only against direct execution of
+              executable programs.  It does not forbid interpreters which may take data as an input, even if
+              this data can subsequently result in arbitrary computation.
+            </span></div></div></div>
+        <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FPT_SRP_EXT.1">FPT_SRP_EXT.1</a></div>
+	      
+	    <div class="eacategory">Tests</div><div class="ea">
+	      For each selection specified in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, the evaluator will ensure that the corresponding tests result in a negative
+              outcome (i.e., the action results in the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> denying the evaluator permission to
+              complete the action):
+              <span class="testlist-"><ul>
+                <li class="test-" id="_t_36"><a href="#_t_36" class="definition">Test 68</a>:
+      
+                  The evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to only allow code execution from the core
+                  <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> directories. The evaluator will then attempt to execute code from a directory
+                  that is in the allowed list. The evaluator will ensure that the code they
+                  attempted to execute has been executed.
+                </li>
+                <li class="test-" id="_t_37"><a href="#_t_37" class="definition">Test 69</a>:
+      
+                  The evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to only allow code execution from the core
+                  <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> directories. The evaluator will then attempt to execute code from a directory
+                  that is not in the allowed list. The evaluator will ensure that the code they
+                  attempted to execute has not been executed.
+                </li>
+                <li class="test-" id="_t_38"><a href="#_t_38" class="definition">Test 70</a>:
+      
+                  The evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to only allow code that has been signed by
+                  the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor to execute. The evaluator will then attempt to execute code signed
+                  by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor. The evaluator will ensure that the code they
+                  attempted to execute has been executed.
+                </li>
+                <li class="test-" id="_t_39"><a href="#_t_39" class="definition">Test 71</a>:
+      
+                  The evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to only allow code that has been signed by
+                  the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor to execute. The evaluator will then attempt to execute code signed
+                  by another digital authority. The evaluator will ensure that the code they
+                  attempted to execute has not been executed.
+                </li>
+                <li class="test-" id="_t_40"><a href="#_t_40" class="definition">Test 72</a>:
+      
+                  The evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to allow execution of a specific
+                  application based on version. The evaluator will then attempt to execute the same
+                  version of the application. The evaluator will ensure that the code they attempted
+                  to execute has been executed.
+                </li>
+                <li class="test-" id="_t_41"><a href="#_t_41" class="definition">Test 73</a>:
+      
+                  The evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to allow execution of a specific
+                  application based on version. The evaluator will then attempt to execute an older
+                  version of the application. The evaluator will ensure that the code they attempted
+                  to execute has not been executed.
+                </li>
+                <li class="test-" id="_t_42"><a href="#_t_42" class="definition">Test 74</a>:
+      
+                  The evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to allow execution based on the hash of the application
+                  executable. The evaluator will then attempt to execute
+                  the application with the matching hash. The evaluator will
+                  ensure that the code they attempted to execute has been executed.
+                </li>
+                <li class="test-" id="_t_43"><a href="#_t_43" class="definition">Test 75</a>:
+      
+                  The evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to allow execution based on the hash of the application
+                  executable. The evaluator will modify the
+                  application in such a way that the application hash is changed. The evaluator
+                  will then attempt to execute the application with the matching hash. The evaluator will
+                  ensure that the code they attempted to execute has not been executed.
+                </li>
+              </ul></span>
+              
+              </div></div></div></div><div class="comp" id="FPT_W^X_EXT.1"><h4>FPT_W^X_EXT.1 Write XOR Execute Memory Pages</h4>
+          <div class="element"><div class="reqid" id="FPT_W^X_EXT.1.1"><a href="#FPT_W^X_EXT.1.1" class="abbr">FPT_W^X_EXT.1.1</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall prevent allocation of any memory region with both write and
+              execute permissions except for [<b>assignment</b>: 
+     <span class="assignable-content">list of exceptions</span>].
+            <div class="appnote"><span class="note-header">Application
+      Note:
+    </span><span class="note">Requesting a memory mapping with both write and execute
+              permissions subverts the platform protection provided by <abbr class="dyn-abbr"><a href="#abbr_DEP">DEP</a></abbr>.
+	      If the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> provides no exceptions (such as for just-in-time compilation),
+	      then "no exceptions" should be indicated in the assignment.
+	      Full realization of this requirement requires hardware support, but this is commonly available.
+            </span></div></div></div>
+        <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FPT_W^X_EXT.1">FPT_W^X_EXT.1</a></div>
+	      
+	      
+	    <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea">
+              The evaluator will inspect the vendor-provided developer documentation and
+	      verify that no memory-mapping can be made with
+              write and execute permissions except for the cases listed in the assignment.
+	      </div><div class="eacategory">Tests</div><div class="ea">
+	      The evaluator will also perform the following tests.
+	      <span class="testlist-"><ul>
+		<li class="test-" id="_t_51"><a href="#_t_51" class="definition">Test 76</a>:
+      
+                  The evaluator will acquire or construct a test program which attempts
+		  to allocate memory that is both writable and executable.
+		  The evaluator will run the program and confirm that it fails to
+		  allocate memory that is both writable and executable.
+		</li>
+		<li class="test-" id="_t_52"><a href="#_t_52" class="definition">Test 77</a>:
+      
+                  The evaluator will acquire or construct a test program which
+		  allocates memory that is executable and then
+		  subsequently requests additional write/modify permissions on that memory.
+		  The evaluator will run the program and confirm that at no time
+		  during the lifetime of the process is the memory both writable and executable.
+		</li>
+		<li class="test-" id="_t_53"><a href="#_t_53" class="definition">Test 78</a>:
+      
+                  The evaluator will acquire or construct a test program which
+		  allocates memory that is writable and then
+		  subsequently requests additional execute permissions on that memory.
+		  The evaluator will run the program and confirm that at no time
+		  during the lifetime of the process is the memory both writable and executable.
+		</li>
+	      </ul></span>
+              </div></div></div></div><h2 id="feat-based-reqs" class="indexable" data-level="2">A.3 Implementation-dependent  Requirements
+    </h2><p>This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> does not define any 
+            Implementation-dependent requirements.</p><h1 id="sel-based-reqs" class="indexable" data-level="A">Appendix B -  Selection-based  Requirements
+    </h1>
+	<p>As indicated in the introduction to this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>,
+        the baseline requirements
+        (those that must be performed by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> or its underlying platform)
+        are contained in the body of this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>.
+        There are additional requirements based on selections in the body of 
+        the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>:
+        if certain selections are made, then additional requirements below must be included.
+ 	</p>
+		 <p>This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> does not define any 
+            Selection-based requirements.</p><h1 id="satisfiedreqs" class="indexable" data-level="A">Appendix C -  Implicitly Satisfied Requirements</h1><p>This appendix lists requirements that should be considered satisfied by products
 	successfully evaluated against this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>. These requirements are not featured
 	explicitly as <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> and should not be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. They are not included as 
 	standalone <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> because it would increase the time, cost, and complexity of evaluation.
@@ -4082,7 +4114,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
 	</tr>
     </table>
 
-  <h1 id="entropyappendix" class="indexable" data-level="A">Appendix C -  Entropy Documentation and Assessment</h1>
+  <h1 id="entropyappendix" class="indexable" data-level="A">Appendix D -  Entropy Documentation and Assessment</h1>
     <p>
       This appendix describes the required supplementary information for the entropy source used by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>.
     </p>
@@ -4093,7 +4125,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
     description, entropy justification, operating conditions, and health testing. This documentation
     is not required to be part of the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>.
     </p>
-    <h2 class="indexable" data-level="2" id="entropydesign">C.1 Design Description</h2>
+    <h2 class="indexable" data-level="2" id="entropydesign">D.1 Design Description</h2>
       <p>
       Documentation shall include the design of the entropy source as a whole, including the
       interaction of all entropy source components. Any information that can be shared regarding the
@@ -4117,7 +4149,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
       <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr>. A description of any <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> state saving between power-off and power-on shall be included.
       </p>
     
-    <h2 class="indexable" data-level="2" id="entropyjustification">C.2 Entropy Justification</h2>
+    <h2 class="indexable" data-level="2" id="entropyjustification">D.2 Entropy Justification</h2>
       <p>
       There should be a technical
       argument for where the unpredictability in the source comes from and why there is confidence
@@ -4163,7 +4195,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
 	third-party application or from any state saving between restarts.
       </p>
     
-    <h2 class="indexable" data-level="2" id="entropyoperatingconditions">C.3 Operating Conditions</h2> The entropy rate may be
+    <h2 class="indexable" data-level="2" id="entropyoperatingconditions">D.3 Operating Conditions</h2> The entropy rate may be
       affected by conditions outside the control of the entropy source itself. For example, voltage,
       frequency, temperature, and elapsed time after power-on are just a few of the factors that may
       affect the operation of the entropy source. As such, documentation will also include the range
@@ -4172,14 +4204,14 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
       entropy source continues to operate under those conditions. Similarly, documentation shall
       describe the conditions under which the entropy source is known to malfunction or become
       inconsistent. Methods used to detect failure or degradation of the source shall be included. 
-    <h2 class="indexable" data-level="2" id="entropyhealthtesting">C.4 Health Testing</h2> More specifically, all entropy source
+    <h2 class="indexable" data-level="2" id="entropyhealthtesting">D.4 Health Testing</h2> More specifically, all entropy source
       health tests and their rationale will be documented. This includes a description of the health
       tests, the rate and conditions under which each health test is performed (e.g., at start,
       continuously, or on-demand), the expected results for each health test, and rationale
       indicating why each test is believed to be appropriate for detecting one or more failures in
       the entropy source.
     
-  <h1 id="acronyms" class="indexable" data-level="A">Appendix D -  Acronyms</h1><table><tr class="header"><th>Acronym</th><th>Meaning</th></tr><tr><td><span class="term" id="abbr_AES"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr></span></td><td><span id="long_abbr_AES">Advanced Encryption Standard</span></td></tr>
+  <h1 id="acronyms" class="indexable" data-level="A">Appendix E -  Acronyms</h1><table><tr class="header"><th>Acronym</th><th>Meaning</th></tr><tr><td><span class="term" id="abbr_AES"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr></span></td><td><span id="long_abbr_AES">Advanced Encryption Standard</span></td></tr>
 <tr><td><span class="term" id="abbr_API"><abbr class="dyn-abbr"><a href="#abbr_API">API</a></abbr></span></td><td><span id="long_abbr_API">Application Programming Interface</span></td></tr>
 <tr><td><span class="term" id="abbr_app"><abbr class="dyn-abbr"><a href="#abbr_app">app</a></abbr></span></td><td><span id="long_abbr_app">Application</span></td></tr>
 <tr><td><span class="term" id="abbr_ASLR"><abbr class="dyn-abbr"><a href="#abbr_ASLR">ASLR</a></abbr></span></td><td><span id="long_abbr_ASLR">Address Space Layout Randomization</span></td></tr>
@@ -4252,7 +4284,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
 <tr><td><span class="term" id="abbr_USB"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr></span></td><td><span id="long_abbr_USB">Universal Serial Bus</span></td></tr>
 <tr><td><span class="term" id="abbr_XCCDF"><abbr class="dyn-abbr"><a href="#abbr_XCCDF">XCCDF</a></abbr></span></td><td><span id="long_abbr_XCCDF">eXtensible Configuration Checklist Description Format</span></td></tr>
 <tr><td><span class="term" id="abbr_XOR"><abbr class="dyn-abbr"><a href="#abbr_XOR">XOR</a></abbr></span></td><td><span id="long_abbr_XOR">Exclusive Or</span></td></tr>
-</table><h1 id="appendix-bibliography" class="indexable" data-level="A">Appendix E -  Bibliography</h1><table><tr class="header"><th>Identifier</th><th>Title</th></tr><tr><td><span id="bibCC">[<abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>]</span></td><td>Common Criteria for Information Technology Security Evaluation - <ul>
+</table><h1 id="appendix-bibliography" class="indexable" data-level="A">Appendix F -  Bibliography</h1><table><tr class="header"><th>Identifier</th><th>Title</th></tr><tr><td><span id="bibCC">[<abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>]</span></td><td>Common Criteria for Information Technology Security Evaluation - <ul>
             <li><a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART1V3.1R5.pdf">Part
                 1: Introduction and General Model</a>, CCMB-2017-04-001, Version 3.1 Revision 5,
               April 2017.</li>
