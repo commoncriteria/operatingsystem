@@ -54,7 +54,7 @@ jobs:
 
     - id: tdate
       run: |
-        echo "##[set-output name=TDATE;]$(cd transforms && git log -1 --format=%cs; cd -)"
+        echo "##[set-output name=TDATE;]$(cd transforms && git log -1 --format=%cs; cd -)" #
 
     - name: Setup Java JDK
       uses: actions/setup-java@v1.4.3
@@ -112,11 +112,6 @@ jobs:
            echo "</ol></body></html>") > index.html
           cd -
  
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.0.0
-      with:
-        branch: gh-pages # The branch the action should deploy to.
-        folder: output # The folder the action should deploy.
 
     - name: Prepare environment
       id: coverage
@@ -138,9 +133,9 @@ jobs:
          echo ::set-output name=COLOR::$(if [ -s output/SanityChecksOutput.md ]; then echo red; else echo green; fi )
       id: status
 
-    - uses: actions/checkout@v1
-      with:
-        ref: ${{ steps.coverage.outputs.branch }}
+    # - uses: actions/checkout@v1
+    #   with:
+    #     ref: ${{ steps.coverage.outputs.branch }}
 
     # # Create the directory where badges will be saved, if needed
     # - name: Create destination directory
@@ -214,24 +209,12 @@ jobs:
         color: ${{ steps.coverage.outputs.valcolor }}
         path: output/validation.svg
 
-    - name: Commit badges
-      continue-on-error: true
-      env:
-        BADGE: ${{ steps.coverage.outputs.path }}
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add output #warnings.svg validation.svg build-branch-badge.svg spell-badge.svg transforms.svg tds.svg
-        git commit -m "Update files"
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@4.0.0
+      with:
+        branch: gh-pages # The branch the action should deploy to.
+        folder: output # The folder the action should deploy.
         
-        # - name: Upload badge as artifact
-    # - name: Upload badge as artifact
-    #   uses: actions/upload-artifact@v2
-    #   with:
-    #     name: badge
-    #     path: ${{ steps.coverage.outputs.path }}
-    #     if-no-files-found: error
-
     # - name: Commit badges
     #   continue-on-error: true
     #   env:
@@ -239,12 +222,30 @@ jobs:
     #   run: |
     #     git config --local user.email "action@github.com"
     #     git config --local user.name "GitHub Action"
-    #     git add "${{ steps.extract_branch.outputs.branch }}"
-    #     git commit -m "Add/Update badges"
+    #     git add output #warnings.svg validation.svg build-branch-badge.svg spell-badge.svg transforms.svg tds.svg
+    #     git commit -m "Update files"
+        
+    #     # - name: Upload badge as artifact
+    # # - name: Upload badge as artifact
+    # #   uses: actions/upload-artifact@v2
+    # #   with:
+    # #     name: badge
+    # #     path: ${{ steps.coverage.outputs.path }}
+    # #     if-no-files-found: error
 
-    - name: Push badge commit
-      uses: ad-m/github-push-action@master
-      if: ${{ success() }}
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ steps.coverage.outputs.branch }}
+    # # - name: Commit badges
+    # #   continue-on-error: true
+    # #   env:
+    # #     BADGE: ${{ steps.coverage.outputs.path }}
+    # #   run: |
+    # #     git config --local user.email "action@github.com"
+    # #     git config --local user.name "GitHub Action"
+    # #     git add "${{ steps.extract_branch.outputs.branch }}"
+    # #     git commit -m "Add/Update badges"
+
+    # - name: Push badge commit
+    #   uses: ad-m/github-push-action@master
+    #   if: ${{ success() }}
+    #   with:
+    #     github_token: ${{ secrets.GITHUB_TOKEN }}
+    #     branch: ${{ steps.coverage.outputs.branch }}
