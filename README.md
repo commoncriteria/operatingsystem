@@ -9,9 +9,6 @@ Protection Profile for General Purpose Operating System
 [![SanityChecks](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/warnings.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/SanityChecksOutput.md)
 [![SpellCheck](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/spell-badge.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/SpellCheckReport.txt)
 [![TDs](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/tds.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/TDValidationReport.txt)
-
-
-
 [![QuickBuild](https://github.com/commoncriteria/operatingsystem/actions/workflows/quick_build.yml/badge.svg)](https://commoncriteria.github.io/operatingsystem)
 
 ![Transforms Version](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/transforms.svg)
