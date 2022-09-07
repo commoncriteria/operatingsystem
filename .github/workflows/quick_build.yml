@@ -90,8 +90,9 @@ jobs:
         echo "##[set-output name=TDWARNS;]$( wc -l output/TDValidationReport.txt | { read first rest ; echo $first;} )"
         if ls input/tds/*.xml; then
            PP_XML=output/effective.xml PP_RELEASE_HTML=output/AppliedTDs.html make release
-           java -jar ExecuteDaisy-master/*.jar output/AppliedTDs.html output/*-release.html --file=AppliedTDsDiff.html
+           java -jar ExecuteDaisy-master/*.jar output/AppliedTDs.html output/*-release.html --file=output/AppliedTDsDiff.html
         fi
+
     - name: Make a directory listing
       run: >
           cd output;
