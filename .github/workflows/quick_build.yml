@@ -86,6 +86,8 @@ jobs:
            ls input/tds/*.xml ; then
           echo "Master branch should not have TDs" >> output/TDValidationReport.txt
         fi
+        echo "##[set-output name=TDCOLOR;]$(if [ -s output/TDValidationReport.txt ]; then echo orange; else echo green; fi)"
+        echo "##[set-output name=TDWARNS;]$(wc -l output/TDValidationReport.txt)"
         PP_XML=output/effective.xml PP_RELEASE_HTML=output/AppliedTDs.html make release
     
     - name: Make a directory listing
@@ -136,11 +138,7 @@ jobs:
         BADGE_PATH: ${{ steps.coverage.outputs.path }}
       run: mkdir -p "${BADGE_PATH%/*}"
 
-    - name: debug
-      run: |
-        pwd
-        ls
-      
+     
      # Use the output from the `coverage` step
     - name: Generate the spelling badge SVG image
       uses: emibcn/badge-action@v1
@@ -182,7 +180,16 @@ jobs:
         status: ${{ steps.tdate.outputs.TDATE }}
         color: gray
         path: transforms.svg
-        
+
+    - name: TD Badge
+      uses: emibcn/badge-action@v1
+      with:
+        label: 'TDs'
+        status: ${{steps.tds.outputs.TDWARNS}}
+        color:  ${{steps.tds.outputs.TDCOLOR}}
+        path: tds.svg
+
+
         
      # Use the output from the `coverage` step
     - name: Generate the validation badge SVG image
