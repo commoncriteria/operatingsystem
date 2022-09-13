@@ -67,6 +67,7 @@ jobs:
       uses: actions/setup-java@v1.4.3
       with:
         java-version: 1.8
+        
     - name: Get DaisyDiff
       run: |
         wget -O- https://github.com/AndroidKitKat/ExecuteDaisy/archive/master.zip | jar -x
@@ -82,7 +83,7 @@ jobs:
     #   run: DAISY_DIR=ExecuteDaisy-master make diff
 
     - name: diff
-      run: make diff || true; 
+      run: TMP=tmp make diff || true; 
     # Little diff depends on having a git history. 
     # The current checkout has  depth=1 and has no history
     #- name: little diff
