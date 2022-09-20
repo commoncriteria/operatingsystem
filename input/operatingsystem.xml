@@ -3238,27 +3238,10 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
 		    </test>
 		  </testlist>
 		</h:div>
-		<h:div>
-		  <depends on="s-x509-auth"/>
-		  The evaluator will generate an X.509v3 certificate for a user with the Client Authentication Extended Key Usage field set.
-		  The evaluator will  provision the OS for authentication with the X.509v3 certificate.
-		  The evaluator will ensure that the certificates are validated by the OS as per
-                  <xref to="fel-cert-val"/> and then conduct the following tests:
-		  <testlist>
-                    <test>
-		      The evaluator will attempt to authenticate to the OS using the X.509v3 certificate.
-		      The evaluator  will ensure that the authentication attempt is successful.
-                    </test>
-                    <test>
-		      The evaluator will generate a second certificate identical to
-		      the first except for the public key and any values derived
-		      from the public key.
-		      The evaluator will attempt to authenticate to the OS with this certificate.
-		      The evaluator will ensure that the authentication attempt is unsuccessful.
-                    </test>
-		  </testlist>
-		</h:div>
-		<h:p> Authentication mechanisms related to <xref to="s-uau-ssh"/> are tested in the <xref to="pkg-ssh"/>.
+
+		<h:p>
+		  Authentication mechanisms related to <xref to="s-x509-auth"/> are tested under <xref to="fc-cert-val"/>
+		  and <xref to="s-uau-ssh"/> are tested in the <xref to="pkg-ssh"/>.
 		</h:p>
               </Tests>
 	    </aactivity>
@@ -3276,20 +3259,19 @@ The <h:b>OS</h:b> shall authenticate any user's claimed identity according to th
 
               <aactivity>
 		<TSS>
-		<h:p>
 		  The evaluator will ensure that the TSS describes
-		   the rules as to how each authentication mechanism specified in <xref to="fel-mult-auth"/> is implemented and used.
-		   Example rules are how the authentication mechanism authenticates the user
-		   (i.e. how does the TSF verify that the correct password or authentication
-		   factor is used),
-		   the result of a successful authentication (i.e.
-		   is the user input used to derive or unlock a key) and which
-		   authentication mechanism can be used at which authentication factor
-		   interfaces (i.e. if there are times, for example, after a reboot,
-		   that only specific authentication mechanisms can be used).
-		   Rules regarding how the authentication factors interact in terms of
-		   unsuccessful authentication are covered in FIA_AFL.1.
-		</h:p>
+		  the rules as to how each authentication mechanism specified in
+		  <xref to="fel-mult-auth"/> is implemented and used.
+		  Example rules are how the authentication mechanism authenticates the user
+		  (i.e. how does the TSF verify that the correct password or authentication
+		  factor is used),
+		  the result of a successful authentication
+		  (i.e. is the user input used to derive or unlock a key) and which
+		  authentication mechanism can be used at which authentication factor
+		  interfaces (i.e. if there are times, for example, after a reboot,
+		  that only specific authentication mechanisms can be used).
+		  Rules regarding how the authentication factors interact in terms of
+		  unsuccessful authentication are covered in FIA_AFL.1.
 		</TSS>
 	      <Guidance>
 	      <h:p>
@@ -3322,7 +3304,7 @@ The <h:b>OS</h:b> shall authenticate any user's claimed identity according to th
 	  <fam-behavior>This family of requirements defines how the X.509 performs validation and what they should be used for.</fam-behavior>
 	</ext-comp-def>
 
-	<f-component cc-id="fia_x509_ext.1" name="X.509 Certificate Validation">
+	<f-component cc-id="fia_x509_ext.1" id="fc-cert-val" name="X.509 Certificate Validation">
           <f-element id="fel-cert-val">
             <title>
 	      The OS shall implement functionality to validate certificates in accordance with the following rules:
@@ -3396,8 +3378,8 @@ The <h:b>OS</h:b> shall authenticate any user's claimed identity according to th
 	      </TSS>
 	      <Tests> 
 The tests described must be performed in conjunction with the other certificate services evaluation activities, including the functions in FIA_X509_EXT.2.1.
-The tests for the extendedKeyUsage rules are performed in conjunction with the uses that require those rules.
 The evaluator will create a chain of at least four certificates: the node certificate to be tested, two Intermediate CAs, and the self-signed Root CA.
+
 	<testlist>
 <test> The evaluator will demonstrate that validating a certificate without a valid certification path results in the function failing, for each of the following reasons, in turn:
 by establishing a certificate path in which one of the issuing certificates is not a CA certificate,
@@ -3437,7 +3419,29 @@ The evaluator will confirm the TOE treats the certificate as invalid.
     <depends on="s-revoc-exceptions"/>
     For each exceptional use case for revocation checking described in the ST, the evaluator shall attempt to establish the conditions of the use case, designate the certificate as invalid and perform the function relying on the certificate. The evaluator shall observe that the alternate revocation checking mechanism successfully prevents performance of the function.
 </test>
-	</testlist>
+</testlist>
+
+<h:div>
+  The evaluator will generate an X.509v3 certificate for a user with the Client Authentication Extended Key Usage field set.
+  The evaluator will provision the OS for authentication with the X.509v3 certificate.
+  The evaluator will ensure that the certificates are validated by the OS as per
+  <xref to="fel-cert-val"/> and then conduct the following tests:
+  <testlist>
+    <test>
+      The evaluator will attempt to authenticate to the OS using the X.509v3 certificate.
+      The evaluator will ensure that the authentication attempt is successful.
+    </test>
+    <test>
+      The evaluator will generate a second certificate identical to
+      the first except for the public key and any values derived
+      from the public key.
+      The evaluator will attempt to authenticate to the OS with this certificate.
+      The evaluator will ensure that the authentication attempt is unsuccessful.
+    </test>
+  </testlist>
+</h:div>
+
+
 </Tests>
 
 			  
