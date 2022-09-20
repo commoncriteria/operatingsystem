@@ -3130,20 +3130,19 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall authent
 	      
 	      
           <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea">
-		<p>
 		  The evaluator will ensure that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes
-		   the rules as to how each authentication mechanism specified in <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a> is implemented and used.
-		   Example rules are how the authentication mechanism authenticates the user
-		   (i.e. how does the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> verify that the correct password or authentication
-		   factor is used),
-		   the result of a successful authentication (i.e.
-		   is the user input used to derive or unlock a key) and which
-		   authentication mechanism can be used at which authentication factor
-		   interfaces (i.e. if there are times, for example, after a reboot,
-		   that only specific authentication mechanisms can be used).
-		   Rules regarding how the authentication factors interact in terms of
-		   unsuccessful authentication are covered in <a href="#FIA_AFL.1">FIA_AFL.1</a>.
-		</p>
+		  the rules as to how each authentication mechanism specified in
+		  <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a> is implemented and used.
+		  Example rules are how the authentication mechanism authenticates the user
+		  (i.e. how does the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> verify that the correct password or authentication
+		  factor is used),
+		  the result of a successful authentication
+		  (i.e. is the user input used to derive or unlock a key) and which
+		  authentication mechanism can be used at which authentication factor
+		  interfaces (i.e. if there are times, for example, after a reboot,
+		  that only specific authentication mechanisms can be used).
+		  Rules regarding how the authentication factors interact in terms of
+		  unsuccessful authentication are covered in <a href="#FIA_AFL.1">FIA_AFL.1</a>.
 		</div><div class="eacategory">Guidance</div><div class="ea">
 	      <p>
 		The evaluator will verify that
@@ -3224,31 +3223,10 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall authent
 		    </li>
 		  </ul></span>
 		</div></div></div>
-		<div class="dependent">The following content should be included if:<ul><li><a href="#s-x509-auth">authentication based on X.509 certificates</a>
-             is selected from 
-             <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a></li></ul><div class="dependent-content"><div>
-		  
-		  The evaluator will generate an X.509v3 certificate for a user with the Client Authentication Extended Key Usage field set.
-		  The evaluator will  provision the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> for authentication with the X.509v3 certificate.
-		  The evaluator will ensure that the certificates are validated by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> as per
-                  <a href="#FIA_X509_EXT.1.1">FIA_X509_EXT.1.1</a> and then conduct the following tests:
-		  <span class="testlist-"><ul>
-                    <li class="test-"><span id="_t_77">Test 64<a href="#_t_77" class="definition"></a></span>:
-      
-		      The evaluator will attempt to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the X.509v3 certificate.
-		      The evaluator  will ensure that the authentication attempt is successful.
-                    </li>
-                    <li class="test-"><span id="_t_78">Test 65<a href="#_t_78" class="definition"></a></span>:
-      
-		      The evaluator will generate a second certificate identical to
-		      the first except for the public key and any values derived
-		      from the public key.
-		      The evaluator will attempt to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> with this certificate.
-		      The evaluator will ensure that the authentication attempt is unsuccessful.
-                    </li>
-		  </ul></span>
-		</div></div></div>
-		<p> Authentication mechanisms related to <a href="#s-uau-ssh">SSH public key-based authentication</a> are tested in the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
+
+		<p>
+		  Authentication mechanisms related to <a href="#s-x509-auth">authentication based on X.509 certificates</a> are tested under <a href="#FIA_X509_EXT.1">FIA_X509_EXT.1</a>
+		  and <a href="#s-uau-ssh">SSH public key-based authentication</a> are tested in the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
         version 
         1.0</a>.
 		</p>
@@ -3353,10 +3331,10 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall only treat a c
 		</p>
 	      </div><div class="eacategory">Tests</div><div class="ea"> 
 The tests described must be performed in conjunction with the other certificate services evaluation activities, including the functions in <a href="#FIA_X509_EXT.2.1">FIA_X509_EXT.2.1</a>.
-The tests for the extendedKeyUsage rules are performed in conjunction with the uses that require those rules.
 The evaluator will create a chain of at least four certificates: the node certificate to be tested, two Intermediate CAs, and the self-signed Root CA.
+
 	<span class="testlist-"><ul>
-<li class="test-"><span id="_t_79">Test 66<a href="#_t_79" class="definition"></a></span>:
+<li class="test-"><span id="_t_77">Test 64<a href="#_t_77" class="definition"></a></span>:
        The evaluator will demonstrate that validating a certificate without a valid certification path results in the function failing, for each of the following reasons, in turn:
 by establishing a certificate path in which one of the issuing certificates is not a CA certificate,
 by omitting the basicConstraints field in one of the issuing certificates,
@@ -3366,28 +3344,28 @@ by setting the path length field of a valid CA field to a value strictly less th
 The evaluator will then establish a valid certificate path consisting of valid CA certificates, and demonstrate that the function succeeds.
 The evaluator will then remove trust in one of the CA certificates, and show that the function fails.
 </li>
-<li class="test-"><span id="_t_80">Test 67<a href="#_t_80" class="definition"></a></span>:
+<li class="test-"><span id="_t_78">Test 65<a href="#_t_78" class="definition"></a></span>:
        The evaluator will demonstrate that validating an expired certificate results in the function failing.</li>
-<li class="test-"><span id="_t_81">Test 68<a href="#_t_81" class="definition"></a></span>:
+<li class="test-"><span id="_t_79">Test 66<a href="#_t_79" class="definition"></a></span>:
        The evaluator will test that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can properly handle revoked certificates - conditional on whether <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling, or <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> multi-stapling is selected; if multiple methods are selected, then a test will be performed for each method.
 The evaluator will test revocation of the node certificate and revocation of the intermediate CA certificate (i.e. the intermediate CA certificate should be revoked by the root CA).
 If <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling per <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 6066 is the only supported revocation method, testing revocation of the intermediate CA certificate is omitted.
 The evaluator will ensure that a valid certificate is used, and that the validation function succeeds.
 The evaluator then attempts the test with a certificate that has been revoked (for each method chosen in the selection) to ensure when the certificate is no longer valid that the validation function fails.</li>
-<li class="test-"><span id="_t_82">Test 69<a href="#_t_82" class="definition"></a></span>:
+<li class="test-"><span id="_t_80">Test 67<a href="#_t_80" class="definition"></a></span>:
        If any <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> option is selected, the evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> server or use a man-in-the-middle tool to present a certificate that does not have the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> signing purpose and verify that validation of the <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> response fails.
 If <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> is selected, the evaluator will configure the CA to sign a <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> with a certificate that does not have the cRLsign key usage bit set and verify that validation of the <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> fails.</li>
-<li class="test-"><span id="_t_83">Test 70<a href="#_t_83" class="definition"></a></span>:
+<li class="test-"><span id="_t_81">Test 68<a href="#_t_81" class="definition"></a></span>:
        The evaluator will modify any byte in the first eight bytes of the certificate and demonstrate that the certificate fails to validate.
 (The certificate will fail to parse correctly.)</li>
-<li class="test-"><span id="_t_84">Test 71<a href="#_t_84" class="definition"></a></span>:
+<li class="test-"><span id="_t_82">Test 69<a href="#_t_82" class="definition"></a></span>:
        The evaluator will modify any byte in the last byte of the certificate and demonstrate that the certificate fails to validate.
 (The signature on the certificate will not validate.)</li>
-<li class="test-"><span id="_t_85">Test 72<a href="#_t_85" class="definition"></a></span>:
+<li class="test-"><span id="_t_83">Test 70<a href="#_t_83" class="definition"></a></span>:
        The evaluator will modify any byte in the public key of the certificate and demonstrate that the certificate fails to validate.
 (The signature of the certificate will not validate.)</li>
 
-    <li class="test-"><span id="t-ecdsa-valid">Test 73<a href="#t-ecdsa-valid" class="definition"></a></span>[conditional, to be performed if<ul><li><a href="#s-ec-certs">ECDSA schemes</a>
+    <li class="test-"><span id="t-ecdsa-valid">Test 71<a href="#t-ecdsa-valid" class="definition"></a></span>[conditional, to be performed if<ul><li><a href="#s-ec-certs">ECDSA schemes</a>
              is selected from 
              <a href="#FCS_COP.1.1/SIGN">FCS_COP.1.1/SIGN</a></li></ul>]:
       
@@ -3395,22 +3373,46 @@ If <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> is selected, the ev
       The evaluator will establish a valid, trusted certificate chain consisting of an EC leaf certificate, an EC Intermediate CA certificate not designated as a trust anchor, and an EC certificate designated as a trusted anchor, where the elliptic curve parameters are specified as a named curve.
     The evaluator will confirm that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> validates the certificate chain.
     </li>
-    <li class="test-"><span id="_t_87">Test 74<a href="#_t_87" class="definition"></a></span>[conditional, to be performed if<ul><li><a href="#s-ec-certs">ECDSA schemes</a>
+    <li class="test-"><span id="_t_85">Test 72<a href="#_t_85" class="definition"></a></span>[conditional, to be performed if<ul><li><a href="#s-ec-certs">ECDSA schemes</a>
              is selected from 
              <a href="#FCS_COP.1.1/SIGN">FCS_COP.1.1/SIGN</a></li></ul>]:
       
       
-      The evaluator will replace the intermediate certificate in the certificate chain for <a href="#t-ecdsa-valid" class="dynref">Test 73</a> with a modified certificate, where the modified intermediate CA has a public key information field where the EC parameters uses an explicit format version of the Elliptic Curve parameters in the public key information field of the intermediate CA certificate from <a href="#t-ecdsa-valid" class="dynref">Test 73</a>, and the modified Intermediate CA certificate is signed by the trusted EC root CA, but having no other changes.
+      The evaluator will replace the intermediate certificate in the certificate chain for <a href="#t-ecdsa-valid" class="dynref">Test 71</a> with a modified certificate, where the modified intermediate CA has a public key information field where the EC parameters uses an explicit format version of the Elliptic Curve parameters in the public key information field of the intermediate CA certificate from <a href="#t-ecdsa-valid" class="dynref">Test 71</a>, and the modified Intermediate CA certificate is signed by the trusted EC root CA, but having no other changes.
 The evaluator will confirm the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> treats the certificate as invalid.
     </li>
-    <li class="test-"><span id="_t_88">Test 75<a href="#_t_88" class="definition"></a></span>[conditional, to be performed if<ul><li><a href="#s-revoc-exceptions">exceptional use cases</a>
+    <li class="test-"><span id="_t_86">Test 73<a href="#_t_86" class="definition"></a></span>[conditional, to be performed if<ul><li><a href="#s-revoc-exceptions">exceptional use cases</a>
              is selected from 
              <a href="#FIA_X509_EXT.1.1">FIA_X509_EXT.1.1</a></li></ul>]:
       
     
     For each exceptional use case for revocation checking described in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, the evaluator shall attempt to establish the conditions of the use case, designate the certificate as invalid and perform the function relying on the certificate. The evaluator shall observe that the alternate revocation checking mechanism successfully prevents performance of the function.
 </li>
-	</ul></span>
+</ul></span>
+
+<div>
+  The evaluator will generate an X.509v3 certificate for a user with the Client Authentication Extended Key Usage field set.
+  The evaluator will provision the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> for authentication with the X.509v3 certificate.
+  The evaluator will ensure that the certificates are validated by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> as per
+  <a href="#FIA_X509_EXT.1.1">FIA_X509_EXT.1.1</a> and then conduct the following tests:
+  <span class="testlist-"><ul>
+    <li class="test-"><span id="_t_87">Test 74<a href="#_t_87" class="definition"></a></span>:
+      
+      The evaluator will attempt to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the X.509v3 certificate.
+      The evaluator will ensure that the authentication attempt is successful.
+    </li>
+    <li class="test-"><span id="_t_88">Test 75<a href="#_t_88" class="definition"></a></span>:
+      
+      The evaluator will generate a second certificate identical to
+      the first except for the public key and any values derived
+      from the public key.
+      The evaluator will attempt to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> with this certificate.
+      The evaluator will ensure that the authentication attempt is unsuccessful.
+    </li>
+  </ul></span>
+</div>
+
+
 
 The tests described must be performed in conjunction with the other
 certificate services evaluation activities, including the functions in
