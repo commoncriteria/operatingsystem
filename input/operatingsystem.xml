@@ -3402,22 +3402,18 @@ If CRL is selected, the evaluator will configure the CA to sign a CRL with a cer
 (The signature on the certificate will not validate.)</test>
 <test> The evaluator will modify any byte in the public key of the certificate and demonstrate that the certificate fails to validate.
 (The signature of the certificate will not validate.)</test>
-
-    <test id="t-ecdsa-valid">
+<test>
       <depends on="s-ec-certs"/>
       <depends on="sel-rfc6187"><external-doc ref="pkg-ssh"/></depends>
-
-
-      The evaluator will establish a valid, trusted certificate chain consisting of an EC leaf certificate, an EC Intermediate CA certificate not designated as a trust anchor, and an EC certificate designated as a trusted anchor, where the elliptic curve parameters are specified as a named curve.
+      <testlist><test id="t-ecdsa-valid">
+	The evaluator will establish a valid, trusted certificate chain consisting of an EC leaf certificate, an EC Intermediate CA certificate not designated as a trust anchor, and an EC certificate designated as a trusted anchor, where the elliptic curve parameters are specified as a named curve.
     The evaluator will confirm that the TOE validates the certificate chain.
-    </test>
-    <test>
-      <depends on="s-ec-certs"/>
-      <depends on="sel-rfc6187"><external-doc ref="pkg-ssh"/></depends>
-      
+  </test>
+  <test>
       The evaluator will replace the intermediate certificate in the certificate chain for <xref to="t-ecdsa-valid"/> with a modified certificate, where the modified intermediate CA has a public key information field where the EC parameters uses an explicit format version of the Elliptic Curve parameters in the public key information field of the intermediate CA certificate from <xref to="t-ecdsa-valid"/>, and the modified Intermediate CA certificate is signed by the trusted EC root CA, but having no other changes.
 The evaluator will confirm the TOE treats the certificate as invalid.
-    </test>
+      </test></testlist>
+</test>
     <test>
     <depends on="s-revoc-exceptions"/>
     For each exceptional use case for revocation checking described in the ST, the evaluator shall attempt to establish the conditions of the use case, designate the certificate as invalid and perform the function relying on the certificate. The evaluator shall observe that the alternate revocation checking mechanism successfully prevents performance of the function.
