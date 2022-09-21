@@ -3626,8 +3626,7 @@ If <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> is selected, the ev
 <li class="test-"><span id="_t_83">Test 83<a href="#_t_83" class="definition"></a></span>:
        The evaluator will modify any byte in the public key of the certificate and demonstrate that the certificate fails to validate.
 (The signature of the certificate will not validate.)</li>
-
-    <li class="test-"><span id="t-ecdsa-valid">Test 84<a href="#t-ecdsa-valid" class="definition"></a></span>[conditional, to be performed if<ul><li><a href="#s-ec-certs">ECDSA schemes</a>
+<li class="test-"><span id="_t_84">Test 84<a href="#_t_84" class="definition"></a></span>[conditional, to be performed if<ul><li><a href="#s-ec-certs">ECDSA schemes</a>
              is selected from 
              <a href="#FCS_COP.1.1/SIGN">FCS_COP.1.1/SIGN</a></li><li><span class="no-link-sel">6187</span>
              is selected from 
@@ -3637,26 +3636,18 @@ If <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> is selected, the ev
       
       
       
-
-
-      The evaluator will establish a valid, trusted certificate chain consisting of an EC leaf certificate, an EC Intermediate CA certificate not designated as a trust anchor, and an EC certificate designated as a trusted anchor, where the elliptic curve parameters are specified as a named curve.
+      <span class="testlist-"><ul><li class="test-"><span id="t-ecdsa-valid">Test 84.1<a href="#t-ecdsa-valid" class="definition"></a></span>:
+      
+	The evaluator will establish a valid, trusted certificate chain consisting of an EC leaf certificate, an EC Intermediate CA certificate not designated as a trust anchor, and an EC certificate designated as a trusted anchor, where the elliptic curve parameters are specified as a named curve.
     The evaluator will confirm that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> validates the certificate chain.
-    </li>
-    <li class="test-"><span id="_t_85">Test 85<a href="#_t_85" class="definition"></a></span>[conditional, to be performed if<ul><li><a href="#s-ec-certs">ECDSA schemes</a>
-             is selected from 
-             <a href="#FCS_COP.1.1/SIGN">FCS_COP.1.1/SIGN</a></li><li><span class="no-link-sel">6187</span>
-             is selected from 
-             FCS_SSH_EXT.1.1 from  <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
-        version 
-        1.0</a></li></ul>]:
+  </li>
+  <li class="test-"><span id="_t_86">Test 84.2<a href="#_t_86" class="definition"></a></span>:
       
-      
-      
-      
-      The evaluator will replace the intermediate certificate in the certificate chain for <a href="#t-ecdsa-valid" class="dynref">Test 84</a> with a modified certificate, where the modified intermediate CA has a public key information field where the EC parameters uses an explicit format version of the Elliptic Curve parameters in the public key information field of the intermediate CA certificate from <a href="#t-ecdsa-valid" class="dynref">Test 84</a>, and the modified Intermediate CA certificate is signed by the trusted EC root CA, but having no other changes.
+      The evaluator will replace the intermediate certificate in the certificate chain for <a href="#t-ecdsa-valid" class="dynref">Test 84.1</a> with a modified certificate, where the modified intermediate CA has a public key information field where the EC parameters uses an explicit format version of the Elliptic Curve parameters in the public key information field of the intermediate CA certificate from <a href="#t-ecdsa-valid" class="dynref">Test 84.1</a>, and the modified Intermediate CA certificate is signed by the trusted EC root CA, but having no other changes.
 The evaluator will confirm the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> treats the certificate as invalid.
-    </li>
-    <li class="test-"><span id="_t_86">Test 86<a href="#_t_86" class="definition"></a></span>[conditional, to be performed if<ul><li><a href="#s-revoc-exceptions">exceptional use cases</a>
+      </li></ul></span>
+</li>
+    <li class="test-"><span id="_t_87">Test 85<a href="#_t_87" class="definition"></a></span>[conditional, to be performed if<ul><li><a href="#s-revoc-exceptions">exceptional use cases</a>
              is selected from 
              <a href="#FIA_X509_EXT.1.1">FIA_X509_EXT.1.1</a></li></ul>]:
       
@@ -3671,12 +3662,12 @@ The evaluator will confirm the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a
   The evaluator will ensure that the certificates are validated by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> as per
   <a href="#FIA_X509_EXT.1.1">FIA_X509_EXT.1.1</a> and then conduct the following tests:
   <span class="testlist-"><ul>
-    <li class="test-"><span id="_t_87">Test 87<a href="#_t_87" class="definition"></a></span>:
+    <li class="test-"><span id="_t_88">Test 86<a href="#_t_88" class="definition"></a></span>:
       
       The evaluator will attempt to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the X.509v3 certificate.
       The evaluator will ensure that the authentication attempt is successful.
     </li>
-    <li class="test-"><span id="_t_88">Test 88<a href="#_t_88" class="definition"></a></span>:
+    <li class="test-"><span id="_t_89">Test 87<a href="#_t_89" class="definition"></a></span>:
       
       The evaluator will generate a second certificate identical to
       the first except for the public key and any values derived
@@ -3696,15 +3687,15 @@ The evaluator will create a chain of at least four certificates:
 the node certificate to be tested, two Intermediate CAs, and the
               self-signed Root CA.
 <span class="testlist-"><ul>
-  <li class="test-"><span id="_t_89">Test 89<a href="#_t_89" class="definition"></a></span>:
+  <li class="test-"><span id="_t_90">Test 88<a href="#_t_90" class="definition"></a></span>:
        The evaluator will construct a certificate path, such that the certificate
   of the CA issuing the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s certificate does not contain the
   <i>basicConstraints</i> extension. The validation of the certificate path fails. </li>
-  <li class="test-"><span id="_t_90">Test 90<a href="#_t_90" class="definition"></a></span>:
+  <li class="test-"><span id="_t_91">Test 89<a href="#_t_91" class="definition"></a></span>:
        The evaluator will construct a certificate path, such that the certificate
   of the CA issuing the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s certificate has the CA flag in the
   <i>basicConstraints</i> extension not set. The validation of the certificate path fails. </li>
-  <li class="test-"><span id="_t_91">Test 91<a href="#_t_91" class="definition"></a></span>:
+  <li class="test-"><span id="_t_92">Test 90<a href="#_t_92" class="definition"></a></span>:
        The evaluator will construct a certificate path, such that the certificate
   of the CA issuing the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s certificate has the CA flag in the
   <i>basicConstraints</i> extension set to TRUE. The validation of the certificate path
@@ -3895,25 +3886,25 @@ channel protocol selected in
 The evaluator will also perform the following
                 tests:
                 <span class="testlist-"><ul>
-                  <li class="test-"><span id="_t_92">Test 92<a href="#_t_92" class="definition"></a></span>:
+                  <li class="test-"><span id="_t_93">Test 91<a href="#_t_93" class="definition"></a></span>:
       
                     The evaluator will ensure that communications using each remote administration method is
                     tested during the course of the evaluation, setting up the connections as described in the
                     operational guidance and ensuring that communication is successful.
                   </li>
-                  <li class="test-"><span id="_t_93">Test 93<a href="#_t_93" class="definition"></a></span>:
+                  <li class="test-"><span id="_t_94">Test 92<a href="#_t_94" class="definition"></a></span>:
       
                     For each method of remote administration supported, the evaluator will
                     follow the operational guidance to ensure that there is no available interface that can be
                     used by a remote user to establish a remote administrative sessions without invoking the
                     trusted path.
                   </li>
-                  <li class="test-"><span id="_t_94">Test 94<a href="#_t_94" class="definition"></a></span>:
+                  <li class="test-"><span id="_t_95">Test 93<a href="#_t_95" class="definition"></a></span>:
       
                     The evaluator will ensure, for each method of remote administration, the
                     channel data is not sent in plaintext.
                   </li>
-                  <li class="test-"><span id="_t_95">Test 95<a href="#_t_95" class="definition"></a></span>:
+                  <li class="test-"><span id="_t_96">Test 94<a href="#_t_96" class="definition"></a></span>:
       
                     The evaluator will ensure, for each method of remote administration,
                     modification of the channel data is detected by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>.
