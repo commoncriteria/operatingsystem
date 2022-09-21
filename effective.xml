@@ -3371,11 +3371,16 @@ If CRL is selected, the evaluator will configure the CA to sign a CRL with a cer
 
     <test id="t-ecdsa-valid">
       <depends on="s-ec-certs" />
+      <depends on="sel-rfc6187"><external-doc ref="pkg-ssh" /></depends>
+
+
       The evaluator will establish a valid, trusted certificate chain consisting of an EC leaf certificate, an EC Intermediate CA certificate not designated as a trust anchor, and an EC certificate designated as a trusted anchor, where the elliptic curve parameters are specified as a named curve.
     The evaluator will confirm that the TOE validates the certificate chain.
     </test>
     <test>
       <depends on="s-ec-certs" />
+      <depends on="sel-rfc6187"><external-doc ref="pkg-ssh" /></depends>
+      
       The evaluator will replace the intermediate certificate in the certificate chain for <xref to="t-ecdsa-valid" /> with a modified certificate, where the modified intermediate CA has a public key information field where the EC parameters uses an explicit format version of the Elliptic Curve parameters in the public key information field of the intermediate CA certificate from <xref to="t-ecdsa-valid" />, and the modified Intermediate CA certificate is signed by the trusted EC root CA, but having no other changes.
 The evaluator will confirm the TOE treats the certificate as invalid.
     </test>
