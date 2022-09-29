@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<technical-decisions
+    xmlns="https://niap-ccevs.org/cc/v1"
+    xmlns:cc="https://niap-ccevs.org/cc/v1"
+    xmlns:h="http://www.w3.org/1999/xhtml">
+  <decision
+      url="https://www.niap-ccevs.org/Documents_and_Guidance/view_td.cfm?TD=TBD"
+      date="TBD"
+      id="TBD">
+    <Issue_Description>
+      
+    </Issue_Description>
+    <Resolution>
+
+    </Resolution>
+    <Justification>
+      See issue description.
+    </Justification>
+    <Protection_Profiles>
+      <Protection_Profile max-inclusive="1.1" name="tls">
+	<replace>
+	  <xpath-specified xpath="//cc:addressed-by[text()='FPT_W^X_EXT.1    ']">
+	  <!-- <xpath-specified xpath="//cc:addressed-by[text()='FPT_W^E_EXT.1')]"> -->
+	    <addressed-by>JJJFPT_W^X_EXT.1 (Optional)    </addressed-by>
+	  </xpath-specified>
+	  
+	  <xpath-specified xpath="//cc:*[@cc-id='fpt_w^x_ext.1']">
+	    <f-component cc-id="fpt_w^x_ext.1" name="Write XOR Execute Memory Pages" status="optional">
+	      <depends><optional/></depends>
+              <f-element id="fel-no-rw-mem">
+		<title> The OS shall prevent allocation of any memory region with both write and
+              execute permissions except for <assignable>list of exceptions</assignable>.
+            </title>
+            <note role="application">Requesting a memory mapping with both write and execute
+              permissions subverts the platform protection provided by DEP.
+	      If the OS provides no exceptions (such as for just-in-time compilation),
+	      then "no exceptions" should be indicated in the assignment.
+	      Full realization of this requirement requires hardware support, but this is commonly available.
+            </note>
+            <aactivity>
+	      <TSS>
+              The evaluator will inspect the vendor-provided developer documentation and
+	      verify that no memory-mapping can be made with
+              write and execute permissions except for the cases listed in the assignment.
+	      </TSS>
+	      <Tests>
+	      The evaluator will also perform the following tests.
+	      <testlist>
+		<test>
+                  The evaluator will acquire or construct a test program which attempts
+		  to allocate memory that is both writable and executable.
+		  The evaluator will run the program and confirm that it fails to
+		  allocate memory that is both writable and executable.
+		</test>
+		<test>
+                  The evaluator will acquire or construct a test program which
+		  allocates memory that is executable and then
+		  subsequently requests additional write/modify permissions on that memory.
+		  The evaluator will run the program and confirm that at no time
+		  during the lifetime of the process is the memory both writable and executable.
+		</test>
+		<test>
+                  The evaluator will acquire or construct a test program which
+		  allocates memory that is writable and then
+		  subsequently requests additional execute permissions on that memory.
+		  The evaluator will run the program and confirm that at no time
+		  during the lifetime of the process is the memory both writable and executable.
+		</test>
+	      </testlist>
+              </Tests>
+	    </aactivity>
+          </f-element>
+        </f-component>
+
+	    
+	  </xpath-specified>
+	</replace>
+      </Protection_Profile>
+    </Protection_Profiles>
+  </decision>
+</technical-decisions>
