@@ -1,4 +1,4 @@
-<PP xmlns="https://niap-ccevs.org/cc/v1" xmlns:sec="https://niap-ccevs.org/cc/v1/section" xmlns:h="http://www.w3.org/1999/xhtml" target-products="General Purpose Operating Systems" boilerplate="yes">
+<PP xmlns="https://niap-ccevs.org/cc/v1" xmlns:sec="https://niap-ccevs.org/cc/v1/section" xmlns:h="http://www.w3.org/1999/xhtml" target-product="General Purpose Operating System" name="zzz" boilerplate="yes">
 	
 	<!-- Applied TD365, TD386,  TD441(n/a), TD463, TD493, TD525, TD578, TD600, TD630 -->
   <PPReference>
@@ -2075,7 +2075,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 	  <fam-behavior>This family of requirements defines how flows of information are controlled.</fam-behavior>
 	</ext-comp-def>
 
-        <f-component cc-id="fdp_ifc_ext.1" name="Information flow control" status="sel-based">
+        <f-component cc-id="fdp_ifc_ext.1" name="Information flow control">
 	  <depends on="s-itc-ipsec"/>
 	  <depends><optional/></depends>
           <f-element id="fel-dit-vpn">
@@ -2466,7 +2466,9 @@ This test can also be completed on the same hardware and rebooting between appli
           <fam-behavior>This family defines requirements for limiting Bluetooth capabilities without user action.</fam-behavior>
         </ext-comp-def>
         
-        <f-component cc-id="fpt_blt_ext.1" name="Limitation of Bluetooth Profile Support" status="objective">
+        <f-component cc-id="fpt_blt_ext.1" name="Limitation of Bluetooth Profile Support">
+	  <depends><objective/></depends>
+
           <comp-lev> requires the TSF to maintain a disabled by default posture for Bluetooth profiles.</comp-lev>
           <management>There are no management activities foreseen.</management>
           <audit>There are no auditable events foreseen.</audit>
@@ -2577,7 +2579,8 @@ The evaluator will also ensure that the TSS includes a description of the safegu
 	  <fam-behavior>This family of requirements defines how access to executes is restricted.</fam-behavior>
 	</ext-comp-def>
 
-	<f-component cc-id="fpt_srp_ext.1" name="Software Restriction Policies" status="objective">
+	<f-component cc-id="fpt_srp_ext.1" name="Software Restriction Policies">
+	  <depends><objective/></depends>
           <f-element id="fel-srp">
             <title> The OS shall restrict execution to only programs which match an administrator-specified
               <selectables linebreak="yes">
@@ -3504,7 +3507,8 @@ the node certificate to be tested, two Intermediate CAs, and the
         </f-component>
       </section>
       <section title="TOE Access (FTA)" id="fta">
-        <f-component cc-id="fta_tab.1" name="Default TOE access banners" status="optional">
+        <f-component cc-id="fta_tab.1" name="Default TOE access banners">
+	  <depends><optional/></depends>
           <f-element id="fel-banner">
             <title>
             Before establishing a user session, the <h:b>OS</h:b> shall display an advisory

@@ -856,7 +856,7 @@ expected to enforce.<h:br/><h:br/>
     <base-pp id="bpp-gpos">
       <git>
 	<url>https://github.com/commoncriteria/operatingsystem</url>
-	<branch>/release-4.2.1</branch>
+	<branch>release-4.2.1</branch>
       </git>
 		<url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=442&amp;id=442</url>
 
@@ -1393,7 +1393,7 @@ expected to enforce.<h:br/><h:br/>
     <base-pp id="bpp-mdf">
       <git>
 	<url>https://github.com/commoncriteria/mobile-device</url>
-	<branch>v3.2</branch>
+	<branch>release-3.2</branch>
       </git>
       <url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=417&amp;id=417</url>
 		<sec-func-req-dir>
@@ -4304,6 +4304,7 @@ expected to enforce.<h:br/><h:br/>
         
         
         <f-component cc-id="fia_bma_ext.1" id="fia-bma-ext-1" name="Biometric Activation">
+	  <depends><optional/></depends>
           <consistency-rationale/>
           <comp-lev>defines the use of biometrics when using the VPN client.</comp-lev>
           <management>No specific management functions are identified.</management>
@@ -4348,6 +4349,7 @@ expected to enforce.<h:br/><h:br/>
           <fam-behavior>Components in this family describe the requirements for multifactor authentication filtering when using the VPN client.</fam-behavior>
         </ext-comp-def>
       <f-component cc-id="fpf_mfa_ext.1" id="fpf-mfa-ext-1" name="Multifactor Authentication Filtering">
+	<depends><optional/></depends>
         
         <consistency-rationale/>
         <comp-lev>defines the use and composition of multifactor authentication filtering.</comp-lev>
@@ -5249,7 +5251,8 @@ expected to enforce.<h:br/><h:br/>
       <section title="Security Audit (FAU)" id="ob-fau">
   
 		<!-- A.2.1.1 FAU_GEN.1/VPN Audit Data Generation (VPN Client) -->
-        <f-component name="Audit Data Generation" cc-id="fau_gen.1" iteration="VPN" id="fau-gen-1-vpn">
+		<f-component name="Audit Data Generation" cc-id="fau_gen.1" iteration="VPN" id="fau-gen-1-vpn">
+		  <depends><objective/></depends>
           <consistency-rationale/>
           <f-element id="fau-gen-1e1-vpn">
             <title>
@@ -5414,6 +5417,7 @@ expected to enforce.<h:br/><h:br/>
 		
 	<!-- A.2.1.2 FAU_SEL.1/VPN Selective Audit (VPN Client) -->
         <f-component name="Selective Audit" cc-id="fau_sel.1" iteration="VPN" id="fau-sel-1-vpn">
+	  <depends><objective/></depends>
           <consistency-rationale/>
           <f-element>
             <title>
@@ -5489,6 +5493,7 @@ expected to enforce.<h:br/><h:br/>
 	    
 	    <!-- FDP_VPN_EXT.1 Split Tunnel Prevention  -->
 	    <f-component cc-id="fdp_vpn_ext.1" id="fdp-vpn-ext-1" name="Split Tunnel Prevention">
+	      <depends on="feat-mystery"/>
 	      <consistency-rationale/>
 	      <comp-lev>requires the TSF to process all IP traffic through its VPN client
 	        functionality.</comp-lev>
@@ -5709,7 +5714,12 @@ expected to enforce.<h:br/><h:br/>
 	additional requirement is that the entropy documentation also applies to the specific VPN client
 	capabilities of the TOE in addition to the functionality required by the claimed Base-PP.		 
  </appendix>
-  
+ <implements>
+   <feature id="feat-mystery" title="Bluetooth">
+     <description> If the TOE has some feature, the following SFRs must be claimed:
+     </description>
+   </feature>
+ </implements>
   <bibliography>
     <cc-entry/>
     <entry id="bibOSPP">
