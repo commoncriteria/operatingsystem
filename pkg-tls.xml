@@ -1,6 +1,4 @@
 <Package xmlns="https://niap-ccevs.org/cc/v1" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:sec="https://niap-ccevs.org/cc/v1/section" name="TLS">
-  <!-- <inline-comment color='green'> Hello World TLS </inline-comment> -->
-  <!-- <inline-comment color='blue' linebreak='yes'> Hello World TLS </inline-comment> -->
   <PPReference>
     <ReferenceTable>
       <PPTitle>Functional Package for Transport Layer Security (TLS)</PPTitle>
@@ -180,7 +178,8 @@
       <section title="Cryptographic Support (FCS)" id="fcs">
 	<!-- Audit table for mandatory requirements  -->
         <f-component cc-id="fcs_tls_ext.1" name="TLS Protocol">
-          <f-element id="f-type">
+          <!--~$# FCS_TLS_EXT.1.1-->
+	  <f-element id="f-type">
 			<title>The product shall implement
         <selectables linebreak="yes">
           <selectable id="tlsc_impl">TLS as a client</selectable>
@@ -213,7 +212,8 @@
 
         <f-component cc-id="fcs_tlsc_ext.1" name="TLS Client Protocol" status="sel-based">
           <depends on="tlsc_impl"/>
-          <f-element id="f-tlsc-version">
+          <!--~$# FCS_TLSC_EXT.1.1-->
+	  <f-element id="f-tlsc-version">
             <title> The product shall implement TLS 1.2 (RFC 5246) and
               <selectables>
                 <selectable>TLS 1.1 (RFC 4346)</selectable>
@@ -382,7 +382,8 @@
 	      </Tests>
             </aactivity>
           </f-element>
-          <f-element id="f-tlsc-presented-reference-ids">
+          <!--~$# FCS_TLSC_EXT.1.2-->
+	  <f-element id="f-tlsc-presented-reference-ids">
             <title> The product shall verify that the presented identifier matches the reference
               identifier according to RFC 6125. </title>
             <note role="application"> The rules for verification of identity are described in
@@ -517,7 +518,8 @@ If the TOE supports certificate pinning, all pinned certificates must be removed
 	      </Tests>
             </aactivity>
           </f-element>
-          <f-element id="f-tlsc-handle-bad-cert">
+          <!--~$# FCS_TLSC_EXT.1.3-->
+	  <f-element id="f-tlsc-handle-bad-cert">
             <title>The product shall not establish a trusted channel if the
               server certificate is invalid
               <selectables linebreak="yes">
@@ -605,7 +607,8 @@ If the TOE supports certificate pinning, all pinned certificates must be removed
         
         <f-component cc-id="fcs_tlsc_ext.2" name="TLS Client Support for Mutual Authentication" status="sel-based">
           <depends on="tlsc_mutual_auth"/>
-          <f-element id="f-tlsc-mutual-auth">
+          <!--~$# FCS_TLSC_EXT.2.1-->
+	  <f-element id="f-tlsc-mutual-auth">
             <title>The product shall support mutual authentication using X.509v3 certificates.</title>
             <note role="application"> The use of X.509v3 certificates for TLS is addressed in FIA_X509_EXT.2.1. This requirement adds that a client must be capable of
               presenting a certificate to a TLS server
@@ -653,7 +656,8 @@ during handshake.
           </f-element>
         </f-component>
         <f-component cc-id="fcs_tlsc_ext.3" name="TLS Client Support for Signature Algorithms Extension" status="objective">
-          <f-element id="f-tlsc-sig-algo">
+          <!--~$# FCS_TLSC_EXT.3.1-->
+	  <f-element id="f-tlsc-sig-algo">
             <title> The product shall present the signature_algorithms extension in the Client Hello with
               the supported_signature_algorithms value containing the following hash algorithms: <selectables>
                 <selectable>SHA256</selectable>
@@ -707,7 +711,8 @@ during handshake.
         </f-component>
         <f-component cc-id="fcs_tlsc_ext.4" name="TLS Client Support for Renegotiation" status="sel-based">
           <depends on="tlsc_reneg"/>
-          <f-element id="f-tlsc-reneg">
+          <!--~$# FCS_TLSC_EXT.4.1-->
+	  <f-element id="f-tlsc-reneg">
             <title> The product shall support secure renegotiation through use
               of the “renegotiation_info” TLS extension in accordance with RFC 5746. </title>
 <!--          </f-element>
@@ -760,7 +765,8 @@ during handshake.
         <f-component cc-id="fcs_tlsc_ext.5" name="TLS Client Support for Supported Groups Extension" status="sel-based">
           <depends on="tecdhe1" on1="tecdhe2" on2="tecdhe3" on3="tecdhe4" on4="tecdhe5" on5="tecdhe6" on6="tecdhe7" on7="tecdhe8"/>
           <depends on="decdhe1" on2="decdhe2" on3="decdhe3" on4="decdhe4" on5="decdhe5" on6="decdhe6" on7="decdhe7" on8="decdhe8"/>
-          <f-element id="f-tlsc-groups-ext"><!-- Was 1.4 -->
+          <!--~$# FCS_TLSC_EXT.5.1-->
+	  <f-element id="f-tlsc-groups-ext"><!-- Was 1.4 -->
             <!-- TODO: IDs for ECC DHE curves -->
             <title> The product shall present the Supported Groups Extension in the Client Hello
               with the supported groups <selectables linebreak="yes">
@@ -801,7 +807,8 @@ during handshake.
 
         <f-component cc-id="fcs_tlss_ext.1" name="TLS Server Protocol" status="sel-based">
           <depends on="tlss_impl"/>
-          <f-element id="f-tlss-version">
+          <!--~$# FCS_TLSS_EXT.1.1-->
+	  <f-element id="f-tlss-version">
             <title> The product shall implement TLS 1.2 (RFC 5246) and
             <selectables>
               <selectable>TLS 1.1 (RFC 4346)</selectable>
@@ -966,7 +973,8 @@ during handshake.
 	      </Tests>
             </aactivity>
           </f-element>
-          <f-element id="f-tlss-bad-version">
+          <!--~$# FCS_TLSS_EXT.1.2-->
+	  <f-element id="f-tlss-bad-version">
             <title>The product shall deny connections from clients requesting
             SSL 2.0, SSL 3.0, TLS 1.0 and
               <selectables>
@@ -1000,7 +1008,8 @@ during handshake.
 	      </Tests>
             </aactivity>
           </f-element>
-          <f-element id="f-tlss-key-size">
+          <!--~$# FCS_TLSS_EXT.1.3-->
+	  <f-element id="f-tlss-key-size">
             <title>The product shall perform key establishment for TLS using
               <selectables>
                 <selectable>RSA with size
@@ -1104,12 +1113,14 @@ during handshake.
 
        <f-component cc-id="fcs_tlss_ext.2" name="TLS Server Support for Mutual Authentication" status="sel-based">
          <depends on="tlss_mutual_auth"/>
-          <f-element id="f-tlss-mutual-auth">
+          <!--~$# FCS_TLSS_EXT.2.1-->
+	  <f-element id="f-tlss-mutual-auth">
             <title>The product shall support authentication of
               TLS clients using X.509v3 certificates.
             </title>
           </f-element>
-          <f-element id="f-tlss-bad-cert">
+          <!--~$# FCS_TLSS_EXT.2.2-->
+	  <f-element id="f-tlss-bad-cert">
             <title>The product shall not establish a trusted channel
               if the client certificate is invalid.
             </title>
@@ -1205,7 +1216,8 @@ during handshake.
 	      </Tests>
             </aactivity>
           </f-element>
-          <f-element id="f-tlss-bad-dn-san">
+          <!--~$# FCS_TLSS_EXT.2.3-->
+	  <f-element id="f-tlss-bad-dn-san">
             <title>The product shall not establish a trusted channel if
               the Distinguished Name (DN) or Subject Alternative Name (SAN)
               contained in a certificate does not match one of the expected identifiers
@@ -1246,7 +1258,8 @@ during handshake.
         </f-component>
 
 	<f-component cc-id="fcs_tlss_ext.3" name="TLS Server Support for Signature Algorithms Extension" status="objective">
-          <f-element id="f-tlss-hashalgos">
+          <!--~$# FCS_TLSS_EXT.3.1-->
+	  <f-element id="f-tlss-hashalgos">
             <title>The product shall present the HashAlgorithm
             enumeration in supported_signature_algorithms in the
             Certificate Request with the following hash algorithms:
@@ -1295,12 +1308,14 @@ during handshake.
 
 	<f-component cc-id="fcs_tlss_ext.4" name="TLS Server Support for Renegotiation" status="sel-based">
     <depends on="tlss_reneg"/>
-          <f-element id="f-tlss-support-reneg">
+          <!--~$# FCS_TLSS_EXT.4.1-->
+	  <f-element id="f-tlss-support-reneg">
             <title>The product shall support the "renegotiation_info" TLS extension
               in accordance with RFC 5746.
             </title>
           </f-element>
-          <f-element id="f-tlss-include-reneg">
+          <!--~$# FCS_TLSS_EXT.4.2-->
+	  <f-element id="f-tlss-include-reneg">
             <title>The product shall include the renegotiation_info extension in
               ServerHello messages.
             </title>
@@ -1334,6 +1349,7 @@ during handshake.
 
   <f-component cc-id="fcs_dtlsc_ext.1" name="DTLS Client Protocol" status="sel-based">
     <depends on="dtlsc_impl"/>
+    <!--~$# FCS_DTLSC_EXT.1.1-->
     <f-element id="f-dtlsc-version">
       <title>The product shall implement DTLS 1.2 (RFC 6347) and
       <selectables>
@@ -1392,6 +1408,7 @@ during handshake.
       </aactivity>
     </f-element>
 
+    <!--~$# FCS_DTLSC_EXT.1.2-->
     <f-element id="f-dtlsc-pres-ids">
       <title> The product shall verify that the presented identifier matches the reference
         identifier according to RFC 6125. </title>
@@ -1406,6 +1423,7 @@ during handshake.
       </aactivity>
     </f-element>
 
+    <!--~$# FCS_DTLSC_EXT.1.3-->
     <f-element id="f-dtlsc-bad-cert">
       <title>The product shall not establish a trusted channel if the
         server certificate is invalid
@@ -1424,6 +1442,7 @@ during handshake.
 	</Tests>
       </aactivity>
     </f-element>
+    <!--~$# FCS_DTLSC_EXT.1.4-->
     <f-element id="f-dtlsc-bad-mac-decrypt">
     <title>The product shall
     <selectables>
@@ -1449,7 +1468,8 @@ during handshake.
 
   <f-component cc-id="fcs_dtlsc_ext.2" name="DTLS Client Support for Mutual Authentication" status="sel-based">
     <depends on="dtlsc_mutual_auth"/>
-          <f-element id="f-dtlsc-mut-auth">
+    <!--~$# FCS_DTLSC_EXT.2.1-->
+    <f-element id="f-dtlsc-mut-auth">
             <title>
               The product shall support mutual authentication using X.509v3 certificates.
             </title>
@@ -1467,6 +1487,7 @@ during handshake.
 
   <f-component cc-id="fcs_dtlss_ext.1" name="DTLS Server Protocol" status="sel-based">
     <depends on="dtlss_impl"/>
+    <!--~$# FCS_DTLSS_EXT.1.1-->
     <f-element id="f-dtlss-version">
       <title>The product shall implement DTLS 1.2 (RFC 6347) and
       <selectables>
@@ -1520,6 +1541,7 @@ during handshake.
 	</Tests>
       </aactivity>
     </f-element>
+    <!--~$# FCS_DTLSS_EXT.1.2-->
     <f-element id="f-dtlss-bad-versions">
       <title>The product shall deny connections from clients requesting
         <assignable>list of DTLS protocol versions</assignable>.
@@ -1554,6 +1576,7 @@ during handshake.
       </aactivity>
     </f-element>
 
+    <!--~$# FCS_DTLSS_EXT.1.3-->
     <f-element id="f-dtlss-bad-validation">
       <title>
         The product shall not proceed with a connection handshake attempt if the DTLS Client fails validation.
@@ -1577,6 +1600,7 @@ during handshake.
 	</Tests>
       </aactivity>
     </f-element>
+    <!--~$# FCS_DTLSS_EXT.1.4-->
     <f-element id="f-dtlss-key-size">
       <title>The product shall perform key establishment for DTLS using
         <selectables>
@@ -1634,6 +1658,7 @@ during handshake.
 	</Tests>
       </aactivity>
     </f-element>
+    <!--~$# FCS_DTLSS_EXT.1.5-->
     <f-element id="f-dtlss-bad-mac-decrypt">
       <title>The product shall
       <selectables>
@@ -1660,7 +1685,8 @@ during handshake.
 
   <f-component cc-id="fcs_dtlss_ext.2" name="DTLS Server Support for Mutual Authentication" status="sel-based">
     <depends on="dtlss_mutual_auth"/>
-          <f-element id="f-dtlss-mut-auth">
+    <!--~$# FCS_DTLSS_EXT.2.1-->
+	  <f-element id="f-dtlss-mut-auth">
             <title>
               The product shall support mutual authentication of DTLS clients using X.509v3 certificates.
             </title>
@@ -1675,6 +1701,7 @@ during handshake.
       </aactivity>
 
     </f-element>
+    <!--~$# FCS_DTLSS_EXT.2.2-->
     <f-element id="f-dtlss-handle-bad-cert">
       <title>The product shall not establish a trusted channel
         if the client certificate is invalid.
@@ -1689,6 +1716,7 @@ during handshake.
 	</Tests>
       </aactivity>
     </f-element>
+    <!--~$# FCS_DTLSS_EXT.2.3-->
     <f-element id="f-dtlss-handle-bad-dn-san">
       <title>The product shall not establish a trusted channel if
         the Distinguished Name (DN) or Subject Alternative Name (SAN)
