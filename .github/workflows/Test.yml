@@ -29,7 +29,6 @@ jobs:
         run: echo "<html><head><title>abc</title></head><body>Hello World</body>" > Test.html
 
       - name: Convert to PDF
-        run:  |
-    	  xvfb-run --auto-servernum --server-args='-screen 0, 1024x768x16' /usr/bin/wkhtmltopdf --javascript-delay 15000  --enable-local-file-access --footer-right '[page]'  file://${PWD}/Test.html ${PWD}/Test.pdf
+        run:  xvfb-run --auto-servernum --server-args='-screen 0, 1024x768x16' /usr/bin/wkhtmltopdf --javascript-delay 15000  --enable-local-file-access --footer-right '[page]'  file://${PWD}/Test.html ${PWD}/Test.pdf
 
           
