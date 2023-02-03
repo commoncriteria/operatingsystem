@@ -206,14 +206,17 @@ jobs:
         mv output ${{ env.action_branch }}
         mkdir output
         mv ${{env.action_branch}} output
+        cd output;
+        
 
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
       with:
         ref: gh-pages
         
     - name: Make listing
       run: |
-        cd output;
+        pwd
+        ls
           (echo "<html><head><title>Listing</title></head><body>";
            date;
            echo "<br/><ol>";
