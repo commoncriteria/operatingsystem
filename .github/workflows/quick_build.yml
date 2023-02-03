@@ -225,6 +225,11 @@ jobs:
            done;
            echo "</ol></body></html>") > index.html
         
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@4.0.0
+      with:
+        branch: gh-pages # The branch the action should deploy to.
+        folder: .        # The folder the action should deploy.
 
         
     #  # Use the output from the `coverage` step
@@ -260,11 +265,6 @@ jobs:
     #     path: output/validation.svg
 
         
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.0.0
-      with:
-        branch: gh-pages # The branch the action should deploy to.
-        folder: output # The folder the action should deploy.
         
     # - name: Commit badges
     #   continue-on-error: true
