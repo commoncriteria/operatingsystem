@@ -1,4 +1,4 @@
-<PP xmlns="https://niap-ccevs.org/cc/v1" xmlns:sec="https://niap-ccevs.org/cc/v1/section" xmlns:h="http://www.w3.org/1999/xhtml" target-product="General Purpose Operating System" boilerplate="yes">
+<PP xmlns="https://niap-ccevs.org/cc/v1" xmlns:sec="https://niap-ccevs.org/cc/v1/section" xmlns:h="http://www.w3.org/1999/xhtml" target-product="General Purpose Operating Systems" boilerplate="yes">
 	
 	<!-- Applied TD365, TD386,  TD441(n/a), TD463, TD493, TD525, TD578, TD600, TD630 -->
   <PPReference>
@@ -501,9 +501,7 @@ it manages may be physical or virtual.
 	  
 	  <addressed-by>FPT_TST_EXT.1    </addressed-by><rationale>Supports the objective by requiring the TSF to verify executable code critical to its operation.</rationale>
 	  <addressed-by>FTP_ITC_EXT.1    </addressed-by><rationale>Supports the objective by requiring the OS to provide a trusted channel for critical communication.</rationale>
-	  <!-- <xpath-specified xpath="//cc:addressed-by[text()='FPT_W^E_EXT.1')]"> -->
-	    <addressed-by>FPT_W^X_EXT.1 (Optional)    </addressed-by>
-	  <rationale>Supports the objective by requiring the OS to executable only non-writable memory.</rationale>
+	  <addressed-by>FPT_W^X_EXT.1    </addressed-by><rationale>Supports the objective by requiring the OS to executable only non-writable memory.</rationale>
 	  <addressed-by>FIA_AFL.1        </addressed-by><rationale>Supports the objective by requiring the TSF to respond accordingly when the number of failed authentication attempts reaches a specified threshold.</rationale>
 	  <addressed-by>FIA_UAU.5        </addressed-by><rationale>Supports the objective by requiring the OS to provide standard authentication mechanisms.</rationale>
 	  <addressed-by>FPT_BLT_EXT.1 (Objective)</addressed-by>
@@ -2931,10 +2929,9 @@ The evaluator will also ensure that the TSS includes a description of the safegu
 	    This family of requirements defines how the TOE ensures that it executes only those items that are non-writable with specified exceptions.
 	  </fam-behavior>
 	</ext-comp-def>
-	<f-component cc-id="fpt_w^x_ext.1" name="Write XOR Execute Memory Pages" status="optional">
-	      <depends><optional/></depends>
-              <f-element id="fel-no-rw-mem">
-		<title> The OS shall prevent allocation of any memory region with both write and
+	<f-component cc-id="fpt_w^x_ext.1" name="Write XOR Execute Memory Pages">
+          <f-element id="fel-no-rw-mem">
+            <title> The OS shall prevent allocation of any memory region with both write and
               execute permissions except for <assignable>list of exceptions</assignable>.
             </title>
             <note role="application">Requesting a memory mapping with both write and execute
@@ -2977,9 +2974,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
 	    </aactivity>
           </f-element>
         </f-component>
-
-	    
-	  </section>
+      </section>
       <section title="Audit Data Generation (FAU)" id="fau">
         <f-component cc-id="fau_gen.1" name="Audit Data Generation (Refined)">
           <f-element id="fel-faugen">
