@@ -29,39 +29,40 @@ jobs:
     - name: Install Jing
       run: wget -O - https://github.com/relaxng/jing-trang/releases/download/V20181222/jing-20181222.zip | jar -x
 
-    # Get current banch name to use it as dest directory
-    - name: Extract branch name
-      id: extract_branch
-      shell: bash
-      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-
+    - name: Set branch name
+      run: echo "action_branch=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
+      
     - name: Quick Build
-      run: |
-        pwd
-        WARN_PATH="output/SanityChecksOutput.md" make
+      run: WARN_PATH="output/SanityChecksOutput.md" make
 
-    - name: PDFify
-      if: ${{ github.ref_name != 'master' }}
-      run: |
-        sudo apt-get install -y wkhtmltopdf xvfb
-        xvfb-run --auto-servernum --server-args='-screen 0, 1024x768x16' /usr/bin/wkhtmltopdf \
-          --javascript-delay 15000 --footer-right '[page]' \
-          file://${PWD}/output/${PWD##*/}.html?expand=on \
-        output/${PWD##*/}-paged.pdf
+      # Need to fix this
+    # - name: PDFify
+    #   if: startsWith(${{ github.ref_name }}, "v")
+    #   run: |
+    #     sudo apt-get install -y wkhtmltopdf xvfb
+    #     xvfb-run --auto-servernum --server-args='-screen 0, 1024x768x16' /usr/bin/wkhtmltopdf \
+    #       --javascript-delay 15000 --footer-right '[page]' \
+    #       file://${PWD}/output/${PWD##*/}.html?expand=on \
+    #     output/${PWD##*/}-paged.pdf
+
 
     - id: validate
       run: |
         RNG_OUT="output/ValidationReport.txt" make validate || true
-        echo ::set-output name=VALERRORS::$(wc -l output/ValidationReport.txt | { read first rest ; echo $first ; } )
 
+    - name: Set valerrors
+      run: echo "action_valerrors=$(wc -l output/ValidationReport.txt | { read first rest ; echo $first ; } )" >> $GITHUB_ENV
+        
     - id: spellcheck
       run: |
         SPELL_OUT="output/SpellCheckReport.txt" make spellcheck
-        echo ::set-output name=LINES::$(wc -l output/SpellCheckReport.txt | { read first rest ; echo $first ; } )
 
-    - id: tdate
-      run: |
-        echo "##[set-output name=TDATE;]$(cd transforms && git log -1 --format=%cs; cd -)" #
+    - name: Set spellerrors
+      run: echo "action_spellerrors=$(wc -l output/SpellCheckReport.txt | { read first rest ; echo $first ; } )" >> $GITHUB_ENV
+
+    - name: Get Transforms Date
+#      run: echo "action_tdate=2002222" >> $GITHUB_ENV
+      run: echo "action_tdate=$(cd transforms && git log -1 --format=%cs; cd ->/dev/null)" >> $GITHUB_ENV
 
     - name: Setup Java JDK
       uses: actions/setup-java@v1.4.3
@@ -99,45 +100,52 @@ jobs:
            ls input/tds/*.xml ; then
           echo "Master branch should not have TDs" >> output/TDValidationReport.txt
         fi
-        echo "##[set-output name=TDCOLOR;]$(if [ -s output/TDValidationReport.txt ]; then echo orange; else echo green; fi)"
-        echo "##[set-output name=TDWARNS;]$( wc -l output/TDValidationReport.txt | { read first rest ; echo $first;} )"
         if ls input/tds/*.xml; then
            PP_XML=output/effective.xml PP_RELEASE_HTML=output/AppliedTDs.html make release
            java -jar ExecuteDaisy-master/*.jar output/*-release.html output/AppliedTDs.html --file=output/AppliedTDs-Diff.html
         fi
 
 
-    - name: Make a directory listing
-      run: >
-          cd output;
-          (echo "<html><head><title>Listing</title></head><body>";
-           date;
-           echo "<br/><ol>";
-           for aa in $(find . -name '?*.?*'); do
-                echo "<li><a href='$aa'>$aa</a></li>";
-           done;
-           echo "</ol></body></html>") > index.html
-          cd -
- 
+    - name: Set TD badge attributes
+      run: |
+        echo "action_tdcolor=$(if [ -s output/TDValidationReport.txt ]; then echo orange; else echo green; fi)" >> $GITHUB_ENV
+        echo "action_tdwarns=$(wc -l output/TDValidationReport.txt | { read first rest ; echo $first;} )" >> $GITHUB_ENV
+        
+        
+    - name: Validate Effective
+      run: |
+        echo "action_tdcolor=$(if [ -s output/TDValidationReport.txt ]; then echo orange; else echo green; fi)" >> $GITHUB_ENV
+        echo "action_tdwarns=$(wc -l output/TDValidationReport.txt | { read first rest ; echo $first;} )"       >> $GITHUB_ENV
+
+
+
     - name: Prepare environment
-      id: coverage
       run: |
         # Generates a GitHub Workflow output named `lines` with a coverage value
-        echo "##[set-output name=spellcolor;]$(if [ 0 = ${{ steps.spellcheck.outputs.LINES }} ]; then echo green; else echo red; fi)"
-        echo "##[set-output name=valcolor;]$(if [ 0 = ${{ steps.validate.outputs.VALERRORS }} ]; then echo green; else echo red; fi)"
+        echo "action_spellcolor=$(if [ 0 = ${{ env.action_spellerrors }} ]; then echo green; else echo red; fi)" >> $GITHUB_ENV
+        echo "action_valcolor=$(if [ 0 = ${{ env.action_valerrors }} ]; then echo green; else echo red; fi)" >> $GITHUB_ENV
+        echo "action_sanitystatus=$(if [ -s output/SanityChecksOutput.md ]; then echo some; else echo none; fi)"         >> $GITHUB_ENV
+        echo "action_sanitycolor=$(if [ -s output/SanityChecksOutput.md ]; then echo red; else echo green; fi )"         >> $GITHUB_ENV
+          
+    # - name: Prepare environment
+    #   id: coverage
+    #   run: |
+    #     # Generates a GitHub Workflow output named `lines` with a coverage value
+    #     echo "##[set-output name=spellcolor;]$(if [ 0 = ${{ steps.spellcheck.outputs.LINES }} ]; then echo green; else echo red; fi)"
+    #     echo "##[set-output name=valcolor;]$(if [ 0 = ${{ steps.validate.outputs.VALERRORS }} ]; then echo green; else echo red; fi)"
 
-        # Output values to be used by other steps
-        echo "##[set-output name=path;]${BADGE_PATH}"
-        echo "##[set-output name=branch;]${BRANCH}"
-      env:
-        BADGE_PATH: output/warnings-badge.svg
-        BRANCH: gh-pages
+    #     # Output values to be used by other steps
+    #     echo "##[set-output name=path;]${BADGE_PATH}"
+    #     echo "##[set-output name=branch;]${BRANCH}"
+    #   env:
+    #     BADGE_PATH: output/warnings-badge.svg
+    #     BRANCH: gh-pages
 
-    - name: Get Status
-      run: |
-         echo ::set-output name=WORD::$(if [ -s output/SanityChecksOutput.md ]; then echo some; else echo none; fi )
-         echo ::set-output name=COLOR::$(if [ -s output/SanityChecksOutput.md ]; then echo red; else echo green; fi )
-      id: status
+    # - name: Get Status
+    #   run: |
+    #      echo ::set-output name=WORD::$(if [ -s output/SanityChecksOutput.md ]; then echo some; else echo none; fi )
+    #      echo ::set-output name=COLOR::$(if [ -s output/SanityChecksOutput.md ]; then echo red; else echo green; fi )
+    #   id: status
 
     # - uses: actions/checkout@v1
     #   with:
@@ -149,38 +157,34 @@ jobs:
     #     BADGE_PATH: ${{ steps.coverage.outputs.path }}
     #   run: mkdir -p "${BADGE_PATH%/*}"
 
+
+
      # Use the output from the `coverage` step
     - name: Generate the spelling badge SVG image
       uses: emibcn/badge-action@v1
       with:
         label: 'Misspellings'
-        status: ${{ steps.spellcheck.outputs.LINES }}
-        color: ${{ steps.coverage.outputs.spellcolor }}
+        status: ${{ env.action_spellerrors }}
+        color: ${{ env.action_spellcolor }}
         path: output/spell-badge.svg
 
-    - name: Generate the built branch SVG
+     # Use the output from the `coverage` step
+    - name: Generate the validation badge SVG image
       uses: emibcn/badge-action@v1
       with:
-        label: 'Last Built'
-        status: ${{ steps.extract_branch.outputs.branch }}
-        color: black
-        path:  "output/build-branch-badge.svg"
+        label: 'Validation'
+        status: ${{ env.action_valerrors }}
+        color: ${{ env.action_valcolor }}
+        path: output/validation.svg
 
-
-    # - name: Upload badge as artifact
-    #   uses: actions/upload-artifact@v2
-    #   with:
-    #     name: badge
-    #     path: build-branch-badge.svg
-    #     if-no-files-found: error
 
    # Use the output from the `coverage` step
     - name: Generate the badge SVG image
       uses: emibcn/badge-action@v1
       with:
         label: 'Warnings'
-        status: ${{ steps.status.outputs.WORD }}
-        color: ${{ steps.status.outputs.COLOR }}
+        status: ${{ env.action_sanitystatus }}
+        color: ${{ env.action_sanitycolor }}
         path: output/warnings.svg
 
 
@@ -188,7 +192,7 @@ jobs:
       uses: emibcn/badge-action@v1
       with:
         label: 'Transforms'
-        status: ${{ steps.tdate.outputs.TDATE }}
+        status: ${{ env.action_tdate }}
         color: gray
         path: output/transforms.svg
 
@@ -200,23 +204,54 @@ jobs:
         color:  ${{steps.tds.outputs.TDCOLOR}}
         path: output/tds.svg
 
-
-        
-     # Use the output from the `coverage` step
-    - name: Generate the validation badge SVG image
-      uses: emibcn/badge-action@v1
-      with:
-        label: 'Validation'
-        status: ${{ steps.validate.outputs.VALERRORS }}
-        color: ${{ steps.coverage.outputs.valcolor }}
-        path: output/validation.svg
-
-    - id: debug
+    - name:  Move output to branch and make a directory listing
       run: |
-        ls
-        ls output
-        pwd
+        mv output ${{ env.action_branch }}
+        mkdir output
+        mv ${{env.action_branch}} output
+        cd output;
+          (echo "<html><head><title>Listing</title></head><body>";
+           date;
+           echo "<br/><ol>";
+           for aa in $(find . -name '*.*'); do
+                echo "<li><a href='$aa'>$aa</a></li>";
+           done;
+           echo "</ol></body></html>") > index.html
         
+
+        
+    #  # Use the output from the `coverage` step
+    # - name: Generate the spelling badge SVG image
+    #   uses: emibcn/badge-action@v1
+    #   with:
+    #     label: 'Misspellings'
+    #     status: ${{ steps.spellcheck.outputs.LINES }}
+    #     color: ${{ steps.coverage.outputs.spellcolor }}
+    #     path: output/spell-badge.svg
+
+    # - name: Generate the built branch SVG
+    #   uses: emibcn/badge-action@v1
+    #   with:
+    #     label: 'Last Built'
+    #     status: ${{ steps.extract_branch.outputs.branch }}
+    #     color: black
+    #     path:  "output/build-branch-badge.svg"
+
+    # - name: Upload badge as artifact
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: badge
+    #     path: build-branch-badge.svg
+    #     if-no-files-found: error
+    #  # Use the output from the `coverage` step
+    # - name: Generate the validation badge SVG image
+    #   uses: emibcn/badge-action@v1
+    #   with:
+    #     label: 'Validation'
+    #     status: ${{ steps.validate.outputs.VALERRORS }}
+    #     color: ${{ steps.coverage.outputs.valcolor }}
+    #     path: output/validation.svg
+
         
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@4.0.0
@@ -258,3 +293,4 @@ jobs:
     #   with:
     #     github_token: ${{ secrets.GITHUB_TOKEN }}
     #     branch: ${{ steps.coverage.outputs.branch }}
+
