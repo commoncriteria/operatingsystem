@@ -147,9 +147,6 @@ jobs:
     #      echo ::set-output name=COLOR::$(if [ -s output/SanityChecksOutput.md ]; then echo red; else echo green; fi )
     #   id: status
 
-    # - uses: actions/checkout@v1
-    #   with:
-    #     ref: ${{ steps.coverage.outputs.branch }}
 
     # # Create the directory where badges will be saved, if needed
     # - name: Create destination directory
@@ -204,11 +201,18 @@ jobs:
         color:  ${{steps.tds.outputs.TDCOLOR}}
         path: output/tds.svg
 
-    - name:  Move output to branch and make a directory listing
+    - name:  Move output to branch
       run: |
         mv output ${{ env.action_branch }}
         mkdir output
         mv ${{env.action_branch}} output
+
+    - uses: actions/checkout@v1
+      with:
+        ref: gh-pages
+        
+    - name: Make listing
+      run: |
         cd output;
           (echo "<html><head><title>Listing</title></head><body>";
            date;
