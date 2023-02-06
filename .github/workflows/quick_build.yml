@@ -35,15 +35,15 @@ jobs:
     - name: Quick Build
       run: WARN_PATH="output/SanityChecksOutput.md" make
 
-      # Need to fix this
-    # - name: PDFify
-    #   if: startsWith(${{ github.ref_name }}, "v")
-    #   run: |
-    #     sudo apt-get install -y wkhtmltopdf xvfb
-    #     xvfb-run --auto-servernum --server-args='-screen 0, 1024x768x16' /usr/bin/wkhtmltopdf \
-    #       --javascript-delay 15000 --footer-right '[page]' \
-    #       file://${PWD}/output/${PWD##*/}.html?expand=on \
-    #     output/${PWD##*/}-paged.pdf
+      # PDFify
+    - name: PDFify
+      if: startsWith(${{ github.ref_name }}, "v")
+      run: |
+        sudo apt-get install -y wkhtmltopdf xvfb
+        xvfb-run --auto-servernum --server-args='-screen 0, 1024x768x16' /usr/bin/wkhtmltopdf \
+          --enable-local-file-access --javascript-delay 15000 --footer-right '[page]' \
+          file://${PWD}/output/${PWD##*/}.html?expand=on \
+        output/${PWD##*/}-paged.pdf
 
 
     - id: validate
@@ -80,9 +80,6 @@ jobs:
     - name: Make tmp dir
       run: mkdir tmp
       
-    # - name: Diff against specified versions
-    #   run: DAISY_DIR=ExecuteDaisy-master make diff
-
     - name: diff
       run: TMP=tmp make diff || true; 
     # Little diff depends on having a git history. 
@@ -127,33 +124,6 @@ jobs:
         echo "action_sanitystatus=$(if [ -s output/SanityChecksOutput.md ]; then echo some; else echo none; fi)"         >> $GITHUB_ENV
         echo "action_sanitycolor=$(if [ -s output/SanityChecksOutput.md ]; then echo red; else echo green; fi )"         >> $GITHUB_ENV
           
-    # - name: Prepare environment
-    #   id: coverage
-    #   run: |
-    #     # Generates a GitHub Workflow output named `lines` with a coverage value
-    #     echo "##[set-output name=spellcolor;]$(if [ 0 = ${{ steps.spellcheck.outputs.LINES }} ]; then echo green; else echo red; fi)"
-    #     echo "##[set-output name=valcolor;]$(if [ 0 = ${{ steps.validate.outputs.VALERRORS }} ]; then echo green; else echo red; fi)"
-
-    #     # Output values to be used by other steps
-    #     echo "##[set-output name=path;]${BADGE_PATH}"
-    #     echo "##[set-output name=branch;]${BRANCH}"
-    #   env:
-    #     BADGE_PATH: output/warnings-badge.svg
-    #     BRANCH: gh-pages
-
-    # - name: Get Status
-    #   run: |
-    #      echo ::set-output name=WORD::$(if [ -s output/SanityChecksOutput.md ]; then echo some; else echo none; fi )
-    #      echo ::set-output name=COLOR::$(if [ -s output/SanityChecksOutput.md ]; then echo red; else echo green; fi )
-    #   id: status
-
-
-    # # Create the directory where badges will be saved, if needed
-    # - name: Create destination directory
-    #   env:
-    #     BADGE_PATH: ${{ steps.coverage.outputs.path }}
-    #   run: mkdir -p "${BADGE_PATH%/*}"
-
 
 
      # Use the output from the `coverage` step
@@ -197,8 +167,8 @@ jobs:
       uses: emibcn/badge-action@v1
       with:
         label: 'TDs'
-        status: ${{steps.tds.outputs.TDWARNS}}
-        color:  ${{steps.tds.outputs.TDCOLOR}}
+        status: ${{ env.action_tdwarns }}
+        color:  ${{ env.action_tdcolor }}
         path: output/tds.svg
 
     - name:  Move output to branch
@@ -232,72 +202,3 @@ jobs:
         folder: .        # The folder the action should deploy.
 
         
-    #  # Use the output from the `coverage` step
-    # - name: Generate the spelling badge SVG image
-    #   uses: emibcn/badge-action@v1
-    #   with:
-    #     label: 'Misspellings'
-    #     status: ${{ steps.spellcheck.outputs.LINES }}
-    #     color: ${{ steps.coverage.outputs.spellcolor }}
-    #     path: output/spell-badge.svg
-
-    # - name: Generate the built branch SVG
-    #   uses: emibcn/badge-action@v1
-    #   with:
-    #     label: 'Last Built'
-    #     status: ${{ steps.extract_branch.outputs.branch }}
-    #     color: black
-    #     path:  "output/build-branch-badge.svg"
-
-    # - name: Upload badge as artifact
-    #   uses: actions/upload-artifact@v2
-    #   with:
-    #     name: badge
-    #     path: build-branch-badge.svg
-    #     if-no-files-found: error
-    #  # Use the output from the `coverage` step
-    # - name: Generate the validation badge SVG image
-    #   uses: emibcn/badge-action@v1
-    #   with:
-    #     label: 'Validation'
-    #     status: ${{ steps.validate.outputs.VALERRORS }}
-    #     color: ${{ steps.coverage.outputs.valcolor }}
-    #     path: output/validation.svg
-
-        
-        
-    # - name: Commit badges
-    #   continue-on-error: true
-    #   env:
-    #     BADGE: ${{ steps.coverage.outputs.path }}
-    #   run: |
-    #     git config --local user.email "action@github.com"
-    #     git config --local user.name "GitHub Action"
-    #     git add output #warnings.svg validation.svg build-branch-badge.svg spell-badge.svg transforms.svg tds.svg
-    #     git commit -m "Update files"
-        
-    #     # - name: Upload badge as artifact
-    # # - name: Upload badge as artifact
-    # #   uses: actions/upload-artifact@v2
-    # #   with:
-    # #     name: badge
-    # #     path: ${{ steps.coverage.outputs.path }}
-    # #     if-no-files-found: error
-
-    # # - name: Commit badges
-    # #   continue-on-error: true
-    # #   env:
-    # #     BADGE: ${{ steps.coverage.outputs.path }}
-    # #   run: |
-    # #     git config --local user.email "action@github.com"
-    # #     git config --local user.name "GitHub Action"
-    # #     git add "${{ steps.extract_branch.outputs.branch }}"
-    # #     git commit -m "Add/Update badges"
-
-    # - name: Push badge commit
-    #   uses: ad-m/github-push-action@master
-    #   if: ${{ success() }}
-    #   with:
-    #     github_token: ${{ secrets.GITHUB_TOKEN }}
-    #     branch: ${{ steps.coverage.outputs.branch }}
-
