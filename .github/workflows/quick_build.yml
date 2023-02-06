@@ -171,17 +171,20 @@ jobs:
         color:  ${{ env.action_tdcolor }}
         path: output/tds.svg
 
+
+    - uses: actions/checkout@v3
+      with:
+        ref: gh-pages
+
     - name:  Move output to branch
       run: |
+        rm -rf ${{ env.action_branch }}
         mv output ${{ env.action_branch }}
         mkdir output
         mv ${{env.action_branch}} output
         cd output;
         
 
-    - uses: actions/checkout@v3
-      with:
-        ref: gh-pages
         
     - name: Make listing
       run: |
