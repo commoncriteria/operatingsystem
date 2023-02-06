@@ -171,6 +171,13 @@ jobs:
         color:  ${{ env.action_tdcolor }}
         path: output/tds.svg
 
+    - name:  Prepare checkout
+      run: |
+        pwd
+        ls
+        echo "---"
+        mkdir pages
+        cd pages
 
     - uses: actions/checkout@v3
       with:
@@ -178,13 +185,11 @@ jobs:
 
     - name:  Move output to branch
       run: |
+        pwd
+        ls
+        echo "+++"
         rm -rf ${{ env.action_branch }}
-        mv output ${{ env.action_branch }}
-        mkdir output
-        mv ${{env.action_branch}} output
-        cd output;
-        
-
+        mv ../output ${{ env.action_branch }}
         
     - name: Make listing
       run: |
