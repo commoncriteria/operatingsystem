@@ -37,7 +37,7 @@ jobs:
 
       # PDFify
     - name: PDFify
-      if: startsWith(${{ env.action_branch }}, "v")
+      if: ${{ github.event_name == 'workflow_dispatch' }}
       run: |
         sudo apt-get install -y wkhtmltopdf xvfb
         xvfb-run --auto-servernum --server-args='-screen 0, 1024x768x16' /usr/bin/wkhtmltopdf \
@@ -171,17 +171,25 @@ jobs:
         color:  ${{ env.action_tdcolor }}
         path: output/tds.svg
 
-    - name:  Move output to branch
+    - name:  Prepare checkout
       run: |
-        mv output ${{ env.action_branch }}
-        mkdir output
-        mv ${{env.action_branch}} output
-        cd output;
-        
+        pwd
+        ls
+        echo "---"
+        mkdir gh-pages
 
     - uses: actions/checkout@v3
       with:
         ref: gh-pages
+        path: gh-pages
+
+    - name:  Move output to branch
+      run: |
+        pwd
+        ls
+        echo "+++"
+        rm -rf gh-pages/${{ env.action_branch }}
+        mv output gh-pages/${{ env.action_branch }}
         
     - name: Make listing
       run: |
@@ -199,6 +207,6 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@4.0.0
       with:
         branch: gh-pages # The branch the action should deploy to.
-        folder: .        # The folder the action should deploy.
+        folder: gh-pages # The folder the action should deploy.
 
         
