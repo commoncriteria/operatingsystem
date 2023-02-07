@@ -193,15 +193,14 @@ jobs:
         
     - name: Make listing
       run: |
-        pwd
-        ls
-          (echo "<html><head><title>Listing</title></head><body>";
-           date;
-           echo "<br/><ol>";
-           for aa in $(find . -name '*.*'); do
-                echo "<li><a href='$aa'>$aa</a></li>";
-           done;
-           echo "</ol></body></html>") > index.html
+        cd gh-pages
+        (echo "<html><head><title>Listing</title></head><body>";
+         date;
+         echo "<br/><ol>";
+         for aa in $(find . -name '*.*'); do
+            echo "<li><a href='$aa'>$aa</a></li>";
+         done;
+         echo "</ol></body></html>") > index.html
         
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@4.0.0
