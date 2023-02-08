@@ -4,18 +4,21 @@ Protection Profile for General Purpose Operating System
 ![Build](https://github.com/commoncriteria/operatingsystem/workflows/Build/badge.svg)
 ![Validate](https://github.com/commoncriteria/operatingsystem/workflows/Validate/badge.svg)
 
+Master
 [![Validation](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/master/validation.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/master/ValidationReport.txt)
 [![SanityChecks](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/master/warnings.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/master/SanityChecksOutput.md)
 [![SpellCheck](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/master/spell-badge.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/master/SpellCheckReport.txt)
 [![TDs](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/master/tds.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/master/TDValidationReport.txt)
 ![Transforms Version](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/master/transforms.svg)
 
+Release-4.3
 [![Validation](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/release-4.3/validation.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/release-4.3/ValidationReport.txt)
 [![SanityChecks](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/release-4.3/warnings.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/release-4.3/SanityChecksOutput.md)
 [![SpellCheck](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/release-4.3/spell-badge.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/release-4.3/SpellCheckReport.txt)
 [![TDs](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/release-4.3/tds.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/release-4.3/TDValidationReport.txt)
 ![Transforms Version](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/release-4.3/transforms.svg)
 
+Release-4.2.1
 [![Validation](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/release-4.2.1/validation.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/release-4.2.1/ValidationReport.txt)
 [![SanityChecks](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/release-4.2.1/warnings.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/release-4.2.1/SanityChecksOutput.md)
 [![SpellCheck](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/release-4.2.1/spell-badge.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/release-4.2.1/SpellCheckReport.txt)
