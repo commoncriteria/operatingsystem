@@ -4,14 +4,23 @@ Protection Profile for General Purpose Operating System
 ![Build](https://github.com/commoncriteria/operatingsystem/workflows/Build/badge.svg)
 ![Validate](https://github.com/commoncriteria/operatingsystem/workflows/Validate/badge.svg)
 
-![Last QuickBuilt Branch](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/build-branch-badge.svg)
-[![Validation](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/validation.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/ValidationReport.txt)
-[![SanityChecks](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/warnings.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/SanityChecksOutput.md)
-[![SpellCheck](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/spell-badge.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/SpellCheckReport.txt)
-[![TDs](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/tds.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/TDValidationReport.txt)
-[![QuickBuild](https://github.com/commoncriteria/operatingsystem/actions/workflows/quick_build.yml/badge.svg)](https://commoncriteria.github.io/operatingsystem)
+[![Validation](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/master/validation.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/master/ValidationReport.txt)
+[![SanityChecks](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/master/warnings.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/master/SanityChecksOutput.md)
+[![SpellCheck](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/master/spell-badge.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/master/SpellCheckReport.txt)
+[![TDs](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/master/tds.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/master/TDValidationReport.txt)
+![Transforms Version](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/master/transforms.svg)
 
-![Transforms Version](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/transforms.svg)
+[![Validation](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/release-4.3/validation.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/release-4.3/ValidationReport.txt)
+[![SanityChecks](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/release-4.3/warnings.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/release-4.3/SanityChecksOutput.md)
+[![SpellCheck](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/release-4.3/spell-badge.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/release-4.3/SpellCheckReport.txt)
+[![TDs](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/release-4.3/tds.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/release-4.3/TDValidationReport.txt)
+![Transforms Version](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/release-4.3/transforms.svg)
+
+[![Validation](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/release-4.2.1/validation.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/release-4.2.1/ValidationReport.txt)
+[![SanityChecks](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/release-4.2.1/warnings.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/release-4.2.1/SanityChecksOutput.md)
+[![SpellCheck](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/release-4.2.1/spell-badge.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/release-4.2.1/SpellCheckReport.txt)
+[![TDs](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/release-4.2.1/tds.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/release-4.2.1/TDValidationReport.txt)
+![Transforms Version](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/release-4.2.1/transforms.svg)
 
 
 [![GitHub issues Open](https://img.shields.io/github/issues/commoncriteria/operatingsystem.svg?maxAge=2592000)](https://github.com/commoncriteria/operatingsystem/issues) 
