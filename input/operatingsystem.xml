@@ -57,41 +57,7 @@
     <url>NIAPURL</url>
     <depends on-sel="QQQQ" on-also="QQQQ"/>
   </include-pkg>
-  <modules>
-    <module id="mod-vpnclient">
-      <git>
-	<url>https://github.com/commoncriteria/vpnclient</url>
-	<branch>v2.4</branch>
-      </git>
-      <url><![CDATA[https://www.niap-ccevs.org/Profile/Info.cfm?PPID=467&id=467]]></url>
-      <depends on="s-provides-vpnclient"/>
-    </module>
-    <module id="mod-bluetooth">
-      <git>
-	<url>https://github.com/commoncriteria/bluetooth</url>
-	<branch>v1.0</branch>
-      </git>
-      <url><![CDATA[https://www.niap-ccevs.org/Profile/Info.cfm?PPID=425&id=425]]></url>
-    </module>
-    <module id="mod-mdmagent">
-      <git>
-	<url>https://github.com/commoncriteria/mdmagent</url>
-	<branch>Release-1.0</branch>
-      </git>
-      <url><![CDATA[https://www.niap-ccevs.org/Profile/Info.cfm?PPID=441&id=441]]></url>
-    </module>
-    <module id="mod-wlanclient">
-      <git>
-	<url>https://github.com/commoncriteria/wlanclient</url>
-	<branch>release-1.0</branch>
-      </git>
-      <url><![CDATA[https://www.niap-ccevs.org/Profile/Info.cfm?PPID=386&id=386]]></url>
-    </module>
-    <!-- <module id="mod-biometric" version="1.1" name="cPP for Biometrics" product="Biometric Devices " short="BMcPP"> -->
-    <!--   <url>https://biometricitc.github.io/v1.1/1.1PRE/MOD-BIO-v1.1.pdf</url> -->
-    <!-- </module> -->
-  </modules>
-  <sec:Introduction>
+  <sec:Introduction xmlns="">
     <sec:Overview>The scope of this Protection Profile (PP) is to describe the security functionality of operating systems in terms of <xref g="CC"></xref> and to define functional and assurance requirements for such products. An operating system is software that manages computer hardware and software resources, and provides common services for application programs. The hardware it manages may be physical or virtual.</sec:Overview>
     <tech-terms>
       <term full="Address Space Layout Randomization" abbr="ASLR">
@@ -214,45 +180,13 @@
       privileged applications installed onto it.  However, these are out of scope of this PP.
       <usecases>
         <usecase title="End User Devices" id="enduserdevices">
-          <description>
-	    <h:p>
-	    The OS provides a platform for end user devices such as desktops,
-	    laptops, convertibles, and tablets.
-	    These devices may optionally be bound to a directory server or management server.
-	    </h:p>
-	    <h:p>
-            As this Protection Profile does not address threats against data-at-rest,
-            enterprises deploying operating systems in mobile scenarios should ensure that these systems
-            include data-at-rest protection spelled out in other
-	    Protection Profiles. Specifically, this includes the Protection Profiles for
-	    <h:i>Full Drive Encryption - Encryption Engine</h:i>,
-	    <h:i>Full Drive Encryption - Authorization Acquisition</h:i>,
-	    and <h:i>Software File Encryption</h:i>.  The <h:i>Protection Profile for Mobile
-		Device Fundamentals</h:i> includes requirements for data-at-rest protection and is appropriate
-		for many mobile devices.
-	    </h:p>
-          </description>
+          <description>The OS provides a platform for end user devices such as desktops, laptops, convertibles, and tablets. These devices may optionally be bound to a directory server or management server. As this Protection Profile does not address threats against data-at-rest, enterprises deploying operating systems in mobile scenarios should ensure that these systems include data-at-rest protection spelled out in other Protection Profiles. Specifically, this includes the Protection Profiles for Full Drive Encryption - Encryption Engine, Full Drive Encryption - Authorization Acquisition, and Software File Encryption. The Protection Profile for Mobile Device Fundamentals includes requirements for data-at-rest protection and is appropriate for many mobile devices.</description>
         </usecase>
         <usecase title="Server Systems" id="serversystems">
-          <description>The OS provides a platform for server-side services, either on
-            physical or virtual hardware.  Many specific examples exist in which the OS acts
-            as a platform for such services, including file servers, mail servers, and web servers.
-          </description>
+          <description>The OS provides a platform for server-side services, either on physical or virtual hardware. Many specific examples exist in which the OS acts as a platform for such services, including file servers, mail servers, and web servers.</description>
         </usecase>
         <usecase title="Cloud Systems" id="cloudsystems">
-          <description>
-	    <h:p>
-	      The OS provides a platform for providing cloud services running on
-              physical or virtual hardware.  An OS is typically part of offerings
-              identified as Infrastructure as a Service (IaaS), Software as a Service (SaaS),
-              and Platform as a Service (PaaS).
-	    </h:p>
-	    <h:p>
-			This use case typically involves the use
-			of virtualization technology which should be evaluated against the
-			<h:i>Protection Profile for Server Virtualization</h:i>.
-	    </h:p>
-	  </description>
+          <description>The OS provides a platform for providing cloud services running on physical or virtual hardware. An OS is typically part of offerings identified as Infrastructure as a Service (IaaS), Software as a Service (SaaS), and Platform as a Service (PaaS). This use case typically involves the use of virtualization technology which should be evaluated against the Protection Profile for Server Virtualization.</description>
         </usecase>
       </usecases>
     </sec:Use_Cases>
@@ -674,11 +608,11 @@
                   the key agreement scheme using the corresponding parameters. The evaluator will
                   compare the OS's results with the results using a known good implementation
                   verifying that the OS detects these errors.
-		</h:p></h:p><div><div><h:b>RSAES-PKCS1-v1_5 Key Establishment Schemes</h:b><h:p>
+		</h:p></h:p></div><div><h:b>RSAES-PKCS1-v1_5 Key Establishment Schemes</h:b><h:p>
 The evaluator will verify the correctness of the TSF's implementation of RSAES-PKCS1-v1_5 by using a known good implementation for each protocol selected in FTP_ITC_EXT.1 that uses RSAES-PKCS1-v1_5.
-			</h:p><div><div><h:b>FFC Schemes using "safe-prime" groups (identified in Appendix D of SP 800-56A Revision 3) </h:b><h:p>
+			</h:p></div><div><h:b>FFC Schemes using "safe-prime" groups (identified in Appendix D of SP 800-56A Revision 3) </h:b><h:p>
 The evaluator will verify the correctness of the TSF's implementation of "safe-prime" groups by using a known good implementation for each protocol selected in FTP_ITC_EXT.1 that uses "safe-prime" groups. This test must be performed for each "safe-prime" group that each protocol uses.
-	</h:p><div>
+	</h:p></div>
                   </test>
                 </testlist>
               </Tests>
@@ -755,7 +689,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
           <f-element id="fel-encrypt-how">
             <title>The <h:b>OS</h:b>  shall perform [ <h:i>encryption/decryption services for data</h:i>  ] in accordance with a specified cryptographic algorithm  <h:b><selectables ><selectable id="s-aes-xts" > <snip>AES-XTS</snip> (as defined in NIST SP 800-38E)</selectable><selectable id="s-aes-cbc" > <snip>AES-CBC</snip> (as defined in NIST SP 800-38A)</selectable><selectable id="s-aes-ctr" > <snip>AES-CTR</snip> (as defined in NIST SP 800-38A)</selectable></selectables>
 	      and
-	      <selectables ><selectable id="s-aes-kw" >AES Key Wrap (KW) (as defined in NIST SP 800-38F)</selectable><selectable id="s-aes-kwp" >AES Key Wrap with Padding (KWP) (as defined in NIST SP 800-38F)</selectable><selectable id="s-aes-ccmp" > <snip>AES-CCMP-256</snip> (as defined in NIST SP 800-38C and IEEE 802.11ac-2013)</selectable><selectable id="s-aes-gcmp" > <snip>AES-GCMP-256</snip> (as defined in NIST SP 800-38D and IEEE 802.11ac-2013)</selectable><selectable id="fcs_cop.1.1_ENCRYPT_1" exclusive="yes">no other modes</selectable></selectables>and cryptographic key sizes 256-bit. <h:strike>that meet the following: [assignment: list of standards]</h:strike>  .</title>
+	      <selectables ><selectable id="s-aes-kw" >AES Key Wrap (KW) (as defined in NIST SP 800-38F)</selectable><selectable id="s-aes-kwp" >AES Key Wrap with Padding (KWP) (as defined in NIST SP 800-38F)</selectable><selectable id="s-aes-ccmp" > <snip>AES-CCMP-256</snip> (as defined in NIST SP 800-38C and IEEE 802.11ac-2013)</selectable><selectable id="s-aes-gcmp" > <snip>AES-GCMP-256</snip> (as defined in NIST SP 800-38D and IEEE 802.11ac-2013)</selectable><selectable id="fcs_cop.1.1_ENCRYPT_1" exclusive="yes">no other modes</selectable></selectables></h:b>and cryptographic key sizes 256-bit. <h:strike>that meet the following: [assignment: list of standards]</h:strike>  .</title>
             <note role="application"><h:p>
               AES CCMP (which uses AES in CCM as specified in SP 800-38C) becomes mandatory and must
               be selected if the ST includes the  <xref to="mod-wlanclient"></xref>.
