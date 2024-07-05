@@ -191,18 +191,68 @@
       </term>
     </tech-terms>
     <section title="Compliant Targets of Evaluation" id="TOEdescription"><h:br></section>
-    <section title="Platforms with Specific EAs" id="sec-platforms"/>
-    <sec:Use_Cases>
-      Requirements in this Protection Profile are designed to address the security problems in at least the following use cases. These use cases are intentionally very broad, as many specific use cases exist for an operating system. These use cases may also overlap with one another. An operating system's functionality may even be effectively extended by privileged applications installed onto it. However, these are out of scope of this PP.
+    <sec:TOE_Boundary>
+        The TOE boundary encompasses the OS kernel and its drivers, shared
+        software libraries, and some application software included with the OS. The applications considered within the TOE
+        are those that provide essential security services, many of which run with elevated
+        privileges.  Applications which are covered by more-specific Protection Profiles cannot
+        claim evaluation as part of the OS evaluation, even when it is necessary to evaluate
+        some of their functionality as it relates to their role as part of the OS.
+        <figure entity="images/Toe.png" title="General TOE " id="toe"/>
+      </sec:TOE_Boundary>
+      <sec:TOE_Platform>
+	The TOE platform, which consists of the physical or virtual hardware on which the TOE executes,
+        is outside the scope of evaluation.  At the same time, the security of the TOE relies upon it.
+        Other hardware components which independently run their own software and are
+        relevant to overall system security are also outside the scope of evaluation.
+      </sec:TOE_Platform>
+    </sec:Compliant_Targets_of_Evaluation>
+    <sec:Use_Cases>Requirements in this Protection Profile are designed to
+      address the security problems in at least the following use cases. These use cases are intentionally
+      very broad, as many specific use cases exist for an operating system. These use cases may also
+      overlap with one another.  An operating system's functionality may even be effectively extended by
+      privileged applications installed onto it.  However, these are out of scope of this PP.
       <usecases>
         <usecase title="End User Devices" id="enduserdevices">
-          <description>The OS provides a platform for end user devices such as desktops, laptops, convertibles, and tablets. These devices may optionally be bound to a directory server or management server. As this Protection Profile does not address threats against data-at-rest, enterprises deploying operating systems in mobile scenarios should ensure that these systems include data-at-rest protection spelled out in other Protection Profiles. Specifically, this includes the Protection Profiles for Full Drive Encryption - Encryption Engine, Full Drive Encryption - Authorization Acquisition, and Software File Encryption. The Protection Profile for Mobile Device Fundamentals includes requirements for data-at-rest protection and is appropriate for many mobile devices.</description>
+          <description>
+	    <h:p>
+	    The OS provides a platform for end user devices such as desktops,
+	    laptops, convertibles, and tablets.
+	    These devices may optionally be bound to a directory server or management server.
+	    </h:p>
+	    <h:p>
+            As this Protection Profile does not address threats against data-at-rest,
+            enterprises deploying operating systems in mobile scenarios should ensure that these systems
+            include data-at-rest protection spelled out in other
+	    Protection Profiles. Specifically, this includes the Protection Profiles for
+	    <h:i>Full Drive Encryption - Encryption Engine</h:i>,
+	    <h:i>Full Drive Encryption - Authorization Acquisition</h:i>,
+	    and <h:i>Software File Encryption</h:i>.  The <h:i>Protection Profile for Mobile
+		Device Fundamentals</h:i> includes requirements for data-at-rest protection and is appropriate
+		for many mobile devices.
+	    </h:p>
+          </description>
         </usecase>
         <usecase title="Server Systems" id="serversystems">
-          <description>The OS provides a platform for server-side services, either on physical or virtual hardware. Many specific examples exist in which the OS acts as a platform for such services, including file servers, mail servers, and web servers.</description>
+          <description>The OS provides a platform for server-side services, either on
+            physical or virtual hardware.  Many specific examples exist in which the OS acts
+            as a platform for such services, including file servers, mail servers, and web servers.
+          </description>
         </usecase>
         <usecase title="Cloud Systems" id="cloudsystems">
-          <description>The OS provides a platform for providing cloud services running on physical or virtual hardware. An OS is typically part of offerings identified as Infrastructure as a Service (IaaS), Software as a Service (SaaS), and Platform as a Service (PaaS). This use case typically involves the use of virtualization technology which should be evaluated against the Protection Profile for Server Virtualization.</description>
+          <description>
+	    <h:p>
+	      The OS provides a platform for providing cloud services running on
+              physical or virtual hardware.  An OS is typically part of offerings
+              identified as Infrastructure as a Service (IaaS), Software as a Service (SaaS),
+              and Platform as a Service (PaaS).
+	    </h:p>
+	    <h:p>
+			This use case typically involves the use
+			of virtualization technology which should be evaluated against the
+			<h:i>Protection Profile for Server Virtualization</h:i>.
+	    </h:p>
+	  </description>
         </usecase>
       </usecases>
     </sec:Use_Cases>
