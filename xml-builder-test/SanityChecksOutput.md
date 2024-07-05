@@ -88,7 +88,5 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[6]""/f-component[4]""/f-element[1]""/aactivity[1]""/Tests[1]""/h:p[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[8]""/f-component[1]""/f-element[1]""/note[1]"The ST au"/h:p[1]"Regardles"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[8]""/f-component[1]""/f-element[1]""/note[1]"The ST au"/h:p[1]"Regardles"/h:p[2]""
-* Warning: Detected 0 tech-term sections in this PP. There should be exactly 1 "tech-term" section.
-      
 warning: failed to load external entity "output/pkg-QQQQ.xml"
 warning: failed to load external entity "output/pkg-QQQQ.xml"
