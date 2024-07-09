@@ -146,9 +146,13 @@
 	At that time, such a user should be considered an administrator.
       </term>
     </tech-terms>
-    <section title="Compliant Targets of Evaluation" id="TOEdescription"><h:br/></section>
+    <section title="Compliant Targets of Evaluation" id="TOEdescription">
+      <h:br/>
+      <sec:TOE_Platform>The TOE platform, which consists of the physical or virtual hardware on which the TOE executes, is outside the scope of evaluation. At the same time, the security of the TOE relies upon it. Other hardware components which independently run their own software and are relevant to overall system security are also outside the scope of evaluation.</sec:TOE_Platform>
+      <sec:TOE_Boundary>The TOE boundary encompasses the OS kernel and its drivers, shared software libraries, and some application software included with the OS. The applications considered within the TOE are those that provide essential security services, many of which run with elevated privileges. Applications which are covered by more-specific Protection Profiles cannot claim evaluation as part of the OS evaluation, even when it is necessary to evaluate some of their functionality as it relates to their role as part of the OS. <figure entity="images/Toe.png" title="General TOE " id="toe"></figure></sec:TOE_Boundary>
+    </section>
     <sec:Use_Cases>
-      Requirements in this Protection Profile are designed to address the security problems in at least the following use cases. These use cases are intentionally very broad, as many specific use cases exist for an operating system. These use cases may also overlap with one another. An operating system's functionality may even be effectively extended by privileged applications installed onto it. However, these are out of scope of this PP.
+      <sec:TOE_Usage>Requirements in this Protection Profile are designed to address the security problems in at least the following use cases. These use cases are intentionally very broad, as many specific use cases exist for an operating system. These use cases may also overlap with one another. An operating system's functionality may even be effectively extended by privileged applications installed onto it. However, these are out of scope of this PP.</sec:TOE_Usage>
       <usecases>
         <usecase title="End User Devices" id="enduserdevices">
           <description>The OS provides a platform for end user devices such as desktops, laptops, convertibles, and tablets. These devices may optionally be bound to a directory server or management server. As this Protection Profile does not address threats against data-at-rest, enterprises deploying operating systems in mobile scenarios should ensure that these systems include data-at-rest protection spelled out in other Protection Profiles. Specifically, this includes the Protection Profiles for Full Drive Encryption - Encryption Engine, Full Drive Encryption - Authorization Acquisition, and Software File Encryption. The Protection Profile for Mobile Device Fundamentals includes requirements for data-at-rest protection and is appropriate for many mobile devices.</description>
@@ -1859,7 +1863,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
           </f-element>
         </f-component>
         <!--FPT_W^X_EXT.1 Write XOR Execute Memory Pages-->
-        <f-component cc-id="fpt_w^x_ext.1" name="Write XOR Execute Memory Pages">
+        <f-component cc-id="fpt_w^x_ext.1" id="fpt-w^x-ext-1" name="Write XOR Execute Memory Pages">
           <f-element id="fel-no-rw-mem">
             <title>The OS shall prevent allocation of any memory region with both write and execute permissions except for<assignable>list of exceptions</assignable>.</title>
             <note role="application">Requesting a memory mapping with both write and execute
