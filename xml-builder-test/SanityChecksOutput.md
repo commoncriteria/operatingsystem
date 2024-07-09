@@ -6,6 +6,18 @@
         on-sel/PP[1]""/include-pkg[1]""/depends[1]""/on-sel[1]""
 * Error: Detected dangling id-reference to QQQQ from attribute
         on-also/PP[1]""/include-pkg[1]""/depends[1]""/on-also[1]""
+* Error: Detected multiple elements with an id of 'bibCEM'.
+* Error: Detected multiple elements with an id of 'bibNCSC'.
+* Error: Detected multiple elements with an id of 'bibCSA'.
+* Error: Detected multiple elements with an id of 'bibOMB'.
+* Error: Detected multiple elements with an id of 'bib-shavs'.
+* Error: Detected multiple elements with an id of 'bibx509'.
+* Error: Detected multiple elements with an id of 'bibCEM'.
+* Error: Detected multiple elements with an id of 'bibNCSC'.
+* Error: Detected multiple elements with an id of 'bibCSA'.
+* Error: Detected multiple elements with an id of 'bibOMB'.
+* Error: Detected multiple elements with an id of 'bib-shavs'.
+* Error: Detected multiple elements with an id of 'bibx509'.
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[1]""/f-element[1]""/note[1]""/h:p[1]"The ST au"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]""/h:p[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]""/h:p[1]"The evalu"/h:p[2]""
