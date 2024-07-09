@@ -2,10 +2,6 @@
         /PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[8]""/f-component[2]""/f-element[1]""
 * Error: f-element FTP_TRP.1.2  appears not to have an associated evaluation activity.:
         /PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[8]""/f-component[2]""/f-element[2]""
-* Error: Detected dangling id-reference to QQQQ from attribute
-        on-sel/PP[1]""/include-pkg[1]""/depends[1]""/on-sel[1]""
-* Error: Detected dangling id-reference to QQQQ from attribute
-        on-also/PP[1]""/include-pkg[1]""/depends[1]""/on-also[1]""
 * Error: Detected multiple elements with an id of 'bibCEM'.
 * Error: Detected multiple elements with an id of 'bibNCSC'.
 * Error: Detected multiple elements with an id of 'bibCSA'.
