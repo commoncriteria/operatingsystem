@@ -688,40 +688,46 @@
                                     <p>
                                          The evaluator will verify the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s implementation of SP800-56A key agreement schemes using the following Function and Validity tests. These validation tests for each key agreement scheme verify that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> has implemented the components of the key agreement scheme according to the specifications in the Recommendation. These components include the calculation of the discrete logarithm cryptography (DLC) primitives (the shared secret value Z) and the calculation of the derived keying material (DKM) via the Key Derivation Function (KDF). If key confirmation is supported, the evaluator will also verify that the components of key confirmation have been implemented correctly, using the test procedures described below. This includes the parsing of the DKM, the generation of MAC data and the calculation of MAC tag. 
                                     </p>
-                                    <b>Function Test</b>
-                                    <p>
-                                        The Function test verifies the ability of the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to implement the key agreement schemes correctly. To conduct this test the evaluator will generate or obtain test vectors from a known good implementation of the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s supported schemes. For each supported key agreement scheme-key agreement role combination, KDF type, and, if supported, key confirmation role- key confirmation type combination, the tester will generate 10 sets of test vectors. The data set consists of one set of domain parameter values (FCC) or the NIST approved curve (ECC) per 10 sets of public keys. These keys are static, ephemeral or both depending on the scheme being tested. 
-                                    </p>
-                                    <p></p>
-                                     The evaluator will obtain the DKM, the corresponding <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s public keys (static and/or ephemeral), the MAC tag(s), and any inputs used in the KDF, such as the Other Information field OI and <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> id fields. 
-                                    <p></p>
-                                     If the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> does not use a KDF defined in SP 800-56A, the evaluator will obtain only the public keys and the hashed value of the shared secret. 
-                                    <p></p>
-                                     The evaluator will verify the correctness of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>'s implementation of a given scheme by using a known good implementation to calculate the shared secret value, derive the keying material DKM, and compare hashes or MAC tags generated from these values. 
-                                    <p></p>
-                                     If key confirmation is supported, the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> will perform the above for each implemented approved MAC algorithm. 
-                                    <p></p>
-                                    <b>Validity Test</b>
-                                    <br>
-                                    <p>
-                                         The Validity test verifies the ability of the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to recognize another party's valid and invalid key agreement results with or without key confirmation. To conduct this test, the evaluator will obtain a list of the supporting cryptographic functions included in the SP800-56A Revision 3 key agreement implementation to determine which errors the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> should be able to recognize. The evaluator generates a set of 24 FCC or 30 ECC test vectors consisting of data sets including domain parameter values or NIST approved curves, the evaluator's public keys, the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s public/private key pairs, MAC tag, and any inputs used in the KDF, such as the other info and <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> id fields. 
-                                    </p>
-                                    <p></p>
-                                     The evaluator will inject an error in some of the test vectors to test that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> recognizes invalid key agreement results caused by the following fields being incorrect: the shared secret value Z, the DKM, the other information field OI, the data to be MACed, or the generated MAC tag. If the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> contains the full or partial (only ECC) public key validation, the evaluator will also individually inject errors in both parties' static public keys, both parties' ephemeral public keys and the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s static private key to assure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> detects errors in the public key validation function and/or the partial key validation function (in ECC only). At least two of the test vectors will remain unmodified and therefore should result in valid key agreement results (they should pass). 
-                                    <p></p>
-                                     The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> will use these modified test vectors to emulate the key agreement scheme using the corresponding parameters. The evaluator will compare the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s results with the results using a known good implementation verifying that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> detects these errors. 
-                                    <p></p>
-                                    <p></p>
-                                    <b>RSAES-PKCS1-v1_5 Key Establishment Schemes</b>
-                                    <br>
-                                    <p>
-                                         The evaluator will verify the correctness of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>'s implementation of RSAES-PKCS1-v1_5 by using a known good implementation for each protocol selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> that uses RSAES-PKCS1-v1_5. 
-                                    </p>
-                                    <b>FFC Schemes using "safe-prime" groups (identified in Appendix D of SP 800-56A Revision 3) </b>
-                                    <br>
-                                    <p>
-                                         The evaluator will verify the correctness of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>'s implementation of "safe-prime" groups by using a known good implementation for each protocol selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> that uses "safe-prime" groups. This test must be performed for each "safe-prime" group that each protocol uses. 
-                                    </p>
+                                    <div>
+                                        <b>Function Test</b>
+                                        <p>
+                                            The Function test verifies the ability of the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to implement the key agreement schemes correctly. To conduct this test the evaluator will generate or obtain test vectors from a known good implementation of the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s supported schemes. For each supported key agreement scheme-key agreement role combination, KDF type, and, if supported, key confirmation role- key confirmation type combination, the tester will generate 10 sets of test vectors. The data set consists of one set of domain parameter values (FCC) or the NIST approved curve (ECC) per 10 sets of public keys. These keys are static, ephemeral or both depending on the scheme being tested. 
+                                        </p>
+                                        <p></p>
+                                         The evaluator will obtain the DKM, the corresponding <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s public keys (static and/or ephemeral), the MAC tag(s), and any inputs used in the KDF, such as the Other Information field OI and <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> id fields. 
+                                        <p></p>
+                                         If the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> does not use a KDF defined in SP 800-56A, the evaluator will obtain only the public keys and the hashed value of the shared secret. 
+                                        <p></p>
+                                         The evaluator will verify the correctness of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>'s implementation of a given scheme by using a known good implementation to calculate the shared secret value, derive the keying material DKM, and compare hashes or MAC tags generated from these values. 
+                                        <p></p>
+                                         If key confirmation is supported, the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> will perform the above for each implemented approved MAC algorithm. 
+                                        <p></p>
+                                        <b>Validity Test</b>
+                                        <br>
+                                        <p>
+                                             The Validity test verifies the ability of the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to recognize another party's valid and invalid key agreement results with or without key confirmation. To conduct this test, the evaluator will obtain a list of the supporting cryptographic functions included in the SP800-56A Revision 3 key agreement implementation to determine which errors the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> should be able to recognize. The evaluator generates a set of 24 FCC or 30 ECC test vectors consisting of data sets including domain parameter values or NIST approved curves, the evaluator's public keys, the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s public/private key pairs, MAC tag, and any inputs used in the KDF, such as the other info and <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> id fields. 
+                                        </p>
+                                        <p></p>
+                                         The evaluator will inject an error in some of the test vectors to test that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> recognizes invalid key agreement results caused by the following fields being incorrect: the shared secret value Z, the DKM, the other information field OI, the data to be MACed, or the generated MAC tag. If the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> contains the full or partial (only ECC) public key validation, the evaluator will also individually inject errors in both parties' static public keys, both parties' ephemeral public keys and the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s static private key to assure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> detects errors in the public key validation function and/or the partial key validation function (in ECC only). At least two of the test vectors will remain unmodified and therefore should result in valid key agreement results (they should pass). 
+                                        <p></p>
+                                         The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> will use these modified test vectors to emulate the key agreement scheme using the corresponding parameters. The evaluator will compare the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s results with the results using a known good implementation verifying that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> detects these errors. 
+                                        <p></p>
+                                        <p></p>
+                                    </div>
+                                    <div>
+                                        <b>RSAES-PKCS1-v1_5 Key Establishment Schemes</b>
+                                        <br>
+                                        <p>
+                                             The evaluator will verify the correctness of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>'s implementation of RSAES-PKCS1-v1_5 by using a known good implementation for each protocol selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> that uses RSAES-PKCS1-v1_5. 
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <b>FFC Schemes using "safe-prime" groups (identified in Appendix D of SP 800-56A Revision 3) </b>
+                                        <br>
+                                        <p>
+                                             The evaluator will verify the correctness of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>'s implementation of "safe-prime" groups by using a known good implementation for each protocol selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> that uses "safe-prime" groups. This test must be performed for each "safe-prime" group that each protocol uses. 
+                                        </p>
+                                    </div>
                                 </li>
                             </ul>
                         </span> 
