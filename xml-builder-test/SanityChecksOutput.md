@@ -113,8 +113,6 @@
  Failed to find a reference to fel-key-kill.
  Failed to find a reference to fel-key-kill.
  Failed to find a reference to mod-wlanclient.
-DONTKNOWWHATIT IS:m
-DONTKNOWWHATIT IS:m
  Failed to find a reference to pkg-ssh.
  Failed to find a reference to s-ftp_ssh.
  Failed to find a reference to pkg-tls.
