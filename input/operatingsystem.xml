@@ -38,6 +38,22 @@
       <subject>Release - significant revision</subject>
     </entry>
   </RevisionHistory>
+  <include-pkg id="pkg-ssh">
+    <git>
+      <url>https://github.com/commoncriteria/ssh</url>
+      <branch>release-1.0</branch>
+    </git>
+    <url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459</url>
+    <depends on="s-ftp_ssh"/>
+    <depends also="s-uau-ssh"/>
+  </include-pkg>
+  <include-pkg id="pkg-tls">
+    <git>
+      <url>https://github.com/commoncriteria/tls</url>
+      <branch>release-1.1</branch>
+    </git>
+    <url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439</url>
+  </include-pkg>
   <modules/>
   <sec:Introduction >
     <sec:Overview>The scope of this Protection Profile (PP) is to describe the security functionality of operating systems in terms of <xref g="CC"></xref> and to define functional and assurance requirements for such products. An operating system is software that manages computer hardware and software resources, and provides common services for application programs. The hardware it manages may be physical or virtual.</sec:Overview>
@@ -176,22 +192,47 @@
   </sec:Conformance_Claims>
   <!-- 3.0 Security Problem Definition-->
   <sec:Security_Problem_Definition >
-    
-    The security problem is described in terms
-    of the threats that the TOE is expected to address, assumptions about the
-    operational environment, and any organizational security policies that the TOE
-    is expected to enforce.
-    
-
+    The security problem is described in terms of the threats that the OS is expected to address, assumptions about the operational environment, and any organizational security policies that the OS is expected to enforce.
     <!-- 3.1 Threats -->
     <sec:Threats>
       <threats>
-        <threat name="T.QQQQ">
-          <!-- Repeatable -->
-          <description>QQQQ</description>
-          <objective-refer ref="O.QQQQ">
-            <!-- Repeatable -->
-            <rationale>QQQQ</rationale>
+        <threat name="T.LIMITED_PHYSICAL_ACCESS">
+          <description>An attacker may attempt to access data on the OS while having a limited amount of time with the physical device.</description>
+          <objective-refer ref="O.PROTECTED_STORAGE">
+            <rationale>The objective O.PROTECTED_STORAGE protects against unauthorized attempts to              access physical storage used by the TOE.</rationale>
+          </objective-refer>
+        </threat>
+        <threat name="T.LOCAL_ATTACK">
+          <description>An attacker may compromise applications running on the OS. The compromised application may provide maliciously formatted input to the OS through a variety of channels including unprivileged system calls and messaging via the file system.</description>
+          <objective-refer ref="O.ACCOUNTABILITY">
+            <rationale>The objective O.ACCOUNTABILITY protects against local attacks by providing              a mechanism to report behavior that may indicate a local attack is occurring or              has occurred.</rationale>
+          </objective-refer>
+          <objective-refer ref="O.INTEGRITY">
+            <rationale>The objective O.INTEGRITY protects against the use of mechanisms that weaken              the TOE with regard to attack by other software on the              platform.</rationale>
+          </objective-refer>
+        </threat>
+        <threat name="T.NETWORK_ATTACK">
+          <description>An attacker is positioned on a communications channel or elsewhere on the network infrastructure. Attackers may engage in communications with applications and services running on or part of the OS with the intent of compromise. Engagement may consist of altering existing legitimate communications.</description>
+          <objective-refer ref="O.ACCOUNTABILITY">
+            <rationale>The threat T.NETWORK_ATTACK is countered by O.ACCOUNTABILITY as this              provides a mechanism for the OS to report behavior that may indicate a network              attack has occurred.</rationale>
+          </objective-refer>
+          <objective-refer ref="O.INTEGRITY">
+            <rationale>The threat T.NETWORK_ATTACK is countered by O.INTEGRITY as this provides for              integrity of software that is installed onto the system from the network.</rationale>
+          </objective-refer>
+          <objective-refer ref="O.MANAGEMENT">
+            <rationale>The threat T.NETWORK_ATTACK is countered by O.MANAGEMENT as this provides for              the ability to configure the OS to defend against network attack.</rationale>
+          </objective-refer>
+          <objective-refer ref="O.PROTECTED_COMMS">
+            <rationale>The threat T.NETWORK_ATTACK is countered by O.PROTECTED_COMMS as this              provides for integrity of transmitted data.</rationale>
+          </objective-refer>
+        </threat>
+        <threat name="T.NETWORK_EAVESDROP">
+          <description>An attacker is positioned on a communications channel or elsewhere on the network infrastructure. Attackers may monitor and gain access to data exchanged between applications and services that are running on or part of the OS.</description>
+          <objective-refer ref="O.MANAGEMENT">
+            <rationale>The threat T.NETWORK_EAVESDROP is countered by O.MANAGEMENT as this provides              for the ability to configure the OS to protect the confidentiality of its transmitted              data.</rationale>
+          </objective-refer>
+          <objective-refer ref="O.PROTECTED_COMMS">
+            <rationale>The threat T.NETWORK_EAVESDROP is countered by O.PROTECTED_COMMS as this              provides for confidentiality of transmitted data.</rationale>
           </objective-refer>
         </threat>
       </threats>
@@ -199,12 +240,25 @@
     <!-- 3.2 Assumptions -->
     <sec:Assumptions>
       <assumptions>
-        <assumption name="A.QQQQ">
-          <!-- Repeatable -->
-          <description>QQQQ</description>
-          <objective-refer ref="OE.QQQQ">
-            <!-- Repeatable -->
-            <rationale>QQQQ</rationale>
+        <assumption name="A.PLATFORM">
+          <description>The OS relies upon a trustworthy computing platform for its execution. This underlying platform is out of scope of this PP.</description>
+          <objective-refer ref="OE.PLATFORM">
+            <rationale> The operational environment objective OE.PLATFORM is realized through
+              A.PLATFORM. </rationale>
+          </objective-refer>
+        </assumption>
+        <assumption name="A.PROPER_ADMIN">
+          <description>The administrator of the OS is not careless, willfully negligent or hostile, and administers the OS within compliance of the applied enterprise security policy.</description>
+          <objective-refer ref="OE.PROPER_ADMIN">
+            <rationale>The operational environment objective OE.PROPER_ADMIN is realized through
+              A.PROPER_ADMIN.</rationale>
+          </objective-refer>
+        </assumption>
+        <assumption name="A.PROPER_USER">
+          <description>The user of the OS is not willfully negligent or hostile, and uses the software in compliance with the applied enterprise security policy. At the same time, malicious software could act as the user, so requirements which confine malicious subjects are still in scope.</description>
+          <objective-refer ref="OE.PROPER_USER">
+            <rationale>The operational environment objective OE.PROPER_USER is realized through
+              A.PROPER_USER.</rationale>
           </objective-refer>
         </assumption>
       </assumptions>
@@ -226,24 +280,98 @@
     <!-- 4.1 Security Objectives for the TOE -->
     <sec:Security_Objectives_for_the_TOE>
       <SOs>
-        <SO name="O.QQQQ">
-          <!-- Repeatable -->
-          <description>QQQQ</description>
-          <addressed-by>QQQQ.#/QQQQ</addressed-by>
-          <rationale>QQQQ</rationale>
-          <!-- Repeatable -->
+        <SO name="O.ACCOUNTABILITY">
+          <description>Conformant OSes ensure that information exists that allows administrators to discover unintentional issues with the configuration and operation of the operating system and discover its cause. Gathering event information and immediately transmitting it to another system can also enable incident response in the event of system compromise.</description>
+          <addressed-by>FAU_GEN.1</addressed-by>
+          <rationale>Supports the objective by requiring that critical event information be gathered by the TOE.</rationale>
+        </SO>
+        <SO name="O.INTEGRITY">
+          <description>Conformant OSes ensure the integrity of their update packages. OSes are seldom if ever shipped without errors, and the ability to deploy patches and updates with integrity is critical to enterprise network security. Conformant OSes provide execution environment-based mitigations that increase the cost to attackers by adding complexity to the task of compromising systems.</description>
+          <addressed-by>FCS_COP.1/HASH</addressed-by>
+          <rationale>Supports the objective by requiring the TSF to implement hash algorithms that are used in support of protected communications.</rationale>
+          <addressed-by>FCS_COP.1/KEYHMAC</addressed-by>
+          <rationale>Supports the objective by requiring the TSF to implement HMAC algorithms that are used in support of protected communications.</rationale>
+          <addressed-by>FCS_COP.1/SIGN</addressed-by>
+          <rationale>Supports the objective by requiring the TSF to implement digital signature algorithms that are used in support of protected communications.</rationale>
+          <addressed-by>FPT_ACF_EXT.1</addressed-by>
+          <rationale>Supports the objective by requiring the TSF restrict unprivileged users from changing critical components.</rationale>
+          <addressed-by>FPT_BLT_EXT.1</addressed-by>
+          <rationale>FPT_BLT_EXT.1 supports the objective by requiring the TSF to disable certain Bluetooth profiles when they are inactive such that explicit user authorization is required to re-enable them.</rationale>
+          <addressed-by>FPT_SRP_EXT.1</addressed-by>
+          <rationale>Supports the objective by requiring the TSF to implement a configurable allowlist mechanism.</rationale>
+          <addressed-by>FPT_TST_EXT.1</addressed-by>
+          <rationale>Supports the objective by requiring the TSF to verify executable code critical to its operation.</rationale>
+          <addressed-by>FPT_TUD_EXT.1</addressed-by>
+          <rationale>Supports the objective by requiring that the OS be able to check for critical updates.</rationale>
+          <addressed-by>FPT_TUD_EXT.2</addressed-by>
+          <rationale>Supports the objective by requiring that the OS verify updates before applying them.</rationale>
+          <addressed-by>FPT_W^X_EXT.1</addressed-by>
+          <rationale>Supports the objective by requiring the OS to executable only non-writable memory.</rationale>
+          <addressed-by>FIA_AFL.1</addressed-by>
+          <rationale>Supports the objective by requiring the TSF to respond accordingly when the number of failed authentication attempts reaches a specified threshold.</rationale>
+          <addressed-by>FIA_UAU.5</addressed-by>
+          <rationale>Supports the objective by requiring the OS to provide standard authentication mechanisms.</rationale>
+          <addressed-by>FIA_X509_EXT.1</addressed-by>
+          <rationale>Supports the objective by requiring the TSF to validate certificates using industry standards.</rationale>
+        </SO>
+        <SO name="O.MANAGEMENT">
+          <description>To facilitate management by users and the enterprise, conformant OSes provide consistent and supported interfaces for their security-relevant configuration and maintenance. This includes the deployment of applications and application updates through the use of platform-supported deployment mechanisms and formats, as well as providing mechanisms for configuration and application execution control.</description>
+          <addressed-by>FMT_MOF_EXT.1</addressed-by>
+          <rationale>Supports this objective by requiring the TOE to restrict the ability to perform certain management functions to a privileged user.</rationale>
+          <addressed-by>FMT_SMF_EXT.1</addressed-by>
+          <rationale>Supports this objective by requiring the TOE to implement specific management functions.</rationale>
+          <addressed-by>FTA_TAB.1</addressed-by>
+          <rationale>Supports this objective by requiring the TOE to implement a trusted path between the itself and users.</rationale>
+        </SO>
+        <SO name="O.PROTECTED_COMMS">
+          <description>To address both passive (eavesdropping) and active (packet modification) network attack threats, conformant OSes provide mechanisms to create trusted channels for CSP and sensitive data. Both CSP and sensitive data should not be exposed outside of the platform.</description>
+          <addressed-by>FCS_CKM.1</addressed-by>
+          <rationale>Supports this objective by requiring the TSF to generate asymmetric cryptographic keys to industry standards.</rationale>
+          <addressed-by>FCS_CKM.2</addressed-by>
+          <rationale>Supports this objective by requiring the TSF to perform key establishment according to industry standards.</rationale>
+          <addressed-by>FCS_CKM_EXT.4</addressed-by>
+          <rationale>Supports this objective by requiring the TSF to destroy key material according to industry standards.</rationale>
+          <addressed-by>FCS_COP.1/ENCRYPT</addressed-by>
+          <rationale>Supports this objective by requiring the TSF to encrypt data according to industry standards</rationale>
+          <addressed-by>FCS_COP.1/HASH</addressed-by>
+          <rationale>Supports this objective by requiring the TSF to hash data according to industry standards.</rationale>
+          <addressed-by>FCS_COP.1/KEYHMAC</addressed-by>
+          <rationale>Supports this objective by requiring the TSF to perform keyed hashes according to industry standards.</rationale>
+          <addressed-by>FCS_COP.1/SIGN</addressed-by>
+          <rationale>Supports this objective by requiring the TSF to cryptographically sign data according to industry standards.</rationale>
+          <addressed-by>FCS_RBG_EXT.1</addressed-by>
+          <rationale>Supports this objective by requiring the OS to generate random bits according to industry standards.</rationale>
+          <addressed-by>FDP_IFC_EXT.1</addressed-by>
+          <rationale>Supports this objective by requiring the TSF to be compatible with at least one VPN.</rationale>
+          <addressed-by>FIA_X509_EXT.1</addressed-by>
+          <rationale>Supports the objective by requiring the TSF to validate certificates using industry standards.</rationale>
+          <addressed-by>FIA_X509_EXT.2</addressed-by>
+          <rationale>Supports this objective by requiring the TSF to validate TLS and related encrypted connections with x509 certificates.</rationale>
+        </SO>
+        <SO name="O.PROTECTED_STORAGE">
+          <description>To address the issue of loss of confidentiality of credentials in the event of loss of physical control of the storage medium, conformant OSes provide data-at-rest protection for credentials. Conformant OSes also provide access controls which allow users to keep their files private from other users of the same system.</description>
+          <addressed-by>FCS_COP.1/ENCRYPT</addressed-by>
+          <rationale>Supports this objective requiring the OS to perform encryption according to industry stands.</rationale>
+          <addressed-by>FCS_RBG_EXT.1</addressed-by>
+          <rationale>Supports this objective by requiring the OS to generate random bits according to industry standards.</rationale>
+          <addressed-by>FCS_STO_EXT.1</addressed-by>
+          <rationale>Supports this objective by requiring the OS to provide encrypted storage.</rationale>
+          <addressed-by>FDP_ACF_EXT.1</addressed-by>
+          <rationale>Supports this objective by requiring the OS to implement access controls.</rationale>
         </SO>
       </SOs>
     </sec:Security_Objectives_for_the_TOE>
     <!-- 4.2 Security Objctives for the Operational Environment -->
     <sec:Security_Objectives_for_the_Operational_Environment>
-      
-    QQQQ
-    
       <SOEs>
-        <SOE name="OE.QQQQ">
-          <!-- Repeatable -->
-          <description>QQQQ</description>
+        <SOE name="OE.PLATFORM">
+          <description>The OS relies on being installed on trusted hardware.</description>
+        </SOE>
+        <SOE name="OE.PROPER_ADMIN">
+          <description>The administrator of the OS is not careless, willfully negligent or hostile, and administers the OS within compliance of the applied enterprise security policy.</description>
+        </SOE>
+        <SOE name="OE.PROPER_USER">
+          <description>The user of the OS is not willfully negligent or hostile, and uses the software within compliance of the applied enterprise security policy. Standard user accounts are provisioned in accordance with the least privilege model. Users requiring higher levels of access should have a separate account dedicated for that use.</description>
         </SOE>
       </SOEs>
     </sec:Security_Objectives_for_the_Operational_Environment>
@@ -2659,42 +2787,6 @@ The evaluator will also perform the following
     </section></appendix>
   <bibliography>
     <cc-entry/>
-    <entry id="bibCEM">
-      <tag>CEM</tag>
-      <description> <h:a href="http://www.commoncriteriaportal.org/files/ccfiles/CEMV3.1R5.pdf">Common
-          Evaluation Methodology for Information Technology Security - Evaluation Methodology</h:a>,
-        CCMB-2017-04-004, Version 3.1, Revision 5, April 2017. </description>
-    </entry>
-    <entry id="bibNCSC">
-      <tag>NCSC</tag>
-      <description>National Cyber Security Centre -  <h:a href="https://www.ncsc.gov.uk/collection/end-user-device-security">
-            End User Device (EUD) Security Guidance
-            </h:a></description>
-    </entry>
-    <entry id="bibCSA">
-      <tag>CSA</tag>
-      <description> <h:a href="http://csrc.nist.gov/groups/SMA/ispab/documents/csa_87.txt">Computer Security Act
-            of 1987</h:a>, H.R. 145, June 11, 1987. </description>
-    </entry>
-    <entry id="bibOMB">
-      <tag>OMB</tag>
-      <description> <h:a href="http://www.whitehouse.gov/sites/default/files/omb/memoranda/fy2006/m06-19.pdf">
-	    Reporting Incidents Involving Personally Identifiable Information and Incorporating the
-            Cost for Security in Agency Information Technology Investments</h:a>, OMB M-06-19, July
-          12, 2006.
-        </description>
-    </entry>
-    <entry id="bib-shavs">
-      <tag>SHAVS</tag>
-      <description> <h:a href="https://csrc.nist.gov/csrc/media/projects/cryptographic-algorithm-validation-program/documents/shs/shavs.pdf">The Secure Hash Algorithm Validation System, NIST, 22 July 2004</h:a></description>
-    </entry>
-    <entry id="bibx509">
-      <tag>x509</tag>
-      <description> <h:a href="https://tools.ietf.org/html/rfc5280">
-            Internet X.509 Public Key Infrastructure Certificate
-             and Certificate Revocation List (CRL) Profile</h:a>, May 2008.
-      </description>
-    </entry>
     <entry id="bibCEM">
       <tag>CEM</tag>
       <description> <h:a href="http://www.commoncriteriaportal.org/files/ccfiles/CEMV3.1R5.pdf">Common
