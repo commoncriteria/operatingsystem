@@ -4,6 +4,10 @@
         /PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[8]""/f-component[2]""/f-element[2]""
 * Error: Detected dangling id-reference to s-ftp_ssh from attribute
         on/PP[1]""/include-pkg[1]""/depends[1]""/on[1]""
+* Error: Detected dangling id-reference to s-keygen-ecc from attribute
+        ref/PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]""/testlist[2]""/test[1]""/depends[1]""/ref[1]""
+* Error: Detected dangling id-reference to s-ec-certs from attribute
+        ref/PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[7]""/f-element[1]""/aactivity[1]""/Tests[1]""/testlist[1]""/test[1]""/depends[1]""/ref[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[1]""/f-element[1]""/note[1]""/h:p[1]"The ST au"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]""/h:p[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]""/h:p[1]"The evalu"/h:p[2]""

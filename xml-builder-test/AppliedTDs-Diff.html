@@ -514,6 +514,9 @@
                                         <li>
                                             <a href="#s-keygen-rsa">RSA schemes</a> is selected from <a href="#FCS_CKM.1.1">FCS_CKM.1.1</a>
                                         </li>
+                                        <li>
+                                            <a href="#s-keygen-rsa">RSA schemes</a> is selected from <a href="#FCS_CKM.1.1">FCS_CKM.1.1</a>
+                                        </li>
                                     </ul>
                                     ]: <b>Key Generation for FIPS PUB 186-4 RSA Schemes</b>
                                     <br>
@@ -568,7 +571,13 @@
                         </span> <span class="testlist-">
                             <ul>
                                 <li class="test-">
-                                    <a id="_t_2" class="defined" href="#_t_2">Test FCS_CKM.1.1:2</a>: <b>Key Generation for Elliptic Curve Cryptography (ECC)</b>
+                                    <a id="_t_2" class="defined" href="#_t_2">Test FCS_CKM.1.1:2</a>[conditional, to be performed if
+                                    <ul>
+                                        <li>
+                                             the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements "" 
+                                        </li>
+                                    </ul>
+                                    ]: <b>Key Generation for Elliptic Curve Cryptography (ECC)</b>
                                     <br>
                                     <p> FIPS 186-4 ECC Key Generation Test</p>
                                     <p></p>
@@ -585,6 +594,9 @@
                                 <li class="test-">
                                     <a id="_t_3" class="defined" href="#_t_3">Test FCS_CKM.1.1:3</a>[conditional, to be performed if
                                     <ul>
+                                        <li>
+                                            <a href="#s-keygen-ffc-fips">FIPS PUB 186-4</a> is selected from <a href="#FCS_CKM.1.1">FCS_CKM.1.1</a>
+                                        </li>
                                         <li>
                                             <a href="#s-keygen-ffc-fips">FIPS PUB 186-4</a> is selected from <a href="#FCS_CKM.1.1">FCS_CKM.1.1</a>
                                         </li>
@@ -688,6 +700,9 @@
                                 <li class="test-">
                                     <a id="_t_4" class="defined" href="#_t_4">Test FCS_CKM.2.1:1</a>[conditional, to be performed if
                                     <ul>
+                                        <li>
+                                            <a href="#s-keyestab-ecc">Elliptic curve-based</a> is selected from <a href="#FCS_CKM.2.1">FCS_CKM.2.1</a>
+                                        </li>
                                         <li>
                                             <a href="#s-keyestab-ecc">Elliptic curve-based</a> is selected from <a href="#FCS_CKM.2.1">FCS_CKM.2.1</a>
                                         </li>
@@ -932,6 +947,9 @@
                                         <li>
                                             <a href="#s-aes-xts">AES-XTS</a> is selected from <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>
                                         </li>
+                                        <li>
+                                            <a href="#s-aes-xts">AES-XTS</a> is selected from <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>
+                                        </li>
                                     </ul>
                                     ]: 
                                     <p>
@@ -956,6 +974,9 @@
                                 <li class="test-">
                                     <a id="_t_10" class="defined" href="#_t_10">Test FCS_COP.1.1/ENCRYPT:2</a>[conditional, to be performed if
                                     <ul>
+                                        <li>
+                                            <a href="#s-aes-cbc">AES-CBC</a> is selected from <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>
+                                        </li>
                                         <li>
                                             <a href="#s-aes-cbc">AES-CBC</a> is selected from <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>
                                         </li>
@@ -993,15 +1014,15 @@
                                     <p></p>
                                      The evaluator will test the encrypt functionality using a set of 100 plaintext, IV, and key 3-tuples. The keys, plaintext, and IV values are each 256-bits. For each 3-tuple, 1000 iterations will be run as follows: 
                                     <pre>
-              # Input: PT, IV, Key
-              for i = 1 to 1000:
-                if i == 1:
-                      CT[1] = AES-CBC-Encrypt(Key, IV, PT)
-                      PT = IV
-                else:
-                  CT[i] = AES-CBC-Encrypt(Key, PT)
-                  PT = CT[i-1]
-              </pre>
+                                            # Input: PT, IV, Key
+                                            for i = 1 to 1000:
+                                            if i == 1:
+                                            CT[1] = AES-CBC-Encrypt(Key, IV, PT)
+                                            PT = IV
+                                            else:
+                                            CT[i] = AES-CBC-Encrypt(Key, PT)
+                                            PT = CT[i-1]
+                                        </pre>
                                     The ciphertext computed in the 1000th iteration (i.e., CT[1000]) is the result for that trial. This result will be compared to the result of running 1000 iterations with the same values using a known good implementation. 
                                     <p></p>
                                      The evaluator will test the decrypt functionality using the same test as for encrypt, exchanging CT and PT and replacing AES-CBC-Encrypt with AES-CBC-Decrypt. 
@@ -1013,6 +1034,9 @@
                                 <li class="test-">
                                     <a id="_t_15" class="defined" href="#_t_15">Test FCS_COP.1.1/ENCRYPT:3</a>[conditional, to be performed if
                                     <ul>
+                                        <li>
+                                            <a href="#s-aes-ctr">AES-CTR</a> is selected from <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>
+                                        </li>
                                         <li>
                                             <a href="#s-aes-ctr">AES-CTR</a> is selected from <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>
                                         </li>
@@ -1056,12 +1080,12 @@
                                      For AES-ECB mode
                                     <br>
                                     <pre>
-# Input: PT, Key
+                                        # Input: PT, Key
 
-for i = 1 to 1000:
-CT[i] = AES-ECB-Encrypt(Key, PT)
-PT = CT[i]
-</pre>
+                                        for i = 1 to 1000:
+                                        CT[i] = AES-ECB-Encrypt(Key, PT)
+                                        PT = CT[i]
+                                    </pre>
                                     <p>The ciphertext computed in the 1000th iteration is the result for that trial. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation. </p>
                                 </li>
                             </ul>
@@ -1070,6 +1094,9 @@ PT = CT[i]
                                 <li class="test-">
                                     <a id="_t_20" class="defined" href="#_t_20">Test FCS_COP.1.1/ENCRYPT:4</a>[conditional, to be performed if
                                     <ul>
+                                        <li>
+                                            <a href="#s-aes-kw">AES Key Wrap (KW) (as defined in NIST SP 800-38F)</a> is selected from <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>
+                                        </li>
                                         <li>
                                             <a href="#s-aes-kw">AES Key Wrap (KW) (as defined in NIST SP 800-38F)</a> is selected from <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>
                                         </li>
@@ -1098,6 +1125,9 @@ PT = CT[i]
                                         <li>
                                             <a href="#s-aes-kwp">AES Key Wrap with Padding (KWP) (as defined in NIST SP 800-38F)</a> is selected from <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>
                                         </li>
+                                        <li>
+                                            <a href="#s-aes-kwp">AES Key Wrap with Padding (KWP) (as defined in NIST SP 800-38F)</a> is selected from <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>
+                                        </li>
                                     </ul>
                                     ]: 
                                     <p>
@@ -1115,6 +1145,9 @@ PT = CT[i]
                                 <li class="test-">
                                     <a id="_t_22" class="defined" href="#_t_22">Test FCS_COP.1.1/ENCRYPT:6</a>[conditional, to be performed if
                                     <ul>
+                                        <li>
+                                            <a href="#s-aes-ccmp">AES-CCMP-256</a> is selected from <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>
+                                        </li>
                                         <li>
                                             <a href="#s-aes-ccmp">AES-CCMP-256</a> is selected from <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>
                                         </li>
@@ -1168,6 +1201,9 @@ PT = CT[i]
                                 <li class="test-">
                                     <a id="_t_27" class="defined" href="#_t_27">Test FCS_COP.1.1/ENCRYPT:7</a>[conditional, to be performed if
                                     <ul>
+                                        <li>
+                                            <a href="#s-aes-gcmp">AES-GCMP-256</a> is selected from <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>
+                                        </li>
                                         <li>
                                             <a href="#s-aes-gcmp">AES-GCMP-256</a> is selected from <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>
                                         </li>
@@ -1345,7 +1381,13 @@ PT = CT[i]
                          <span class="testlist-">
                             <ul>
                                 <li class="test-">
-                                    <a id="_t_33" class="defined" href="#_t_33">Test FCS_COP.1.1/SIGN:1</a>: 
+                                    <a id="_t_33" class="defined" href="#_t_33">Test FCS_COP.1.1/SIGN:1</a>[conditional, to be performed if
+                                    <ul>
+                                        <li>
+                                             the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements "" 
+                                        </li>
+                                    </ul>
+                                    ]: 
                                     <p>
                                         <b>ECDSA Algorithm Tests</b>
                                     </p>
@@ -1369,6 +1411,9 @@ PT = CT[i]
                                 <li class="test-">
                                     <a id="_t_36" class="defined" href="#_t_36">Test FCS_COP.1.1/SIGN:2</a>[conditional, to be performed if
                                     <ul>
+                                        <li>
+                                            <a href="#s-rsa-certs">RSA schemes using cryptographic key sizes of 2048-bit or greater that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Section 4</a> is selected from <a href="#FCS_COP.1.1/SIGN">FCS_COP.1.1/SIGN</a>
+                                        </li>
                                         <li>
                                             <a href="#s-rsa-certs">RSA schemes using cryptographic key sizes of 2048-bit or greater that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Section 4</a> is selected from <a href="#FCS_COP.1.1/SIGN">FCS_COP.1.1/SIGN</a>
                                         </li>
@@ -2475,7 +2520,13 @@ PT = CT[i]
                          <span class="testlist-">
                             <ul>
                                 <li class="test-">
-                                    <a id="_t_81" class="defined" href="#_t_81">Test FIA_UAU.5.1:1</a>: 
+                                    <a id="_t_81" class="defined" href="#_t_81">Test FIA_UAU.5.1:1</a>[conditional, to be performed if
+                                    <ul>
+                                        <li>
+                                            <a href="#s-pass">authentication based on username and password</a> is selected from <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a>
+                                        </li>
+                                    </ul>
+                                    ]: 
                                     <br>
                                      <span class="testlist-">
                                         <ul>
@@ -2486,13 +2537,19 @@ PT = CT[i]
                                                 <a id="_t_83" class="defined" href="#_t_83">Test FIA_UAU.5.1:1.2</a>: The evaluator will attempt to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the known user name but an incorrect password. The evaluator will ensure that the authentication attempt is unsuccessful. 
                                             </li>
                                         </ul>
-                                    </span>
+                                    </span> 
                                 </li>
                             </ul>
                         </span> <span class="testlist-">
                             <ul>
                                 <li class="test-">
-                                    <a id="_t_84" class="defined" href="#_t_84">Test FIA_UAU.5.1:2</a>: The evaluator will examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> for guidance on supported protected storage and will then configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr> to establish a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr> which enables release of the asymmetric key from the protected storage (such as a TPM, a hardware token, or isolated execution environment) with which the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can interface. The evaluator will then conduct the following tests: 
+                                    <a id="_t_84" class="defined" href="#_t_84">Test FIA_UAU.5.1:2</a>[conditional, to be performed if
+                                    <ul>
+                                        <li>
+                                            <a href="#s-pin">username and a PIN that releases an asymmetric key</a> is selected from <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a>
+                                        </li>
+                                    </ul>
+                                    ]: The evaluator will examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> for guidance on supported protected storage and will then configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr> to establish a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr> which enables release of the asymmetric key from the protected storage (such as a TPM, a hardware token, or isolated execution environment) with which the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can interface. The evaluator will then conduct the following tests: 
                                     <br>
                                      <span class="testlist-">
                                         <ul>
@@ -2503,13 +2560,19 @@ PT = CT[i]
                                                 <a id="_t_86" class="defined" href="#_t_86">Test FIA_UAU.5.1:2.2</a>: The evaluator will attempt to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the known user name but an incorrect <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr>. The evaluator will ensure that the authentication attempt is unsuccessful. 
                                             </li>
                                         </ul>
-                                    </span>
+                                    </span> 
                                 </li>
                             </ul>
                         </span> <span class="testlist-">
                             <ul>
                                 <li class="test-">
-                                    <a id="_t_87" class="defined" href="#_t_87">Test FIA_UAU.5.1:3</a>: The evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to authentication to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using a username, password, and one-time password mechanism. The evaluator will then perform the following tests. 
+                                    <a id="_t_87" class="defined" href="#_t_87">Test FIA_UAU.5.1:3</a>[conditional, to be performed if
+                                    <ul>
+                                        <li>
+                                            <a href="#s-otp">combination of authentication based on user name, password, and time-based one-time password</a> is selected from <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a>
+                                        </li>
+                                    </ul>
+                                    ]: The evaluator will configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to authentication to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using a username, password, and one-time password mechanism. The evaluator will then perform the following tests. 
                                     <br>
                                      <span class="testlist-">
                                         <ul>
@@ -2526,7 +2589,7 @@ PT = CT[i]
                                                 <a id="_t_91" class="defined" href="#_t_91">Test FIA_UAU.5.1:3.4</a>: The evaluator will attempt to authenticate using a valid username, invalid password, and invalid one-time password. The evaluator will ensure that the authentication attempt fails. 
                                             </li>
                                         </ul>
-                                    </span>
+                                    </span> 
                                 </li>
                             </ul>
                         </span> 
@@ -3900,21 +3963,6 @@ PT = CT[i]
                 <th>Identifier</th><th>Title</th>
             </tr>
             <tr>
-                <td><span id="bibCC">[<abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>]</span></td><td><span class="description">Common Criteria for Information Technology Security Evaluation - 
-                        <ul>
-                            <li>
-                                <a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART1V3.1R5.pdf">Part 1: Introduction and General Model</a>, CCMB-2017-04-001, Version 3.1 Revision 5, April 2017.
-                            </li>
-                            <li>
-                                <a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART2V3.1R5.pdf">Part 2: Security Functional Components</a>, CCMB-2017-04-002, Version 3.1 Revision 5, April 2017.
-                            </li>
-                            <li>
-                                <a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART3V3.1R5.pdf">Part 3: Security Assurance Components</a>, CCMB-2017-04-003, Version 3.1 Revision 5, April 2017.
-                            </li>
-                        </ul>
-                    </span></td>
-            </tr>
-            <tr>
                 <td><span id="bibCEM">[<abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr>]</span></td><td><span class="description"> <a href="http://www.commoncriteriaportal.org/files/ccfiles/CEMV3.1R5.pdf">Common Evaluation Methodology for Information Technology Security - Evaluation Methodology</a>, CCMB-2017-04-004, Version 3.1, Revision 5, April 2017. </span></td>
             </tr>
             <tr>
@@ -3931,6 +3979,21 @@ PT = CT[i]
             </tr>
             <tr>
                 <td><span id="bibx509">[x509]</span></td><td><span class="description"> <a href="https://tools.ietf.org/html/rfc5280"> Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile</a>, May 2008. </span></td>
+            </tr>
+            <tr>
+                <td><span id="bibCC">[<abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>]</span></td><td><span class="description">Common Criteria for Information Technology Security Evaluation - 
+                        <ul>
+                            <li>
+                                <a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART1V3.1R5.pdf">Part 1: Introduction and General Model</a>, CCMB-2017-04-001, Version 3.1 Revision 5, April 2017.
+                            </li>
+                            <li>
+                                <a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART2V3.1R5.pdf">Part 2: Security Functional Components</a>, CCMB-2017-04-002, Version 3.1 Revision 5, April 2017.
+                            </li>
+                            <li>
+                                <a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART3V3.1R5.pdf">Part 3: Security Assurance Components</a>, CCMB-2017-04-003, Version 3.1 Revision 5, April 2017.
+                            </li>
+                        </ul>
+                    </span></td>
             </tr>
         </table>
     </body>
