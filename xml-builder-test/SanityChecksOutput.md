@@ -110,11 +110,8 @@
 * Rules without a 'Validation Guidelines' appendix has been detected.
  Failed to find a reference to fel-key-kill.
  Failed to find a reference to fel-key-kill.
- Failed to find a reference to mod-wlanclient.
  Failed to find a reference to s-ftp_ssh.
- Failed to find a reference to mod-vpnclient.
  Failed to find a reference to dtls.
- Failed to find a reference to mod-vpnclient.
  Failed to find a reference to s-ftp_ssh.
  Failed to find a reference to Security_Requirements.
  Failed to find a reference to Security_Requirements.
