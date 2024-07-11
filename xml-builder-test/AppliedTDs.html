@@ -639,7 +639,7 @@ function showTarget(id){
     </span></a><a href="#fta-optional" style="text-indent:20px">A.1.1<span>Class: TOE Access (FTA)</span></a><a href="#objective-reqs" style="text-indent:10px">A.2<span>Objective  Requirements
     </span></a><a href="#fpt-objective" style="text-indent:20px">A.2.1<span>Class: Protection of the TSF (FPT)</span></a><a href="#feat-based-reqs" style="text-indent:10px">A.3<span>Implementation-dependent  Requirements
     </span></a><a href="#sel-based-reqs" style="text-indent:0px">Appendix B - <span>Selection-based  Requirements
-    </span></a><a href="#fdp-sel-based" style="text-indent:10px">B.1<span>Class: User Data Protection (FDP)</span></a><a href="#entropyappendix" style="text-indent:0px">Appendix C - <span>Entropy Documentation and Assessment</span></a><a href="#entropydesign" style="text-indent:10px">C.1<span>Design Description</span></a><a href="#entropyjustification" style="text-indent:10px">C.2<span>Entropy Justification</span></a><a href="#entropyoperatingconditions" style="text-indent:10px">C.3<span>Operating Conditions</span></a><a href="#entropyhealthtesting" style="text-indent:10px">C.4<span>Health Testing</span></a><a href="#acronyms" style="text-indent:0px">Appendix D - <span>Acronyms</span></a><a href="#appendix-bibliography" style="text-indent:0px">Appendix E - <span>Bibliography</span></a></div><h1 class="indexable" data-level="1" id="Introduction">1 Introduction</h1>
+    </span></a><a href="#fdp-sel-based" style="text-indent:10px">B.1<span>Class: User Data Protection (FDP)</span></a><a href="#satisfiedreqs" style="text-indent:0px">Appendix C - <span>Implicitly Satisfied Requirements</span></a><a href="#entropyappendix" style="text-indent:0px">Appendix D - <span>Entropy Documentation and Assessment</span></a><a href="#entropydesign" style="text-indent:10px">D.1<span>Design Description</span></a><a href="#entropyjustification" style="text-indent:10px">D.2<span>Entropy Justification</span></a><a href="#entropyoperatingconditions" style="text-indent:10px">D.3<span>Operating Conditions</span></a><a href="#entropyhealthtesting" style="text-indent:10px">D.4<span>Health Testing</span></a><a href="#acronyms" style="text-indent:0px">Appendix E - <span>Acronyms</span></a><a href="#appendix-bibliography" style="text-indent:0px">Appendix F - <span>Bibliography</span></a></div><h1 class="indexable" data-level="1" id="Introduction">1 Introduction</h1>
         <h2 class="indexable" data-level="2" id="Overview">1.1 Overview</h2>The scope of this Protection Profile (<abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>) is to describe the security functionality of operating systems in terms of <a href="#bibCC">[CC]</a> and to define functional and assurance requirements for such products. An operating system is software that manages computer hardware and software resources, and provides common services for application programs. The hardware it manages may be physical or virtual.
         <div class="no-link"><h2 id="glossary" class="indexable" data-level="2">1.2 Terms</h2>
 The following sections list Common Criteria and technology terms used in this document.
@@ -1796,7 +1796,7 @@ The following sections list Common Criteria and technology terms used in this do
                         <div class="element-activity-header"><a href="#FCS_RBG_EXT.1.2">FCS_RBG_EXT.1.2</a></div>
                             <div class="eacategory">Tests</div><div class="ea"><p>
                                 Documentation will be produced - and the evaluator will perform the
-                                activities - in accordance with  <a href="#entropyappendix" class="dynref">Appendix C -  Entropy Documentation and Assessment</a> and
+                                activities - in accordance with  <a href="#entropyappendix" class="dynref">Appendix D -  Entropy Documentation and Assessment</a> and
                                 the
                                 <a href="https://www.niap-ccevs.org/Documents_and_Guidance/ccevs/Entropy%20Documentation%20and%20Assessment%20Clarification.pdf">Clarification to the Entropy Documentation and Assessment Annex</a>.
                                 <p></p>
@@ -3400,7 +3400,48 @@ The following sections list Common Criteria and technology terms used in this do
                                     The evaluator will perform the following test:
                                 </ul></span>
                             </div>
-                        </div></div></div><h1 id="entropyappendix" class="indexable" data-level="A">Appendix C -  Entropy Documentation and Assessment</h1><p>
+                        </div></div></div><h1 id="satisfiedreqs" class="indexable" data-level="A">Appendix C -  Implicitly Satisfied Requirements</h1><p>This appendix lists requirements that should be considered satisfied by products
+			successfully evaluated against this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>. These requirements are not featured
+			explicitly as <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> and should not be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. They are not included as 
+			standalone <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> because it would increase the time, cost, and complexity of evaluation.
+			This approach is permitted by <a href="#bibCC">[CC]</a> Part 1, 8.2 Dependencies between components.</p><p>This information benefits systems engineering activities which call for inclusion of particular
+			security controls. Evaluation against the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> provides evidence that these controls are present 
+			and have been evaluated.</p><table><tr class="header"><td>Requirement</td><td>Rationale for Satisfaction</td></tr><tr><td>FIA_UAU.1 - Timing of authentication</td><td>
+        <a href="#FIA_AFL.1">FIA_AFL.1</a> implicitly requires that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> perform all necessary actions,
+        including those on behalf of the user who has not been authenticated,
+        in order to authenticate;
+        therefore it is duplicative to include these actions as a
+        separate assignment and test.
+    </td></tr><tr><td>FIA_UID.1 - Timing of identification</td><td>
+        <a href="#FIA_AFL.1">FIA_AFL.1</a> implicitly requires that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> perform all necessary actions,
+        including those on behalf of the user who has not been identified,
+        in order to authenticate;
+        therefore it is duplicative to include these actions as a
+        separate assignment and test.
+    </td></tr><tr><td>FMT_SMR.1 - Security roles</td><td>
+        <a href="#FMT_MOF_EXT.1">FMT_MOF_EXT.1</a> specifies role-based management functions that implicitly defines
+        user and privileged accounts;
+        therefore, it is duplicative to include separate role requirements.
+    </td></tr><tr><td>FPT_STM.1 - Reliable time stamps</td><td>
+        <a href="#FAU_GEN.1.2">FAU_GEN.1.2</a> explicitly requires that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> associate timestamps with audit records;
+        therefore it is duplicative to include a separate timestamp requirement.
+    </td></tr><tr><td>FTA_SSL.1 - <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>-initiated session locking</td><td>
+        <a href="#FMT_MOF_EXT.1">FMT_MOF_EXT.1</a> defines requirements for managing session locking;
+        therefore, it is duplicative to include a separate session locking requirement.
+    </td></tr><tr><td>FTA_SSL.2 - User-initiated locking</td><td>
+        <a href="#FMT_MOF_EXT.1">FMT_MOF_EXT.1</a> defines requirements for user-initiated session locking;
+        therefore, it is duplicative to include a separate session locking requirement.
+    </td></tr><tr><td>FAU_STG.1 - Protected audit trail storage</td><td>
+        <a href="#FPT_ACF_EXT.1">FPT_ACF_EXT.1</a> defines a requirement to protect audit logs;
+        therefore, it is duplicative to include a separate protection of audit trail requirements.
+    </td></tr><tr><td>FAU_GEN.2 - User identity association</td><td><a href="#FAU_GEN.1.2">FAU_GEN.1.2</a> explicitly requires that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> record
+        any user account associated with each event; therefore, it is duplicative
+        to include a separate requirement to associate a user account with each
+        event.
+    </td></tr><tr><td>FAU_SAR.1 - Audit review</td><td><a href="#FPT_ACF_EXT.1.2">FPT_ACF_EXT.1.2</a> requires that audit logs (and other objects)
+        are protected from reading by unprivileged users; therefore, it is duplicative
+        to include a separate requirement to protect only the audit information.
+    </td></tr></table><h1 id="entropyappendix" class="indexable" data-level="A">Appendix D -  Entropy Documentation and Assessment</h1><p>
         This appendix describes the required supplementary information for the entropy source used by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>.
         <p></p>
         The documentation of the entropy source should be detailed enough that, after reading, the
@@ -3408,7 +3449,7 @@ The following sections list Common Criteria and technology terms used in this do
         sufficient entropy. This documentation should include multiple detailed sections: design
         description, entropy justification, operating conditions, and health testing. This documentation
         is not required to be part of the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>.
-    </p><h2 class="indexable" data-level="2" id="entropydesign">C.1 Design Description</h2><p>
+    </p><h2 class="indexable" data-level="2" id="entropydesign">D.1 Design Description</h2><p>
         Documentation will include the design of the entropy source as a whole, including the
         interaction of all entropy source components. Any information that can be shared regarding the
         design should also be included for any third-party entropy sources that are included in the
@@ -3426,7 +3467,7 @@ The following sections list Common Criteria and technology terms used in this do
         <p></p>If implemented, the design
         description will include a description of how third-party applications can add entropy to the
         RBG. A description of any RBG state saving between power-off and power-on will be included.
-    </p><h2 class="indexable" data-level="2" id="entropyjustification">C.2 Entropy Justification</h2><p>
+    </p><h2 class="indexable" data-level="2" id="entropyjustification">D.2 Entropy Justification</h2><p>
         There should be a technical
         argument for where the unpredictability in the source comes from and why there is confidence
         in the entropy source delivering sufficient entropy for the uses made of the RBG output (by
@@ -3464,7 +3505,7 @@ The following sections list Common Criteria and technology terms used in this do
         <p></p>
         The entropy justification will not include any data added from any
         third-party application or from any state saving between restarts.
-    </p><h2 class="indexable" data-level="2" id="entropyoperatingconditions">C.3 Operating Conditions</h2> The entropy rate may be
+    </p><h2 class="indexable" data-level="2" id="entropyoperatingconditions">D.3 Operating Conditions</h2> The entropy rate may be
         affected by conditions outside the control of the entropy source itself. For example, voltage,
         frequency, temperature, and elapsed time after power-on are just a few of the factors that may
         affect the operation of the entropy source. As such, documentation will also include the range
@@ -3472,13 +3513,13 @@ The following sections list Common Criteria and technology terms used in this do
         will clearly describe the measures that have been taken in the system design to ensure the
         entropy source continues to operate under those conditions. Similarly, documentation will
         describe the conditions under which the entropy source is known to malfunction or become
-        inconsistent. Methods used to detect failure or degradation of the source will be included. <h2 class="indexable" data-level="2" id="entropyhealthtesting">C.4 Health Testing</h2> More specifically, all entropy source
+        inconsistent. Methods used to detect failure or degradation of the source will be included. <h2 class="indexable" data-level="2" id="entropyhealthtesting">D.4 Health Testing</h2> More specifically, all entropy source
         health tests and their rationale will be documented. This includes a description of the health
         tests, the rate and conditions under which each health test is performed (e.g., at start,
         continuously, or on-demand), the expected results for each health test, and rationale
         indicating why each test is believed to be appropriate for detecting one or more failures in
         the entropy source.
-    <h1 id="acronyms" class="indexable" data-level="A">Appendix D -  Acronyms</h1><table><caption><span class="ctr" data-myid="t-acronyms" data-counter-type="ct-Table" id="t-acronyms">Table <span class="counter">3</span></span>: Acronyms
+    <h1 id="acronyms" class="indexable" data-level="A">Appendix E -  Acronyms</h1><table><caption><span class="ctr" data-myid="t-acronyms" data-counter-type="ct-Table" id="t-acronyms">Table <span class="counter">3</span></span>: Acronyms
 		</caption><tr class="header"><th>Acronym</th><th>Meaning</th></tr><tr><td><span class="term" id="abbr_API"><abbr class="dyn-abbr"><a href="#abbr_API">API</a></abbr></span></td><td><span id="long_abbr_API">Application Programming Interface</span></td></tr>
 <tr><td><span class="term" id="abbr_app"><abbr class="dyn-abbr"><a href="#abbr_app">app</a></abbr></span></td><td><span id="long_abbr_app">Application</span></td></tr>
 <tr><td><span class="term" id="abbr_ASLR"><abbr class="dyn-abbr"><a href="#abbr_ASLR">ASLR</a></abbr></span></td><td><span id="long_abbr_ASLR">Address Space Layout Randomization</span></td></tr>
@@ -3504,7 +3545,7 @@ The following sections list Common Criteria and technology terms used in this do
 <tr><td><span class="term" id="abbr_TSF"><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></span></td><td><span id="long_abbr_TSF"><abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> Security Functionality</span></td></tr>
 <tr><td><span class="term" id="abbr_TSFI" data-plural="TSFIs"><abbr class="dyn-abbr"><a href="#abbr_TSFI">TSFI</a></abbr></span></td><td><span id="long_abbr_TSFI"><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> Interface</span></td></tr>
 <tr><td><span class="term" id="abbr_TSS"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></span></td><td><span id="long_abbr_TSS"><abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> Summary Specification</span></td></tr>
-</table><h1 id="appendix-bibliography" class="indexable" data-level="A">Appendix E -  Bibliography</h1><table><caption><span class="ctr" data-myid="t-biblio" data-counter-type="ct-Table" id="t-biblio">Table <span class="counter">4</span></span>: Bibliography</caption><tr class="header"><th>Identifier</th><th>Title</th></tr><tr><td><span id="bibCEM">[<abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr>]</span></td><td><span class="description"> <a href="http://www.commoncriteriaportal.org/files/ccfiles/CEMV3.1R5.pdf">Common
+</table><h1 id="appendix-bibliography" class="indexable" data-level="A">Appendix F -  Bibliography</h1><table><caption><span class="ctr" data-myid="t-biblio" data-counter-type="ct-Table" id="t-biblio">Table <span class="counter">4</span></span>: Bibliography</caption><tr class="header"><th>Identifier</th><th>Title</th></tr><tr><td><span id="bibCEM">[<abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr>]</span></td><td><span class="description"> <a href="http://www.commoncriteriaportal.org/files/ccfiles/CEMV3.1R5.pdf">Common
                 Evaluation Methodology for Information Technology Security - Evaluation Methodology</a>,
                 CCMB-2017-04-004, Version 3.1, Revision 5, April 2017. </span></td></tr><tr><td><span id="bibCSA">[CSA]</span></td><td><span class="description"> <a href="http://csrc.nist.gov/groups/SMA/ispab/documents/csa_87.txt">Computer Security Act
                 of 1987</a>, H.R. 145, June 11, 1987. </span></td></tr><tr><td><span id="bibNCSC">[NCSC]</span></td><td><span class="description">National Cyber Security Centre -  <a href="https://www.ncsc.gov.uk/collection/end-user-device-security">

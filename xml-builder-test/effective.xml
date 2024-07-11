@@ -2729,6 +2729,42 @@
                 be suitable and an appropriate justification would be formulated.
             </h:p></aactivity></a-element></a-component></section></section>
     </sec:req>
+    <appendix title="Implicitly Satisfied Requirements" id="satisfiedreqs"><h:table><h:tr class="header"><h:td>Requirement</h:td><h:td>Rationale for Satisfaction</h:td></h:tr><h:tr><h:td>FIA_UAU.1 - Timing of authentication</h:td><h:td>
+        FIA_AFL.1 implicitly requires that the OS perform all necessary actions,
+        including those on behalf of the user who has not been authenticated,
+        in order to authenticate;
+        therefore it is duplicative to include these actions as a
+        separate assignment and test.
+    </h:td></h:tr><h:tr><h:td>FIA_UID.1 - Timing of identification</h:td><h:td>
+        FIA_AFL.1 implicitly requires that the OS perform all necessary actions,
+        including those on behalf of the user who has not been identified,
+        in order to authenticate;
+        therefore it is duplicative to include these actions as a
+        separate assignment and test.
+    </h:td></h:tr><h:tr><h:td>FMT_SMR.1 - Security roles</h:td><h:td>
+        FMT_MOF_EXT.1 specifies role-based management functions that implicitly defines
+        user and privileged accounts;
+        therefore, it is duplicative to include separate role requirements.
+    </h:td></h:tr><h:tr><h:td>FPT_STM.1 - Reliable time stamps</h:td><h:td>
+        FAU_GEN.1.2 explicitly requires that the OS associate timestamps with audit records;
+        therefore it is duplicative to include a separate timestamp requirement.
+    </h:td></h:tr><h:tr><h:td>FTA_SSL.1 - TSF-initiated session locking</h:td><h:td>
+        FMT_MOF_EXT.1 defines requirements for managing session locking;
+        therefore, it is duplicative to include a separate session locking requirement.
+    </h:td></h:tr><h:tr><h:td>FTA_SSL.2 - User-initiated locking</h:td><h:td>
+        FMT_MOF_EXT.1 defines requirements for user-initiated session locking;
+        therefore, it is duplicative to include a separate session locking requirement.
+    </h:td></h:tr><h:tr><h:td>FAU_STG.1 - Protected audit trail storage</h:td><h:td>
+        FPT_ACF_EXT.1 defines a requirement to protect audit logs;
+        therefore, it is duplicative to include a separate protection of audit trail requirements.
+    </h:td></h:tr><h:tr><h:td>FAU_GEN.2 - User identity association</h:td><h:td><xref to="fel-audit-content"/> explicitly requires that the OS record
+        any user account associated with each event; therefore, it is duplicative
+        to include a separate requirement to associate a user account with each
+        event.
+    </h:td></h:tr><h:tr><h:td>FAU_SAR.1 - Audit review</h:td><h:td><xref to="fel-no-read"/> requires that audit logs (and other objects)
+        are protected from reading by unprivileged users; therefore, it is duplicative
+        to include a separate requirement to protect only the audit information.
+    </h:td></h:tr></h:table></appendix>
     <appendix title="Entropy Documentation and Assessment" id="entropyappendix"><h:p>
         This appendix describes the required supplementary information for the entropy source used by the OS.
         <h:p/>
