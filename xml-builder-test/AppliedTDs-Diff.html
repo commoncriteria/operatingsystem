@@ -1014,15 +1014,15 @@
                                     <p></p>
                                      The evaluator will test the encrypt functionality using a set of 100 plaintext, IV, and key 3-tuples. The keys, plaintext, and IV values are each 256-bits. For each 3-tuple, 1000 iterations will be run as follows: 
                                     <pre>
-                                            # Input: PT, IV, Key
-                                            for i = 1 to 1000:
-                                            if i == 1:
-                                            CT[1] = AES-CBC-Encrypt(Key, IV, PT)
-                                            PT = IV
-                                            else:
-                                            CT[i] = AES-CBC-Encrypt(Key, PT)
-                                            PT = CT[i-1]
-                                        </pre>
+              # Input: PT, IV, Key
+              for i = 1 to 1000:
+                if i == 1:
+                      CT[1] = AES-CBC-Encrypt(Key, IV, PT)
+                      PT = IV
+                else:
+                  CT[i] = AES-CBC-Encrypt(Key, PT)
+                  PT = CT[i-1]
+              </pre>
                                     The ciphertext computed in the 1000th iteration (i.e., CT[1000]) is the result for that trial. This result will be compared to the result of running 1000 iterations with the same values using a known good implementation. 
                                     <p></p>
                                      The evaluator will test the decrypt functionality using the same test as for encrypt, exchanging CT and PT and replacing AES-CBC-Encrypt with AES-CBC-Decrypt. 
@@ -1080,12 +1080,12 @@
                                      For AES-ECB mode
                                     <br>
                                     <pre>
-                                        # Input: PT, Key
+# Input: PT, Key
 
-                                        for i = 1 to 1000:
-                                        CT[i] = AES-ECB-Encrypt(Key, PT)
-                                        PT = CT[i]
-                                    </pre>
+for i = 1 to 1000:
+CT[i] = AES-ECB-Encrypt(Key, PT)
+PT = CT[i]
+</pre>
                                     <p>The ciphertext computed in the 1000th iteration is the result for that trial. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation. </p>
                                 </li>
                             </ul>
@@ -4002,6 +4002,21 @@
                 <th>Identifier</th><th>Title</th>
             </tr>
             <tr>
+                <td><span id="bibCC">[<abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>]</span></td><td><span class="description">Common Criteria for Information Technology Security Evaluation - 
+                        <ul>
+                            <li>
+                                <a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART1V3.1R5.pdf">Part 1: Introduction and General Model</a>, CCMB-2017-04-001, Version 3.1 Revision 5, April 2017.
+                            </li>
+                            <li>
+                                <a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART2V3.1R5.pdf">Part 2: Security Functional Components</a>, CCMB-2017-04-002, Version 3.1 Revision 5, April 2017.
+                            </li>
+                            <li>
+                                <a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART3V3.1R5.pdf">Part 3: Security Assurance Components</a>, CCMB-2017-04-003, Version 3.1 Revision 5, April 2017.
+                            </li>
+                        </ul>
+                    </span></td>
+            </tr>
+            <tr>
                 <td><span id="bibCEM">[<abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr>]</span></td><td><span class="description"> <a href="http://www.commoncriteriaportal.org/files/ccfiles/CEMV3.1R5.pdf">Common Evaluation Methodology for Information Technology Security - Evaluation Methodology</a>, CCMB-2017-04-004, Version 3.1, Revision 5, April 2017. </span></td>
             </tr>
             <tr>
@@ -4018,21 +4033,6 @@
             </tr>
             <tr>
                 <td><span id="bibx509">[x509]</span></td><td><span class="description"> <a href="https://tools.ietf.org/html/rfc5280"> Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile</a>, May 2008. </span></td>
-            </tr>
-            <tr>
-                <td><span id="bibCC">[<abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>]</span></td><td><span class="description">Common Criteria for Information Technology Security Evaluation - 
-                        <ul>
-                            <li>
-                                <a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART1V3.1R5.pdf">Part 1: Introduction and General Model</a>, CCMB-2017-04-001, Version 3.1 Revision 5, April 2017.
-                            </li>
-                            <li>
-                                <a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART2V3.1R5.pdf">Part 2: Security Functional Components</a>, CCMB-2017-04-002, Version 3.1 Revision 5, April 2017.
-                            </li>
-                            <li>
-                                <a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART3V3.1R5.pdf">Part 3: Security Assurance Components</a>, CCMB-2017-04-003, Version 3.1 Revision 5, April 2017.
-                            </li>
-                        </ul>
-                    </span></td>
             </tr>
         </table>
     </body>
