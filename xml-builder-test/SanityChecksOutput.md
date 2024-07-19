@@ -1,3 +1,5 @@
+* Error: f-element FCS_CKM_EXT.4.1  appears not to have an associated evaluation activity.:
+        /PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[1]""
 * Error: f-element FTP_TRP.1.1  appears not to have an associated evaluation activity.:
         /PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[8]""/f-component[2]""/f-element[1]""
 * Error: f-element FTP_TRP.1.2  appears not to have an associated evaluation activity.:
@@ -26,17 +28,19 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[2]""/f-element[1]""/aactivity[1]""/Tests[1]""/testlist[1]""/test[1]""/h:div[1]""/h:p[1]"The Funct"/h:p[5]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[2]""/f-element[1]""/aactivity[1]""/Tests[1]""/testlist[1]""/test[1]""/h:div[1]""/h:p[1]"The Funct"/h:p[6]"The Valid"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[2]""/f-element[1]""/aactivity[1]""/Tests[1]""/testlist[1]""/test[1]""/h:div[1]""/h:p[1]"The Funct"/h:p[6]"The Valid"/h:p[2]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[1]""/note[1]""/h:p[1]"For the p"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[1]""/aactivity[1]""/TSS[1]""/h:p[1]"The evalu"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[1]""/aactivity[1]""/TSS[1]""/h:p[1]"The evalu"/h:p[2]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[1]""/aactivity[1]""/TSS[1]""/h:p[1]"The evalu"/h:p[3]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[1]""/aactivity[1]""/TSS[1]""/h:p[1]"The evalu"/h:p[4]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[1]""/aactivity[1]""/Guidance[1]""/h:p[1]"There are"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[1]""/aactivity[1]""/Guidance[1]""/h:p[1]"There are"/h:p[2]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[1]""/aactivity[1]""/Guidance[1]""/h:p[1]"There are"/h:p[3]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[1]""/aactivity[1]""/Guidance[1]""/h:p[1]"There are"/h:p[4]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[1]""/aactivity[1]""/Tests[1]""/testlist[1]""/test[3]""/h:p[1]"Tests 3 a"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[1]""/aactivity[1]""/Tests[1]""/testlist[1]""/test[3]""/h:p[1]"Tests 3 a"/h:p[2]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[1]""/note[1]""/h:p[1]"The inter"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[1]""/note[1]""/h:p[1]"The inter"/h:p[2]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[2]""/note[1]""/h:p[1]"For the p"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[2]""/aactivity[1]""/TSS[1]""/h:p[1]"The evalu"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[2]""/aactivity[1]""/TSS[1]""/h:p[1]"The evalu"/h:p[2]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[2]""/aactivity[1]""/TSS[1]""/h:p[1]"The evalu"/h:p[3]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[2]""/aactivity[1]""/TSS[1]""/h:p[1]"The evalu"/h:p[4]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[2]""/aactivity[1]""/Guidance[1]""/h:p[1]"There are"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[2]""/aactivity[1]""/Guidance[1]""/h:p[1]"There are"/h:p[2]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[2]""/aactivity[1]""/Guidance[1]""/h:p[1]"There are"/h:p[3]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[2]""/aactivity[1]""/Guidance[1]""/h:p[1]"There are"/h:p[4]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[2]""/aactivity[1]""/Tests[1]""/testlist[1]""/test[3]""/h:p[1]"Tests 3 a"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[2]""/aactivity[1]""/Tests[1]""/testlist[1]""/test[3]""/h:p[1]"Tests 3 a"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[4]""/f-element[1]""/note[1]""/h:p[1]"AES CCMP "/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[4]""/f-element[1]""/aactivity[1]""/Tests[1]""/testlist[1]""/test[1]""/h:p[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[4]""/f-element[1]""/aactivity[1]""/Tests[1]""/testlist[1]""/test[1]""/h:p[1]"The evalu"/h:p[2]""
@@ -112,8 +116,6 @@
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[2]""/section[2]""/h:p[1]"There sho"/h:p[4]""
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[2]""/section[2]""/h:p[1]"There sho"/h:p[5]""
 * Rules without a 'Validation Guidelines' appendix has been detected.
- Failed to find a reference to fel-key-kill.
- Failed to find a reference to fel-key-kill.
  Failed to find a reference to s-ftp_ssh.
  Failed to find a reference to dtls.
  Failed to find a reference to s-ftp_ssh.
