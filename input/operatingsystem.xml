@@ -550,14 +550,14 @@
                 <selectable id="s-keygen-rsa">
                   <snip>RSA schemes</snip> using cryptographic key sizes of 3072-bit or greater that
               meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.3 </selectable>
-                <selectables>
+                <selectable id="s-keygen-ecc">
                   <snip>ECC schemes using "NIST curves"</snip> P-384 and <selectables>
                     <selectable id="fcs_ckm.1.1_1">P-521</selectable>
                     <selectable id="fcs_ckm.1.1_2" exclusive="yes"> no other curves</selectable>
                   </selectables>
               that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix
-              B.4 </selectables>
-                <selectables>
+              B.4 </selectable>
+                <selectable id="s-keygen-ffc">
                   <snip>FFC schemes</snip> using <selectables>
                     <selectable id="s-keygen-ffc-fips">cryptographic key sizes of 3072-bit or
               greater that meet the following: <snip>FIPS PUB 186-4</snip>, "Digital Signature
@@ -565,7 +565,7 @@
                     <selectable id="s-keygen-ffc-safeprime">
                       <snip>safe primes</snip> that meet the following: NIST Special Publication
               800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes" </selectable>
-                  </selectables></selectables>
+                  </selectables></selectable>
               </selectables>
               .</title>
             <note role="application">
@@ -857,27 +857,28 @@
           <f-element id="fel-key-kill">
             <title>The OS shall destroy cryptographic keys and key material in accordance with a
               specified cryptographic key destruction method<selectables>
-                <selectables>For volatile memory, the destruction shall be executed by a <selectables>
-                    <selectables>single overwrite consisting of <selectables>
+                <selectable id="fcs_ckm_ext.4.1_1">For volatile memory, the destruction shall be
+              executed by a <selectables>
+                    <selectable id="fcs_ckm_ext.4.1_2">single overwrite consisting of <selectables>
                         <selectable id="fcs_ckm_ext.4.1_3">a pseudo-random pattern using the TSF's
               RBG</selectable>
                         <selectable id="fcs_ckm_ext.4.1_4">zeroes</selectable>
                         <selectable id="fcs_ckm_ext.4.1_5">ones</selectable>
                         <selectable id="fcs_ckm_ext.4.1_6">a new value of a key</selectable>
-                      </selectables></selectables>
+                      </selectables></selectable>
                     <selectable id="fcs_ckm_ext.4.1_9">removal of power to the memory</selectable>
                     <selectable id="fcs_ckm_ext.4.1_10">destruction of reference to the key directly
               followed by a request for garbage collection</selectable>
-                  </selectables></selectables>
-                <selectables>For non-volatile memory that consists of <selectables>
+                  </selectables></selectable>
+                <selectable id="fcs_ckm_ext.4.1_11">For non-volatile memory that consists of <selectables>
                     <selectable id="s-kek-kill">
                       <snip>destruction of all key encrypting keys (KEKs) protecting the target key
               according to <xref to="fel-key-kill"></xref></snip>, where none of the KEKs protecting
               the target key are derived </selectable>
-                    <selectables>the invocation of an interface provided by the underlying platform
-              that <selectables>
-                        <selectables>logically addresses the storage location of the key and
-              performs a <selectables>
+                    <selectable id="fcs_ckm_ext.4.1_12">the invocation of an interface provided by
+              the underlying platform that <selectables>
+                        <selectable id="fcs_ckm_ext.4.1_13">logically addresses the storage location
+              of the key and performs a <selectables>
                             <selectable id="fcs_ckm_ext.4.1_14">single</selectable>
                           </selectables>overwrite
               consisting of <selectables>
@@ -886,11 +887,11 @@
                             <selectable id="fcs_ckm_ext.4.1_19">pseudo-random pattern</selectable>
                             <selectable id="fcs_ckm_ext.4.1_20">a new value of a key of the same
               size</selectable>
-                          </selectables></selectables>
+                          </selectables></selectable>
                         <selectable id="fcs_ckm_ext.4.1_23">instructs the underlying platform to
               destroy the abstraction that represents the key</selectable>
-                      </selectables></selectables>
-                  </selectables></selectables>
+                      </selectables></selectable>
+                  </selectables></selectable>
               </selectables>
               .</title>
             <note role="application">
@@ -1653,12 +1654,12 @@
               or greater
                     that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)",
               Section 4</selectable>
-                  <selectables>
+                  <selectable id="s-ec-certs">
                     <snip>ECDSA schemes</snip> using "NIST curves" P-384 and <selectables>
                       <selectable id="fcs_cop.1.1_SIGN_1">P-521</selectable>
                       <selectable id="fcs_cop.1.1_SIGN_2" exclusive="yes">no other curves</selectable>
                     </selectables>
-              that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Section 5</selectables>
+              that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Section 5</selectable>
                 </selectables>
               </h:b> <h:strike>and
               cryptographic key sizes [assignment: cryptographic algorithm]
@@ -2770,7 +2771,7 @@
               (Success/Failure)</selectable>
                           <assignable id="fau_gen.1.1_10">other specifically defined auditable
               events </assignable>
-                          <selectables>.</selectables>
+                          <selectable id="fau_gen.1.1_9">.</selectable>
                         </selectables>
                       </h:li>
                     </h:ul>
@@ -2849,9 +2850,9 @@
           <f-element id="fel-id-and-auth">
             <title>The <h:b>OS</h:b> shall detect when<selectables>
                 <assignable id="fia_afl.1.1_2">positive integer number </assignable>
-                <selectables>an administrator configurable positive integer within <selectables>
+                <selectable id="fia_afl.1.1_3">an administrator configurable positive integer within <selectables>
                     <assignable id="fia_afl.1.1_4">range of acceptable values </assignable>
-                  </selectables></selectables>
+                  </selectables></selectable>
               </selectables>unsuccessful
               authentication attempts occur related to <h:b> events with <selectables>
                   <selectable id="fia_afl.1.1_5">authentication based on user name and password</selectable>
@@ -3278,22 +3279,22 @@
         <f-component cc-id="ftp_itc_ext.1" id="ftp-itc-ext-1" name="Trusted channel communication">
           <f-element id="fel-trust-comms">
             <title>The OS shall use<selectables>
-                <selectables>
+                <selectable id="tls">
                   <snip>TLS</snip> as conforming to the <xref to="pkg-tls"></xref> as a <selectables>
                     <selectable id="s-tls-client">client</selectable>
                     <selectable id="s-tls-server">server</selectable>
-                  </selectables></selectables>
-                <selectables>
+                  </selectables></selectable>
+                <selectable id="dtls">
                   <snip>DTLS</snip> as conforming to the <xref to="pkg-tls"></xref> as a <selectables>
                     <selectable id="s-dtls-client">client</selectable>
                     <selectable id="s-dtls-server">server</selectable>
-                  </selectables></selectables>
+                  </selectables></selectable>
                 <selectable id="s-itc-ipsec">IPsec as conforming to the <xref to="mod-vpnclient"></xref></selectable>
-                <selectables>
+                <selectable id="s-ftp_ssh">
                   <snip>SSH</snip> as conforming to the <xref to="pkg-ssh"></xref> as a <selectables>
                     <selectable id="s-ssh-client">client</selectable>
                     <selectable id="s-ssh-server">server</selectable>
-                  </selectables></selectables>
+                  </selectables></selectable>
               </selectables>to
               provide a trusted communication channel between itself and authorized IT entities
               supporting the following capabilities:<selectables>
