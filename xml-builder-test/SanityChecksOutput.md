@@ -4,12 +4,6 @@
         /PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[8]""/f-component[2]""/f-element[1]""
 * Error: f-element FTP_TRP.1.2  appears not to have an associated evaluation activity.:
         /PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[8]""/f-component[2]""/f-element[2]""
-* Error: Detected dangling id-reference to s-ftp_ssh from attribute
-        on/PP[1]""/include-pkg[1]""/depends[1]""/on[1]""
-* Error: Detected dangling id-reference to s-keygen-ecc from attribute
-        ref/PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]""/testlist[2]""/test[1]""/depends[1]""/ref[1]""
-* Error: Detected dangling id-reference to s-ec-certs from attribute
-        ref/PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[7]""/f-element[1]""/aactivity[1]""/Tests[1]""/testlist[1]""/test[1]""/depends[1]""/ref[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[1]""/f-element[1]""/note[1]""/h:p[1]"The ST au"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]""/h:p[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]""/h:p[1]"The evalu"/h:p[2]""
@@ -116,9 +110,6 @@
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[2]""/section[2]""/h:p[1]"There sho"/h:p[4]""
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[2]""/section[2]""/h:p[1]"There sho"/h:p[5]""
 * Rules without a 'Validation Guidelines' appendix has been detected.
- Failed to find a reference to s-ftp_ssh.
- Failed to find a reference to dtls.
- Failed to find a reference to s-ftp_ssh.
  Failed to find a reference to Security_Requirements.
  Failed to find a reference to Security_Requirements.
  Failed to find a reference to Security_Requirements.

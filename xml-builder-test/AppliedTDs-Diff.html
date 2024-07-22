@@ -468,6 +468,12 @@
                         <li style="">
                             <span class="selectable-content" id="s-keygen-rsa"> RSA schemes using cryptographic key sizes of 3072-bit or greater that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.3 </span>
                         </li>
+                        <li style="">
+                            <span class="selectable-content" id="s-keygen-ecc"> ECC schemes using "NIST curves" P-384 and [<b>selection</b>: <span class="selectable-content" id="fcs_ckm.1.1_1">P-521</span>, <span class="selectable-content" id="fcs_ckm.1.1_2"> no other curves</span>] that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.4 </span>
+                        </li>
+                        <li style="">
+                            <span class="selectable-content" id="s-keygen-ffc"> FFC schemes using [<b>selection</b>: <span class="selectable-content" id="s-keygen-ffc-fips">cryptographic key sizes of 3072-bit or greater that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.1</span>, <span class="selectable-content" id="s-keygen-ffc-safeprime"> safe primes that meet the following: NIST Special Publication 800-56A Revision 3, &ldquo;Recommendation for Pair-Wise Key Establishment Schemes" </span>]</span>
+                        </li>
                     </ul>
                     ] .
                     <div class="appnote">
@@ -568,7 +574,7 @@
                                     <a id="_t_2" class="defined" href="#_t_2">Test FCS_CKM.1.1:2</a>[conditional, to be performed if
                                     <ul>
                                         <li>
-                                             the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements "" 
+                                            <a href="#s-keygen-ecc">ECC schemes using "NIST curves"</a> is selected from <a href="#FCS_CKM.1.1">FCS_CKM.1.1</a>
                                         </li>
                                     </ul>
                                     ]: <b>Key Generation for Elliptic Curve Cryptography (ECC)</b> 
@@ -761,7 +767,44 @@
                 </div>
                 <div class="reqdesc">
                     The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall destroy cryptographic keys and key material in accordance with a specified cryptographic key destruction method[<b>selection</b>: 
-                    <ul></ul>
+                    <ul>
+                        <li style="">
+                            <span class="selectable-content" id="fcs_ckm_ext.4.1_1">For volatile memory, the destruction shall be executed by a [<b>selection</b>: 
+                                <ul>
+                                    <li style="">
+                                        <span class="selectable-content" id="fcs_ckm_ext.4.1_2">single overwrite consisting of [<b>selection</b>: <span class="selectable-content" id="fcs_ckm_ext.4.1_3">a pseudo-random pattern using the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>'s RBG</span>, <span class="selectable-content" id="fcs_ckm_ext.4.1_4">zeroes</span>, <span class="selectable-content" id="fcs_ckm_ext.4.1_5">ones</span>, <span class="selectable-content" id="fcs_ckm_ext.4.1_6">a new value of a key</span>]</span>
+                                    </li>
+                                    <li style="">
+                                        <span class="selectable-content" id="fcs_ckm_ext.4.1_9">removal of power to the memory</span>
+                                    </li>
+                                    <li style="">
+                                        <span class="selectable-content" id="fcs_ckm_ext.4.1_10">destruction of reference to the key directly followed by a request for garbage collection</span>
+                                    </li>
+                                </ul>
+                                ]</span>
+                        </li>
+                        <li style="">
+                            <span class="selectable-content" id="fcs_ckm_ext.4.1_11">For non-volatile memory that consists of [<b>selection</b>: 
+                                <ul>
+                                    <li style="">
+                                        <span class="selectable-content" id="s-kek-kill"> destruction of all key encrypting keys (KEKs) protecting the target key according to <a href="#FCS_CKM_EXT.4.1">FCS_CKM_EXT.4.1</a>, where none of the KEKs protecting the target key are derived </span>
+                                    </li>
+                                    <li style="">
+                                        <span class="selectable-content" id="fcs_ckm_ext.4.1_12">the invocation of an interface provided by the underlying platform that [<b>selection</b>: 
+                                            <ul>
+                                                <li style="">
+                                                    <span class="selectable-content" id="fcs_ckm_ext.4.1_13">logically addresses the storage location of the key and performs a [<b>selection</b>: <span class="selectable-content" id="fcs_ckm_ext.4.1_14">single</span>]overwrite consisting of [<b>selection</b>: <span class="selectable-content" id="fcs_ckm_ext.4.1_17">zeroes</span>, <span class="selectable-content" id="fcs_ckm_ext.4.1_18">ones</span>, <span class="selectable-content" id="fcs_ckm_ext.4.1_19">pseudo-random pattern</span>, <span class="selectable-content" id="fcs_ckm_ext.4.1_20">a new value of a key of the same size</span>]</span>
+                                                </li>
+                                                <li style="">
+                                                    <span class="selectable-content" id="fcs_ckm_ext.4.1_23">instructs the underlying platform to destroy the abstraction that represents the key</span>
+                                                </li>
+                                            </ul>
+                                            ]</span>
+                                    </li>
+                                </ul>
+                                ]</span>
+                        </li>
+                    </ul>
                     ] .
                     <div class="appnote">
                         <span class="note-header">Application Note: </span><span class="note">
@@ -1373,6 +1416,9 @@
                             <li style="">
                                 <span class="selectable-content" id="s-rsa-certs">RSA schemes using cryptographic key sizes of 2048-bit or greater that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Section 4</span>
                             </li>
+                            <li style="">
+                                <span class="selectable-content" id="s-ec-certs"> ECDSA schemes using "NIST curves" P-384 and [<b>selection</b>: <span class="selectable-content" id="fcs_cop.1.1_SIGN_1">P-521</span>, <span class="selectable-content" id="fcs_cop.1.1_SIGN_2">no other curves</span>] that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Section 5</span>
+                            </li>
                         </ul>
                         ] </b> <strike>and cryptographic key sizes [assignment: cryptographic algorithm] that meet the following: [assignment: list of standards]</strike> .
                     <div class="appnote">
@@ -1397,7 +1443,7 @@
                                     <a id="_t_33" class="defined" href="#_t_33">Test FCS_COP.1.1/SIGN:1</a>[conditional, to be performed if
                                     <ul>
                                         <li>
-                                             the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements "" 
+                                            <a href="#s-ec-certs">ECDSA schemes</a> is selected from <a href="#FCS_COP.1.1/SIGN">FCS_COP.1.1/SIGN</a>
                                         </li>
                                     </ul>
                                     ]: 
@@ -1689,7 +1735,7 @@
                             <td>#</td><td>Management Function</td><td>Administrator</td><td>User</td>
                         </tr>
                         <tr id="_mf_1">
-                            <td>1</td><td style="text-align:left">Enable/disable [<b>selection</b>: <span class="selectable-content" id="_s_56">screen lock</span>, <span class="selectable-content" id="_s_57">session timeout</span>]</td><td>
+                            <td>1</td><td style="text-align:left">Enable/disable [<b>selection</b>: <span class="selectable-content" id="_s_64">screen lock</span>, <span class="selectable-content" id="_s_65">session timeout</span>]</td><td>
                                 <div class="tooltipped">
                                     M<span class="tooltiptext">Mandatory</span>
                                 </div>
@@ -1700,7 +1746,7 @@
                             </td>
                         </tr>
                         <tr id="_mf_2">
-                            <td>2</td><td style="text-align:left">Configure [<b>selection</b>: <span class="selectable-content" id="_s_58">screen lock</span>, <span class="selectable-content" id="_s_59">session</span>] inactivity timeout</td><td>
+                            <td>2</td><td style="text-align:left">Configure [<b>selection</b>: <span class="selectable-content" id="_s_66">screen lock</span>, <span class="selectable-content" id="_s_67">session</span>] inactivity timeout</td><td>
                                 <div class="tooltipped">
                                     M<span class="tooltiptext">Mandatory</span>
                                 </div>
@@ -1788,7 +1834,7 @@
                             </td>
                         </tr>
                         <tr id="_mf_10">
-                            <td>10</td><td style="text-align:left"> Configure lockout policy for unsuccessful authentication attempts through [<b>selection</b>: <span class="selectable-content" id="_s_60">timeouts between attempts</span>, <span class="selectable-content" id="_s_61">limiting number of attempts during a time period</span>]</td><td>
+                            <td>10</td><td style="text-align:left"> Configure lockout policy for unsuccessful authentication attempts through [<b>selection</b>: <span class="selectable-content" id="_s_68">timeouts between attempts</span>, <span class="selectable-content" id="_s_69">limiting number of attempts during a time period</span>]</td><td>
                                 <div class="tooltipped">
                                     O<span class="tooltiptext">Optional</span>
                                 </div>
@@ -2377,34 +2423,7 @@
                                     <li>Use of privileged/special rights events (Successful and unsuccessful security, audit, and configuration changes);</li>
                                     <li>Privilege or role escalation events (Success/Failure);</li>
                                     <li>
-                                         [<b>selection</b>: 
-                                        <ul>
-                                            <li style="">
-                                                <span class="selectable-content" id="fau_gen.1.1_1">File and object events (Successful and unsuccessful attempts to create, access, delete, modify, modify permissions)</span>
-                                            </li>
-                                            <li style="">
-                                                <span class="selectable-content" id="fau_gen.1.1_2">User and Group management events (Successful and unsuccessful add, delete, modify, disable, enable, and credential change)</span>
-                                            </li>
-                                            <li style="">
-                                                <span class="selectable-content" id="fau_gen.1.1_3">Audit and log data access events (Success/Failure)</span>
-                                            </li>
-                                            <li style="">
-                                                <span class="selectable-content" id="fau_gen.1.1_4">Cryptographic verification of software (Success/Failure)</span>
-                                            </li>
-                                            <li style="">
-                                                <span class="selectable-content" id="fau_gen.1.1_5">Attempted application invocation with arguments (Success/Failure e.g. due to software restriction policy)</span>
-                                            </li>
-                                            <li style="">
-                                                <span class="selectable-content" id="fau_gen.1.1_6">System reboot, restart, and shutdown events (Success/Failure)</span>
-                                            </li>
-                                            <li style="">
-                                                <span class="selectable-content" id="fau_gen.1.1_7">Kernel module loading and unloading events (Success/Failure)</span>
-                                            </li>
-                                            <li style="">
-                                                <span class="selectable-content" id="fau_gen.1.1_8">Administrator or root-level access events (Success/Failure)</span>
-                                            </li>
-                                        </ul>
-                                        ] 
+                                         [<b>selection</b>: <span class="selectable-content" id="fau_gen.1.1_1">File and object events (Successful and unsuccessful attempts to create, access, delete, modify, modify permissions)</span>, <span class="selectable-content" id="fau_gen.1.1_2">User and Group management events (Successful and unsuccessful add, delete, modify, disable, enable, and credential change)</span>, <span class="selectable-content" id="fau_gen.1.1_3">Audit and log data access events (Success/Failure)</span>, <span class="selectable-content" id="fau_gen.1.1_4">Cryptographic verification of software (Success/Failure)</span>, <span class="selectable-content" id="fau_gen.1.1_5">Attempted application invocation with arguments (Success/Failure e.g. due to software restriction policy)</span>, <span class="selectable-content" id="fau_gen.1.1_6">System reboot, restart, and shutdown events (Success/Failure)</span>, <span class="selectable-content" id="fau_gen.1.1_7">Kernel module loading and unloading events (Success/Failure)</span>, <span class="selectable-content" id="fau_gen.1.1_8">Administrator or root-level access events (Success/Failure)</span>, <span class="selectable-content" id="fau_gen.1.1_9">.</span>] 
                                     </li>
                                 </ul>
                             </i> ]. 
@@ -2475,7 +2494,11 @@
                 </div>
                 <div class="reqdesc">
                     The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall detect when[<b>selection</b>: 
-                    <ul></ul>
+                    <ul>
+                        <li style="">
+                            <span class="selectable-content" id="fia_afl.1.1_3">an administrator configurable positive integer within [<b>selection</b>: ]</span>
+                        </li>
+                    </ul>
                     ]unsuccessful authentication attempts occur related to <b> events with [<b>selection</b>: <span class="selectable-content" id="fia_afl.1.1_5">authentication based on user name and password</span>, <span class="selectable-content" id="fia_afl.1.1_6">authentication based on user name and a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr> that releases an asymmetric key stored in <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>-protected storage</span>, <span class="selectable-content" id="fia_afl.1.1_7">authentication based on X.509 certificates</span>]</b> .
                 </div>
             </div>
@@ -2533,7 +2556,7 @@
                 <div class="reqdesc">
                     The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall provide the following authentication mechanisms <b> [<b>selection</b>: <span class="selectable-content" id="s-pass">authentication based on username and password</span>, <span class="selectable-content" id="s-pin">authentication based on username and a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr> that releases an asymmetric key stored in <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>-protected storage</span>, <span class="selectable-content" id="s-otp">combination of authentication based on user name, password, and time-based one-time password</span>, <span class="selectable-content" id="s-x509-auth">authentication based on X.509 certificates</span>, <span class="selectable-content" id="s-uau-ssh">for use in SSH only, SSH public key-based authentication as specified by the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH), version 1.0</a></span>] </b> to support user authentication.
                     <div class="appnote">
-                        <span class="note-header">Application Note: </span><span class="note"> The <a href="#s-uau-ssh">SSH public key-based authentication</a> selection can only be included, and must be included, if <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a> selects <a href="#s-ftp_ssh" class="dynref" data-format=""></a>. </span>
+                        <span class="note-header">Application Note: </span><span class="note"> The <a href="#s-uau-ssh">SSH public key-based authentication</a> selection can only be included, and must be included, if <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a> selects <a href="#s-ftp_ssh">SSH</a>. </span>
                     </div>
                 </div>
             </div>
@@ -2829,19 +2852,28 @@
                     The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall use[<b>selection</b>: 
                     <ul>
                         <li style="">
+                            <span class="selectable-content" id="tls"> TLS as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS), version 1.1</a> as a [<b>selection</b>: <span class="selectable-content" id="s-tls-client">client</span>, <span class="selectable-content" id="s-tls-server">server</span>]</span>
+                        </li>
+                        <li style="">
+                            <span class="selectable-content" id="dtls"> DTLS as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS), version 1.1</a> as a [<b>selection</b>: <span class="selectable-content" id="s-dtls-client">client</span>, <span class="selectable-content" id="s-dtls-server">server</span>]</span>
+                        </li>
+                        <li style="">
                             <span class="selectable-content" id="s-itc-ipsec">IPsec as conforming to the <a href="">PP-Module for Virtual Private Network (VPN) Clients, version 2.4</a></span>
+                        </li>
+                        <li style="">
+                            <span class="selectable-content" id="s-ftp_ssh"> SSH as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH), version 1.0</a> as a [<b>selection</b>: <span class="selectable-content" id="s-ssh-client">client</span>, <span class="selectable-content" id="s-ssh-server">server</span>]</span>
                         </li>
                     </ul>
                     ]to provide a trusted communication channel between itself and authorized IT entities supporting the following capabilities:[<b>selection</b>: <span class="selectable-content" id="ftp_itc_ext.1.1_1">audit server</span>, <span class="selectable-content" id="ftp_itc_ext.1.1_2">authentication server</span>, <span class="selectable-content" id="ftp_itc_ext.1.1_3">management server</span>]that is logically distinct from other communication channels and provides assured identification of its end points and protection of the channel data from disclosure and detection of modification of the channel data.
                     <div class="appnote">
                         <span class="note-header">Application Note: </span><span class="note"> The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must include the security functional requirements for the trusted channel protocol selected in <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a> in the main body of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
                             <p>
-                                 Regardless of the selections made in this requirement, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> must be validated against the client TLS requirements in the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS), version 1.1</a>. It must also be validated against additional requirements in the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS), version 1.1</a> if <a href="#dtls" class="dynref" data-format=""></a> or <a href="#s-tls-server">server</a> selections are made. 
+                                 Regardless of the selections made in this requirement, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> must be validated against the client TLS requirements in the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS), version 1.1</a>. It must also be validated against additional requirements in the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS), version 1.1</a> if <a href="#dtls">DTLS</a> or <a href="#s-tls-server">server</a> selections are made. 
                             </p>
                             <p></p>
                              If <a href="#s-itc-ipsec">IPsec as conforming to the <a href="">PP-Module for Virtual Private Network (VPN) Clients, version 2.4</a></a> is selected, then <a href="#FDP_IFC_EXT.1">FDP_IFC_EXT.1</a> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
                             <p></p>
-                             If <a href="#s-ftp_ssh" class="dynref" data-format=""></a> is selected, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> must be validated against the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH), version 1.0</a> and the corresponding selection is expected to be made in <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a>. The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must include the security functional requirements for the trusted channel protocol selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> in the main body of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
+                             If <a href="#s-ftp_ssh">SSH</a> is selected, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> must be validated against the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH), version 1.0</a> and the corresponding selection is expected to be made in <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a>. The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must include the security functional requirements for the trusted channel protocol selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> in the main body of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
                             <p></p>
                         </span>
                     </div>
