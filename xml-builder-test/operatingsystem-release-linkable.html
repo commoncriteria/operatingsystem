@@ -1199,15 +1199,24 @@ The following sections list Common Criteria and technology terms used in this do
           <div class="element"><div class="reqid" id="FCS_CKM_EXT.4.1"><a href="#FCS_CKM_EXT.4.1" class="abbr">FCS_CKM_EXT.4.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall destroy cryptographic keys and key material in accordance with a
               specified cryptographic key destruction method[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="fcs_ckm_ext.4.1_1">For volatile memory, the destruction shall be
               executed by a [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="fcs_ckm_ext.4.1_2">single overwrite consisting of [<b>selection</b>: <span class="selectable-content" id="fcs_ckm_ext.4.1_3">a pseudo-random pattern using the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>'s
-              RBG</span>, <span class="selectable-content" id="fcs_ckm_ext.4.1_4">zeroes</span>, <span class="selectable-content" id="fcs_ckm_ext.4.1_5">ones</span>, <span class="selectable-content" id="fcs_ckm_ext.4.1_6">a new value of a key</span>]</span></li><li style=""><span class="selectable-content" id="fcs_ckm_ext.4.1_9">removal of power to the memory</span></li><li style=""><span class="selectable-content" id="fcs_ckm_ext.4.1_10">destruction of reference to the key directly
+              RBG</span>, <span class="selectable-content" id="fcs_ckm_ext.4.1_4">zeroes</span>, <span class="selectable-content" id="fcs_ckm_ext.4.1_5">ones</span>, <span class="selectable-content" id="fcs_ckm_ext.4.1_6">a new value of a key</span>, <span class="selectable-content" id="fcs_ckm_ext.4.1_8">
+                          [<b>assignment</b>: 
+     <span class="assignable-content"> any value that does not contain any <abbr class="dyn-abbr"><a href="#abbr_CSP">CSP</a></abbr> </span>]
+                        </span>]</span></li><li style=""><span class="selectable-content" id="fcs_ckm_ext.4.1_9">removal of power to the memory</span></li><li style=""><span class="selectable-content" id="fcs_ckm_ext.4.1_10">destruction of reference to the key directly
               followed by a request for garbage collection</span></li></ul>]</span></li><li style=""><span class="selectable-content" id="fcs_ckm_ext.4.1_11">For non-volatile memory that consists of [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-kek-kill">
                       destruction of all key encrypting keys (KEKs) protecting the target key
               according to <a href="#FCS_CKM_EXT.4.1">FCS_CKM_EXT.4.1</a>, where none of the KEKs protecting
               the target key are derived </span></li><li style=""><span class="selectable-content" id="fcs_ckm_ext.4.1_12">the invocation of an interface provided by
               the underlying platform that [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="fcs_ckm_ext.4.1_13">logically addresses the storage location
-              of the key and performs a [<b>selection</b>: <span class="selectable-content" id="fcs_ckm_ext.4.1_14">single</span>]overwrite
+              of the key and performs a [<b>selection</b>: <span class="selectable-content" id="fcs_ckm_ext.4.1_14">single</span>, <span class="selectable-content" id="fcs_ckm_ext.4.1_16">
+                              [<b>assignment</b>: 
+     <span class="assignable-content"><abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author defined multi-pass </span>]
+                            </span>]overwrite
               consisting of [<b>selection</b>: <span class="selectable-content" id="fcs_ckm_ext.4.1_17">zeroes</span>, <span class="selectable-content" id="fcs_ckm_ext.4.1_18">ones</span>, <span class="selectable-content" id="fcs_ckm_ext.4.1_19">pseudo-random pattern</span>, <span class="selectable-content" id="fcs_ckm_ext.4.1_20">a new value of a key of the same
-              size</span>]</span></li><li style=""><span class="selectable-content" id="fcs_ckm_ext.4.1_23">instructs the underlying platform to
+              size</span>, <span class="selectable-content" id="fcs_ckm_ext.4.1_22">
+                              [<b>assignment</b>: 
+     <span class="assignable-content">any value that does not contain any <abbr class="dyn-abbr"><a href="#abbr_CSP">CSP</a></abbr> </span>]
+                            </span>]</span></li><li style=""><span class="selectable-content" id="fcs_ckm_ext.4.1_23">instructs the underlying platform to
               destroy the abstraction that represents the key</span></li></ul>]</span></li></ul>]</span></li></ul>]
               <a id="period_196" href="#period_196">. </a><div class="appnote"><span class="note-header">Application
       Note:
@@ -1901,7 +1910,9 @@ The following sections list Common Criteria and technology terms used in this do
         <div class="comp" id="FCS_COP.1/KEYHMAC"><h4>FCS_COP.1/KEYHMAC Cryptographic Operation - Keyed-Hash Message Authentication (Refined)</h4>
           <div class="element"><div class="reqid" id="FCS_COP.1.1/KEYHMAC"><a href="#FCS_COP.1.1/KEYHMAC" class="abbr">FCS_COP.1.1/KEYHMAC</a></div><div class="reqdesc">The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall perform [ <i>keyed-hash message authentication services</i>
               ] in accordance with a specified cryptographic algorithm <b>[<b>selection</b>: <span class="selectable-content" id="fcs_cop.1.1_KEYHMAC_1">SHA-256</span>, <span class="selectable-content" id="fcs_cop.1.1_KEYHMAC_2">SHA-384</span>, <span class="selectable-content" id="fcs_cop.1.1_KEYHMAC_3">SHA-512</span>]
-              with key sizes key size (in bits) used in HMAC and message digest</b> sizes[<b>selection</b>: <span class="selectable-content" id="fcs_cop.1.1_KEYHMAC_5">160 bits</span>, <span class="selectable-content" id="fcs_cop.1.1_KEYHMAC_6">256 bits</span>, <span class="selectable-content" id="fcs_cop.1.1_KEYHMAC_7">384 bits</span>, <span class="selectable-content" id="fcs_cop.1.1_KEYHMAC_8">512 bits</span>]that
+              with key sizes [<b>assignment</b>: 
+     <span class="assignable-content">key size (in bits) used in HMAC</span>] and message
+              digest</b> sizes[<b>selection</b>: <span class="selectable-content" id="fcs_cop.1.1_KEYHMAC_5">160 bits</span>, <span class="selectable-content" id="fcs_cop.1.1_KEYHMAC_6">256 bits</span>, <span class="selectable-content" id="fcs_cop.1.1_KEYHMAC_7">384 bits</span>, <span class="selectable-content" id="fcs_cop.1.1_KEYHMAC_8">512 bits</span>]that
               meet the following: [ <i>FIPS Pub 198-1 The Keyed-Hash Message
                 Authentication Code and FIPS Pub 180-4 Secure Hash Standard</i> ]<a id="period_439" href="#period_439">. </a><div class="appnote"><span class="note-header">Application
       Note:
@@ -2231,8 +2242,8 @@ The following sections list Common Criteria and technology terms used in this do
         <div class="comp" id="FMT_SMF_EXT.1"><h4>FMT_SMF_EXT.1 Specification of Management Functions</h4>
           <div class="element"><div class="reqid" id="FMT_SMF_EXT.1.1"><a href="#FMT_SMF_EXT.1.1" class="abbr">FMT_SMF_EXT.1.1</a></div><div class="reqdesc"> <br> The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall be capable of performing the following management
               functions: <br><table class="mfs" style="width: 100%;"><tr class="header"><td>#</td><td>Management Function</td><td>Administrator</td><td>User</td></tr>
-<tr id="_mf_1"><td>1</td><td style="text-align:left">Enable/disable [<b>selection</b>: <span class="selectable-content" id="_s_64">screen lock</span>, <span class="selectable-content" id="_s_65">session timeout</span>]</td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
-<tr id="_mf_2"><td>2</td><td style="text-align:left">Configure [<b>selection</b>: <span class="selectable-content" id="_s_66">screen lock</span>, <span class="selectable-content" id="_s_67">session</span>] inactivity
+<tr id="_mf_1"><td>1</td><td style="text-align:left">Enable/disable [<b>selection</b>: <span class="selectable-content" id="_s_67">screen lock</span>, <span class="selectable-content" id="_s_68">session timeout</span>]</td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+<tr id="_mf_2"><td>2</td><td style="text-align:left">Configure [<b>selection</b>: <span class="selectable-content" id="_s_69">screen lock</span>, <span class="selectable-content" id="_s_70">session</span>] inactivity
               timeout</td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_3"><td>3</td><td style="text-align:left">import keys/secrets into the secure key storage</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_4"><td>4</td><td style="text-align:left">Configure local audit storage capacity</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
@@ -2241,7 +2252,7 @@ The following sections list Common Criteria and technology terms used in this do
 <tr id="_mf_7"><td>7</td><td style="text-align:left">Configure minimum number of numeric characters in password</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_8"><td>8</td><td style="text-align:left">Configure minimum number of uppercase characters in password</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_9"><td>9</td><td style="text-align:left">Configure minimum number of lowercase characters in password</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
-<tr id="_mf_10"><td>10</td><td style="text-align:left"> Configure lockout policy for unsuccessful authentication attempts through [<b>selection</b>: <span class="selectable-content" id="_s_68">timeouts between attempts</span>, <span class="selectable-content" id="_s_69">limiting number of attempts during a time period</span>]</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
+<tr id="_mf_10"><td>10</td><td style="text-align:left"> Configure lockout policy for unsuccessful authentication attempts through [<b>selection</b>: <span class="selectable-content" id="_s_71">timeouts between attempts</span>, <span class="selectable-content" id="_s_72">limiting number of attempts during a time period</span>]</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_11"><td>11</td><td style="text-align:left">Configure host-based firewall</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_12"><td>12</td><td style="text-align:left">Configure name/address of directory server with which to bind</td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional</span></div></td></tr>
 <tr id="_mf_13"><td>13</td><td style="text-align:left">Configure name/address of remote management server from which to receive
@@ -2298,14 +2309,22 @@ The following sections list Common Criteria and technology terms used in this do
                 <li>Shared libraries</li>
                 <li>System executables</li>
                 <li>System configuration files</li>
-                <li>other objects</li>
-              </ul> <a id="period_558" href="#period_558">. </a></div></div>
+                <li>
+                  [<b>assignment</b>: 
+     <span class="assignable-content">other objects</span>]
+                </li>
+              </ul>
+              <a id="period_558" href="#period_558">. </a></div></div>
           <div class="element"><div class="reqid" id="FPT_ACF_EXT.1.2"><a href="#FPT_ACF_EXT.1.2" class="abbr">FPT_ACF_EXT.1.2</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall implement access controls which prohibit unprivileged users from
               reading: <ul>
                 <li>Security audit logs</li>
                 <li>System-wide credential repositories</li>
-                <li>list of other objects</li>
-              </ul> <a id="period_559" href="#period_559">. </a><div class="appnote"><span class="note-header">Application
+                <li>
+                  [<b>assignment</b>: 
+     <span class="assignable-content">list of other objects</span>]
+                </li>
+              </ul>
+              <a id="period_559" href="#period_559">. </a><div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
               "Credential repositories" refer, in this case, to structures containing cryptographic
@@ -2360,8 +2379,12 @@ The following sections list Common Criteria and technology terms used in this do
             </div></div></div>
         
         <div class="comp" id="FPT_ASLR_EXT.1"><h4>FPT_ASLR_EXT.1 Address Space Layout Randomization</h4>
-          <div class="element"><div class="reqid" id="FPT_ASLR_EXT.1.1"><a href="#FPT_ASLR_EXT.1.1" class="abbr">FPT_ASLR_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall always randomize process address space memory locations with[<b>selection</b>: <span class="selectable-content" id="fpt_aslr_ext.1.1_1">8</span>]bits
-              of entropy except forlist of explicit exceptions<a id="period_571" href="#period_571">. </a></div></div>
+          <div class="element"><div class="reqid" id="FPT_ASLR_EXT.1.1"><a href="#FPT_ASLR_EXT.1.1" class="abbr">FPT_ASLR_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall always randomize process address space memory locations with[<b>selection</b>: <span class="selectable-content" id="fpt_aslr_ext.1.1_1">8</span>, <span class="selectable-content" id="fpt_aslr_ext.1.1_3">
+                  [<b>assignment</b>: 
+     <span class="assignable-content">number greater than 8 </span>]
+                </span>]bits
+              of entropy except for[<b>assignment</b>: 
+     <span class="assignable-content">list of explicit exceptions</span>]<a id="period_571" href="#period_571">. </a></div></div>
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="element-activity-header"><a href="#FPT_ASLR_EXT.1.1">FPT_ASLR_EXT.1.1</a></div>
               <div class="eacategory">Tests</div><div class="ea">
                 The evaluator will select 3 executables included with the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr><a id="period_572" href="#period_572">. </a>                If the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> includes a web browser it must be selected<a id="period_573" href="#period_573">. </a>                If the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> includes a mail client it must be selected<a id="period_574" href="#period_574">. </a>                For each of these apps, the evaluator will launch the same executables on two
@@ -2410,7 +2433,10 @@ The following sections list Common Criteria and technology terms used in this do
         
         
         <div class="comp" id="FPT_TST_EXT.1"><h4>FPT_TST_EXT.1 Boot Integrity</h4>
-          <div class="element"><div class="reqid" id="FPT_TST_EXT.1.1"><a href="#FPT_TST_EXT.1.1" class="abbr">FPT_TST_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall verify the integrity of the bootchain up through the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> kernel and[<b>selection</b>: <span class="selectable-content" id="s-verify-all-code">all executable code stored in mutable media</span>, <span class="selectable-content" id="fpt_tst_ext.1.1_3">no other executable code</span>]prior
+          <div class="element"><div class="reqid" id="FPT_TST_EXT.1.1"><a href="#FPT_TST_EXT.1.1" class="abbr">FPT_TST_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall verify the integrity of the bootchain up through the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> kernel and[<b>selection</b>: <span class="selectable-content" id="s-verify-all-code">all executable code stored in mutable media</span>, <span class="selectable-content" id="fpt_tst_ext.1.1_2">
+                  [<b>assignment</b>: 
+     <span class="assignable-content">list of other executable code </span>]
+                </span>, <span class="selectable-content" id="fpt_tst_ext.1.1_3">no other executable code</span>]prior
               to its execution through the use of[<b>selection</b>: <span class="selectable-content" id="fpt_tst_ext.1.1_4">a digital signature using a hardware-protected
               asymmetric key</span>, <span class="selectable-content" id="s-boot-x509">a digital signature using an X509 certificate with
               hardware-based protection</span>, <span class="selectable-content" id="fpt_tst_ext.1.1_5">a hardware-protected hash</span>]
@@ -2601,7 +2627,8 @@ The following sections list Common Criteria and technology terms used in this do
         
         <div class="comp" id="FPT_W^X_EXT.1"><h4>FPT_W^X_EXT.1 Write XOR Execute Memory Pages</h4>
           <div class="element"><div class="reqid" id="FPT_W^X_EXT.1.1"><a href="#FPT_W^X_EXT.1.1" class="abbr">FPT_W^X_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall prevent allocation of any memory region with both write and execute
-              permissions except forlist of exceptions<a id="period_656" href="#period_656">. </a><div class="appnote"><span class="note-header">Application
+              permissions except for[<b>assignment</b>: 
+     <span class="assignable-content">list of exceptions</span>]<a id="period_656" href="#period_656">. </a><div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">Requesting a memory mapping with both write and execute
               permissions subverts the platform protection provided by <abbr class="dyn-abbr"><a href="#abbr_DEP">DEP</a></abbr><a id="period_657" href="#period_657">. </a>              If the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> provides no exceptions (such as for just-in-time compilation),
@@ -2657,7 +2684,10 @@ The following sections list Common Criteria and technology terms used in this do
               arguments (Success/Failure e.g<a id="period_668" href="#period_668">. </a>due to software restriction policy)</span>, <span class="selectable-content" id="fau_gen.1.1_6">System reboot, restart, and shutdown events
               (Success/Failure)</span>, <span class="selectable-content" id="fau_gen.1.1_7">Kernel module loading and unloading events
               (Success/Failure)</span>, <span class="selectable-content" id="fau_gen.1.1_8">Administrator or root-level access events
-              (Success/Failure)</span>, <span class="selectable-content" id="fau_gen.1.1_9"><a id="period_669" href="#period_669">. </a></span>]
+              (Success/Failure)</span>, <span class="selectable-content" id="fau_gen.1.1_10">
+                            [<b>assignment</b>: 
+     <span class="assignable-content">other specifically defined auditable events </span>]
+                          </span>, <span class="selectable-content" id="fau_gen.1.1_9"><a id="period_669" href="#period_669">. </a></span>]
                       </li>
                     </ul>
                   </i>
@@ -2667,9 +2697,10 @@ The following sections list Common Criteria and technology terms used in this do
               information: <ol>
                 <li>Date and time of the event, type of event, subject identity (if applicable),
               and outcome (success or failure) of the event; and </li>
-                <li>For each audit event type, based on the auditable event
-                  definitions of the functional components included in the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>/<abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>,
-                  other audit relevant information</li>
+                <li>For each audit event type, based on the auditable event definitions of the
+              functional components included in the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>/<abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, [<b>assignment</b>: 
+     <span class="assignable-content">other audit relevant
+              information</span>]</li>
               </ol> <a id="period_671" href="#period_671">. </a><div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note"> The term <i>subject</i> here is understood to be the user
@@ -2718,13 +2749,22 @@ The following sections list Common Criteria and technology terms used in this do
       <h3 id="fia" class="indexable" data-level="3">5.1.6 Class: Identification and Authentication (FIA)</h3>
         
         <div class="comp" id="FIA_AFL.1"><h4>FIA_AFL.1 Authentication failure handling (Refined)</h4>
-          <div class="element"><div class="reqid" id="FIA_AFL.1.1"><a href="#FIA_AFL.1.1" class="abbr">FIA_AFL.1.1</a></div><div class="reqdesc">The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall detect when[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="fia_afl.1.1_3">an administrator configurable positive integer within [<b>selection</b>: ]</span></li></ul>]unsuccessful
+          <div class="element"><div class="reqid" id="FIA_AFL.1.1"><a href="#FIA_AFL.1.1" class="abbr">FIA_AFL.1.1</a></div><div class="reqdesc">The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall detect when[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="fia_afl.1.1_2">
+                  [<b>assignment</b>: 
+     <span class="assignable-content">positive integer number </span>]
+                </span></li><li style=""><span class="selectable-content" id="fia_afl.1.1_3">an administrator configurable positive integer within [<b>selection</b>: <span class="selectable-content" id="fia_afl.1.1_4">
+                      [<b>assignment</b>: 
+     <span class="assignable-content">range of acceptable values </span>]
+                    </span>]</span></li></ul>]unsuccessful
               authentication attempts occur related to <b> events with [<b>selection</b>: <span class="selectable-content" id="fia_afl.1.1_5">authentication based on user name and password</span>, <span class="selectable-content" id="fia_afl.1.1_6">authentication based on user name and a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr> that
               releases an asymmetric key stored in <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>-protected storage</span>, <span class="selectable-content" id="fia_afl.1.1_7">authentication based on X.509 certificates</span>]</b>
               <a id="period_684" href="#period_684">. </a></div></div>
           <div class="element"><div class="reqid" id="FIA_AFL.1.2"><a href="#FIA_AFL.1.2" class="abbr">FIA_AFL.1.2</a></div><div class="reqdesc">When the defined number of unsuccessful authentication attempts for an account
               has been <b>met</b> , the <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall: <b>
-                [<b>selection</b>: <span class="selectable-content" id="fia_afl.1.2_1">Account Lockout</span>, <span class="selectable-content" id="fia_afl.1.2_2">Account Disablement</span>, <span class="selectable-content" id="fia_afl.1.2_3">Mandatory Credential Reset</span>]
+                [<b>selection</b>: <span class="selectable-content" id="fia_afl.1.2_1">Account Lockout</span>, <span class="selectable-content" id="fia_afl.1.2_2">Account Disablement</span>, <span class="selectable-content" id="fia_afl.1.2_3">Mandatory Credential Reset</span>, <span class="selectable-content" id="fia_afl.1.2_5">
+                    [<b>assignment</b>: 
+     <span class="assignable-content">list of actions </span>]
+                  </span>]
               </b>
               <a id="period_685" href="#period_685">. </a><div class="appnote"><span class="note-header">Application
       Note:
@@ -2794,8 +2834,10 @@ The following sections list Common Criteria and technology terms used in this do
     </span><span class="note"> The <a href="#s-uau-ssh">SSH public key-based
               authentication</a> selection can only be
               included, and must be included, if <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a> selects <a href="#s-ftp_ssh">SSH</a><a id="period_700" href="#period_700">. </a></span></div></div></div>
-          <div class="element"><div class="reqid" id="FIA_UAU.5.2"><a href="#FIA_UAU.5.2" class="abbr">FIA_UAU.5.2</a></div><div class="reqdesc">The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall authenticate any user's claimed identity according to the
-              rules describing how the multiple authenticationmechanisms provide authentication <a id="period_701" href="#period_701">. </a></div></div>
+          <div class="element"><div class="reqid" id="FIA_UAU.5.2"><a href="#FIA_UAU.5.2" class="abbr">FIA_UAU.5.2</a></div><div class="reqdesc">The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall authenticate any user's claimed identity according to the[<b>assignment</b>: 
+     <span class="assignable-content">
+              rules describing how the multiple authenticationmechanisms provide authentication </span>]
+              <a id="period_701" href="#period_701">. </a></div></div>
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="element-activity-header"><a href="#FIA_UAU.5.1">FIA_UAU.5.1</a></div>
               <div class="eacategory">Tests</div><div class="ea">
                 <span class="testlist-"><ul>
@@ -2910,7 +2952,10 @@ The following sections list Common Criteria and technology terms used in this do
                       in RFC 6066</span>, <span class="selectable-content" id="fia_x509_ext.1.1_4"> OCSP TLS Multi-Certificate Status Request
               Extension
                       (i.e., OCSP Multi-Stapling) as specified in RFC 6961</span>]
-              with [<b>selection</b>: <span class="selectable-content" id="fia_x509_ext.1.1_5">no exceptions</span>]</li>
+              with [<b>selection</b>: <span class="selectable-content" id="fia_x509_ext.1.1_5">no exceptions</span>, <span class="selectable-content" id="fia_x509_ext.1.1_6">
+                      [<b>assignment</b>: 
+     <span class="assignable-content">exceptional use cases and alternative status check </span>]
+                    </span>]</li>
                 <li>The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall validate the extendedKeyUsage field according to the following
               rules: <ul>
                     <li> Certificates used for trusted updates and executable code integrity
@@ -3053,7 +3098,10 @@ The following sections list Common Criteria and technology terms used in this do
         
         <div class="comp" id="FIA_X509_EXT.2"><h4>FIA_X509_EXT.2 X.509 Certificate Authentication</h4>
           <div class="element"><div class="reqid" id="FIA_X509_EXT.2.1"><a href="#FIA_X509_EXT.2.1" class="abbr">FIA_X509_EXT.2.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall use X.509v3 certificates as defined by RFC 5280 to support
-              authentication for TLS and[<b>selection</b>: <span class="selectable-content" id="fia_x509_ext.2.1_1">DTLS</span>, <span class="selectable-content" id="fia_x509_ext.2.1_2">HTTPS</span>, <span class="selectable-content" id="fia_x509_ext.2.1_5">no other protocols</span>]
+              authentication for TLS and[<b>selection</b>: <span class="selectable-content" id="fia_x509_ext.2.1_1">DTLS</span>, <span class="selectable-content" id="fia_x509_ext.2.1_2">HTTPS</span>, <span class="selectable-content" id="fia_x509_ext.2.1_4">
+                  [<b>assignment</b>: 
+     <span class="assignable-content">other protocols </span>]
+                </span>, <span class="selectable-content" id="fia_x509_ext.2.1_5">no other protocols</span>]
               connections<a id="period_779" href="#period_779">. </a></div></div>
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="element-activity-header"><a href="#FIA_X509_EXT.2.1">FIA_X509_EXT.2.1</a></div>
               <div class="eacategory">Tests</div><div class="ea">
@@ -3083,7 +3131,10 @@ The following sections list Common Criteria and technology terms used in this do
         version 
         1.0</a> as a [<b>selection</b>: <span class="selectable-content" id="s-ssh-client">client</span>, <span class="selectable-content" id="s-ssh-server">server</span>]</span></li></ul>]to
               provide a trusted communication channel between itself and authorized IT entities
-              supporting the following capabilities:[<b>selection</b>: <span class="selectable-content" id="ftp_itc_ext.1.1_1">audit server</span>, <span class="selectable-content" id="ftp_itc_ext.1.1_2">authentication server</span>, <span class="selectable-content" id="ftp_itc_ext.1.1_3">management server</span>]that
+              supporting the following capabilities:[<b>selection</b>: <span class="selectable-content" id="ftp_itc_ext.1.1_1">audit server</span>, <span class="selectable-content" id="ftp_itc_ext.1.1_2">authentication server</span>, <span class="selectable-content" id="ftp_itc_ext.1.1_3">management server</span>, <span class="selectable-content" id="ftp_itc_ext.1.1_5">
+                  [<b>assignment</b>: 
+     <span class="assignable-content">other capabilities </span>]
+                </span>]that
               is logically distinct from other communication channels and provides assured
               identification of its end points and protection of the channel data from disclosure
               and detection of modification of the channel data<a id="period_783" href="#period_783">. </a><div class="appnote"><span class="note-header">Application
@@ -3667,9 +3718,10 @@ The following sections list Common Criteria and technology terms used in this do
           
           
           
-          <div class="element"><div class="reqid" id="FPT_BLT_EXT.1.1"><a href="#FPT_BLT_EXT.1.1" class="abbr">FPT_BLT_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall disable support forlist of Bluetooth profilesBluetooth profiles
-              when they are not currently being used by an application on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and shall require
-              explicit user action to enable them<a id="period_1018" href="#period_1018">. </a><div class="appnote"><span class="note-header">Application
+          <div class="element"><div class="reqid" id="FPT_BLT_EXT.1.1"><a href="#FPT_BLT_EXT.1.1" class="abbr">FPT_BLT_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall disable support for[<b>assignment</b>: 
+     <span class="assignable-content">list of Bluetooth profiles</span>]Bluetooth
+              profiles when they are not currently being used by an application on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and shall
+              require explicit user action to enable them<a id="period_1018" href="#period_1018">. </a><div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
               <p> Some Bluetooth services incur more serious consequences if unauthorized remote
@@ -3710,7 +3762,10 @@ The following sections list Common Criteria and technology terms used in this do
               </div>
             </div></div></div><div class="comp" id="FPT_SRP_EXT.1"><h4>FPT_SRP_EXT.1 Software Restriction Policies</h4>
           <div class="element"><div class="reqid" id="FPT_SRP_EXT.1.1"><a href="#FPT_SRP_EXT.1.1" class="abbr">FPT_SRP_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall restrict execution to only programs which match an
-              administrator-specified[<b>selection</b>: <span class="selectable-content" id="s-srp-path">file path</span>, <span class="selectable-content" id="s-srp-signature">file digital signature</span>, <span class="selectable-content" id="s-srp-version">version</span>, <span class="selectable-content" id="s-srp-hash">hash</span>]
+              administrator-specified[<b>selection</b>: <span class="selectable-content" id="s-srp-path">file path</span>, <span class="selectable-content" id="s-srp-signature">file digital signature</span>, <span class="selectable-content" id="s-srp-version">version</span>, <span class="selectable-content" id="s-srp-hash">hash</span>, <span class="selectable-content" id="fpt_srp_ext.1.1_1">
+                  [<b>assignment</b>: 
+     <span class="assignable-content">other characteristics </span>]
+                </span>]
               <a id="period_1032" href="#period_1032">. </a><div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">

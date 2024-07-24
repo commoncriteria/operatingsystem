@@ -857,6 +857,9 @@
                         <selectable id="fcs_ckm_ext.4.1_4">zeroes</selectable>
                         <selectable id="fcs_ckm_ext.4.1_5">ones</selectable>
                         <selectable id="fcs_ckm_ext.4.1_6">a new value of a key</selectable>
+                        <selectable id="fcs_ckm_ext.4.1_8">
+                          <assignable> any value that does not contain any CSP </assignable>
+                        </selectable>
                       </selectables></selectable>
                     <selectable id="fcs_ckm_ext.4.1_9">removal of power to the memory</selectable>
                     <selectable id="fcs_ckm_ext.4.1_10">destruction of reference to the key directly
@@ -872,6 +875,9 @@
                         <selectable id="fcs_ckm_ext.4.1_13">logically addresses the storage location
               of the key and performs a <selectables>
                             <selectable id="fcs_ckm_ext.4.1_14">single</selectable>
+                            <selectable id="fcs_ckm_ext.4.1_16">
+                              <assignable>ST author defined multi-pass </assignable>
+                            </selectable>
                           </selectables>overwrite
               consisting of <selectables>
                             <selectable id="fcs_ckm_ext.4.1_17">zeroes</selectable>
@@ -879,6 +885,9 @@
                             <selectable id="fcs_ckm_ext.4.1_19">pseudo-random pattern</selectable>
                             <selectable id="fcs_ckm_ext.4.1_20">a new value of a key of the same
               size</selectable>
+                            <selectable id="fcs_ckm_ext.4.1_22">
+                              <assignable>any value that does not contain any CSP </assignable>
+                            </selectable>
                           </selectables></selectable>
                         <selectable id="fcs_ckm_ext.4.1_23">instructs the underlying platform to
               destroy the abstraction that represents the key</selectable>
@@ -1598,7 +1607,8 @@
                   <selectable id="fcs_cop.1.1_KEYHMAC_2">SHA-384</selectable>
                   <selectable id="fcs_cop.1.1_KEYHMAC_3">SHA-512</selectable>
                 </selectables>
-              with key sizes key size (in bits) used in HMAC and message digest</h:b> sizes<selectables>
+              with key sizes <assignable>key size (in bits) used in HMAC</assignable> and message
+              digest</h:b> sizes<selectables>
                 <selectable id="fcs_cop.1.1_KEYHMAC_5">160 bits</selectable>
                 <selectable id="fcs_cop.1.1_KEYHMAC_6">256 bits</selectable>
                 <selectable id="fcs_cop.1.1_KEYHMAC_7">384 bits</selectable>
@@ -2165,8 +2175,11 @@
                 <h:li>Shared libraries</h:li>
                 <h:li>System executables</h:li>
                 <h:li>System configuration files</h:li>
-                <h:li>other objects</h:li>
-              </h:ul> .</title>
+                <h:li>
+                  <assignable>other objects</assignable>
+                </h:li>
+              </h:ul>
+              .</title>
             <aactivity level="element">
               <TSS>The evaluator will confirm that the TSS specifies the locations of kernel
                 drivers/modules, security
@@ -2200,8 +2213,11 @@
               reading: <h:ul>
                 <h:li>Security audit logs</h:li>
                 <h:li>System-wide credential repositories</h:li>
-                <h:li>list of other objects</h:li>
-              </h:ul> .</title>
+                <h:li>
+                  <assignable>list of other objects</assignable>
+                </h:li>
+              </h:ul>
+              .</title>
             <note role="application">
               "Credential repositories" refer, in this case, to structures containing cryptographic
               keys or passwords.
@@ -2228,9 +2244,11 @@
           <f-element id="fel-aslr">
             <title>The OS shall always randomize process address space memory locations with<selectables>
                 <selectable id="fpt_aslr_ext.1.1_1">8</selectable>
-                <assignable id="fpt_aslr_ext.1.1_3">number greater than 8 </assignable>
+                <selectable id="fpt_aslr_ext.1.1_3">
+                  <assignable>number greater than 8 </assignable>
+                </selectable>
               </selectables>bits
-              of entropy except forlist of explicit exceptions.</title>
+              of entropy except for<assignable>list of explicit exceptions</assignable>.</title>
             <aactivity level="element">
               <Tests>
                 The evaluator will select 3 executables included with the TSF.
@@ -2259,9 +2277,9 @@
           <audit>There are no auditable events foreseen.</audit>
           <dependencies>No dependencies.</dependencies>
           <f-element id="fel-bluetooth-stop">
-            <title>The TSF shall disable support forlist of Bluetooth profilesBluetooth profiles
-              when they are not currently being used by an application on the TOE and shall require
-              explicit user action to enable them.</title>
+            <title>The TSF shall disable support for<assignable>list of Bluetooth profiles</assignable>Bluetooth
+              profiles when they are not currently being used by an application on the TOE and shall
+              require explicit user action to enable them.</title>
             <note role="application">
               <h:p> Some Bluetooth services incur more serious consequences if unauthorized remote
                 devices gain access to them. Such services should be protected by measures like
@@ -2357,7 +2375,9 @@
                 <selectable id="s-srp-signature">file digital signature</selectable>
                 <selectable id="s-srp-version">version</selectable>
                 <selectable id="s-srp-hash">hash</selectable>
-                <assignable id="fpt_srp_ext.1.1_1">other characteristics </assignable>
+                <selectable id="fpt_srp_ext.1.1_1">
+                  <assignable>other characteristics </assignable>
+                </selectable>
               </selectables>
               .</title>
             <note role="application">
@@ -2454,7 +2474,9 @@
           <f-element id="fel-boot">
             <title>The OS shall verify the integrity of the bootchain up through the OS kernel and<selectables>
                 <selectable id="s-verify-all-code">all executable code stored in mutable media</selectable>
-                <assignable id="fpt_tst_ext.1.1_2">list of other executable code </assignable>
+                <selectable id="fpt_tst_ext.1.1_2">
+                  <assignable>list of other executable code </assignable>
+                </selectable>
                 <selectable id="fpt_tst_ext.1.1_3" exclusive="yes">no other executable code</selectable>
               </selectables>prior
               to its execution through the use of<selectables>
@@ -2668,7 +2690,7 @@
         <f-component cc-id="fpt_w^x_ext.1" name="Write XOR Execute Memory Pages">
           <f-element id="fel-no-rw-mem">
             <title>The OS shall prevent allocation of any memory region with both write and execute
-              permissions except forlist of exceptions.</title>
+              permissions except for<assignable>list of exceptions</assignable>.</title>
             <note role="application">Requesting a memory mapping with both write and execute
               permissions subverts the platform protection provided by DEP.
               If the OS provides no exceptions (such as for just-in-time compilation),
@@ -2743,8 +2765,9 @@
               (Success/Failure)</selectable>
                           <selectable id="fau_gen.1.1_8">Administrator or root-level access events
               (Success/Failure)</selectable>
-                          <assignable id="fau_gen.1.1_10">other specifically defined auditable
-              events </assignable>
+                          <selectable id="fau_gen.1.1_10">
+                            <assignable>other specifically defined auditable events </assignable>
+                          </selectable>
                           <selectable id="fau_gen.1.1_9">.</selectable>
                         </selectables>
                       </h:li>
@@ -2781,9 +2804,9 @@
               information: <h:ol>
                 <h:li>Date and time of the event, type of event, subject identity (if applicable),
               and outcome (success or failure) of the event; and </h:li>
-                <h:li>For each audit event type, based on the auditable event
-                  definitions of the functional components included in the PP/ST,
-                  other audit relevant information</h:li>
+                <h:li>For each audit event type, based on the auditable event definitions of the
+              functional components included in the PP/ST, <assignable>other audit relevant
+              information</assignable></h:li>
               </h:ol> .</title>
             <note role="application"> The term <h:i>subject</h:i> here is understood to be the user
               that the process is acting on behalf of. If no auditable event definitions of
@@ -2822,9 +2845,13 @@
         <f-component cc-id="fia_afl.1" id="fia-afl-1" name="Authentication failure handling (Refined)">
           <f-element id="fel-id-and-auth">
             <title>The <h:b>OS</h:b> shall detect when<selectables>
-                <assignable id="fia_afl.1.1_2">positive integer number </assignable>
+                <selectable id="fia_afl.1.1_2">
+                  <assignable>positive integer number </assignable>
+                </selectable>
                 <selectable id="fia_afl.1.1_3">an administrator configurable positive integer within <selectables>
-                    <assignable id="fia_afl.1.1_4">range of acceptable values </assignable>
+                    <selectable id="fia_afl.1.1_4">
+                      <assignable>range of acceptable values </assignable>
+                    </selectable>
                   </selectables></selectable>
               </selectables>unsuccessful
               authentication attempts occur related to <h:b> events with <selectables>
@@ -2854,7 +2881,9 @@
                   <selectable id="fia_afl.1.2_1">Account Lockout</selectable>
                   <selectable id="fia_afl.1.2_2">Account Disablement</selectable>
                   <selectable id="fia_afl.1.2_3">Mandatory Credential Reset</selectable>
-                  <assignable id="fia_afl.1.2_5">list of actions </assignable>
+                  <selectable id="fia_afl.1.2_5">
+                    <assignable>list of actions </assignable>
+                  </selectable>
                 </selectables>
               </h:b>
               .</title>
@@ -2995,8 +3024,9 @@
             </aactivity>
           </f-element>
           <f-element id="fel-auth-how">
-            <title>The <h:b>OS</h:b> shall authenticate any user's claimed identity according to the
-              rules describing how the multiple authenticationmechanisms provide authentication .</title>
+            <title>The <h:b>OS</h:b> shall authenticate any user's claimed identity according to the<assignable>
+              rules describing how the multiple authenticationmechanisms provide authentication </assignable>
+              .</title>
             <aactivity level="element">
               <TSS>The evaluator will ensure that the TSS describes the rules as to how each
                 authentication mechanism specified in <xref to="fel-mult-auth"/> is
@@ -3049,8 +3079,9 @@
                   </selectables>
               with <selectables>
                     <selectable id="fia_x509_ext.1.1_5">no exceptions</selectable>
-                    <assignable id="fia_x509_ext.1.1_6">exceptional use cases and alternative status
-              check </assignable>
+                    <selectable id="fia_x509_ext.1.1_6">
+                      <assignable>exceptional use cases and alternative status check </assignable>
+                    </selectable>
                   </selectables></h:li>
                 <h:li>The OS shall validate the extendedKeyUsage field according to the following
               rules: <h:ul>
@@ -3205,7 +3236,9 @@
               authentication for TLS and<selectables>
                 <selectable id="fia_x509_ext.2.1_1">DTLS</selectable>
                 <selectable id="fia_x509_ext.2.1_2">HTTPS</selectable>
-                <assignable id="fia_x509_ext.2.1_4">other protocols </assignable>
+                <selectable id="fia_x509_ext.2.1_4">
+                  <assignable>other protocols </assignable>
+                </selectable>
                 <selectable id="fia_x509_ext.2.1_5" exclusive="yes">no other protocols</selectable>
               </selectables>
               connections.</title>
@@ -3270,7 +3303,9 @@
                 <selectable id="ftp_itc_ext.1.1_1">audit server</selectable>
                 <selectable id="ftp_itc_ext.1.1_2">authentication server</selectable>
                 <selectable id="ftp_itc_ext.1.1_3">management server</selectable>
-                <assignable id="ftp_itc_ext.1.1_5">other capabilities </assignable>
+                <selectable id="ftp_itc_ext.1.1_5">
+                  <assignable>other capabilities </assignable>
+                </selectable>
               </selectables>that
               is logically distinct from other communication channels and provides assured
               identification of its end points and protection of the channel data from disclosure
