@@ -44,7 +44,7 @@
       <subject>Release - significant revision</subject>
     </entry>
   </RevisionHistory>
-  <include-pkg id="pkg-ssh">
+  <release-notes><h:h3>TDs Applied</h:h3></release-notes><include-pkg id="pkg-ssh">
     <git>
       <url>https://github.com/commoncriteria/ssh</url>
       <branch>release-1.0</branch>
@@ -2923,57 +2923,6 @@ The evaluator will also ensure that the TSS includes a description of the safegu
           </f-element>
         </f-component>
 
-
-        <ext-comp-def fam-id="FPT_W^X_EXT" title="Write XOR Execute">
-	  <fam-behavior>
-	    This family of requirements defines how the TOE ensures that it executes only those items that are non-writable with specified exceptions.
-	  </fam-behavior>
-	</ext-comp-def>
-	<f-component cc-id="fpt_w^x_ext.1" name="Write XOR Execute Memory Pages">
-          <f-element id="fel-no-rw-mem">
-            <title> The OS shall prevent allocation of any memory region with both write and
-              execute permissions except for <assignable>list of exceptions</assignable>.
-            </title>
-            <note role="application">Requesting a memory mapping with both write and execute
-              permissions subverts the platform protection provided by DEP.
-	      If the OS provides no exceptions (such as for just-in-time compilation),
-	      then "no exceptions" should be indicated in the assignment.
-	      Full realization of this requirement requires hardware support, but this is commonly available.
-            </note>
-            <aactivity>
-	      <TSS>
-              The evaluator will inspect the vendor-provided developer documentation and
-	      verify that no memory-mapping can be made with
-              write and execute permissions except for the cases listed in the assignment.
-	      </TSS>
-	      <Tests>
-	      The evaluator will also perform the following tests.
-	      <testlist>
-		<test>
-                  The evaluator will acquire or construct a test program which attempts
-		  to allocate memory that is both writable and executable.
-		  The evaluator will run the program and confirm that it fails to
-		  allocate memory that is both writable and executable.
-		</test>
-		<test>
-                  The evaluator will acquire or construct a test program which
-		  allocates memory that is executable and then
-		  subsequently requests additional write/modify permissions on that memory.
-		  The evaluator will run the program and confirm that at no time
-		  during the lifetime of the process is the memory both writable and executable.
-		</test>
-		<test>
-                  The evaluator will acquire or construct a test program which
-		  allocates memory that is writable and then
-		  subsequently requests additional execute permissions on that memory.
-		  The evaluator will run the program and confirm that at no time
-		  during the lifetime of the process is the memory both writable and executable.
-		</test>
-	      </testlist>
-              </Tests>
-	    </aactivity>
-          </f-element>
-        </f-component>
       </section>
       <section title="Audit Data Generation (FAU)" id="fau">
         <f-component cc-id="fau_gen.1" name="Audit Data Generation (Refined)">
@@ -3513,6 +3462,56 @@ the node certificate to be tested, two Intermediate CAs, and the
             displayed before logging in can occur.
               </Tests>
 	    </aactivity>
+          </f-element>
+        </f-component>
+        <ext-comp-def fam-id="FPT_W^X_EXT" title="Write XOR Execute">
+          <fam-behavior>
+            This family of requirements defines how the TOE ensures that it executes only those items that are non-writable with specified exceptions.
+          </fam-behavior>
+        </ext-comp-def>
+        <f-component cc-id="fpt_w^x_ext.1" name="Write XOR Execute Memory Pages" status="optional">
+          <f-element id="fel-no-rw-mem">
+            <title> The OS shall prevent allocation of any memory region with both write and
+              execute permissions except for <assignable>list of exceptions</assignable>.
+            </title>
+            <note role="application">Requesting a memory mapping with both write and execute
+              permissions subverts the platform protection provided by DEP.
+              If the OS provides no exceptions (such as for just-in-time compilation),
+              then "no exceptions" should be indicated in the assignment.
+              Full realization of this requirement requires hardware support, but this is commonly available.
+            </note>
+            <aactivity>
+              <TSS>
+                The evaluator will inspect the vendor-provided developer documentation and
+                verify that no memory-mapping can be made with
+                write and execute permissions except for the cases listed in the assignment.
+              </TSS>
+              <Tests>
+                The evaluator will also perform the following tests.
+                <testlist>
+                  <test>
+                    The evaluator will acquire or construct a test program which attempts
+                    to allocate memory that is both writable and executable.
+                    The evaluator will run the program and confirm that it fails to
+                    allocate memory that is both writable and executable.
+                  </test>
+                  <test>
+                    The evaluator will acquire or construct a test program which
+                    allocates memory that is executable and then
+                    subsequently requests additional write/modify permissions on that memory.
+                    The evaluator will run the program and confirm that at no time
+                    during the lifetime of the process is the memory both writable and executable.
+                  </test>
+                  <test>
+                    The evaluator will acquire or construct a test program which
+                    allocates memory that is writable and then
+                    subsequently requests additional execute permissions on that memory.
+                    The evaluator will run the program and confirm that at no time
+                    during the lifetime of the process is the memory both writable and executable.
+                  </test>
+                </testlist>
+              </Tests>
+            </aactivity>
           </f-element>
         </f-component>
       </section>
