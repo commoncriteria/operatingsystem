@@ -567,12 +567,12 @@ users of the same system.
     <addressed-by>FCS_TLS_EXT.1 (TLS Package)</addressed-by><rationale>Supports the objective by defining the TOE's implementation of TLS and DTLS if this protocol is used for protected communications.</rationale>
     <addressed-by>FCS_TLSC_EXT.1 (TLS Package)</addressed-by><rationale>Supports the objective by defining the TOE's implementation of TLS as a client for protected communications.</rationale>
     <addressed-by>FCS_TLSC_EXT.2 (TLS Package)</addressed-by><rationale>Supports the objective by defining the TOE's implementation of mutually-authenticated TLS as a client for protected communications.</rationale>          
-    <addressed-by>FCS_TLSC_EXT.3 (TLS Package)</addressed-by><rationale>Supports the objective by requiring the TSF to support the TLS signature algorithms extension as part of establishing TLS protected communications.</rationale>
+    <addressed-by>FCS_TLSC_EXT.3 (TLS Package) (Objective)</addressed-by><rationale>Supports the objective by requiring the TSF to support the TLS signature algorithms extension as part of establishing TLS protected communications.</rationale>
     <addressed-by>FCS_TLSC_EXT.4 (TLS Package)</addressed-by><rationale>Supports the objective by defining the TOE's implementation of renegotiation for TLS as a client for protected communications.</rationale>          
     <addressed-by>FCS_TLSC_EXT.5 (TLS Package)</addressed-by><rationale>Supports the objective by defining the TOE's implementation of supported groups extension for TLS as a client for protected communications.</rationale>
     <addressed-by>FCS_TLSS_EXT.1 (TLS Package)</addressed-by><rationale>Supports the objective by defining the TOE's implementation of TLS as a server for protected communications.</rationale>
     <addressed-by>FCS_TLSS_EXT.2 (TLS Package)</addressed-by><rationale>Supports the objective by defining the TOE's implementation of mutually-authenticated TLS as a server for protected communications.</rationale>        
-    <addressed-by>FCS_TLSS_EXT.3 (TLS Package)</addressed-by><rationale>Supports the objective by requiring the TSF to support the TLS signature algorithms extension as part of establishing TLS protected communications.</rationale>
+    <addressed-by>FCS_TLSS_EXT.3 (TLS Package) (Objective)</addressed-by><rationale>Supports the objective by requiring the TSF to support the TLS signature algorithms extension as part of establishing TLS protected communications.</rationale>
     <addressed-by>FCS_TLSS_EXT.4 (TLS Package)</addressed-by><rationale>Supports the objective by defining the TOE's implementation of renegotiation  for TLS as a server for protected communications.</rationale>
     <addressed-by>FCS_SSH_EXT.1 (SSH Package)</addressed-by><rationale>Supports the objective by defining the TOE's implementation of SSH if this protocol is used for protected communications.</rationale>
     <addressed-by>FCS_SSHC_EXT.1 (SSH Package)</addressed-by><rationale>Supports the objective by defining the TOE's implementation of SSH as a client if this protocol is used for protected communications.</rationale>
@@ -665,7 +665,7 @@ users of the same system.
               sizes supported by the OS. If the ST specifies
               more than one scheme, the evaluator shall examine the TSS to verify
               that it identifies the usage for each scheme. If “P-256” is selected,
-              the evaluator will examine the TSS to verify that it is only used for Bluetooth functions.
+              the evaluator shall examine the TSS to verify that it is only used for Bluetooth functions.
 	      </h:p>
 	      </TSS>
         <Guidance>
@@ -743,7 +743,7 @@ users of the same system.
 			   <depends on="s-keygen-ecc"/>
                <h:b>Key Generation for Elliptic Curve Cryptography (ECC)</h:b><h:br/>
      	      <h:p> FIPS 186-4 ECC Key Generation Test</h:p>
-              <h:p>For each supported NIST curve, i.e., P-256, P-384 and P-521, the
+              <h:p>For each supported NIST curve, i.e., P-256, P-384, and P-521, the
               evaluator shall require the implementation under test (IUT) to generate 10
               private/public key pairs. The private key shall be generated using an approved random
               bit generator (RBG). To determine correctness, the evaluator shall submit the
@@ -753,7 +753,7 @@ users of the same system.
 	      <h:p>FIPS 186-4 Public Key Verification (PKV) Test</h:p>
 	      <h:p>
 	      For each supported
-              NIST curve, i.e., P-256, P-384 and P-521, the evaluator shall generate 10
+              NIST curve, i.e., P-256, P-384, and P-521, the evaluator shall generate 10
               private/public key pairs using the key generation function of a known good
               implementation and modify five of the public key values so that they are incorrect,
               leaving five values unchanged (i.e., correct). The evaluator shall obtain in response
@@ -1003,7 +1003,7 @@ The evaluator shall verify the correctness of the TSF's implementation of "safe-
 	    requirement is similar to FCS_CKM.4, from which it was originally derived.</comp-lev>
 	  <management>There are no management activities foreseen.</management>
 	  <audit>There are no auditable events foreseen.</audit>
-	  <dependencies>No dependencies</dependencies>        
+	  <dependencies>No dependencies.</dependencies>        
 	  
 	  <f-element id="fel-key-kill">
 	    <title>
@@ -1109,7 +1109,7 @@ The evaluator shall check that the TSS identifies any configurations or circumst
 	        <h:p>
 If the selection "destruction of all key encrypting keys (KEKs) protecting the target key 
 according to <xref to="fel-key-kill"/>, where none of the KEKs protecting the target key 
-are derived" is included the evaluator shall examine the TOE’s keychain in the TSS and
+are derived" is included, the evaluator shall examine the TOE’s keychain in the TSS and
 identify each instance when a key is destroyed by this method. In each instance the evaluator
 will verify all keys capable of decrypting the target key are destroyed in accordance with a
 specified key destruction method in FCS_CKM_EXT.4.1. The evaluator shall verify that all of the
@@ -1223,13 +1223,13 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 <!-- <selectable>AES-CCM (as defined in NIST SP 800-38C)</selectable> -->
                 <selectable id="s-aes-ccmp"><snip>AES-CCMP-256</snip> (as defined in NIST SP 800-38C and IEEE 802.11ac-2013)</selectable>
                 <selectable id="s-aes-gcmp"><snip>AES-GCMP-256</snip> (as defined in NIST SP 800-38D and IEEE 802.11ac-2013)</selectable>
-                <selectable>AES-CCM (as defined in NIST SP 800-38C)</selectable>
-	              <selectable>AES-GCM (as defined in NIST SP 800-38D)</selectable>	        
+                <selectable> <ref-id>s-aes-ccm</ref-id> AES-CCM (as defined in NIST SP 800-38C)</selectable>
+	              <selectable> <ref-id>s-aes-gcm</ref-id>AES-GCM (as defined in NIST SP 800-38D)</selectable>	        
 <!-- <depends on="s-ftp_ssh"/> Could have added this to the previous, but choose to use rules.-->
 		
                 <selectable exclusive="yes">no other modes</selectable>
               </selectables></h:b>
-              and cryptographic key sizes 256-bit and<selectables>
+              and cryptographic key sizes 256-bit and <selectables>
                 <selectable>128-bit</selectable>
                 <selectable>no other bit size</selectable>
               </selectables>.
@@ -1530,13 +1530,11 @@ This result shall be compared to the result of running 1000 iterations with the 
               </h:p>
 	      </h:div>
 	      <h:div>
-		<depends on="s-aes-ccmp"/>
+	        <depends on="s-aes-ccmp" also="s-aes-ccm"/>
 	        <h:p>
-	          The following content should be included if:<h:ul>
-	            <h:li>AES-CCM or AES-CCMP-256 is selected from FCS_COP.1.1/ENCRYPT</h:li>
-	          </h:ul>
-              </h:p>
+	          
 	        <h:b>AES-CCM Tests</h:b>
+	        </h:p>
 	      <h:p>
               The evaluator shall test the generation-encryption and decryption-verification
               functionality of AES-CCM for the following input parameter and tag lengths: <h:ul>
@@ -1788,7 +1786,7 @@ This result shall be compared to the result of running 1000 iterations with the 
             <title>The <h:b>OS</h:b> shall perform [<h:i>cryptographic signature services (generation and
               verification)</h:i>] in accordance with a specified cryptographic algorithm <h:b><selectables
                 linebreak="yes">
-                <selectable id="s-rsa-certs">RSA schemes using cryptographic key sizes of<selectables>
+                <selectable id="s-rsa-certs">RSA schemes using cryptographic key sizes of <selectables>
                   <selectable>2048-bit (for secure boot only) or greater</selectable>
                   <selectable>3072-bit or greater</selectable>
                 </selectables> 
@@ -1808,12 +1806,12 @@ This result shall be compared to the result of running 1000 iterations with the 
             </note>
        <aactivity>
 	       <TSS>
-	         [Conditional: if “2048-bit (for secure boot only) or greater” is selected] The evaluator shall
+	         [Conditional: If “2048-bit (for secure boot only) or greater” is selected] The evaluator shall
 	         check that the TSS documents that 2048-bit RSA is used only for secure boot and a greater key
 	         size is used for any other functions.
 	       </TSS>
          <Guidance>
-           [Conditional: if “2048-bit (for secure boot only) or greater” is selected] The evaluator shall
+           [Conditional: If “2048-bit (for secure boot only) or greater” is selected] The evaluator shall
            check that the AGD documents any configuration needed to ensure 2048-bit RSA is used only for
            secure boot and a greater key size is used for any other functions.
          </Guidance>
@@ -2120,7 +2118,7 @@ only AES-based implementations for CTR_DRBG are allowed.
           <h:ul>
             <h:li>Successful and unsuccessful attempts to access data</h:li>
           </h:ul></audit>
-          <dependencies>No dependencies</dependencies>
+          <dependencies>No dependencies.</dependencies>
           
           <f-element id="fel-protect-user-data">
             <title>
@@ -2192,7 +2190,7 @@ only AES-based implementations for CTR_DRBG are allowed.
             2 by defining technology-specific details for the implementation of these functions.</fam-behavior>
 	</ext-comp-def>
 
-        <f-component cc-id="fdp_ifc_ext.1" name="Information flow control" status="sel-based">
+        <f-component cc-id="fdp_ifc_ext.1" name="Information Flow Control" status="sel-based">
 	  <depends on="s-itc-ipsec"/>
 	  <depends><optional/></depends>
           
@@ -2288,11 +2286,11 @@ only AES-based implementations for CTR_DRBG are allowed.
         </f-component>
       </section>
       <section title="Security Management (FMT)" id="fmt">
-        <ext-comp-def fam-id="FMT_MOF_EXT" title="Management of Functions behavior">
+        <ext-comp-def fam-id="FMT_MOF_EXT" title="Management of Security Functions Behavior">
           <fam-behavior>This family defines the administrative privileges required to modify the behavior of the security
             functions that are defined specifically for operating systems.</fam-behavior>
 	</ext-comp-def>
-        <f-component cc-id="fmt_mof_ext.1" name="Management of security functions behavior">
+        <f-component cc-id="fmt_mof_ext.1" name="Management of Security Functions Behavior">
           
           <comp-lev> requires the TSF to define a set of
             management functions for the TOE and the privileges that are required to administer them.</comp-lev>
@@ -2359,7 +2357,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 	  <management>There are no management functions foreseen.</management>
 	  <audit>There are no auditable events foreseen.
 	  </audit>
-	  <dependencies>No dependencies</dependencies>
+	  <dependencies>No dependencies.</dependencies>
 	  
 	  <f-element id="fel-manage-functions">
 	    <title>
@@ -2444,7 +2442,7 @@ The OS can enroll in such account management and enable the overall information 
               <h:li>Unauthorized attempts to perform operations against protected data</h:li>
             </h:ul>
           </audit>
-          <dependencies>No dependencies</dependencies>
+          <dependencies>No dependencies.</dependencies>
           
           <f-element id="fel-protect-priv">
             <title> The OS shall implement access controls which prohibit unprivileged users from
@@ -2520,7 +2518,7 @@ The OS can enroll in such account management and enable the overall information 
             well as the objects that ASLR is applied to.</comp-lev>
           <management>There are no management functions foreseen.</management>
           <audit>There are no auditable events foreseen.</audit>
-          <dependencies>No dependencies</dependencies>
+          <dependencies>No dependencies.</dependencies>
           
           <f-element id="fel-aslr">
             <title>The OS shall always randomize process address space memory locations with
@@ -2759,7 +2757,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 
 	<ext-comp-def fam-id="FPT_SRP_EXT" title="Software Restriction Policies">
 	  <fam-behavior>This family defines the ability of the TOE to restrict the execution of software unless it meets defined
-	    criteria. This is a new family defined for the FCS class.</fam-behavior>
+	    criteria. This is a new family defined for the FPT class.</fam-behavior>
 	</ext-comp-def>
 
 	<f-component cc-id="fpt_srp_ext.1" name="Software Restriction Policies" status="objective">
@@ -2890,7 +2888,8 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
           </h:ul>
           </audit>
           <dependencies>
-          <no-link>FCS_COP.1</no-link> Cryptographic Operation
+          <no-link>FCS_COP.1</no-link> Cryptographic Operation<h:br/>
+          <no-link>FIA_X509_EXT.1</no-link> X.509 Certificate Validation
           </dependencies>
           
           <f-element id="fel-boot">
@@ -3256,7 +3255,7 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
         </f-component>
       </section>
       <section title="Identification and Authentication (FIA)" id="fia">
-        <f-component cc-id="fia_afl.1" name="Authentication failure handling (Refined)">
+        <f-component cc-id="fia_afl.1" name="Authentication Failure Handling (Refined)">
           <f-element id="fel-id-and-auth">
             <title>
             The <h:b>OS</h:b> shall detect when
@@ -3281,7 +3280,7 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
             <aactivity>
 	      <Tests>
 		  The evaluator shall set an administrator-configurable threshold for
-		  failed attempts, or note the ST-specified assignment.  The evaluator
+		  failed attempts, or note the ST-specified assignment. The evaluator
 		  will then (per selection) repeatedly attempt to authenticate with an
 		  incorrect password, PIN, or certificate until the number of attempts
 		  reaches the threshold.  Note that the authentication attempts and
@@ -3503,7 +3502,8 @@ The <h:b>OS</h:b> shall authenticate any user's claimed identity according to th
 	    </h:ul>
 	  </audit>
 	  <dependencies>
-	    <no-link>FCS_COP.1</no-link> Cryptographic Operation
+	    <no-link>FCS_COP.1</no-link> Cryptographic Operation<h:br/>
+	    <no-link>FPT_STM.1</no-link> Reliable Time Stamps
 	  </dependencies>
 	  
           <f-element id="fel-cert-val">
@@ -3701,8 +3701,7 @@ the node certificate to be tested, two Intermediate CAs, and the
             </h:ul>
           </audit>
           <dependencies>
-            <no-link>FCS_COP.1</no-link> Cryptographic Operation
-            <no-link>FPT_STM.1</no-link> Reliable Time Stamps
+            <no-link>FIA_X509_EXT.1</no-link> X.509 Certificate Validation
           </dependencies>
           
           <f-element id="fel-cert-auth">
@@ -3749,10 +3748,10 @@ the node certificate to be tested, two Intermediate CAs, and the
 	    </aactivity>
           </f-element>
         </f-component>
-        <ext-comp-def fam-id="FPT_W^X_EXT" title="Write XOR Execute">
+        <ext-comp-def fam-id="FPT_W^X_EXT" title="Write XOR Execute Memory Pages">
           <fam-behavior>
             This family defines the ability of the TOE to implement data execution prevention (DEP) by preventing
-            memory from being both writable and executable. This is a new family defined for the FCS class.
+            memory from being both writable and executable. This is a new family defined for the FPT class.
           </fam-behavior>
         </ext-comp-def>
         <f-component cc-id="fpt_w^x_ext.1" name="Write XOR Execute Memory Pages" status="optional">
@@ -3760,8 +3759,8 @@ the node certificate to be tested, two Intermediate CAs, and the
           <comp-lev> defines the ability of the TOE to prevent memory
             from being simultaneously writable and executable unless otherwise specified.</comp-lev>
           <management>There are no management functions foreseen.</management>
-          <audit>There are no audit events foreseen</audit>
-          <dependencies>No dependencies</dependencies>
+          <audit>There are no auditable events foreseen.</audit>
+          <dependencies>No dependencies.</dependencies>
           
           <f-element id="fel-no-rw-mem">
             <title> The OS shall prevent allocation of any memory region with both write and
@@ -3810,13 +3809,13 @@ the node certificate to be tested, two Intermediate CAs, and the
       </section>
       <section title="Trusted Path/Channels (FTP)" id="ftp">
 
-        <ext-comp-def fam-id="FTP_ITC_EXT" title="Trusted channel communication">
+        <ext-comp-def fam-id="FTP_ITC_EXT" title="Trusted Channel Communication">
           <fam-behavior>This family defines the ability of the TOE to use specific trusted communications channels to
             communicate with specific non-TOE entities in the Operational Environment. This family differs from
             FTP_ITC in Part 2 by defining technology-specific details for the implementation of these functions.</fam-behavior>
 	</ext-comp-def>
 	
-      	<f-component cc-id="ftp_itc_ext.1" name="Trusted channel communication">
+      	<f-component cc-id="ftp_itc_ext.1" name="Trusted Channel Communication">
       	  
       	  <comp-lev> defines the specific secure communications protocols
       	    the TSF uses to communicate with a specific set of non-TOE entities in the Operational Environment.</comp-lev>
@@ -3829,9 +3828,9 @@ the node certificate to be tested, two Intermediate CAs, and the
       	    </h:ul>
       	  </audit>
       	  <dependencies>
-      	    <no-link>FCS_DTLS_EXT.1</no-link> DTLS Implementation 
-      	    <no-link>FCS_IPSEC_EXT.1</no-link> IPsec
-      	    <no-link>FCS_SSH_EXT.1</no-link> SSH Protocol
+      	    <no-link>FCS_DTLS_EXT.1</no-link> DTLS Implementation<h:br/> 
+      	    <no-link>FCS_IPSEC_EXT.1</no-link> IPsec<h:br/>
+      	    <no-link>FCS_SSH_EXT.1</no-link> SSH Protocol<h:br/>
       	    <no-link>FCS_TLSC_EXT.1</no-link> TLS Client Protocol
       	  </dependencies>
       	  
@@ -3851,13 +3850,13 @@ the node certificate to be tested, two Intermediate CAs, and the
     	  	    </selectables></selectable>
       	      <selectable id="s-itc-ipsec">IPsec as conforming to the <xref to="mod-vpnclient"/></selectable>
       	      </selectables>
-      	        and <selectables>
+      	        and <selectables linebreak='yes'>
       	          <selectable id="s-ftp_ssh"><snip>SSH</snip> as conforming to the <xref to="pkg-ssh"/> as a
       	          <selectables>
       	          <selectable id="s-ssh-client"><readable>client(SSH)</readable>client</selectable>
       	            <selectable id="s-ssh-server"><readable>server(SSH)</readable>server</selectable>
       	          </selectables>
-      	          <selectable>no other protocol</selectable></selectable></selectables>
+      	          <selectable>no other protocols</selectable></selectable></selectables>
 		    to provide a trusted communication channel between itself and
 		    authorized IT entities supporting the following capabilities:
 		    <selectables>
@@ -3870,13 +3869,28 @@ the node certificate to be tested, two Intermediate CAs, and the
 		    channels and provides assured identification of its end points and protection of the channel
 		    data from disclosure and detection of modification of the channel data.
       	    </title>
+      	    <ext-comp-def-title>
+      	      <title>
+      	        The OS shall use
+      	        <assignable>trusted protocol</assignable>, to provide a trusted communication channel between itself and authorized IT
+      	        entities supporting the following capabilities:
+      	        <selectables>
+      	          <selectable>audit server</selectable>
+      	          <selectable>authentication server</selectable>
+      	          <selectable>management server</selectable>
+      	          <selectable><assignable>other capabilities</assignable></selectable>
+      	        </selectables>
+      	        that is logically distinct from other communication channels and provides assured identification of its end points and
+      	        protection of the channel data from disclosure and detection of modification of the channel data.
+      	      </title>
+      	    </ext-comp-def-title>
       	    <note role="application">
              <h:p>
                The ST author must include the security functional requirements for the trusted
                channel protocol selected in <xref to="fel-trust-comms"/> in the main body of the ST.
              </h:p>
       	     <h:p>
-      	       If TLS or DTLS is selected, the TSF must be validated against the appropriate requirements in the <doc ref="pkg-tls"></doc>.
+      	       If TLS or DTLS is selected, the TSF must be validated against the appropriate requirements in the <xref to="pkg-tls"/>.
       	     </h:p>
       	     <h:p>
       	        If <xref to="s-itc-ipsec"/> is selected, then FDP_IFC_EXT.1 must be included in the ST.
@@ -3961,10 +3975,10 @@ channel protocol selected in
               </title>
             </f-element>
             <f-element id="fel-trust-path">
-              <title> The <h:b>OS</h:b> shall require use of the trusted path for<selectables>
+              <title> The <h:b>OS</h:b> shall require use of the trusted path for <selectables>
                 <selectable>initial user authentication,</selectable>
-              </selectables>
-              [[<h:i>all remote administrative actions</h:i>]].
+                <selectable><h:i>all remote administrative actions</h:i></selectable>
+              </selectables>           
               </title>
               <note role="application">
 		    <h:p>
@@ -3974,19 +3988,19 @@ channel protocol selected in
             defined in FTP_ITC_EXT.1.
 	      </h:p>
         <h:p>
-          If <h:i>"remote"</h:i> is selected in FTP_TRP.1.1, <h:i>"[all remote administrative actions</h:i>
+          If <h:i>"remote"</h:i> is selected in FTP_TRP.1.1, <h:i>"all remote administrative actions"</h:i>
           must be selected in FTP_TRP.1.3.
         </h:p>
         <h:p>
-          If <h:i>"local"</h:i> is selected in FTP_TRP.1.1, then "initial user authentication" must be selected
+          If <h:i>"local"</h:i> is selected in FTP_TRP.1.1, then <h:i>"initial user authentication"</h:i> must be selected
           in FTP_TRP.1.3.
         </h:p>
               </note>
               <aactivity>
 		<TSS>
                 The evaluator shall examine the TSS to determine that the methods of remote or local OS administration
-                are indicated, along with how those communications are protected. (Conditional: if "remote" is selected
-                in FTP_TRP.1.1), the evaluator shall also confirm that all protocols listed in the TSS in support of OS
+                are indicated, along with how those communications are protected. [Conditional: if "remote" is selected
+                in FTP_TRP.1.1], the evaluator shall also confirm that all protocols listed in the TSS in support of OS
                 administration are consistent with those specified in the requirement, and are included in the requirements
                 in the ST.
 		</TSS>
@@ -4004,16 +4018,16 @@ The evaluator shall also perform the following tests:
                     as described in the operational guidance and ensuring that communication is successful.
                   </test>
                   <test>
-                    (Conditional: if "remote" is selected in FTP_TRP.1.1): For each method of remote administration supported,
+                    [Conditional: if "remote" is selected in FTP_TRP.1.1]: For each method of remote administration supported,
                     the evaluator shall follow the operational guidance to ensure that there is no available interface that can be
                     used by a remote user to establish a remote administrative sessions without invoking the trusted path.
                   </test>
                   <test>
-                    (Conditional: if “remote” is selected in FTP_TRP1.1): The evaluator shall ensure, for each method of remote
+                    [Conditional: if “remote” is selected in FTP_TRP.1.1]: The evaluator shall ensure, for each method of remote
                     administration, the channel data is not sent in plaintext.
                   </test>
                   <test>
-                    (Conditional: if “remote” is selected in FTP_TRP1.1): The evaluator shall ensure, for each method of remote
+                    [Conditional: if “remote” is selected in FTP_TRP.1.1]: The evaluator shall ensure, for each method of remote
                     administration, modification of the channel data is detected by the OS.
                   </test>
                 </testlist>
