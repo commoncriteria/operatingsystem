@@ -2100,7 +2100,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 
       </section>
       <section title="User Data Protection (FDP)" id="fdp">
-	<ext-comp-def title="Access Controls for User Data" fam-id="FDP_ACF_EXT">
+	<ext-comp-def title="Access Controls for Protecting User Data" fam-id="FDP_ACF_EXT">
 	  <fam-behavior>This family specifies methods for ensuring that data stored or maintained by the TSF cannot be accessed
 	    without authorization. This family differs from FDP_ACF in CC Part 2 by defining technology-specific
 	    details for the implementation of these functions.</fam-behavior>
@@ -2286,11 +2286,11 @@ only AES-based implementations for CTR_DRBG are allowed.
         </f-component>
       </section>
       <section title="Security Management (FMT)" id="fmt">
-        <ext-comp-def fam-id="FMT_MOF_EXT" title="Management of Security Functions Behavior">
+        <ext-comp-def fam-id="FMT_MOF_EXT" title="Management of Functions Behavior">
           <fam-behavior>This family defines the administrative privileges required to modify the behavior of the security
             functions that are defined specifically for operating systems.</fam-behavior>
 	</ext-comp-def>
-        <f-component cc-id="fmt_mof_ext.1" name="Management of Security Functions Behavior">
+        <f-component cc-id="fmt_mof_ext.1" name="Management of Functions Behavior">
           
           <comp-lev> requires the TSF to define a set of
             management functions for the TOE and the privileges that are required to administer them.</comp-lev>
@@ -3855,8 +3855,9 @@ the node certificate to be tested, two Intermediate CAs, and the
       	          <selectables>
       	          <selectable id="s-ssh-client"><readable>client(SSH)</readable>client</selectable>
       	            <selectable id="s-ssh-server"><readable>server(SSH)</readable>server</selectable>
-      	          </selectables>
-      	          <selectable>no other protocols</selectable></selectable></selectables>
+      	          </selectables></selectable>
+      	          <selectable>no other protocols</selectable>
+      	        </selectables>
 		    to provide a trusted communication channel between itself and
 		    authorized IT entities supporting the following capabilities:
 		    <selectables>
@@ -3977,7 +3978,7 @@ channel protocol selected in
             <f-element id="fel-trust-path">
               <title> The <h:b>OS</h:b> shall require use of the trusted path for <selectables>
                 <selectable>initial user authentication,</selectable>
-                <selectable><h:i>all remote administrative actions</h:i></selectable>
+                <selectable><h:i>[all remote administrative actions]</h:i></selectable>
               </selectables>           
               </title>
               <note role="application">
