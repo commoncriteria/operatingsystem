@@ -92,6 +92,8 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[8]""/f-component[1]""/f-element[1]""/note[1]"The ST au"/h:p[1]"Regardles"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[8]""/f-component[1]""/f-element[1]""/note[1]"The ST au"/h:p[1]"Regardles"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:Security_Assurance_Requirements[1]""/h:p[1]"The Secur"/h:p[1]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:Security_Assurance_Requirements[1]""/h:p[1]"The Secur"/h:p[2]""
+* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:Security_Assurance_Requirements[1]""/h:p[1]"The Secur"/h:p[3]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:Security_Assurance_Requirements[1]""/section[4]"At the as"/a-component[2]"Given the"/a-element[4]""/aactivity[1]""/h:p[1]"The "eval"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:Security_Assurance_Requirements[1]""/section[4]"At the as"/a-component[3]"This comp"/a-element[5]""/aactivity[1]""/h:p[1]"The evalu"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:Security_Assurance_Requirements[1]""/section[4]"At the as"/a-component[3]"This comp"/a-element[5]""/aactivity[1]""/h:p[1]"The evalu"/h:p[2]""
