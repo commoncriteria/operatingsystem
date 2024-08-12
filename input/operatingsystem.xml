@@ -387,11 +387,11 @@
         <!--FCS_CKM.1 Cryptographic Key Generation (Refined)-->
         <f-component cc-id="fcs_ckm.1" id="fcs-ckm-1" name="Cryptographic Key Generation (Refined)">
           <f-element id="fel-asym-gen">
-            <title>The <h:b>OS</h:b>  shall generate <h:b>asymmetric</h:b>  cryptographic keys in accordance with a specified cryptographic key generation algorithm<selectables ><selectable id="s-keygen-rsa" > <snip>RSA schemes</snip> using cryptographic key sizes of 3072-bit or greater that
+            <title>The <h:b>OS</h:b>  shall generate <h:b>asymmetric</h:b>  cryptographic keys in accordance with a specified cryptographic key generation algorithm<selectables><selectable id="s-keygen-rsa"  > <snip>RSA schemes</snip> using cryptographic key sizes of 3072-bit or greater that
 		meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.3
-                </selectable><selectable id="s-keygen-ecc"> <snip>ECC schemes using "NIST curves"</snip> P-384 and <selectables><selectable id="fcs_ckm.1.1_1" >P-521</selectable><selectable id="fcs_ckm.1.1_2" exclusive="yes"> no other curves</selectable></selectables> that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.4 </selectable><selectable id="s-keygen-ffc"> <snip>FFC schemes</snip> using <selectables><selectable id="s-keygen-ffc-fips" >cryptographic key sizes of 3072-bit
+                </selectable><selectable id="s-keygen-ecc"> <snip>ECC schemes using "NIST curves"</snip> P-384 and <selectables><selectable id="fcs_ckm.1.1_1"  >P-521</selectable><selectable id="fcs_ckm.1.1_2" exclusive="yes" > no other curves</selectable></selectables> that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.4 </selectable><selectable id="s-keygen-ffc"> <snip>FFC schemes</snip> using <selectables><selectable id="s-keygen-ffc-fips"  >cryptographic key sizes of 3072-bit
                     or greater that meet the following:  <snip>FIPS PUB 186-4</snip>, "Digital Signature
-                  Standard (DSS)", Appendix B.1</selectable><selectable id="s-keygen-ffc-safeprime" > <snip>safe primes</snip> that meet the following: 
+                  Standard (DSS)", Appendix B.1</selectable><selectable id="s-keygen-ffc-safeprime"  > <snip>safe primes</snip> that meet the following: 
 		  NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes"
 		  </selectable></selectables></selectable></selectables>.</title>
             <note role="application"><h:p>
@@ -518,8 +518,8 @@
         <!--FCS_CKM.2 Cryptographic Key Establishment (Refined)-->
         <f-component cc-id="fcs_ckm.2" id="fcs-ckm-2" name="Cryptographic Key Establishment (Refined)">
           <f-element id="fel-crypt-key-estab">
-            <title>The OS shall <h:b>implement functionality to perform cryptographic key establishment</h:b>  in accordance with a specified cryptographic key <h:b>establishment</h:b>  method:<selectables ><selectable id="s-keyestab-rsa" > <snip>RSA-based</snip> key establishment schemes that meets the following:
-		RSAES-PKCS1-v1_5 as specified in Section 7.2 of RFC 8017, “Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.2"</selectable><selectable id="s-keyestab-ecc" > <snip>Elliptic curve-based</snip> key establishment schemes that meets the following: NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</selectable><selectable id="s-keyestab-ffc" > <snip>Finite field-based</snip> key establishment schemes
+            <title>The OS shall <h:b>implement functionality to perform cryptographic key establishment</h:b>  in accordance with a specified cryptographic key <h:b>establishment</h:b>  method:<selectables><selectable id="s-keyestab-rsa"  > <snip>RSA-based</snip> key establishment schemes that meets the following:
+		RSAES-PKCS1-v1_5 as specified in Section 7.2 of RFC 8017, “Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.2"</selectable><selectable id="s-keyestab-ecc"  > <snip>Elliptic curve-based</snip> key establishment schemes that meets the following: NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</selectable><selectable id="s-keyestab-ffc"  > <snip>Finite field-based</snip> key establishment schemes
 		  that meets  <snip>NIST Special Publication 800-56A</snip> Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</selectable></selectables>.</title>
             <note role="application"><h:p>
 	      The ST author will select all key establishment schemes used
@@ -624,10 +624,10 @@ The evaluator will verify the correctness of the TSF's implementation of "safe-p
         <!--FCS_CKM_EXT.4 Cryptographic Key Destruction-->
         <f-component cc-id="fcs_ckm_ext.4" id="fcs-ckm-ext-4" name="Cryptographic Key Destruction">
           <f-element id="fel-key-kill">
-            <title>The OS shall destroy cryptographic keys and key material in accordance with a specified cryptographic key destruction method<selectables ><selectable id="fcs_ckm_ext.4.1_1">For volatile memory, the destruction shall be executed by a <selectables><selectable id="fcs_ckm_ext.4.1_2">single overwrite consisting of <selectables><selectable id="fcs_ckm_ext.4.1_3" >a pseudo-random pattern using the TSF's RBG</selectable><selectable id="fcs_ckm_ext.4.1_4" >zeroes</selectable><selectable id="fcs_ckm_ext.4.1_5" >ones</selectable><selectable id="fcs_ckm_ext.4.1_6" >a new value of a key</selectable><selectable id="fcs_ckm_ext.4.1_8" ><assignable> any value that does not contain any CSP </assignable></selectable></selectables></selectable><selectable id="fcs_ckm_ext.4.1_9" >removal of power to the memory</selectable><selectable id="fcs_ckm_ext.4.1_10" >destruction of reference to the key directly followed by a request for garbage collection</selectable></selectables></selectable><selectable id="fcs_ckm_ext.4.1_11">For non-volatile memory that consists of <selectables><selectable id="s-kek-kill" > <snip>destruction
+            <title>The OS shall destroy cryptographic keys and key material in accordance with a specified cryptographic key destruction method<selectables><selectable id="fcs_ckm_ext.4.1_1">For volatile memory, the destruction shall be executed by a <selectables><selectable id="fcs_ckm_ext.4.1_2">single overwrite consisting of <selectables><selectable id="fcs_ckm_ext.4.1_3"  >a pseudo-random pattern using the TSF's RBG</selectable><selectable id="fcs_ckm_ext.4.1_4"  >zeroes</selectable><selectable id="fcs_ckm_ext.4.1_5"  >ones</selectable><selectable id="fcs_ckm_ext.4.1_6"  >a new value of a key</selectable><selectable id="fcs_ckm_ext.4.1_8"  ><assignable> any value that does not contain any CSP </assignable></selectable></selectables></selectable><selectable id="fcs_ckm_ext.4.1_9"  >removal of power to the memory</selectable><selectable id="fcs_ckm_ext.4.1_10"  >destruction of reference to the key directly followed by a request for garbage collection</selectable></selectables></selectable><selectable id="fcs_ckm_ext.4.1_11">For non-volatile memory that consists of <selectables><selectable id="s-kek-kill"  > <snip>destruction
 			of all key encrypting keys (KEKs) protecting the target key
 			according to <xref to="fel-key-kill"></xref></snip>, where none of the KEKs protecting the target key are derived
-			</selectable><selectable id="fcs_ckm_ext.4.1_12">the invocation of an interface provided by the underlying platform that <selectables><selectable id="fcs_ckm_ext.4.1_13">logically addresses the storage location of the key and performs a <selectables><selectable id="fcs_ckm_ext.4.1_14" >single</selectable><selectable id="fcs_ckm_ext.4.1_16" ><assignable>ST author defined multi-pass </assignable></selectable></selectables>overwrite consisting of <selectables><selectable id="fcs_ckm_ext.4.1_17" >zeroes</selectable><selectable id="fcs_ckm_ext.4.1_18" >ones</selectable><selectable id="fcs_ckm_ext.4.1_19" >pseudo-random pattern</selectable><selectable id="fcs_ckm_ext.4.1_20" >a new value of a key of the same size</selectable><selectable id="fcs_ckm_ext.4.1_22" ><assignable>any value that does not contain any CSP </assignable></selectable></selectables></selectable><selectable id="fcs_ckm_ext.4.1_23" >instructs the underlying platform to destroy the abstraction that represents the key</selectable></selectables></selectable></selectables></selectable></selectables>.</title>
+			</selectable><selectable id="fcs_ckm_ext.4.1_12">the invocation of an interface provided by the underlying platform that <selectables><selectable id="fcs_ckm_ext.4.1_13">logically addresses the storage location of the key and performs a <selectables><selectable id="fcs_ckm_ext.4.1_14"  >single</selectable><selectable id="fcs_ckm_ext.4.1_16"  ><assignable>ST author defined multi-pass </assignable></selectable></selectables>overwrite consisting of <selectables><selectable id="fcs_ckm_ext.4.1_17"  >zeroes</selectable><selectable id="fcs_ckm_ext.4.1_18"  >ones</selectable><selectable id="fcs_ckm_ext.4.1_19"  >pseudo-random pattern</selectable><selectable id="fcs_ckm_ext.4.1_20"  >a new value of a key of the same size</selectable><selectable id="fcs_ckm_ext.4.1_22"  ><assignable>any value that does not contain any CSP </assignable></selectable></selectables></selectable><selectable id="fcs_ckm_ext.4.1_23"  >instructs the underlying platform to destroy the abstraction that represents the key</selectable></selectables></selectable></selectables></selectable></selectables>.</title>
             <note role="application"><h:p>
 The interface referenced in the requirement could take different forms, 
 the most likely of which is an application programming interface to an OS kernel. 
@@ -727,9 +727,9 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
         <!--FCS_COP.1/ENCRYPT Cryptographic Operation - Encryption/Decryption (Refined)-->
         <f-component cc-id="fcs_cop.1" id="fcs-cop-1-encrypt" name="Cryptographic Operation - Encryption/Decryption (Refined)" iteration="ENCRYPT">
           <f-element id="fel-encrypt-how">
-            <title>The <h:b>OS</h:b>  shall perform [ <h:i>encryption/decryption services for data</h:i>  ] in accordance with a specified cryptographic algorithm  <h:b><selectables ><selectable id="s-aes-xts" > <snip>AES-XTS</snip> (as defined in NIST SP 800-38E)</selectable><selectable id="s-aes-cbc" > <snip>AES-CBC</snip> (as defined in NIST SP 800-38A)</selectable><selectable id="s-aes-ctr" > <snip>AES-CTR</snip> (as defined in NIST SP 800-38A)</selectable></selectables>
+            <title>The <h:b>OS</h:b>  shall perform [ <h:i>encryption/decryption services for data</h:i>  ] in accordance with a specified cryptographic algorithm  <h:b><selectables><selectable id="s-aes-xts"  > <snip>AES-XTS</snip> (as defined in NIST SP 800-38E)</selectable><selectable id="s-aes-cbc"  > <snip>AES-CBC</snip> (as defined in NIST SP 800-38A)</selectable><selectable id="s-aes-ctr"  > <snip>AES-CTR</snip> (as defined in NIST SP 800-38A)</selectable></selectables>
 	      and
-	      <selectables ><selectable id="s-aes-kw" >AES Key Wrap (KW) (as defined in NIST SP 800-38F)</selectable><selectable id="s-aes-kwp" >AES Key Wrap with Padding (KWP) (as defined in NIST SP 800-38F)</selectable><selectable id="s-aes-ccmp" > <snip>AES-CCMP-256</snip> (as defined in NIST SP 800-38C and IEEE 802.11ac-2013)</selectable><selectable id="s-aes-gcmp" > <snip>AES-GCMP-256</snip> (as defined in NIST SP 800-38D and IEEE 802.11ac-2013)</selectable><selectable id="fcs_cop.1.1_ENCRYPT_1" exclusive="yes">no other modes</selectable></selectables></h:b>  and cryptographic key sizes 256-bit. <h:strike>that meet the following: [assignment: list of standards]</h:strike>  .</title>
+	      <selectables><selectable id="s-aes-kw"  >AES Key Wrap (KW) (as defined in NIST SP 800-38F)</selectable><selectable id="s-aes-kwp"  >AES Key Wrap with Padding (KWP) (as defined in NIST SP 800-38F)</selectable><selectable id="s-aes-ccmp"  > <snip>AES-CCMP-256</snip> (as defined in NIST SP 800-38C and IEEE 802.11ac-2013)</selectable><selectable id="s-aes-gcmp"  > <snip>AES-GCMP-256</snip> (as defined in NIST SP 800-38D and IEEE 802.11ac-2013)</selectable><selectable id="fcs_cop.1.1_ENCRYPT_1" exclusive="yes" >no other modes</selectable></selectables></h:b>  and cryptographic key sizes 256-bit. <h:strike>that meet the following: [assignment: list of standards]</h:strike>  .</title>
             <note role="application"><h:p>
               AES CCMP (which uses AES in CCM as specified in SP 800-38C) becomes mandatory and must
               be selected if the ST includes the  <xref to="mod-wlanclient"></xref>.
@@ -1068,9 +1068,9 @@ This result shall be compared to the result of running 1000 iterations with the 
         <!--FCS_COP.1/HASH Cryptographic Operation - Hashing (Refined)-->
         <f-component cc-id="fcs_cop.1" id="fcs-cop-1-hash" name="Cryptographic Operation - Hashing (Refined)" iteration="HASH">
           <f-element id="fel-hash-how">
-            <title>The <h:b>OS</h:b>  shall perform [ <h:i>cryptographic hashing services</h:i>  ] in accordance with a specified cryptographic algorithm  <h:b><selectables ><selectable id="fcs_cop.1.1_HASH_1" >SHA-256</selectable><selectable id="fcs_cop.1.1_HASH_2" >SHA-384</selectable><selectable id="fcs_cop.1.1_HASH_3" >SHA-512</selectable></selectables>
+            <title>The <h:b>OS</h:b>  shall perform [ <h:i>cryptographic hashing services</h:i>  ] in accordance with a specified cryptographic algorithm  <h:b><selectables><selectable id="fcs_cop.1.1_HASH_1"  >SHA-256</selectable><selectable id="fcs_cop.1.1_HASH_2"  >SHA-384</selectable><selectable id="fcs_cop.1.1_HASH_3"  >SHA-512</selectable></selectables>
 			  and message digest sizes
-              <selectables ><selectable id="fcs_cop.1.1_HASH_4" >160 bits</selectable><selectable id="fcs_cop.1.1_HASH_5" >256 bits</selectable><selectable id="fcs_cop.1.1_HASH_6" >384 bits</selectable><selectable id="fcs_cop.1.1_HASH_7" >512 bits</selectable></selectables></h:b>  that meet the following: [ <h:i>FIPS Pub 180-4</h:i>  ].</title>
+              <selectables><selectable id="fcs_cop.1.1_HASH_4"  >160 bits</selectable><selectable id="fcs_cop.1.1_HASH_5"  >256 bits</selectable><selectable id="fcs_cop.1.1_HASH_6"  >384 bits</selectable><selectable id="fcs_cop.1.1_HASH_7"  >512 bits</selectable></selectables></h:b>  that meet the following: [ <h:i>FIPS Pub 180-4</h:i>  ].</title>
             <note role="application"><h:p>
 	      The intent of this requirement is to specify the hashing function.
 	      The hash selection must support the message digest
@@ -1133,9 +1133,9 @@ This result shall be compared to the result of running 1000 iterations with the 
         <!--FCS_COP.1/KEYHMAC Cryptographic Operation - Keyed-Hash Message Authentication (Refined)-->
         <f-component cc-id="fcs_cop.1" id="fcs-cop-1-keyhmac" name="Cryptographic Operation - Keyed-Hash Message Authentication (Refined)" iteration="KEYHMAC">
           <f-element id="fel-keyed-hash-how">
-            <title>The <h:b>OS</h:b>  shall perform [ <h:i>keyed-hash message authentication services</h:i>  ] in accordance with a specified cryptographic algorithm  <h:b><selectables ><selectable id="fcs_cop.1.1_KEYHMAC_1" >SHA-256</selectable><selectable id="fcs_cop.1.1_KEYHMAC_2" >SHA-384</selectable><selectable id="fcs_cop.1.1_KEYHMAC_3" >SHA-512</selectable></selectables>
+            <title>The <h:b>OS</h:b>  shall perform [ <h:i>keyed-hash message authentication services</h:i>  ] in accordance with a specified cryptographic algorithm  <h:b><selectables><selectable id="fcs_cop.1.1_KEYHMAC_1"  >SHA-256</selectable><selectable id="fcs_cop.1.1_KEYHMAC_2"  >SHA-384</selectable><selectable id="fcs_cop.1.1_KEYHMAC_3"  >SHA-512</selectable></selectables>
               with key sizes <assignable>key size (in bits) used in HMAC</assignable>
-              and message digest</h:b>  sizes<selectables ><selectable id="fcs_cop.1.1_KEYHMAC_5" >160 bits</selectable><selectable id="fcs_cop.1.1_KEYHMAC_6" >256 bits</selectable><selectable id="fcs_cop.1.1_KEYHMAC_7" >384 bits</selectable><selectable id="fcs_cop.1.1_KEYHMAC_8" >512 bits</selectable></selectables>that meet the following: [ <h:i>FIPS Pub 198-1 The Keyed-Hash Message
+              and message digest</h:b>  sizes<selectables><selectable id="fcs_cop.1.1_KEYHMAC_5"  >160 bits</selectable><selectable id="fcs_cop.1.1_KEYHMAC_6"  >256 bits</selectable><selectable id="fcs_cop.1.1_KEYHMAC_7"  >384 bits</selectable><selectable id="fcs_cop.1.1_KEYHMAC_8"  >512 bits</selectable></selectables>that meet the following: [ <h:i>FIPS Pub 198-1 The Keyed-Hash Message
                 Authentication Code and FIPS Pub 180-4 Secure Hash Standard</h:i>  ].</title>
             <note role="application"><h:p>
 	      The intent of this requirement is to specify the keyed-hash
@@ -1165,8 +1165,8 @@ This result shall be compared to the result of running 1000 iterations with the 
         <f-component cc-id="fcs_cop.1" id="fcs-cop-1-sign" name="Cryptographic Operation - Signing (Refined)" iteration="SIGN">
           <f-element id="fel-sign-how">
             <title>The <h:b>OS</h:b>  shall perform [ <h:i>cryptographic signature services (generation and
-              verification)</h:i>  ] in accordance with a specified cryptographic algorithm  <h:b><selectables ><selectable id="s-rsa-certs" >RSA schemes using cryptographic key sizes of 2048-bit or greater
-                  that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)",  Section 4</selectable><selectable id="s-ec-certs"> <snip>ECDSA schemes</snip> using "NIST curves" P-384 and <selectables><selectable id="fcs_cop.1.1_SIGN_1" >P-521</selectable><selectable id="fcs_cop.1.1_SIGN_2" exclusive="yes">no other curves</selectable></selectables> that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Section 5</selectable></selectables></h:b> <h:strike>and cryptographic key sizes [assignment: cryptographic algorithm]
+              verification)</h:i>  ] in accordance with a specified cryptographic algorithm  <h:b><selectables><selectable id="s-rsa-certs"  >RSA schemes using cryptographic key sizes of 2048-bit or greater
+                  that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)",  Section 4</selectable><selectable id="s-ec-certs"> <snip>ECDSA schemes</snip> using "NIST curves" P-384 and <selectables><selectable id="fcs_cop.1.1_SIGN_1"  >P-521</selectable><selectable id="fcs_cop.1.1_SIGN_2" exclusive="yes" >no other curves</selectable></selectables> that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Section 5</selectable></selectables></h:b> <h:strike>and cryptographic key sizes [assignment: cryptographic algorithm]
                 that meet the following: [assignment: list of standards]</h:strike>  .</title>
             <note role="application"> The ST Author should choose the algorithm implemented to
               perform digital signatures; if more than one algorithm is available, this requirement
@@ -1229,7 +1229,7 @@ This result shall be compared to the result of running 1000 iterations with the 
         <!--FCS_RBG_EXT.1 Random Bit Generation-->
         <f-component cc-id="fcs_rbg_ext.1" id="fcs-rbg-ext-1" name="Random Bit Generation">
           <f-element id="fel-rbg-how">
-            <title>The OS shall perform all deterministic random bit generation (DRBG) services in accordance with NIST Special Publication 800-90A using<selectables ><selectable id="fcs_rbg_ext.1.1_1" >Hash_DRBG (any)</selectable><selectable id="fcs_rbg_ext.1.1_2" >HMAC_DRBG (any)</selectable><selectable id="fcs_rbg_ext.1.1_3" >CTR_DRBG (AES)</selectable></selectables>.</title>
+            <title>The OS shall perform all deterministic random bit generation (DRBG) services in accordance with NIST Special Publication 800-90A using<selectables><selectable id="fcs_rbg_ext.1.1_1"  >Hash_DRBG (any)</selectable><selectable id="fcs_rbg_ext.1.1_2"  >HMAC_DRBG (any)</selectable><selectable id="fcs_rbg_ext.1.1_3"  >CTR_DRBG (AES)</selectable></selectables>.</title>
             <note role="application">
 NIST SP 800-90A contains three different methods of generating random numbers;
 each of these, in turn, depends on underlying cryptographic primitives (hash functions/ciphers).
@@ -1282,7 +1282,7 @@ only AES-based implementations for CTR_DRBG are allowed.
             </aactivity>
           </f-element>
           <f-element id="fel-rbg-seed-how">
-            <title>The deterministic RBG used by the OS shall be seeded by an entropy source that accumulates entropy from a<selectables ><selectable id="fcs_rbg_ext.1.2_1" >software-based noise source</selectable><selectable id="fcs_rbg_ext.1.2_2" >platform-based noise source</selectable></selectables>with a minimum of 256 bitsof entropy at least equal to the greatest security strength (according to NIST SP 800-57) of the keys and hashes that it will generate.</title>
+            <title>The deterministic RBG used by the OS shall be seeded by an entropy source that accumulates entropy from a<selectables><selectable id="fcs_rbg_ext.1.2_1"  >software-based noise source</selectable><selectable id="fcs_rbg_ext.1.2_2"  >platform-based noise source</selectable></selectables>with a minimum of 256 bitsof entropy at least equal to the greatest security strength (according to NIST SP 800-57) of the keys and hashes that it will generate.</title>
             <note role="application"><h:p>
 		For the first
 		selection in this requirement, the ST author selects 'software-based noise source' if
@@ -1392,7 +1392,7 @@ only AES-based implementations for CTR_DRBG are allowed.
             <optional/>
           </depends>
           <f-element id="fel-dit-vpn">
-            <title>The OS shall<selectables ><selectable id="fdp_ifc_ext.1.1_1" >provide an interface which allows a VPN client to protect all IP traffic using IPsec</selectable><selectable id="s-provides-vpnclient" > <snip>provide a VPN client</snip> that can protect all IP traffic using IPsec</selectable></selectables>with the exception of IP traffic required to establish the VPN connection and<selectables ><selectable id="fdp_ifc_ext.1.1_2" >signed updates directly from the OS vendor</selectable><selectable id="fdp_ifc_ext.1.1_3" exclusive="yes">no other traffic</selectable></selectables>.</title>
+            <title>The OS shall<selectables><selectable id="fdp_ifc_ext.1.1_1"  >provide an interface which allows a VPN client to protect all IP traffic using IPsec</selectable><selectable id="s-provides-vpnclient"  > <snip>provide a VPN client</snip> that can protect all IP traffic using IPsec</selectable></selectables>with the exception of IP traffic required to establish the VPN connection and<selectables><selectable id="fdp_ifc_ext.1.1_2"  >signed updates directly from the OS vendor</selectable><selectable id="fdp_ifc_ext.1.1_3" exclusive="yes" >no other traffic</selectable></selectables>.</title>
             <note role="application"><h:p>
 		Typically, the traffic required to establish the VPN connection is referred to as "Control Plane" traffic,
 		whereas the IP traffic protected by the IPsec VPN is referred to as "Data Plane" traffic.
@@ -1559,7 +1559,7 @@ The OS can enroll in such account management and enable the overall information 
         <!--FPT_ASLR_EXT.1 Address Space Layout Randomization-->
         <f-component cc-id="fpt_aslr_ext.1" id="fpt-aslr-ext-1" name="Address Space Layout Randomization">
           <f-element id="fel-aslr">
-            <title>The OS shall always randomize process address space memory locations with<selectables ><selectable id="fpt_aslr_ext.1.1_1" >8</selectable><selectable id="fpt_aslr_ext.1.1_3" ><assignable>number greater than 8 </assignable></selectable></selectables>bits of entropy except for<assignable>list of explicit exceptions</assignable>.</title>
+            <title>The OS shall always randomize process address space memory locations with<selectables><selectable id="fpt_aslr_ext.1.1_1"  >8</selectable><selectable id="fpt_aslr_ext.1.1_3"  ><assignable>number greater than 8 </assignable></selectable></selectables>bits of entropy except for<assignable>list of explicit exceptions</assignable>.</title>
             <aactivity level="element">
               <Tests>
 The evaluator will select 3 executables included with the TSF.
@@ -1634,7 +1634,7 @@ This test can also be completed on the same hardware and rebooting between appli
         <!--FPT_SBOP_EXT.1 Stack Buffer Overflow Protection-->
         <f-component cc-id="fpt_sbop_ext.1" id="fpt-sbop-ext-1" name="Stack Buffer Overflow Protection">
           <f-element id="fel-sbop">
-            <title>The OS shall<selectables ><selectable id="fpt_sbop_ext.1.1_1" >employ stack-based buffer overflow protections</selectable><selectable id="fpt_sbop_ext.1.1_2" >not store parameters/variables in the same data structures as control flow values</selectable></selectables>.</title>
+            <title>The OS shall<selectables><selectable id="fpt_sbop_ext.1.1_1"  >employ stack-based buffer overflow protections</selectable><selectable id="fpt_sbop_ext.1.1_2"  >not store parameters/variables in the same data structures as control flow values</selectable></selectables>.</title>
             <note role="application">
 Many OSes store control flow values (i.e. return addresses) in stack data structures that also contain parameters and variables.
 For these OSes, it is expected that most of the OS, to include the kernel, libraries, and application software from the OS vendor be compiled with stack-based buffer overflow protection enabled.
@@ -1658,7 +1658,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
         <!--FPT_SRP_EXT.1 Software Restriction Policies-->
         <f-component cc-id="fpt_srp_ext.1" id="fpt-srp-ext-1" name="Software Restriction Policies" status="objective">
           <f-element id="fel-srp">
-            <title>The OS shall restrict execution to only programs which match an administrator-specified<selectables ><selectable id="s-srp-path" >file path</selectable><selectable id="s-srp-signature" >file digital signature</selectable><selectable id="s-srp-version" >version</selectable><selectable id="s-srp-hash" >hash</selectable><selectable id="fpt_srp_ext.1.1_1" ><assignable>other characteristics </assignable></selectable></selectables>.</title>
+            <title>The OS shall restrict execution to only programs which match an administrator-specified<selectables><selectable id="s-srp-path"  >file path</selectable><selectable id="s-srp-signature"  >file digital signature</selectable><selectable id="s-srp-version"  >version</selectable><selectable id="s-srp-hash"  >hash</selectable><selectable id="fpt_srp_ext.1.1_1"  ><assignable>other characteristics </assignable></selectable></selectables>.</title>
             <note role="application">
               The assignment permits implementations which provide a low
               level of granularity such as a volume.
@@ -1741,7 +1741,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
         <!--FPT_TST_EXT.1 Boot Integrity-->
         <f-component cc-id="fpt_tst_ext.1" id="fpt-tst-ext-1" name="Boot Integrity">
           <f-element id="fel-boot">
-            <title>The OS shall verify the integrity of the bootchain up through the OS kernel and<selectables ><selectable id="s-verify-all-code" >all executable code stored in mutable media</selectable><selectable id="fpt_tst_ext.1.1_2" ><assignable>list of other executable code </assignable></selectable><selectable id="fpt_tst_ext.1.1_3" exclusive="yes">no other executable code</selectable></selectables>prior to its execution through the use of<selectables ><selectable id="fpt_tst_ext.1.1_4" >a digital signature using a hardware-protected asymmetric key</selectable><selectable id="s-boot-x509" >a digital signature using an X509 certificate with hardware-based protection</selectable><selectable id="fpt_tst_ext.1.1_5" >a hardware-protected hash</selectable></selectables>.</title>
+            <title>The OS shall verify the integrity of the bootchain up through the OS kernel and<selectables><selectable id="s-verify-all-code"  >all executable code stored in mutable media</selectable><selectable id="fpt_tst_ext.1.1_2"  ><assignable>list of other executable code </assignable></selectable><selectable id="fpt_tst_ext.1.1_3" exclusive="yes" >no other executable code</selectable></selectables>prior to its execution through the use of<selectables><selectable id="fpt_tst_ext.1.1_4"  >a digital signature using a hardware-protected asymmetric key</selectable><selectable id="s-boot-x509"  >a digital signature using an X509 certificate with hardware-based protection</selectable><selectable id="fpt_tst_ext.1.1_5"  >a hardware-protected hash</selectable></selectables>.</title>
             <note role="application"><h:p>
               The bootchain of the OS is the sequence of software, to include the OS loader, the kernel, system
               drivers or modules, and system files, which ultimately result in loading the OS.
@@ -1828,7 +1828,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
             </aactivity>
           </f-element>
           <f-element id="fel-verify-updates">
-            <title>The OS shall<selectables ><selectable id="fpt_tud_ext.1.2_1" >cryptographically verify</selectable><selectable id="fpt_tud_ext.1.2_2" >invoke platform-provided functionality to cryptographically verify</selectable></selectables>updates to itself using a digital signature prior to installation using schemes specified in FCS_COP.1/SIGN.</title>
+            <title>The OS shall<selectables><selectable id="fpt_tud_ext.1.2_1"  >cryptographically verify</selectable><selectable id="fpt_tud_ext.1.2_2"  >invoke platform-provided functionality to cryptographically verify</selectable></selectables>updates to itself using a digital signature prior to installation using schemes specified in FCS_COP.1/SIGN.</title>
             <note role="application">The intent of the requirement is to ensure that only digitally signed and verified TOE updates are applied to the TOE.</note>
             <aactivity level="element">
               <Tests>
@@ -1973,7 +1973,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
         <!--FAU_GEN.1 Audit Data Generation (Refined)-->
         <f-component cc-id="fau_gen.1" id="fau-gen-1" name="Audit Data Generation (Refined)">
           <f-element id="fel-faugen">
-            <title>The <h:b>OS</h:b>  shall be able to generate an audit record of the following auditable events:  <h:ol><h:li>Start-up and shut-down of the audit functions;</h:li><h:li>All auditable events for the [<h:i>not specified</h:i>] level of audit; and [</h:li><h:li><h:i><h:ul><h:li>Authentication events (Success/Failure);</h:li><h:li>Use of privileged/special rights events (Successful and unsuccessful security, audit, and configuration changes);</h:li><h:li>Privilege or role escalation events (Success/Failure);</h:li><h:li><selectables ><selectable id="fau_gen.1.1_1" >File and object events (Successful and unsuccessful attempts to create, access, delete, modify, modify permissions)</selectable><selectable id="fau_gen.1.1_2" >User and Group management events (Successful and unsuccessful add, delete, modify, disable, enable, and credential change)</selectable><selectable id="fau_gen.1.1_3" >Audit and log data access events (Success/Failure)</selectable><selectable id="fau_gen.1.1_4" >Cryptographic verification of software (Success/Failure)</selectable><selectable id="fau_gen.1.1_5" >Attempted application invocation with arguments (Success/Failure e.g. due to software restriction policy)</selectable><selectable id="fau_gen.1.1_6" >System reboot, restart, and shutdown events (Success/Failure)</selectable><selectable id="fau_gen.1.1_7" >Kernel module loading and unloading events (Success/Failure)</selectable><selectable id="fau_gen.1.1_8" >Administrator or root-level access events (Success/Failure)</selectable><selectable id="fau_gen.1.1_10" ><assignable>other specifically defined auditable events </assignable></selectable><selectable id="fau_gen.1.1_9">.</selectable></selectables></h:li></h:ul></h:i>].
+            <title>The <h:b>OS</h:b>  shall be able to generate an audit record of the following auditable events:  <h:ol><h:li>Start-up and shut-down of the audit functions;</h:li><h:li>All auditable events for the [<h:i>not specified</h:i>] level of audit; and [</h:li><h:li><h:i><h:ul><h:li>Authentication events (Success/Failure);</h:li><h:li>Use of privileged/special rights events (Successful and unsuccessful security, audit, and configuration changes);</h:li><h:li>Privilege or role escalation events (Success/Failure);</h:li><h:li><selectables><selectable id="fau_gen.1.1_1"  >File and object events (Successful and unsuccessful attempts to create, access, delete, modify, modify permissions)</selectable><selectable id="fau_gen.1.1_2"  >User and Group management events (Successful and unsuccessful add, delete, modify, disable, enable, and credential change)</selectable><selectable id="fau_gen.1.1_3"  >Audit and log data access events (Success/Failure)</selectable><selectable id="fau_gen.1.1_4"  >Cryptographic verification of software (Success/Failure)</selectable><selectable id="fau_gen.1.1_5"  >Attempted application invocation with arguments (Success/Failure e.g. due to software restriction policy)</selectable><selectable id="fau_gen.1.1_6"  >System reboot, restart, and shutdown events (Success/Failure)</selectable><selectable id="fau_gen.1.1_7"  >Kernel module loading and unloading events (Success/Failure)</selectable><selectable id="fau_gen.1.1_8"  >Administrator or root-level access events (Success/Failure)</selectable><selectable id="fau_gen.1.1_10"  ><assignable>other specifically defined auditable events </assignable></selectable><selectable id="fau_gen.1.1_9">.</selectable></selectables></h:li></h:ul></h:i>].
 		</h:li></h:ol></title>
             <aactivity level="element">
               <Guidance><h:p>
@@ -2031,10 +2031,10 @@ The evaluator will also ensure that the TSS includes a description of the safegu
         <!--FIA_AFL.1 Authentication failure handling (Refined)-->
         <f-component cc-id="fia_afl.1" id="fia-afl-1" name="Authentication failure handling (Refined)">
           <f-element id="fel-id-and-auth">
-            <title>The <h:b>OS</h:b>  shall detect when<selectables ><selectable id="fia_afl.1.1_2" ><assignable>positive integer number </assignable></selectable><selectable id="fia_afl.1.1_3">an administrator configurable positive integer within <assignable>range of acceptable values </assignable></selectable></selectables>unsuccessful authentication attempts occur related to  <h:b>
+            <title>The <h:b>OS</h:b>  shall detect when<selectables><selectable id="fia_afl.1.1_2"  ><assignable>positive integer number </assignable></selectable><selectable id="fia_afl.1.1_3">an administrator configurable positive integer within <assignable>range of acceptable values </assignable></selectable></selectables>unsuccessful authentication attempts occur related to  <h:b>
 	      events with
-            <selectables ><selectable id="fia_afl.1.1_5" >authentication based on user name and password</selectable><selectable id="fia_afl.1.1_6" >authentication based on user name and a PIN that
-	      releases an asymmetric key stored in OE-protected storage</selectable><selectable id="fia_afl.1.1_7" >authentication based on X.509 certificates</selectable></selectables></h:b>  .</title>
+            <selectables><selectable id="fia_afl.1.1_5"  >authentication based on user name and password</selectable><selectable id="fia_afl.1.1_6"  >authentication based on user name and a PIN that
+	      releases an asymmetric key stored in OE-protected storage</selectable><selectable id="fia_afl.1.1_7"  >authentication based on X.509 certificates</selectable></selectables></h:b>  .</title>
             <aactivity level="element">
               <Tests>
 		  The evaluator will set an administrator-configurable threshold for
@@ -2049,7 +2049,7 @@ The evaluator will also ensure that the TSS includes a description of the safegu
             </aactivity>
           </f-element>
           <f-element id="fel-bad-attempts">
-            <title>When the defined number of unsuccessful authentication attempts for an account has been <h:b>met</h:b>  , the <h:b>OS</h:b>  shall:  <h:b><selectables ><selectable id="fia_afl.1.2_1" >Account Lockout</selectable><selectable id="fia_afl.1.2_2" >Account Disablement</selectable><selectable id="fia_afl.1.2_3" >Mandatory Credential Reset</selectable><selectable id="fia_afl.1.2_5" ><assignable>list of actions </assignable></selectable></selectables></h:b>  .</title>
+            <title>When the defined number of unsuccessful authentication attempts for an account has been <h:b>met</h:b>  , the <h:b>OS</h:b>  shall:  <h:b><selectables><selectable id="fia_afl.1.2_1"  >Account Lockout</selectable><selectable id="fia_afl.1.2_2"  >Account Disablement</selectable><selectable id="fia_afl.1.2_3"  >Mandatory Credential Reset</selectable><selectable id="fia_afl.1.2_5"  ><assignable>list of actions </assignable></selectable></selectables></h:b>  .</title>
             <note role="application">
             	The action to be taken will be populated in the assignment of the ST and defined
             	in the administrator guidance.
@@ -2086,8 +2086,8 @@ The evaluator will also ensure that the TSS includes a description of the safegu
         <!--FIA_UAU.5 Multiple Authentication Mechanisms (Refined)-->
         <f-component cc-id="fia_uau.5" id="fia-uau-5" name="Multiple Authentication Mechanisms (Refined)">
           <f-element id="fel-mult-auth">
-            <title>The <h:b>OS</h:b>  shall provide the following authentication mechanisms  <h:b><selectables ><selectable id="s-pass" >authentication based on username and password</selectable><selectable id="s-pin" >authentication based on  <snip>username and a PIN that releases an asymmetric key</snip> stored
-		in OE-protected storage</selectable><selectable id="s-otp" >combination of authentication based on user name, password, and time-based one-time password</selectable><selectable id="s-x509-auth" >authentication based on X.509 certificates</selectable><selectable id="s-uau-ssh" >for use in SSH only,  <snip>SSH public key-based authentication</snip> as specified by the  <xref to="pkg-ssh"></xref></selectable></selectables></h:b>  to support user authentication.</title>
+            <title>The <h:b>OS</h:b>  shall provide the following authentication mechanisms  <h:b><selectables><selectable id="s-pass"  >authentication based on username and password</selectable><selectable id="s-pin"  >authentication based on  <snip>username and a PIN that releases an asymmetric key</snip> stored
+		in OE-protected storage</selectable><selectable id="s-otp"  >combination of authentication based on user name, password, and time-based one-time password</selectable><selectable id="s-x509-auth"  >authentication based on X.509 certificates</selectable><selectable id="s-uau-ssh"  >for use in SSH only,  <snip>SSH public key-based authentication</snip> as specified by the  <xref to="pkg-ssh"></xref></selectable></selectables></h:b>  to support user authentication.</title>
             <note role="application">
 	      The  <xref to="s-uau-ssh"></xref> selection can only be included, and must be included, if
 		     <xref to="fel-trust-comms"></xref> selects  <xref to="s-ftp_ssh"></xref>.
@@ -2186,11 +2186,11 @@ The evaluator will also ensure that the TSS includes a description of the safegu
             <title>The OS shall implement functionality to validate certificates in accordance with the following rules:  <h:ul><h:li>RFC 5280 certificate validation and certificate path validation</h:li><h:li>The certificate path must terminate with a trusted CA certificate</h:li><h:li>The OS shall validate a certificate path by ensuring the presence of the 
 	        basicConstraints extension, that the CA flag is set to TRUE for all CA certificates,
                 and that any path constraints are met.</h:li><h:li>The TSF shall validate that any CA certificate includes "Certificate Signing" as a  purpose the key usage field</h:li><h:li>The OS shall validate the revocation status of the certificate using 
-		<selectables ><selectable id="fia_x509_ext.1.1_1" >OCSP as specified in RFC 6960</selectable><selectable id="fia_x509_ext.1.1_2" >CRL as specified in RFC 8603</selectable><selectable id="fia_x509_ext.1.1_3" >an OCSP TLS Status Request Extension (OCSP stapling) as specified
-		  in RFC 6066</selectable><selectable id="fia_x509_ext.1.1_4" > OCSP TLS Multi-Certificate Status Request Extension 
+		<selectables><selectable id="fia_x509_ext.1.1_1"  >OCSP as specified in RFC 6960</selectable><selectable id="fia_x509_ext.1.1_2"  >CRL as specified in RFC 8603</selectable><selectable id="fia_x509_ext.1.1_3"  >an OCSP TLS Status Request Extension (OCSP stapling) as specified
+		  in RFC 6066</selectable><selectable id="fia_x509_ext.1.1_4"  > OCSP TLS Multi-Certificate Status Request Extension 
 		  (i.e., OCSP Multi-Stapling) as specified in RFC 6961</selectable></selectables>
 		with
-		<selectables ><selectable id="fia_x509_ext.1.1_5" >no exceptions</selectable><selectable id="fia_x509_ext.1.1_6" ><assignable>exceptional use cases and alternative status check </assignable></selectable></selectables></h:li><h:li>The OS shall validate the extendedKeyUsage field according to the following rules:
+		<selectables><selectable id="fia_x509_ext.1.1_5"  >no exceptions</selectable><selectable id="fia_x509_ext.1.1_6"  ><assignable>exceptional use cases and alternative status check </assignable></selectable></selectables></h:li><h:li>The OS shall validate the extendedKeyUsage field according to the following rules:
 		<h:ul><h:li> Certificates used for trusted updates and executable code integrity verification shall have the Code Signing Purpose (id-kp 3 with OID 1.3.6.1.5.5.7.3.3) in the extendedKeyUsage field.</h:li><h:li>Server certificates presented for TLS shall have the Server Authentication purpose (id-kp 1 with OID 1.3.6.1.5.5.7.3.1) in the extendedKeyUsage field.</h:li><h:li>Client certificates presented for TLS shall have the Client Authentication purpose (id-kp 2 with OID 1.3.6.1.5.5.7.3.2) in the EKU field.</h:li><h:li>S/MIME certificates presented for email encryption and signature shall have the Email Protection purpose (id-kp 4 with OID 1.3.6.1.5.5.7.3.4) in the EKU field.</h:li><h:li>OCSP certificates presented for OCSP responses shall have the OCSP Signing Purpose (id-kp 9 with OID 1.3.6.1.5.5.7.3.9) in the EKU field.</h:li><h:li>Server certificates presented for EST shall have the CMC Registration Authority (RA) purpose (id-kp-cmcRA with OID 1.3.6.1.5.5.7.3.28) in the EKU field. (conditional)</h:li></h:ul></h:li></h:ul>  .</title>
             <note role="application"><h:p> <xref to="fel-cert-val"></xref> lists the rules for validating certificates.
 		The ST author will select whether revocation status is verified using OCSP or CRLs.
@@ -2287,7 +2287,7 @@ the node certificate to be tested, two Intermediate CAs, and the
         <!--FIA_X509_EXT.2 X.509 Certificate Authentication-->
         <f-component cc-id="fia_x509_ext.2" id="fia-x509-ext-2" name="X.509 Certificate Authentication">
           <f-element id="fel-cert-auth">
-            <title>The OS shall use X.509v3 certificates as defined by RFC 5280 to support authentication for TLS and<selectables ><selectable id="fia_x509_ext.2.1_1" >DTLS</selectable><selectable id="fia_x509_ext.2.1_2" >HTTPS</selectable><selectable id="fia_x509_ext.2.1_4" ><assignable>other protocols </assignable></selectable><selectable id="fia_x509_ext.2.1_5" exclusive="yes">no other protocols</selectable></selectables>connections.</title>
+            <title>The OS shall use X.509v3 certificates as defined by RFC 5280 to support authentication for TLS and<selectables><selectable id="fia_x509_ext.2.1_1"  >DTLS</selectable><selectable id="fia_x509_ext.2.1_2"  >HTTPS</selectable><selectable id="fia_x509_ext.2.1_4"  ><assignable>other protocols </assignable></selectable><selectable id="fia_x509_ext.2.1_5" exclusive="yes" >no other protocols</selectable></selectables>connections.</title>
             <aactivity level="element">
               <Tests><h:p>
 		The evaluator will acquire or develop an application that uses the OS
@@ -2323,7 +2323,7 @@ the node certificate to be tested, two Intermediate CAs, and the
         <!--FTP_ITC_EXT.1 Trusted channel communication-->
         <f-component cc-id="ftp_itc_ext.1" id="ftp-itc-ext-1" name="Trusted channel communication">
           <f-element id="fel-trust-comms">
-            <title>The OS shall use<selectables ><selectable id="tls"> <snip>TLS</snip> as conforming to the <xref to="pkg-tls"></xref> as a <selectables><selectable id="s-tls-client" >client</selectable><selectable id="s-tls-server" >server</selectable></selectables></selectable><selectable id="dtls"> <snip>DTLS</snip> as conforming to the <xref to="pkg-tls"></xref> as a <selectables><selectable id="s-dtls-client" >client</selectable><selectable id="s-dtls-server" >server</selectable></selectables></selectable><selectable id="s-itc-ipsec" >IPsec as conforming to the  <xref to="mod-vpnclient"></xref></selectable><selectable id="s-ftp_ssh"> <snip>SSH</snip> as conforming to the <xref to="pkg-ssh"></xref> as a <selectables><selectable id="s-ssh-client" >client</selectable><selectable id="s-ssh-server" >server</selectable></selectables></selectable></selectables>to provide a trusted communication channel between itself and authorized IT entities supporting the following capabilities:<selectables ><selectable id="ftp_itc_ext.1.1_1" >audit server</selectable><selectable id="ftp_itc_ext.1.1_2" >authentication server</selectable><selectable id="ftp_itc_ext.1.1_3" >management server</selectable><selectable id="ftp_itc_ext.1.1_5" ><assignable>other capabilities </assignable></selectable></selectables>that is logically distinct from other communication channels and provides assured identification of its end points and protection of the channel data from disclosure and detection of modification of the channel data.</title>
+            <title>The OS shall use<selectables><selectable id="tls"> <snip>TLS</snip> as conforming to the <xref to="pkg-tls"></xref> as a <selectables><selectable id="s-tls-client"  >client</selectable><selectable id="s-tls-server"  >server</selectable></selectables></selectable><selectable id="dtls"> <snip>DTLS</snip> as conforming to the <xref to="pkg-tls"></xref> as a <selectables><selectable id="s-dtls-client"  >client</selectable><selectable id="s-dtls-server"  >server</selectable></selectables></selectable><selectable id="s-itc-ipsec"  >IPsec as conforming to the  <xref to="mod-vpnclient"></xref></selectable><selectable id="s-ftp_ssh"> <snip>SSH</snip> as conforming to the <xref to="pkg-ssh"></xref> as a <selectables><selectable id="s-ssh-client"  >client</selectable><selectable id="s-ssh-server"  >server</selectable></selectables></selectable></selectables>to provide a trusted communication channel between itself and authorized IT entities supporting the following capabilities:<selectables><selectable id="ftp_itc_ext.1.1_1"  >audit server</selectable><selectable id="ftp_itc_ext.1.1_2"  >authentication server</selectable><selectable id="ftp_itc_ext.1.1_3"  >management server</selectable><selectable id="ftp_itc_ext.1.1_5"  ><assignable>other capabilities </assignable></selectable></selectables>that is logically distinct from other communication channels and provides assured identification of its end points and protection of the channel data from disclosure and detection of modification of the channel data.</title>
             <note role="application">
               The ST author must include the security functional requirements for the trusted
               channel protocol selected in  <xref to="fel-trust-comms"></xref> in the main body of the ST.
@@ -2355,7 +2355,7 @@ The ST author must include the security functional requirements for the trusted 
         <!--FTP_TRP.1 Trusted Path-->
         <f-component cc-id="ftp_trp.1" id="ftp-trp-1" name="Trusted Path">
           <f-element id="fel-trust-ends">
-            <title>The <h:b>OS</h:b>  shall provide a communication path between itself and<selectables ><selectable id="s-remote" >remote</selectable><selectable id="s-local" >local</selectable></selectables>users that is logically distinct from other communication paths and provides assured identification of its endpoints and protection of the communicated data from [modification, disclosure].</title>
+            <title>The <h:b>OS</h:b>  shall provide a communication path between itself and<selectables><selectable id="s-remote"  >remote</selectable><selectable id="s-local"  >local</selectable></selectables>users that is logically distinct from other communication paths and provides assured identification of its endpoints and protection of the communicated data from [modification, disclosure].</title>
             <note role="application"><h:p>
 This requirement ensures that all remote administrative actions are protected.
 Authorized remote administrators must initiate all communication with the OS via
@@ -2371,7 +2371,7 @@ channel protocol selected in
 		</h:p></note>
           </f-element>
           <f-element id="fel-trust-users">
-            <title>The <h:b>OS</h:b>  shall permit<selectables ><selectable id="ftp_trp.1.2_1" >the TSF</selectable><selectable id="ftp_trp.1.2_2" >local users</selectable><selectable id="ftp_trp.1.2_3" >remote users</selectable></selectables>to initiate communication via the trusted path.</title>
+            <title>The <h:b>OS</h:b>  shall permit<selectables><selectable id="ftp_trp.1.2_1"  >the TSF</selectable><selectable id="ftp_trp.1.2_2"  >local users</selectable><selectable id="ftp_trp.1.2_3"  >remote users</selectable></selectables>to initiate communication via the trusted path.</title>
           </f-element>
           <f-element id="fel-trust-path">
             <title>The <h:b>OS</h:b>  shall require use of the trusted path for [[ <h:i>all remote administrative actions</h:i>  ]].</title>
@@ -2426,7 +2426,7 @@ The evaluator will also perform the following
     </sec:SFRs>
     <!--5.2 Security Assurance Requirements-->
     <sec:Security_Assurance_Requirements title="Security Assurance Requirements">
-      <h:p>The Security Objectives in <xref to="Security_Objectives"></xref> were constructed to address threats identified in <xref to="Threats"></xref>. The Security Functional Requirements (SFRs) in <xref to="SFRs"></xref> are a formal instantiation of the Security Objectives. The PP identifies the Security Assurance Requirements (SARs) to frame the extent to which the evaluator assesses the documentation applicable for the evaluation and performs independent testing. This section lists the set of SARs from CC part 3 that are required in evaluations against this PP. Individual evaluation activities to be performed are specified both in <xref to="Security_Requirements"></xref> as well as in this section. The general model for evaluation of TOEs against STs written to conform to this PP is as follows: <h:p/> After the ST has been approved for evaluation, the ITSEF will obtain the OS, supporting environmental IT, and the administrative/user guides for the OS. The ITSEF is expected to perform actions mandated by the Common Evaluation Methodology (CEM) for the ASE and ALC SARs. The ITSEF also performs the evaluation activities contained within <xref to="Security_Requirements"></xref>, which are intended to be an interpretation of the other CEM assurance requirements as they apply to the specific technology instantiated in the OS. The evaluation activities that are captured in <xref to="Security_Requirements"></xref> also provide clarification as to what the developer needs to provide to demonstrate the OS is compliant with the PP.</h:p>
+      <h:p>The Security Objectives in <xref to="Security_Objectives"></xref> were constructed to address threats identified in <xref to="Threats"></xref>. The Security Functional Requirements (SFRs) in <xref to="SFRs"></xref> are a formal instantiation of the Security Objectives. The PP identifies the Security Assurance Requirements (SARs) to frame the extent to which the evaluator assesses the documentation applicable for the evaluation and performs independent testing.<h:p/>This section lists the set of SARs from CC part 3 that are required in evaluations against this PP. Individual evaluation activities to be performed are specified both in <xref to="Security_Requirements"></xref> as well as in this section.<h:p/>The general model for evaluation of TOEs against STs written to conform to this PP is as follows: <h:p/> After the ST has been approved for evaluation, the ITSEF will obtain the OS, supporting environmental IT, and the administrative/user guides for the OS. The ITSEF is expected to perform actions mandated by the Common Evaluation Methodology (CEM) for the ASE and ALC SARs. The ITSEF also performs the evaluation activities contained within <xref to="Security_Requirements"></xref>, which are intended to be an interpretation of the other CEM assurance requirements as they apply to the specific technology instantiated in the OS. The evaluation activities that are captured in <xref to="Security_Requirements"></xref> also provide clarification as to what the developer needs to provide to demonstrate the OS is compliant with the PP.</h:p>
       <section title="Class ASE: Security Target" id="ase">
         The following ASE components as defined in  <xref to="bibCEM"></xref> are required:
         <h:ul><h:li>Conformance claims (ASE_CCL.1)</h:li><h:li>Extended components definition (ASE_ECD.1)</h:li><h:li>ST introduction (ASE_INT.1)</h:li><h:li>Security objectives (ASE_OBJ.2)</h:li><h:li>Derived security requirements (ASE_REQ.2)</h:li><h:li>Security Problem Definition (ASE_SPD.1)</h:li><h:li>TOE summary specification (ASE_TSS.1)</h:li></h:ul>
@@ -2825,36 +2825,6 @@ The evaluator will also perform the following
 	
         <a-component cc-id="ate_ind.1" name="Independent Testing - Conformance (ATE_IND.1)">
           
-	  Testing is performed to confirm the
-          functionality described in the TSS as well as the administrative
-          (including configuration and operational) documentation provided. The focus of the testing
-          is to confirm that the requirements specified in  <xref to="SFRs"></xref> being met,
-          although some additional testing is specified for SARs in
-           <xref to="Security_Assurance_Requirements"></xref>. 
-          The
-          evaluation activities identify the additional testing activities associated with these
-          components. The evaluator produces a test report documenting the plan for and results of
-          testing, as well as coverage arguments focused on the platform/OS
-          combinations that are claiming conformance to this PP.
-	  Given the scope of the OS and its associated evaluation evidence requirements, this component's
-          evaluation activities are covered by the evaluation activities listed for ALC_CMC.1.
-
-            
-	  Testing is performed to confirm the
-          functionality described in the TSS as well as the administrative
-          (including configuration and operational) documentation provided. The focus of the testing
-          is to confirm that the requirements specified in  <xref to="SFRs"></xref> being met,
-          although some additional testing is specified for SARs in
-           <xref to="Security_Assurance_Requirements"></xref>. 
-          The
-          evaluation activities identify the additional testing activities associated with these
-          components. The evaluator produces a test report documenting the plan for and results of
-          testing, as well as coverage arguments focused on the platform/OS
-          combinations that are claiming conformance to this PP.
-	  Given the scope of the OS and its associated evaluation evidence requirements, this component's
-          evaluation activities are covered by the evaluation activities listed for ALC_CMC.1.
-
-            
 	  Testing is performed to confirm the
           functionality described in the TSS as well as the administrative
           (including configuration and operational) documentation provided. The focus of the testing
