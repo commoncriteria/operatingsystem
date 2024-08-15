@@ -613,14 +613,16 @@ users of the same system.
   <sec:Security_Requirements>
     <sec:SFRs title="Security Functional Requirements">
       <section title="Cryptographic Support (FCS)" id="fcs">
+	  
+	  
         <f-component cc-id="fcs_ckm.1" name="Cryptographic Key Generation (Refined)">
           <f-element id="fel-asym-gen">
             <title> The <h:b>OS</h:b> shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a
               specified cryptographic key generation algorithm <selectables linebreak="yes">
-                <selectable id="s-keygen-rsa"><snip>RSA schemes</snip> using cryptographic key sizes of 3072-bit or greater that
-		meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.3
+                <selectable id="s-keygen-rsa">RSA schemes using cryptographic key sizes of 3072-bit or greater that
+					meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.3
                 </selectable>
-                <selectable id="s-keygen-ecc"><snip>ECC schemes using "NIST curves"</snip> P-384 and
+                <selectable id="s-keygen-ecc">ECC schemes using "NIST curves" P-384 and
                   <selectables>
                     <selectable>P-256</selectable>
                     <selectable>P-521</selectable>
@@ -628,19 +630,17 @@ users of the same system.
                   </selectables> that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)",
                   Appendix B.4
                 </selectable>
-		<selectable id="s-keygen-ffc">
-		  <snip>FFC schemes</snip> using 
-		  <selectables>
-		    <selectable id="s-keygen-ffc-fips">cryptographic key sizes of 3072-bit
-                    or greater that meet the following: <snip>FIPS PUB 186-4</snip>, "Digital Signature
-                  Standard (DSS)", Appendix B.1</selectable>
-		  <!-- <selectable id="s-keygen-ffc-dh"><snip>Diffie-Hellman Group 14</snip> that meet the following: RFC 3526 </selectable> -->
-		  <selectable id="s-keygen-ffc-safeprime"><snip>safe primes</snip> that meet the following: 
-		  NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes"
-		  </selectable>
-		  </selectables>
-		</selectable>
-	      </selectables>.
+				<selectable id="s-keygen-ffc">FFC schemes using 
+					<selectables>
+						<selectable id="s-keygen-ffc-fips">cryptographic key sizes of 3072-bit
+							or greater that meet the following: FIPS PUB 186-4, "Digital Signature
+							Standard (DSS)", Appendix B.1</selectable>
+						<!-- <selectable id="s-keygen-ffc-dh">Diffie-Hellman Group 14 that meet the following: RFC 3526 </selectable> -->
+						<selectable id="s-keygen-ffc-safeprime">>safe primes that meet the following: 
+							NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes"
+						</selectable>
+					</selectables>
+				</selectable></selectables>.
             </title>
             <note role="application">
 	      <h:p>
@@ -829,19 +829,21 @@ users of the same system.
 	    </aactivity>
           </f-element>
         </f-component>
+		
+		
         <f-component cc-id="fcs_ckm.2" name="Cryptographic Key Establishment (Refined)">
           <f-element id="fel-crypt-key-estab">
             <title>The OS shall <h:b>implement functionality to perform cryptographic key establishment</h:b>
               in accordance with a specified cryptographic key <h:b>establishment</h:b> method:
               <selectables linebreak="yes">
-		<selectable id="s-keyestab-rsa"><snip>RSA-based</snip> key establishment schemes that meets the following:
-		RSAES-PKCS1-v1_5 as specified in Section 7.2 of RFC 8017, “Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.2"</selectable>
+				<selectable id="s-keyestab-rsa">RSA-based key establishment schemes that meets the following:
+					RSAES-PKCS1-v1_5 as specified in Section 7.2 of RFC 8017, “Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.2"</selectable>
 		
-		<selectable id="s-keyestab-ecc"><snip>Elliptic curve-based</snip> key establishment schemes that meets the following: NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</selectable>
-		<selectable id="s-keyestab-ffc"><snip>Finite field-based</snip> key establishment schemes
-		  that meets <snip>NIST Special Publication 800-56A</snip> Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</selectable>
-		  <!-- <selectable id="s-keyestab-dh">using <snip>Diffie-Hellman</snip> group 14 that meets the following: RFC 3526</selectable> -->
-	      </selectables>.
+				<selectable id="s-keyestab-ecc">Elliptic curve-based key establishment schemes that meets the following: NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</selectable>
+				<selectable id="s-keyestab-ffc">Finite field-based key establishment schemes
+					that meets NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</selectable>
+				<!-- <selectable id="s-keyestab-dh">using Diffie-Hellman group 14 that meets the following: RFC 3526</selectable> -->
+			   </selectables>.
             </title>
             <note role="application">
 	      <h:p>
@@ -1022,9 +1024,9 @@ The OS shall destroy cryptographic keys and key material in accordance with a sp
 		</selectables></selectable>
 		<selectable>For non-volatile memory that consists of 
 		    <selectables>
-			<selectable id="s-kek-kill"><snip>destruction
+			<selectable id="s-kek-kill">destruction
 			of all key encrypting keys (KEKs) protecting the target key
-			according to <xref to="fel-key-kill"/></snip>, where none of the KEKs protecting the target key are derived
+			according to <xref to="fel-key-kill"/>, where none of the KEKs protecting the target key are derived
 			</selectable>
 			<selectable>the invocation of an interface provided by the underlying platform that
 				<selectables>
@@ -1210,9 +1212,9 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               The <h:b>OS</h:b> shall perform [<h:i>encryption/decryption services for data</h:i>] in
 	      accordance with a specified cryptographic algorithm<h:b>
 	      <selectables linebreak="yes">
-	              <selectable id="s-aes-xts"><snip>AES-XTS</snip> (as defined in NIST SP 800-38E)</selectable>
-	              <selectable id="s-aes-cbc"><snip>AES-CBC</snip> (as defined in NIST SP 800-38A)</selectable>
-		      <selectable id="s-aes-ctr"><snip>AES-CTR</snip> (as defined in NIST SP 800-38A)</selectable>
+	              <selectable id="s-aes-xts">AES-XTS (as defined in NIST SP 800-38E)</selectable>
+	              <selectable id="s-aes-cbc">AES-CBC (as defined in NIST SP 800-38A)</selectable>
+		      <selectable id="s-aes-ctr">AES-CTR (as defined in NIST SP 800-38A)</selectable>
               </selectables>
 	      and
 	      <selectables linebreak="yes">
@@ -1221,10 +1223,10 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 <selectable id="s-aes-kwp">AES Key Wrap with Padding (KWP) (as defined in NIST SP 800-38F)</selectable>
                 <!-- <selectable>AES-GCM (as defined in NIST SP 800-38D)</selectable> -->
                 <!-- <selectable>AES-CCM (as defined in NIST SP 800-38C)</selectable> -->
-                <selectable id="s-aes-ccmp"><snip>AES-CCMP-256</snip> (as defined in NIST SP 800-38C and IEEE 802.11ac-2013)</selectable>
-                <selectable id="s-aes-gcmp"><snip>AES-GCMP-256</snip> (as defined in NIST SP 800-38D and IEEE 802.11ac-2013)</selectable>
-                <selectable> <ref-id>s-aes-ccm</ref-id> AES-CCM (as defined in NIST SP 800-38C)</selectable>
-	              <selectable> <ref-id>s-aes-gcm</ref-id>AES-GCM (as defined in NIST SP 800-38D)</selectable>	        
+                <selectable id="s-aes-ccmp">AES-CCMP-256 (as defined in NIST SP 800-38C and IEEE 802.11ac-2013)</selectable>
+                <selectable id="s-aes-gcmp">AES-GCMP-256 (as defined in NIST SP 800-38D and IEEE 802.11ac-2013)</selectable>
+                <selectable id="s-aes-ccm"> AES-CCM (as defined in NIST SP 800-38C)</selectable>
+	            <selectable id="s-aes-gcm">AES-GCM (as defined in NIST SP 800-38D)</selectable>	        
 <!-- <depends on="s-ftp_ssh"/> Could have added this to the previous, but choose to use rules.-->
 		
                 <selectable exclusive="yes">no other modes</selectable>
@@ -1791,7 +1793,7 @@ This result shall be compared to the result of running 1000 iterations with the 
                   <selectable>3072-bit or greater</selectable>
                 </selectables> 
                   that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)",  Section 4</selectable>
-                <selectable id="s-ec-certs"><snip>ECDSA schemes</snip> using "NIST curves" P-384 and <selectables>
+                <selectable id="s-ec-certs">ECDSA schemes using "NIST curves" P-384 and <selectables>
                     <selectable>P-521</selectable>
                     <selectable exclusive="yes">no other curves</selectable>
                   </selectables>
@@ -2206,7 +2208,7 @@ only AES-based implementations for CTR_DRBG are allowed.
             <title> The OS shall
 	    <selectables linebreak="yes">
               <selectable>provide an interface which allows a VPN client to protect all IP traffic using IPsec</selectable>
-              <selectable id="s-provides-vpnclient"><snip>provide a VPN client</snip> that can protect all IP traffic using IPsec</selectable>
+              <selectable id="s-provides-vpnclient">provide a VPN client that can protect all IP traffic using IPsec</selectable>
             </selectables>
 	    with the exception of IP traffic required to establish the VPN connection
 	    and
@@ -3345,11 +3347,11 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
 	      The <refinement>OS</refinement> shall provide the following authentication mechanisms
 	      <h:b><selectables linebreak='yes'>
 		<selectable id="s-pass">authentication based on username and password</selectable>
-		<selectable id="s-pin">authentication based on <snip>username and a PIN that releases an asymmetric key</snip> stored
+		<selectable id="s-pin">authentication based on username and a PIN that releases an asymmetric key stored
 		in OE-protected storage</selectable>
 		<selectable id="s-otp">combination of authentication based on user name, password, and time-based one-time password</selectable>
 		<selectable id="s-x509-auth">authentication based on X.509 certificates</selectable>
-		<selectable id="s-uau-ssh">for use in SSH only, <snip>SSH public key-based authentication</snip> as specified by the <xref to="pkg-ssh"/></selectable>
+		<selectable id="s-uau-ssh">for use in SSH only, SSH public key-based authentication as specified by the <xref to="pkg-ssh"/></selectable>
 	      </selectables>
 	      </h:b>
 	      to support user authentication.
@@ -3838,12 +3840,12 @@ the node certificate to be tested, two Intermediate CAs, and the
       	    <title>
               The OS shall use
       	      <selectables linebreak='yes'>
-                <selectable id="tls"><snip>TLS</snip> as conforming to the <xref to="pkg-tls"/> as a
+                <selectable id="tls">TLS as conforming to the <xref to="pkg-tls"/> as a
     	  	    <selectables>
     	  	      <selectable id="s-tls-client"><readable>client(TLS)</readable>client</selectable>
     	  	      <selectable id="s-tls-server"><readable>server(TLS)</readable>server</selectable>
               </selectables></selectable>
-              <selectable id="dtls"><snip>DTLS</snip> as conforming to the <xref to="pkg-tls"/> as a
+              <selectable id="dtls">DTLS as conforming to the <xref to="pkg-tls"/> as a
     	  	    <selectables>
     	  	      <selectable id="s-dtls-client"><readable>client(DTLS)</readable>client</selectable>
     	  	      <selectable id="s-dtls-server"><readable>server(DTLS)</readable>server</selectable>
@@ -3851,7 +3853,7 @@ the node certificate to be tested, two Intermediate CAs, and the
       	      <selectable id="s-itc-ipsec">IPsec as conforming to the <xref to="mod-vpnclient"/></selectable>
       	      </selectables>
       	        and <selectables linebreak='yes'>
-      	          <selectable id="s-ftp_ssh"><snip>SSH</snip> as conforming to the <xref to="pkg-ssh"/> as a
+      	          <selectable id="s-ftp_ssh">SSH as conforming to the <xref to="pkg-ssh"/> as a
       	          <selectables>
       	          <selectable id="s-ssh-client"><readable>client(SSH)</readable>client</selectable>
       	            <selectable id="s-ssh-server"><readable>server(SSH)</readable>server</selectable>
