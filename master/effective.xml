@@ -855,16 +855,16 @@ users of the same system.
               for the selected cryptographic protocols.
 	      </h:p>
 	      <h:p>
-			  The elliptic curves used for the key establishment scheme shall correlate with the curves specified in FCS_CKM.1.1 <!-- <xref to="fel-asym-gen"/>.  -->
-			  The domain parameters used for the finite field-based key establishment scheme are specified by the key generation according to  <xref to="fel-asym-gen"/>.
-			  The finite field-based key establishment schemes that conform to NIST SP 800-56A Revision 3 correspond to the "safe-prime" groups selection in <xref to="fel-asym-gen"/>.
+			  The elliptic curves used for the key establishment scheme shall correlate with the curves specified in FCS_CKM.1.1.
+			  The domain parameters used for the finite field-based key establishment scheme are specified by the key generation according to FCS_CKM.1.1.
+			  The finite field-based key establishment schemes that conform to NIST SP 800-56A Revision 3 correspond to the "safe-prime" groups selection in FCS_CKM.1.1.
 				</h:p>
 	    </note>
             <aactivity>
 	      <Tests>
 	      <h:p>
 		The evaluator shall ensure that the supported key establishment schemes
-		correspond to the key generation schemes identified in  <xref to="fel-asym-gen"/>
+		correspond to the key generation schemes identified in FCS_CKM.1.1.
 		If the ST specifies more than one scheme,
 		the evaluator shall examine the TSS to verify that it identifies the usage for each scheme.
 	      </h:p>
@@ -1030,7 +1030,7 @@ The OS shall destroy cryptographic keys and key material in accordance with a sp
 		    <selectables>
 			<selectable id="s-kek-kill">destruction
 			of all key encrypting keys (KEKs) protecting the target key
-			according to <xref to="fel-key-kill"/>, where none of the KEKs protecting the target key are derived
+			according to FCS_CKM_EXT.4.1, where none of the KEKs protecting the target key are derived
 			</selectable>
 			<selectable>the invocation of an interface provided by the underlying platform that
 				<selectables>
@@ -1096,7 +1096,7 @@ and the KEK cannot be recovered or re-derived.).
 	      <h:p>
 		For the purposes of this requirement, key material refers to authentication data, passwords, secret/private symmetric keys, private asymmetric keys, data used to derive keys, values derived from passwords, etc.
 	      </h:p>
-	      <h:p>Key destruction procedures are performed in accordance with <xref to="fel-key-kill"/>.</h:p>
+	      <h:p>Key destruction procedures are performed in accordance with FCS_CKM_EXT.4.1.</h:p>
 	    </note>
 	    <aactivity>
 	      <TSS>
@@ -1114,7 +1114,7 @@ The evaluator shall check that the TSS identifies any configurations or circumst
 	        </h:p>
 	        <h:p>
 If the selection "destruction of all key encrypting keys (KEKs) protecting the target key 
-according to <xref to="fel-key-kill"/>, where none of the KEKs protecting the target key 
+according to FCS_CKM_EXT.4.1, where none of the KEKs protecting the target key 
 are derived" is included, the evaluator shall examine the TOE’s keychain in the TSS and
 identify each instance when a key is destroyed by this method. In each instance the evaluator
 will verify all keys capable of decrypting the target key are destroyed in accordance with a
@@ -1263,7 +1263,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 		      includes the <xref to="mod-bluetooth"/>, and it may only be used specifically
 		      with AES-CCM for Bluetooth functions.
 	      </h:p>
-	      <!-- <h:p>If <xref to="s-ftp_ssh"/> is selected in <xref to="fel-trust-comms"/>, -->
+	      <!-- <h:p>If <xref to="s-ftp_ssh"/> is selected in FTP_ITC_EXT.1.1, -->
 	      <!-- then <xref to="s-aes-ctr"/> must be selected.</h:p> -->
 	      
 	    </note>
@@ -2238,7 +2238,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 		<xref to="s-provides-vpnclient"/> and includes the PP-Module for VPN Client
 		as part of the ST.
 		  <!-- If the native VPN client is to be validated  -->
-		  <!-- (<xref to="s-itc-ipsec"/> is selected in <xref to="fel-trust-comms"/> -->
+		  <!-- (<xref to="s-itc-ipsec"/> is selected in FTP_ITC_EXT.1.1  -->
 		  <!-- and the TSF is validated against the  -->
 		  <!-- <h:i>Module for Virtual Private Network (VPN) Clients</h:i>), -->
 		  <!-- the ST author will also -->
@@ -2317,7 +2317,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 	  <f-element id="fel-man-sec-func">
 	    <title>
 	      The OS shall restrict the ability to perform the function indicated in the "Administrator" column in 
-              <xref to="fel-manage-functions"/> to the administrator.
+              FMT_SMF_EXT.1.1 to the administrator.
 	    </title>
 	    <note role="application">
         The functions with an "M" in the "Administrator" column must be restricted
@@ -3026,7 +3026,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
             <note role="application">
 				This requirement is about the ability to check for the availability of
 			    authentic updates, while the installation of authentic updates is covered by
-                <xref to="fel-verify-updates"/>.
+                FPT_TUD_EXT.1.2.
 				Use of the digital signature scheme ensures that an attacker cannot influence the response, 
 				regarding of whether updates are available.
 			</note>
@@ -3113,7 +3113,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 		      FCS_COP.1/SIGN to validate the authenticity of the response.
 	        </title>
             <note role="application">This requirement is about the ability to check for authentic updates,
-              while the actual installation of such updates is covered by <xref to="fel-verify-app-updates"/>.
+              while the actual installation of such updates is covered by FPT_TUD_EXT.2.2.
 			  Use of the digital signature scheme ensures that an attacker cannot influence the response,
 			  regarding of whether updates are available.
             </note>
@@ -3360,7 +3360,7 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
             </title>
             <note role="application">
 	      The <xref to="s-uau-ssh"/> selection can only be included, and must be included, if
-		    <xref to="fel-trust-comms"/> selects <xref to="s-ftp_ssh"/>.
+		    FTP_ITC_EXT.1.1 selects <xref to="s-ftp_ssh"/>.
 	    </note>
             <aactivity>
 	      <Tests>
@@ -3425,7 +3425,7 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
 		</h:div>
 
 		<h:p>
-		  Authentication mechanisms related to <xref to="s-x509-auth"/> are tested under <xref to="fc-cert-val"/>
+		  Authentication mechanisms related to <xref to="s-x509-auth"/> are tested under FIA_X509_EXT.1
 		  and <xref to="s-uau-ssh"/> are tested in the <xref to="pkg-ssh"/>.
 		</h:p>
               </Tests>
@@ -3444,7 +3444,7 @@ The <h:b>OS</h:b> shall authenticate any user's claimed identity according to th
 		<TSS>
 		  The evaluator shall ensure that the TSS describes
 		  the rules as to how each authentication mechanism specified in
-		  <xref to="fel-mult-auth"/> is implemented and used.
+		  FIA_UAU.5.1 is implemented and used.
 		  Example rules are how the authentication mechanism authenticates the user
 		  (i.e. how does the TSF verify that the correct password or authentication
 		  factor is used),
@@ -3547,7 +3547,7 @@ The <h:b>OS</h:b> shall authenticate any user's claimed identity according to th
             </title>
             <note role="application">
 	      <h:p>
-		<xref to="fel-cert-val"/> lists the rules for validating certificates.
+		FIA_X509_EXT.1.1 lists the rules for validating certificates.
 		The ST author will select whether revocation status is verified using OCSP or CRLs.
 		FIA_X509_EXT.2 requires that certificates are used for HTTPS, TLS, and DTLS;
 		this use requires that the <h:i>extendedKeyUsage</h:i> rules are verified.
@@ -3635,7 +3635,7 @@ The evaluator shall confirm the TOE treats the certificate as invalid.
   The evaluator shall generate an X.509v3 certificate for a user with the Client Authentication Extended Key Usage field set.
   The evaluator shall provision the OS for authentication with the X.509v3 certificate.
   The evaluator shall ensure that the certificates are validated by the OS as per
-  <xref to="fel-cert-val"/> and then conduct the following two tests:
+  FIA_X509_EXT.1.1 and then conduct the following two tests:
   <testlist>
     <test>
       The evaluator shall attempt to authenticate to the OS using the X.509v3 certificate.
@@ -3669,7 +3669,7 @@ basicConstraints extension is present and the CA flag is set to TRUE.
 	      <Tests>
 The tests described must be performed in conjunction with the other
 certificate services evaluation activities, including the functions in
-<xref to="fel-cert-auth"/>.
+FIA_X509_EXT.2.1.
 The evaluator shall create a chain of at least four certificates:
 the node certificate to be tested, two Intermediate CAs, and the
               self-signed Root CA.
@@ -3892,7 +3892,7 @@ the node certificate to be tested, two Intermediate CAs, and the
       	    <note role="application">
              <h:p>
                The ST author must include the security functional requirements for the trusted
-               channel protocol selected in <xref to="fel-trust-comms"/> in the main body of the ST.
+               channel protocol selected in FTP_ITC_EXT.1.1 in the main body of the ST.
              </h:p>
       	     <h:p>
       	       If TLS or DTLS is selected, the TSF must be validated against the appropriate requirements in the <xref to="pkg-tls"/>.
@@ -3959,13 +3959,13 @@ This requirement ensures that all remote administrative actions are protected.
 Authorized remote administrators must initiate all communication with the OS via
 a trusted path and all communication with the OS by remote administrators must
 be performed over this path. The data passed in this trusted communication
-channel is encrypted as defined in <xref to="fel-trust-comms"/>.
+channel is encrypted as defined in FTP_ITC_EXT.1.1.
 If <xref to="s-local"/> users access is selected and no unprotected traffic is sent to remote
 users, then this requirement is met.
 If <xref to="s-remote"/> users access is selected, the
 ST author must include the security functional requirements for the trusted
 channel protocol selected in
-<xref to="fel-trust-comms"/> in the main body of the ST.
+FTP_ITC_EXT.1.1 in the main body of the ST.
 		</h:p>
 	      </note>
             </f-element>
@@ -4692,7 +4692,7 @@ The evaluator shall also perform the following tests:
 	<h:tr>
 	<h:td>FAU_GEN.2 - User identity association</h:td>
 	<h:td>
-	  <xref to="fel-audit-content"/> explicitly requires that the OS record
+	  FAU_GEN.1.2 explicitly requires that the OS record
 	  any user account associated with each event; therefore, it is duplicative
 	  to include a separate requirement to associate a user account with each
 	  event.
@@ -4701,7 +4701,7 @@ The evaluator shall also perform the following tests:
 	<h:tr>
 	  <h:td>FAU_SAR.1 - Audit review</h:td>
 	  <h:td>
-	    <xref to="fel-no-read"/> requires that audit logs (and other objects)
+	    FPT_ACF_EXT.1.2 requires that audit logs (and other objects)
 	    are protected from reading by unprivileged users; therefore, it is duplicative
 	    to include a separate requirement to protect only the audit information.
 	  </h:td>
