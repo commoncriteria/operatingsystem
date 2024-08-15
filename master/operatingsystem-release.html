@@ -963,21 +963,22 @@ users of the same system.
    
     <h2 id="SFRs" class="indexable" data-level="2">5.1 Security Functional Requirements</h2>
       <h3 id="fcs" class="indexable" data-level="3">5.1.1 Cryptographic Support (FCS)</h3>
+	  
+	  
         <div class="comp" id="FCS_CKM.1"><h4>FCS_CKM.1 Cryptographic Key Generation (Refined)</h4>
           <div class="element"><div class="reqid" id="FCS_CKM.1.1"><a href="#FCS_CKM.1.1" class="abbr">FCS_CKM.1.1</a></div><div class="reqdesc"> The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall generate <b>asymmetric</b> cryptographic keys in accordance with a
               specified cryptographic key generation algorithm [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-keygen-rsa">RSA schemes using cryptographic key sizes of 3072-bit or greater that
-		meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)", Appendix B.3
+					meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)", Appendix B.3
                 </span></li><li style=""><span class="selectable-content" id="s-keygen-ecc">ECC schemes using "<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> curves" P-384 and
                   [<b>selection</b>: <span class="selectable-content" id="_s_3">P-256</span>, <span class="selectable-content" id="_s_4">P-521</span>, <span class="selectable-content" id="_s_5"> no other curves</span>] that meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)",
                   Appendix B.4
-                </span></li><li style=""><span class="selectable-content" id="s-keygen-ffc">
-		  FFC schemes using 
-		  [<b>selection</b>: <span class="selectable-content" id="s-keygen-ffc-fips">cryptographic key sizes of 3072-bit
-                    or greater that meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature
-                  Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)", Appendix B.1</span>, <span class="selectable-content" id="s-keygen-ffc-safeprime">safe primes that meet the following: 
-		  <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes"
-		  </span>]
-		</span></li></ul>].
+                </span></li><li style=""><span class="selectable-content" id="s-keygen-ffc">FFC schemes using 
+					[<b>selection</b>: <span class="selectable-content" id="s-keygen-ffc-fips">cryptographic key sizes of 3072-bit
+							or greater that meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature
+							Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)", Appendix B.1</span>, <span class="selectable-content" id="s-keygen-ffc-safeprime">&gt;safe primes that meet the following: 
+							<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes"
+						</span>]
+				</span></li></ul>].
             <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -1027,7 +1028,9 @@ users of the same system.
           </ul>
           
         </p>
-		  <div class="dependent">The following content should be included if:<ul><li><a href="#s-keygen-rsa">RSA schemes</a>
+		  <div class="dependent">The following content should be included if:<ul><li><a href="#s-keygen-rsa">RSA schemes using cryptographic key sizes of 3072-bit or greater that
+					meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.3
+                </a>
              is selected from 
              <a href="#FCS_CKM.1.1">FCS_CKM.1.1</a></li></ul><div class="dependent-content"><div>  
 		  <b>Key Generation for <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4 RSA Schemes</b><br/>
@@ -1080,7 +1083,10 @@ users of the same system.
               </ul>
 			  </p>
 			  </div></div></div>
-			  <div class="dependent">The following content should be included if:<ul><li><a href="#s-keygen-ecc">ECC schemes using "NIST curves"</a>
+			  <div class="dependent">The following content should be included if:<ul><li><a href="#s-keygen-ecc">ECC schemes using "NIST curves" P-384 and
+                  [<b>selection</b>: <span class="selectable-content" id="_s_3">P-256</span>, <span class="selectable-content" id="_s_4">P-521</span>, <span class="selectable-content" id="_s_5"> no other curves</span>] that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)",
+                  Appendix B.4
+                </a>
              is selected from 
              <a href="#FCS_CKM.1.1">FCS_CKM.1.1</a></li></ul><div class="dependent-content"><div>
 			   
@@ -1104,7 +1110,9 @@ users of the same system.
 
 	      </p>
 		  </div></div></div>
-		  <div class="dependent">The following content should be included if:<ul><li><a href="#s-keygen-ffc-fips">FIPS PUB 186-4</a>
+		  <div class="dependent">The following content should be included if:<ul><li><a href="#s-keygen-ffc-fips">cryptographic key sizes of 3072-bit
+							or greater that meet the following: FIPS PUB 186-4, "Digital Signature
+							Standard (DSS)", Appendix B.1</a>
              is selected from 
              <a href="#FCS_CKM.1.1">FCS_CKM.1.1</a></li></ul><div class="dependent-content"><div>
 			  
@@ -1171,12 +1179,14 @@ users of the same system.
 
 			  
 	      </div></div></div></div></div>
+		
+		
         <div class="comp" id="FCS_CKM.2"><h4>FCS_CKM.2 Cryptographic Key Establishment (Refined)</h4>
           <div class="element"><div class="reqid" id="FCS_CKM.2.1"><a href="#FCS_CKM.2.1" class="abbr">FCS_CKM.2.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall <b>implement functionality to perform cryptographic key establishment</b>
               in accordance with a specified cryptographic key <b>establishment</b> method:
               [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-keyestab-rsa">RSA-based key establishment schemes that meets the following:
-		RSAES-PKCS1-v1_5 as specified in Section 7.2 of <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 8017, “Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.2"</span></li><li style=""><span class="selectable-content" id="s-keyestab-ecc">Elliptic curve-based key establishment schemes that meets the following: <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</span></li><li style=""><span class="selectable-content" id="s-keyestab-ffc">Finite field-based key establishment schemes
-		  that meets <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</span></li></ul>].
+					RSAES-PKCS1-v1_5 as specified in Section 7.2 of <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 8017, “Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.2"</span></li><li style=""><span class="selectable-content" id="s-keyestab-ecc">Elliptic curve-based key establishment schemes that meets the following: <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</span></li><li style=""><span class="selectable-content" id="s-keyestab-ffc">Finite field-based key establishment schemes
+					that meets <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</span></li></ul>].
             <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -1214,7 +1224,8 @@ users of the same system.
 		The evaluator shall verify the implementation of
 		the key establishment schemes supported by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using the applicable tests below.
 	      </p>
-		  <div class="dependent">The following content should be included if:<ul><li><a href="#s-keyestab-ecc">Elliptic curve-based</a>, <a href="#s-keyestab-ffc">Finite field-based</a>
+		  <div class="dependent">The following content should be included if:<ul><li><a href="#s-keyestab-ecc">Elliptic curve-based key establishment schemes that meets the following: NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</a>, <a href="#s-keyestab-ffc">Finite field-based key establishment schemes
+					that meets NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</a>
              is selected from 
              <a href="#FCS_CKM.2.1">FCS_CKM.2.1</a></li></ul><div class="dependent-content"><div>
 		    
@@ -1293,7 +1304,8 @@ users of the same system.
 	      </p>
 		</div>
 	    
-		<div class="dependent">The following content should be included if:<ul><li><a href="#s-keyestab-rsa">RSA-based</a>
+		<div class="dependent">The following content should be included if:<ul><li><a href="#s-keyestab-rsa">RSA-based key establishment schemes that meets the following:
+					RSAES-PKCS1-v1_5 as specified in Section 7.2 of RFC 8017, “Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.2"</a>
              is selected from 
              <a href="#FCS_CKM.2.1">FCS_CKM.2.1</a></li></ul><div class="dependent-content"><div>
 			<b>RSAES-PKCS1-v1_5 Key Establishment Schemes</b><br/>
@@ -1307,7 +1319,8 @@ The evaluator shall verify the correctness of the <abbr class="dyn-abbr"><a href
 		
 		
 
-<div class="dependent">The following content should be included if:<ul><li><a href="#s-keyestab-ffc">Finite field-based</a>
+<div class="dependent">The following content should be included if:<ul><li><a href="#s-keyestab-ffc">Finite field-based key establishment schemes
+					that meets NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</a>
              is selected from 
              <a href="#FCS_CKM.2.1">FCS_CKM.2.1</a></li></ul><div class="dependent-content"><div>
 	
@@ -1373,7 +1386,8 @@ residual data that itself requires confidentiality protection.
 	      <p>      
 For the selection <a href="#s-kek-kill">destruction
 			of all key encrypting keys (KEKs) protecting the target key
-			according to FCS_CKM_EXT.4.1</a>,
+			according to FCS_CKM_EXT.4.1, where none of the KEKs protecting the target key are derived
+			</a>,
 a key can be considered destroyed by destroying the key that protects the key.
 If a key is wrapped or encrypted it is not necessary to "overwrite" that key,
 overwriting the key that is used to wrap or encrypt the key used to encrypt/decrypt data,
@@ -1512,7 +1526,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      accordance with a specified cryptographic algorithm<b>
 	      [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-aes-xts"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-XTS (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38E)</span></li><li style=""><span class="selectable-content" id="s-aes-cbc"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38A)</span></li><li style=""><span class="selectable-content" id="s-aes-ctr"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CTR (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38A)</span></li></ul>]
 	      and
-	      [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-aes-kw"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> Key Wrap (KW) (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38F)</span></li><li style=""><span class="selectable-content" id="s-aes-kwp"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> Key Wrap with Padding (KWP) (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38F)</span></li><li style=""><span class="selectable-content" id="s-aes-ccmp"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCMP-256 (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38C and IEEE 802.11ac-2013)</span></li><li style=""><span class="selectable-content" id="s-aes-gcmp"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCMP-256 (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38D and IEEE 802.11ac-2013)</span></li><li style=""><span class="selectable-content" id="_s_40">  <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCM (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38C)</span></li><li style=""><span class="selectable-content" id="_s_41"> <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38D)</span></li><li style=""><span class="selectable-content" id="_s_42">no other modes</span></li></ul>]</b>
+	      [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-aes-kw"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> Key Wrap (KW) (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38F)</span></li><li style=""><span class="selectable-content" id="s-aes-kwp"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> Key Wrap with Padding (KWP) (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38F)</span></li><li style=""><span class="selectable-content" id="s-aes-ccmp"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCMP-256 (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38C and IEEE 802.11ac-2013)</span></li><li style=""><span class="selectable-content" id="s-aes-gcmp"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCMP-256 (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38D and IEEE 802.11ac-2013)</span></li><li style=""><span class="selectable-content" id="s-aes-ccm"> <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCM (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38C)</span></li><li style=""><span class="selectable-content" id="s-aes-gcm"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38D)</span></li><li style=""><span class="selectable-content" id="_s_42">no other modes</span></li></ul>]</b>
               and cryptographic key sizes 256-bit and [<b>selection</b>: <span class="selectable-content" id="_s_43">128-bit</span>, <span class="selectable-content" id="_s_44">no other bit size</span>].
               
               
@@ -1567,7 +1581,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      The evaluator shall perform all of the following tests for each
               algorithm implemented by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> and used to satisfy the requirements of this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>:
 	      </p>
-	      <div class="dependent">The following content should be included if:<ul><li><a href="#s-aes-xts">AES-XTS</a>
+	      <div class="dependent">The following content should be included if:<ul><li><a href="#s-aes-xts">AES-XTS (as defined in NIST SP 800-38E)</a>
              is selected from 
              <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a></li></ul><div class="dependent-content"><div>
 		
@@ -1598,7 +1612,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               decrypt.
 	      </p>
 	      </div></div></div>
-	      <div class="dependent">The following content should be included if:<ul><li><a href="#s-aes-cbc">AES-CBC</a>
+	      <div class="dependent">The following content should be included if:<ul><li><a href="#s-aes-cbc">AES-CBC (as defined in NIST SP 800-38A)</a>
              is selected from 
              <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a></li></ul><div class="dependent-content"><div>
 		
@@ -1697,7 +1711,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               replacing <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC-Encrypt with <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC-Decrypt.
 	    </p>
 	  </div></div></div>
-	  <div class="dependent">The following content should be included if:<ul><li><a href="#s-aes-ctr">AES-CTR</a>
+	  <div class="dependent">The following content should be included if:<ul><li><a href="#s-aes-ctr">AES-CTR (as defined in NIST SP 800-38A)</a>
              is selected from 
              <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a></li></ul><div class="dependent-content"><div>
 	      
@@ -1836,7 +1850,7 @@ This result shall be compared to the result of running 1000 iterations with the 
               ciphertext values and <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KWP authenticated-encryption with <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-KWP authenticated-decryption.
               </p>
 	      </div></div></div>
-	      <div class="dependent">The following content should be included if:<ul><li><a href="#s-aes-ccmp">AES-CCMP-256</a>, 
+	      <div class="dependent">The following content should be included if:<ul><li><a href="#s-aes-ccmp">AES-CCMP-256 (as defined in NIST SP 800-38C and IEEE 802.11ac-2013)</a>, <a href="#s-aes-ccm"> AES-CCM (as defined in NIST SP 800-38C)</a>
              is selected from 
              <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a></li></ul><div class="dependent-content"><div>
 	        
@@ -1912,7 +1926,7 @@ This result shall be compared to the result of running 1000 iterations with the 
               further verify the IEEE 802.11-2007 implementation of <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCMP.
 	      </p>
 	      </div></div></div>
-	      <div class="dependent">The following content should be included if:<ul><li><a href="#s-aes-gcmp">AES-GCMP-256</a>
+	      <div class="dependent">The following content should be included if:<ul><li><a href="#s-aes-gcmp">AES-GCMP-256 (as defined in NIST SP 800-38D and IEEE 802.11ac-2013)</a>
              is selected from 
              <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a></li></ul><div class="dependent-content"><div>
 		
@@ -2104,7 +2118,8 @@ This result shall be compared to the result of running 1000 iterations with the 
 		typically not found in the production application.
 	      </p>
 
-	      <div class="dependent">The following content should be included if:<ul><li><a href="#s-ec-certs">ECDSA schemes</a>
+	      <div class="dependent">The following content should be included if:<ul><li><a href="#s-ec-certs">ECDSA schemes using "NIST curves" P-384 and [<b>selection</b>: <span class="selectable-content" id="_s_55">P-521</span>, <span class="selectable-content" id="_s_56">no other curves</span>]
+		  that meet the following: FIPS PUB 186-4, "Digital Signature   Standard (DSS)", Section 5</a>
              is selected from 
              <a href="#FCS_COP.1.1/SIGN">FCS_COP.1.1/SIGN</a></li></ul><div class="dependent-content"><div>
 		
@@ -3181,8 +3196,13 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall be able
             <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-	      The <a href="#s-uau-ssh">SSH public key-based authentication</a> selection can only be included, and must be included, if
-		    <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a> selects <a href="#s-ftp_ssh">SSH</a>.
+	      The <a href="#s-uau-ssh">for use in SSH only, SSH public key-based authentication as specified by the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
+        version 
+        1.0</a></a> selection can only be included, and must be included, if
+		    <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a> selects <a href="#s-ftp_ssh">SSH as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
+        version 
+        1.0</a> as a
+      	          [<b>selection</b>: <span class="selectable-content" id="s-ssh-client">client</span>, <span class="selectable-content" id="s-ssh-server">server</span>]</a>.
 	    </span></div></div></div>
            <div class="element"><div class="reqid" id="FIA_UAU.5.2"><a href="#FIA_UAU.5.2" class="abbr">FIA_UAU.5.2</a></div><div class="reqdesc">
 The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall authenticate any user's claimed identity according to the
@@ -3240,7 +3260,8 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall authent
                     </li>
 		  </ul></span>
 		</div></div></div>
-		<div class="dependent">The following content should be included if:<ul><li><a href="#s-pin">username and a PIN that releases an asymmetric key</a>
+		<div class="dependent">The following content should be included if:<ul><li><a href="#s-pin">authentication based on username and a PIN that releases an asymmetric key stored
+		in OE-protected storage</a>
              is selected from 
              <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a></li></ul><div class="dependent-content"><div>
 		  
@@ -3295,7 +3316,9 @@ The <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> shall authent
 
 		<p>
 		  Authentication mechanisms related to <a href="#s-x509-auth">authentication based on X.509 certificates</a> are tested under <a href="#FIA_X509_EXT.1">FIA_X509_EXT.1</a>
-		  and <a href="#s-uau-ssh">SSH public key-based authentication</a> are tested in the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
+		  and <a href="#s-uau-ssh">for use in SSH only, SSH public key-based authentication as specified by the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
+        version 
+        1.0</a></a> are tested in the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
         version 
         1.0</a>.
 		</p>
@@ -3440,7 +3463,8 @@ If <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> is selected, the ev
 <li class="test-"><a id="_t_80" class="defined" href="#_t_80">Test FIA_X509_EXT.1:7</a>:
        The evaluator shall modify any byte in the public key of the certificate and demonstrate that the certificate fails to validate.
 (The signature of the certificate will not validate.)</li>
-<li class="test-"><a id="_t_81" class="defined" href="#_t_81">Test FIA_X509_EXT.1:8</a>[conditional, to be performed if<ul><li><a href="#s-ec-certs">ECDSA schemes</a>
+<li class="test-"><a id="_t_81" class="defined" href="#_t_81">Test FIA_X509_EXT.1:8</a>[conditional, to be performed if<ul><li><a href="#s-ec-certs">ECDSA schemes using "NIST curves" P-384 and [<b>selection</b>: <span class="selectable-content" id="_s_55">P-521</span>, <span class="selectable-content" id="_s_56">no other curves</span>]
+		  that meet the following: FIPS PUB 186-4, "Digital Signature   Standard (DSS)", Section 5</a>
              is selected from 
              <a href="#FCS_COP.1.1/SIGN">FCS_COP.1.1/SIGN</a></li><li><span class="no-link-sel">6187</span>
              is selected from 
@@ -3596,7 +3620,10 @@ the node certificate to be tested, two Intermediate CAs, and the
         2.4</a></a> is selected, then <a href="#FDP_IFC_EXT.1">FDP_IFC_EXT.1</a> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
       	    </p>
       	    <p>
-      	        If <a href="#s-ftp_ssh">SSH</a> is selected, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> must be validated against
+      	        If <a href="#s-ftp_ssh">SSH as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
+        version 
+        1.0</a> as a
+      	          [<b>selection</b>: <span class="selectable-content" id="s-ssh-client">client</span>, <span class="selectable-content" id="s-ssh-server">server</span>]</a> is selected, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> must be validated against
       	        the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
         version 
         1.0</a> and the corresponding selection is expected to be made in <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a>.
@@ -4608,7 +4635,7 @@ The evaluator shall also perform the following tests:
 	      </p>
 	      <p>
 		If the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> implements a native <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client, then the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must select 
-		<a href="#s-provides-vpnclient">provide a VPN client</a> and includes the <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> Client
+		<a href="#s-provides-vpnclient">provide a VPN client that can protect all IP traffic using IPsec</a> and includes the <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> Client
 		as part of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
 		  
 		  
@@ -5239,14 +5266,27 @@ Configure lockout policy for unsuccessful authentication attempts through
 	  This appendix contains only such "rules" as have been defined by the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> Authors, and does not necessarily
 	  represent all such dependencies in the document.<p></p><h2 id="r-key-rsa">
          Rule #1</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">IF</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
-      From <a href="#FCS_CKM.2.1">FCS_CKM.2.1</a>:</div><div class="uc_sel">* select <a href="#s-keyestab-rsa">RSA-based</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
-      From <a href="#FCS_CKM.1.1">FCS_CKM.1.1</a>:</div><div class="uc_sel">* select <a href="#s-keygen-rsa">RSA schemes</a></div></td></tr></table><h2 id="r-key-ecc">
+      From <a href="#FCS_CKM.2.1">FCS_CKM.2.1</a>:</div><div class="uc_sel">* select <a href="#s-keyestab-rsa">RSA-based key establishment schemes that meets the following:
+					RSAES-PKCS1-v1_5 as specified in Section 7.2 of RFC 8017, “Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.2"</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
+      From <a href="#FCS_CKM.1.1">FCS_CKM.1.1</a>:</div><div class="uc_sel">* select <a href="#s-keygen-rsa">RSA schemes using cryptographic key sizes of 3072-bit or greater that
+					meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.3
+                </a></div></td></tr></table><h2 id="r-key-ecc">
          Rule #2</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">IF</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
-      From <a href="#FCS_CKM.2.1">FCS_CKM.2.1</a>:</div><div class="uc_sel">* select <a href="#s-keyestab-ecc">Elliptic curve-based</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
-      From <a href="#FCS_CKM.1.1">FCS_CKM.1.1</a>:</div><div class="uc_sel">* select <a href="#s-keygen-ecc">ECC schemes using "NIST curves"</a></div></td></tr></table><h2 id="r-key-ffc">
+      From <a href="#FCS_CKM.2.1">FCS_CKM.2.1</a>:</div><div class="uc_sel">* select <a href="#s-keyestab-ecc">Elliptic curve-based key establishment schemes that meets the following: NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
+      From <a href="#FCS_CKM.1.1">FCS_CKM.1.1</a>:</div><div class="uc_sel">* select <a href="#s-keygen-ecc">ECC schemes using "NIST curves" P-384 and
+                  [<b>selection</b>: <span class="selectable-content" id="_s_3">P-256</span>, <span class="selectable-content" id="_s_4">P-521</span>, <span class="selectable-content" id="_s_5"> no other curves</span>] that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)",
+                  Appendix B.4
+                </a></div></td></tr></table><h2 id="r-key-ffc">
          Rule #3</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">IF</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
-      From <a href="#FCS_CKM.2.1">FCS_CKM.2.1</a>:</div><div class="uc_sel">* select <a href="#s-keyestab-ffc">Finite field-based</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
-      From <a href="#FCS_CKM.1.1">FCS_CKM.1.1</a>:</div><div class="uc_sel">* select <a href="#s-keygen-ffc">FFC schemes</a></div></td></tr></table><h2 id="r-wlan-aes">
+      From <a href="#FCS_CKM.2.1">FCS_CKM.2.1</a>:</div><div class="uc_sel">* select <a href="#s-keyestab-ffc">Finite field-based key establishment schemes
+					that meets NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
+      From <a href="#FCS_CKM.1.1">FCS_CKM.1.1</a>:</div><div class="uc_sel">* select <a href="#s-keygen-ffc">FFC schemes using 
+					[<b>selection</b>: <span class="selectable-content" id="s-keygen-ffc-fips">cryptographic key sizes of 3072-bit
+							or greater that meet the following: FIPS PUB 186-4, "Digital Signature
+							Standard (DSS)", Appendix B.1</span>, <span class="selectable-content" id="s-keygen-ffc-safeprime">&gt;safe primes that meet the following: 
+							NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes"
+						</span>]
+				</a></div></td></tr></table><h2 id="r-wlan-aes">
          Rule #4</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="3">DECISION A</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="choicelabel">CHOICE A1</div><div class="uc,not,module">Exclude the 
       <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=386&amp;id=386">PP-Module for Wireless LAN Clients,
         version 
@@ -5256,25 +5296,40 @@ Configure lockout policy for unsuccessful authentication attempts through
         version 
         1.0</a> module in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> </div>
 		  <table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="3">DECISION B</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="choicelabel">CHOICE B1</div><div class="uc_from_fel">
-      From <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>:</div><div class="uc_sel">* select <a href="#s-aes-ccmp">AES-CCMP-256</a></div></td></tr><tr><td style="width: 99%"><div class="choicelabel">CHOICE B2</div><div class="uc_from_fel">
-      From <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>:</div><div class="uc_sel">* select <a href="#s-aes-gcmp">AES-GCMP-256</a></div></td></tr></table>
+      From <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>:</div><div class="uc_sel">* select <a href="#s-aes-ccmp">AES-CCMP-256 (as defined in NIST SP 800-38C and IEEE 802.11ac-2013)</a></div></td></tr><tr><td style="width: 99%"><div class="choicelabel">CHOICE B2</div><div class="uc_from_fel">
+      From <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>:</div><div class="uc_sel">* select <a href="#s-aes-gcmp">AES-GCMP-256 (as defined in NIST SP 800-38D and IEEE 802.11ac-2013)</a></div></td></tr></table>
 		</td></tr></table><h2 id="r-need-client-tls">
          Rule #5</h2><div></div><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: </div><div class="uc_from_fel">
       From FCS_TLS_EXT.1.1:</div><div class="uc_sel">* select <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as a client</div><h2 id="r-tlss">
          Rule #6</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">IF</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
-      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#tls">TLS</a></div><div class="uc_sel">* select <a href="#s-tls-server">server(TLS)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: </div><div class="uc_from_fel">
+      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#tls">TLS as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS),
+        version 
+        1.1</a> as a
+    	  	    [<b>selection</b>: <span class="selectable-content" id="s-tls-client">client</span>, <span class="selectable-content" id="s-tls-server">server</span>]</a></div><div class="uc_sel">* select <a href="#s-tls-server">server(TLS)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: </div><div class="uc_from_fel">
       From FCS_TLS_EXT.1.1:</div><div class="uc_sel">* select <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as a server</div></td></tr></table><h2 id="r-dtlsc">
          Rule #7</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">IF</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
-      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#dtls">DTLS</a></div><div class="uc_sel">* select <a href="#s-dtls-client">client(DTLS)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: </div><div class="uc_from_fel">
+      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#dtls">DTLS as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS),
+        version 
+        1.1</a> as a
+    	  	    [<b>selection</b>: <span class="selectable-content" id="s-dtls-client">client</span>, <span class="selectable-content" id="s-dtls-server">server</span>]</a></div><div class="uc_sel">* select <a href="#s-dtls-client">client(DTLS)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: </div><div class="uc_from_fel">
       From FCS_TLS_EXT.1.1:</div><div class="uc_sel">* select <abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as a client</div></td></tr></table><h2 id="r-dtlss">
          Rule #8</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">IF</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
-      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#dtls">DTLS</a></div><div class="uc_sel">* select <a href="#s-dtls-server">server(DTLS)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: </div><div class="uc_from_fel">
+      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#dtls">DTLS as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS),
+        version 
+        1.1</a> as a
+    	  	    [<b>selection</b>: <span class="selectable-content" id="s-dtls-client">client</span>, <span class="selectable-content" id="s-dtls-server">server</span>]</a></div><div class="uc_sel">* select <a href="#s-dtls-server">server(DTLS)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: </div><div class="uc_from_fel">
       From FCS_TLS_EXT.1.1:</div><div class="uc_sel">* select <abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as a server</div></td></tr></table><h2 id="r-sshclient">
          Rule #9</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">IF</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
-      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#s-ftp_ssh">SSH</a></div><div class="uc_sel">* select <a href="#s-ssh-client">client(SSH)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH)</a>: </div><div class="uc_from_fel">
+      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#s-ftp_ssh">SSH as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
+        version 
+        1.0</a> as a
+      	          [<b>selection</b>: <span class="selectable-content" id="s-ssh-client">client</span>, <span class="selectable-content" id="s-ssh-server">server</span>]</a></div><div class="uc_sel">* select <a href="#s-ssh-client">client(SSH)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH)</a>: </div><div class="uc_from_fel">
       From FCS_SSH_EXT.1.1:</div><div class="uc_sel">* select client</div></td></tr></table><h2 id="r-sshserver">
          Rule #10</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">IF</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
-      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#s-ftp_ssh">SSH</a></div><div class="uc_sel">* select <a href="#s-ssh-server">server(SSH)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH)</a>: </div><div class="uc_from_fel">
+      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#s-ftp_ssh">SSH as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH),
+        version 
+        1.0</a> as a
+      	          [<b>selection</b>: <span class="selectable-content" id="s-ssh-client">client</span>, <span class="selectable-content" id="s-ssh-server">server</span>]</a></div><div class="uc_sel">* select <a href="#s-ssh-server">server(SSH)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH)</a>: </div><div class="uc_from_fel">
       From FCS_SSH_EXT.1.1:</div><div class="uc_sel">* select server</div></td></tr></table>
 	      
 	      
