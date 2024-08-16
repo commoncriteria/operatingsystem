@@ -511,7 +511,7 @@
                             <span class="selectable-content" id="s-keygen-rsa">RSA schemes using cryptographic key sizes of 3072-bit or greater that meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)", Appendix B.3 </span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="s-keygen-ecc">ECC schemes using "<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> curves" P-384 and [<b>selection</b>: <span class="selectable-content" id="_s_3">P-256</span>, <span class="selectable-content" id="_s_4">P-521</span>, <span class="selectable-content" id="_s_5"> no other curves</span>] that meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)", Appendix B.4 </span>
+                            <span class="selectable-content" id="s-keygen-ecc">ECC schemes using "<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> curves" P-384 and [<b>selection</b>: <span class="selectable-content" id="p-256-keygen">P-256</span>, <span class="selectable-content" id="_s_4">P-521</span>, <span class="selectable-content" id="_s_5"> no other curves</span>] that meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)", Appendix B.4 </span>
                         </li>
                         <li style="">
                             <span class="selectable-content" id="s-keygen-ffc">FFC schemes using [<b>selection</b>: <span class="selectable-content" id="s-keygen-ffc-fips">cryptographic key sizes of 3072-bit or greater that meet the following: <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-4, "Digital Signature Standard (<abbr class="dyn-abbr"><a href="#abbr_DSS">DSS</a></abbr>)", Appendix B.1</span>, <span class="selectable-content" id="s-keygen-ffc-safeprime">safe primes that meet the following: <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> Special Publication 800-56A Revision 3, &ldquo;Recommendation for Pair-Wise Key Establishment Schemes" </span>] </span>
@@ -538,6 +538,8 @@
                     <b><a href="#r-key-ecc">Rule #2</a></b>
                     <p></p>
                     <b><a href="#r-key-ffc">Rule #3</a></b>
+                    <p></p>
+                    <b><a href="#r-bluetooth-ccm">Rule #5</a></b>
                 </div>
             </div>
             <div class="activity_pane hide">
@@ -644,7 +646,7 @@
                                 The following content should be included if:
                                 <ul>
                                     <li>
-                                        <a href="#s-keygen-ecc">ECC schemes using "NIST curves" P-384 and [<b>selection</b>: <span class="selectable-content" id="_s_3">P-256</span>, <span class="selectable-content" id="_s_4">P-521</span>, <span class="selectable-content" id="_s_5"> no other curves</span>] that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.4 </a> is selected from <a href="#FCS_CKM.1.1">FCS_CKM.1.1</a>
+                                        <a href="#s-keygen-ecc">ECC schemes using "NIST curves" P-384 and [<b>selection</b>: <span class="selectable-content" id="p-256-keygen">P-256</span>, <span class="selectable-content" id="_s_4">P-521</span>, <span class="selectable-content" id="_s_5"> no other curves</span>] that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.4 </a> is selected from <a href="#FCS_CKM.1.1">FCS_CKM.1.1</a>
                                     </li>
                                 </ul>
                                 <div class="dependent-content">
@@ -1157,8 +1159,6 @@
                     <div class="validationguidelines_label">Validation Guidelines:</div>
                     <p></p>
                     <b><a href="#r-wlan-aes">Rule #4</a></b>
-                    <p></p>
-                    <b><a href="#r-bluetooth-ccm">Rule #5</a></b>
                 </div>
             </div>
             <div class="activity_pane hide">
@@ -5875,7 +5875,7 @@ PT = CT[i]
                          From <a href="#FCS_CKM.1.1">FCS_CKM.1.1</a>:
                     </div>
                     <div class="uc_sel">
-                        * select <a href="#s-keygen-ecc">ECC schemes using "NIST curves" P-384 and [<b>selection</b>: <span class="selectable-content" id="_s_3">P-256</span>, <span class="selectable-content" id="_s_4">P-521</span>, <span class="selectable-content" id="_s_5"> no other curves</span>] that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.4 </a>
+                        * select <a href="#s-keygen-ecc">ECC schemes using "NIST curves" P-384 and [<b>selection</b>: <span class="selectable-content" id="p-256-keygen">P-256</span>, <span class="selectable-content" id="_s_4">P-521</span>, <span class="selectable-content" id="_s_5"> no other curves</span>] that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.4 </a>
                     </div>
                 </td>
             </tr>
@@ -5990,10 +5990,16 @@ PT = CT[i]
                             <td style="width: 99%">
                                 <div class="choicelabel">CHOICE D1</div>
                                 <div class="uc_from_fel">
-                                     From <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>:
+                                     From <a href="#FCS_CKM.1.1">FCS_CKM.1.1</a>:
                                 </div>
                                 <div class="uc_sel">
-                                    * select <a href="#s-aes-ccmp">AES-CCMP-256 (as defined in NIST SP 800-38C and IEEE 802.11ac-2013)</a>
+                                    * select <a href="#s-keygen-ecc">ECC schemes using "NIST curves" P-384 and [<b>selection</b>: <span class="selectable-content" id="p-256-keygen">P-256</span>, <span class="selectable-content" id="_s_4">P-521</span>, <span class="selectable-content" id="_s_5"> no other curves</span>] that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.4 </a>
+                                </div>
+                                <div class="uc_not">
+                                    Do not choose: 
+                                    <div class="uc_not_sel">
+                                        * <a href="#p-256-keygen">P-256</a>
+                                    </div>
                                 </div>
                             </td>
                         </tr>
@@ -6001,10 +6007,13 @@ PT = CT[i]
                             <td style="width: 99%">
                                 <div class="choicelabel">CHOICE D2</div>
                                 <div class="uc_from_fel">
-                                     From <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>:
+                                     From <a href="#FCS_CKM.1.1">FCS_CKM.1.1</a>:
                                 </div>
                                 <div class="uc_sel">
-                                    * select <a href="#s-aes-gcmp">AES-GCMP-256 (as defined in NIST SP 800-38D and IEEE 802.11ac-2013)</a>
+                                    * select <a href="#s-keygen-ecc">ECC schemes using "NIST curves" P-384 and [<b>selection</b>: <span class="selectable-content" id="p-256-keygen">P-256</span>, <span class="selectable-content" id="_s_4">P-521</span>, <span class="selectable-content" id="_s_5"> no other curves</span>] that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.4 </a>
+                                </div>
+                                <div class="uc_sel">
+                                    * select <a href="#p-256-keygen">P-256</a>
                                 </div>
                             </td>
                         </tr>

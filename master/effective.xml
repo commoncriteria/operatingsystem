@@ -640,7 +640,7 @@ users of the same system.
                 </selectable>
                 <selectable id="s-keygen-ecc">ECC schemes using "NIST curves" P-384 and
                   <selectables>
-                    <selectable>P-256</selectable>
+                    <selectable id="p-256-keygen">P-256</selectable>
                     <selectable>P-521</selectable>
                     <selectable exclusive="yes"> no other curves</selectable>
                   </selectables> that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)",
@@ -1708,10 +1708,13 @@ This result shall be compared to the result of running 1000 iterations with the 
             <and><not><ref-id>mod-bluetooth</ref-id></not></and>
                 <and>
                   <ref-id>mod-bluetooth</ref-id>
-                  <or><ref-id>s-aes-ccmp</ref-id><ref-id>s-aes-gcmp</ref-id></or>
+                  <or>
+                    <not><ref-id>p-256-keygen</ref-id></not>
+                    <ref-id>p-256-keygen</ref-id>
+                  </or>
                 </and>
               </or>
-            </rule>
+         </rule>
 	    <!-- <rule id="r-aes-ctr-for-ssh"> -->
 	    <!--   <if><ref-id>s-ftp_ssh</ref-id></if> -->
 	    <!--   <then><ref-id>s-aes-ctr</ref-id></then> -->
