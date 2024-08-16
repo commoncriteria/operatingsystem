@@ -1536,7 +1536,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-aes-xts"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-XTS (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38E)</span></li><li style=""><span class="selectable-content" id="s-aes-cbc"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CBC (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38A)</span></li><li style=""><span class="selectable-content" id="s-aes-ctr"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CTR (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38A)</span></li></ul>]
 	      and
 	      [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-aes-kw"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> Key Wrap (KW) (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38F)</span></li><li style=""><span class="selectable-content" id="s-aes-kwp"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> Key Wrap with Padding (KWP) (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38F)</span></li><li style=""><span class="selectable-content" id="s-aes-ccmp"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCMP-256 (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38C and IEEE 802.11ac-2013)</span></li><li style=""><span class="selectable-content" id="s-aes-gcmp"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCMP-256 (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38D and IEEE 802.11ac-2013)</span></li><li style=""><span class="selectable-content" id="s-aes-ccm"> <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCM (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38C)</span></li><li style=""><span class="selectable-content" id="s-aes-gcm"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM (as defined in <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-38D)</span></li><li style=""><span class="selectable-content" id="_s_42">no other modes</span></li></ul>]</b>
-              and cryptographic key sizes 256-bit and [<b>selection</b>: <span class="selectable-content" id="_s_43">128-bit</span>, <span class="selectable-content" id="_s_44">no other bit size</span>].
+              and cryptographic key sizes 256-bit and [<b>selection</b>: <span class="selectable-content" id="s-128">128-bit</span>, <span class="selectable-content" id="_s_44">no other bit size</span>].
               
               
               
@@ -1565,7 +1565,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      
 	      
 	      
-	    </span></div><div class="validationguidelines_label">Validation Guidelines:</div><p></p><b><a href="#r-wlan-aes">Rule #4</a></b></div></div>
+	    </span></div><div class="validationguidelines_label">Validation Guidelines:</div><p></p><b><a href="#r-wlan-aes">Rule #4</a></b><p></p><b><a href="#r-bluetooth-ccm">Rule #5</a></b></div></div>
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_COP.1/ENCRYPT">FCS_COP.1/ENCRYPT</a></div>
 	      
         
@@ -5301,11 +5301,14 @@ Configure lockout policy for unsuccessful authentication attempts through
                   [<b>selection</b>: <span class="selectable-content" id="p-256-keygen">P-256</span>, <span class="selectable-content" id="_s_4">P-521</span>, <span class="selectable-content" id="_s_5"> no other curves</span>] that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)",
                   Appendix B.4
                 </a></div><div class="uc_not">Do not choose:
-      <div class="uc_not_sel">* <a href="#p-256-keygen">P-256</a></div></div></td></tr><tr><td style="width: 99%"><div class="choicelabel">CHOICE D2</div><div class="uc_from_fel">
+      <div class="uc_not_sel">* <a href="#p-256-keygen">P-256</a></div></div><div class="uc_from_fel">
+      From <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>:</div><div class="uc_not">Do not choose:
+      <div class="uc_not_sel">* <a href="#s-aes-ccm"> AES-CCM (as defined in NIST SP 800-38C)</a></div></div></td></tr><tr><td style="width: 99%"><div class="choicelabel">CHOICE D2</div><div class="uc_from_fel">
       From <a href="#FCS_CKM.1.1">FCS_CKM.1.1</a>:</div><div class="uc_sel">* select <a href="#s-keygen-ecc">ECC schemes using "NIST curves" P-384 and
                   [<b>selection</b>: <span class="selectable-content" id="p-256-keygen">P-256</span>, <span class="selectable-content" id="_s_4">P-521</span>, <span class="selectable-content" id="_s_5"> no other curves</span>] that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)",
                   Appendix B.4
-                </a></div><div class="uc_sel">* select <a href="#p-256-keygen">P-256</a></div></td></tr></table>
+                </a></div><div class="uc_sel">* select <a href="#p-256-keygen">P-256</a></div><div class="uc_from_fel">
+      From <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>:</div><div class="uc_sel">* select <a href="#s-aes-ccm"> AES-CCM (as defined in NIST SP 800-38C)</a></div><div class="uc_sel">* select <a href="#s-128">128-bit</a></div></td></tr></table>
                 </td></tr></table><h2 id="r-need-client-tls">
          Rule #6</h2><div></div><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: </div><div class="uc_from_fel">
       From FCS_TLS_EXT.1.1:</div><div class="uc_sel">* select <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as a client</div><h2 id="r-tlss">
