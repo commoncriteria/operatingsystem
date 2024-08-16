@@ -304,10 +304,13 @@
         <dl>
             <dt class="cclaim defined" id="Conformance Statement">Conformance Statement</dt>
             <dd>
-                <span class="description"> An <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must claim exact conformance to this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>. 
-                    <br>
-                    <br>
-                     The evaluation methods used for evaluating the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> are a combination of the workunits defined in <a href="#bibCEM">[CEM]</a> as well as the Evaluation Activities for ensuring that individual <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> have sufficient supporting evidence in the Security Target and guidance documentation and have been sufficiently tested by the laboratory as part of completing <a href="#ATE_IND.1">ATE_IND.1</a>. Any functional packages this <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> claims similarly contain their own Evaluation Activities that are used in this same manner. 
+                <span class="description">
+                    <p>
+                         An <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must claim exact conformance to this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>. 
+                    </p>
+                    <p>
+                         The evaluation methods used for evaluating the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> are a combination of the workunits defined in <a href="#bibCEM">[CEM]</a> as well as the Evaluation Activities for ensuring that individual <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> have sufficient supporting evidence in the Security Target and guidance documentation and have been sufficiently tested by the laboratory as part of completing <a href="#ATE_IND.1">ATE_IND.1</a>. Any functional packages this <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> claims similarly contain their own Evaluation Activities that are used in this same manner. 
+                    </p>
                     <p>
                          The following <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-Modules are allowed to be specified in a <abbr class="dyn-abbr"><a href="#abbr_PP-Configuration">PP-Configuration</a></abbr> with this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>. 
                         <ul>
@@ -1137,23 +1140,25 @@
                     <div class="appnote">
                         <span class="note-header">Application Note: </span><span class="note">
                             <p>
-                                 <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> CCMP (which uses <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> in CCM as specified in SP 800-38C) becomes mandatory and must be selected if the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> includes the <a href="#mod-wlanclient" class="dynref" data-format=""></a>. 
+                                 <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> CCMP (which uses <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> in CCM as specified in SP 800-38C) becomes mandatory and must be selected if the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> includes the <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Wireless LAN Clients. 
                             </p>
                             <p>
-                                 <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCM becomes mandatory and must be selected if the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> includes the <a href="#mod-bluetooth" class="dynref" data-format=""></a> 
+                                 <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCM becomes mandatory and must be selected if the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> includes the <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Bluetooth. 
                             </p>
                             <p></p>
                             <p>
                                  For the second selection, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author should choose the mode or modes in which <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> operates.
                             </p>
                             <p>
-                                 For the third selection, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author may only choose 128-bit if the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> includes the <a href="#mod-bluetooth" class="dynref" data-format=""></a>, and it may only be used specifically with <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCM for Bluetooth functions. 
+                                 For the third selection, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author may only choose 128-bit if the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> includes the <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Bluetooth, and it may only be used specifically with <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-CCM for Bluetooth functions. 
                             </p>
                         </span>
                     </div>
                     <div class="validationguidelines_label">Validation Guidelines:</div>
                     <p></p>
                     <b><a href="#r-wlan-aes">Rule #4</a></b>
+                    <p></p>
+                    <b><a href="#r-bluetooth-ccm">Rule #5</a></b>
                 </div>
             </div>
             <div class="activity_pane hide">
@@ -2822,7 +2827,7 @@ PT = CT[i]
                                 <span class="selectable-content" id="s-x509-auth">authentication based on X.509 certificates</span>
                             </li>
                             <li style="">
-                                <span class="selectable-content" id="s-uau-ssh">for use in SSH only, SSH public key-based authentication as specified by the <a href="#pkg-ssh" class="dynref" data-format=""></a></span>
+                                <span class="selectable-content" id="s-uau-ssh">for use in SSH only, SSH public key-based authentication as specified by the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH), version 1.0</a></span>
                             </li>
                         </ul>
                         ] </b> to support user authentication. 
@@ -2937,7 +2942,7 @@ PT = CT[i]
                                 </div>
                             </div>
                             <p>
-                                 Authentication mechanisms related to <a href="#s-x509-auth">authentication based on X.509 certificates</a> are tested under <a href="#FIA_X509_EXT.1">FIA_X509_EXT.1</a> and <a href="#s-uau-ssh">SSH public key-based authentication</a> are tested in the <a href="#pkg-ssh" class="dynref" data-format=""></a>. 
+                                 Authentication mechanisms related to <a href="#s-x509-auth">authentication based on X.509 certificates</a> are tested under <a href="#FIA_X509_EXT.1">FIA_X509_EXT.1</a> and <a href="#s-uau-ssh">SSH public key-based authentication</a> are tested in the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH), version 1.0</a>. 
                             </p>
                         </div>
                         <div class="ea">
@@ -3079,7 +3084,7 @@ PT = CT[i]
                                                 <a href="#s-ec-certs">ECDSA schemes using "NIST curves" P-384 and [<b>selection</b>: <span class="selectable-content" id="_s_55">P-521</span>, <span class="selectable-content" id="_s_56">no other curves</span>] that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Section 5</a> is selected from <a href="#FCS_COP.1.1/SIGN">FCS_COP.1.1/SIGN</a>
                                             </li>
                                             <li>
-                                                <span class="no-link-sel"></span> is selected from from 
+                                                <span class="no-link-sel">6187</span> is selected from FCS_SSH_EXT.1.1 from <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH), version 1.0</a>
                                             </li>
                                         </ul>
                                         ]: <span class="testlist-">
@@ -3177,19 +3182,19 @@ PT = CT[i]
                      The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall use [<b>selection</b>: 
                     <ul>
                         <li style="">
-                            <span class="selectable-content" id="tls"><abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as conforming to the <a href="#pkg-tls" class="dynref" data-format=""></a> as a [<b>selection</b>: <span class="selectable-content" id="s-tls-client">client</span>, <span class="selectable-content" id="s-tls-server">server</span>]</span>
+                            <span class="selectable-content" id="tls"><abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS), version 1.1</a> as a [<b>selection</b>: <span class="selectable-content" id="s-tls-client">client</span>, <span class="selectable-content" id="s-tls-server">server</span>]</span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="dtls"><abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as conforming to the <a href="#pkg-tls" class="dynref" data-format=""></a> as a [<b>selection</b>: <span class="selectable-content" id="s-dtls-client">client</span>, <span class="selectable-content" id="s-dtls-server">server</span>]</span>
+                            <span class="selectable-content" id="dtls"><abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS), version 1.1</a> as a [<b>selection</b>: <span class="selectable-content" id="s-dtls-client">client</span>, <span class="selectable-content" id="s-dtls-server">server</span>]</span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="s-itc-ipsec">IPsec as conforming to the <a href="#mod-vpnclient" class="dynref" data-format=""></a></span>
+                            <span class="selectable-content" id="s-itc-ipsec">IPsec as conforming to the <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Virtual Private Network (<abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr>) Clients</span>
                         </li>
                     </ul>
                     ] and [<b>selection</b>: 
                     <ul>
                         <li style="">
-                            <span class="selectable-content" id="s-ftp_ssh">SSH as conforming to the <a href="#pkg-ssh" class="dynref" data-format=""></a> as a [<b>selection</b>: <span class="selectable-content" id="s-ssh-client">client</span>, <span class="selectable-content" id="s-ssh-server">server</span>]</span>
+                            <span class="selectable-content" id="s-ftp_ssh">SSH as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH), version 1.0</a> as a [<b>selection</b>: <span class="selectable-content" id="s-ssh-client">client</span>, <span class="selectable-content" id="s-ssh-server">server</span>]</span>
                         </li>
                         <li style="">
                             <span class="selectable-content" id="_s_138">no other protocols</span>
@@ -3202,28 +3207,28 @@ PT = CT[i]
                                  The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must include the security functional requirements for the trusted channel protocol selected in <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a> in the main body of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
                             </p>
                             <p>
-                                 If <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> is selected, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> must be validated against the appropriate requirements in the <a href="#pkg-tls" class="dynref" data-format=""></a>. 
+                                 If <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> is selected, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> must be validated against the appropriate requirements in the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS), version 1.1</a>. 
                             </p>
                             <p>
-                                 If <a href="#s-itc-ipsec">IPsec as conforming to the <a href="#mod-vpnclient" class="dynref" data-format=""></a></a> is selected, then <a href="#FDP_IFC_EXT.1">FDP_IFC_EXT.1</a> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
+                                 If <a href="#s-itc-ipsec">IPsec as conforming to the PP-Module for Virtual Private Network (VPN) Clients</a> is selected, then <a href="#FDP_IFC_EXT.1">FDP_IFC_EXT.1</a> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
                             </p>
                             <p>
-                                 If <a href="#s-ftp_ssh">SSH</a> is selected, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> must be validated against the <a href="#pkg-ssh" class="dynref" data-format=""></a> and the corresponding selection is expected to be made in <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a>. The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must include the security functional requirements for the trusted channel protocol selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> in the main body of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
+                                 If <a href="#s-ftp_ssh">SSH</a> is selected, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> must be validated against the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH), version 1.0</a> and the corresponding selection is expected to be made in <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a>. The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must include the security functional requirements for the trusted channel protocol selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> in the main body of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
                             </p>
                             <p></p>
                         </span>
                     </div>
                     <div class="validationguidelines_label">Validation Guidelines:</div>
                     <p></p>
-                    <b><a href="#r-tlss">Rule #6</a></b>
+                    <b><a href="#r-tlss">Rule #7</a></b>
                     <p></p>
-                    <b><a href="#r-dtlsc">Rule #7</a></b>
+                    <b><a href="#r-dtlsc">Rule #8</a></b>
                     <p></p>
-                    <b><a href="#r-dtlss">Rule #8</a></b>
+                    <b><a href="#r-dtlss">Rule #9</a></b>
                     <p></p>
-                    <b><a href="#r-sshclient">Rule #9</a></b>
+                    <b><a href="#r-sshclient">Rule #10</a></b>
                     <p></p>
-                    <b><a href="#r-sshserver">Rule #10</a></b>
+                    <b><a href="#r-sshserver">Rule #11</a></b>
                 </div>
             </div>
             <div class="activity_pane hide">
@@ -5916,11 +5921,17 @@ PT = CT[i]
             <tr>
                 <td style="width: 99%">
                     <div class="choicelabel">CHOICE A1</div>
+                    <div class="uc,not,module">
+                        Exclude the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=386&amp;id=386">PP-Module for Wireless LAN Clients, version 1.0</a> module from the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> 
+                    </div>
                 </td>
             </tr>
             <tr>
                 <td style="width: 99%">
                     <div class="choicelabel">CHOICE A2</div>
+                    <div class="uc,module">
+                         Include the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=386&amp;id=386">PP-Module for Wireless LAN Clients, version 1.0</a> module in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> 
+                    </div>
                     <table class="uc_table_or" style="border: 1px solid black">
                         <tr>
                             <td class="or_cell" rowspan="3">DECISION B</td><td style="display:none"></td>
@@ -5951,12 +5962,66 @@ PT = CT[i]
                 </td>
             </tr>
         </table>
-        <h2 id="r-need-client-tls"> Rule #5</h2>
+        <h2 id="r-bluetooth-ccm"> Rule #5</h2>
+        <div></div>
+        <table class="uc_table_or" style="border: 1px solid black">
+            <tr>
+                <td class="or_cell" rowspan="3">DECISION C</td><td style="display:none"></td>
+            </tr>
+            <tr>
+                <td style="width: 99%">
+                    <div class="choicelabel">CHOICE C1</div>
+                    <div class="uc,not,module">
+                        Exclude the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=425&amp;id=425">PP-Module for Bluetooth, version 1.0</a> module from the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> 
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 99%">
+                    <div class="choicelabel">CHOICE C2</div>
+                    <div class="uc,module">
+                         Include the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=425&amp;id=425">PP-Module for Bluetooth, version 1.0</a> module in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> 
+                    </div>
+                    <table class="uc_table_or" style="border: 1px solid black">
+                        <tr>
+                            <td class="or_cell" rowspan="3">DECISION D</td><td style="display:none"></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 99%">
+                                <div class="choicelabel">CHOICE D1</div>
+                                <div class="uc_from_fel">
+                                     From <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>:
+                                </div>
+                                <div class="uc_sel">
+                                    * select <a href="#s-aes-ccmp">AES-CCMP-256 (as defined in NIST SP 800-38C and IEEE 802.11ac-2013)</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 99%">
+                                <div class="choicelabel">CHOICE D2</div>
+                                <div class="uc_from_fel">
+                                     From <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>:
+                                </div>
+                                <div class="uc_sel">
+                                    * select <a href="#s-aes-gcmp">AES-GCMP-256 (as defined in NIST SP 800-38D and IEEE 802.11ac-2013)</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <h2 id="r-need-client-tls"> Rule #6</h2>
         <div></div>
         <div class="uc_inc_pkg">
-             From the <a href="">PP-Module for </a>: 
+             From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: 
         </div>
-        <h2 id="r-tlss"> Rule #6</h2>
+        <div class="uc_from_fel"> From FCS_TLS_EXT.1.1:</div>
+        <div class="uc_sel">
+            * select <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as a client
+        </div>
+        <h2 id="r-tlss"> Rule #7</h2>
         <div></div>
         <table class="uc_table_or" style="border: 1px solid black">
             <tr>
@@ -5968,7 +6033,7 @@ PT = CT[i]
                          From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:
                     </div>
                     <div class="uc_sel">
-                        * select <a href="#tls">TLS as conforming to the <a href="#pkg-tls" class="dynref" data-format=""></a> as a [<b>selection</b>: <span class="selectable-content" id="s-tls-client">client</span>, <span class="selectable-content" id="s-tls-server">server</span>]</a>
+                        * select <a href="#tls">TLS as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS), version 1.1</a> as a [<b>selection</b>: <span class="selectable-content" id="s-tls-client">client</span>, <span class="selectable-content" id="s-tls-server">server</span>]</a>
                     </div>
                     <div class="uc_sel">
                         * select <a href="#s-tls-server">server(TLS)</a>
@@ -5983,12 +6048,16 @@ PT = CT[i]
             <tr>
                 <td style="width: 99%">
                     <div class="uc_inc_pkg">
-                         From the <a href="">PP-Module for </a>: 
+                         From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: 
+                    </div>
+                    <div class="uc_from_fel"> From FCS_TLS_EXT.1.1:</div>
+                    <div class="uc_sel">
+                        * select <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as a server
                     </div>
                 </td>
             </tr>
         </table>
-        <h2 id="r-dtlsc"> Rule #7</h2>
+        <h2 id="r-dtlsc"> Rule #8</h2>
         <div></div>
         <table class="uc_table_or" style="border: 1px solid black">
             <tr>
@@ -6000,7 +6069,7 @@ PT = CT[i]
                          From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:
                     </div>
                     <div class="uc_sel">
-                        * select <a href="#dtls">DTLS as conforming to the <a href="#pkg-tls" class="dynref" data-format=""></a> as a [<b>selection</b>: <span class="selectable-content" id="s-dtls-client">client</span>, <span class="selectable-content" id="s-dtls-server">server</span>]</a>
+                        * select <a href="#dtls">DTLS as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS), version 1.1</a> as a [<b>selection</b>: <span class="selectable-content" id="s-dtls-client">client</span>, <span class="selectable-content" id="s-dtls-server">server</span>]</a>
                     </div>
                     <div class="uc_sel">
                         * select <a href="#s-dtls-client">client(DTLS)</a>
@@ -6015,12 +6084,16 @@ PT = CT[i]
             <tr>
                 <td style="width: 99%">
                     <div class="uc_inc_pkg">
-                         From the <a href="">PP-Module for </a>: 
+                         From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: 
+                    </div>
+                    <div class="uc_from_fel"> From FCS_TLS_EXT.1.1:</div>
+                    <div class="uc_sel">
+                        * select <abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as a client
                     </div>
                 </td>
             </tr>
         </table>
-        <h2 id="r-dtlss"> Rule #8</h2>
+        <h2 id="r-dtlss"> Rule #9</h2>
         <div></div>
         <table class="uc_table_or" style="border: 1px solid black">
             <tr>
@@ -6032,7 +6105,7 @@ PT = CT[i]
                          From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:
                     </div>
                     <div class="uc_sel">
-                        * select <a href="#dtls">DTLS as conforming to the <a href="#pkg-tls" class="dynref" data-format=""></a> as a [<b>selection</b>: <span class="selectable-content" id="s-dtls-client">client</span>, <span class="selectable-content" id="s-dtls-server">server</span>]</a>
+                        * select <a href="#dtls">DTLS as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS), version 1.1</a> as a [<b>selection</b>: <span class="selectable-content" id="s-dtls-client">client</span>, <span class="selectable-content" id="s-dtls-server">server</span>]</a>
                     </div>
                     <div class="uc_sel">
                         * select <a href="#s-dtls-server">server(DTLS)</a>
@@ -6047,12 +6120,16 @@ PT = CT[i]
             <tr>
                 <td style="width: 99%">
                     <div class="uc_inc_pkg">
-                         From the <a href="">PP-Module for </a>: 
+                         From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: 
+                    </div>
+                    <div class="uc_from_fel"> From FCS_TLS_EXT.1.1:</div>
+                    <div class="uc_sel">
+                        * select <abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as a server
                     </div>
                 </td>
             </tr>
         </table>
-        <h2 id="r-sshclient"> Rule #9</h2>
+        <h2 id="r-sshclient"> Rule #10</h2>
         <div></div>
         <table class="uc_table_or" style="border: 1px solid black">
             <tr>
@@ -6079,12 +6156,14 @@ PT = CT[i]
             <tr>
                 <td style="width: 99%">
                     <div class="uc_inc_pkg">
-                         From the <a href="">PP-Module for </a>: 
+                         From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH)</a>: 
                     </div>
+                    <div class="uc_from_fel"> From FCS_SSH_EXT.1.1:</div>
+                    <div class="uc_sel">* select client</div>
                 </td>
             </tr>
         </table>
-        <h2 id="r-sshserver"> Rule #10</h2>
+        <h2 id="r-sshserver"> Rule #11</h2>
         <div></div>
         <table class="uc_table_or" style="border: 1px solid black">
             <tr>
@@ -6111,8 +6190,10 @@ PT = CT[i]
             <tr>
                 <td style="width: 99%">
                     <div class="uc_inc_pkg">
-                         From the <a href="">PP-Module for </a>: 
+                         From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH)</a>: 
                     </div>
+                    <div class="uc_from_fel"> From FCS_SSH_EXT.1.1:</div>
+                    <div class="uc_sel">* select server</div>
                 </td>
             </tr>
         </table>
