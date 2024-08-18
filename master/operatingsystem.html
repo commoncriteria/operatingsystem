@@ -1001,7 +1001,7 @@ users of the same system.
           “P-256” may only be selected if the <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Bluetooth V1.0 is included
           in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> and may only be used specifically for Bluetooth functions.
         </p>
-	    </span></div><div class="validationguidelines_label">Validation Guidelines:</div><p></p><b><a href="#r-key-rsa">Rule #1</a></b><p></p><b><a href="#r-key-ecc">Rule #2</a></b><p></p><b><a href="#r-key-ffc">Rule #3</a></b><p></p><b><a href="#r-bluetooth-ccm">Rule #5</a></b></div></div>
+	    </span></div><div class="validationguidelines_label">Validation Guidelines:</div><p></p><b><a href="#r-key-rsa">Rule #1</a></b><p></p><b><a href="#r-key-ecc">Rule #2</a></b><p></p><b><a href="#r-key-ffc">Rule #3</a></b><p></p><b><a href="#r-bluetooth-ccm">Rule #11</a></b></div></div>
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_CKM.1">FCS_CKM.1</a></div>
 	      
               
@@ -1561,7 +1561,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      
 	      
 	      
-	    </span></div><div class="validationguidelines_label">Validation Guidelines:</div><p></p><b><a href="#r-wlan-aes">Rule #4</a></b><p></p><b><a href="#r-bluetooth-ccm">Rule #5</a></b></div></div>
+	    </span></div><div class="validationguidelines_label">Validation Guidelines:</div><p></p><b><a href="#r-wlan-aes">Rule #4</a></b><p></p><b><a href="#r-bluetooth-ccm">Rule #11</a></b></div></div>
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_COP.1/ENCRYPT">FCS_COP.1/ENCRYPT</a></div>
 	      
         
@@ -3989,9 +3989,22 @@ the node certificate to be tested, two Intermediate CAs, and the
   
   
 
+      	      
+      	      
+      	        
+      	          
+      	          
+      	            
+      	            
+      	              
+      	              
+      	            
+      	          
+      	        
+      	      
 
 
-      	    </span></div><div class="validationguidelines_label">Validation Guidelines:</div><p></p><b><a href="#r-tlss">Rule #7</a></b><p></p><b><a href="#r-dtlsc">Rule #8</a></b><p></p><b><a href="#r-dtlss">Rule #9</a></b><p></p><b><a href="#r-sshclient">Rule #10</a></b><p></p><b><a href="#r-sshserver">Rule #11</a></b></div></div>
+      	    </span></div><div class="validationguidelines_label">Validation Guidelines:</div><p></p><b><a href="#r-tlss">Rule #6</a></b><p></p><b><a href="#r-dtlsc">Rule #7</a></b><p></p><b><a href="#r-dtlss">Rule #8</a></b><p></p><b><a href="#r-sshclient">Rule #9</a></b><p></p><b><a href="#r-sshserver">Rule #10</a></b></div></div>
       	<div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a></div>
 	      
 	    <div class="eacategory">Tests</div><div class="ea"><div class="ea">
@@ -5262,16 +5275,42 @@ Configure lockout policy for unsuccessful authentication attempts through
 		  <table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="3">DECISION B</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="choicelabel">CHOICE B1</div><div class="uc_from_fel">
       From <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>:</div><div class="uc_sel">* select <a href="#s-aes-ccmp">AES-CCMP-256 (as defined in NIST SP 800-38C and IEEE 802.11ac-2013)</a></div></td></tr><tr><td style="width: 99%"><div class="choicelabel">CHOICE B2</div><div class="uc_from_fel">
       From <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>:</div><div class="uc_sel">* select <a href="#s-aes-gcmp">AES-GCMP-256 (as defined in NIST SP 800-38D and IEEE 802.11ac-2013)</a></div></td></tr></table>
-		</td></tr></table><h2 id="r-bluetooth-ccm">
-         Rule #5</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="3">DECISION C</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="choicelabel">CHOICE C1</div><div class="uc,not,module">Exclude the 
+		</td></tr></table><h2 id="r-need-client-tls">
+         Rule #5</h2><div></div><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: </div><div class="uc_from_fel">
+      From FCS_TLS_EXT.1.1:</div><div class="uc_sel">* select <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as a client</div><h2 id="r-tlss">
+         Rule #6</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">IF</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
+      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#tls">TLS as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS),
+        version 
+        1.1</a> as a
+    	  	    [<b>selection</b>: <span class="selectable-content" id="s-tls-client">client</span>, <span class="selectable-content" id="s-tls-server">server</span>]</a></div><div class="uc_sel">* select <a href="#s-tls-server">server(TLS)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: </div><div class="uc_from_fel">
+      From FCS_TLS_EXT.1.1:</div><div class="uc_sel">* select <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as a server</div></td></tr></table><h2 id="r-dtlsc">
+         Rule #7</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">IF</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
+      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#dtls">DTLS as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS),
+        version 
+        1.1</a> as a
+    	  	    [<b>selection</b>: <span class="selectable-content" id="s-dtls-client">client</span>, <span class="selectable-content" id="s-dtls-server">server</span>]</a></div><div class="uc_sel">* select <a href="#s-dtls-client">client(DTLS)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: </div><div class="uc_from_fel">
+      From FCS_TLS_EXT.1.1:</div><div class="uc_sel">* select <abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as a client</div></td></tr></table><h2 id="r-dtlss">
+         Rule #8</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">IF</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
+      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#dtls">DTLS as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS),
+        version 
+        1.1</a> as a
+    	  	    [<b>selection</b>: <span class="selectable-content" id="s-dtls-client">client</span>, <span class="selectable-content" id="s-dtls-server">server</span>]</a></div><div class="uc_sel">* select <a href="#s-dtls-server">server(DTLS)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: </div><div class="uc_from_fel">
+      From FCS_TLS_EXT.1.1:</div><div class="uc_sel">* select <abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as a server</div></td></tr></table><h2 id="r-sshclient">
+         Rule #9</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">IF</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
+      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#s-ftp_ssh">SSH</a></div><div class="uc_sel">* select <a href="#s-ssh-client">client(SSH)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH)</a>: </div><div class="uc_from_fel">
+      From FCS_SSH_EXT.1.1:</div><div class="uc_sel">* select client</div></td></tr></table><h2 id="r-sshserver">
+         Rule #10</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">IF</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
+      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#s-ftp_ssh">SSH</a></div><div class="uc_sel">* select <a href="#s-ssh-server">server(SSH)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH)</a>: </div><div class="uc_from_fel">
+      From FCS_SSH_EXT.1.1:</div><div class="uc_sel">* select server</div></td></tr></table><h2 id="r-bluetooth-ccm">
+         Rule #11</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="3">DECISION C</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="choicelabel">CHOICE C1</div><div class="uc,not,module">Exclude the 
       <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=425&amp;id=425">PP-Module for Bluetooth,
         version 
         1.0</a> module from the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>
       </div></td></tr><tr><td style="width: 99%"><div class="choicelabel">CHOICE C2</div>
-                  <div class="uc,module"> Include the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=425&amp;id=425">PP-Module for Bluetooth,
+      	            <div class="uc,module"> Include the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=425&amp;id=425">PP-Module for Bluetooth,
         version 
         1.0</a> module in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> </div>
-                  <table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="3">DECISION D</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="choicelabel">CHOICE D1</div><div class="uc_from_fel">
+      	            <table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="3">DECISION D</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="choicelabel">CHOICE D1</div><div class="uc_from_fel">
       From <a href="#FCS_CKM.1.1">FCS_CKM.1.1</a>:</div><div class="uc_sel">* select <a href="#s-keygen-ecc">ECC schemes using "NIST curves" P-384 and
                   [<b>selection</b>: <span class="selectable-content" id="p-256-keygen">P-256</span>, <span class="selectable-content" id="_s_4">P-521</span>, <span class="selectable-content" id="_s_5"> no other curves</span>] that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)",
                   Appendix B.4
@@ -5284,33 +5323,7 @@ Configure lockout policy for unsuccessful authentication attempts through
                   Appendix B.4
                 </a></div><div class="uc_sel">* select <a href="#p-256-keygen">P-256</a></div><div class="uc_from_fel">
       From <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>:</div><div class="uc_sel">* select <a href="#s-aes-ccm"> AES-CCM (as defined in NIST SP 800-38C)</a></div><div class="uc_sel">* select <a href="#s-128">128-bit</a></div></td></tr></table>
-                </td></tr></table><h2 id="r-need-client-tls">
-         Rule #6</h2><div></div><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: </div><div class="uc_from_fel">
-      From FCS_TLS_EXT.1.1:</div><div class="uc_sel">* select <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as a client</div><h2 id="r-tlss">
-         Rule #7</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">IF</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
-      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#tls">TLS as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS),
-        version 
-        1.1</a> as a
-    	  	    [<b>selection</b>: <span class="selectable-content" id="s-tls-client">client</span>, <span class="selectable-content" id="s-tls-server">server</span>]</a></div><div class="uc_sel">* select <a href="#s-tls-server">server(TLS)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: </div><div class="uc_from_fel">
-      From FCS_TLS_EXT.1.1:</div><div class="uc_sel">* select <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as a server</div></td></tr></table><h2 id="r-dtlsc">
-         Rule #8</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">IF</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
-      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#dtls">DTLS as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS),
-        version 
-        1.1</a> as a
-    	  	    [<b>selection</b>: <span class="selectable-content" id="s-dtls-client">client</span>, <span class="selectable-content" id="s-dtls-server">server</span>]</a></div><div class="uc_sel">* select <a href="#s-dtls-client">client(DTLS)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: </div><div class="uc_from_fel">
-      From FCS_TLS_EXT.1.1:</div><div class="uc_sel">* select <abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as a client</div></td></tr></table><h2 id="r-dtlss">
-         Rule #9</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">IF</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
-      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#dtls">DTLS as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS),
-        version 
-        1.1</a> as a
-    	  	    [<b>selection</b>: <span class="selectable-content" id="s-dtls-client">client</span>, <span class="selectable-content" id="s-dtls-server">server</span>]</a></div><div class="uc_sel">* select <a href="#s-dtls-server">server(DTLS)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: </div><div class="uc_from_fel">
-      From FCS_TLS_EXT.1.1:</div><div class="uc_sel">* select <abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as a server</div></td></tr></table><h2 id="r-sshclient">
-         Rule #10</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">IF</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
-      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#s-ftp_ssh">SSH</a></div><div class="uc_sel">* select <a href="#s-ssh-client">client(SSH)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH)</a>: </div><div class="uc_from_fel">
-      From FCS_SSH_EXT.1.1:</div><div class="uc_sel">* select client</div></td></tr></table><h2 id="r-sshserver">
-         Rule #11</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">IF</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_from_fel">
-      From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#s-ftp_ssh">SSH</a></div><div class="uc_sel">* select <a href="#s-ssh-server">server(SSH)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH)</a>: </div><div class="uc_from_fel">
-      From FCS_SSH_EXT.1.1:</div><div class="uc_sel">* select server</div></td></tr></table>
+      	          </td></tr></table>
 	      
 	      
 	    <h1 id="acronyms" class="indexable" data-level="A">Appendix F -  Acronyms</h1><table><caption><span class="ctr" data-myid="t-acronyms" data-counter-type="ct-Table" id="t-acronyms">Table <span class="counter">4</span></span>: Acronyms

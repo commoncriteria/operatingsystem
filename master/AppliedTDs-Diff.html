@@ -539,7 +539,7 @@
                     <p></p>
                     <b><a href="#r-key-ffc">Rule #3</a></b>
                     <p></p>
-                    <b><a href="#r-bluetooth-ccm">Rule #5</a></b>
+                    <b><a href="#r-bluetooth-ccm">Rule #11</a></b>
                 </div>
             </div>
             <div class="activity_pane hide">
@@ -1160,7 +1160,7 @@
                     <p></p>
                     <b><a href="#r-wlan-aes">Rule #4</a></b>
                     <p></p>
-                    <b><a href="#r-bluetooth-ccm">Rule #5</a></b>
+                    <b><a href="#r-bluetooth-ccm">Rule #11</a></b>
                 </div>
             </div>
             <div class="activity_pane hide">
@@ -3222,15 +3222,15 @@ PT = CT[i]
                     </div>
                     <div class="validationguidelines_label">Validation Guidelines:</div>
                     <p></p>
-                    <b><a href="#r-tlss">Rule #7</a></b>
+                    <b><a href="#r-tlss">Rule #6</a></b>
                     <p></p>
-                    <b><a href="#r-dtlsc">Rule #8</a></b>
+                    <b><a href="#r-dtlsc">Rule #7</a></b>
                     <p></p>
-                    <b><a href="#r-dtlss">Rule #9</a></b>
+                    <b><a href="#r-dtlss">Rule #8</a></b>
                     <p></p>
-                    <b><a href="#r-sshclient">Rule #10</a></b>
+                    <b><a href="#r-sshclient">Rule #9</a></b>
                     <p></p>
-                    <b><a href="#r-sshserver">Rule #11</a></b>
+                    <b><a href="#r-sshserver">Rule #10</a></b>
                 </div>
             </div>
             <div class="activity_pane hide">
@@ -5964,7 +5964,192 @@ PT = CT[i]
                 </td>
             </tr>
         </table>
-        <h2 id="r-bluetooth-ccm"> Rule #5</h2>
+        <h2 id="r-need-client-tls"> Rule #5</h2>
+        <div></div>
+        <div class="uc_inc_pkg">
+             From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: 
+        </div>
+        <div class="uc_from_fel"> From FCS_TLS_EXT.1.1:</div>
+        <div class="uc_sel">
+            * select <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as a client
+        </div>
+        <h2 id="r-tlss"> Rule #6</h2>
+        <div></div>
+        <table class="uc_table_or" style="border: 1px solid black">
+            <tr>
+                <td class="or_cell" rowspan="2">IF</td><td style="display:none"></td>
+            </tr>
+            <tr>
+                <td style="width: 99%">
+                    <div class="uc_from_fel">
+                         From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:
+                    </div>
+                    <div class="uc_sel">
+                        * select <a href="#tls">TLS as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS), version 1.1</a> as a [<b>selection</b>: <span class="selectable-content" id="s-tls-client">client</span>, <span class="selectable-content" id="s-tls-server">server</span>]</a>
+                    </div>
+                    <div class="uc_sel">
+                        * select <a href="#s-tls-server">server(TLS)</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <table class="uc_table_or" style="border: 1px solid black">
+            <tr>
+                <td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td>
+            </tr>
+            <tr>
+                <td style="width: 99%">
+                    <div class="uc_inc_pkg">
+                         From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: 
+                    </div>
+                    <div class="uc_from_fel"> From FCS_TLS_EXT.1.1:</div>
+                    <div class="uc_sel">
+                        * select <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as a server
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <h2 id="r-dtlsc"> Rule #7</h2>
+        <div></div>
+        <table class="uc_table_or" style="border: 1px solid black">
+            <tr>
+                <td class="or_cell" rowspan="2">IF</td><td style="display:none"></td>
+            </tr>
+            <tr>
+                <td style="width: 99%">
+                    <div class="uc_from_fel">
+                         From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:
+                    </div>
+                    <div class="uc_sel">
+                        * select <a href="#dtls">DTLS as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS), version 1.1</a> as a [<b>selection</b>: <span class="selectable-content" id="s-dtls-client">client</span>, <span class="selectable-content" id="s-dtls-server">server</span>]</a>
+                    </div>
+                    <div class="uc_sel">
+                        * select <a href="#s-dtls-client">client(DTLS)</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <table class="uc_table_or" style="border: 1px solid black">
+            <tr>
+                <td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td>
+            </tr>
+            <tr>
+                <td style="width: 99%">
+                    <div class="uc_inc_pkg">
+                         From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: 
+                    </div>
+                    <div class="uc_from_fel"> From FCS_TLS_EXT.1.1:</div>
+                    <div class="uc_sel">
+                        * select <abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as a client
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <h2 id="r-dtlss"> Rule #8</h2>
+        <div></div>
+        <table class="uc_table_or" style="border: 1px solid black">
+            <tr>
+                <td class="or_cell" rowspan="2">IF</td><td style="display:none"></td>
+            </tr>
+            <tr>
+                <td style="width: 99%">
+                    <div class="uc_from_fel">
+                         From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:
+                    </div>
+                    <div class="uc_sel">
+                        * select <a href="#dtls">DTLS as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS), version 1.1</a> as a [<b>selection</b>: <span class="selectable-content" id="s-dtls-client">client</span>, <span class="selectable-content" id="s-dtls-server">server</span>]</a>
+                    </div>
+                    <div class="uc_sel">
+                        * select <a href="#s-dtls-server">server(DTLS)</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <table class="uc_table_or" style="border: 1px solid black">
+            <tr>
+                <td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td>
+            </tr>
+            <tr>
+                <td style="width: 99%">
+                    <div class="uc_inc_pkg">
+                         From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: 
+                    </div>
+                    <div class="uc_from_fel"> From FCS_TLS_EXT.1.1:</div>
+                    <div class="uc_sel">
+                        * select <abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as a server
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <h2 id="r-sshclient"> Rule #9</h2>
+        <div></div>
+        <table class="uc_table_or" style="border: 1px solid black">
+            <tr>
+                <td class="or_cell" rowspan="2">IF</td><td style="display:none"></td>
+            </tr>
+            <tr>
+                <td style="width: 99%">
+                    <div class="uc_from_fel">
+                         From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:
+                    </div>
+                    <div class="uc_sel">
+                        * select <a href="#s-ftp_ssh">SSH</a>
+                    </div>
+                    <div class="uc_sel">
+                        * select <a href="#s-ssh-client">client(SSH)</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <table class="uc_table_or" style="border: 1px solid black">
+            <tr>
+                <td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td>
+            </tr>
+            <tr>
+                <td style="width: 99%">
+                    <div class="uc_inc_pkg">
+                         From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH)</a>: 
+                    </div>
+                    <div class="uc_from_fel"> From FCS_SSH_EXT.1.1:</div>
+                    <div class="uc_sel">* select client</div>
+                </td>
+            </tr>
+        </table>
+        <h2 id="r-sshserver"> Rule #10</h2>
+        <div></div>
+        <table class="uc_table_or" style="border: 1px solid black">
+            <tr>
+                <td class="or_cell" rowspan="2">IF</td><td style="display:none"></td>
+            </tr>
+            <tr>
+                <td style="width: 99%">
+                    <div class="uc_from_fel">
+                         From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:
+                    </div>
+                    <div class="uc_sel">
+                        * select <a href="#s-ftp_ssh">SSH</a>
+                    </div>
+                    <div class="uc_sel">
+                        * select <a href="#s-ssh-server">server(SSH)</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <table class="uc_table_or" style="border: 1px solid black">
+            <tr>
+                <td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td>
+            </tr>
+            <tr>
+                <td style="width: 99%">
+                    <div class="uc_inc_pkg">
+                         From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH)</a>: 
+                    </div>
+                    <div class="uc_from_fel"> From FCS_SSH_EXT.1.1:</div>
+                    <div class="uc_sel">* select server</div>
+                </td>
+            </tr>
+        </table>
+        <h2 id="r-bluetooth-ccm"> Rule #11</h2>
         <div></div>
         <table class="uc_table_or" style="border: 1px solid black">
             <tr>
@@ -6038,191 +6223,6 @@ PT = CT[i]
                             </td>
                         </tr>
                     </table>
-                </td>
-            </tr>
-        </table>
-        <h2 id="r-need-client-tls"> Rule #6</h2>
-        <div></div>
-        <div class="uc_inc_pkg">
-             From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: 
-        </div>
-        <div class="uc_from_fel"> From FCS_TLS_EXT.1.1:</div>
-        <div class="uc_sel">
-            * select <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as a client
-        </div>
-        <h2 id="r-tlss"> Rule #7</h2>
-        <div></div>
-        <table class="uc_table_or" style="border: 1px solid black">
-            <tr>
-                <td class="or_cell" rowspan="2">IF</td><td style="display:none"></td>
-            </tr>
-            <tr>
-                <td style="width: 99%">
-                    <div class="uc_from_fel">
-                         From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:
-                    </div>
-                    <div class="uc_sel">
-                        * select <a href="#tls">TLS as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS), version 1.1</a> as a [<b>selection</b>: <span class="selectable-content" id="s-tls-client">client</span>, <span class="selectable-content" id="s-tls-server">server</span>]</a>
-                    </div>
-                    <div class="uc_sel">
-                        * select <a href="#s-tls-server">server(TLS)</a>
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <table class="uc_table_or" style="border: 1px solid black">
-            <tr>
-                <td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td>
-            </tr>
-            <tr>
-                <td style="width: 99%">
-                    <div class="uc_inc_pkg">
-                         From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: 
-                    </div>
-                    <div class="uc_from_fel"> From FCS_TLS_EXT.1.1:</div>
-                    <div class="uc_sel">
-                        * select <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as a server
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <h2 id="r-dtlsc"> Rule #8</h2>
-        <div></div>
-        <table class="uc_table_or" style="border: 1px solid black">
-            <tr>
-                <td class="or_cell" rowspan="2">IF</td><td style="display:none"></td>
-            </tr>
-            <tr>
-                <td style="width: 99%">
-                    <div class="uc_from_fel">
-                         From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:
-                    </div>
-                    <div class="uc_sel">
-                        * select <a href="#dtls">DTLS as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS), version 1.1</a> as a [<b>selection</b>: <span class="selectable-content" id="s-dtls-client">client</span>, <span class="selectable-content" id="s-dtls-server">server</span>]</a>
-                    </div>
-                    <div class="uc_sel">
-                        * select <a href="#s-dtls-client">client(DTLS)</a>
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <table class="uc_table_or" style="border: 1px solid black">
-            <tr>
-                <td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td>
-            </tr>
-            <tr>
-                <td style="width: 99%">
-                    <div class="uc_inc_pkg">
-                         From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: 
-                    </div>
-                    <div class="uc_from_fel"> From FCS_TLS_EXT.1.1:</div>
-                    <div class="uc_sel">
-                        * select <abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as a client
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <h2 id="r-dtlss"> Rule #9</h2>
-        <div></div>
-        <table class="uc_table_or" style="border: 1px solid black">
-            <tr>
-                <td class="or_cell" rowspan="2">IF</td><td style="display:none"></td>
-            </tr>
-            <tr>
-                <td style="width: 99%">
-                    <div class="uc_from_fel">
-                         From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:
-                    </div>
-                    <div class="uc_sel">
-                        * select <a href="#dtls">DTLS as conforming to the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS), version 1.1</a> as a [<b>selection</b>: <span class="selectable-content" id="s-dtls-client">client</span>, <span class="selectable-content" id="s-dtls-server">server</span>]</a>
-                    </div>
-                    <div class="uc_sel">
-                        * select <a href="#s-dtls-server">server(DTLS)</a>
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <table class="uc_table_or" style="border: 1px solid black">
-            <tr>
-                <td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td>
-            </tr>
-            <tr>
-                <td style="width: 99%">
-                    <div class="uc_inc_pkg">
-                         From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=439&amp;id=439">Functional Package for Transport Layer Security (TLS)</a>: 
-                    </div>
-                    <div class="uc_from_fel"> From FCS_TLS_EXT.1.1:</div>
-                    <div class="uc_sel">
-                        * select <abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as a server
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <h2 id="r-sshclient"> Rule #10</h2>
-        <div></div>
-        <table class="uc_table_or" style="border: 1px solid black">
-            <tr>
-                <td class="or_cell" rowspan="2">IF</td><td style="display:none"></td>
-            </tr>
-            <tr>
-                <td style="width: 99%">
-                    <div class="uc_from_fel">
-                         From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:
-                    </div>
-                    <div class="uc_sel">
-                        * select <a href="#s-ftp_ssh">SSH</a>
-                    </div>
-                    <div class="uc_sel">
-                        * select <a href="#s-ssh-client">client(SSH)</a>
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <table class="uc_table_or" style="border: 1px solid black">
-            <tr>
-                <td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td>
-            </tr>
-            <tr>
-                <td style="width: 99%">
-                    <div class="uc_inc_pkg">
-                         From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH)</a>: 
-                    </div>
-                    <div class="uc_from_fel"> From FCS_SSH_EXT.1.1:</div>
-                    <div class="uc_sel">* select client</div>
-                </td>
-            </tr>
-        </table>
-        <h2 id="r-sshserver"> Rule #11</h2>
-        <div></div>
-        <table class="uc_table_or" style="border: 1px solid black">
-            <tr>
-                <td class="or_cell" rowspan="2">IF</td><td style="display:none"></td>
-            </tr>
-            <tr>
-                <td style="width: 99%">
-                    <div class="uc_from_fel">
-                         From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:
-                    </div>
-                    <div class="uc_sel">
-                        * select <a href="#s-ftp_ssh">SSH</a>
-                    </div>
-                    <div class="uc_sel">
-                        * select <a href="#s-ssh-server">server(SSH)</a>
-                    </div>
-                </td>
-            </tr>
-        </table>
-        <table class="uc_table_or" style="border: 1px solid black">
-            <tr>
-                <td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td>
-            </tr>
-            <tr>
-                <td style="width: 99%">
-                    <div class="uc_inc_pkg">
-                         From the <a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459">Functional Package for Secure Shell (SSH)</a>: 
-                    </div>
-                    <div class="uc_from_fel"> From FCS_SSH_EXT.1.1:</div>
-                    <div class="uc_sel">* select server</div>
                 </td>
             </tr>
         </table>
