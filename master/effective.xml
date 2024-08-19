@@ -50,7 +50,7 @@
       <url>https://github.com/commoncriteria/ssh</url>
       <branch>release-1.0</branch>
     </git>
-    <url>https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&amp;id=459</url>
+    <url>https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm</url>
     <depends on="s-ftp_ssh" also="s-uau-ssh"/>
   </include-pkg>
   <include-pkg id="pkg-tls">
@@ -523,7 +523,7 @@ it manages may be physical or virtual.
 	  
 	  <addressed-by>FPT_TST_EXT.1    </addressed-by><rationale>Supports the objective by requiring the TSF to verify executable code critical to its operation.</rationale>
 	  <addressed-by>FTP_ITC_EXT.1    </addressed-by><rationale>Supports the objective by requiring the OS to provide a trusted channel for critical communication.</rationale>
-	  <addressed-by>FPT_W^X_EXT.1    </addressed-by><rationale>Supports the objective by requiring the OS to execute only non-writable memory.</rationale>
+	  <addressed-by>FPT_W^X_EXT.1 (Optional)</addressed-by><rationale>Supports the objective by requiring the OS to execute only non-writable memory.</rationale>
 	  <addressed-by>FIA_AFL.1        </addressed-by><rationale>Supports the objective by requiring the TSF to respond accordingly when the number of failed authentication attempts reaches a specified threshold.</rationale>
 	  <addressed-by>FIA_UAU.5        </addressed-by><rationale>Supports the objective by requiring the OS to provide standard authentication mechanisms.</rationale>
 	  <addressed-by>FPT_BLT_EXT.1 (Objective)</addressed-by>
@@ -3184,6 +3184,66 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 
         </f-component>
 
+
+        <ext-comp-def fam-id="FPT_W^X_EXT" title="Write XOR Execute Memory Pages">
+          <fam-behavior>
+            This family defines the ability of the TOE to implement data execution prevention (DEP) by preventing
+            memory from being both writable and executable. This is a new family defined for the FPT class.
+          </fam-behavior>
+        </ext-comp-def>
+        <f-component cc-id="fpt_w^x_ext.1" name="Write XOR Execute Memory Pages" status="optional">
+          
+          <comp-lev> defines the ability of the TOE to prevent memory
+            from being simultaneously writable and executable unless otherwise specified.</comp-lev>
+          <management>There are no management functions foreseen.</management>
+          <audit>There are no auditable events foreseen.</audit>
+          <dependencies>No dependencies.</dependencies>
+          
+          <f-element id="fel-no-rw-mem">
+            <title> The OS shall prevent allocation of any memory region with both write and
+              execute permissions except for <assignable>list of exceptions</assignable>.
+            </title>
+            <note role="application">Requesting a memory mapping with both write and execute
+              permissions subverts the platform protection provided by DEP.
+              If the OS provides no exceptions (such as for just-in-time compilation),
+              then "no exceptions" should be indicated in the assignment.
+              Full realization of this requirement requires hardware support, but this is commonly available.
+            </note>
+            <aactivity>
+              <TSS>
+                The evaluator shall inspect the vendor-provided developer documentation and
+                verify that no memory-mapping can be made with
+                write and execute permissions except for the cases listed in the assignment.
+              </TSS>
+              <Tests>
+                The evaluator shall also perform the following tests.
+                <testlist>
+                  <test>
+                    The evaluator shall acquire or construct a test program which attempts
+                    to allocate memory that is both writable and executable.
+                    The evaluator shall run the program and confirm that it fails to
+                    allocate memory that is both writable and executable.
+                  </test>
+                  <test>
+                    The evaluator shall acquire or construct a test program which
+                    allocates memory that is executable and then
+                    subsequently requests additional write/modify permissions on that memory.
+                    The evaluator shall run the program and confirm that at no time
+                    during the lifetime of the process is the memory both writable and executable.
+                  </test>
+                  <test>
+                    The evaluator shall acquire or construct a test program which
+                    allocates memory that is writable and then
+                    subsequently requests additional execute permissions on that memory.
+                    The evaluator shall run the program and confirm that at no time
+                    during the lifetime of the process is the memory both writable and executable.
+                  </test>
+                </testlist>
+              </Tests>
+            </aactivity>
+          </f-element>
+        </f-component>
+
       </section>
       <section title="Audit Data Generation (FAU)" id="fau">
         <f-component cc-id="fau_gen.1" name="Audit Data Generation (Refined)">
@@ -3764,64 +3824,7 @@ the node certificate to be tested, two Intermediate CAs, and the
 	    </aactivity>
           </f-element>
         </f-component>
-        <ext-comp-def fam-id="FPT_W^X_EXT" title="Write XOR Execute Memory Pages">
-          <fam-behavior>
-            This family defines the ability of the TOE to implement data execution prevention (DEP) by preventing
-            memory from being both writable and executable. This is a new family defined for the FPT class.
-          </fam-behavior>
-        </ext-comp-def>
-        <f-component cc-id="fpt_w^x_ext.1" name="Write XOR Execute Memory Pages" status="optional">
-          
-          <comp-lev> defines the ability of the TOE to prevent memory
-            from being simultaneously writable and executable unless otherwise specified.</comp-lev>
-          <management>There are no management functions foreseen.</management>
-          <audit>There are no auditable events foreseen.</audit>
-          <dependencies>No dependencies.</dependencies>
-          
-          <f-element id="fel-no-rw-mem">
-            <title> The OS shall prevent allocation of any memory region with both write and
-              execute permissions except for <assignable>list of exceptions</assignable>.
-            </title>
-            <note role="application">Requesting a memory mapping with both write and execute
-              permissions subverts the platform protection provided by DEP.
-              If the OS provides no exceptions (such as for just-in-time compilation),
-              then "no exceptions" should be indicated in the assignment.
-              Full realization of this requirement requires hardware support, but this is commonly available.
-            </note>
-            <aactivity>
-              <TSS>
-                The evaluator shall inspect the vendor-provided developer documentation and
-                verify that no memory-mapping can be made with
-                write and execute permissions except for the cases listed in the assignment.
-              </TSS>
-              <Tests>
-                The evaluator shall also perform the following tests.
-                <testlist>
-                  <test>
-                    The evaluator shall acquire or construct a test program which attempts
-                    to allocate memory that is both writable and executable.
-                    The evaluator shall run the program and confirm that it fails to
-                    allocate memory that is both writable and executable.
-                  </test>
-                  <test>
-                    The evaluator shall acquire or construct a test program which
-                    allocates memory that is executable and then
-                    subsequently requests additional write/modify permissions on that memory.
-                    The evaluator shall run the program and confirm that at no time
-                    during the lifetime of the process is the memory both writable and executable.
-                  </test>
-                  <test>
-                    The evaluator shall acquire or construct a test program which
-                    allocates memory that is writable and then
-                    subsequently requests additional execute permissions on that memory.
-                    The evaluator shall run the program and confirm that at no time
-                    during the lifetime of the process is the memory both writable and executable.
-                  </test>
-                </testlist>
-              </Tests>
-            </aactivity>
-          </f-element>
-        </f-component>
+       
       </section>
       <section title="Trusted Path/Channels (FTP)" id="ftp">
 
