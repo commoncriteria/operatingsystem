@@ -2100,6 +2100,134 @@ only AES-based implementations for CTR_DRBG are allowed.
             </aactivity>
           </f-element>
         </f-component>
+        
+        <f-component cc-id="fcs_rbg.1" name="Random Bit Generation (RBG)">
+          <f-element id="fel-rbg-init-seed">
+            <title>
+              The TSF shall perform deterministic random bit generation services using <assignable>RBG algorithm</assignable> in accordance
+              with <assignable>list of standards</assignable> after initialization with a seed.              
+            </title>
+
+          </f-element>
+          <f-element id="fel-rbg-init-seed-how">
+            <title>
+              The TSF shall use a <selectables>
+                <selectable>TSF noise source <assignable>name of noise source</assignable></selectable>
+                <selectable>TSF interface for seeding</selectable>
+              </selectables>
+              for initialized seeding.
+            </title>          
+          </f-element>
+          
+          <f-element id="fel-rbg-init-seed-when">
+            <title>
+              The TSF shall update the RBG state by <selectables>
+                <selectable>reseeding</selectable>
+                <selectable>uninstantiating and reinstantiating</selectable>
+              </selectables> using a <selectables>
+                <selectable>TSF noise source <assignable>name of noise source</assignable></selectable>
+                <selectable>TSF interface for seeding </selectable></selectables>
+              in the following situations: <selectables linebreak="yes">
+                <selectable>never</selectable>
+                <selectable>on demand</selectable>
+                <selectable>on the condition: <assignable>condition</assignable></selectable>
+                <selectable>after <assignable>time</assignable></selectable>
+              </selectables>
+              in accordance with <assignable>list of standards</assignable>.
+            </title>
+          </f-element>
+        </f-component>        
+
+        <f-component cc-id="fcs_rbg.2" name="Random Bit Generation (External Seeding)">
+          <f-element id="fel-rbg-seed-purpose">
+            <title>
+              The TSF shall be able to accept a minimum input of <assignable>minimum input length greater than zero </assignable>
+              from a TSF interface for the purpose of seeding.
+            </title>        
+          </f-element>
+        </f-component>
+        
+        <f-component cc-id="fcs_rbg.3" name="Random Bit Generation (Internal Seeding - Single Source)">
+          <f-element id="fel-rbg-seed-int-sing">
+            <title>
+              The TSF shall be able to seed the RBG using a <selectables>
+                <selectable exclusive="yes">TSF software-based noise source</selectable>
+                <selectable exclusive="yes">TSF hardware-based noise source <assignable>name of noise source </assignable></selectable> with
+                a minimum of <assignable>number of bits</assignable> bits of min-entropy.
+              </selectables>
+            </title>        
+          </f-element>
+        </f-component>
+        
+        <f-component cc-id="fcs_rbg.4" name="Random Bit Generation (Internal Seeding - Multiple Source)">
+          <f-element id="fel-rbg-seed-int-mult">
+            <title>
+              The TSF shall be able to seed the RBG using <selectables>
+                <selectable><assignable>number </assignable>TSF software-based noise source(s)</selectable>
+                <selectable><assignable>number </assignable>TSF hardware-based noise source(s)</selectable>
+              </selectables>
+            </title>        
+          </f-element>
+        </f-component>
+          
+        <f-component cc-id="fcs_rbg.5" name="Random Bit Generation (Combining Noise Sources)">
+          <f-element id="fel-rbg-comb">
+            <title>
+              The TSF shall <assignable>combining operation </assignable><selectables>
+                <selectable>output from TSF noise source(s)</selectable>
+                <selectable>input from TSF interface(s) for seeding </selectable>
+                to create the entropy input into the derivation function as defined in <assignable>list of standards, </assignable>resulting
+                in a minimum of <assignable>number of bits </assignable>bits of min-entropy.
+              </selectables>
+            </title>        
+          </f-element>
+        </f-component>    
+        
+        <f-component cc-id="fpt_fls.1" name="Failure with Preservation of Secure State">
+          <f-element id="fel-pres-sec-state">
+            <title>
+              The TSF shall preserve a secure state when the following types of failures occur: <assignable>list of types of failures in the
+                TSF</assignable>.              
+            </title>
+          </f-element>
+        </f-component>
+        
+        <f-component cc-id="fpt_tst.1" name="TSF Self-Testing">
+          <f-element id="fel-tsf-self-test">
+            <title>
+              The TSF shall run a suite of the following self-tests <selectables>
+                <selectable>during initial start-up</selectable>
+                <selectable>periodically during normal operation</selectable>
+                <selectable>at the request of the authorized user</selectable>
+                <selectable>at the conditions <assignable>conditions under which self-test should occur </assignable></selectable>
+              </selectables>
+              to demonstrate the correct operation of <selectables>
+                <selectable><assignable>part of TSF</assignable>,</selectable>
+                <selectable>the TSF: </selectable>
+              </selectables>
+                <assignable>list of self-tests run by the TSF</assignable>.              
+            </title>
+          </f-element>
+          
+          <f-element id="fel-tsf-ver-int-data">
+            <title>
+              The TSF shall provide authorized users with the capability to verify the integrity of <selectables>
+                <selectable><assignable>parts of TSF data</assignable></selectable>
+                <selectable>TSF data</selectable>
+              </selectables>
+            </title>
+          </f-element>
+          
+          <f-element id="fel-tsf-ver-int">
+            <title>
+              The TSF shall provide authorized users with the capability to verify the integrity of <selectables>
+                <selectable><assignable>parts of TSF</assignable></selectable>
+                <selectable>TSF</selectable>
+              </selectables>
+            </title>
+          </f-element>
+          
+        </f-component>
 
 	<ext-comp-def fam-id="FCS_STO_EXT" title="Storage of Sensitive Data">
 	  <fam-behavior>Components in this family describe the requirements for storing sensitive data (such as cryptographic
