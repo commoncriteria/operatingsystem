@@ -16,6 +16,8 @@
         /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[4]""/f-component[7]""/f-element[2]""
 * Error: f-element FPT_TST.1.3  appears not to have an associated evaluation activity.:
         /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[4]""/f-component[7]""/f-element[3]""
+* Error: Detected dangling id-reference to QQQQ from attribute
+        on/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[1]""/f-component[11]""/depends[1]""/on[1]""
 warning: failed to load external entity "output/pkg-x509.xml"
 warning: failed to load external entity "output/pkg-x509.xml"
 warning: failed to load external entity "output/pkg-x509.xml"
