@@ -1962,7 +1962,7 @@ This result shall be compared to the result of running 1000 iterations with the 
 	    </aactivity>
           </f-element>
         </f-component>
-
+<!--
 	<ext-comp-def fam-id="FCS_RBG_EXT" title="Random Bit Generation">
 	  <fam-behavior>Components in this family address the requirements for random bit and number generation. This is a
 	    new family defined for the FCS class.</fam-behavior>
@@ -2061,10 +2061,10 @@ only AES-based implementations for CTR_DRBG are allowed.
                 <selectable>platform-based noise source</selectable>
               </selectables>
               with a minimum of 256 bits
-              <!-- <selectables linebreak="yes"> -->
-              <!--   <selectable>128 bits</selectable> -->
-              <!--   <selectable>256 bits</selectable> -->
-              <!-- </selectables> -->
+              <selectables linebreak="yes"> 
+                 <selectable>128 bits</selectable> 
+                 <selectable>256 bits</selectable> 
+               </selectables> 
               of entropy at least equal to the greatest security strength (according to NIST SP 800-57)
               of the keys and hashes that it will generate.
 	    </title>
@@ -2100,23 +2100,116 @@ only AES-based implementations for CTR_DRBG are allowed.
             </aactivity>
           </f-element>
         </f-component>
+        -->
         
         <f-component cc-id="fcs_rbg.1" name="Random Bit Generation (RBG)">
           <f-element id="fel-rbg-init-seed">
             <title>
-              The TSF shall perform deterministic random bit generation services using <assignable>RBG algorithm</assignable> in accordance
-              with <assignable>list of standards</assignable> after initialization with a seed.              
+              The TSF shall perform deterministic random bit generation services using 
+              <selectables linebreak="yes">
+                <selectable>Hash_DRBG (any)</selectable>
+                <selectable>HMAC_DRBG (any)</selectable>
+                <selectable>CTR_DRBG (AES)</selectable>
+              </selectables>
+              in accordance
+              with [<h:i>NIST SP 800-90A</h:i>] after initialization with a seed.              
             </title>
-
+            <note role="application">
+              NIST SP 800-90A contains three different methods of generating random numbers;
+              each of these, in turn, depends on underlying cryptographic primitives (hash functions/ciphers).
+              The ST author will select the function used and include the specific underlying cryptographic primitives used in the requirement or in the TSS.
+              While any of the identified hash functions (SHA-224, SHA-256, SHA-384, SHA-512) are allowed for Hash_DRBG or HMAC_DRBG,
+              only AES-based implementations for CTR_DRBG are allowed.
+            </note>
+            <aactivity level="element">
+              <TSS/>
+              <Guidance/>
+              <Tests>
+                <h:p>
+                  The evaluator shall perform the following tests:
+                </h:p><h:p>
+                  The evaluator shall perform 15 trials for the RNG implementation. If the RNG
+                  is configurable, the evaluator shall perform 15 trials for each configuration. The
+                  evaluator shall also confirm that the operational guidance contains appropriate
+                  instructions for configuring the RNG functionality.
+                </h:p><h:p>
+                  If the RNG has  prediction resistance enabled, each trial consists of (1) instantiate DRBG, (2)
+                  generate the first block of random bits (3) generate a second block of random bits
+                  (4) uninstantiate. The evaluator verifies that the second block of random bits is
+                  the expected value. The evaluator shall generate eight input values for each
+                  trial. The first is a count (0 – 14). The next three are entropy input, nonce, and
+                  personalization string for the instantiate operation. The next two are additional
+                  input and entropy input for the first call to generate. The final two are
+                  additional input and entropy input for the second call to generate. These values
+                  are randomly generated. "generate one block of random bits" means to generate
+                  random bits with number of returned bits equal to the Output Block Length (as
+                  defined in NIST SP 800-90A).
+                </h:p><h:p>
+                  If the RNG does not have prediction resistance,
+                  each trial consists of (1) instantiate DRBG, (2) generate the first block of
+                  random bits (3) reseed, (4) generate a second block of random bits (5)
+                  uninstantiate. The evaluator verifies that the second block of random bits is the
+                  expected value. The evaluator shall generate eight input values for each trial.
+                  The first is a count (0 – 14). The next three are entropy input, nonce, and
+                  personalization string for the instantiate operation. The fifth value is
+                  additional input to the first call to generate. The sixth and seventh are
+                  additional input and entropy input to the call to reseed. The final value is
+                  additional input to the second generate call.
+                </h:p><h:p>
+                  The following list contains more information on some of the input values to be generated/selected by the evaluator.
+                  <h:ul>
+                    <h:li> <h:b>Entropy input:</h:b> The length of the entropy input value must equal the seed
+                      length.</h:li>
+                    
+                    <h:li><h:b>Nonce:</h:b> If a nonce is supported (CTR_DRBG with no Derivation Function does
+                      not use a nonce), the nonce bit length is one-half the seed length. </h:li>
+                    <h:li><h:b>Personalization string:</h:b> The length of the personalization string must be
+                      less than or equal to seed length. If the implementation only supports one
+                      personalization string length, then the same length can be used for both values.
+                      If more than one string length is support, the evaluator shall use personalization
+                      strings of two different lengths. If the implementation does not use a
+                      personalization string, no value needs to be supplied. </h:li>
+                    <h:li><h:b>Additional input:</h:b> The additional input bit lengths have the same defaults
+                      and restrictions as the personalization string lengths.</h:li>
+                  </h:ul>
+                </h:p>
+              </Tests>
+            </aactivity>
           </f-element>
           <f-element id="fel-rbg-init-seed-how">
             <title>
               The TSF shall use a <selectables>
-                <selectable>TSF noise source <assignable>name of noise source</assignable></selectable>
-                <selectable>TSF interface for seeding</selectable>
+                <selectable id="internal-seed">TSF noise source <assignable>name of noise source</assignable></selectable>
+                <selectable id="external-seed">TSF interface for seeding</selectable>
               </selectables>
               for initialized seeding.
-            </title>          
+            </title>
+            <note role="application">
+              <h:p>
+                For the 
+                selection in this requirement, the ST author selects 'TSF noise source' if
+                any additional noise sources are used as input to the DRBG.
+              </h:p>
+              <h:p>
+                If "TSF noise source" is selected, FCS_RBG.3 must be claimed.
+              </h:p>
+              <h:p>
+                If "TSF interface for seeding" is selected, FCS_RBG.2 must be claimed. 
+              </h:p>
+            </note>
+            <aactivity level="element">
+              <TSS/>
+              <Guidance/>
+              <Tests>
+                <h:p>
+                  Documentation will be produced - and the evaluator shall perform the
+                  activities - in accordance with <xref to="entropyappendix"/> and
+                  the
+                  <h:a href="https://old.niap-ccevs.org/Documents_and_Guidance/ccevs/Entropy%20Documentation%20and%20Assessment%20Clarification.pdf"
+                    >Clarification to the Entropy Documentation and Assessment Annex</h:a>.
+                </h:p>
+              </Tests>
+            </aactivity>
           </f-element>
           
           <f-element id="fel-rbg-init-seed-when">
@@ -2135,10 +2228,16 @@ only AES-based implementations for CTR_DRBG are allowed.
               </selectables>
               in accordance with <assignable>list of standards</assignable>.
             </title>
+            <aactivity level="element">
+              <TSS/>
+              <Guidance/>
+              <Tests/>
+            </aactivity>
           </f-element>
         </f-component>        
 
-        <f-component cc-id="fcs_rbg.2" name="Random Bit Generation (External Seeding)">
+        <f-component cc-id="fcs_rbg.2" name="Random Bit Generation (External Seeding)" status="sel-based">
+          <depends on="internal-seed"/>
           <f-element id="fel-rbg-seed-purpose">
             <title>
               The TSF shall be able to accept a minimum input of <assignable>minimum input length greater than zero</assignable>
@@ -2147,7 +2246,8 @@ only AES-based implementations for CTR_DRBG are allowed.
           </f-element>
         </f-component>
         
-        <f-component cc-id="fcs_rbg.3" name="Random Bit Generation (Internal Seeding - Single Source)">
+        <f-component cc-id="fcs_rbg.3" name="Random Bit Generation (Internal Seeding - Single Source)" status="sel-based">
+          <depends on="external-seed"/>
           <f-element id="fel-rbg-seed-int-sing">
             <title>
               The TSF shall be able to seed the RBG using a <selectables onlyone="yes">
@@ -2182,51 +2282,20 @@ only AES-based implementations for CTR_DRBG are allowed.
           </f-element>
         </f-component>    
         
-        <f-component cc-id="fpt_fls.1" name="Failure with Preservation of Secure State">
-          <f-element id="fel-pres-sec-state">
+        <f-component cc-id="fcs_rbg.6" name="Random Bit Generation Service" status="optional">
+          <f-element id="fel-external-service">
             <title>
-              The TSF shall preserve a secure state when the following types of failures occur: <assignable>list of types of failures in the
-                TSF</assignable>.              
-            </title>
+              The TSF shall provide a <selectables>
+                <selectable>hardware</selectable>
+                <selectable>software</selectable>
+                <selectable><assignable>other interface type</assignable></selectable>
+              </selectables> 
+              interface to make the RBG output, as specified in FCS_RBG.1 Random bit generation (RBG),
+              available as a service to entities outside of the TOE.
+            </title>        
           </f-element>
-        </f-component>
+        </f-component>    
         
-        <f-component cc-id="fpt_tst.1" name="TSF Self-Testing">
-          <f-element id="fel-tsf-self-test">
-            <title>
-              The TSF shall run a suite of the following self-tests <selectables>
-                <selectable>during initial start-up</selectable>
-                <selectable>periodically during normal operation</selectable>
-                <selectable>at the request of the authorized user</selectable>
-                <selectable>at the conditions <assignable>conditions under which self-test should occur</assignable></selectable>
-              </selectables>
-              to demonstrate the correct operation of <selectables>
-                <selectable><assignable>part of TSF</assignable></selectable>
-                <selectable>the TSF</selectable>
-              </selectables>: 
-                <assignable>list of self-tests run by the TSF</assignable>.              
-            </title>
-          </f-element>
-          
-          <f-element id="fel-tsf-ver-int-data">
-            <title>
-              The TSF shall provide authorized users with the capability to verify the integrity of <selectables>
-                <selectable><assignable>parts of TSF data</assignable></selectable>
-                <selectable>TSF data</selectable>
-              </selectables>
-            </title>
-          </f-element>
-          
-          <f-element id="fel-tsf-ver-int">
-            <title>
-              The TSF shall provide authorized users with the capability to verify the integrity of <selectables>
-                <selectable><assignable>parts of TSF</assignable></selectable>
-                <selectable>TSF</selectable>
-              </selectables>
-            </title>
-          </f-element>
-          
-        </f-component>
 
 	<ext-comp-def fam-id="FCS_STO_EXT" title="Storage of Sensitive Data">
 	  <fam-behavior>Components in this family describe the requirements for storing sensitive data (such as cryptographic
@@ -2879,6 +2948,16 @@ This test can also be completed on the same hardware and rebooting between appli
           <fam-behavior>This family requires the TSF to be compiled using stack-based buffer overflow protections. This is a new
             family defined for the FPT class.</fam-behavior>
 	</ext-comp-def>
+        
+        
+        <f-component cc-id="fpt_fls.1" name="Failure with Preservation of Secure State">
+          <f-element id="fel-pres-sec-state">
+            <title>
+              The TSF shall preserve a secure state when the following types of failures occur: <assignable>list of types of failures in the
+                TSF</assignable>.              
+            </title>
+          </f-element>
+        </f-component>
 
 	<f-component cc-id="fpt_sbop_ext.1" name="Stack Buffer Overflow Protection">
 	  
@@ -3041,6 +3120,44 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
               </Tests>
 	    </aactivity>
           </f-element>
+        </f-component>
+        
+        
+        <f-component cc-id="fpt_tst.1" name="TSF Self-Testing">
+          <f-element id="fel-tsf-self-test">
+            <title>
+              The TSF shall run a suite of the following self-tests <selectables>
+                <selectable>during initial start-up</selectable>
+                <selectable>periodically during normal operation</selectable>
+                <selectable>at the request of the authorized user</selectable>
+                <selectable>at the conditions <assignable>conditions under which self-test should occur</assignable></selectable>
+              </selectables>
+              to demonstrate the correct operation of <selectables>
+                <selectable><assignable>part of TSF</assignable></selectable>
+                <selectable>the TSF</selectable>
+              </selectables>: 
+              <assignable>list of self-tests run by the TSF</assignable>.              
+            </title>
+          </f-element>
+          
+          <f-element id="fel-tsf-ver-int-data">
+            <title>
+              The TSF shall provide authorized users with the capability to verify the integrity of <selectables>
+                <selectable><assignable>parts of TSF data</assignable></selectable>
+                <selectable>TSF data</selectable>
+              </selectables>
+            </title>
+          </f-element>
+          
+          <f-element id="fel-tsf-ver-int">
+            <title>
+              The TSF shall provide authorized users with the capability to verify the integrity of <selectables>
+                <selectable><assignable>parts of TSF</assignable></selectable>
+                <selectable>TSF</selectable>
+              </selectables>
+            </title>
+          </f-element>
+          
         </f-component>
 
         <ext-comp-def fam-id="FPT_TST_EXT" title="Boot Integrity">
