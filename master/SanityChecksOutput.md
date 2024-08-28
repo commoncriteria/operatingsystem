@@ -24,8 +24,6 @@ warning: failed to load external entity "output/pkg-x509.xml"
 warning: failed to load external entity "output/pkg-x509.xml"
 warning: failed to load external entity "output/pkg-x509.xml"
 warning: failed to load external entity "output/pkg-x509.xml"
-warning: failed to load external entity "output/pkg-x509.xml"
-warning: failed to load external entity "output/pkg-x509.xml"
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
