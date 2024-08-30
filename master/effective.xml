@@ -377,7 +377,7 @@ it manages may be physical or virtual.
           <FP-cc-ref conf="conformant">Functional Package for Transport Layer Security Version 2.1</FP-cc-ref>
           <FP-cc-ref conf="conformant">Functional Package for Secure Shell Version 1.1</FP-cc-ref>
           <FP-cc-ref conf="conformant">Functional Package for X.509 Version 1.0</FP-cc-ref>
-          <FP-cc-ref conf="conformant">Assurance Package for Flaw Remediation Version 1.0</FP-cc-ref>
+          <AP-cc-ref conf="conformant">Assurance Package for Flaw Remediation Version 1.0 <comment>should this be included or should these be listed in the PP itself as optional SARs?</comment></AP-cc-ref>
         </cc-pkg-claim>
       </CClaimsInfo>	
       <!-- 
@@ -2222,6 +2222,7 @@ only AES-based implementations for CTR_DRBG are allowed.
             <title>
               The TSF shall use a <selectables>
                 <selectable id="internal-seed">TSF noise source <assignable>name of noise source</assignable></selectable>
+                <h:b><selectable id="internal-seeds">multiple TSF noise sources <assignable>names of noise sources</assignable></selectable></h:b>
                 <selectable id="external-seed">TSF interface for seeding</selectable>
               </selectables>
               for initialized seeding.
@@ -2230,10 +2231,13 @@ only AES-based implementations for CTR_DRBG are allowed.
               <h:p>
                 For the 
                 selection in this requirement, the ST author selects "TSF noise source" if
-                any additional noise sources are used as input to the DRBG.
+                a single noise source is used as input to the DRBG. The ST author selects "multiple TSF noise sources" if the seed is formed from a combination of two or more noise sources. If the TSF implements two or more separate DRBGs, this SFR should be isolated. It multiple distinct noise sources exist such that each DRBG only uses one of them, then each iteration would select "TSF noise source."
               </h:p>
               <h:p>
                 If "TSF noise source" is selected, FCS_RBG.3 must be claimed.
+              </h:p>
+              <h:p>
+                If "multiple TSF noise sources" is selected, FCS_RBG.4 and FCS_RBG.5 must be claimed.
               </h:p>
               <h:p>
                 If "TSF interface for seeding" is selected, FCS_RBG.2 must be claimed. 
@@ -2255,6 +2259,7 @@ only AES-based implementations for CTR_DRBG are allowed.
           
           <f-element id="fel-rbg-init-seed-when">
             <title>
+              <comment>do we want to require 'reseeding' for this? Or is uninstantiation still permissible?</comment>
               The TSF shall update the RBG state by <selectables>
                 <selectable>reseeding</selectable>
                 <selectable>uninstantiating and reinstantiating</selectable>
@@ -2262,15 +2267,16 @@ only AES-based implementations for CTR_DRBG are allowed.
                 <selectable>TSF noise source <assignable>name of noise source</assignable></selectable>
                 <selectable>TSF interface for seeding</selectable></selectables>
               in the following situations: <selectables linebreak="yes">
-                <selectable>never</selectable>
                 <selectable>on demand</selectable>
                 <selectable>on the condition: <assignable>condition</assignable></selectable>
                 <selectable>after <assignable>time</assignable></selectable>
               </selectables>
               in accordance with <assignable>list of standards</assignable>.
             </title>
-            <aactivity level="element">
-              <TSS/>
+            <aactivity level="element">              
+              <TSS>
+                <comment>EAs needed for this</comment>
+              </TSS>
               <Guidance/>
               <Tests/>
             </aactivity>
@@ -2284,7 +2290,15 @@ only AES-based implementations for CTR_DRBG are allowed.
               The TSF shall be able to accept a minimum input of <assignable>minimum input length greater than zero</assignable>
               from a TSF interface for the purpose of seeding.
             </title>        
+            <note role="application">This requirement is claimed when a DRBG is seeded with entropy from one or more noise source that is outside the TOE boundary. Typically the entropy produced by an environmental noise source is conditioned such that the input length has full entropy and is therefore usable as the seed. However, if this is not the case, it should be noted what the minimum entropy rate of the noise source is so that the TSF can collect a sufficiently large sample of noise data to be conditioned into a seed value.</note>
           </f-element>
+          <aactivity>              
+            <TSS>
+              <comment>EAs needed for this.</comment>
+            </TSS>
+            <Guidance/>
+            <Tests/>
+          </aactivity>
         </f-component>
         
         <f-component cc-id="fcs_rbg.3" name="Random Bit Generation (Internal Seeding - Single Source)" status="sel-based">
@@ -2295,26 +2309,50 @@ only AES-based implementations for CTR_DRBG are allowed.
                 <selectable>TSF software-based noise source</selectable>
                 <selectable>TSF hardware-based noise source <assignable>name of noise source</assignable></selectable></selectables>
                 with a minimum of <assignable>number of bits</assignable> bits of min-entropy.
-              
             </title>        
+            <note role="application">This requirement is claimed when a DRBG is seeded with entropy from a single noise source that is within the TOE boundary. Min-entropy should be expressed as a ratio of entropy bits to sampled bits so that the total amount of data needed to ensure full entropy is known, as well as the conditioning function by which that data is reduced in size to the seed.</note>
           </f-element>
+          <aactivity>              
+            <TSS>
+              <comment>EAs needed for this.</comment>
+            </TSS>
+            <Guidance/>
+            <Tests/>
+          </aactivity>
         </f-component>
         
-        <f-component cc-id="fcs_rbg.4" name="Random Bit Generation (Internal Seeding - Multiple Sources)" status="feat-based">
-          <depends on="QQQQ"/>
+        <f-component cc-id="fcs_rbg.4" name="Random Bit Generation (Internal Seeding - Multiple Sources)" status="sel-based">
+          <depends on="internal-seeds"/>
           <f-element id="fel-rbg-seed-int-mult">
             <title>
               The TSF shall be able to seed the RBG using <selectables>
                 <selectable><assignable>number</assignable> TSF software-based noise source(s)</selectable>
                 <selectable><assignable>number</assignable> TSF hardware-based noise source(s)</selectable>
               </selectables>
-            </title>        
+            </title>
+            <note role="application">
+              This requirement is claimed when a DRBG is seeded with entropy from multiple noise sources that are within the TOE boundary. 
+              FCS_RBG.5 defines the mechanism by which these sources are combined to ensure sufficient minimum entropy.
+            </note>
           </f-element>
+          <aactivity>              
+            <TSS>
+              <comment>EAs needed for this.</comment>
+            </TSS>
+            <Guidance/>
+            <Tests/>
+          </aactivity>
         </f-component>
           
-        <f-component cc-id="fcs_rbg.5" name="Random Bit Generation (Combining Noise Sources)" status="feat-based">
+        <f-component cc-id="fcs_rbg.5" name="Random Bit Generation (Combining Noise Sources)" status="sel-based">
+          <depends on="internal-seeds"/>
           <f-element id="fel-rbg-comb">
             <title>
+              <comment>Note right now that we only have this SFR when FCS_RBG.4 (multiple internal seeds) is claimed. But technically the SFR
+              allows combining of both internal and external sources. I don't know if that use case is something we should realistically try to account for
+              this because it may be very confusing to express in terms of defining the conditions for when this SFR applies. i.e. it would apply if at least one of the following is true:
+              - FCS_RBG.4 is claimed (with or without FCS_RBG.2)
+              - FCS_RBG.2 and FCS_RBG.3 are claimed</comment>
               The TSF shall <assignable>combining operation</assignable> <selectables>
                 <selectable>output from TSF noise source(s)</selectable>
                 <selectable>input from TSF interface(s) for seeding</selectable></selectables>
@@ -2322,11 +2360,19 @@ only AES-based implementations for CTR_DRBG are allowed.
                 in a minimum of <assignable>number of bits</assignable> bits of min-entropy.              
             </title>        
           </f-element>
+          <aactivity>              
+            <TSS>
+              <comment>EAs needed for this.</comment>
+            </TSS>
+            <Guidance/>
+            <Tests/>
+          </aactivity>
         </f-component>    
         
         <f-component cc-id="fcs_rbg.6" name="Random Bit Generation Service" status="optional">
           <f-element id="fel-external-service">
             <title>
+              <comment>This was added as an optional requirement for the possibility where the OS can provide a seed for third-party applications.</comment>
               The TSF shall provide a <selectables>
                 <selectable>hardware</selectable>
                 <selectable>software</selectable>
@@ -2336,6 +2382,13 @@ only AES-based implementations for CTR_DRBG are allowed.
               available as a service to entities outside of the TOE.
             </title>        
           </f-element>
+          <aactivity>              
+            <TSS>
+              <comment>EAs needed for this.</comment>
+            </TSS>
+            <Guidance/>
+            <Tests/>
+          </aactivity>
         </f-component>    
         
 
@@ -2995,10 +3048,17 @@ This test can also be completed on the same hardware and rebooting between appli
         <f-component cc-id="fpt_fls.1" name="Failure with Preservation of Secure State">
           <f-element id="fel-pres-sec-state">
             <title>
-              The TSF shall preserve a secure state when the following types of failures occur: <assignable>list of types of failures in the
-                TSF</assignable>.              
+              The TSF shall preserve a secure state when the following types of failures occur: [<h:i>RBG failure</h:i>].              
             </title>
+            <note role="application">The intent of this requirement is to ensure that cryptographic services requiring random bit generation cannot be performed if a failure of a self-test defined in FPT_TST.1 occurs.</note>
           </f-element>
+          <aactivity>              
+            <TSS>
+              <comment>EAs needed for this.</comment>
+            </TSS>
+            <Guidance/>
+            <Tests/>
+          </aactivity>
         </f-component>
 
 	<f-component cc-id="fpt_sbop_ext.1" name="Stack Buffer Overflow Protection">
@@ -3168,22 +3228,21 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
         <f-component cc-id="fpt_tst.1" name="TSF Self-Testing">
           <f-element id="fel-tsf-self-test">
             <title>
+              <comment>The whole SFR is added for CC:2022 dependency purposes - it (along with the EAs) should be reviewed for appropriateness.</comment>
+              <comment>Do we want to mandate any specific tests to be done or specific situations the testing should be done? Generally we would assume that it be run at startup and then continuously, but not sure if that will always be true.</comment>
               The TSF shall run a suite of the following self-tests <selectables>
                 <selectable>during initial start-up</selectable>
                 <selectable>periodically during normal operation</selectable>
                 <selectable>at the request of the authorized user</selectable>
                 <selectable>at the conditions <assignable>conditions under which self-test should occur</assignable></selectable>
               </selectables>
-              to demonstrate the correct operation of <selectables>
-                <selectable><assignable>part of TSF</assignable></selectable>
-                <selectable>the TSF</selectable>
-              </selectables>: 
-              <assignable>list of self-tests run by the TSF</assignable>.              
+              to demonstrate the correct operation of [<h:i>TSF DRBG specified in FCS_RBG.1</h:i>].              
             </title>
           </f-element>
           
           <f-element id="fel-tsf-ver-int-data">
             <title>
+              <comment>Not sure what we should do with this as the RBG health testing doesn't actually verify the integrity of any data.</comment>
               The TSF shall provide authorized users with the capability to verify the integrity of <selectables>
                 <selectable><assignable>parts of TSF data</assignable></selectable>
                 <selectable>TSF data</selectable>
@@ -3193,12 +3252,29 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
           
           <f-element id="fel-tsf-ver-int">
             <title>
-              The TSF shall provide authorized users with the capability to verify the integrity of <selectables>
-                <selectable><assignable>parts of TSF</assignable></selectable>
-                <selectable>TSF</selectable>
-              </selectables>
+              The TSF shall provide authorized users with the capability to verify the integrity of [<h:i>TSF DRBG specified in FCS_RBG.1</h:i>].
             </title>
           </f-element>
+          
+          <note role="application">This SFR is a required dependency of FCS_RBG.1. It is intended to require that any DRBG implemented by the TOE undergo health testing to ensure that the random bit generation functionality has not been degraded. If the TSF supports multiple DRBGs, this SFR should be iterated to describe the self-test behavior for each.</note>
+          
+          <aactivity>
+            <TSS>
+              The	evaluator	shall examine the TSS to ensure that it details the self-tests that are run by the TSF along with how they are run. The evaluator shall ensure that the TSS makes an argument that the tests are sufficient to demonstrate that the DRBG is operating correctly.
+            </TSS>
+            <Guidance>
+              <h:p>
+                If a self-test can be executed at the request of an authorized user, the evaluator shall verify that the operational guidance provides instructions on how to execute that self-test.
+              </h:p>
+            </Guidance>
+            <Tests>
+              <h:p>
+              For each self-test, the evaluator shall verify that evidence is produced that the self-test is executed when specified by FPT_TST.1.1.
+              </h:p><h:p>
+              If a self-test can be executed at the request of an authorized user, the evaluator shall verify that following the steps documented in the operational guidance to perform the self-test will result in execution of the self-test.
+              </h:p>
+            </Tests>
+          </aactivity>
           
         </f-component>
 
@@ -3260,7 +3336,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
               </h:p>
 	      <h:p>
 		If certificates are used, they can be hardware-protected trust store elements or leaf certificates in a certificate chain that terminates in a root CA which is an element of a hardware protected trust store.
-		If the certificates themselves are not trust store elements, revocation information is expected to be available for each CA certificate in the chain that is not a trust element, in accordance with FIA_X509_EXT.1 as defined in the <xref to="pkg-x509"/>.
+		If the certificates themselves are not trust store elements, revocation information is expected to be available for each CA certificate in the chain that is not a trust element, in accordance with FIA_X509_EXT.1 as defined in the Functional Package for X.509.
 	      </h:p>
             </note>
             <aactivity>
@@ -3306,7 +3382,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 		  <depends on="s-boot-x509"/>
                   If the ST author indicates that the integrity verification is performed
                   using public key in an X509 certificate, the evaluator shall verify that the boot integrity mechanism includes a certificate
-                  validation according to FIA_X509_EXT.1 as defined in the <xref to="pkg-x509"/> for all certificates in the chain from the certificate used for
+                  validation according to FIA_X509_EXT.1 as defined in the Functional Package for X.509 for all certificates in the chain from the certificate used for
 				  boot integrity to a certificate in the trust store that are not themselves in the trust store.
 				  This means that, for each X.509 certificate in this chain that is not a trust store element, the evaluator must ensure that revocation information is available to the TOE during the bootstrap mechanism (before the TOE becomes fully operational).
 
@@ -3810,7 +3886,7 @@ The <h:b>OS</h:b> shall be able to generate an audit record of the following aud
 		</h:div>
 
 		<h:p>
-		  Authentication mechanisms related to <xref to="s-x509-auth"/> are tested under FIA_X509_EXT.1 as defined in the <xref to="pkg-x509"/>
+		  Authentication mechanisms related to <xref to="s-x509-auth"/> are tested under FIA_X509_EXT.1 as defined in the Functional Package for X.509
 		  and <xref to="s-uau-ssh"/> are tested in the <xref to="pkg-ssh"/>.
 		</h:p>
               </Tests>
@@ -4200,7 +4276,7 @@ the node certificate to be tested, two Intermediate CAs, and the
 		      <selectable>authentication server</selectable>
 		      <selectable>management server</selectable>
 		      <selectable><assignable>other capabilities</assignable></selectable>
-		    </selectables> using certificates as defined in [<h:i><xref to="pkg-x509"/></h:i>]
+		    </selectables> using certificates as defined in [<h:i>Functional Package for X.509</h:i>]
 		    that is logically distinct from other communication
 		    channels and provides assured identification of its end points and protection of the channel
 		    data from disclosure and detection of modification of the channel data.
