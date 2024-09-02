@@ -2615,7 +2615,7 @@ only AES-based implementations for CTR_DRBG are allowed.
           </f-element>
           <aactivity>              
             <TSS>
-              <comment>EAs needed for this.</comment>
+              The evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it identifies, for each DRBG function implemented by the TOE, the TSF external interface used to seed the TOE's DRBG. The evaluator shall verify that this includes the amount of sampled data and the min-entropy rate of the sampled data such that it can be determined that sufficient entropy can be made available for the highest strength keys that the TSF can generate (e.g., 256 bits). If the seed data cannot be assumed to have full entropy (e.g., the min-entropy of the sampled bits is less than 1), the evaluator shall ensure that the entropy documentation describes the method by which the TOE estimates the amount of entropy that has been accumulated to ensure that sufficient data is collected and any conditioning that the TSF applies to the output data to create a seed of sufficient size with full entropy.  
             </TSS>
             <Guidance/>
             <Tests/>
@@ -2635,7 +2635,7 @@ only AES-based implementations for CTR_DRBG are allowed.
           </f-element>
           <aactivity>              
             <TSS>
-              <comment>EAs needed for this.</comment>
+              The evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it identifies, for each DRBG function implemented by the TOE, the TSF noise source used to seed the TOE's DRBG. The evaluator shall verify that this includes the amount of sampled data and the min-entropy rate of the sampled data such that it can be determined that sufficient entropy can be made available for the highest strength keys that the TSF can generate (e.g., 256 bits). If the seed data cannot be assumed to have full entropy (e.g., the min-entropy of the sampled bits is less than 1), the evaluator shall ensure that the entropy documentation describes the method by which the TOE estimates the amount of entropy that has been accumulated to ensure that sufficient data is collected and any conditioning that the TSF applies to the output data to create a seed of sufficient size with full entropy. 
             </TSS>
             <Guidance/>
             <Tests/>
@@ -2658,7 +2658,7 @@ only AES-based implementations for CTR_DRBG are allowed.
           </f-element>
           <aactivity>              
             <TSS>
-              <comment>EAs needed for this.</comment>
+              The evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it identifies, for each DRBG function implemented by the TOE, each TSF noise source used to seed the TOE's DRBG. The evaluator shall verify that this includes the amount of sampled data and the min-entropy rate of the sampled data from each data source.
             </TSS>
             <Guidance/>
             <Tests/>
@@ -2683,7 +2683,7 @@ only AES-based implementations for CTR_DRBG are allowed.
           </f-element>
           <aactivity>              
             <TSS>
-              <comment>EAs needed for this.</comment>
+              Using the entropy sources specified in FCS_RBG.4, the evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it describes the method by which the various entropy sources are combined into a single seed. This should include an estimation of the rate at which each noise source outputs data and whether this is dependent on any system-specific factors so that each source's relative contribution to the overall entropy is understood. The evaluator shall verify that the resulting combination of sampled data and the min-entropy rate of the sampled data is described in sufficient detail to determine that sufficient entropy can be made available for the highest strength keys that the TSF can generate (e.g., 256 bits). If the seed data cannot be assumed to have full entropy (e.g., the min-entropy of the sampled bits is less than 1), the evaluator shall ensure that the entropy documentation describes the method by which the TOE estimates the amount of entropy that has been accumulated to ensure that sufficient data is collected and any conditioning that the TSF applies to the output data to create a seed of sufficient size with full entropy. 
             </TSS>
             <Guidance/>
             <Tests/>
@@ -2705,10 +2705,10 @@ only AES-based implementations for CTR_DRBG are allowed.
           </f-element>
           <aactivity>              
             <TSS>
-              <comment>EAs needed for this.</comment>
+              The evaluator shall verify that the TSS identifies the interface that the TSF makes available for calling applications to obtain DRBG output. 
             </TSS>
-            <Guidance/>
-            <Tests/>
+            <Guidance>The evaluator shall verify that the guidance documentation includes an API specification for the random bit generation service such that it is clear how a calling application is able to obtain DRBG output from the TSF.</Guidance>
+            <Tests>The evaluator shall invoke the API specified by the guidance documentation to determine that the TSF provides DRBG output upon proper invocation of the API.</Tests>
           </aactivity>
         </f-component>    
         
