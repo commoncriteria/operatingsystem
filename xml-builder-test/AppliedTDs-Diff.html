@@ -2764,6 +2764,23 @@ PT = CT[i]
                                     <a id="_t_99" class="defined" href="#_t_99">Test FIA_X509_EXT.1.1:8</a>: For each exceptional use case for revocation checking described in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, the evaluator shall attempt to establish the conditions of the use case, designate the certificate as invalid and perform the function relying on the certificate. The evaluator shall observe that the alternate revocation checking mechanism successfully prevents performance of the function. 
                                 </li>
                             </ul>
+                        </span> <span class="testlist-">
+                            <ul>
+                                <li class="test-">
+                                    <a id="_t_100" class="defined" href="#_t_100">Test FIA_X509_EXT.1.1:9</a>: The evaluator will generate an X.509v3 certificate for a user with the Client Authentication Extended Key Usage field set. The evaluator will provision the OS for authentication with the X.509v3 certificate. The evaluator will ensure that the certificates are validated by the OS as per <a href="#FIA_X509_EXT.1.1">FIA_X509_EXT.1.1</a> and then conduct the following tests: 
+                                    <br>
+                                     <span class="testlist-">
+                                        <ul>
+                                            <li class="test-">
+                                                <a id="_t_101" class="defined" href="#_t_101">Test FIA_X509_EXT.1.1:9.1</a>: The evaluator will attempt to authenticate to the OS using the X.509v3 certificate. The evaluator will ensure that the authentication attempt is successful. 
+                                            </li>
+                                            <li class="test-">
+                                                <a id="_t_102" class="defined" href="#_t_102">Test FIA_X509_EXT.1.1:9.2</a>: The evaluator will generate a second certificate identical to the first except for the public key and any values derived from the public key. The evaluator will attempt to authenticate to the OS with this certificate. The evaluator will ensure that the authentication attempt is unsuccessful. 
+                                            </li>
+                                        </ul>
+                                    </span>
+                                </li>
+                            </ul>
                         </span> 
                     </div>
                     <div class="element-activity-header">
@@ -2775,13 +2792,13 @@ PT = CT[i]
                             <ul>
                                  . The evaluator will create a chain of at least four certificates: the node certificate to be tested, two Intermediate CAs, and the self-signed Root CA. 
                                 <li class="test-">
-                                    <a id="_t_100" class="defined" href="#_t_100">Test FIA_X509_EXT.1.2:1</a>: The evaluator will construct a certificate path, such that the certificate of the CA issuing the OS's certificate does not contain the <i>basicConstraints</i> extension. The validation of the certificate path fails. 
+                                    <a id="_t_103" class="defined" href="#_t_103">Test FIA_X509_EXT.1.2:1</a>: The evaluator will construct a certificate path, such that the certificate of the CA issuing the OS's certificate does not contain the <i>basicConstraints</i> extension. The validation of the certificate path fails. 
                                 </li>
                                 <li class="test-">
-                                    <a id="_t_101" class="defined" href="#_t_101">Test FIA_X509_EXT.1.2:2</a>: The evaluator will construct a certificate path, such that the certificate of the CA issuing the OS's certificate has the CA flag in the <i>basicConstraints</i> extension not set. The validation of the certificate path fails. 
+                                    <a id="_t_104" class="defined" href="#_t_104">Test FIA_X509_EXT.1.2:2</a>: The evaluator will construct a certificate path, such that the certificate of the CA issuing the OS's certificate has the CA flag in the <i>basicConstraints</i> extension not set. The validation of the certificate path fails. 
                                 </li>
                                 <li class="test-">
-                                    <a id="_t_102" class="defined" href="#_t_102">Test FIA_X509_EXT.1.2:3</a>: The evaluator will construct a certificate path, such that the certificate of the CA issuing the OS's certificate has the CA flag in the <i>basicConstraints</i> extension set to TRUE. The validation of the certificate path succeeds. 
+                                    <a id="_t_105" class="defined" href="#_t_105">Test FIA_X509_EXT.1.2:3</a>: The evaluator will construct a certificate path, such that the certificate of the CA issuing the OS's certificate has the CA flag in the <i>basicConstraints</i> extension set to TRUE. The validation of the certificate path succeeds. 
                                 </li>
                             </ul>
                         </span> 
@@ -2941,16 +2958,16 @@ PT = CT[i]
                             <ul>
                                  The evaluator will also perform the following tests: 
                                 <li class="test-">
-                                    <a id="_t_103" class="defined" href="#_t_103">Test FTP_TRP.1.3:1</a>: The evaluator will ensure that communications using each remote administration method is tested during the course of the evaluation, setting up the connections as described in the operational guidance and ensuring that communication is successful. 
+                                    <a id="_t_106" class="defined" href="#_t_106">Test FTP_TRP.1.3:1</a>: The evaluator will ensure that communications using each remote administration method is tested during the course of the evaluation, setting up the connections as described in the operational guidance and ensuring that communication is successful. 
                                 </li>
                                 <li class="test-">
-                                    <a id="_t_104" class="defined" href="#_t_104">Test FTP_TRP.1.3:2</a>: For each method of remote administration supported, the evaluator will follow the operational guidance to ensure that there is no available interface that can be used by a remote user to establish a remote administrative sessions without invoking the trusted path. 
+                                    <a id="_t_107" class="defined" href="#_t_107">Test FTP_TRP.1.3:2</a>: For each method of remote administration supported, the evaluator will follow the operational guidance to ensure that there is no available interface that can be used by a remote user to establish a remote administrative sessions without invoking the trusted path. 
                                 </li>
                                 <li class="test-">
-                                    <a id="_t_105" class="defined" href="#_t_105">Test FTP_TRP.1.3:3</a>: The evaluator will ensure, for each method of remote administration, the channel data is not sent in plaintext. 
+                                    <a id="_t_108" class="defined" href="#_t_108">Test FTP_TRP.1.3:3</a>: The evaluator will ensure, for each method of remote administration, the channel data is not sent in plaintext. 
                                 </li>
                                 <li class="test-">
-                                    <a id="_t_106" class="defined" href="#_t_106">Test FTP_TRP.1.3:4</a>: The evaluator will ensure, for each method of remote administration, modification of the channel data is detected by the OS. 
+                                    <a id="_t_109" class="defined" href="#_t_109">Test FTP_TRP.1.3:4</a>: The evaluator will ensure, for each method of remote administration, modification of the channel data is detected by the OS. 
                                 </li>
                             </ul>
                         </span> 
@@ -3084,9 +3101,9 @@ PT = CT[i]
         <p></p>
         This section lists the set of <abbr class="dyn-abbr"><a href="#abbr_SAR">SARs</a></abbr> from <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr> part 3 that are required in evaluations against this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>. Individual evaluation activities to be performed are specified both in <a href="#Security_Requirements" class="dynref" data-format=""></a> as well as in this section.
         <p></p>
-        The general model for evaluation of <abbr class="dyn-abbr"><a href="#abbr_TOE">TOEs</a></abbr> against <abbr class="dyn-abbr"><a href="#abbr_ST">STs</a></abbr> written to conform to this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> is as follows: 
+        The general model for evaluation of <abbr class="dyn-abbr"><a href="#abbr_TOE">TOEs</a></abbr> against <abbr class="dyn-abbr"><a href="#abbr_ST">STs</a></abbr> written to conform to this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> is as follows:
         <p></p>
-         After the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> has been approved for evaluation, the ITSEF will obtain the OS, supporting environmental IT, and the administrative/user guides for the OS. The ITSEF is expected to perform actions mandated by the Common Evaluation Methodology (<abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr>) for the ASE and ALC <abbr class="dyn-abbr"><a href="#abbr_SAR">SARs</a></abbr>. The ITSEF also performs the evaluation activities contained within <a href="#Security_Requirements" class="dynref" data-format=""></a>, which are intended to be an interpretation of the other <abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr> assurance requirements as they apply to the specific technology instantiated in the OS. The evaluation activities that are captured in <a href="#Security_Requirements" class="dynref" data-format=""></a> also provide clarification as to what the developer needs to provide to demonstrate the OS is compliant with the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>.
+        After the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> has been approved for evaluation, the ITSEF will obtain the OS, supporting environmental IT, and the administrative/user guides for the OS. The ITSEF is expected to perform actions mandated by the Common Evaluation Methodology (<abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr>) for the ASE and ALC <abbr class="dyn-abbr"><a href="#abbr_SAR">SARs</a></abbr>. The ITSEF also performs the evaluation activities contained within <a href="#Security_Requirements" class="dynref" data-format=""></a>, which are intended to be an interpretation of the other <abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr> assurance requirements as they apply to the specific technology instantiated in the OS. The evaluation activities that are captured in <a href="#Security_Requirements" class="dynref" data-format=""></a> also provide clarification as to what the developer needs to provide to demonstrate the OS is compliant with the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>.
         <p></p>
         <h3 class="indexable" data-level="3" id="ase">5.2.1 Class ASE: Security Target</h3>
          The following ASE components as defined in <a href="#bibCEM">[CEM]</a> are required: 
