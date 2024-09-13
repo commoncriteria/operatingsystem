@@ -1,5 +1,6 @@
 * Warning: This document still has at least one comment.
- Failed to find a reference to fia-x509-ext-1.
+* Error: Detected dangling ref-id to 'fia-x509-ext-1'.
+	  /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[8]""/f-element[1]""/note[1]""/h:p[4]"If certif"/ref-id[1]"fia-x509-"
  Failed to find a reference to fia-x509-ext-1.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
