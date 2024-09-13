@@ -4,8 +4,13 @@
 * Error: Detected multiple elements with an id of 's-tls-client'.
 * Error: Detected multiple elements with an id of 's-tls-server'.
  Failed to find a reference to fia-x509-ext-1e1.
- Failed to find a reference to fel-dtlsc-impl.
- Failed to find a reference to tlsc-impl.
+ Failed to find a reference to fia-x509-ext-1e1.
+ Failed to find a reference to toe-uses-embedded-ca.
+ Failed to find a reference to toe-uses-embedded-ca.
+ Failed to find a reference to fel-tlss-impl.
+ Failed to find a reference to fel-tlss-impl.
+ Failed to find a reference to tlss_mutual_auth.
+ Failed to find a reference to tlss_mutual_auth.
  Failed to find a reference to fia-x509-ext-1.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
