@@ -1,4 +1,8 @@
 * Warning: This document still has at least one comment.
+* Error: Detected multiple elements with an id of 's-tls-client'.
+* Error: Detected multiple elements with an id of 's-tls-server'.
+* Error: Detected multiple elements with an id of 's-tls-client'.
+* Error: Detected multiple elements with an id of 's-tls-server'.
  Failed to find a reference to fia-x509-ext-1.
  Failed to find a reference to fia-x509-ext-1.
  Failed to find a reference to bibCEM.
