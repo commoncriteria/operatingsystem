@@ -74,8 +74,6 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[2]""/f-component[2]""/f-element[1]""/note[1]""/h:p[1]"Typically"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[2]""/f-component[2]""/f-element[1]""/note[1]""/h:p[1]"Typically"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[2]""/f-component[2]""/f-element[1]""/note[1]""/h:p[1]"Typically"/h:p[3]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[3]""/f-component[2]""/f-element[1]""/note[1]""/h:p[1]"The ST sh"/h:p[1]""
-* Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[3]""/f-component[2]""/f-element[1]""/note[1]""/h:p[1]"The ST sh"/h:p[2]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[4]""/f-component[3]""/f-element[1]""/note[1]""/h:p[1]"Some Blue"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[4]""/f-component[4]""/f-element[1]""/aactivity[1]""/Tests[1]""/h:p[1]"For stack"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[4]""/f-component[6]""/f-element[1]""/note[1]""/h:p[1]"The bootc"/h:p[1]""
@@ -111,6 +109,7 @@
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[2]""/section[2]""/h:p[1]"There sho"/h:p[4]""
 * Warning: Detected an empty _p_ element./PP[1]""/appendix[2]""/section[2]""/h:p[1]"There sho"/h:p[5]""
 * Rules without a 'Validation Guidelines' appendix has been detected.
+ Failed to find a reference to fel-manage-functions.
  Failed to find a reference to Security_Requirements.
  Failed to find a reference to Security_Requirements.
  Failed to find a reference to Security_Requirements.
