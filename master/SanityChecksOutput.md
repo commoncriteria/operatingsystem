@@ -1,4 +1,9 @@
-* Warning: This document still has at least one comment.
+* Error: Detected dangling id-reference to drbg from attribute
+        on/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[2]""/f-component[8]""/depends[1]""/on[1]""
+* Error: Detected dangling id-reference to drbg from attribute
+        on/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[4]""/depends[1]""/on[1]""
+* Error: Detected dangling id-reference to drbg from attribute
+        on/PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[6]""/f-component[7]""/depends[1]""/on[1]""
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
