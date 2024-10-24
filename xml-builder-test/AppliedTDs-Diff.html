@@ -1105,15 +1105,15 @@
                                     <p></p>
                                      The evaluator will test the encrypt functionality using a set of 100 plaintext, IV, and key 3-tuples. The keys, plaintext, and IV values are each 256-bits. For each 3-tuple, 1000 iterations will be run as follows: 
                                     <pre>
-              # Input: PT, IV, Key
-              for i = 1 to 1000:
-                if i == 1:
+                      # Input: PT, IV, Key
+                      for i = 1 to 1000:
+                      if i == 1:
                       CT[1] = AES-CBC-Encrypt(Key, IV, PT)
                       PT = IV
-                else:
-                  CT[i] = AES-CBC-Encrypt(Key, PT)
-                  PT = CT[i-1]
-              </pre>
+                      else:
+                      CT[i] = AES-CBC-Encrypt(Key, PT)
+                      PT = CT[i-1]
+                    </pre>
                                     The ciphertext computed in the 1000th iteration (i.e., CT[1000]) is the result for that trial. This result will be compared to the result of running 1000 iterations with the same values using a known good implementation. 
                                     <p></p>
                                      The evaluator will test the decrypt functionality using the same test as for encrypt, exchanging CT and PT and replacing AES-CBC-Encrypt with AES-CBC-Decrypt. 
@@ -1171,12 +1171,12 @@
                                      For AES-ECB mode
                                     <br>
                                     <pre>
-# Input: PT, Key
+                    # Input: PT, Key
 
-for i = 1 to 1000:
-CT[i] = AES-ECB-Encrypt(Key, PT)
-PT = CT[i]
-</pre>
+                    for i = 1 to 1000:
+                    CT[i] = AES-ECB-Encrypt(Key, PT)
+                    PT = CT[i]
+                  </pre>
                                     <p>The ciphertext computed in the 1000th iteration is the result for that trial. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation. </p>
                                 </li>
                             </ul>
