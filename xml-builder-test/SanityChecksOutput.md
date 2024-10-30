@@ -1,5 +1,13 @@
 * Error: f-element FCS_CKM_EXT.4.1  appears not to have an associated evaluation activity.:
         /PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[1]""/f-component[3]""/f-element[1]""
+* Error: f-element FPT_ASLR_EXT.1.1  appears not to have an associated evaluation activity.:
+        /PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[4]""/f-component[2]""/f-element[1]""
+* Error: f-element FIA_AFL.1.1  appears not to have an associated evaluation activity.:
+        /PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[6]""/f-component[1]""/f-element[1]""
+* Error: f-element FTA_TAB.1.1  appears not to have an associated evaluation activity.:
+        /PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[7]""/f-component[1]""/f-element[1]""
+* Error: f-element FTP_ITC_EXT.1.1  appears not to have an associated evaluation activity.:
+        /PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[8]""/f-component[1]""/f-element[1]""
 * Error: f-element FTP_TRP.1.1  appears not to have an associated evaluation activity.:
         /PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[8]""/f-component[2]""/f-element[1]""
 * Error: f-element FTP_TRP.1.2  appears not to have an associated evaluation activity.:

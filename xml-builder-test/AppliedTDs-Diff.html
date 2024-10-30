@@ -1105,15 +1105,15 @@
                                     <p></p>
                                      The evaluator will test the encrypt functionality using a set of 100 plaintext, IV, and key 3-tuples. The keys, plaintext, and IV values are each 256-bits. For each 3-tuple, 1000 iterations will be run as follows: 
                                     <pre>
-                      # Input: PT, IV, Key
-                      for i = 1 to 1000:
-                      if i == 1:
+              # Input: PT, IV, Key
+              for i = 1 to 1000:
+                if i == 1:
                       CT[1] = AES-CBC-Encrypt(Key, IV, PT)
                       PT = IV
-                      else:
-                      CT[i] = AES-CBC-Encrypt(Key, PT)
-                      PT = CT[i-1]
-                    </pre>
+                else:
+                  CT[i] = AES-CBC-Encrypt(Key, PT)
+                  PT = CT[i-1]
+              </pre>
                                     The ciphertext computed in the 1000th iteration (i.e., CT[1000]) is the result for that trial. This result will be compared to the result of running 1000 iterations with the same values using a known good implementation. 
                                     <p></p>
                                      The evaluator will test the decrypt functionality using the same test as for encrypt, exchanging CT and PT and replacing AES-CBC-Encrypt with AES-CBC-Decrypt. 
@@ -1171,12 +1171,12 @@
                                      For AES-ECB mode
                                     <br>
                                     <pre>
-                    # Input: PT, Key
+# Input: PT, Key
 
-                    for i = 1 to 1000:
-                    CT[i] = AES-ECB-Encrypt(Key, PT)
-                    PT = CT[i]
-                  </pre>
+for i = 1 to 1000:
+CT[i] = AES-ECB-Encrypt(Key, PT)
+PT = CT[i]
+</pre>
                                     <p>The ciphertext computed in the 1000th iteration is the result for that trial. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation. </p>
                                 </li>
                             </ul>
@@ -2067,6 +2067,9 @@
                     <a href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a>
                 </div>
                 <div class="activity_pane_body">
+                    <div class="component-activity-header">
+                        <a href="#FMT_SMF_EXT.1">FMT_SMF_EXT.1</a>
+                    </div>
                     <div class="element-activity-header">
                         <a href="#FMT_SMF_EXT.1.1">FMT_SMF_EXT.1.1</a>
                     </div>
@@ -2074,9 +2077,407 @@
                     <div class="ea">
                          The evaluator will verify that every management function captured in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> is described in the operational guidance and that the description contains the information required to perform the management duties associated with the management function. 
                     </div>
-                    <div class="eacategory">Tests</div>
-                    <div class="ea">
-                         The evaluator will test the OS's ability to provide the management functions by configuring the operating system and testing each option selected from above. The evaluator is expected to test these functions in all the ways in which the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> and guidance documentation state the configuration can be managed. 
+                    <div class="management_function_activities">
+                         The following EAs correspond to specific management functions. 
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-1">1</a></b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-2">2</a></b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-3">3</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-4">4</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-5">5</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-6">6</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-7">7</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-8">8</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-9">9</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-10">10</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-11">11</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-12">12</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-13">13</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-14">14</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-15">15</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-16">16</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-17">17</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-18">18</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-19">19</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-20">20</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="management_function_ea">
+                            <b>Function <a href="#mf-21">21</a> [CONDITIONAL] </b>
+                            <br>
+                            <div class="eacategory">
+                                <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                            </div>
+                             There are no additional <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Guidance</div>
+                             There are no additional Guidance evaluation activities for this management function.
+                            <br>
+                            <br>
+                            <div class="eacategory">Tests</div>
+                             There are no test activities for this management function.
+                            <br>
+                            <br>
+                            <br>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2193,20 +2594,6 @@
                 </div>
                 <div class="reqdesc">
                     The OS shall always randomize process address space memory locations with[<b>selection</b>: <span class="selectable-content" id="fpt_aslr_ext.1.1_1">8</span>, <span class="selectable-content" id="fpt_aslr_ext.1.1_3">[<b>assignment</b>: <span class="assignable-content">number greater than 8</span>]</span>]bits of entropy except for[<b>assignment</b>: <span class="assignable-content">list of explicit exceptions</span>].
-                </div>
-            </div>
-            <div class="activity_pane hide">
-                <div class="activity_pane_header">
-                    <a href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a>
-                </div>
-                <div class="activity_pane_body">
-                    <div class="element-activity-header">
-                        <a href="#FPT_ASLR_EXT.1.1">FPT_ASLR_EXT.1.1</a>
-                    </div>
-                    <div class="eacategory">Tests</div>
-                    <div class="ea">
-                         The evaluator will select 3 executables included with the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>. If the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> includes a web browser it must be selected. If the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> includes a mail client it must be selected. For each of these apps, the evaluator will launch the same executables on two separate instances of the OS on identical hardware and compare all memory mapping locations. The evaluator will ensure that no memory mappings are placed in the same location. If the rare chance occurs that two mappings are the same for a single executable and not the same for the other two, the evaluator will repeat the test with that executable to verify that in the second test the mappings are different. This test can also be completed on the same hardware and rebooting between application launches. 
-                    </div>
                 </div>
             </div>
         </div>
@@ -2672,13 +3059,6 @@
                 </div>
                 <div class="activity_pane_body">
                     <div class="element-activity-header">
-                        <a href="#FIA_AFL.1.1">FIA_AFL.1.1</a>
-                    </div>
-                    <div class="eacategory">Tests</div>
-                    <div class="ea">
-                         The evaluator will set an administrator-configurable threshold for failed attempts, or note the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>-specified assignment. The evaluator will then (per selection) repeatedly attempt to authenticate with an incorrect password, PIN, or certificate until the number of attempts reaches the threshold. Note that the authentication attempts and lockouts must also be logged as specified in <a href="#FAU_GEN.1">FAU_GEN.1</a>. 
-                    </div>
-                    <div class="element-activity-header">
                         <a href="#FIA_AFL.1.2">FIA_AFL.1.2</a>
                     </div>
                     <div class="eacategory">Tests</div>
@@ -3072,18 +3452,6 @@
                     <b><a href="#r-sshclient">Rule #5</a></b>
                     <p></p>
                     <b><a href="#r-sshserver">Rule #6</a></b>
-                </div>
-            </div>
-            <div class="activity_pane hide">
-                <div class="activity_pane_header">
-                    <a href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a>
-                </div>
-                <div class="activity_pane_body">
-                    <div class="element-activity-header">
-                        <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>
-                    </div>
-                    <div class="eacategory">Tests</div>
-                    <div class="ea"> The evaluator will configure the OS to communicate with another trusted IT product as identified in the second selection. The evaluator will monitor network traffic while the OS performs communication with each of the servers identified in the second selection. The evaluator will ensure that for each session a trusted channel was established in conformance with the protocols identified in the first selection. </div>
                 </div>
             </div>
         </div>
@@ -3842,18 +4210,6 @@
                 </div>
                 <div class="reqdesc">
                     Before establishing a user session, the <b>OS</b> shall display an advisory warning message regarding unauthorized use of the OS.
-                </div>
-            </div>
-            <div class="activity_pane hide">
-                <div class="activity_pane_header">
-                    <a href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a>
-                </div>
-                <div class="activity_pane_body">
-                    <div class="element-activity-header">
-                        <a href="#FTA_TAB.1.1">FTA_TAB.1.1</a>
-                    </div>
-                    <div class="eacategory">Tests</div>
-                    <div class="ea"> The evaluator will configure the OS, per instructions in the OS manual, to display the advisory warning message "TEST TEST Warning Message TEST TEST". The evaluator will then log out and confirm that the advisory message is displayed before logging in can occur. </div>
                 </div>
             </div>
         </div>
