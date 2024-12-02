@@ -449,8 +449,8 @@ it manages may be physical or virtual.
           <rationale>FCS_CKM.1 helps mitigate the threat of a network attack by ensuring the generation of strong keys used for trusted communications.</rationale>
           <addressed-by>FCS_CKM.2</addressed-by>
           <rationale>FCS_CKM.2 helps mitigate the threat of a network attack by implementing secure methods to perform key establishment for trusted communications.</rationale>
-          <addressed-by>FCS_CKM_EXT.4</addressed-by>
-          <rationale>FCS_CKM_EXT.4 helps mitigate the threat of a network attack by ensuring that keys used for trusted communications are destroyed in a secure manner.</rationale>
+          <addressed-by>FCS_CKM.6</addressed-by>
+          <rationale>FCS_CKM.6 helps mitigate the threat of a network attack by ensuring that keys used for trusted communications are destroyed in a secure manner.</rationale>
           <addressed-by>FCS_COP.1/ENCRYPT</addressed-by>
           <rationale>FCS_COP.1/ENCRYPT helps mitigate the threat of a network attack by ensuring that secure symmetric algorithms are used for trusted communications.</rationale>
           <addressed-by>FCS_COP.1/HASH</addressed-by>
@@ -580,8 +580,8 @@ it manages may be physical or virtual.
           <rationale>FCS_CKM.1 helps mitigate the threat of network eavesdropping by ensuring the generation of strong keys used for trusted communications.</rationale>
           <addressed-by>FCS_CKM.2</addressed-by>
           <rationale>FCS_CKM.2 helps mitigate the threat of network eavesdropping by implementing secure methods to perform key establishment for trusted communications.</rationale>
-          <addressed-by>FCS_CKM_EXT.4</addressed-by>
-          <rationale>FCS_CKM_EXT.4 helps mitigate the threat of network eavesdropping by ensuring that keys used for trusted communications are destroyed in a secure manner.</rationale>
+          <addressed-by>FCS_CKM.6</addressed-by>
+          <rationale>FCS_CKM.6 helps mitigate the threat of network eavesdropping by ensuring that keys used for trusted communications are destroyed in a secure manner.</rationale>
           <addressed-by>FCS_COP.1/ENCRYPT</addressed-by>
           <rationale>FCS_COP.1/ENCRYPT helps mitigate the threat of network eavesdropping by ensuring that secure symmetric algorithms are used for trusted communications.</rationale>
           <addressed-by>FCS_COP.1/HASH</addressed-by>
@@ -1424,105 +1424,14 @@ The evaluator shall verify the correctness of the TSF's implementation of "safe-
           </f-element>
         </f-component>
                 
-        <ext-comp-def fam-id="FCS_CKM_EXT" title="Cryptographic Key Management">
-          <fam-behavior>This family defines requirements for key management. It differs from FCS_CKM in CC Part 2 by defining
-            technology-specific details for the implementation of these functions.</fam-behavior>
-        </ext-comp-def>
-
-	<f-component cc-id="fcs_ckm_ext.4" name="Cryptographic Key Destruction" >
-	  <comp-lev> requires the TSF to destroy cryptographic keys based on one or more specific methods, depending on the physical
-	    medium on which the key data is stored. Note that 4 was chosen for the family’s sole component number to show that this
-	    requirement is similar to FCS_CKM.4, from which it was originally derived.</comp-lev>
-	  <management>There are no management activities foreseen.</management>
-	  <audit>There are no auditable events foreseen.</audit>
-	  <dependencies>No dependencies.</dependencies>        
-	  
-	  <f-element id="fel-key-kill">
-	    <title>
-The OS shall destroy cryptographic keys and key material in accordance with a specified cryptographic key destruction method
-              <selectables>
-		<selectable>For volatile memory, the destruction shall be executed by a
-		<selectables>
-		  <selectable>single overwrite consisting of <selectables>
-		      <selectable>a pseudo-random pattern using the TSF&apos;s RBG</selectable>
-		      <selectable>zeroes</selectable>
-		      <selectable>ones</selectable>
-		      <selectable>a new value of a key</selectable>
-		      <selectable><assignable> any value that does not contain any CSP</assignable></selectable></selectables></selectable>
-		  <selectable>removal of power to the memory</selectable>
-		  <selectable>destruction of reference to the key directly followed by a request for garbage collection</selectable>
-		</selectables></selectable>
-		<selectable>For non-volatile memory that consists of 
-		    <selectables>
-			<selectable id="s-kek-kill">destruction
-			of all key encrypting keys (KEKs) protecting the target key
-			according to FCS_CKM_EXT.4.1, where none of the KEKs protecting the target key are derived
-			</selectable>
-			<selectable>the invocation of an interface provided by the underlying platform that
-				<selectables>
-					<selectable>logically addresses the storage location of the key and performs a 
-						<selectables>
-							<selectable>single</selectable>
-							<selectable><assignable>ST author defined multi-pass</assignable></selectable>
-						</selectables>overwrite consisting of
-						<selectables>
-							<selectable>zeroes</selectable>
-						  <selectable>ones</selectable>
-							<selectable>pseudo-random pattern</selectable>
-							<selectable>a new value of a key of the same size</selectable>
-							<selectable><assignable>any value that does not contain any CSP</assignable></selectable></selectables></selectable>
-					<selectable>instructs the underlying platform to destroy the abstraction that represents the key</selectable>
-			        </selectables>
-			</selectable>
-		    </selectables>
-		</selectable>
-	      </selectables>
-	      .
-	    </title>
-	    <note role="application">
-	      <h:p>
-The interface referenced in the requirement could take different forms, 
-the most likely of which is an application programming interface to an OS kernel. 
-There may be various levels of abstraction visible.
-For instance, in a given implementation that overwrites a key stored in non-volatile memory, 
-the application may have access to the file system details and 
-may be able to logically address specific memory locations.
-In another implementation, that instructs the underlying platform to destroy the 
-representation of a key stored in non-volatile memory, 
-the application may simply have a handle to a resource and 
-can only ask the platform to delete the resource, as may be the case with a platforms secure key store.
-The latter implementation should only be used for the most restricted access.
-The level of detail to which the TOE has access will be reflected in the TSS section of the ST.
-	      </h:p>
-        <h:p>
-Several selections allow assignment of a 'value that does not contain any CSP.'
-This means that the TOE uses some other specified data not drawn from a source that 
-may contain key material or reveal information about key material, 
-and not being any of the particular values listed as other selection options. 
-The point of the phrase 'does not contain any CSP' is to ensure that the overwritten 
-data is carefully selected, and not taken from a general 'pool' that might contain current or 
-residual data that itself requires confidentiality protection.
-	      </h:p>
-	      <h:p>      
-For the selection <xref to="s-kek-kill"/>,
-a key can be considered destroyed by destroying the key that protects the key.
-If a key is wrapped or encrypted it is not necessary to "overwrite" that key,
-overwriting the key that is used to wrap or encrypt the key used to encrypt/decrypt data,
-using the appropriate method for the memory type involved, will suffice.
-For example, if a product uses a KEK to encrypt a Data Encryption Key
-(DEK), destroying the KEK using one of the methods in FCS_CKM_EXT.4 is sufficient, 
-since the DEK would no longer be usable (of course, presumes the DEK is still encrypted 
-and the KEK cannot be recovered or re-derived.).
-	      </h:p>
-	    </note>
-	  </f-element>
+<f-component cc-id="fcs_ckm.6" name="Timing and Event of Cryptographic Key Destruction">
+	 
           <f-element id="fel-key-kill-when">
-	    <title>The OS shall destroy all keys and key material when no longer needed.</title>
+            <title>The <h:b>OS</h:b> shall destroy [<h:i>all keys and key material</h:i>] when [<h:i>no longer needed</h:i>].</title>
 	    <note role="application">
 	      <h:p>
 		For the purposes of this requirement, key material refers to authentication data, passwords, secret/private symmetric keys, private asymmetric keys, data used to derive keys, values derived from passwords, etc.
 	      </h:p>
-	      <h:p>Key destruction procedures are performed in accordance with FCS_CKM_EXT.4.1.</h:p>
 	    </note>
 	    <aactivity>
 	      <TSS>
@@ -1540,11 +1449,11 @@ The evaluator shall check that the TSS identifies any configurations or circumst
 	        </h:p>
 	        <h:p>
 If the selection "destruction of all key encrypting keys (KEKs) protecting the target key 
-according to FCS_CKM_EXT.4.1, where none of the KEKs protecting the target key 
+according to FCS_CKM.6, where none of the KEKs protecting the target key 
 are derived" is included, the evaluator shall examine the TOE’s keychain in the TSS and
 identify each instance when a key is destroyed by this method. In each instance the evaluator
 will verify all keys capable of decrypting the target key are destroyed in accordance with a
-specified key destruction method in FCS_CKM_EXT.4.1. The evaluator shall verify that all of the
+specified key destruction method in FCS_CKM.6. The evaluator shall verify that all of the
 keys capable of decrypting the target key are not able to be derived to reestablish the keychain
 after their destruction. 	      
 	        </h:p>      
@@ -1634,6 +1543,85 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      </Tests>
             </aactivity>
           </f-element>
+  <f-element id="fel-key-kill">
+    <title>
+      The <h:b>OS</h:b> shall destroy cryptographic keys and keying material specified by FCS_CKM.6.1 in accordance with a specified cryptographic key destruction method
+      <selectables>
+        <selectable>For volatile memory, the destruction shall be executed by a
+          <selectables>
+            <selectable>single overwrite consisting of <selectables>
+              <selectable>a pseudo-random pattern using the TSF&apos;s RBG</selectable>
+              <selectable>zeroes</selectable>
+              <selectable>ones</selectable>
+              <selectable>a new value of a key</selectable>
+              <selectable><assignable> any value that does not contain any CSP</assignable></selectable></selectables></selectable>
+            <selectable>removal of power to the memory</selectable>
+            <selectable>destruction of reference to the key directly followed by a request for garbage collection</selectable>
+          </selectables></selectable>
+        <selectable>For non-volatile memory that consists of 
+          <selectables>
+            <selectable id="s-kek-kill">destruction
+              of all key encrypting keys (KEKs) protecting the target key
+              according to FCS_CKM_EXT.4.1, where none of the KEKs protecting the target key are derived
+            </selectable>
+            <selectable>the invocation of an interface provided by the underlying platform that
+              <selectables>
+                <selectable>logically addresses the storage location of the key and performs a 
+                  <selectables>
+                    <selectable>single</selectable>
+                    <selectable><assignable>ST author defined multi-pass</assignable></selectable>
+                  </selectables>overwrite consisting of
+                  <selectables>
+                    <selectable>zeroes</selectable>
+                    <selectable>ones</selectable>
+                    <selectable>pseudo-random pattern</selectable>
+                    <selectable>a new value of a key of the same size</selectable>
+                    <selectable><assignable>any value that does not contain any CSP</assignable></selectable></selectables></selectable>
+                <selectable>instructs the underlying platform to destroy the abstraction that represents the key</selectable>
+              </selectables>
+            </selectable>
+          </selectables>
+        </selectable>
+      </selectables>
+      .
+    </title>
+    <note role="application">
+      <h:p>
+        The interface referenced in the requirement could take different forms, 
+        the most likely of which is an application programming interface to an OS kernel. 
+        There may be various levels of abstraction visible.
+        For instance, in a given implementation that overwrites a key stored in non-volatile memory, 
+        the application may have access to the file system details and 
+        may be able to logically address specific memory locations.
+        In another implementation, that instructs the underlying platform to destroy the 
+        representation of a key stored in non-volatile memory, 
+        the application may simply have a handle to a resource and 
+        can only ask the platform to delete the resource, as may be the case with a platforms secure key store.
+        The latter implementation should only be used for the most restricted access.
+        The level of detail to which the TOE has access will be reflected in the TSS section of the ST.
+      </h:p>
+      <h:p>
+        Several selections allow assignment of a 'value that does not contain any CSP.'
+        This means that the TOE uses some other specified data not drawn from a source that 
+        may contain key material or reveal information about key material, 
+        and not being any of the particular values listed as other selection options. 
+        The point of the phrase 'does not contain any CSP' is to ensure that the overwritten 
+        data is carefully selected, and not taken from a general 'pool' that might contain current or 
+        residual data that itself requires confidentiality protection.
+      </h:p>
+      <h:p>      
+        For the selection <xref to="s-kek-kill"/>,
+        a key can be considered destroyed by destroying the key that protects the key.
+        If a key is wrapped or encrypted it is not necessary to "overwrite" that key,
+        overwriting the key that is used to wrap or encrypt the key used to encrypt/decrypt data,
+        using the appropriate method for the memory type involved, will suffice.
+        For example, if a product uses a KEK to encrypt a Data Encryption Key
+        (DEK), destroying the KEK using one of the methods in FCS_CKM_EXT.4 is sufficient, 
+        since the DEK would no longer be usable (of course, presumes the DEK is still encrypted 
+        and the KEK cannot be recovered or re-derived.).
+      </h:p>
+    </note>
+  </f-element>
         </f-component>
  
         <f-component cc-id="fcs_cop.1" iteration="ENCRYPT" name="Cryptographic Operation - Encryption/Decryption (Refined)">
