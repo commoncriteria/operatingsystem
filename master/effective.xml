@@ -377,6 +377,7 @@ it manages may be physical or virtual.
           <FP-cc-ref conf="conformant">Functional Package for Transport Layer Security Version 2.1</FP-cc-ref>
           <FP-cc-ref conf="conformant">Functional Package for Secure Shell Version 1.1</FP-cc-ref>
           <FP-cc-ref conf="conformant">Functional Package for X.509 Version 1.0</FP-cc-ref>
+          <AP-cc-ref conf="conformant">Assurance Package for Flaw Remediation Version 1.0</AP-cc-ref>
            <!-- <AP-cc-ref conf="conformant">Assurance Package for Flaw Remediation Version 1.0</AP-cc-ref> -->
         </cc-pkg-claim>
       </CClaimsInfo>	
@@ -991,11 +992,11 @@ users of the same system.
               <Tests>
                 <h:p>
                   The evaluator shall test the OS's ability to correctly generate
-                  audit records by having the TOE generate audit records for the
+                  audit data by having the TOE generate audit data for the
                   events listed in the ST.  This should include all instance types
                   of an event specified.
                   When verifying the test results, the evaluator shall ensure the
-                  audit records generated during testing match the format specified
+                  audit data generated during testing match the format specified
                   in the administrative guide, and that the fields in each audit
                   record provide the required information.
                 </h:p>
@@ -1025,7 +1026,7 @@ users of the same system.
                 <h:p>
                   The evaluator shall check the administrative guide and ensure
                   that it provides a format
-                  for audit records. Each audit record format type must be covered,
+                  for audit data. Each audit data format type must be covered,
                   along with a brief description of each field. The evaluator shall
                   ensure that the fields contains the information required.
                 </h:p>
@@ -1251,6 +1252,7 @@ users of the same system.
 	      </Tests>
 	    </aactivity>
           </f-element>
+          <audit-event/>
         </f-component>
 		
 		
@@ -1415,6 +1417,7 @@ The evaluator shall verify the correctness of the TSF's implementation of "safe-
 	    </rule>
 	    
           </f-element>
+          <audit-event/>
         </f-component>
                 
 <f-component cc-id="fcs_ckm.6" name="Timing and Event of Cryptographic Key Destruction">
@@ -1615,6 +1618,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
       </h:p>
     </note>
   </f-element>
+  <audit-event/>
         </f-component>
  
         <f-component cc-id="fcs_cop.1" iteration="ENCRYPT" name="Cryptographic Operation - Encryption/Decryption (Refined)">
@@ -2106,7 +2110,9 @@ This result shall be compared to the result of running 1000 iterations with the 
 	      <!-- </or> -->
 	    <!-- </rule> -->
           </f-element>
+          <audit-event/>
         </f-component>
+        
         <f-component cc-id="fcs_cop.1" iteration="HASH" name="Cryptographic Operation - Hashing (Refined)">
           <f-element id="fel-hash-how">
             <title>The <h:b>OS</h:b> shall perform [<h:i>cryptographic hashing services</h:i>] in accordance with a
@@ -2193,7 +2199,9 @@ This result shall be compared to the result of running 1000 iterations with the 
 	      </Tests>
             </aactivity>
           </f-element>
+          <audit-event/>
         </f-component>
+        
         <f-component cc-id="fcs_cop.1" iteration="SIGN" name="Cryptographic Operation - Signing (Refined)">
           <f-element id="fel-sign-how">
             <title>The <h:b>OS</h:b> shall perform [<h:i>cryptographic signature services (generation and
@@ -2285,7 +2293,9 @@ This result shall be compared to the result of running 1000 iterations with the 
 	      </Tests>
             </aactivity>
           </f-element>
+          <audit-event/>
         </f-component>
+        
         <f-component cc-id="fcs_cop.1" iteration="KEYHMAC" name="Cryptographic Operation - Keyed-Hash Message Authentication (Refined)">
           <f-element id="fel-keyed-hash-how">
             <title>The <h:b>OS</h:b> shall perform [<h:i>keyed-hash message authentication services</h:i>]
@@ -2330,6 +2340,7 @@ This result shall be compared to the result of running 1000 iterations with the 
 	      </Tests>
 	    </aactivity>
           </f-element>
+          <audit-event/>
         </f-component>
 <!--
 	<ext-comp-def fam-id="FCS_RBG_EXT" title="Random Bit Generation">
@@ -2575,7 +2586,7 @@ only AES-based implementations for CTR_DRBG are allowed.
                 Documentation will be produced - and the evaluator shall perform the
                 activities - in accordance with <xref to="entropyappendix"/> and
                 the
-                <h:a href="https://old.niap-ccevs.org/Documents_and_Guidance/ccevs/Entropy%20Documentation%20and%20Assessment%20Clarification.pdf">Clarification to the Entropy Documentation and Assessment Annex</h:a>.
+                <h:a href="https://niap-ccevs.org/Documents_and_Guidance/ccevs/Entropy%20Documentation%20and%20Assessment%20Clarification.pdf">Clarification to the Entropy Documentation and Assessment Annex</h:a>.
               </h:p>
               <TSS/>
               <Guidance/>
@@ -2607,6 +2618,7 @@ only AES-based implementations for CTR_DRBG are allowed.
               <Tests/>
             </aactivity>
           </f-element>
+          <audit-event/>
         </f-component>    
         
         <f-component cc-id="fcs_rbg.2" name="Random Bit Generation (External Seeding)" status="sel-based">
@@ -2632,6 +2644,7 @@ only AES-based implementations for CTR_DRBG are allowed.
               <Tests/>
             </aactivity>
           </f-element>
+          <audit-event/>
         </f-component>
         
         <f-component cc-id="fcs_rbg.3" name="Random Bit Generation (Internal Seeding - Single Source)" status="sel-based">
@@ -2654,6 +2667,7 @@ only AES-based implementations for CTR_DRBG are allowed.
               <Tests/>
             </aactivity>
           </f-element>
+          <audit-event/>
         </f-component>
         
         <f-component cc-id="fcs_rbg.4" name="Random Bit Generation (Internal Seeding - Multiple Sources)" status="sel-based">
@@ -2678,6 +2692,7 @@ only AES-based implementations for CTR_DRBG are allowed.
               <Tests/>
             </aactivity>
           </f-element>
+          <audit-event/>
         </f-component>
         
         <f-component cc-id="fcs_rbg.5" name="Random Bit Generation (Combining Noise Sources)" status="sel-based">
@@ -2699,6 +2714,7 @@ only AES-based implementations for CTR_DRBG are allowed.
               <Tests/>
             </aactivity>
           </f-element>
+          <audit-event/>
         </f-component>  
         
         <f-component cc-id="fcs_rbg.6" name="Random Bit Generation Service" status="optional">
@@ -2721,6 +2737,7 @@ only AES-based implementations for CTR_DRBG are allowed.
             <Tests>The evaluator shall invoke the API specified by the guidance documentation to determine that the TSF provides DRBG output upon proper invocation of the API.</Tests>
           </aactivity>
           </f-element>
+          <audit-event/>
         </f-component>    
         
 
@@ -2762,6 +2779,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 	      </Guidance>
             </aactivity>
           </f-element>
+          <audit-event/>
         </f-component>
 
       </section>
@@ -2848,6 +2866,9 @@ only AES-based implementations for CTR_DRBG are allowed.
 	      </Tests>
             </aactivity>
           </f-element>
+          <audit-event>
+            <audit-event-descr>Successful and unsuccessful attempts to access data</audit-event-descr>
+          </audit-event>
         </f-component>
 	  
         <ext-comp-def fam-id="FDP_IFC_EXT" title="Information Flow Control">
@@ -2949,6 +2970,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 	      </Tests>
 	    </aactivity>
           </f-element>
+          <audit-event/>
         </f-component>
       </section>
       
@@ -3037,6 +3059,7 @@ only AES-based implementations for CTR_DRBG are allowed.
               </Tests>
 	    </aactivity>
           </f-element>
+          <audit-event/>
         </f-component>
         <f-component cc-id="fia_uau.5" name="Multiple Authentication Mechanisms (Refined)">
           <f-element id="fel-mult-auth">
@@ -3179,6 +3202,7 @@ The <h:b>OS</h:b> shall authenticate any user's claimed identity according to th
 	      </Tests>
           </aactivity>
           </f-element>
+          <audit-event/>
         </f-component>
 
 <!--
@@ -3498,6 +3522,14 @@ the node certificate to be tested, two Intermediate CAs, and the
 		</Tests>
             </aactivity>
 	  </f-element>
+          <audit-event>
+            <audit-event-descr>Successful or unsuccessful management of the behavior of any TOE
+              functions</audit-event-descr>            
+          </audit-event>
+          <audit-event>
+            <audit-event-descr>Change in permissions to a set of users that have the ability to
+              manage a given function</audit-event-descr>
+          </audit-event>
 	</f-component>
 
         <ext-comp-def fam-id="FMT_SMF_EXT" title="Specification of Management Functions">
@@ -3576,6 +3608,7 @@ The OS can enroll in such account management and enable the overall information 
 	      </Tests>
 	    </aactivity>
 	  </f-element>
+	  <audit-event/>
 	</f-component>
       </section>
       <section title="Protection of the TSF (FPT)" id="fpt">
@@ -3658,6 +3691,9 @@ The OS can enroll in such account management and enable the overall information 
 	      </Tests>
             </aactivity>
           </f-element>
+          <audit-event>
+            <audit-event-descr>Unauthorized attempts to perform operations against protected data</audit-event-descr>
+          </audit-event>
         </f-component>
 
         <ext-comp-def fam-id="FPT_ASLR_EXT" title="Address Space Layout Randomization">
@@ -3707,6 +3743,7 @@ This test can also be completed on the same hardware and rebooting between appli
 	      The evaluator shall review the TSS to ensure that ASLR applies to the kernel.
 	    </aactivity>
           </f-element> -->
+          <audit-event/>
 	</f-component>
         <!-- <f-component id="fpt_php_ext.1" name="External Interface Controls">-->
         <!--   <f-element> -->
@@ -3855,6 +3892,7 @@ This test can also be completed on the same hardware and rebooting between appli
               </Tests>
             </aactivity>
           </f-element>
+          <audit-event/>
         </f-component>
 
 
@@ -3925,6 +3963,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
               </Tests>
 	    </aactivity>
           </f-element>
+	  <audit-event/>
         </f-component>
 
 	<ext-comp-def fam-id="FPT_SRP_EXT" title="Software Restriction Policies">
@@ -4043,6 +4082,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
               </Tests>
 	    </aactivity>
           </f-element>
+	  <audit-event/>
         </f-component>
         
         
@@ -4209,6 +4249,9 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
               </Tests>
 	    </aactivity>
           </f-element>
+          <audit-event>
+            <audit-event-descr>Failure of the integrity checking mechanism</audit-event-descr>
+          </audit-event>
         </f-component>
 
 	<ext-comp-def fam-id="FPT_TUD_EXT" title="Trusted Update">
@@ -4300,6 +4343,12 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 		 <note role="application">The intent of the requirement is to ensure that only digitally signed and verified TOE updates are applied to the TOE.</note>
            
           </f-element>
+          <audit-event>
+            <audit-event-descr>Failure of the integrity checking mechanism</audit-event-descr>
+          </audit-event>
+          <audit-event>
+            <audit-event-descr>Successful completion of updates</audit-event-descr>
+          </audit-event>
 	
         </f-component>
         <f-component cc-id="fpt_tud_ext.2" name="Integrity for Installation and Update of Application Software">
@@ -4386,6 +4435,12 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 	      FCS_COP.1/SIGN prior to installation.
 	    </title>
           </f-element>
+          <audit-event>
+            <audit-event-descr>Failure of the integrity checking mechanism</audit-event-descr>
+          </audit-event>
+          <audit-event>
+            <audit-event-descr>Successful completion of updates</audit-event-descr>
+          </audit-event>
 
         </f-component>
 
@@ -4447,6 +4502,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
               </Tests>
             </aactivity>
           </f-element>
+          <audit-event/>
         </f-component>
 
       </section>
@@ -4622,6 +4678,16 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
       	      </Tests>
 	    </aactivity>
       	  </f-element>
+      	  <audit-event>
+      	    <audit-event-descr>Initiation of trusted channel</audit-event-descr>
+      	  </audit-event>
+      	  <audit-event>
+      	    <audit-event-descr>Termination of trusted channel</audit-event-descr>
+      	  </audit-event>
+      	  <audit-event>
+      	    <audit-event-descr>Failure of trusted channel functions</audit-event-descr>      	    
+      	  </audit-event>
+      	  
       	</f-component>
         <f-component cc-id="ftp_trp.1" name="Trusted Path">
             <f-element id="fel-trust-ends">
@@ -4721,6 +4787,7 @@ The evaluator shall also perform the following tests:
         </f-component>
       </section>
     </sec:SFRs>
+    
     <sec:Security_Assurance_Requirements>
       <h:p>
 	The Security Functional Requirements (SFRs) in <xref to="SFRs"/> are specified to 
@@ -5536,7 +5603,7 @@ The evaluator shall also perform the following tests:
 	<h:tr>
 	<h:td>FPT_STM.1 - Reliable time stamps</h:td>
 	<h:td>
-	  FAU_GEN.1.2 explicitly requires that the OS associate timestamps with audit records;
+	  FAU_GEN.1.2 explicitly requires that the OS associate timestamps with audit data;
 	  therefore it is duplicative to include a separate timestamp requirement.
 	</h:td>
 	</h:tr>
