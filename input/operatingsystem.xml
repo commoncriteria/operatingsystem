@@ -953,8 +953,24 @@ users of the same system.
     <sec:Security_Objectives_Rationale/>
   </sec:Security_Objectives>
 
-  <sec:Security_Requirements>
+  <sec:Security_Requirements>   
+    
     <sec:SFRs title="Security Functional Requirements">
+      
+      <section id="s-audit-table" title="Auditable Events for Mandatory SFRs">        
+        <audit-table id="at-mandatory" table="atref-mandatory" title="Auditable Events for Mandatory
+          SFRs">
+        </audit-table>        
+      </section>
+      <section id="opt-audit-table" title="Auditable Events for Optional SFRs">
+        <audit-table id="at-optional" table="atref-optional" title="Auditable Events for Optional SFRs"></audit-table>
+      </section>
+      <section id="obj-audit-table" title="Auditable Events for Objective SFRs">
+        <audit-table id="at-objective" table="atref-objective" title="Auditable Events for Objective SFRs"></audit-table>
+      </section>
+      <section id="sb-audit-table" title="Auditable Events for Selection-Based SFRs">
+        <audit-table id="at-sel-based" table="atref-sel-based" title="Auditable Events for Selection-Based SFRs"></audit-table>
+      </section>
       
       <section title="Audit Data Generation (FAU)" id="fau">
         <f-component cc-id="fau_gen.1" name="Audit Data Generation (Refined)">
@@ -2876,7 +2892,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 	      </Tests>
             </aactivity>
           </f-element>
-          <audit-event>
+          <audit-event table="at-mandatory">
             <audit-event-descr>Successful and unsuccessful attempts to access data</audit-event-descr>
           </audit-event>
         </f-component>
@@ -3532,11 +3548,11 @@ the node certificate to be tested, two Intermediate CAs, and the
 		</Tests>
             </aactivity>
 	  </f-element>
-          <audit-event>
+          <audit-event table="at-mandatory">
             <audit-event-descr>Successful or unsuccessful management of the behavior of any TOE
               functions</audit-event-descr>            
           </audit-event>
-          <audit-event>
+          <audit-event table="at-mandatory">
             <audit-event-descr>Change in permissions to a set of users that have the ability to
               manage a given function</audit-event-descr>
           </audit-event>
@@ -3701,7 +3717,7 @@ The OS can enroll in such account management and enable the overall information 
 	      </Tests>
             </aactivity>
           </f-element>
-          <audit-event>
+          <audit-event table="at-mandatory">
             <audit-event-descr>Unauthorized attempts to perform operations against protected data</audit-event-descr>
           </audit-event>
         </f-component>
@@ -4259,7 +4275,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
               </Tests>
 	    </aactivity>
           </f-element>
-          <audit-event>
+          <audit-event table="at-mandatory">
             <audit-event-descr>Failure of the integrity checking mechanism</audit-event-descr>
           </audit-event>
         </f-component>
@@ -4353,10 +4369,10 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 		 <note role="application">The intent of the requirement is to ensure that only digitally signed and verified TOE updates are applied to the TOE.</note>
            
           </f-element>
-          <audit-event>
+          <audit-event table="at-mandatory">
             <audit-event-descr>Failure of the integrity checking mechanism</audit-event-descr>
           </audit-event>
-          <audit-event>
+          <audit-event table="at-mandatory">
             <audit-event-descr>Successful completion of updates</audit-event-descr>
           </audit-event>
 	
@@ -4445,10 +4461,10 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 	      FCS_COP.1/SIGN prior to installation.
 	    </title>
           </f-element>
-          <audit-event>
+          <audit-event table="at-mandatory">
             <audit-event-descr>Failure of the integrity checking mechanism</audit-event-descr>
           </audit-event>
-          <audit-event>
+          <audit-event table="at-mandatory">
             <audit-event-descr>Successful completion of updates</audit-event-descr>
           </audit-event>
 
@@ -4688,13 +4704,13 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
       	      </Tests>
 	    </aactivity>
       	  </f-element>
-      	  <audit-event>
+      	  <audit-event table="at-mandatory">
       	    <audit-event-descr>Initiation of trusted channel</audit-event-descr>
       	  </audit-event>
-      	  <audit-event>
+      	  <audit-event table="at-mandatory">
       	    <audit-event-descr>Termination of trusted channel</audit-event-descr>
       	  </audit-event>
-      	  <audit-event>
+      	  <audit-event table="at-mandatory">
       	    <audit-event-descr>Failure of trusted channel functions</audit-event-descr>      	    
       	  </audit-event>
       	  
