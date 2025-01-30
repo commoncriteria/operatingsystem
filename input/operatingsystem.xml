@@ -1064,30 +1064,23 @@ users of the same system.
 	  
         <f-component cc-id="fcs_ckm.1" name="Cryptographic Key Generation (Refined)">
           <f-element id="fel-asym-gen">
-            <title> The <h:b>OS</h:b> shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a
-              specified cryptographic key generation algorithm <selectables linebreak="yes">
-                <selectable id="s-keygen-rsa">RSA schemes using cryptographic key sizes of 3072-bit or greater that
-					meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)", Appendix B.3
-                </selectable>
-                <selectable id="s-keygen-ecc">ECC schemes using "NIST curves" P-384 and
-                  <selectables>
-                    <selectable id="p-256-keygen">P-256</selectable>
-                    <selectable>P-521</selectable>
-                    <selectable exclusive="yes"> no other curves</selectable>
-                  </selectables> that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)",
-                  Appendix B.4
-                </selectable>
-				<selectable id="s-keygen-ffc">FFC schemes using 
-					<selectables>
-						<selectable id="s-keygen-ffc-fips">cryptographic key sizes of 3072-bit
-							or greater that meet the following: FIPS PUB 186-4, "Digital Signature
-							Standard (DSS)", Appendix B.1</selectable>
-						<!-- <selectable id="s-keygen-ffc-dh">Diffie-Hellman Group 14 that meet the following: RFC 3526 </selectable> -->
-						<selectable id="s-keygen-ffc-safeprime">safe primes that meet the following: 
-							NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes"
-						</selectable>
-					</selectables>
-				</selectable></selectables>.
+            <title>The TSF shall <selectables>
+              <selectable>invoke platform-provided functionality</selectable>
+              <selectable>implement functionality</selectable>
+            </selectables> to generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a specified cryptographic key generation algorithm
+              <selectables linebreak="yes">
+                <selectable>RSA schemes using a cryptographic key size of 3072-bits that
+                  meet the following: FIPS PUB 186-5, "Digital Signature Standard (DSS)", Appendix
+                  A.1</selectable>
+                <selectable>ECC schemes using "NIST curve" P-384 that meet the following: FIPS PUB 186-5, "Digital Signature
+                  Standard (DSS)", Appendix A.2
+                </selectable>                
+                <selectable>FFC schemes using "safe-prime" groups that meet the following: 'NIST Special Publication 800-56A Revision 3, 
+                  "Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography"', and <selectables>
+                    <selectable>RFC 3526</selectable>
+                    <selectable>RFC 7919</selectable>
+                  </selectables></selectable>
+              </selectables>.
             </title>
             <note role="application">
 	      <h:p>
