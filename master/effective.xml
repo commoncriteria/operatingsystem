@@ -965,7 +965,7 @@ users of the same system.
       </section>
       
       <section title="Audit Data Generation (FAU)" id="fau">
-        <f-component cc-id="fau_gen.1" name="Audit Data Generation (Refined)">
+        <f-component cc-id="fau_gen.1" name="Audit Data Generation">
           <f-element id="fel-faugen">
             <title>
               The TSF shall be able to generate audit data of the following auditable
@@ -1054,12 +1054,9 @@ users of the same system.
       <section title="Cryptographic Support (FCS)" id="fcs">
 	  
 	  
-        <f-component cc-id="fcs_ckm.1" name="Cryptographic Key Generation (Refined)">
+        <f-component cc-id="fcs_ckm.1" name="Cryptographic Key Generation">
           <f-element id="fel-asym-gen">
-            <title>The TSF shall <selectables>
-              <selectable>invoke platform-provided functionality</selectable>
-              <selectable>implement functionality</selectable>
-            </selectables> to generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a specified cryptographic key generation algorithm
+            <title>The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with a specified cryptographic key generation algorithm
               <selectables linebreak="yes">
                 <selectable>RSA schemes using a cryptographic key size of 3072-bits that
                   meet the following: FIPS PUB 186-5, "Digital Signature Standard (DSS)", Appendix
@@ -1121,7 +1118,7 @@ users of the same system.
           
         </h:p>
 		  <h:div>  <depends on="s-keygen-rsa"/>
-		  <h:b>Key Generation for FIPS PUB 186-4 RSA Schemes</h:b><h:br/>
+		  <h:b>Key Generation for FIPS PUB 186-5 RSA Schemes</h:b><h:br/>
 		  <h:p>The evaluator shall verify
 		  the implementation of RSA Key Generation by the OS using the Key
 		  Generation test. This test verifies the ability of the TSF to
@@ -1174,7 +1171,7 @@ users of the same system.
 			  <h:div>
 			   <depends on="s-keygen-ecc"/>
                <h:b>Key Generation for Elliptic Curve Cryptography (ECC)</h:b><h:br/>
-     	      <h:p> FIPS 186-4 ECC Key Generation Test</h:p>
+     	      <h:p> FIPS 186-5 ECC Key Generation Test</h:p>
               <h:p>For each supported NIST curve, i.e., P-256, P-384, and P-521, the
               evaluator shall require the implementation under test (IUT) to generate 10
               private/public key pairs. The private key shall be generated using an approved random
@@ -1182,10 +1179,10 @@ users of the same system.
               generated key pairs to the public key verification (PKV) function of a known good
               implementation.
 	     </h:p>
-	      <h:p>FIPS 186-4 Public Key Verification (PKV) Test</h:p>
+	      <h:p>FIPS 186-5 Public Key Verification (PKV) Test</h:p>
 	      <h:p>
-	      For each supported
-              NIST curve, i.e., P-256, P-384, and P-521, the evaluator shall generate 10
+	      For the supported
+              NIST curve P-384, the evaluator shall generate 10
               private/public key pairs using the key generation function of a known good
               implementation and modify five of the public key values so that they are incorrect,
               leaving five values unchanged (i.e., correct). The evaluator shall obtain in response
@@ -1264,13 +1261,13 @@ users of the same system.
         </f-component>
 		
 		
-        <f-component cc-id="fcs_ckm.2" name="Cryptographic Key Establishment (Refined)">
+        <f-component cc-id="fcs_ckm.2" name="Cryptographic Key Establishment">
           <f-element id="fel-crypt-key-estab">
             <title>The TSF shall <h:b>implement functionality to perform cryptographic key establishment</h:b>
               in accordance with a specified cryptographic key <h:b>establishment</h:b> method:
               <selectables linebreak="yes">
-				<selectable id="s-keyestab-rsa">RSA-based key establishment schemes that meets the following:
-					RSAES-PKCS1-v1_5 as specified in Section 7.2 of RFC 8017, “Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.2"</selectable>
+	<!--			<selectable id="s-keyestab-rsa">RSA-based key establishment schemes that meets the following:
+					RSAES-PKCS1-v1_5 as specified in Section 7.2 of RFC 8017, “Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.2"</selectable> -->
 		
 				<selectable id="s-keyestab-ecc">Elliptic curve-based key establishment schemes that meets the following: NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</selectable>
 				<selectable id="s-keyestab-ffc">Finite field-based key establishment schemes
@@ -1388,13 +1385,13 @@ users of the same system.
 		</h:p>
 	      </h:p>
 		</h:div>
-	    
+	    <!--
 		<h:div><depends on="s-keyestab-rsa"/>
 			<h:b>RSAES-PKCS1-v1_5 Key Establishment Schemes</h:b><h:br/>
 	<h:p>
 The evaluator shall verify the correctness of the TSF's implementation of RSAES-PKCS1-v1_5 by using a known good implementation for each protocol selected in FTP_ITC_EXT.1 that uses RSAES-PKCS1-v1_5.
 			</h:p>
-			  </h:div>
+			  </h:div> -->
 		<!-- <h:div><depends on="s-keyestab-dh"/> -->
 		<!-- 	<h:b>Diffie-Hellman Group 14</h:b><h:br/> -->
 
@@ -1629,7 +1626,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
   <audit-event/>
         </f-component>
  
-        <f-component cc-id="fcs_cop.1" iteration="ENCRYPT" name="Cryptographic Operation - Encryption/Decryption (Refined)">
+        <f-component cc-id="fcs_cop.1" iteration="ENCRYPT" name="Cryptographic Operation - Encryption/Decryption">
           <f-element id="fel-encrypt-how">
             <title>
               The TSF shall perform [<h:i>encryption/decryption services for data</h:i>] in
@@ -2121,7 +2118,7 @@ This result shall be compared to the result of running 1000 iterations with the 
           <audit-event/>
         </f-component>
         
-        <f-component cc-id="fcs_cop.1" iteration="HASH" name="Cryptographic Operation - Hashing (Refined)">
+        <f-component cc-id="fcs_cop.1" iteration="HASH" name="Cryptographic Operation - Hashing">
           <f-element id="fel-hash-how">
             <title>The TSF shall perform [<h:i>cryptographic hashing services</h:i>] in accordance with a
               specified cryptographic algorithm <h:b>
@@ -2210,23 +2207,19 @@ This result shall be compared to the result of running 1000 iterations with the 
           <audit-event/>
         </f-component>
         
-        <f-component cc-id="fcs_cop.1" iteration="SIGN" name="Cryptographic Operation - Signing (Refined)">
+        <f-component cc-id="fcs_cop.1" iteration="SIGN" name="Cryptographic Operation - Signing">
           <f-element id="fel-sign-how">
             <title>The TSF shall perform [<h:i>cryptographic signature services (generation and
-              verification)</h:i>] in accordance with a specified cryptographic algorithm <h:b><selectables linebreak="yes">
+              verification)</h:i>] in accordance with a specified cryptographic algorithm <selectables linebreak="yes">
                 <selectable id="s-rsa-certs">RSA schemes using cryptographic key sizes of <selectables>
                   <selectable>2048-bit (for secure boot only) or greater</selectable>
                   <selectable>3072-bit or greater</selectable>
-                </selectables> 
-                  that meet the following: FIPS PUB 186-4, "Digital Signature Standard (DSS)",  Section 4</selectable>
-                <selectable id="s-ec-certs">ECDSA schemes using "NIST curves" P-384 and <selectables>
-                    <selectable>P-521</selectable>
-                    <selectable exclusive="yes">no other curves</selectable>
+                </selectables></selectable> 
+                <selectable id="s-ec-certs">ECDSA schemes using "NIST curve" P-384 and no other curves</selectable>
                   </selectables>
-		  that meet the following: FIPS PUB 186-4, "Digital Signature   Standard (DSS)", Section 5</selectable>
-              </selectables></h:b>
+                that meet the following: [<h:i>FIPS PUB 186-5, "Digital Signature Standard (DSS)"</h:i>].
           </title>
-            <note role="application"> The ST Author should choose the algorithm implemented to
+            <note role="application"> The ST author should choose the algorithm implemented to
               perform digital signatures; if more than one algorithm is available, this requirement
               should be iterated to specify the functionality. For the algorithm chosen, the ST
               author should make the appropriate assignments/selections to specify the parameters
@@ -2255,14 +2248,13 @@ This result shall be compared to the result of running 1000 iterations with the 
 	      <h:p><h:b>ECDSA Algorithm Tests</h:b></h:p>
 	      <h:p>
 	      <testlist>
-                <test>ECDSA FIPS 186-4 Signature Generation Test. For each supported NIST curve
-                  (i.e., P-384 and P-521) and SHA function pair, the evaluator shall generate
+                <test>ECDSA FIPS 186-5 Signature Generation Test. For the supported NIST curve
+                  P-384 and SHA function pair, the evaluator shall generate
                   10 1024-bit long messages and obtain for each message a public key and the
                   resulting signature values R and S. To determine correctness, the evaluator shall
                   use the signature verification function of a known good implementation. </test>
                 <test>
-		  ECDSA FIPS 186-4 Signature Verification Test. For each supported NIST curve
-                  (i.e., P-384 and P-521) and SHA function pair, the evaluator shall generate
+		  ECDSA FIPS 186-5 Signature Verification Test. For the supported NIST curve P-384 and SHA function pair, the evaluator shall generate
                   a set of 10 1024-bit message, public key and signature tuples and modify one of
                   the values (message, public key or signature) in five of the 10 tuples.
 		  The evaluator shall verify that 5 responses indicate success and
@@ -2304,7 +2296,7 @@ This result shall be compared to the result of running 1000 iterations with the 
           <audit-event/>
         </f-component>
         
-        <f-component cc-id="fcs_cop.1" iteration="KEYHMAC" name="Cryptographic Operation - Keyed-Hash Message Authentication (Refined)">
+        <f-component cc-id="fcs_cop.1" iteration="KEYHMAC" name="Cryptographic Operation - Keyed-Hash Message Authentication">
           <f-element id="fel-keyed-hash-how">
             <title>The TSF shall perform [<h:i>keyed-hash message authentication services</h:i>]
             in accordance with a specified cryptographic algorithm<h:b>
@@ -2982,7 +2974,7 @@ only AES-based implementations for CTR_DRBG are allowed.
       
       
       <section title="Identification and Authentication (FIA)" id="fia">
-        <f-component cc-id="fia_afl.1" name="Authentication Failure Handling (Refined)">
+        <f-component cc-id="fia_afl.1" name="Authentication Failure Handling">
           <f-element id="fel-id-and-auth">
             <title>
             The TSF shall detect when
@@ -3067,7 +3059,7 @@ only AES-based implementations for CTR_DRBG are allowed.
           </f-element>
           <audit-event/>
         </f-component>
-        <f-component cc-id="fia_uau.5" name="Multiple Authentication Mechanisms (Refined)">
+        <f-component cc-id="fia_uau.5" name="Multiple Authentication Mechanisms">
           <f-element id="fel-mult-auth">
             <title>
 	      The <refinement>OS</refinement> shall provide 
