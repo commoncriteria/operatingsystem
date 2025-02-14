@@ -1086,10 +1086,10 @@ users of the same system.
 	      If the OS acts only as a receiver in the RSA key establishment scheme,
 	      the OS does not need to implement RSA key generation.
 	      </h:p>
-        <h:p>
-          “P-256” may only be selected if the PP-Module for Bluetooth is included
-          in the ST and may only be used specifically for Bluetooth functions.
-        </h:p>
+              <h:p>
+                “P-256” may only be selected if the PP-Module for Bluetooth is included
+                in the ST and may only be used specifically for Bluetooth functions.
+              </h:p>
 	    </note>
             <aactivity>
 	      <TSS>
@@ -1633,7 +1633,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
         <f-component cc-id="fcs_cop.1" iteration="ENCRYPT" name="Cryptographic Operation - Encryption/Decryption">
           <f-element id="fel-encrypt-how">
             <title>
-              The TSF shall perform [<h:i>encryption/decryption services for data</h:i>] in
+              The TSF shall perform [<h:i>encryption and decryption services for data</h:i>] in
 	      accordance with a specified cryptographic algorithm<h:b>
 	      <selectables linebreak="yes">
 	              <selectable id="s-aes-xts">AES-XTS (as defined in NIST SP 800-38E)</selectable>
@@ -1655,10 +1655,10 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 		
                 <selectable exclusive="yes">no other modes</selectable>
               </selectables></h:b>
-              and cryptographic key sizes 256-bit and <selectables>
+              and cryptographic key sizes <h:b>256-bit and <selectables>
                 <selectable id="s-128">128-bit</selectable>
                 <selectable>no other bit size</selectable>
-              </selectables>.
+              </selectables></h:b>.
               <!-- <selectables> -->
               <!--   <selectable>128-bit</selectable> -->
               <!--   <selectable>256-bit</selectable> -->
@@ -1745,7 +1745,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               inputs to a known good implementation.
 	      <testlist>
                 <test>To test the encrypt functionality of AES-CBC, the evaluator shall supply
-                  a set of 5 plaintext values and obtain the ciphertext value that results from
+                  a set of five plaintext values and obtain the ciphertext value that results from
                   AES-CBC encryption of the given plaintext using a key value of all zeros and an IV
                   of all zeros.
 		  The plaintext values will encrypted with a 256-bit all-zeros key. To test
@@ -1918,7 +1918,7 @@ This result shall be compared to the result of running 1000 iterations with the 
 		The evaluator shall test the authenticated encryption functionality of AES-KW for EACH
 		combination of the following input parameter lengths:
               <h:ul>
-                <h:li>256 bit key encryption keys (KEKs)</h:li>
+                <h:li>256-bit key encryption keys (KEKs)</h:li>
                 <h:li>Three plaintext lengths.
 		One of the plaintext lengths will be two semi-blocks (256 bits).
 		One of the plaintext lengths will be three semi-blocks (192 bits).
@@ -2125,25 +2125,15 @@ This result shall be compared to the result of running 1000 iterations with the 
         <f-component cc-id="fcs_cop.1" iteration="HASH" name="Cryptographic Operation - Hashing">
           <f-element id="fel-hash-how">
             <title>The TSF shall perform [<h:i>cryptographic hashing services</h:i>] in accordance with a
-              specified cryptographic algorithm <h:b>
-              <selectables linebreak="yes">
-                <selectable>SHA-256</selectable>
-                <selectable>SHA-384</selectable>
-                <selectable>SHA-512</selectable>
-              </selectables>
-			  and message digest sizes
-              <selectables linebreak="yes">
-                <selectable>256 bits</selectable>
-                <selectable>384 bits</selectable>
-                <selectable>512 bits</selectable>
-              </selectables></h:b> that meet the following: [<h:i>FIPS Pub 180-4</h:i>]. </title>
+              specified cryptographic algorithm <h:b> of SHA-384 and a message digest size of 384-bits
+                </h:b> 
+              that meets the following: [<h:i>FIPS Pub 180-4</h:i>]. </title>
             <note role="application">
 	      <h:p>
 	      The intent of this requirement is to specify the hashing function.
-	      The hash selection must support the message digest
-              size selection.
+	      The hash selection must support the message digest size selection.
 	      The hash selection should be consistent with the overall strength of
-              the algorithm used.
+        the algorithm used.
 	      </h:p>
 	    </note>
             <aactivity>
@@ -2303,20 +2293,11 @@ This result shall be compared to the result of running 1000 iterations with the 
         <f-component cc-id="fcs_cop.1" iteration="KEYHMAC" name="Cryptographic Operation - Keyed-Hash Message Authentication">
           <f-element id="fel-keyed-hash-how">
             <title>The TSF shall perform [<h:i>keyed-hash message authentication services</h:i>]
-            in accordance with a specified cryptographic algorithm<h:b>
-              <selectables>
-                <selectable>SHA-256</selectable>
-                <selectable>SHA-384</selectable>
-                <selectable>SHA-512</selectable>
-              </selectables>
-              with key sizes <assignable>key size (in bits) used in HMAC</assignable>
-              and message digest</h:b> sizes
-	      <selectables>
-                <selectable>256 bits</selectable>
-                <selectable>384 bits</selectable>
-                <selectable>512 bits</selectable>
-	      </selectables> that meet the following: [<h:i>FIPS Pub 198-1 The Keyed-Hash Message
-                Authentication Code and FIPS Pub 180-4 Secure Hash Standard</h:i>]. </title>
+            in accordance with a specified cryptographic algorithm<h:b> of SHA-384 with key sizes
+              <assignable>key size (in bits) used in HMAC</assignable>
+              and a message digest</h:b> size of 384-bits that meets the following:
+              [<h:i>FIPS Pub 198-1 The Keyed-Hash Message Authentication Code and
+                FIPS Pub 180-4 Secure Hash Standard</h:i>]. </title>
             <note role="application">
 	      <h:p>
 	      The intent of this requirement is to specify the keyed-hash
@@ -2501,9 +2482,7 @@ only AES-based implementations for CTR_DRBG are allowed.
             <note role="application">
               NIST SP 800-90A contains three different methods of generating random numbers;
               each of these, in turn, depends on underlying cryptographic primitives (hash functions/ciphers).
-              The ST author will select the function used and include the specific underlying cryptographic primitives used in the requirement or in the TSS.
-              While any of the identified hash functions (SHA-224, SHA-256, SHA-384, SHA-512) are allowed for Hash_DRBG or HMAC_DRBG,
-              only AES-based implementations for CTR_DRBG are allowed.
+              The ST author will select the function used and include the specific underlying cryptographic primitives used in the requirement or in the TSS.              
             </note>
             <aactivity level="element">
               <TSS>The evaluator shall verify that the TSS identifies the DRBGs used by the TOE.</TSS>
