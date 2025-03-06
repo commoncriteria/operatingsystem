@@ -6,7 +6,7 @@
       <PPTitle>Functional Package for Transport Layer Security (TLS)</PPTitle>
       <PPVersion>2.1</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
-      <PPPubDate>2024-10-23</PPPubDate>
+      <PPPubDate>2025-03-05</PPPubDate>
       <Keywords>TLS</Keywords>
     </ReferenceTable>
   </PPReference>
@@ -31,7 +31,7 @@
     </entry>
     <entry>
       <version>2.1</version>
-      <date>2024-10-23</date>
+      <date>2025-03-05</date>
       <subject>Updated for CC:2022 conformance, incorporated applicable errata.</subject>
     </entry>
 	  
@@ -78,7 +78,8 @@
 	      Issuer of digital certificates.
       </term>
       <term abbr="CBC" full="Cipher Block Chaining"/>
-      <term abbr="CN" full="Common Name"/>
+      <term full="Calling application">A TOE application that utilizes functions defined in this package to secure its communications with external entities</term>
+      <term abbr="CN" full="Common Name">A particular relative distinguished name (DN) that is a component of a DN in accordance with RFC 5280 usage of RFC 4519, interpreted as a string without further normalization. It is common, but not recommended, for TLS and the calling applications to interpret a CN entry using specific formatting. When such formatting is applied for interpreting a CN entry, the resulting name is referred to as an 'embedded CN name'. The various formats supported for interpreting CN entries are referred to as the 'embedded CN name types'.</term>
       <term abbr="DHE" full="Diffie-Hellman Ephemeral"/>
       <term abbr="DN" full="Distinguished Name"/>
       <term abbr="DNS" full="Domain Name Server"/>
@@ -95,6 +96,8 @@
       <term abbr="IP" full="Internet Protocol"/>
       <!-- <term abbr="LDAP" full="Lightweight Directory Access Protocol"/>  -->
       <term abbr="NIST" full="National Institute of Standards and Technology"/>
+      <term full="Presented identifier">A piece of data supplied by an external entity to identify itself to the calling application via an X.509 certificate as part of the (D)TLS handshake. The certificate may include one or more identifiers in the subject field of the certificate or in the Subject Alternative Name (SAN) extension. The presented identifier is compared to the reference identifier to determine the validity of the external entity.</term>
+      <term full="Reference identifier">A piece of data defined by a calling application that is used to specify how an external entity is expected to present itself (such as the DNS name of a server that presents a certificate to the TOE). </term>
       <term abbr="RFC" full="Request for Comment (IETF)"/>
       <term abbr="RSA" full="Rivest Shamir Adelman"/>
       <term abbr="SAN" full="Subject Alternative Name"/>
@@ -430,7 +433,7 @@
               <selectable>TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289</selectable>
               <selectable>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289</selectable>
     
-         <selectable>the following PP-specific ciphersuites using pre-shared secrets:
+         <selectable>ciphersuites using pre-shared secrets:
             <selectables linebreak="yes">
               <selectable>TLS_ECDHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 8442</selectable>
               <selectable>TLS_DHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 5487</selectable>
@@ -465,7 +468,7 @@
         </h:p>
         <h:p>
           In addition to the supported ciphersuites, the ST author indicates the order of ciphersuites included in the client hello, 
-          indicating the preferred ciphersuites for server negotiation. It is recommended, but not required, that the TLS 1.3 ciphersuites
+          indicating the preferred ciphersuites for server negotiation. To eliminate the need to produce duplicate lists, it is recommended to complete the selected list of ciphersuites in the order that they are presented and then complete the following assignment by saying that the presentation order is the same as in the previous list. It is recommended, but not required, that the TLS 1.3 ciphersuites
           claimed are listed before TLS 1.2 ciphersuites, and that any other ciphersuites are listed last among the TLS 1.3 ciphersuites.
         </h:p>
       </note>
@@ -505,14 +508,14 @@
     <title>
       The TSF shall be able to support the following TLS client hello message extensions: 
       <h:ul>
-        <h:li>signature_algorithms extension (RFC 8446) indicating support for 
+        <h:li>signature_algorithms extension (RFC 5246, RFC 8446) indicating support for 
           <selectables linebreak="yes">
             <selectable>ecdsa-secp384r1_sha384 (RFC 8446)</selectable>
             <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable>
           </selectables>, and <selectables linebreak="yes">
               <selectable>rsa_pss_pss_sha384 (RFC 8603)</selectable>
               <selectable>rsa_pss_rsae_sha384 (RFC 8603)</selectable>
-              <selectable><assignable>other non-deprecated signature algorithms</assignable></selectable>
+
               <selectable>no other signature algorithms</selectable>
           </selectables> and
         </h:li>
@@ -524,7 +527,7 @@
             </selectables>, and <selectables linebreak="yes">
                 <selectable>rsa_pss_pss_sha384 (RFC 8603)</selectable>
                 <selectable>rsa_pss_rsae_sha384 (RFC 8603)</selectable>
-                <selectable><assignable>other non-deprecated signature algorithms</assignable></selectable>
+            
                 <selectable>no other signature algorithms</selectable>
               </selectables></selectable>
             <selectable>supported_versions extension (RFC 8446) indicating support for DTLS 1.3 and <selectables>
@@ -543,7 +546,7 @@
               (DHE or ECDHE) mode</selectable>
             <selectable>extended_master_secret extension (RFC 7627) enforcing server support, and
               <selectables>
-                <selectable>allowing legacy support</selectable>
+                <selectable>allowing legacy servers</selectable>
                 <selectable>no other enforcement mode</selectable>
               </selectables></selectable>
             <selectable>no other extensions</selectable></selectables>
@@ -563,7 +566,7 @@
                 </selectables>, and <selectables linebreak="yes">
                     <selectable>rsa_pss_pss_sha384 (RFC 8603)</selectable>
                     <selectable>rsa_pss_rsae_sha384 (RFC 8603)</selectable>
-                    <selectable><assignable>other non-deprecated signature algorithms</assignable></selectable>
+                    
                     <selectable>no other signature algorithms</selectable>
                 </selectables> and
               </h:li>
@@ -581,6 +584,9 @@
           DTLS uses TLS extensions.
         </h:p>
         <h:p>
+          Support for the signature_algorithms extension is optional in RFC 5246 but is mandated for this functional package. Support for the signature_algorithms extension is mandatory in RFC 8446 and remains so in this functional package. Whether the TOE's implementation conforms to RFC 5246, RFC 8446, or both is dependent on whether the TOE supports DTLS 1.2, DTLS 1.3, or both.
+        </h:p>
+        <h:p>
           If DTLS 1.3 is claimed in FCS_DTLSC_EXT.1.1, supported_versions, supported_groups, and key_share extensions are claimed in 
           accordance with RFC 8446. If DTLS 1.3 is not claimed, supported_versions and key_share extensions are not claimed.
         </h:p>
@@ -591,28 +597,25 @@
         </h:p><h:p>
           If DTLS 1.2 is supported and if ECDHE or DHE ciphersuites are claimed in FCS_DTLSC_EXT.1.2, the supported_groups extension is claimed here with appropriate secp and ffdhe groups claimed.
         </h:p>
+        
         <h:p>
-          Other extensions may be supported; certain extensions may need to be claimed based on other SFR claims made.
+          Other extensions may be supported; certain extensions and values may need to be claimed for SFRs defined outside of this package related to the calling applications.
         </h:p>
-        <h:p>
-          When "other non-deprecated signature algorithms" is claimed, the assignment will describe the standard signature and hash algorithms
-          supported. MD5 and SHA-1 hashes are deprecated and are not included in the signature_algorithms or signature_algorithms_cert
-          extensions.
-        </h:p>
+     
     </note>
     </f-element>
     <f-element>
       <title>
         The TSF shall be able to <selectables linebreak="yes">
           <selectable>verify that a presented identifier of name type: <selectables linebreak="yes">
-            <selectable>DNS name type according to RFC 6125</selectable>
-            <selectable>URI name type according to RFC 6125</selectable> 
-            <selectable>SRV name type according to RFC 6125</selectable>
-            <selectable>Common Name conversion to DNS name according to RFC 5280 and RFC 6125</selectable>
-            <selectable>Directory name type according to RFC 5280</selectable>
-            <selectable>iPAddress name type according to RFC 5280</selectable>
-            <selectable>rfc822Name type according to RFC 5280</selectable>
-            <selectable><assignable>other name type</assignable></selectable></selectables></selectable>  
+            <selectable>dNSName according to RFC 6125</selectable>
+            <selectable>uniformResourceIdentifier according to RFC 6125</selectable> 
+            <selectable>SRVname according to RFC 6125</selectable>
+            <selectable>Common Name conversion to dNSName according to RFC 5280 and RFC 6125</selectable>
+            <selectable>directoryName according to RFC 5280</selectable>
+            <selectable>iPAddress according to RFC 5280</selectable>
+            <selectable>rfc822Name according to RFC 5280</selectable>
+            <selectable><assignable>other name type</assignable> according to <assignable>RFC number</assignable></selectable></selectables></selectable>  
           <selectable>interface with a supported function requesting the DTLS channel to verify that a presented identifier</selectable>
           <selectable>pass initial name constraints to the certification path processing function to verify, in accordance with
           FIA_X509_EXT.1, that the presented identifier</selectable>
@@ -667,13 +670,13 @@
       <title>
         The TSF shall not establish a trusted channel if the server certificate is invalid <selectables>
           <selectable id="s-dtlsc-no-excep">with no DTLS-specific exceptions</selectable>
-          <selectable>except when override is authorized in the case where valid revocation information is not available</selectable></selectables>. 
+          <selectable>except when override is authorized in accordance with <assignable>override rules</assignable>in the case where valid revocation information is not available</selectable></selectables>. 
       </title>
       <note role="application">
         <h:p>
           The option “except when…” is claimed if DTLS specific exception rules are implemented to allow server certificates with no valid
           revocation status information to be accepted. This is claimed only when FIA_X509_EXT.2.2 includes the option “supported function
-          determines acceptance via…”. The assignment of this option describes the DTLS-specific processing. Otherwise, “with no
+          determines acceptance via…”. The assignment for when override is authorized describes the DTLS-specific processing to include the privileged users authorized to configure an override, and the duration of an override. It is preferred that overrides are minimized in scope and time. Otherwise, “with no
           DTLS-specific exceptions” is claimed.
         </h:p>
         <h:p>
@@ -687,7 +690,7 @@
         </h:p>
       </note>
     </f-element>
-    <f-element>
+    <f-element id="fel-dtlsc-bad-mac">
       <title>
         The TSF shall <selectables>
           <selectable>terminate the DTLS session</selectable>
@@ -722,7 +725,7 @@
           <h:p>
             If name matching is supported, the evaluator shall verify that the TSS includes a description of matching methods used for each
             supported name type to the supported application defined reference identifiers. The evaluator shall verify that the TSS includes a
-            description of wildcards recognized for each name type claimed in FCS_DTLSC_EXT.1.5 and shall verify that the matching rules meet
+            description of wildcards recognized for each name type claimed in FCS_DTLSC_EXT.1.5, if any, and shall verify that the matching rules meet
             or exceed best practices. In particular, the evaluator shall ensure that the matching rules are as restrictive as, or more
             restrictive than the following: 
             <h:ul>
@@ -763,9 +766,12 @@
           <h:p>        
             The evaluator shall verify that the TSS describes how the DTLS client IP address is validated prior to issuing a server hello
             message.
+            <h:p>
+              If override rules are claimed in <xref to="fel-dtlsc-bad-cert"/>, the evaluator shall confirm that the TSS identifies the subjects authorized to configure the override as well as the scope or duration of any overrides.
+            </h:p>
           </h:p>
             The evaluator shall verify that the TSS describes the actions that take place if a message received from the DTLS server fails
-            the integrity check. If both selections are chosen in FCS_DTLSC_EXT.1.7, the evaluator shall verify that the TSS describes when
+            the integrity check. If both selections are chosen in <xref to="fel-dtlsc-bad-mac"/>, the evaluator shall verify that the TSS describes when
             each method is used and whether the behavior is configurable. 
         </TSS>
         <Guidance>
@@ -777,6 +783,9 @@
           <h:p>
             The evaluator shall verify that all configurable features for matching identifiers in certificates presented in the DTLS
             handshake to application specific reference identifiers are described.
+          </h:p>
+          <h:p>
+            If override rules are claimed in <xref to="fel-dtlsc-bad-cert"/>, the evaluator shall verify the operational guidance has instructions for applying them.
           </h:p>
           <h:p>
             If the TSS indicates the behavior of the TSF on receiving a message from the DTLS server that fails the MAC integrity check is
@@ -1322,13 +1331,13 @@
                           and observe that the TSF silently drops the message or terminates the session. 
                           <testlist>
                             <test>The reference identifier contains a DNS portion with two labels, and the certificate includes a name whose DNS portion includes 
-                              a matching rightmost label and a wildcard in the leftmost label.</test>
+                              a matching rightmost label and a wildcard in the leftmost label (e.g., *.com).</test>
                             <test>The reference identifier contains a DNS portion with four labels, 
                               and the certificate includes a name whose DNS portion includes two rightmost labels matching the reference identifier, 
-                              and a wildcard in the third (leftmost) label.</test>
+                              and a wildcard in the third label, and a matching identifier in the fourth (leftmost) label (e.g., foo.*.example.com).</test>
                             <test>The reference identifier contains a DNS portion with three labels, 
                               and the certificate includes a name whose DNS portion includes two rightmost labels matching the reference identifier, 
-                              and a wildcard in the third (leftmost) label.</test>
+                              and a wildcard in the third (leftmost) label (e.g., *.example.com.</test>
                             <h:p>
                               <h:b>Note:</h:b> For negative sub-tests, if the TSF terminates the session, the test is successful. If the TSF
                               silently drops the message, the evaluator shall continue sending the server finished until the TSF times out.
@@ -1421,26 +1430,19 @@
         </Tests>
       </aactivity>
     </f-element>
-    <audit-event type="optional">
+    <audit-event>
       <audit-event-descr>Failure to establish a DTLS session</audit-event-descr>
-      <audit-event-info><selectables>
-        <selectable>Reason for failure</selectable>
-        <selectable>None</selectable>
-      </selectables></audit-event-info>
+      <audit-event-info>Reason for failure</audit-event-info>
     </audit-event>
-    <audit-event type="optional">
+    <audit-event>
       <audit-event-descr>Failure to verify presented identifier</audit-event-descr>
-      <audit-event-info><selectables>
-        <selectable>Presented identifier and reference identifier</selectable>
-        <selectable>None</selectable>
-      </selectables></audit-event-info>
+      <audit-event-info>Presented identifier and reference identifier
+        </audit-event-info>
     </audit-event>
-    <audit-event type="optional">
+    <audit-event>
       <audit-event-descr>Establishment and termination of a DTLS session</audit-event-descr>
-      <audit-event-info><selectables>
-        <selectable>Non-TOE endpoint of connection</selectable>
-        <selectable>None</selectable>
-      </selectables></audit-event-info>
+      <audit-event-info>Non-TOE endpoint of connection
+      </audit-event-info>
     </audit-event>
   </f-component>
       
@@ -1880,7 +1882,7 @@
         <aactivity>
           <TSS>
             <h:p>
-              The evaluator shall examine the TSS to verify that the TLS client protocol description indicates that the PSK exchange requires DHE mode and prohibits sending early data. 
+              The evaluator shall examine the TSS to verify that the TLS client protocol description indicates that the PSK exchange requires DHE or ECDHE mode and prohibits sending early data. 
               The evaluator shall examine the TSS to verify it lists all applications that can be secured by TLS 1.3 using pre-shared keys and 
               describes how each TLS 1.3 client application ensures data for the application is not sent using early data.
             </h:p>
@@ -1962,8 +1964,8 @@
           If "mutual authentication" is selected, then the ST must additionally include the requirements from FCS_DTLSS_EXT.2. 
           If the TOE implements DTLS with mutual authentication, this selection must be made.
         </h:p><h:p>
-          If "supplemental downgrade protection" is selected, then the ST must additionally include the requirements from FCS_DTLSS_EXT.3. 
-          If the TOE provides downgrade protection as indicated in RFC 8446, in particular, if DTLS 1.3 is supported, this selection must be made. 
+          Supplemental downgrade protection is claimed if both DTLS 1.2 and DTLS 1.3 are supported. If "supplemental downgrade protection" is selected, then the ST must additionally include the requirements from FCS_DTLSS_EXT.3. 
+        
         </h:p><h:p>
           If "session resumption" is selected, then the ST must additionally include the requirements from FCS_DTLSS_EXT.5.
         </h:p><h:p>
@@ -1982,7 +1984,7 @@
             <selectable>TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5288</selectable>
             <selectable>TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289</selectable>
             <selectable>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289</selectable>
-            <selectable>the following PP-specific ciphersuites using pre-shared secrets:
+            <selectable>ciphersuites using pre-shared secrets:
               <selectables linebreak="yes">
                 <selectable>TLS_ECDHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 8442</selectable>
                 <selectable>TLS_DHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 5487</selectable>
@@ -2056,13 +2058,13 @@
       <title>
         The TSF shall be able to process the following TLS client hello message extensions: 
         <h:ul>
-          <h:li>signature_algorithms extension (RFC 8446) indicating support for 
+          <h:li>signature_algorithms extension (RFC 5246, RFC 8446) indicating support for 
             <selectables linebreak="yes">
               <selectable>ecdsa-secp384r1_sha384 (RFC 8446)</selectable>
               <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable></selectables>, and <selectables linebreak="yes">
                 <selectable>rsa_pss_pss_sha384 (RFC 8603)</selectable>
                 <selectable>rsa_pss_rsae_sha384 (RFC 8603)</selectable>
-                <selectable><assignable>other non-deprecated signature algorithms</assignable></selectable>
+    
                 <selectable>no other signature algorithms</selectable></selectables>
           </h:li>
         </h:ul>
@@ -2073,9 +2075,8 @@
                 <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable></selectables>, and <selectables linebreak="yes">
                   <selectable>rsa_pss_pss_sha384 (RFC 8603)</selectable>
                   <selectable>rsa_pss_rsae_sha384 (RFC 8603)</selectable>
-                  <selectable>rsa_pkcs1_sha256 (RFC 8446)</selectable>
-                  <selectable>rsa_pss_rsae_sha256 (RFC 8446)</selectable>
-                  <selectable><assignable>other non-deprecated signature algorithms</assignable></selectable>
+
+                
                   <selectable>no other signature algorithms</selectable>
                 </selectables></selectable>
               <selectable>supported_versions extension (RFC 8446) indicating support for DTLS 1.3 and <selectables>
@@ -2092,7 +2093,7 @@
               <selectable>key_share extension (RFC 8446)</selectable>
               <selectable>extended_master_secret extension (RFC 7627) enforcing client support and
                 <selectables>
-                  <selectable>allowing legacy client support</selectable>
+                  <selectable>allowing legacy clients</selectable>
                   <selectable>no other enforcement mode</selectable>
                 </selectables></selectable>
               <selectable>no other extensions</selectable></selectables>.
@@ -2108,7 +2109,7 @@
                 <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable></selectables>, and <selectables linebreak="yes">
                   <selectable>rsa_pss_pss_sha384 (RFC 8603)</selectable>
                   <selectable>rsa_pss_rsae_sha384 (RFC 8603)</selectable>
-                  <selectable><assignable>other non-deprecated signature algorithms</assignable></selectable>
+       
                   <selectable>no other signature algorithms</selectable></selectables>
             </h:li>
           </h:ul>
@@ -2120,7 +2121,13 @@
       </ext-comp-def-title>
       <note role="application">
         <h:p>
-        DTLS uses TLS extensions. If support for DTLS 1.3 is claimed in FCS_DTLSS_EXT.1.1, the selections for supported_versions, supported_groups, and key_share are claimed. If DTLS 1.3 is not claimed, supported_versions and key_share are not claimed.
+        DTLS uses TLS extensions. 
+        </h:p>
+        <h:p>
+          Support for the signature_algorithms extension is optional in RFC 5246 but is mandated for this functional package. Support for the signature_algorithms extension is mandatory in RFC 8446 and remains so in this functional package. Whether the TOE's implementation conforms to RFC 5246, RFC 8446, or both is dependent on whether the TOE supports DTLS 1.2, DTLS 1.3, or both.
+        </h:p>
+        <h:p>
+        If support for DTLS 1.3 is claimed in FCS_DTLSS_EXT.1.1, the selections for supported_versions, supported_groups, and key_share are claimed. If DTLS 1.3 is not claimed, supported_versions and key_share are not claimed.
         </h:p>
         <h:p>
           If DTLS 1.2 is claimed, extended_master_secret extension is claimed, with the ability to enforce client support, and optionally, the ability to support legacy clients. 
@@ -2279,7 +2286,7 @@
                   <h:p>
                     <h:b>Note:</h:b> If the TSF rejects the connection, the test is successful. If the TSF silently drops the message, the evaluator shall continue sending the client hello message until the TSF times out. It is preferred that the TSF logs a fatal error alert message (e.g., handshake failure) in response to this, but it is acceptable that the TSF terminates the connection silently (i.e., without logging a fatal error alert).
                   </h:p>
-               <h:p>If DTLS 1.2 is supported, Test FCS_DTLSS_EXT.1:3.2 sends TLS 1.3 ciphersuites to the TSF as a server negotiating DTLS 1.2. If DTLS 1.3 is supported, Test FCS_DTLSS_EXT.1:3.2 sends TLS 1.2 ciphersuites to the TSF as a server negotiating DTLS 1.3. If both DTLS 1.2 and DTLS 1.3 are supported, it is preferred that the ciphersuite be chosen to be one supported by the TOE.
+                  <h:p>If DTLS 1.2 is supported, Test <xref to="dtls-server-version-confusion"/> sends a TLS 1.3 ciphersuite to the TSF as a server negotiating DTLS 1.2, using a supported TLS 1.3 ciphersuite if the TSF supports DTLS 1.3. If DTLS 1.3 is supported, Test <xref to="dtls-server-version-confusion"/> sends a TLS 1.2 ciphersuites with compatible supported_group, signature_algorithms, and key_ share extensions to the TSF as a server negotiating DTLS 1.3, using a supported TLS 1.2 ciphersuite if the TSF supports DTLS 1.2.
                </h:p>
                 </test>
                 <test>(null ciphersuite) For each supported version, the evaluator shall send a client hello indicating support for the version and include a ciphersuite list consisting of only the null ciphersuite (TLS_NULL_WITH_NULL_NULL, with the value '00 00') and observe that the TOE silently drops the message or rejects the connection.
@@ -2549,14 +2556,9 @@
                 
       </aactivity>
     </f-element>
-  	<audit-event type="optional">
+  	<audit-event>
   	  <audit-event-descr>Failure to establish a DTLS session</audit-event-descr>
-  	  <audit-event-info>
-  	    <selectables>
-  	    <selectable>Reason for failure</selectable>
-  	    <selectable>None</selectable>
-  	    </selectables>
-  	  </audit-event-info>
+  	  <audit-event-info>Reason for failure</audit-event-info>
 	</audit-event>
   </f-component>
 
@@ -2752,9 +2754,8 @@
               </testlist>
             </test>
             <test>For each supported version, the evaluator shall configure the TSF to negotiate the version and require client authentication and perform the following steps: <h:ul>
-              <h:li>For each supported name matching method indicated in the outer selection of FCS_DTLSS_EXT.2.4, and for each name type supported by the matching method as indicated in the inner-selections claimed in each outer selection,
-                the evaluator shall establish a valid primary certificate chain with single names for a test client containing only the supported name types 
-                and a valid alternate certificate chain with single names indicating a different name of the same type. </h:li>
+              <h:li>For each supported name matching method indicated in FCS_DTLSS_EXT.2.4, and for each name type supported by the matching method,
+                the evaluator shall establish a valid primary certificate chain with a leaf certificate containing a single name of the supported type matching a reference ID and a valid alternate certificate chain with a leaf certificate containing a single name indicating a different name of the same type not matching a reference ID.</h:li>
               <h:li>[conditional] If any of the supported name types include CN encoding of a name type also supported as a SAN entry, the evaluator shall                 
                 establish additional certificate chains:
                 <h:ul>
@@ -3218,7 +3219,7 @@
             <selectable>TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289</selectable>
             <selectable>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289</selectable>
             
-            <selectable>the following PP-specific ciphersuites using pre-shared secrets:
+            <selectable>ciphersuites using pre-shared secrets:
               <selectables linebreak="yes">
                 <selectable>TLS_ECDHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 8442</selectable>
                 <selectable>TLS_DHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 5487</selectable>
@@ -3261,7 +3262,7 @@
               </h:p>
               <h:p>
               In addition to the supported ciphersuites, the ST author indicates the order of ciphersuites included in the client hello,
-              indicating the preferred ciphersuites for server negotiation. It is recommended, but not required, that the TLS 1.3 ciphersuites
+              indicating the preferred ciphersuites for server negotiation.  To eliminate the need to produce duplicate lists, it is recommended to complete the selected list of ciphersuites in the order that they are presented and then complete the following assignment by saying that the presentation order is the same as in the previous list. It is recommended, but not required, that the TLS 1.3 ciphersuites
               claimed are listed before TLS 1.2 ciphersuites, and that any other ciphersuites are listed last among the TLS 1.3 ciphersuites.
               </h:p>
             </note>
@@ -3306,18 +3307,18 @@
                  <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable></selectables>, and <selectables linebreak="yes">
                    <selectable>rsa_pss_pss_sha384 (RFC 8603)</selectable>
                    <selectable>rsa_pss_rsae_sha384 (RFC 8603)</selectable>
-                   <selectable><assignable>other non-deprecated signature algorithms</assignable></selectable>
+               
                    <selectable>no other signature algorithms</selectable></selectables>
                and
              </h:li>
            </h:ul>
                <selectables linebreak="yes">
-                 <selectable>signature_algorithms_cert extension (RFC 8446) indicating support for <selectables linebreak="yes">
+                 <selectable>signature_algorithms_cert extension (RFC 5246, RFC 8446) indicating support for <selectables linebreak="yes">
                    <selectable>ecdsa-secp384r1_sha384 (RFC 8446)</selectable>
                    <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable></selectables>, and <selectables linebreak="yes">
                      <selectable>rsa_pss_pss_sha384 (RFC 8603)</selectable>
                      <selectable>rsa_pss_rsae_sha384 (RFC 8603)</selectable>
-                     <selectable><assignable>other non-deprecated signature algorithms</assignable></selectable>
+                  
                      <selectable>no other signature algorithms</selectable>
                    </selectables></selectable>
                  <selectable>supported_versions extension (RFC 8446) indicating support for DTLS 1.3 and <selectables>
@@ -3336,7 +3337,7 @@
                    (DHE or ECDHE) mode</selectable>
                  <selectable>extended_master_secret extension (RFC 7627) enforcing server support, and
                    <selectables>
-                     <selectable>allowing legacy server support</selectable>
+                     <selectable>allowing legacy servers</selectable>
                      <selectable>no other enforcement mode</selectable>
                    </selectables></selectable>
                  <selectable>no other extensions</selectable></selectables>
@@ -3355,7 +3356,7 @@
                       <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable></selectables>, and <selectables linebreak="yes">
                         <selectable>rsa_pss_pss_sha384 (RFC 8603)</selectable>
                         <selectable>rsa_pss_rsae_sha384 (RFC 8603)</selectable>
-                        <selectable><assignable>other non-deprecated signature algorithms</assignable></selectable>
+                    
                         <selectable>no other signature algorithms</selectable></selectables>
                     and
                   </h:li>
@@ -3369,6 +3370,9 @@
             </ext-comp-def-title>
          <note role="application">
            <h:p>
+             Support for the signature_algorithms extension is optional in RFC 5246 but is mandated for this functional package. Support for the signature_algorithms extension is mandatory in RFC 8446 and remains so in this functional package. Whether the TOE's implementation conforms to RFC 5246, RFC 8446, or both is dependent on whether the TOE supports TLS 1.2, TLS 1.3, or both.
+           </h:p>
+           <h:p>
            If TLS 1.3 is claimed in FCS_TLSC_EXT.1.1, supported_versions, supported_groups, and key_share extensions are claimed in
            accordance with RFC 8446. If TLS 1.3 is not claimed, supported_versions and key_share extensions are not claimed. 
            </h:p><h:p>
@@ -3380,25 +3384,23 @@
              If TLS 1.2 is claimed and if DHE or ECDHE ciphersuites are claimed in FCS_TLSC_EXT.1.2, the supported_groups extension is claimed here with appropriate secp or ffdhe groups claimed.
            </h:p>
            <h:p>
-           Other extensions may be supported; certain extensions may need to be claimed based on other SFR claims made.
+             Other extensions may be supported; certain extensions and values may need to be claimed for SFRs defined outside of this package related to the calling applications.
            </h:p>
-           <h:p>
-             When ‘other non-deprecated signature algorithms’ is claimed, the assignment will describe the standard signature and hash algorithms supported. MD5 and SHA-1 hashes are deprecated and are not included in the signature_algorithms or signature_algorithms_cert extensions.
-           </h:p>
+         
          </note>
           </f-element>
           <f-element id="fel-present-identifier">
             <title>
               The TSF shall be able to <selectables linebreak="yes">
               <selectable>verify that a presented identifier of name type: <selectables linebreak="yes">
-                <selectable>DNS name type according to RFC 6125</selectable>
-                <selectable>URI name type according to RFC 6125</selectable> 
-                <selectable>SRV name type according to RFC 6125</selectable>
-                <selectable>Common Name conversion to DNS name according to RFC 5380 and RFC 6125</selectable>
-                <selectable>Directory name type according to RFC 5280</selectable>
-                <selectable>iPAddress name type according to RFC 5280</selectable>
-                <selectable>rfc822Name type according to RFC 5280</selectable>
-                <selectable><assignable>other name type</assignable></selectable></selectables></selectable>  
+                <selectable>dNSName according to RFC 6125</selectable>
+                <selectable>uniformResourceIdentifier according to RFC 6125</selectable> 
+                <selectable>SRVname according to RFC 6125</selectable>
+                <selectable>Common Name conversion to dNSName according to RFC 5280 and RFC 6125</selectable>
+                <selectable>directoryName according to RFC 5280</selectable>
+                <selectable>iPAddress according to RFC 5280</selectable>
+                <selectable>rfc822Name according to RFC 5280</selectable>
+                <selectable><assignable>other name type</assignable> according to <assignable>RFC number</assignable></selectable></selectables></selectable>  
                
                 <selectable>interface with a supported function requesting the TLS channel to pass 
                   <selectables>
@@ -3471,7 +3473,7 @@
               <selectables>
               <selectable>the server certificate is invalid <selectables>
                 <selectable id="s-tlsc-no-excep">with no TLS-specific exceptions</selectable>
-                <selectable>except when override is authorized in the case where valid revocation information is not available</selectable></selectables>
+                <selectable>except when override is authorized in accordance with <assignable>override rules</assignable> in the case where valid revocation information is not available</selectable></selectables>
               </selectable>
                 <selectable>a PSK associated with the server is invalid</selectable>
               </selectables>. 
@@ -3480,7 +3482,7 @@
               <h:p>
                 The option “the server certificate…” is claimed if certificate-based server authentication is performed (if non-PSK ciphersuites are supported in TLS 1.2, or if TLS 1.3 is claimed). Within this selection, the option “except when…” is claimed if TLS specific exception rules are implemented to allow server certificates with no
                 valid revocation status information to be accepted. This is claimed only when FIA_X509_EXT.2.2 includes the option
-                “supported function determines acceptance via…”. The assignment of this option describes the TLS-specific processing.
+                “supported function determines acceptance via…”. The assignment for when override is authorized describes the TLS-specific processing to include the privileged users authorized to configure an override, and the duration of an override. It is preferred that overrides are minimized in scope and time.
                 Otherwise, “with no TLS-specific exceptions” is claimed.
               </h:p>
               <h:p>
@@ -3517,7 +3519,7 @@
                 If name matching is supported, the evaluator shall verify that the TSS includes a description of matching methods used for each supported name type to 
                 the supported application defined reference identifiers. 
                 The evaluator shall verify that the TSS includes a description 
-                of wildcards recognized for each name type claimed in FCS_TLSC_EXT.1.5 and shall verify that the matching rules meet or exceed best practices. 
+                of wildcards recognized for each name type claimed in FCS_TLSC_EXT.1.5, if any, and shall verify that the matching rules meet or exceed best practices. 
                 In particular, the evaluator shall ensure that the matching rules are as restrictive as, or more restrictive than the following: 
                 <h:ul>
                 <h:li>DNS names: The ‘*’ character used in the complete leftmost label of a DNS name represents any valid name that has the same number of labels, 
@@ -3543,6 +3545,9 @@
                   If name types are passed to the supported functions, the evaluator shall verify that for each claimed supported function, the TSS includes a description of the information used to validate the identifier that is passed to that function.
                 </h:p>
                 <h:p>
+                  If override rules are claimed in <xref to="fel-tlsc-bad-cert"/>, the evaluator shall confirm that the TSS identifies the subjects authorized to configure the override as well as the scope or duration of any overrides.
+                </h:p>
+                <h:p>
                   If name constraints are passed to the certificate verification function, the evaluator shall verify that the TSS describes
                   the initial allow and deny tables for each reference identity reference name supported.
                 </h:p>
@@ -3553,6 +3558,9 @@
                 it includes any instructions on configuring the version, ciphersuites, or optional extensions that are supported.
                 </h:p><h:p>
                 The evaluator shall verify that all configurable features for matching identifiers in certificates presented in the TLS handshake to application specific reference identifiers are described.
+                </h:p>
+                <h:p>
+                  If override rules are claimed in <xref to="fel-tlsc-bad-cert"/>, the evaluator shall verify the operational guidance has instructions for applying them.
                 </h:p>
 	      </Guidance>
               <Tests>
@@ -3958,13 +3966,13 @@
                           and observe that the TSF terminates the session. 
                           <testlist>
                             <test>The reference identifier contains a DNS portion with two labels, and the certificate includes a name whose DNS portion includes 
-                              a matching rightmost label and a wildcard in the leftmost label.</test>
+                              a matching rightmost label and a wildcard in the leftmost label (e.g., *.com).</test>
                             <test>The reference identifier contains a DNS portion with four labels, 
                               and the certificate includes a name whose DNS portion includes two rightmost labels matching the reference identifier, 
-                              and a wildcard in the third (leftmost) label.</test>
+                              and a wildcard in the third label, and a matching identifier in the fourth (leftmost) label (e.g., foo.*.example.com).</test>
                             <test>The reference identifier contains a DNS portion with three labels, 
                               and the certificate includes a name whose DNS portion includes two rightmost labels matching the reference identifier, 
-                              and a wildcard in the third (leftmost) label.</test>
+                              and a wildcard in the third (leftmost) label (e.g., *.example.com.</test>
                           </testlist>
                         </test>
                         <test>[conditional] If the TSF supports wildcards and supports embedded DNS, URI, or SVR name types in the CN, 
@@ -4033,26 +4041,17 @@
 	             </Tests>
             </aactivity>
           </f-element> 
-	    <audit-event type="optional">
+	    <audit-event>
 	      <audit-event-descr>Failure to establish a TLS session</audit-event-descr>
-	      <audit-event-info><selectables>
-	        <selectable>Reason for failure</selectable>
-	        <selectable>None</selectable>
-	      </selectables></audit-event-info>
+	      <audit-event-info>eason for failure</audit-event-info>
 	    </audit-event>
-	    <audit-event type="optional">
+	    <audit-event>
 	      <audit-event-descr>Failure to verify presented identifier</audit-event-descr>
-	      <audit-event-info><selectables>
-	        <selectable>Presented identifier and reference identifier</selectable>
-	        <selectable>None</selectable>
-	      </selectables></audit-event-info>
+	      <audit-event-info>Presented identifier and reference identifier</audit-event-info>
 	    </audit-event>
-	    <audit-event type="optional">
+	    <audit-event>
 	      <audit-event-descr>Establishment and termination of a TLS session</audit-event-descr>
-	      <audit-event-info><selectables>
-	        <selectable>Non-TOE endpoint of connection</selectable>
-	        <selectable>None</selectable>
-	      </selectables></audit-event-info>
+	      <audit-event-info>Non-TOE endpoint of connection</audit-event-info>
 	    </audit-event>
 	 
         </f-component>
@@ -4447,7 +4446,7 @@
             <aactivity>
               <TSS>
                 <h:p>
-                The evaluator shall examine the TSS to verify that the TLS client protocol description indicates that the PSK exchange requires DHE mode and prohibits sending early data. 
+                The evaluator shall examine the TSS to verify that the TLS client protocol description indicates that the PSK exchange requires DHE or ECDHE mode and prohibits sending early data. 
                 The evaluator shall examine the TSS to verify it lists all applications that can be secured by TLS 1.3 using pre-shared keys and 
                 describes how each TLS 1.3 client application ensures data for the application is not sent using early data.
                 </h:p>
@@ -4525,7 +4524,7 @@
               </h:p><h:p>
               If "mutual authentication" is selected, then the ST must additionally include the requirements from FCS_TLSS_EXT.2. If the TOE implements TLS with mutual authentication, this selection must be made.
               </h:p><h:p>
-              If "supplemental downgrade protection" is selected, then the ST must additionally include the requirements from FCS_TLSS_EXT.3. 
+                Supplemental downgrade protection is claimed if both TLS 1.2 and TLS 1.3 are supported. If "supplemental downgrade protection" is selected, then the ST must additionally include the requirements from FCS_TLSS_EXT.3. 
               If the TOE provides downgrade protection as indicated in RFC 8446, in particular, if TLS 1.3 is supported, this selection must be made. 
               </h:p><h:p>
               If "session resumption" is selected, then the ST must additionally include the requirements from FCS_TLSS_EXT.5.
@@ -4544,7 +4543,7 @@
                 <selectable>TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5288</selectable>
                 <selectable>TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289</selectable>
                 <selectable>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289</selectable>
-                  <selectable>the following PP-specific ciphersuites using pre-shared secrets:
+                  <selectable>ciphersuites using pre-shared secrets:
                     <selectables linebreak="yes">
                       <selectable>TLS_ECDHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 8442</selectable>
                       <selectable>TLS_DHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 5487</selectable>
@@ -4618,13 +4617,13 @@
           <title>
             The TSF shall be able to process the following TLS client hello message extensions: 
             <h:ul>
-              <h:li>signature_algorithms extension (RFC 8446) indicating support for 
+              <h:li>signature_algorithms extension (RFC 5246, RFC 8446) indicating support for 
                 <selectables linebreak="yes">
                   <selectable>ecdsa-secp384r1_sha384 (RFC 8446)</selectable>
                   <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable></selectables>, and <selectables linebreak="yes">
                     <selectable>rsa_pss_pss_sha384 (RFC 8603)</selectable>
                     <selectable>rsa_pss_rsae_sha384 (RFC 8603)</selectable>
-                    <selectable><assignable>other non-deprecated signature algorithms</assignable></selectable>
+           
                     <selectable>no other signature algorithms</selectable></selectables>
                 and
                 </h:li>
@@ -4636,7 +4635,7 @@
                     <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable></selectables>, and <selectables linebreak="yes">
                       <selectable>rsa_pss_pss_sha384 (RFC 8603)</selectable>
                       <selectable>rsa_pss_rsae_sha384 (RFC 8603)</selectable>
-                      <selectable><assignable>other non-deprecated signature algorithms</assignable></selectable>
+              
                       <selectable>no other signature algorithms</selectable>
                     </selectables></selectable>
                   <selectable>supported_versions extension (RFC 8446) indicating support for TLS 1.3 and <selectables>
@@ -4651,7 +4650,11 @@
                     <selectable>ffdhe6144(259)</selectable>
                     <selectable>ffdhe8192(260)</selectable></selectables></selectable>
                   <selectable>key_share extension (RFC 8446)</selectable>
-                  <selectable>extended_master_secret extension (RFC 7627) enforcing client support</selectable>
+                    <selectable>extended_master_secret extension (RFC 7627) enforcing client support and
+                      <selectables>
+                        <selectable>allowing legacy clients</selectable>
+                        <selectable>no other enforcement mode</selectable>
+                      </selectables></selectable>
                   <selectable>no other extensions</selectable></selectables>.
               
           </title>
@@ -4665,7 +4668,7 @@
                       <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable></selectables>, and <selectables linebreak="yes">
                         <selectable>rsa_pss_pss_sha384 (RFC 8603)</selectable>
                         <selectable>rsa_pss_rsae_sha384 (RFC 8603)</selectable>
-                        <selectable><assignable>other non-deprecated signature algorithms</assignable></selectable>
+                       
                         <selectable>no other signature algorithms</selectable></selectables>
                     and
                   </h:li>
@@ -4676,6 +4679,9 @@
               </title>
             </ext-comp-def-title>
             <note role="application">
+              <h:p>
+                Support for the signature_algorithms extension is optional in RFC 5246 but is mandated for this functional package. Support for the signature_algorithms extension is mandatory in RFC 8446 and remains so in this functional package. Whether the TOE's implementation conforms to RFC 5246, RFC 8446, or both is dependent on whether the TOE supports TLS 1.2, TLS 1.3, or both.
+              </h:p>
               <h:p>
             If support for TLS 1.3 is claimed in FCS_TLSS_EXT.1.1, the selections for supported_versions, supported_groups, and key_share are claimed. 
             If support for TLS 1.3 is not claimed, supported_versions and key_share are not claimed.
@@ -4867,9 +4873,8 @@
                         <h:b>Note:</h:b> It is preferred that the TSF sends a fatal error alert message (e.g., handshake failure) in response to this, 
                         but it is acceptable that the TSF terminates the connection silently (i.e., without sending a fatal error alert). 
                         </h:p><h:p>
-                        If TLS 1.2 is supported, <xref to="tls-server-version-confusion"/> sends TLS 1.3 ciphersuites to the TSF as a server negotiating TLS 1.2. 
-                        If TLS 1.3 is supported, <xref to="tls-server-version-confusion"/> sends TLS 1.2 ciphersuites to the TSF as a server negotiating TLS 1.3.
-                        If both TLS 1.2 and TLS 1.3 are supported, it is preferred that the ciphersuite be chosen to be one supported by the TOE.
+                        If TLS 1.2 is supported, <xref to="tls-server-version-confusion"/> sends a TLS 1.3 ciphersuite to the TSF as a server negotiating TLS 1.2, using a supported TLS 1.3 ciphersuite if the TSF supports TLS 1.3. 
+                          If TLS 1.3 is supported, <xref to="tls-server-version-confusion"/> sends a TLS 1.2 ciphersuite with compatible supported_group, signature_algorithms, and key share to the TSF as a server negotiating TLS 1.3, using a supported TLS 1.2 ciphersuite if TLS 1.2 is supported. 
                         </h:p>
                       </test>
                       <test>(null ciphersuite) For each supported version, the evaluator shall send a client hello indicating support for the version and include a ciphersuite list consisting of 
@@ -5122,14 +5127,9 @@
             </aactivity>
           </f-element>
         
-          <audit-event type="optional">
+          <audit-event>
             <audit-event-descr>Failure to establish a TLS session</audit-event-descr>
-            <audit-event-info>
-              <selectables>
-                <selectable>Reason for failure</selectable>
-                <selectable>None</selectable>
-              </selectables>
-            </audit-event-info>
+            <audit-event-info>Reason for failure</audit-event-info>
           </audit-event>
         </f-component>
 
@@ -5322,9 +5322,8 @@
 	            </testlist>
 	            </test>
 	          <test>For each supported version, the evaluator shall configure the TSF to negotiate the version and require client authentication and perform the following steps: <h:ul>
-	            <h:li>For each supported name matching method indicated in the outer selection of FCS_TLSS_EXT.2.4, and for each name type supported by the matching method as indicated in the inner-selections claimed in each outer selection,
-	              the evaluator shall establish a valid primary certificate chain with single names for a test client containing only the supported name types 
-	              and a valid alternate certificate chain with single names indicating a different name of the same type. </h:li>
+	            <h:li>For each supported name matching method indicated in FCS_TLSS_EXT.2.4, and for each name type supported by the matching method,
+	              the evaluator shall establish a valid primary certificate chain with a leaf certificate containing a single name of the supported type matching a reference ID and a valid alternate certificate chain with a leaf certificate containing a single name indicating a different name of the same type not matching a reference ID. </h:li>
 	            <h:li>[conditional] If any of the supported name types include CN encoding of a name type also supported as a SAN entry, the evaluator shall 
 	              
 	              establish additional certificate chains:

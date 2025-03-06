@@ -24,7 +24,7 @@
             <br>
              Version: 4.4
             <br>
-            2024-09-06
+            2025-03-31
             <br>
             <b>National Information Assurance Partnership</b>
             <br>
@@ -356,6 +356,9 @@
                         <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Virtual Private Network (<abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr>) Clients, version 2.4
                     </li>
                     <li>
+                        <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Virtual Private Network (<abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr>) Clients, version 2.5
+                    </li>
+                    <li>
                         <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Bluetooth, version 1.0
                     </li>
                     <li>
@@ -404,7 +407,7 @@
             </dd>
             <dt class="threat defined" id="T.NETWORK_EAVESDROP">T.NETWORK_EAVESDROP</dt>
             <dd>
-                <span class="description"> An attacker is positioned on a communications channel or elsewhere on the network infrastructure. Attackers may monitor and gain access to data exchanged between applications and services that are running on or part of the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>. </span>
+                <span class="description"> An attacker is positioned on a communications channel or elsewhere on the network infrastructure. Attackers may monitor and gain access to data exchanged between applications and services that are running on or part of the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>, resulting in modification or disclosure of sensitive communications. </span>
             </dd>
             <dt class="threat defined" id="T.LOCAL_ATTACK">T.LOCAL_ATTACK</dt>
             <dd>
@@ -412,7 +415,7 @@
             </dd>
             <dt class="threat defined" id="T.LIMITED_PHYSICAL_ACCESS">T.LIMITED_PHYSICAL_ACCESS</dt>
             <dd>
-                <span class="description"> An attacker may attempt to access data on the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> while having a limited amount of time with the physical device. </span>
+                <span class="description"> An attacker may attempt to access data on the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> while having a limited amount of time with the physical device, resulting in unauthorized disclosure or modification of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>'s data or behavior. </span>
             </dd>
         </dl>
          
@@ -490,7 +493,7 @@
         <h3 class="indexable" data-level="3" id="s-audit-table">5.1.1 Auditable Events for Mandatory SFRs</h3>
         <table class="sort_kids_" border="1">
             <caption data-sortkey="#0">
-                <span class="ctr" data-myid="at-mandatory" data-counter-type="ct-Table" id="at-mandatory">Table <span class="counter">2</span></span>: Auditable Events for Mandatory <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr>
+                <span class="ctr" data-myid="t-audit-mandatory" data-counter-type="ct-Table" id="t-audit-mandatory">Table <span class="counter">2</span></span>: Auditable Events for Mandatory <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr>
             </caption>
             <tr data-sortkey="#1">
                 <th>Requirement</th><th>Auditable Events</th><th>Additional Audit Record Contents</th>
@@ -748,8 +751,12 @@
                     <ol type="a">
                         <li>Start-up and shut-down of the audit functions;</li>
                         <li>
-                            All auditable events for the [<i>not specified</i>] level of audit; and [
+                            All auditable events for the [<i>not specified</i>] level of audit; 
                         </li>
+                        <li>
+                            Specifically defined auditable events listed in <a href="#t-audit-mandatory" class="t-audit-mandatory-ref">Table <span class="counter">2</span></a>
+                        </li>
+                         [ 
                         <li>
                             <i>
                                 <ul>
@@ -757,7 +764,13 @@
                                     <li>Use of privileged/special rights events (Successful and unsuccessful security, audit, and configuration changes);</li>
                                     <li>Privilege or role escalation events (Success/Failure);</li>
                                     <li>
-                                        Auditable events for the Functional Package <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> claims as specified in the respective Functional Packages;
+                                        Auditable events as defined in the <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH), version 1.0</a>;
+                                    </li>
+                                    <li>
+                                        Auditable events as defined in the <a href="https://www.niap-ccevs.org/static_html/protection-profile/439/-439-/index.html">Functional Package for Transport Layer Security (TLS), version 2.1</a>;
+                                    </li>
+                                    <li>
+                                        Auditable events as defined in the <a href="#X509" class="dynref" data-format=""></a>;
                                     </li>
                                     <li>
                                         [<b>selection</b>: 
@@ -805,9 +818,9 @@
                 <div class="reqdesc">
                      The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall record within the audit data at least the following information: 
                     <ol type="a">
-                        <li>Date and time of the event, type of event, subject identity (if applicable), and outcome (success or failure) of the event; and </li>
+                        <li>Date and time of the event, type of event, subject identity (if applicable), and the outcome (success or failure) of the event; </li>
                         <li>
-                            For each audit event type, based on the auditable event definitions of the functional components included in the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>/<abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, [<b>assignment</b>: <span class="assignable-content">other audit relevant information</span>] 
+                            For each audit event type, based on the auditable event definitions of the functional components included in the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr>, functional package, or <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, [<b>assignment</b>: <span class="assignable-content">other audit relevant information</span>] 
                         </li>
                     </ol>
                      . 
@@ -823,6 +836,12 @@
                 <div class="activity_pane_body">
                     <div class="component-activity-header">
                         <a href="#FAU_GEN.1">FAU_GEN.1</a>
+                    </div>
+                    <div class="eacategory">
+                        <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                    </div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
                     </div>
                     <div class="eacategory">Guidance</div>
                     <div class="ea">
@@ -1115,6 +1134,16 @@
                     <div class="component-activity-header">
                         <a href="#FCS_CKM.2">FCS_CKM.2</a>
                     </div>
+                    <div class="eacategory">
+                        <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                    </div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
+                    </div>
+                    <div class="eacategory">Guidance</div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
+                    </div>
                     <div class="eacategory">Tests</div>
                     <div class="ea">
                         <div class="ea">
@@ -1210,9 +1239,7 @@
                 <div class="reqdesc">
                     The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall destroy [<i>all keys and key material</i>] when [<i>no longer needed</i>].
                     <div class="appnote">
-                        <span class="note-header">Application Note: </span><span class="note">
-                            <p> For the purposes of this requirement, key material refers to authentication data, passwords, secret/private symmetric keys, private asymmetric keys, data used to derive keys, values derived from passwords, etc. </p>
-                        </span>
+                        <span class="note-header">Application Note: </span><span class="note"> For the purposes of this requirement, key material refers to authentication data, passwords, secret/private symmetric keys, private asymmetric keys, data used to derive keys, values derived from passwords, etc. </span>
                     </div>
                 </div>
             </div>
@@ -1242,7 +1269,7 @@
                             <span class="selectable-content" id="_s_26">For non-volatile memory that consists of [<b>selection</b>: 
                                 <ul>
                                     <li style="">
-                                        <span class="selectable-content" id="s-kek-kill">destruction of all key encrypting keys (KEKs) protecting the target key according to FCS_CKM_EXT.4.1, where none of the KEKs protecting the target key are derived </span>
+                                        <span class="selectable-content" id="s-kek-kill">destruction of all key encrypting keys (KEKs) protecting the target key according to <a href="#FCS_CKM.6.2">FCS_CKM.6.2</a>, where none of the KEKs protecting the target key are derived </span>
                                     </li>
                                     <li style="">
                                         <span class="selectable-content" id="_s_28">the invocation of an interface provided by the underlying platform that [<b>selection</b>: 
@@ -1270,7 +1297,7 @@
                                  Several selections allow assignment of a 'value that does not contain any <abbr class="dyn-abbr"><a href="#abbr_CSP">CSP</a></abbr>.' This means that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> uses some other specified data not drawn from a source that may contain key material or reveal information about key material, and not being any of the particular values listed as other selection options. The point of the phrase 'does not contain any <abbr class="dyn-abbr"><a href="#abbr_CSP">CSP</a></abbr>' is to ensure that the overwritten data is carefully selected, and not taken from a general 'pool' that might contain current or residual data that itself requires confidentiality protection. 
                             </p>
                             <p>
-                                 For the selection <a href="#s-kek-kill">destruction of all key encrypting keys (KEKs) protecting the target key according to FCS_CKM_EXT.4.1, where none of the KEKs protecting the target key are derived </a>, a key can be considered destroyed by destroying the key that protects the key. If a key is wrapped or encrypted it is not necessary to "overwrite" that key, overwriting the key that is used to wrap or encrypt the key used to encrypt/decrypt data, using the appropriate method for the memory type involved, will suffice. For example, if a product uses a KEK to encrypt a Data Encryption Key (DEK), destroying the KEK using one of the methods in FCS_CKM_EXT.4 is sufficient, since the DEK would no longer be usable (of course, presumes the DEK is still encrypted and the KEK cannot be recovered or re-derived.). 
+                                 For the selection <a href="#s-kek-kill">destruction of all key encrypting keys (KEKs) protecting the target key according to FCS_CKM.6.2, where none of the KEKs protecting the target key are derived </a>, a key can be considered destroyed by destroying the key that protects the key. If a key is wrapped or encrypted it is not necessary to "overwrite" that key, overwriting the key that is used to wrap or encrypt the key used to encrypt/decrypt data, using the appropriate method for the memory type involved, will suffice. For example, if a product uses a KEK to encrypt a Data Encryption Key (DEK), destroying the KEK using one of the methods in <a href="#FCS_CKM.6">FCS_CKM.6</a> is sufficient, since the DEK would no longer be usable (of course, presumes the DEK is still encrypted and the KEK cannot be recovered or re-derived.). 
                             </p>
                         </span>
                     </div>
@@ -1293,7 +1320,7 @@
                                  The evaluator examines the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to ensure it describes how the keys are managed in volatile memory. This description includes details of how each identified key is introduced into volatile memory (e.g. by derivation from user input, or by unwrapping a wrapped key stored in non-volatile memory) and how they are overwritten. 
                             </p>
                             <p>
-                                 The evaluator shall check to ensure the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> lists each type of key that is stored in in non-volatile memory, and identifies how the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> interacts with the underlying platform to manage keys (e.g., store, retrieve, destroy). The description includes details on the method of how the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> interacts with the platform, including an identification and description of the interfaces it uses to manage keys (e.g., file system APIs, platform key store APIs). 
+                                 The evaluator shall check to ensure the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> lists each type of key that is stored in non-volatile memory, and identifies how the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> interacts with the underlying platform to manage keys (e.g., store, retrieve, destroy). The description includes details on the method of how the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> interacts with the platform, including an identification and description of the interfaces it uses to manage keys (e.g., file system APIs, platform key store APIs). 
                             </p>
                             <p>
                                  If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> makes use of the open assignment and fills in the type of pattern that is used, the evaluator examines the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to ensure it describes how that pattern is obtained and used. The evaluator shall verify that the pattern does not contain any CSPs. 
@@ -1302,14 +1329,13 @@
                                  The evaluator shall check that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> identifies any configurations or circumstances that may not strictly conform to the key destruction requirement. 
                             </p>
                             <p>
-                                 If the selection "destruction of all key encrypting keys (KEKs) protecting the target key according to <a href="#FCS_CKM.6">FCS_CKM.6</a>, where none of the KEKs protecting the target key are derived" is included, the evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>&rsquo;s keychain in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> and identify each instance when a key is destroyed by this method. In each instance the evaluator will verify all keys capable of decrypting the target key are destroyed in accordance with a specified key destruction method in <a href="#FCS_CKM.6">FCS_CKM.6</a>. The evaluator shall verify that all of the keys capable of decrypting the target key are not able to be derived to reestablish the keychain after their destruction. 
+                                 If the selection "destruction of all key encrypting keys (KEKs) protecting the target key according to <a href="#FCS_CKM.6.2">FCS_CKM.6.2</a>, where none of the KEKs protecting the target key are derived" is included, the evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>&rsquo;s keychain in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> and identify each instance when a key is destroyed by this method. In each instance the evaluator will verify all keys capable of decrypting the target key are destroyed in accordance with a specified key destruction method in <a href="#FCS_CKM.6.2">FCS_CKM.6.2</a>. The evaluator shall verify that all of the keys capable of decrypting the target key are not able to be derived to reestablish the keychain after their destruction. 
                             </p>
                         </div>
                     </div>
                     <div class="eacategory">Guidance</div>
                     <div class="ea">
                         <div class="ea">
-                            <h3>Operational Guidance</h3>
                             <p>
                                  There are a variety of concerns that may prevent or delay key destruction in some cases. The evaluator shall check that the guidance documentation identifies configurations or circumstances that may not strictly conform to the key destruction requirement, and that this description is consistent with the relevant parts of the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> and any other relevant Required Supplementary Information. The evaluator shall check that the guidance documentation provides guidance on situations where key destruction may be delayed at the physical layer and how such situations can be avoided or mitigated if possible. 
                             </p>
@@ -1818,6 +1844,16 @@ PT = CT[i]
                     <div class="component-activity-header">
                         <a href="#FCS_COP.1/HASH">FCS_COP.1/HASH</a>
                     </div>
+                    <div class="eacategory">
+                        <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                    </div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
+                    </div>
+                    <div class="eacategory">Guidance</div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
+                    </div>
                     <div class="eacategory">Tests</div>
                     <div class="ea">
                         <div class="ea">
@@ -1847,6 +1883,55 @@ PT = CT[i]
                                         </li>
                                     </ul>
                                 </span> 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="comp" id="FCS_COP.1/KEYHMAC">
+            <h4>FCS_COP.1/KEYHMAC Cryptographic Operation - Keyed-Hash Message Authentication</h4>
+            <div class="element">
+                <div class="reqid" id="FCS_COP.1.1/KEYHMAC">
+                    <a href="#FCS_COP.1.1/KEYHMAC" class="abbr">FCS_COP.1.1/KEYHMAC</a>
+                </div>
+                <div class="reqdesc">
+                    The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall perform [<i>keyed-hash message authentication services</i>] in accordance with a specified cryptographic algorithm<b> of <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384 with key sizes [<b>assignment</b>: <span class="assignable-content">key size (in bits) used in <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr></span>] and a message digest</b> size of 384-bits that meets the following: [<i><abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> Pub 198-1 The Keyed-Hash Message Authentication Code and <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> Pub 180-4 Secure Hash Standard</i>]. 
+                    <div class="appnote">
+                        <span class="note-header">Application Note: </span><span class="note">
+                            <p>
+                                 The intent of this requirement is to specify the keyed-hash message authentication function used for key establishment purposes for the various cryptographic protocols used by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> (e.g., trusted channel). The hash selection must support the message digest size selection. The hash selection should be consistent with the overall strength of the algorithm used for <a href="#FCS_COP.1/HASH">FCS_COP.1/HASH</a>. 
+                            </p>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="activity_pane hide">
+                <div class="activity_pane_header">
+                    <a href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a>
+                </div>
+                <div class="activity_pane_body">
+                    <div class="component-activity-header">
+                        <a href="#FCS_COP.1/KEYHMAC">FCS_COP.1/KEYHMAC</a>
+                    </div>
+                    <div class="eacategory">
+                        <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                    </div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
+                    </div>
+                    <div class="eacategory">Guidance</div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
+                    </div>
+                    <div class="eacategory">Tests</div>
+                    <div class="ea">
+                        <div class="ea">
+                            <p>
+                                 The evaluator shall perform the following activities based on the selections in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
+                            </p>
+                            <p>
+                                 For each of the supported parameter sets, the evaluator shall compose 15 sets of test data. Each set consists of a key and message data. The evaluator shall have the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> generate <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> tags for these sets of test data. The resulting MAC tags will be compared against the result of generating <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> tags with the same key using a known-good implementation. 
                             </p>
                         </div>
                     </div>
@@ -1953,45 +2038,6 @@ PT = CT[i]
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="comp" id="FCS_COP.1/KEYHMAC">
-            <h4>FCS_COP.1/KEYHMAC Cryptographic Operation - Keyed-Hash Message Authentication</h4>
-            <div class="element">
-                <div class="reqid" id="FCS_COP.1.1/KEYHMAC">
-                    <a href="#FCS_COP.1.1/KEYHMAC" class="abbr">FCS_COP.1.1/KEYHMAC</a>
-                </div>
-                <div class="reqdesc">
-                    The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall perform [<i>keyed-hash message authentication services</i>] in accordance with a specified cryptographic algorithm<b> of <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384 with key sizes [<b>assignment</b>: <span class="assignable-content">key size (in bits) used in <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr></span>] and a message digest</b> size of 384-bits that meets the following: [<i><abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> Pub 198-1 The Keyed-Hash Message Authentication Code and <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> Pub 180-4 Secure Hash Standard</i>]. 
-                    <div class="appnote">
-                        <span class="note-header">Application Note: </span><span class="note">
-                            <p>
-                                 The intent of this requirement is to specify the keyed-hash message authentication function used for key establishment purposes for the various cryptographic protocols used by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> (e.g., trusted channel). The hash selection must support the message digest size selection. The hash selection should be consistent with the overall strength of the algorithm used for <a href="#FCS_COP.1/HASH">FCS_COP.1/HASH</a>. 
-                            </p>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="activity_pane hide">
-                <div class="activity_pane_header">
-                    <a href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a>
-                </div>
-                <div class="activity_pane_body">
-                    <div class="component-activity-header">
-                        <a href="#FCS_COP.1/KEYHMAC">FCS_COP.1/KEYHMAC</a>
-                    </div>
-                    <div class="eacategory">Tests</div>
-                    <div class="ea">
-                        <div class="ea">
-                            <p>
-                                 The evaluator shall perform the following activities based on the selections in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. 
-                            </p>
-                            <p>
-                                 For each of the supported parameter sets, the evaluator shall compose 15 sets of test data. Each set consists of a key and message data. The evaluator shall have the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> generate <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> tags for these sets of test data. The resulting MAC tags will be compared against the result of generating <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> tags with the same key using a known-good implementation. 
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -2208,6 +2254,10 @@ PT = CT[i]
                             </p>
                         </div>
                     </div>
+                    <div class="eacategory">Guidance</div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
+                    </div>
                     <div class="eacategory">Tests</div>
                     <div class="ea">
                         <div class="ea">
@@ -2269,7 +2319,7 @@ PT = CT[i]
                                 <span class="selectable-content" id="_s_84">authentication based on X.509 certificates</span>
                             </li>
                         </ul>
-                        ] </b>. 
+                        ]. </b> 
                     <div class="appnote">
                         <span class="note-header">Application Note: </span><span class="note"> Selections in <a href="#FIA_AFL.1">FIA_AFL.1</a> and <a href="#FIA_UAU.5">FIA_UAU.5</a> must match. </span>
                     </div>
@@ -2280,7 +2330,7 @@ PT = CT[i]
                     <a href="#FIA_AFL.1.2" class="abbr">FIA_AFL.1.2</a>
                 </div>
                 <div class="reqdesc">
-                     When the defined number of unsuccessful authentication attempts for an account has been <b>met</b>, The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall: <b> [<b>selection</b>: <span class="selectable-content" id="_s_85">Account Lockout</span>, <span class="selectable-content" id="_s_86">Account Disablement</span>, <span class="selectable-content" id="_s_87">Mandatory Credential Reset</span>, <span class="selectable-content" id="_s_88">[<b>assignment</b>: <span class="assignable-content">list of actions</span>]</span>] </b>. 
+                     When the defined number of unsuccessful authentication attempts <b>for an account</b> has been [fp<i>met</i>], The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall: <b> [<b>selection</b>: <span class="selectable-content" id="_s_85">Account Lockout</span>, <span class="selectable-content" id="_s_86">Account Disablement</span>, <span class="selectable-content" id="_s_87">Mandatory Credential Reset</span>, <span class="selectable-content" id="_s_88">[<b>assignment</b>: <span class="assignable-content">list of actions</span>]</span>] </b>. 
                     <div class="appnote">
                         <span class="note-header">Application Note: </span><span class="note"> The action to be taken will be populated in the assignment of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> and defined in the administrator guidance. </span>
                     </div>
@@ -2293,6 +2343,16 @@ PT = CT[i]
                 <div class="activity_pane_body">
                     <div class="component-activity-header">
                         <a href="#FIA_AFL.1">FIA_AFL.1</a>
+                    </div>
+                    <div class="eacategory">
+                        <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                    </div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
+                    </div>
+                    <div class="eacategory">Guidance</div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
                     </div>
                     <div class="eacategory">Tests</div>
                     <div class="ea">
@@ -2505,6 +2565,10 @@ PT = CT[i]
                                  The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes those management functions that are restricted to Administrators, including how the user is prevented from performing those functions, or not able to use any interfaces that allow access to that function. 
                             </p>
                         </div>
+                    </div>
+                    <div class="eacategory">Guidance</div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
                     </div>
                     <div class="eacategory">Tests</div>
                     <div class="ea">
@@ -2790,6 +2854,12 @@ PT = CT[i]
                     <div class="component-activity-header">
                         <a href="#FMT_SMF_EXT.1">FMT_SMF_EXT.1</a>
                     </div>
+                    <div class="eacategory">
+                        <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                    </div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
+                    </div>
                     <div class="eacategory">Guidance</div>
                     <div class="ea">
                         <div class="ea">
@@ -2862,6 +2932,10 @@ PT = CT[i]
                              The evaluator shall confirm that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> specifies the locations of kernel drivers/modules, security audit logs, shared libraries, system executables, and system configuration files. Every file does not need to be individually identified, but the system's conventions for storing and protecting such files must be specified. 
                         </div>
                     </div>
+                    <div class="eacategory">Guidance</div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
+                    </div>
                     <div class="eacategory">Tests</div>
                     <div class="ea">
                         <div class="ea">
@@ -2924,6 +2998,16 @@ PT = CT[i]
                 <div class="activity_pane_body">
                     <div class="component-activity-header">
                         <a href="#FPT_ASLR_EXT.1">FPT_ASLR_EXT.1</a>
+                    </div>
+                    <div class="eacategory">
+                        <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                    </div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
+                    </div>
+                    <div class="eacategory">Guidance</div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
                     </div>
                     <div class="eacategory">Tests</div>
                     <div class="ea">
@@ -2998,6 +3082,16 @@ PT = CT[i]
                     <div class="component-activity-header">
                         <a href="#FPT_SBOP_EXT.1">FPT_SBOP_EXT.1</a>
                     </div>
+                    <div class="eacategory">
+                        <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                    </div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
+                    </div>
+                    <div class="eacategory">Guidance</div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
+                    </div>
                     <div class="eacategory">Tests</div>
                     <div class="ea">
                         <div class="ea">
@@ -3025,7 +3119,7 @@ PT = CT[i]
                     <a href="#FPT_TST.1.1" class="abbr">FPT_TST.1.1</a>
                 </div>
                 <div class="reqdesc">
-                     The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall run a suite of the following self-tests [<b>selection</b>: <span class="selectable-content" id="_s_109">during initial start-up</span>, <span class="selectable-content" id="_s_110">periodically during normal operation</span>, <span class="selectable-content" id="_s_111">at the request of the authorized user</span>, <span class="selectable-content" id="_s_112">at the conditions [<b>assignment</b>: <span class="assignable-content">conditions under which self-test should occur</span>]</span>] to demonstrate the correct operation of [<i><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> specified in <a href="#FCS_RBG.1">FCS_RBG.1</a></i>]. 
+                     The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall run a suite of the following self-tests [<b>selection</b>: <span class="selectable-content" id="_s_109">during initial start-up</span>, <span class="selectable-content" id="_s_110">periodically during normal operation</span>, <span class="selectable-content" id="_s_111">at the request of the authorized user</span>, <span class="selectable-content" id="_s_112">at the conditions [<b>assignment</b>: <span class="assignable-content">conditions under which self-test should occur</span>]</span>] to demonstrate the correct operation of [<i>[<abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> specified in <a href="#FCS_RBG.1">FCS_RBG.1</a>]</i>]. 
                 </div>
             </div>
             <div class="element">
@@ -3157,6 +3251,10 @@ PT = CT[i]
                             </p>
                         </div>
                     </div>
+                    <div class="eacategory">Guidance</div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
+                    </div>
                     <div class="eacategory">Tests</div>
                     <div class="ea">
                         <div class="ea">
@@ -3218,6 +3316,16 @@ PT = CT[i]
                     <div class="component-activity-header">
                         <a href="#FPT_TUD_EXT.1">FPT_TUD_EXT.1</a>
                     </div>
+                    <div class="eacategory">
+                        <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                    </div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
+                    </div>
+                    <div class="eacategory">Guidance</div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
+                    </div>
                     <div class="eacategory">Tests</div>
                     <div class="ea">
                         <div class="ea">
@@ -3273,6 +3381,16 @@ PT = CT[i]
                 <div class="activity_pane_body">
                     <div class="component-activity-header">
                         <a href="#FPT_TUD_EXT.2">FPT_TUD_EXT.2</a>
+                    </div>
+                    <div class="eacategory">
+                        <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                    </div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
+                    </div>
+                    <div class="eacategory">Guidance</div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
                     </div>
                     <div class="eacategory">Tests</div>
                     <div class="ea">
@@ -3374,6 +3492,16 @@ PT = CT[i]
                 <div class="activity_pane_body">
                     <div class="component-activity-header">
                         <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a>
+                    </div>
+                    <div class="eacategory">
+                        <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                    </div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
+                    </div>
+                    <div class="eacategory">Guidance</div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
                     </div>
                     <div class="eacategory">Tests</div>
                     <div class="ea">
@@ -3861,7 +3989,7 @@ PT = CT[i]
                     <a href="#AGD_OPE.1.2C" class="abbr">AGD_OPE.1.2C</a>
                 </div>
                 <div class="reqdesc">
-                    The operational user guidance shall describe, for each user role, how to use the available interfaces provided by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> in a secure manner.
+                    The operational user guidance shall describe, for each user role, how to use the available interfaces provided by the <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> in a secure manner.
                 </div>
             </div>
             <div class="element">
@@ -3888,7 +4016,7 @@ PT = CT[i]
                     <a href="#AGD_OPE.1.5C" class="abbr">AGD_OPE.1.5C</a>
                 </div>
                 <div class="reqdesc">
-                    The operational user guidance shall identify all possible modes of operation of the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> (including operation following failure or operational error), their consequences, and implications for maintaining secure operation.
+                    The operational user guidance shall identify all possible modes of operation of the <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> (including operation following failure or operational error), their consequences, and implications for maintaining secure operation.
                 </div>
             </div>
             <div class="element">
@@ -3932,7 +4060,7 @@ PT = CT[i]
                     <a href="#AGD_PRE.1.1D" class="abbr">AGD_PRE.1.1D</a>
                 </div>
                 <div class="reqdesc">
-                    The developer shall provide the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>, including its preparative procedures.
+                    The developer shall provide the <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b>, including its preparative procedures.
                     <div class="appnote">
                         <span class="note-header">Application Note: </span><span class="note">As with the operational guidance, the developer should look to the evaluation activities to determine the required content with respect to preparative procedures.</span>
                     </div>
@@ -3944,7 +4072,7 @@ PT = CT[i]
                     <a href="#AGD_PRE.1.1C" class="abbr">AGD_PRE.1.1C</a>
                 </div>
                 <div class="reqdesc">
-                    The preparative procedures shall describe all the steps necessary for secure acceptance of the delivered <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> in accordance with the developer's delivery procedures.
+                    The preparative procedures shall describe all the steps necessary for secure acceptance of the delivered <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> in accordance with the developer's delivery procedures.
                 </div>
             </div>
             <div class="element">
@@ -3967,7 +4095,7 @@ PT = CT[i]
                     <a href="#AGD_PRE.1.2E" class="abbr">AGD_PRE.1.2E</a>
                 </div>
                 <div class="reqdesc">
-                    The evaluator shall apply the preparative procedures to confirm that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can be prepared securely for operation.
+                    The evaluator shall apply the preparative procedures to confirm that the <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> can be prepared securely for operation.
                 </div>
             </div>
             <div class="activity_pane hide">
@@ -3993,7 +4121,7 @@ PT = CT[i]
                     <a href="#ALC_CMC.1.1D" class="abbr">ALC_CMC.1.1D</a>
                 </div>
                 <div class="reqdesc">
-                    The developer shall provide the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> and a reference for the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>.
+                    The developer shall provide the <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> and a reference for the <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b>.
                 </div>
             </div>
             <h4>Content and presentation elements: </h4>
@@ -4051,7 +4179,7 @@ PT = CT[i]
                     <a href="#ALC_CMS.1.1D" class="abbr">ALC_CMS.1.1D</a>
                 </div>
                 <div class="reqdesc">
-                     The developer shall provide a configuration list for the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>. 
+                     The developer shall provide a configuration list for the <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b>. 
                 </div>
             </div>
             <h4>Content and presentation elements: </h4>
@@ -4060,7 +4188,7 @@ PT = CT[i]
                     <a href="#ALC_CMS.1.1C" class="abbr">ALC_CMS.1.1C</a>
                 </div>
                 <div class="reqdesc">
-                    The configuration list shall include the following: the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> itself; and the evaluation evidence required by the <abbr class="dyn-abbr"><a href="#abbr_SAR">SARs</a></abbr>.
+                    The configuration list shall include the following: the <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> itself; and the evaluation evidence required by the <abbr class="dyn-abbr"><a href="#abbr_SAR">SARs</a></abbr>.
                 </div>
             </div>
             <div class="element">
@@ -4171,7 +4299,7 @@ PT = CT[i]
                     <a href="#ATE_IND.1.1D" class="abbr">ATE_IND.1.1D</a>
                 </div>
                 <div class="reqdesc">
-                    The developer shall provide the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> for testing.
+                    The developer shall provide the <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> for testing.
                 </div>
             </div>
             <h4>Content and presentation elements: </h4>
@@ -4180,7 +4308,7 @@ PT = CT[i]
                     <a href="#ATE_IND.1.1C" class="abbr">ATE_IND.1.1C</a>
                 </div>
                 <div class="reqdesc">
-                    The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be suitable for testing.
+                    The <b><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></b> shall be suitable for testing.
                 </div>
             </div>
             <h4>Evaluator action elements: </h4>
@@ -4234,7 +4362,7 @@ PT = CT[i]
                     <a href="#AVA_VAN.1.1D" class="abbr">AVA_VAN.1.1D</a>
                 </div>
                 <div class="reqdesc">
-                    The developer shall provide the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> for testing.
+                    The developer shall provide the <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> for testing.
                 </div>
             </div>
             <h4>Content and presentation elements: </h4>
@@ -4243,7 +4371,7 @@ PT = CT[i]
                     <a href="#AVA_VAN.1.1C" class="abbr">AVA_VAN.1.1C</a>
                 </div>
                 <div class="reqdesc">
-                    The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be suitable for testing.
+                    The <b><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></b> shall be suitable for testing.
                 </div>
             </div>
             <h4>Evaluator action elements: </h4>
@@ -4258,7 +4386,7 @@ PT = CT[i]
                     <a href="#AVA_VAN.1.2E" class="abbr">AVA_VAN.1.2E</a>
                 </div>
                 <div class="reqdesc">
-                    The evaluator shall perform a search of public domain sources to identify potential vulnerabilities in the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>.
+                    The evaluator shall perform a search of public domain sources to identify potential vulnerabilities in the <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b>.
                     <div class="appnote">
                         <span class="note-header">Application Note: </span><span class="note">Public domain sources include the Common Vulnerabilities and Exposures (CVE) dictionary for publicly-known vulnerabilities. Public domain sources also include sites which provide free checking of files for viruses.</span>
                     </div>
@@ -4269,7 +4397,7 @@ PT = CT[i]
                     <a href="#AVA_VAN.1.3E" class="abbr">AVA_VAN.1.3E</a>
                 </div>
                 <div class="reqdesc">
-                    The evaluator shall conduct penetration testing, based on the identified potential vulnerabilities, to determine that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> is resistant to attacks performed by an attacker possessing Basic attack potential.
+                    The evaluator shall conduct penetration testing, based on the identified potential vulnerabilities, to determine that the <b><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b> is resistant to attacks performed by an attacker possessing Basic attack potential.
                 </div>
             </div>
             <div class="activity_pane hide">
@@ -4703,6 +4831,10 @@ PT = CT[i]
                     <div class="ea">
                         <div class="ea"> The evaluator shall inspect the vendor-provided developer documentation and verify that no memory-mapping can be made with write and execute permissions except for the cases listed in the assignment. </div>
                     </div>
+                    <div class="eacategory">Guidance</div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
+                    </div>
                     <div class="eacategory">Tests</div>
                     <div class="ea">
                         <div class="ea">
@@ -4732,7 +4864,7 @@ PT = CT[i]
                     <a href="#FTA_TAB.1.1" class="abbr">FTA_TAB.1.1</a>
                 </div>
                 <div class="reqdesc">
-                     Before establishing a user session, The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall display an advisory warning message regarding unauthorized use of the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>. 
+                     Before establishing a user session, the [<i><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></i>] shall display an [<i>advisory warning</i>] message <b>regarding unauthorized use of the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b>. 
                 </div>
             </div>
             <div class="activity_pane hide">
@@ -4742,6 +4874,16 @@ PT = CT[i]
                 <div class="activity_pane_body">
                     <div class="component-activity-header">
                         <a href="#FTA_TAB.1">FTA_TAB.1</a>
+                    </div>
+                    <div class="eacategory">
+                        <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
+                    </div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
+                    </div>
+                    <div class="eacategory">Guidance</div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
                     </div>
                     <div class="eacategory">Tests</div>
                     <div class="ea">
@@ -4887,7 +5029,7 @@ PT = CT[i]
                     <div class="eacategory">Guidance</div>
                     <div class="ea">
                         <div class="ea">
-                             The evaluator shall ensure that that the characteristics are described in sufficient detail for administrators to configure policies using them, and that the list of characteristics in the guidance is consistent with the information in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>. 
+                             The evaluator shall ensure that the characteristics are described in sufficient detail for administrators to configure policies using them, and that the list of characteristics in the guidance is consistent with the information in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>. 
                         </div>
                     </div>
                     <div class="eacategory">Tests</div>
@@ -5299,6 +5441,10 @@ PT = CT[i]
                         <div class="ea">
                              The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> section of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> describes the routing of <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic when a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client is enabled. The evaluator shall ensure that the description indicates which traffic does not go through the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> and which traffic does, and that a configuration exists for each in which only the traffic identified by the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author as necessary for establishing the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> connection (IKE traffic and perhaps <abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_DNS">DNS</a></abbr> traffic) is not encapsulated by the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> protocol (IPsec). 
                         </div>
+                    </div>
+                    <div class="eacategory">Guidance</div>
+                    <div class="ea">
+                        <div class="ea">TBD</div>
                     </div>
                     <div class="eacategory">Tests</div>
                     <div class="ea">
