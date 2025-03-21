@@ -229,6 +229,7 @@ it manages may be physical or virtual.
    <cc-claims-addnl-info/>
   </CClaimsInfo>
  </sec:Conformance_Claims>
+ <section/>
  <!-- 3.0 Security Problem Definition-->
  <sec:Security_Problem_Definition>
   The security problem is described in terms
@@ -240,42 +241,161 @@ it manages may be physical or virtual.
    <threats>
     <threat name="T.LIMITED_PHYSICAL_ACCESS">
      <description> An attacker may attempt to access data on the OS while having a limited            amount of time with the physical device. </description>
-     <objective-refer ref="O.PROTECTED_STORAGE">
-      <rationale>The objective O.PROTECTED_STORAGE protects against unauthorized attempts to              access physical storage used by the TOE.</rationale>
-     </objective-refer>
+     <!-- New mapping to build updated threat mapping table. -->
+     <addressed-by>FCS_STO_EXT.1</addressed-by>
+     <rationale>Supports this objective by requiring the OS to provide encrypted storage.</rationale>
+     <addressed-by>FCS_RBG_EXT.1</addressed-by>
+     <rationale>Supports this objective by requiring the OS to generate random bits according to industry standards.</rationale>
+     <addressed-by>FCS_COP.1/ENCRYPT</addressed-by>
+     <rationale>Supports this objective requiring the OS to perform encryption according to industry stands.</rationale>
+     <addressed-by>FDP_ACF_EXT.1</addressed-by>
+     <rationale>Supports this objective by requiring the OS to implement access controls.</rationale>
     </threat>
     <threat name="T.LOCAL_ATTACK">
      <description> An attacker may compromise applications running on the OS. The            compromised application may provide maliciously formatted input to the OS through a            variety of channels including unprivileged system calls and messaging via the            file system. </description>
-     <objective-refer ref="O.INTEGRITY">
-      <rationale>The objective O.INTEGRITY protects against the use of mechanisms that weaken              the TOE with regard to attack by other software on the              platform.</rationale>
-     </objective-refer>
-     <objective-refer ref="O.ACCOUNTABILITY">
-      <rationale>The objective O.ACCOUNTABILITY protects against local attacks by providing              a mechanism to report behavior that may indicate a local attack is occurring or              has occurred.</rationale>
-     </objective-refer>
+     <!-- New mapping to build updated threat mapping table. -->
+     <addressed-by>FPT_SBOP_EXT.1
+	                FPT_ASLR_EXT.1</addressed-by>
+     <rationale>Supports the objective by requiring that OS applications be hardened against buffer overflow attacks</rationale>
+     <addressed-by>FPT_TUD_EXT.1</addressed-by>
+     <rationale>Supports the objective by requiring that the OS be able to check for critical updates.</rationale>
+     <addressed-by>FPT_TUD_EXT.2</addressed-by>
+     <rationale>Supports the objective by requiring that the OS verify updates before applying them.</rationale>
+     <addressed-by>FCS_COP.1/HASH</addressed-by>
+     <rationale>Supports the objective by requiring the TSF to implement hash algorithms that are used in support of protected communications.</rationale>
+     <addressed-by>FCS_COP.1/SIGN</addressed-by>
+     <rationale>Supports the objective by requiring the TSF to implement digital signature algorithms that are used in support of protected communications.</rationale>
+     <addressed-by>FCS_COP.1/KEYHMAC</addressed-by>
+     <rationale>Supports the objective by requiring the TSF to implement HMAC algorithms that are used in support of protected communications.</rationale>
+     <addressed-by>FPT_ACF_EXT.1</addressed-by>
+     <rationale>Supports the objective by requiring the TSF restrict unprivileged users from changing critical components.</rationale>
+     <addressed-by>FPT_SRP_EXT.1</addressed-by>
+     <rationale>Supports the objective by requiring the TSF to implement a configurable allowlist mechanism.</rationale>
+     <addressed-by>FIA_X509_EXT.1</addressed-by>
+     <rationale>Supports the objective by requiring the TSF to validate certificates using industry standards.</rationale>
+     <addressed-by>FPT_TST_EXT.1</addressed-by>
+     <rationale>Supports the objective by requiring the TSF to verify executable code critical to its operation.</rationale>
+     <addressed-by>FTP_ITC_EXT.1</addressed-by>
+     <rationale>Supports the objective by requiring the OS to provide a trusted channel for critical communication.
+
+Supports the objective by ensuring that audit information can be securely transmitted to remote systems for analysis.</rationale>
+     <addressed-by>FPT_W^X_EXT.1</addressed-by>
+     <rationale>Supports the objective by requiring the OS to executable only non-writable memory.</rationale>
+     <addressed-by>FIA_AFL.1</addressed-by>
+     <rationale>Supports the objective by requiring the TSF to respond accordingly when the number of failed authentication attempts reaches a specified threshold.</rationale>
+     <addressed-by>FIA_UAU.5</addressed-by>
+     <rationale>Supports the objective by requiring the OS to provide standard authentication mechanisms.</rationale>
+     <addressed-by>FPT_BLT_EXT.1</addressed-by>
+     <rationale>FPT_BLT_EXT.1 supports the objective by requiring the TSF to disable certain Bluetooth profiles when they are inactive such that explicit user authorization is required to re-enable them.</rationale>
+     <addressed-by>FAU_GEN.1</addressed-by>
+     <rationale>Supports the objective by requiring that critical event information be gathered by the TOE.</rationale>
     </threat>
     <threat name="T.NETWORK_ATTACK">
      <description> An attacker is positioned on a communications channel or elsewhere on the            network infrastructure. Attackers may engage in communications with applications and            services running on or part of the OS with the intent of compromise. Engagement may            consist of altering existing legitimate communications.</description>
-     <objective-refer ref="O.PROTECTED_COMMS">
-      <rationale>The threat T.NETWORK_ATTACK is countered by O.PROTECTED_COMMS as this              provides for integrity of transmitted data.</rationale>
-     </objective-refer>
-     <objective-refer ref="O.INTEGRITY">
-      <rationale>The threat T.NETWORK_ATTACK is countered by O.INTEGRITY as this provides for              integrity of software that is installed onto the system from the network.</rationale>
-     </objective-refer>
-     <objective-refer ref="O.MANAGEMENT">
-      <rationale>The threat T.NETWORK_ATTACK is countered by O.MANAGEMENT as this provides for              the ability to configure the OS to defend against network attack.</rationale>
-     </objective-refer>
-     <objective-refer ref="O.ACCOUNTABILITY">
-      <rationale>The threat T.NETWORK_ATTACK is countered by O.ACCOUNTABILITY as this              provides a mechanism for the OS to report behavior that may indicate a network              attack has occurred.</rationale>
-     </objective-refer>
+     <!-- New mapping to build updated threat mapping table. -->
+     <addressed-by>FCS_RBG_EXT.1</addressed-by>
+     <rationale>Supports this objective by requiring the OS to generate random bits according to industry standards.</rationale>
+     <addressed-by>FCS_CKM.1</addressed-by>
+     <rationale>Supports this objective by requiring the TSF to generate asymmetric cryptographic keys to industry standards.</rationale>
+     <addressed-by>FCS_CKM.2</addressed-by>
+     <rationale>Supports this objective by requiring the TSF to perform key establishment according to industry standards.</rationale>
+     <addressed-by>FCS_CKM_EXT.4</addressed-by>
+     <rationale>Supports this objective by requiring the TSF to destroy key material according to industry standards.</rationale>
+     <addressed-by>FCS_COP.1/ENCRYPT</addressed-by>
+     <rationale>Supports this objective by requiring the TSF to encrypt data according to industry standards</rationale>
+     <addressed-by>FCS_COP.1/HASH</addressed-by>
+     <rationale>Supports this objective by requiring the TSF to hash data according to industry standards.
+
+Supports the objective by requiring the TSF to implement hash algorithms that are used in support of protected communications.</rationale>
+     <addressed-by>FCS_COP.1/SIGN</addressed-by>
+     <rationale>Supports this objective by requiring the TSF to cryptographically sign data according to industry standards.
+
+Supports the objective by requiring the TSF to implement digital signature algorithms that are used in support of protected communications.</rationale>
+     <addressed-by>FCS_COP.1/KEYHMAC</addressed-by>
+     <rationale>Supports this objective by requiring the TSF to perform keyed hashes according to industry standards.
+
+Supports the objective by requiring the TSF to implement HMAC algorithms that are used in support of protected communications.</rationale>
+     <addressed-by>FDP_IFC_EXT.1</addressed-by>
+     <rationale>Supports this objective by requiring the TSF to be compatible with at least one VPN.</rationale>
+     <addressed-by>FIA_X509_EXT.1</addressed-by>
+     <rationale>Supports the objective by requiring the TSF to validate certificates using industry standards.
+
+Supports the objective by requiring the TSF to validate certificates using industry standards.</rationale>
+     <addressed-by>FIA_X509_EXT.2</addressed-by>
+     <rationale>Supports this objective by requiring the TSF to validate TLS and related encrypted connections with x509 certificates.</rationale>
+     <addressed-by>FTP_ITC_EXT.1</addressed-by>
+     <rationale>Supports the objective by requiring the OS to provide a trusted channel for critical communication.
+
+Supports the objective by requiring the OS to provide a trusted channel for critical communication.
+
+Supports the objective by ensuring that audit information can be securely transmitted to remote systems for analysis.</rationale>
+     <addressed-by>FPT_SBOP_EXT.1
+	                FPT_ASLR_EXT.1</addressed-by>
+     <rationale>Supports the objective by requiring that OS applications be hardened against buffer overflow attacks</rationale>
+     <addressed-by>FPT_TUD_EXT.1</addressed-by>
+     <rationale>Supports the objective by requiring that the OS be able to check for critical updates.</rationale>
+     <addressed-by>FPT_TUD_EXT.2</addressed-by>
+     <rationale>Supports the objective by requiring that the OS verify updates before applying them.</rationale>
+     <addressed-by>FPT_ACF_EXT.1</addressed-by>
+     <rationale>Supports the objective by requiring the TSF restrict unprivileged users from changing critical components.</rationale>
+     <addressed-by>FPT_SRP_EXT.1</addressed-by>
+     <rationale>Supports the objective by requiring the TSF to implement a configurable allowlist mechanism.</rationale>
+     <addressed-by>FPT_TST_EXT.1</addressed-by>
+     <rationale>Supports the objective by requiring the TSF to verify executable code critical to its operation.</rationale>
+     <addressed-by>FPT_W^X_EXT.1</addressed-by>
+     <rationale>Supports the objective by requiring the OS to executable only non-writable memory.</rationale>
+     <addressed-by>FIA_AFL.1</addressed-by>
+     <rationale>Supports the objective by requiring the TSF to respond accordingly when the number of failed authentication attempts reaches a specified threshold.</rationale>
+     <addressed-by>FIA_UAU.5</addressed-by>
+     <rationale>Supports the objective by requiring the OS to provide standard authentication mechanisms.</rationale>
+     <addressed-by>FPT_BLT_EXT.1</addressed-by>
+     <rationale>FPT_BLT_EXT.1 supports the objective by requiring the TSF to disable certain Bluetooth profiles when they are inactive such that explicit user authorization is required to re-enable them.</rationale>
+     <addressed-by>FMT_MOF_EXT.1</addressed-by>
+     <rationale>Supports this objective by requiring the TOE to restrict the ability to perform certain management functions to a privileged user.</rationale>
+     <addressed-by>FMT_SMF_EXT.1</addressed-by>
+     <rationale>Supports this objective by requiring the TOE to implement specific management functions.</rationale>
+     <addressed-by>FTA_TAB.1</addressed-by>
+     <rationale>Supports this objective by requiring the TOE to implement a trusted path between the itself and users.</rationale>
+     <addressed-by>FTP_TRP.1</addressed-by>
+     <rationale>Supports this objective by requiring a trusted path between users and the OS.</rationale>
+     <addressed-by>FAU_GEN.1</addressed-by>
+     <rationale>Supports the objective by requiring that critical event information be gathered by the TOE.</rationale>
     </threat>
     <threat name="T.NETWORK_EAVESDROP">
      <description> An attacker is positioned on a communications channel or elsewhere on the            network infrastructure. Attackers may monitor and gain access to data exchanged between            applications and services that are running on or part of the OS. </description>
-     <objective-refer ref="O.PROTECTED_COMMS">
-      <rationale>The threat T.NETWORK_EAVESDROP is countered by O.PROTECTED_COMMS as this              provides for confidentiality of transmitted data.</rationale>
-     </objective-refer>
-     <objective-refer ref="O.MANAGEMENT">
-      <rationale>The threat T.NETWORK_EAVESDROP is countered by O.MANAGEMENT as this provides              for the ability to configure the OS to protect the confidentiality of its transmitted              data.</rationale>
-     </objective-refer>
+     <!-- New mapping to build updated threat mapping table. -->
+     <addressed-by>FCS_RBG_EXT.1</addressed-by>
+     <rationale>Supports this objective by requiring the OS to generate random bits according to industry standards.</rationale>
+     <addressed-by>FCS_CKM.1</addressed-by>
+     <rationale>Supports this objective by requiring the TSF to generate asymmetric cryptographic keys to industry standards.</rationale>
+     <addressed-by>FCS_CKM.2</addressed-by>
+     <rationale>Supports this objective by requiring the TSF to perform key establishment according to industry standards.</rationale>
+     <addressed-by>FCS_CKM_EXT.4</addressed-by>
+     <rationale>Supports this objective by requiring the TSF to destroy key material according to industry standards.</rationale>
+     <addressed-by>FCS_COP.1/ENCRYPT</addressed-by>
+     <rationale>Supports this objective by requiring the TSF to encrypt data according to industry standards</rationale>
+     <addressed-by>FCS_COP.1/HASH</addressed-by>
+     <rationale>Supports this objective by requiring the TSF to hash data according to industry standards.</rationale>
+     <addressed-by>FCS_COP.1/SIGN</addressed-by>
+     <rationale>Supports this objective by requiring the TSF to cryptographically sign data according to industry standards.</rationale>
+     <addressed-by>FCS_COP.1/KEYHMAC</addressed-by>
+     <rationale>Supports this objective by requiring the TSF to perform keyed hashes according to industry standards.</rationale>
+     <addressed-by>FDP_IFC_EXT.1</addressed-by>
+     <rationale>Supports this objective by requiring the TSF to be compatible with at least one VPN.</rationale>
+     <addressed-by>FIA_X509_EXT.1</addressed-by>
+     <rationale>Supports the objective by requiring the TSF to validate certificates using industry standards.</rationale>
+     <addressed-by>FIA_X509_EXT.2</addressed-by>
+     <rationale>Supports this objective by requiring the TSF to validate TLS and related encrypted connections with x509 certificates.</rationale>
+     <addressed-by>FTP_ITC_EXT.1</addressed-by>
+     <rationale>Supports the objective by requiring the OS to provide a trusted channel for critical communication.</rationale>
+     <addressed-by>FMT_MOF_EXT.1</addressed-by>
+     <rationale>Supports this objective by requiring the TOE to restrict the ability to perform certain management functions to a privileged user.</rationale>
+     <addressed-by>FMT_SMF_EXT.1</addressed-by>
+     <rationale>Supports this objective by requiring the TOE to implement specific management functions.</rationale>
+     <addressed-by>FTA_TAB.1</addressed-by>
+     <rationale>Supports this objective by requiring the TOE to implement a trusted path between the itself and users.</rationale>
+     <addressed-by>FTP_TRP.1</addressed-by>
+     <rationale>Supports this objective by requiring a trusted path between users and the OS.</rationale>
     </threat>
    </threats>
   </sec:Threats>
@@ -318,110 +438,6 @@ it manages may be physical or virtual.
  <!-- 4.0 Security Objectives -->
  <sec:Security_Objectives>
   <!-- 4.1 Security Objectives for the TOE -->
-  <sec:Security_Objectives_for_the_TOE>
-   <SOs>
-    <SO name="O.ACCOUNTABILITY">
-     <description>Conformant OSes ensure that information exists that allows
-            administrators to discover unintentional issues with the configuration and operation of
-            the operating system and discover its cause.  Gathering event information and immediately
-            transmitting it to another system can also enable incident response in the event
-            of system compromise.</description>
-     <addressed-by>FAU_GEN.1</addressed-by>
-     <rationale>Supports the objective by requiring that critical event information be gathered by the TOE.</rationale>
-    </SO>
-    <SO name="O.INTEGRITY">
-     <description>Conformant OSes ensure the integrity of their update
-          packages. OSes are seldom if ever shipped without errors, and the
-          ability to deploy patches and updates with integrity is critical to enterprise network
-          security. Conformant OSes provide execution environment-based
-          mitigations that increase the cost to attackers by adding complexity to the task of
-          compromising systems.</description>
-     <addressed-by>FCS_COP.1/HASH</addressed-by>
-     <rationale>Supports the objective by requiring the TSF to implement hash algorithms that are used in support of protected communications.</rationale>
-     <addressed-by>FCS_COP.1/KEYHMAC</addressed-by>
-     <rationale>Supports the objective by requiring the TSF to implement HMAC algorithms that are used in support of protected communications.</rationale>
-     <addressed-by>FCS_COP.1/SIGN</addressed-by>
-     <rationale>Supports the objective by requiring the TSF to implement digital signature algorithms that are used in support of protected communications.</rationale>
-     <addressed-by>FPT_ACF_EXT.1</addressed-by>
-     <rationale>Supports the objective by requiring the TSF restrict unprivileged users from changing critical components.</rationale>
-     <addressed-by>FPT_BLT_EXT.1</addressed-by>
-     <rationale>FPT_BLT_EXT.1 supports the objective by requiring the TSF to disable certain Bluetooth profiles when they are inactive such that explicit user authorization is required to re-enable them.</rationale>
-     <addressed-by>FPT_SRP_EXT.1</addressed-by>
-     <rationale>Supports the objective by requiring the TSF to implement a configurable allowlist mechanism.</rationale>
-     <addressed-by>FPT_TST_EXT.1</addressed-by>
-     <rationale>Supports the objective by requiring the TSF to verify executable code critical to its operation.</rationale>
-     <addressed-by>FPT_TUD_EXT.1</addressed-by>
-     <rationale>Supports the objective by requiring that the OS be able to check for critical updates.</rationale>
-     <addressed-by>FPT_TUD_EXT.2</addressed-by>
-     <rationale>Supports the objective by requiring that the OS verify updates before applying them.</rationale>
-     <addressed-by>FPT_W^X_EXT.1</addressed-by>
-     <rationale>Supports the objective by requiring the OS to executable only non-writable memory.</rationale>
-     <addressed-by>FIA_AFL.1</addressed-by>
-     <rationale>Supports the objective by requiring the TSF to respond accordingly when the number of failed authentication attempts reaches a specified threshold.</rationale>
-     <addressed-by>FIA_UAU.5</addressed-by>
-     <rationale>Supports the objective by requiring the OS to provide standard authentication mechanisms.</rationale>
-     <addressed-by>FIA_X509_EXT.1</addressed-by>
-     <rationale>Supports the objective by requiring the TSF to validate certificates using industry standards.</rationale>
-    </SO>
-    <SO name="O.MANAGEMENT">
-     <description>To facilitate management by users and the enterprise, conformant OSes
-	    provide consistent and supported interfaces for their
-            security-relevant configuration and maintenance. This includes the deployment of
-            applications and application updates through the use of platform-supported deployment
-            mechanisms and formats, as well as providing mechanisms for configuration and
-            application execution control.</description>
-     <addressed-by>FMT_MOF_EXT.1</addressed-by>
-     <rationale>Supports this objective by requiring the TOE to restrict the ability to perform certain management functions to a privileged user.</rationale>
-     <addressed-by>FMT_SMF_EXT.1</addressed-by>
-     <rationale>Supports this objective by requiring the TOE to implement specific management functions.</rationale>
-     <addressed-by>FTA_TAB.1</addressed-by>
-     <rationale>Supports this objective by requiring the TOE to implement a trusted path between the itself and users.</rationale>
-    </SO>
-    <SO name="O.PROTECTED_COMMS">
-     <description>To address both passive (eavesdropping) and active (packet modification)
-            network attack threats, conformant OSes provide mechanisms to create
-            trusted channels for CSP and sensitive data. Both CSP and sensitive data
-          should not be exposed outside of the platform.</description>
-     <addressed-by>FCS_CKM.1</addressed-by>
-     <rationale>Supports this objective by requiring the TSF to generate asymmetric cryptographic keys to industry standards.</rationale>
-     <addressed-by>FCS_CKM.2</addressed-by>
-     <rationale>Supports this objective by requiring the TSF to perform key establishment according to industry standards.</rationale>
-     <addressed-by>FCS_CKM_EXT.4</addressed-by>
-     <rationale>Supports this objective by requiring the TSF to destroy key material according to industry standards.</rationale>
-     <addressed-by>FCS_COP.1/ENCRYPT</addressed-by>
-     <rationale>Supports this objective by requiring the TSF to encrypt data according to industry standards</rationale>
-     <addressed-by>FCS_COP.1/HASH</addressed-by>
-     <rationale>Supports this objective by requiring the TSF to hash data according to industry standards.</rationale>
-     <addressed-by>FCS_COP.1/KEYHMAC</addressed-by>
-     <rationale>Supports this objective by requiring the TSF to perform keyed hashes according to industry standards.</rationale>
-     <addressed-by>FCS_COP.1/SIGN</addressed-by>
-     <rationale>Supports this objective by requiring the TSF to cryptographically sign data according to industry standards.</rationale>
-     <addressed-by>FCS_RBG_EXT.1</addressed-by>
-     <rationale>Supports this objective by requiring the OS to generate random bits according to industry standards.</rationale>
-     <addressed-by>FDP_IFC_EXT.1</addressed-by>
-     <rationale>Supports this objective by requiring the TSF to be compatible with at least one VPN.</rationale>
-     <addressed-by>FIA_X509_EXT.1</addressed-by>
-     <rationale>Supports the objective by requiring the TSF to validate certificates using industry standards.</rationale>
-     <addressed-by>FIA_X509_EXT.2</addressed-by>
-     <rationale>Supports this objective by requiring the TSF to validate TLS and related encrypted connections with x509 certificates.</rationale>
-    </SO>
-    <SO name="O.PROTECTED_STORAGE">
-     <description>To address the issue of loss of confidentiality of credentials in the event of
-loss of physical control of the storage medium, conformant OSes
-provide data-at-rest protection for credentials.
-Conformant OSes also provide access controls which allow users to keep their files private from other
-users of the same system.</description>
-     <addressed-by>FCS_COP.1/ENCRYPT</addressed-by>
-     <rationale>Supports this objective requiring the OS to perform encryption according to industry stands.</rationale>
-     <addressed-by>FCS_RBG_EXT.1</addressed-by>
-     <rationale>Supports this objective by requiring the OS to generate random bits according to industry standards.</rationale>
-     <addressed-by>FCS_STO_EXT.1</addressed-by>
-     <rationale>Supports this objective by requiring the OS to provide encrypted storage.</rationale>
-     <addressed-by>FDP_ACF_EXT.1</addressed-by>
-     <rationale>Supports this objective by requiring the OS to implement access controls.</rationale>
-    </SO>
-   </SOs>
-  </sec:Security_Objectives_for_the_TOE>
   <!-- 4.2 Security Objctives for the Operational Environment -->
   <sec:Security_Objectives_for_the_Operational_Environment>
    <SOEs>
