@@ -221,7 +221,18 @@ it manages may be physical or virtual.
       </usecases>
     </sec:Use_Cases>
   </sec:Introduction>
-  <sec:Conformance_Claims boilerplate="no"/>
+  <sec:Conformance_Claims boilerplate="no">
+    <CClaimsInfo cc-version="cc-2022r1" cc-approach="direct-rationale">
+      <cc-st-conf>exact</cc-st-conf>
+      <cc-pt2-conf>conformant</cc-pt2-conf>
+      <cc-pt3-conf>conformant</cc-pt3-conf>
+      <cc-pp-conf/>
+      <cc-pp-config-with/>
+      <cc-pkg-claim/>
+      <cc-eval-methods/>
+      <cc-claims-addnl-info/>
+    </CClaimsInfo>
+  </sec:Conformance_Claims>
   <!-- 3.0 Security Problem Definition-->
   <sec:Security_Problem_Definition>
     The security problem is described in terms
@@ -2438,6 +2449,14 @@ The evaluator will also perform the following
           <a-element type="D">
             <title>The developer shall provide a tracing from the functional specification to the
 					SFRs.</title>
+            <note>As indicated in the introduction to this section, the
+              functional specification is comprised of the information contained in the AGD_OPE and
+              AGD_PRE documentation. The developer may reference a website accessible to application
+              developers and the evaluator. The evaluation activities in the functional requirements
+              point to evidence that should exist in the documentation and TSS
+              section; since these are directly associated with the SFRs, the tracing in element
+              ADV_FSP.1.2D is implicitly already done and no additional documentation is
+              necessary.</note>
             <aactivity/>
           </a-element>
           <a-element type="C">
@@ -2471,7 +2490,7 @@ The evaluator will also perform the following
           </a-element>
         </a-component>
       </section>
-      <section title="Class AGD: Guidance Documentats" id="agd">
+      <section title="Class AGD: Guidance Documents" id="agd">
         
 		The guidance documents will be
         provided with the ST. Guidance must include a description of how the IT personnel verifies
@@ -2501,6 +2520,8 @@ The evaluator will also perform the following
             <title>The operational user guidance shall describe, for each user role, the
 					user-accessible functions and privileges that should be controlled in a secure
 					processing environment, including appropriate warnings.</title>
+            <note>User and administrator are to be considered in the definition
+              of user role.</note>
             <aactivity/>
           </a-element>
           <a-element type="C">
@@ -2512,6 +2533,17 @@ The evaluator will also perform the following
             <title>The operational user guidance shall describe, for each user role, the available
 					functions and interfaces, in particular all security parameters under the control of
 					the user, indicating secure values as appropriate.</title>
+            <note>
+		This portion of the operational user guidance should be presented
+		in the form of a checklist that can be quickly executed by IT personnel (or end-users,
+		when necessary) and suitable for use in compliance activities.
+		When possible, this guidance is to be expressed in the eXtensible Configuration
+		Checklist Description Format (XCCDF) to
+		support security automation.
+		Minimally, it should be presented in a structured
+		format which includes a title for each configuration item,
+		instructions for achieving the secure configuration, and any relevant rationale.
+              </note>
             <aactivity/>
           </a-element>
           <a-element type="C">
@@ -2622,7 +2654,7 @@ The evaluator will also perform the following
             <aactivity/>
           </a-element>
         </a-component>
-        <a-component cc-id="alc_flr.1" name="Basic Flaw Remediation (ALC_FLR.1)">
+        <a-component cc-id="alc_flr.1" name="Basic Flaw Remediation (ALC_FLR.1)" status="optional">
           <a-element type="C">
             <title>The flaw remediation procedures documentation shall describe the procedures used to track all reported security flaws in each release of the TOE.</title>
             <aactivity/>
@@ -2648,7 +2680,7 @@ The evaluator will also perform the following
             <aactivity/>
           </a-element>
         </a-component>
-        <a-component cc-id="alc_flr.2" name="Flaw Reporting Procedures (ALC_FLR.2)">
+        <a-component cc-id="alc_flr.2" name="Flaw Reporting Procedures (ALC_FLR.2)" status="optional">
           <a-element type="C">
             <title>The flaw remediation procedures documentation shall describe the procedures used to track all reported security flaws in each release of the TOE.</title>
             <aactivity/>
@@ -2698,7 +2730,7 @@ The evaluator will also perform the following
             <aactivity/>
           </a-element>
         </a-component>
-        <a-component cc-id="alc_flr.3" name="Systematic Flaw Remediation (ALC_FLR.3)">
+        <a-component cc-id="alc_flr.3" name="Systematic Flaw Remediation (ALC_FLR.3)" status="optional">
           <a-element type="C">
             <title>The flaw remediation procedures documentation shall describe the procedures used to track all reported security flaws in each release of the TOE.</title>
             <aactivity/>
@@ -2760,7 +2792,7 @@ The evaluator will also perform the following
             <aactivity/>
           </a-element>
         </a-component>
-        <a-component cc-id="alc_tsu_ext.1" name="Timely Security Updates">
+        <a-component cc-id="alc_tsu_ext.1" name="Timely Security Updates" status="optional">
           
 			This component requires the TOE developer, in conjunction with any other necessary parties,
 			to provide information as to how the end-user devices are updated to address security issues
@@ -2799,7 +2831,7 @@ The evaluator will also perform the following
             <aactivity/>
           </a-element>
           <a-element type="E">
-            <title>The evaluator <h:i>shall confirm</h:i> that the information provided meets all
+            <title>The evaluator shall confirm that the information provided meets all
 					requirements for content and presentation of evidence.</title>
             <aactivity/>
           </a-element>
@@ -3128,7 +3160,7 @@ The evaluator will also perform the following
             <aactivity/>
           </a-element>
           <a-element type="E">
-            <title>The evaluator <h:i>shall confirm</h:i> that the information provided meets all
+            <title>The evaluator shall confirm that the information provided meets all
 					requirements for content and presentation of evidence.</title>
             <aactivity/>
           </a-element>
