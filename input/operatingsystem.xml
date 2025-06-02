@@ -375,8 +375,7 @@ it manages may be physical or virtual.
         <cc-pt3-conf>extended</cc-pt3-conf>
         <cc-pp-conf/>
         <cc-pp-config-with>       
-          <Mod-cc-ref>PP-Module for Virtual Private Network (VPN) Clients, version 2.4</Mod-cc-ref>
-          <Mod-cc-ref>PP-Module for Virtual Private Network (VPN) Clients, version 2.5</Mod-cc-ref>
+          <Mod-cc-ref>PP-Module for Virtual Private Network (VPN) Clients, version 2.6</Mod-cc-ref>
           <Mod-cc-ref>PP-Module for Bluetooth, version 1.0</Mod-cc-ref>
           <Mod-cc-ref>PP-Module for Mobile Device Management Agent, version 1.0</Mod-cc-ref>
           <Mod-cc-ref>PP-Module for Wireless LAN Clients, version 1.0</Mod-cc-ref>
@@ -386,7 +385,6 @@ it manages may be physical or virtual.
           <FP-cc-ref conf="conformant">Functional Package for Transport Layer Security Version 2.1</FP-cc-ref>
           <FP-cc-ref conf="conformant">Functional Package for Secure Shell Version 1.1</FP-cc-ref>
           <FP-cc-ref conf="conformant">Functional Package for X.509 Version 1.0</FP-cc-ref>
-          <AP-cc-ref conf="conformant">Assurance Package for Flaw Remediation Version 1.0</AP-cc-ref>
            <!-- <AP-cc-ref conf="conformant">Assurance Package for Flaw Remediation Version 1.0</AP-cc-ref> -->
         </cc-pkg-claim>
       </CClaimsInfo>	
@@ -3992,12 +3990,12 @@ OSes that store parameters and variables separately from control flow values do 
               <Guidance>TBD</Guidance>
 	      <Tests>
 <h:p>For stack-based OSes, the evaluator shall determine that the TSS contains a description of stack-based buffer overflow protections used by the OS.
-These are referred to by a variety of terms, such as stack cookie, stack guard, and stack canaries.
+These are referred to by a variety of terms. These include, but are not limited to, ASLR, tagging, stack cookie, stack guard, and stack canaries.
 The TSS must include a rationale for any binaries that are not protected in this manner.
 The evaluator shall also preform the following test:
             <testlist>
                 <test>
-                  The evaluator shall inventory the kernel, libraries, and application binaries
+                  [Conditional: if stack-based overflow detection can be determined by inventorying]: The evaluator shall inventory the kernel, libraries, and application binaries
                   to determine those that do not implement stack-based buffer overflow protections. This list should
                   match up with the list provided in the TSS.
                 </test>
