@@ -209,16 +209,29 @@
 	<sec:Use_Cases>
 		The following use cases are distinct and may be combined for any given TOE. They include 
 		<h:ul>
-			<h:li>the TOE as a relying party verifying the identity of entities using certificates obtained from an external CA</h:li> 
-			<h:li>the TOE asserting an identity in a certificate provided by an external CA and providing identity verification (authentication) to external relying parties</h:li> 
-			<h:li>the TOE acting as the sole relying party of entities issued certificates using an embedded CA</h:li> 
+			<h:li>the TOE as a relying party verifying the identity of entities using certificates 
+				obtained from an external CA</h:li> 
+			<h:li>the TOE asserting an identity in a certificate provided by an external CA and
+				providing identity verification (authentication) to external relying parties</h:li> 
+			<h:li>the TOE acting as the sole relying party of entities issued certificates using an 
+				embedded CA</h:li> 
 		</h:ul>
-		Combining the verify and subject use cases also includes authentication and verification between internal entities. Combining all three use cases allows external CAs to be used for both internal and external entities, but an internal embedded CA is only to be used for internal relying parties.<h:br/><h:br/>
-		Note: A TOE that provides general Certification Authority functionality for external entities should be validated against the Certification Authority Protection Profile instead of this FP. 
+		Combining the verify and subject use cases also includes authentication and verification 
+		between internal entities. Combining all three use cases allows external CAs to be used for
+		both internal and external entities, but an internal embedded CA is only to be used for
+		internal relying parties.<h:br/><h:br/>
+		Note: A TOE that provides general Certification Authority functionality for external entities 
+		should be validated against the Certification Authority Protection Profile instead of
+		this FP. 
 		<h:br/><h:br/>
-		Note: TOEs that provide certification authority functionality as an embedded CA in support of TLS inspection should use the SSL/TLS Inspection Proxy (STIP) Protection Profile module instead of this FP. The ‘provide’ functionality in this FP is a generalization of the security requirements of the embedded CA functionality for STIP PP module, but this FP does not include the proxy and TLS processing requirements from the STIP PP module.
+		Note: TOEs that provide certification authority functionality as an embedded CA in support 
+		of TLS inspection should use the SSL/TLS Inspection Proxy (STIP) Protection Profile module
+		instead of this FP. The ‘provide’ functionality in this FP is a generalization of the security 
+		requirements of the embedded CA functionality for STIP PP module, but this FP does not include
+		the proxy and TLS processing requirements from the STIP PP module.
 		<h:br/><h:br/>
-		The following diagrams show each TOE use case (within the red box) with respect to its role in an overall system.
+		The following diagrams show each TOE use case (within the red box) with respect to its role 
+		in an overall system.
 		<usecases>
 			<usecase id="usecase1" title="TOE as a Relying Party">
 				<description>
@@ -610,7 +623,7 @@
 		
 		
 		<f-component name="Leaf Certificate Profiles" cc-id="fdp_cer_ext.1" id="fdp-cer-ext-1-ecd" status="invisible">
-			<depends on="toe-uses-embedded-ca" also="toe-requests-certs" and="toe-requests-certs-from-embedded-ca"/>
+<!--			<depends on="toe-uses-embedded-ca" also="toe-requests-certs" and="toe-requests-certs-from-embedded-ca"/> -->
 			
 			<comp-lev> requires the TSF to implement a TOE-trusted certificate profile function that conforms to profiles when acting as a CA.</comp-lev>
 			<management>No specific management functions are identified.</management>
