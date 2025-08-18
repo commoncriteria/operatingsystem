@@ -6,7 +6,7 @@
       <PPTitle>Functional Package for Transport Layer Security (TLS)</PPTitle>
       <PPVersion>2.1</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
-      <PPPubDate>2025-03-05</PPPubDate>
+      <PPPubDate>2025-08-05</PPPubDate>
       <Keywords>TLS</Keywords>
     </ReferenceTable>
   </PPReference>
@@ -31,7 +31,7 @@
     </entry>
     <entry>
       <version>2.1</version>
-      <date>2025-03-05</date>
+      <date>2025-08-05</date>
       <subject>Updated for CC:2022 conformance, incorporated applicable errata.</subject>
     </entry>
 	  
@@ -71,6 +71,9 @@
     and DTLS protocols. The requirements are
     intended to improve the security of products by enabling their evaluation.
   </h:p>
+      <h:p>
+        Note that this package frequently references the use of alert messages in the context of TLS and DTLS communications. Valid alerts are specified by IANA, referenced against applicable RFCs, at <xref to="bibIANA"/>. This documentation should be consulted when determining whether an observed alert is consistent with expectations based on the test being performed when the alert is observed.  
+      </h:p>
     </sec:Overview>
     <tech-terms>
       <term abbr="AES" full="Advanced Encryption Standard"/>
@@ -426,26 +429,51 @@
         <title>
           The TSF shall be able to support the following <selectables linebreak="yes">
             <selectable>TLS 1.2 ciphersuites: <selectables linebreak="yes">
-              <selectable>TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
-              <selectable>TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
-              <selectable>TLS_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5288</selectable>
-              <selectable>TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5288</selectable>
-              <selectable>TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
-              <selectable>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
-    
-         <selectable>ciphersuites using pre-shared secrets:
-            <selectables linebreak="yes">
-              <selectable>TLS_ECDHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 8442</selectable>
-              <selectable>TLS_DHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 5487</selectable>
-              <selectable>TLS_RSA_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 5487</selectable>
-            </selectables></selectable></selectables>
-              and shall not offer other TLS 1.2 ciphersuites,</selectable>
-            <selectable>TLS 1.3 ciphersuites: <selectables linebreak="yes">
-              <selectable>TLS_AES_256_GCM_SHA384 as defined in RFC 8446</selectable>
-              <selectable><assignable>other TLS 1.3 ciphersuites</assignable></selectable>
-            </selectables></selectable>
+              <selectable>CNSA 1.0 compliant <selectables>
+                <selectable>TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
+                <selectable>TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
+                <selectable>TLS_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5288</selectable>
+                <selectable>TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5288</selectable>
+                <selectable>TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
+                <selectable>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
+                <selectable>ciphersuites using pre-shared secrets:
+                  <selectables linebreak="yes">
+                    <selectable>TLS_ECDHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 8442</selectable>
+                    <selectable>TLS_DHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 5487</selectable>
+                    <selectable>TLS_RSA_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 5487</selectable>
+                  </selectables></selectable>
+              </selectables>
+              </selectable>
+              <selectable>non-CNSA compliant <selectables>
+                <selectable>TLS_RSA_WITH_AES_256_CBC_SHA256 as defined in RFC 5246</selectable>
+                <selectable>TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 as defined in RFC 5246</selectable>
+                <selectable>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5289</selectable>
+                <selectable>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5289</selectable>
+                <selectable>TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5289</selectable>
+                <selectable>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5289</selectable>
+                <selectable>TLS_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</selectable>
+                <selectable>TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</selectable>
+                <selectable>TLS_RSA_WITH_AES_128_CBC_SHA as defined in RFC 5246]</selectable>
+                <selectable>ciphersuites using pre-shared secrets:
+                  <selectables linebreak="yes">
+                    <selectable>TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256 as defined in RFC 8442</selectable>
+                    <selectable>TLS_DHE_PSK_WITH_AES_128_GCM_SHA256 as defined in RFC 5487</selectable>
+                    <selectable>TLS_RSA_PSK_WITH_AES_128_GCM_SHA256 as defined in RFC 5487]</selectable>
+                  </selectables></selectable>
+              </selectables></selectable></selectables> 
+              and no other TLS 1.2 ciphersuites,</selectable>
+            <selectable>TLS 1.3 ciphersuites <selectables linebreak="yes">
+              <selectable>CNSA 2.0 compliant TLS_AES_256_GCM_SHA384 as defined in RFC 8446 and no other TLS 1.3 ciphersuites</selectable>
+              <selectable>non-CNSA compliant <selectables linebreak="yes">
+                <selectable>TLS_AES_128_GCM_SHA256 as defined in RFC 8446</selectable>
+                <selectable><assignable>other TLS 1.3 ciphersuites</assignable></selectable>
+              </selectables>
+              </selectable>
+              
+            </selectables>
+            </selectable>
           </selectables>
-          offering the supported ciphersuites in a ClientHello message in preference order:
+             offering the supported ciphersuites in a ClientHello message in preference order:
           <assignable>list of supported ciphersuites</assignable>.
         </title>
       <ext-comp-def-title>
@@ -463,8 +491,7 @@
         DTLS 1.2 are only claimed as required by a specific PP.
         </h:p>
         <h:p>
-          While mandatory for RFC 8446, TLS_AES_128_GCM_SHA256 is disallowed by this SFR and should not be included in “other TLS 1.3 
-          ciphersuites.” The ST author may list additional TLS 1.3 ciphersuites as they are registered.
+          While mandatory for RFC 8446, TLS_AES_128_GCM_SHA256 is selectable by this SFR because it is expressly disallowed if the TSF intends to conform to CNSA restrictions on the supported algorithms.
         </h:p>
         <h:p>
           In addition to the supported ciphersuites, the ST author indicates the order of ciphersuites included in the ClientHello, 
@@ -488,8 +515,7 @@
         <h:p>
           This element explicitly excludes ciphersuites defined for TLS 1.2 and previous TLS or SSL versions that might be included in the 
           ClientHello from a TSF that supports DTLS 1.2 (as the only supported version, or as a fallback version for DTLS 1.3 clients 
-          negotiating with potential DTLS 1.2 servers). The requirement also constrains the choice of "other TLS 1.3 ciphersuites" when
-          DTLS 1.3 is supported. In addition, this requirement prohibits Using Raw Public Keys in Transport Layer Security and Datagram
+          negotiating with potential DTLS 1.2 servers). The requirement also constrains the choice of DTLS 1.3 ciphersuites to the single TLS_AES_GCM_SHA384 ciphersuite specified in RFC 8446. In addition, this requirement prohibits Using Raw Public Keys in Transport Layer Security and Datagram
           Transport Layer Security (RFC 7250) for server certificates.
         </h:p>
         <h:p>
@@ -508,41 +534,53 @@
     <title>
       The TSF shall be able to support the following DTLS ClientHello message extensions: 
       <h:ul>
-        <h:li>signature_algorithms extension (RFC 8446) indicating support for 
+        <h:li>signature_algorithms extension (RFC 8446) indicating support for CNSA 1.0 compliant
           <selectables linebreak="yes">
             <selectable>ecdsa_secp384r1_sha384 (RFC 8446)</selectable>
             <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable>
           </selectables>, and <selectables linebreak="yes">
+            <selectable> CNSA 1.0 compliant <selectables linebreak="yes">
               <selectable>rsa_pss_pss_sha384 (RFC 8446)</selectable>
               <selectable>rsa_pss_rsae_sha384 (RFC 8446)</selectable>
-
-              <selectable>no other signature algorithms</selectable>
-          </selectables> and
+            </selectables></selectable>
+<selectable><assignable>other non-degrecated, non-CNSA compliant signature algorithms</assignable></selectable>
+            </selectables> and no other signature algorithms, and
         </h:li>
       </h:ul>
           <selectables linebreak="yes">
-            <selectable>signature_algorithms_cert extension (RFC 8446) indicating support for <selectables linebreak="yes">
+            <selectable>signature_algorithms_cert extension (RFC 8446) indicating support for CNSA 1.0 compliant <selectables linebreak="yes">
               <selectable>ecdsa_secp384r1_sha384 (RFC 8446)</selectable>
               <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable>
             </selectables>, and <selectables linebreak="yes">
+              <selectable>CNSA 1.0-compliant <selectables linebreak="yes">
                 <selectable>rsa_pss_pss_sha384 (RFC 8446)</selectable>
                 <selectable>rsa_pss_rsae_sha384 (RFC 8446)</selectable>
-            
-                <selectable>no other signature algorithms</selectable>
-              </selectables></selectable>
+              </selectables>
+              </selectable>
+              <selectable>non-CNSA compliant <selectables linebreak="yes">
+                <selectable>rsa_pkcs1_sha256 (RFC 8446)</selectable>
+                <selectable>rsa_pss_rsae_sha256 (RFC 8446)</selectable>
+              </selectables>
+              </selectable>
+              <selectable><assignable>other non-deprecated, non-CNSA compliant signature algorithms</assignable></selectable>
+            </selectables> and no other signature algorithms </selectable> 
             <selectable>supported_versions extension (RFC 8446) indicating support for DTLS 1.3 and <selectables>
                 <selectable>DTLS 1.2</selectable>
                 <selectable>no other versions</selectable>
               </selectables></selectable>
             <selectable>supported_groups extension indicating support for <selectables linebreak="yes">
+              <selectable>CNSA 1.0 compliant <selectables linebreak="yes">
               <selectable>secp384r1 (RFC 8446)</selectable>
               <selectable>ffdhe3072 (RFC 7919)</selectable>
-              <selectable>ffdhe4096 (RFC 7919)</selectable>
-            </selectables> and <selectables linebreak="yes">
+                <selectable>ffdhe4096 (RFC 7919)</selectable></selectables></selectable>
+              <selectable>non-CNSA compliant <selectables linebreak="yes">
+                <selectable>secp256r1 (RFC 8446)</selectable>
+                <selectable>ffdhe2048 (RFC7919)</selectable>
+            </selectables></selectable><selectable> and <selectables linebreak="yes">
               <selectable>secp521r1 (RFC 8446)</selectable>
               <selectable>ffdhe6144(RFC 7919)</selectable>
               <selectable>ffdhe8192 (RFC 7919)</selectable>
-              <selectable>no other supported groups</selectable></selectables></selectable>
+              <selectable>no other supported groups</selectable></selectables></selectable></selectables></selectable>
             <selectable>key_share extension (RFC 8446)</selectable>
             <selectable>post_handshake_auth (RFC 8446), pre_shared_key (RFC 8446), tls_cert_with_extern_psk (RFC 8773), 
               and psk_key_exchange_modes (RFC 8446) indicating psk_dhe_ke (DHE or ECDHE) mode</selectable>
@@ -559,18 +597,11 @@
     </title>  
       <ext-comp-def-title>
         <title>
-            The TSF shall be able to support the following TLS ClientHello message extensions: 
+            The TSF shall be able to support the following DTLS ClientHello message extensions: 
             <h:ul>
-              <h:li>signature_algorithms extension (RFC 8446) indicating support for 
-                <selectables linebreak="yes">
-                  <selectable>ecdsa_secp384r1_sha384 (RFC 8446)</selectable>
-                  <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable>
-                </selectables>, and <selectables linebreak="yes">
-                    <selectable>rsa_pss_pss_sha384 (RFC 8446)</selectable>
-                    <selectable>rsa_pss_rsae_sha384 (RFC 8446)</selectable>
-                    
-                    <selectable>no other signature algorithms</selectable>
-                </selectables> and
+              <h:li>signature_algorithms extension (RFC 8446) indicating support for
+                <assignable>supported signature_algorithm values</assignable>
+                and
               </h:li>
                 <assignable>other supported DTLS extensions</assignable><h:br/>
                 and shall not send the following extensions: <h:ul>
@@ -597,7 +628,7 @@
         <h:p>
           If DTLS 1.2 is
           claimed, extended_master_secret extension must be claimed, with the ability to enforce server support, and optionally, the ability to 
-          support legacy servers. The extended_master_secret extension (RFC 7627) selection cannot be claimed when TLS 1.3 is claimed.
+          support legacy servers. The extended_master_secret extension (RFC 7627) selection cannot be claimed when DTLS 1.3 is claimed.
         </h:p><h:p>
           If DTLS 1.2 is supported and if ECDHE or DHE ciphersuites are claimed in FCS_DTLSC_EXT.1.2, the supported_groups extension is claimed here with appropriate secp and ffdhe groups claimed.
         </h:p>
@@ -719,7 +750,7 @@
           </h:p>
           <h:p>
             The evaluator shall verify that ciphersuites indicated in FCS_DTLSC_EXT.1.2 are included in the description, and that none of the
-            following ciphersuites are supported: ciphersuites indicating NULL, RC2, RC4, DES, IDEA, TDES, or AES-128 in the encryption
+            following ciphersuites are supported: ciphersuites indicating NULL, RC2, RC4, DES, IDEA, or TDES in the encryption
             algorithm component, indicating 'anon,' or indicating MD5 or SHA in the message digest algorithm component.
           </h:p>
           <h:p>
@@ -748,11 +779,11 @@
                 compared to IP address ranges present in name constraints. If the TSF supports IP address ranges as reference identifiers,
                 the reference identifier matches if the presented name is in the range. IP ranges in name constraints (including reference
                 identifiers) should be presented in CIDR format. </h:li>
-              <h:li>RFC 2822 names: RFC 5280 and updates RFC 8398 and RFC 8399 do not support special indicators representing more that a 
+              <h:li>RFC 5322 names: RFC 5280 and updates RFC 8398 and RFC 8399 do not support special indicators representing more that a 
                 a single mailbox as a presented name, but indicates that presented names may be compared to a single mailbox, ‘any’ email
                 address at a host, or ‘any’ email address on a domain (e.g., “example.com” matches any email address on the host example.com
                 and “.example.com” matches any email address in the domain example.com, but does not match email addresses at the host
-                “example.com”). Such matching is prohibited for internationalized RFC 2822 names.</h:li>
+                “example.com”). Such matching is prohibited for internationalized RFC 5322 names.</h:li>
               <h:li>Embedded CN name types: The CN relative distinguished name of a DNS name type included in the subject field is not
                 strongly typed. Attempts to match both the name type and wildcard specifications can result in matches not intended, and
                 therefore, not authoritatively asserted by a certification authority. It is preferred that no matching of CN embedded names
@@ -844,10 +875,10 @@
                 </test>
                 
                 <!-- DTLS Client Obsolete Versions -->
-            <test id="dtls-client-obsolete-versions">(obsolete versions) The evaluator shall perform the following tests:
+            <test>(obsolete versions) The evaluator shall perform the following tests:
                 
                 <testlist>                  
-                    <test id="dtls-client-obsolete-versions">For each of DTLS 1.0 and DTLS 1.2 if it is not supported, the evaluator shall
+                    <test id="dtls-client-obsolete-versions">For each obsolete DTLS version (i.e., DTLS 1.0 is always obsolete, and DTLS 1.2 is obsolete if only DTLS 1.3 is supported), the evaluator shall
                       initiate a DTLS connection from the TOE to a test DTLS server that is configured to negotiate the obsolete version and
                       observe that the TSF silently drops the message or terminates the connection.
                       <h:p>
@@ -980,16 +1011,15 @@
                       </h:p>
                       <h:p>
                         [conditional] (disallowed encryption algorithm) If the TSF supports DTLS 1.2, for each
-                        disallowed encryption algorithm (NULL, RC2, RC4, DES, IDEA, TDES, and AES-128), 
+                        disallowed encryption algorithm (NULL, RC2, RC4, DES, IDEA, and TDES), 
                         the evaluator shall attempt to establish a DTLS 1.2 connection with a test DTLS server 
                         configured to negotiate a ciphersuite using the disallowed encryption algorithm 
                         and observe that the TOE silently drops the message or rejects the connection.
                       </h:p>
                       <h:p>
-                        [conditional] (disallowed encryption algorithm) If the TSF supports DTLS 1.3, for each DTLS 1.3 ciphersuite
-                        registered in IANA TLS parameters using AES-128 as the encryption algorithm, the evaluator shall attempt to
+                        [conditional] (disallowed encryption algorithm) If the TSF supports DTLS 1.3, the evaluator shall ensure that any DTLS 1.3 ciphersuite registered in IANA TLS parameters that the TSF does not claim support for cannot be used to establish a DTLS 1.3 connection. For any such ciphersuites, the evaluator shall attempt to
                         establish a DTLS 1.3 connection with a test DTLS server configured to negotiate a ciphersuite using the
-                        disallowed encryption algorithm and observe that the TOE silently drops the message or rejects the connection.   
+                        disallowed ciphersuite and observe that the TOE silently drops the message or rejects the connection.   
                       </h:p>
                       <h:p>
                         <h:b>Note:</h:b> If the TSF rejects the connection, the test is successful. If the TSF silently drops the message,
@@ -1057,12 +1087,7 @@
                           handshake failure) in response to this, but it is acceptable that the TSF terminates the connection silently
                           (i.e., without logging a fatal error alert).  
                         </h:p><h:p>
-                        Certificate-based server authentication is required unless the TSF only supports DTLS with shared PSK. 
-                        For DTLS 1.2, this is the case if only TLS_ECDHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 8442,
-                        TLS_DHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 5487,
-                        TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256 as defined in RFC 8442, or
-                        TLS_DHE_PSK_WITH_AES_128_GCM_SHA256 as defined in RFC 5487, are supported. For DTLS 1.3, certificate-based server
-                        authentication is required.
+                          Certificate-based server authentication is required unless the TSF only supports DTLS with PSK authentication. DTLS 1.3 always requires certificate-based server authentication (even if a PSK is also supported for key exchange), so the only circumstance where this would apply is if DTLS 1.2 is claimed and the only supported ciphersuites are the TLS_*_PSK ciphersuites defined in RFCs 5487 and 8442. 
                         </h:p></test>
                     </testlist>
                   </test>
@@ -1076,12 +1101,7 @@
                     hash combination not included in the TSF’s signature_algorithms_cert extension (e.g., a certificate signed using RSA
                     and SHA-1). The evaluator shall confirm the TSF silently drops the message or terminates the session.
                     </h:p><h:p>
-                    <h:b>Note:</h:b> Support for certificate-based authentication is assumed if the signature_algorithms_cert is supported. 
-                    For DTLS 1.2, a non-PSK ciphersuite, or one of TLS_RSA_PSK_WITH_AES_256_GCM_SHA384  
-                    or TLS_RSA_PSK_WITH_AES_128_GCM_SHA256 as defined in RFC 5487 is used to indicate certificate-based server authentication. 
-                    For DTLS 1.3, the test server completes a full handshake, even if a PSK is offered to indicate certificate-based server
-                    authentication. If the TSF only supports shared PSK authentication, <xref to="dtls-client-signature-algs-cert"/> is not
-                    performed.
+                      <h:b>Note:</h:b> Certificate-based server authentication is required unless the TSF only supports DTLS with PSK authentication. DTLS 1.3 always requires certificate-based server authentication (even if a PSK is also supported for key exchange), so the only circumstance where this would apply is if DTLS 1.2 is claimed and the only supported ciphersuites are the TLS_*_PSK ciphersuites defined in RFCs 5487 and 8442. If the TSF only supports PSK authentication, <xref to="dtls-client-signature-algs-cert"/> is not performed.
                     </h:p><h:p>
                     For DTLS 1.3, the server certificate message is encrypted. 
                     The evaluator shall configure the test DTLS server with the indicated certificate and ensure that the certificate is 
@@ -2032,22 +2052,49 @@
       <title>
         The TSF shall be able to support the following <selectables linebreak="yes">
           <selectable>TLS 1.2 ciphersuites: <selectables linebreak="yes">
-            <selectable>TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
-            <selectable>TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
-            <selectable>TLS_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5288</selectable>
-            <selectable>TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5288</selectable>
-            <selectable>TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
-            <selectable>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
-            <selectable>ciphersuites using pre-shared secrets:
-              <selectables linebreak="yes">
-                <selectable>TLS_ECDHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 8442</selectable>
-                <selectable>TLS_DHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 5487</selectable>
-                <selectable>TLS_RSA_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 5487</selectable>
-              </selectables></selectable></selectables></selectable>
-          <selectable>TLS 1.3 ciphersuites: <selectables linebreak="yes">
-            <selectable>TLS_AES_256_GCM_SHA384 as defined in RFC 8446</selectable>
-            <selectable><assignable>other TLS 1.3 ciphersuites</assignable></selectable>
-          </selectables></selectable>
+            <selectable>CNSA 1.0 compliant <selectables>
+              <selectable>TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
+              <selectable>TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
+              <selectable>TLS_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5288</selectable>
+              <selectable>TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5288</selectable>
+              <selectable>TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
+              <selectable>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
+              <selectable>ciphersuites using pre-shared secrets:
+                <selectables linebreak="yes">
+                  <selectable>TLS_ECDHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 8442</selectable>
+                  <selectable>TLS_DHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 5487</selectable>
+                  <selectable>TLS_RSA_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 5487</selectable>
+                </selectables></selectable>
+            </selectables>
+            </selectable>
+            <selectable>non-CNSA compliant <selectables>
+              <selectable>TLS_RSA_WITH_AES_256_CBC_SHA256 as defined in RFC 5246</selectable>
+              <selectable>TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 as defined in RFC 5246</selectable>
+              <selectable>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5289</selectable>
+              <selectable>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5289</selectable>
+              <selectable>TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5289</selectable>
+              <selectable>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5289</selectable>
+              <selectable>TLS_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</selectable>
+              <selectable>TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</selectable>
+              <selectable>TLS_RSA_WITH_AES_128_CBC_SHA as defined in RFC 5246]</selectable>
+              <selectable>ciphersuites using pre-shared secrets:
+                <selectables linebreak="yes">
+                  <selectable>TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256 as defined in RFC 8442</selectable>
+                  <selectable>TLS_DHE_PSK_WITH_AES_128_GCM_SHA256 as defined in RFC 5487</selectable>
+                  <selectable>TLS_RSA_PSK_WITH_AES_128_GCM_SHA256 as defined in RFC 5487]</selectable>
+                </selectables></selectable>
+            </selectables></selectable></selectables> 
+            and no other TLS 1.2 ciphersuites,</selectable>
+          <selectable>TLS 1.3 ciphersuites <selectables linebreak="yes">
+            <selectable>CNSA 2.0 compliant TLS_AES_256_GCM_SHA384 as defined in RFC 8446 and no other TLS 1.3 ciphersuites</selectable>
+            <selectable>non-CNSA compliant <selectables linebreak="yes">
+              <selectable>TLS_AES_128_GCM_SHA256 as defined in RFC 8446</selectable>
+              <selectable><assignable>other TLS 1.3 ciphersuites</assignable></selectable>
+            </selectables>
+            </selectable>
+            
+          </selectables>
+          </selectable>
         </selectables>
         using a preference order based on <selectables>
           <selectable>RFC 9151 priority</selectable>
@@ -2059,7 +2106,7 @@
         <title>
           The TSF shall be able to support the following
           <assignable>list of supported TLS ciphersuites</assignable>,
-          offering the supported ciphersuites in a ClientHello message in preference order: 
+          using a preference order based on  
           <assignable>priority</assignable>.
         </title>
       </ext-comp-def-title>
@@ -2072,8 +2119,7 @@
             requirement, then the appropriate instructions need to be contained in the guidance.
           </h:P>
           <h:p>
-            While indicated as mandatory in RFC 8446, the ciphersuite TLS_AES_128_GCM_SHA256 is disallowed by this SFR and should not be
-            included in “other TLS 1.3 ciphersuites.” The ST author may list additional TLS 1.3 ciphersuites as they are registered.
+            While mandatory for RFC 8446, TLS_AES_128_GCM_SHA256 is selectable by this SFR because it is expressly disallowed if the TSF intends to conform to CNSA restrictions on the supported algorithms.
           </h:p>
           <h:p>
             The final selection indicates the TOE’s preference for negotiating a ciphersuite. RFC 9151 indicates the required ciphersuites for
@@ -2112,40 +2158,53 @@
       <title>
         The TSF shall be able to process the following DTLS ClientHello message extensions: 
         <h:ul>
-          <h:li>signature_algorithms extension (RFC 8446) indicating support for 
+          <h:li>signature_algorithms extension (RFC 8446) indicating support for CNSA 1.0 compliant
             <selectables linebreak="yes">
-              <selectable>_secp384r1_sha384 (RFC 8446)</selectable>
-              <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable></selectables>, and <selectables linebreak="yes">
+              <selectable>ecdsa_secp384r1_sha384 (RFC 8446)</selectable>
+              <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable>
+            </selectables>, and <selectables linebreak="yes">
+              <selectable> CNSA 1.0 compliant <selectables linebreak="yes">
                 <selectable>rsa_pss_pss_sha384 (RFC 8446)</selectable>
                 <selectable>rsa_pss_rsae_sha384 (RFC 8446)</selectable>
-    
-                <selectable>no other signature algorithms</selectable></selectables>
+              </selectables></selectable>
+              <selectable><assignable>other non-degrecated, non-CNSA compliant signature algorithms</assignable></selectable>
+            </selectables> and no other signature algorithms, and
           </h:li>
         </h:ul>
-          
-           and the following other extensions: <selectables linebreak="yes">
-              <selectable>signature_algorithms_cert extension (RFC 8446) indicating support for <selectables linebreak="yes">
-                <selectable>ecdsa_secp384r1_sha384 (RFC 8446)</selectable>
-                <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable></selectables>, and <selectables linebreak="yes">
-                  <selectable>rsa_pss_pss_sha384 (RFC 8446)</selectable>
-                  <selectable>rsa_pss_rsae_sha384 (RFC 8446)</selectable>
-
-                
-                  <selectable>no other signature algorithms</selectable>
-                </selectables></selectable>
-              <selectable>supported_versions extension (RFC 8446) indicating support for DTLS 1.3 and <selectables>
-                <selectable>DTLS 1.2</selectable>
-                <selectable>no other versions</selectable>
-              </selectables></selectable>
-              <selectable>supported_groups extension indicating support for <selectables linebreak="yes">
-                <selectable>secp384r1 (RFC 8446)</selectable>
-                <selectable>ffdhe3072 (RFC 7919)</selectable>
-                <selectable>ffdhe4096 (RFC 7919)</selectable>
-              </selectables> and <selectables linebreak="yes">
-                <selectable>secp521r1 (RFC 8446)</selectable>
-                <selectable>ffdhe6144 (RFC 7919)</selectable>
-                <selectable>ffdhe8192 (RFC 7919)</selectable>
-                <selectable>no other supported groups</selectable></selectables></selectable>
+        <selectables linebreak="yes">
+          <selectable>signature_algorithms_cert extension (RFC 8446) indicating support for CNSA 1.0 compliant <selectables linebreak="yes">
+            <selectable>ecdsa_secp384r1_sha384 (RFC 8446)</selectable>
+            <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable>
+          </selectables>, and <selectables linebreak="yes">
+            <selectable>CNSA 1.0-compliant <selectables linebreak="yes">
+              <selectable>rsa_pss_pss_sha384 (RFC 8446)</selectable>
+              <selectable>rsa_pss_rsae_sha384 (RFC 8446)</selectable>
+            </selectables>
+            </selectable>
+            <selectable>non-CNSA compliant <selectables linebreak="yes">
+              <selectable>rsa_pkcs1_sha256 (RFC 8446)</selectable>
+              <selectable>rsa_pss_rsae_sha256 (RFC 8446)</selectable>
+            </selectables>
+            </selectable>
+            <selectable><assignable>other non-deprecated, non-CNSA compliant signature algorithms</assignable></selectable>
+          </selectables> and no other signature algorithms </selectable> 
+          <selectable>supported_versions extension (RFC 8446) indicating support for DTLS 1.3 and <selectables>
+            <selectable>DTLS 1.2</selectable>
+            <selectable>no other versions</selectable>
+          </selectables></selectable>
+          <selectable>supported_groups extension indicating support for <selectables linebreak="yes">
+            <selectable>CNSA 1.0 compliant <selectables linebreak="yes">
+              <selectable>secp384r1 (RFC 8446)</selectable>
+              <selectable>ffdhe3072 (RFC 7919)</selectable>
+              <selectable>ffdhe4096 (RFC 7919)</selectable></selectables></selectable>
+            <selectable>non-CNSA compliant <selectables linebreak="yes">
+              <selectable>secp256r1 (RFC 8446)</selectable>
+              <selectable>ffdhe2048 (RFC7919)</selectable>
+            </selectables></selectable><selectable> and <selectables linebreak="yes">
+              <selectable>secp521r1 (RFC 8446)</selectable>
+              <selectable>ffdhe6144(RFC 7919)</selectable>
+              <selectable>ffdhe8192 (RFC 7919)</selectable>
+              <selectable>no other supported groups</selectable></selectables></selectable></selectables></selectable>
               <selectable>key_share extension (RFC 8446)</selectable>
               <selectable>post_handshake_auth (RFC 8446), pre_shared_key (RFC 8446), tls_cert_with_extern_psk (RFC 8773), 
                 and psk_key_exchange_modes (RFC 8446) indicating psk_dhe_ke (DHE or ECDHE) mode</selectable>
@@ -2159,16 +2218,11 @@
       </title>
       <ext-comp-def-title>
         <title>
-          The TSF shall be able to process the following TLS ClientHello message extensions: 
+          The TSF shall be able to process the following DTLS ClientHello message extensions: 
           <h:ul>
-            <h:li>signature_algorithms extension (RFC 8446) indicating support for 
-              <selectables linebreak="yes">
-                <selectable>ecdsa_secp384r1_sha384 (RFC 8446)</selectable>
-                <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable></selectables>, and <selectables linebreak="yes">
-                  <selectable>rsa_pss_pss_sha384 (RFC 8446)</selectable>
-                  <selectable>rsa_pss_rsae_sha384 (RFC 8446)</selectable>
-       
-                  <selectable>no other signature algorithms</selectable></selectables>
+            <h:li>signature_algorithms extension (RFC 8446) indicating support for
+              <assignable>supported signature_algorithm values</assignable>
+              and
             </h:li>
           </h:ul>
             
@@ -2191,7 +2245,7 @@
         If DTLS 1.3 is not claimed, supported_versions and key_share are not claimed.
         </h:p>
         <h:p>
-          If DTLS 1.2 is claimed, extended_master_secret extension must be claimed, with the ability to enforce client support, and optionally, the ability to support legacy clients. The extended_master_secret extension (RFC 7627) selection cannot be claimed when TLS 1.3 is claimed.
+          If DTLS 1.2 is claimed, extended_master_secret extension must be claimed, with the ability to enforce client support, and optionally, the ability to support legacy clients. The extended_master_secret extension (RFC 7627) selection cannot be claimed when DTLS 1.3 is claimed.
         </h:p>
         <h:p>
           If DTLS 1.2 is supported and DHE or ECDHE ciphersuites are claimed in FCS_DTLSS_EXT.1.2, the entry for supported_groups is claimed. Support for additional extensions is acceptable. For signature_algorithms and signature_algorithms_certs (if supported), at least one of the signature schemes presented in the first sub-selection is claimed.
@@ -2201,21 +2255,28 @@
     <f-element>
       <title>
         The TSF shall perform key establishment for DTLS using <selectables linebreak="yes">
-          <selectable>RSA with size <selectables>
+          <selectable>RSA with <selectables><selectable>CNSA 1.0 compliant size <selectables>
             <selectable>3072</selectable>
-            <selectable>4096</selectable></selectables> bits and no other sizes</selectable>
-          <selectable>Diffie-Hellman groups <selectables>
+            <selectable>4096</selectable></selectables></selectable>
+            <selectable>non-CNSA compliant size 2048</selectable></selectables> bits and no other sizes</selectable>
+          <selectable><selectables><selectable>CNSA 1.0 compliant Diffie-Hellman groups <selectables>
             <selectable>ffdhe3072</selectable>
             <selectable>ffdhe4096</selectable>
             <selectable>ffdhe6144</selectable>
-            <selectable>ffdhe8192</selectable></selectables> and no other groups,
+            <selectable>ffdhe8192</selectable></selectables></selectable>
+            <selectable>non-CNSA compliant Diffie-Hellman group ffdhe2048</selectable></selectables>
+            and no other groups,
             consistent with the client's supported_groups extension and <selectables>
               <selectable>key_share extension</selectable>
               <selectable>no other</selectable></selectables> extension
           </selectable>
-          <selectable>ECDHE parameters using elliptic curves <selectables>
+          <selectable>ECDHE parameters using <selectables>
+            <selectable>CNSA 1.0 compliant elliptic curves
+            <selectables>
             <selectable>secp384r1</selectable>
-            <selectable>secp521r1</selectable></selectables> and no other curves,  
+            <selectable>secp521r1</selectable></selectables></selectable>
+            <selectable>non-CNSA compliant elliptic curve secp256r1</selectable>          
+          </selectables> and no other curves,  
             consistent with the client's supported_groups extension and <selectables>
               <selectable>key_share extension</selectable>
               <selectable>no other</selectable></selectables> extension and using non-compressed formatting for points
@@ -2266,7 +2327,7 @@
             The evaluator shall check the description of the implementation of this protocol in the TSS to ensure the supported TLS versions, features, ciphersuites, and extensions, are specified in accordance with RFC 6347 (DTLS 1.2) and RFC 9147 (DTLS 1.3 and updates to DTLS 1.2) as appropriate. The evaluator shall check the description to see if beta DTLS 1.3 versions are supported.
           </h:p>       
           <h:p>
-            The evaluator shall verify that ciphersuites indicated in FCS_DTLSS_EXT.1.2 are included in the description, and that none of the following ciphersuites are supported: ciphersuites indicating NULL, RC2, RC4, DES, IDEA, TDES, or AES-128 in the encryption algorithm component, indicating 'anon,' or indicating MD5 or SHA in the message digest algorithm component.
+            The evaluator shall verify that ciphersuites indicated in FCS_DTLSS_EXT.1.2 are included in the description, and that none of the following ciphersuites are supported: ciphersuites indicating NULL, RC2, RC4, DES, IDEA, or TDES in the encryption algorithm component, indicating 'anon,' or indicating MD5 or SHA in the message digest algorithm component.
           </h:p>        
           <h:p>
             The evaluator shall verify that the TLS implementation description includes the extensions as required in FCS_DTLSS_EXT.1.4.
@@ -2319,7 +2380,7 @@
                 <!-- DTLS Server Obsolete Version -->
         <test>(obsolete versions) The evaluator shall perform the following tests:
         <testlist> 
-          <test id="dtls-server-obsolete-versions">For each of DTLS 1.0 and DTLS 1.2 if it is not supported, the evaluator shall send a ClientHello to the TSF indicating the selected version as the highest version. The evaluator shall observe the TSF silently drops the ClientHello message or terminates the connection.
+          <test id="dtls-server-obsolete-versions">For each supported DTLS version, the evaluator shall send a ClientHello to the TSF indicating the selected version as the highest version. The evaluator shall observe the TSF silently drops the ClientHello message or terminates the connection.
             <h:p>
               <h:b>Note:</h:b> If the TSF terminates the session, the test is successful. If the TSF silently drops the message, the evaluator shall continue sending the ServerHello message until the TSF times out. It is preferred that the TSF logs a fatal error alert message (e.g., protocol version, insufficient security) in response to this, but it is acceptable that the TSF terminates the connection silently (i.e., without logging a fatal error alert).
             </h:p></test>
@@ -2380,7 +2441,7 @@
                     (disallowed encryption algorithm) The evaluator shall perform one or more of the following, depending on the supported versions:
                   </h:p>
                     <h:p>
-                    [conditional] If DTLS 1.2 is supported, the evaluator shall send the TSF a DTLS 1.2 ClientHello that is compliant with RFC 9151, except that the ciphersuites field is a list consisting only of ciphersuites indicating a disallowed encryption algorithm, including at least one each of NULL, RC2, RC4, DES, IDEA, TDES, and AES-128. The evaluator shall observe that the TOE silently drops the message or rejects the connection.
+                    [conditional] If DTLS 1.2 is supported, the evaluator shall send the TSF a DTLS 1.2 ClientHello that is compliant with RFC 9151, except that the ciphersuites field is a list consisting only of ciphersuites indicating a disallowed encryption algorithm, including at least one each of NULL, RC2, RC4, DES, IDEA, and TDES. The evaluator shall observe that the TOE silently drops the message or rejects the connection.
                   </h:p>
                   <h:p>
                     <h:b>Note:</h:b> See IANA TLS parameters for available TLS 1.2 ciphersuites to be included. The test ciphersuite should use supported cryptographic algorithms for as many of the other components as possible. For example, if the TSF supports TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384, the test could include TLS_ECDHE_PSK_WITH_NULL_SHA_384, TLS_RSA_EXPORT_WITH_RC2_CBC_40_MD5, TLS_ECDHE_RSA_WITH_RC4_128_SHA, TLS_DHE_DSS_WITH_DES_CBC_SHA, TLS_RSA_WITH_IDEA_CBC_SHA, and TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA.
@@ -2389,7 +2450,7 @@
                       If the TSF rejects the connection, the test is successful. If the TSF silently drops the message, the evaluator shall continue sending the ClientHello message until the TSF times out. It is preferred that the TSF logs a fatal error alert message (e.g., handshake failure, insufficient security) in response to this, but it is acceptable that the TSF terminates the connection silently (i.e., without logging a fatal error alert).
                     </h:p>        
                   <h:p>
-                    [conditional] If DTLS 1.3 is supported, the evaluator shall send the TSF a DTLS 1.3 ClientHello that is compliant with RFC 9151, except that the ciphersuites field contains the single ciphersuite TLS_AES_128_GCM_SHA256. The evaluator shall observe that the TOE silently drops the message or rejects the connection. 
+                    [conditional] If DTLS 1.3 is supported and the TSF only supports a subset of the DTLS 1.3 ciphersuites registered in the IANA TLS parameters, the evaluator shall send the TSF a DTLS 1.3 ClientHello that is compliant with RFC 9151, except that the ciphersuites field contains exclusively the full subset of ciphersuites for which the TSF does not claim to support. The evaluator shall observe that the TOE silently drops the message or rejects the connection. 
                   </h:p>
               <h:p>
                 <h:b>Note:</h:b> If the TSF rejects the connection, the test is successful. If the TSF silently drops the message, the evaluator shall continue sending the ClientHello message until the TSF times out. It is preferred that the TSF logs a fatal error alert message (e.g., handshake failure, insufficient security) in response to this, but it is acceptable that the TSF terminates the connection silently (i.e., without logging a fatal error alert).
@@ -2576,7 +2637,7 @@
                     <test>(DTLS 1.3 key establishment) [conditional] If the TSF supports DTLS 1.3, then for each supported group the evaluator shall perform the following sub-tests: 
                       <testlist>
                         <test>The evaluator shall send the TSF a compliant DTLS 1.3 ClientHello indicating a single key share value from the supported group and shall observe that the ServerHello 
-                          includes valid elements of the supported group.</test>
+                          includes valid key exchange parameters of the supported group, as specified by RFC 8446 section 4.2.8</test>
                         <test>The evaluator shall send the TSF a DTLS 1.3 ClientHello indicating a supported_groups value supported by the TSF 
                           but containing a key_share extension indicating an element claiming to be in the supported group that does not represent a 
                           valid element of the group. The evaluator shall observe that the TSF silently drops the message or terminates the session.
@@ -2708,14 +2769,14 @@
           <selectable>dns_name</selectable>
           <selectable><assignable>supported name types</assignable></selectable></selectables>
           in the Subject Alternate Name extension contained in the client certificate does not match one of the expected identifiers for the client in accordance with <selectables>
-            <selectable>RFC 2822</selectable>
+            <selectable>RFC 5322</selectable>
             <selectable>RFC 6125</selectable>
             <selectable>RFC 5280</selectable>
             <selectable><assignable>RFC for the supported name type</assignable></selectable></selectables>
           matching rules</selectable>
         <selectable>pass the <selectables>
           <selectable>validated certificate</selectable>
-          <selectable>RFC 2822 name normalized according to RFC 2822</selectable>
+          <selectable>RFC 5322 name normalized according to RFC 5322</selectable>
           <selectable>DNS name normalized according to RFC 6125</selectable>
           <selectable><assignable>list of RFC 5280 name types and normalization rules</assignable></selectable>
           <selectable><assignable>list of 'other' name types and standard normalization rules</assignable></selectable></selectables> 
@@ -3103,9 +3164,9 @@
                     and verify that the TSF does not resume the session, but instead silently drops the message, terminates the session, or completes a full handshake, ignoring the resumption information.
                     <h:p>
                       <h:b>Note:</h:b> For DTLS 1.2, resumption information should be established at the point the TSF sends a ServerHello, either acknowledging the session-based resumption 
-                      or acknowledging support for ticket-based resumption and sending a new_ticket message. 
+                      or acknowledging support for ticket-based resumption and sending a NewSessionTicket handshake message. 
                       A DTLS 1.2 session can then be terminated by sending a modified finished message. 
-                      For DTLS 1.3, the new_ticket message is sent after the finished message; once received by the client, the session can be terminated by modifying a byte of the encrypted application data. 
+                      For DTLS 1.3, the NewSessionTicket message is sent after the finished message; once received by the client, the session can be terminated by modifying a byte of the encrypted application data. 
                     </h:p>
                     <h:p>
                       To terminate the DTLS session, it might be necessary to continue sending the invalid finished or application message until the TSF times out. If the TSF terminates the session or responds with a full handshake ignoring the resumption information, the test is successful. If the TSF silently drops the ClientHello containing the resumption information of the failed session, the evaluator shall continue sending the message until the TSF times out.
@@ -3266,29 +3327,52 @@
           </f-element>
           <f-element id="fel-tlsc-ciphers">
             <title>
-              The TSF shall be able to support the following
-          <selectables linebreak="yes">
-            <selectable>TLS 1.2 ciphersuites:
-          <selectables linebreak="yes">
-            <selectable>TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
-            <selectable>TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
-            <selectable>TLS_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5288</selectable>
-            <selectable>TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5288</selectable>
-            <selectable>TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
-            <selectable>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
-            
-            <selectable>ciphersuites using pre-shared secrets:
-              <selectables linebreak="yes">
-                <selectable>TLS_ECDHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 8442</selectable>
-                <selectable>TLS_DHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 5487</selectable>
-                <selectable>TLS_RSA_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 5487</selectable>
-              </selectables></selectable></selectables>
-              and shall not offer other TLS 1.2 ciphersuites,</selectable>
-            <selectable>TLS 1.3 ciphersuites: <selectables linebreak="yes">
-              <selectable>TLS_AES_256_GCM_SHA384 as defined in RFC 8446</selectable>
-              <selectable><assignable>other TLS 1.3 ciphersuites</assignable></selectable>
-            </selectables></selectable>
-          </selectables>
+              The TSF shall be able to support the following <selectables linebreak="yes">
+                <selectable>TLS 1.2 ciphersuites: <selectables linebreak="yes">
+                  <selectable>CNSA 1.0 compliant <selectables>
+                    <selectable>TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
+                    <selectable>TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
+                    <selectable>TLS_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5288</selectable>
+                    <selectable>TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5288</selectable>
+                    <selectable>TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
+                    <selectable>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
+                    <selectable>ciphersuites using pre-shared secrets:
+                      <selectables linebreak="yes">
+                        <selectable>TLS_ECDHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 8442</selectable>
+                        <selectable>TLS_DHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 5487</selectable>
+                        <selectable>TLS_RSA_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 5487</selectable>
+                      </selectables></selectable>
+                  </selectables>
+                  </selectable>
+                  <selectable>non-CNSA compliant <selectables>
+                    <selectable>TLS_RSA_WITH_AES_256_CBC_SHA256 as defined in RFC 5246</selectable>
+                    <selectable>TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 as defined in RFC 5246</selectable>
+                    <selectable>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5289</selectable>
+                    <selectable>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5289</selectable>
+                    <selectable>TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5289</selectable>
+                    <selectable>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5289</selectable>
+                    <selectable>TLS_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</selectable>
+                    <selectable>TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</selectable>
+                    <selectable>TLS_RSA_WITH_AES_128_CBC_SHA as defined in RFC 5246]</selectable>
+                    <selectable>ciphersuites using pre-shared secrets:
+                      <selectables linebreak="yes">
+                        <selectable>TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256 as defined in RFC 8442</selectable>
+                        <selectable>TLS_DHE_PSK_WITH_AES_128_GCM_SHA256 as defined in RFC 5487</selectable>
+                        <selectable>TLS_RSA_PSK_WITH_AES_128_GCM_SHA256 as defined in RFC 5487]</selectable>
+                      </selectables></selectable>
+                  </selectables></selectable></selectables> 
+                  and no other TLS 1.2 ciphersuites,</selectable>
+                <selectable>TLS 1.3 ciphersuites <selectables linebreak="yes">
+                  <selectable>CNSA 2.0 compliant TLS_AES_256_GCM_SHA384 as defined in RFC 8446 and no other TLS 1.3 ciphersuites</selectable>
+                  <selectable>non-CNSA compliant <selectables linebreak="yes">
+                    <selectable>TLS_AES_128_GCM_SHA256 as defined in RFC 8446</selectable>
+                    <selectable><assignable>other TLS 1.3 ciphersuites</assignable></selectable>
+                  </selectables>
+                  </selectable>
+                  
+                </selectables>
+                </selectable>
+              </selectables>
               offering the supported ciphersuites in a ClientHello message in preference order: 
               <assignable>list of supported ciphersuites</assignable>.
           </title>
@@ -3315,8 +3399,7 @@
               listed first. 
               </h:p>
               <h:p>
-              While mandatory for RFC 8446, TLS_AES_128_GCM_SHA256 is disallowed by this SFR and should not be included in “other TLS 1.3
-              ciphersuites.” The ST author may list additional TLS 1.3 ciphersuites as they are registered.
+                While mandatory for RFC 8446, TLS_AES_128_GCM_SHA256 is selectable by this SFR because it is expressly disallowed if the TSF intends to conform to CNSA restrictions on the supported algorithms.
               </h:p>
               <h:p>
               In addition to the supported ciphersuites, the ST author indicates the order of ciphersuites included in the ClientHello,
@@ -3339,8 +3422,7 @@
               <h:p>
                 This element explicitly excludes ciphersuites defined for TLS 1.2 and previous TLS or SSL versions that might be included in the 
                 ClientHello from a TSF that supports TLS 1.2 (as the only supported version, or as a fallback version for TLS 1.3 clients 
-                negotiating with potential DTLS 1.2 servers). The requirement also constrains the choice of "other TLS 1.3 ciphersuites" when
-                TLS 1.3 is supported. In addition, this requirement prohibits Using Raw Public Keys in Transport Layer Security and Datagram
+                negotiating with potential DTLS 1.2 servers). The requirement also constrains the choice of TLS 1.3 ciphersuites to the single TLS_AES_GCM_SHA384 ciphersuite specified in RFC 8446. In addition, this requirement prohibits Using Raw Public Keys in Transport Layer Security and Datagram
                 Transport Layer Security (RFC 7250) for server certificates.
               </h:p>
               <h:p>
@@ -3359,39 +3441,53 @@
          <title>
            The TSF shall be able to support the following TLS ClientHello message extensions: 
            <h:ul>
-             <h:li>signature_algorithms extension (RFC 8446) indicating support for 
+             <h:li>signature_algorithms extension (RFC 8446) indicating support for CNSA 1.0 compliant
                <selectables linebreak="yes">
                  <selectable>ecdsa_secp384r1_sha384 (RFC 8446)</selectable>
-                 <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable></selectables>, and <selectables linebreak="yes">
+                 <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable>
+               </selectables>, and <selectables linebreak="yes">
+                 <selectable> CNSA 1.0 compliant <selectables linebreak="yes">
                    <selectable>rsa_pss_pss_sha384 (RFC 8446)</selectable>
                    <selectable>rsa_pss_rsae_sha384 (RFC 8446)</selectable>
-               
-                   <selectable>no other signature algorithms</selectable></selectables>
-               and
+                 </selectables></selectable>
+                 <selectable><assignable>other non-degrecated, non-CNSA compliant signature algorithms</assignable></selectable>
+               </selectables> and no other signature algorithms, and
              </h:li>
            </h:ul>
-               <selectables linebreak="yes">
-                 <selectable>signature_algorithms_cert extension (RFC 8446) indicating support for <selectables linebreak="yes">
-                   <selectable>ecdsa_secp384r1_sha384 (RFC 8446)</selectable>
-                   <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable></selectables>, and <selectables linebreak="yes">
-                     <selectable>rsa_pss_pss_sha384 (RFC 8446)</selectable>
-                     <selectable>rsa_pss_rsae_sha384 (RFC 8446)</selectable>
-                  
-                     <selectable>no other signature algorithms</selectable>
-                   </selectables></selectable>
-                 <selectable>supported_versions extension (RFC 8446) indicating support for TLS 1.3 and <selectables>
-                   <selectable>TLS 1.2</selectable>
-                   <selectable>no other versions</selectable>
-                 </selectables></selectable>
-                 <selectable>supported_groups extension indicating support for <selectables linebreak="yes">
-                   <selectable>secp384r1 (RFC 8446)</selectable>
-                   <selectable>ffdhe3072 (RFC 7919)</selectable>
-                   <selectable>ffdhe4096 (RFC 7919)</selectable>
-                 </selectables> and <selectables linebreak="yes">
-                   <selectable>secp521r1 (RFC 8446)</selectable>
-                   <selectable>ffdhe6144 (RFC 7919)</selectable>
-                   <selectable>ffdhe8192 (RFC 7919)</selectable>
-                   <selectable>no other supported groups</selectable></selectables></selectable>
+           <selectables linebreak="yes">
+             <selectable>signature_algorithms_cert extension (RFC 8446) indicating support for CNSA 1.0 compliant <selectables linebreak="yes">
+               <selectable>ecdsa_secp384r1_sha384 (RFC 8446)</selectable>
+               <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable>
+             </selectables>, and <selectables linebreak="yes">
+               <selectable>CNSA 1.0-compliant <selectables linebreak="yes">
+                 <selectable>rsa_pss_pss_sha384 (RFC 8446)</selectable>
+                 <selectable>rsa_pss_rsae_sha384 (RFC 8446)</selectable>
+               </selectables>
+               </selectable>
+               <selectable>non-CNSA compliant <selectables linebreak="yes">
+                 <selectable>rsa_pkcs1_sha256 (RFC 8446)</selectable>
+                 <selectable>rsa_pss_rsae_sha256 (RFC 8446)</selectable>
+               </selectables>
+               </selectable>
+               <selectable><assignable>other non-deprecated, non-CNSA compliant signature algorithms</assignable></selectable>
+             </selectables> and no other signature algorithms </selectable> 
+             <selectable>supported_versions extension (RFC 8446) indicating support for DTLS 1.3 and <selectables>
+               <selectable>DTLS 1.2</selectable>
+               <selectable>no other versions</selectable>
+             </selectables></selectable>
+             <selectable>supported_groups extension indicating support for <selectables linebreak="yes">
+               <selectable>CNSA 1.0 compliant <selectables linebreak="yes">
+                 <selectable>secp384r1 (RFC 8446)</selectable>
+                 <selectable>ffdhe3072 (RFC 7919)</selectable>
+                 <selectable>ffdhe4096 (RFC 7919)</selectable></selectables></selectable>
+               <selectable>non-CNSA compliant <selectables linebreak="yes">
+                 <selectable>secp256r1 (RFC 8446)</selectable>
+                 <selectable>ffdhe2048 (RFC7919)</selectable>
+               </selectables></selectable><selectable> and <selectables linebreak="yes">
+                 <selectable>secp521r1 (RFC 8446)</selectable>
+                 <selectable>ffdhe6144(RFC 7919)</selectable>
+                 <selectable>ffdhe8192 (RFC 7919)</selectable>
+                 <selectable>no other supported groups</selectable></selectables></selectable></selectables></selectable>
                  <selectable>key_share extension (RFC 8446)</selectable>
                  <selectable>post_handshake_auth (RFC 8446), pre_shared_key (RFC 8446), tls_cert_with_extern_psk (RFC 8773), 
                   and psk_key_exchange_modes (RFC 8446) indicating psk_dhe_ke (DHE or ECDHE) mode</selectable>
@@ -3410,14 +3506,8 @@
               <title>
                 The TSF shall be able to support the following TLS ClientHello message extensions: 
                 <h:ul>
-                  <h:li>signature_algorithms extension (RFC 8446) indicating support for 
-                    <selectables linebreak="yes">
-                      <selectable>ecdsa_secp384r1_sha384 (RFC 8446)</selectable>
-                      <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable></selectables>, and <selectables linebreak="yes">
-                        <selectable>rsa_pss_pss_sha384 (RFC 8446)</selectable>
-                        <selectable>rsa_pss_rsae_sha384 (RFC 8446)</selectable>
-                    
-                        <selectable>no other signature algorithms</selectable></selectables>
+                  <h:li>signature_algorithms extension (RFC 8446) indicating support for
+                    <assignable>supported signature_algorithm values</assignable>
                     and
                   </h:li>
                   <assignable>other supported TLS extensions</assignable><h:br/>
@@ -3570,7 +3660,7 @@
                 </h:p>
                 <h:p>
                 The evaluator shall verify that ciphersuites indicated in FCS_TLSC_EXT.1.2 are included in the description, and that none of the following ciphersuites are supported: ciphersuites indicating 
-                NULL, RC2, RC4, DES, IDEA, TDES, or AES-128 in the encryption algorithm component, indicating 'anon,' or indicating MD5 or SHA in the message digest algorithm component.
+                NULL, RC2, RC4, DES, IDEA, or TDES in the encryption algorithm component, indicating 'anon,' or indicating MD5 or SHA in the message digest algorithm component.
                 </h:p>
                 <h:p>
                 The evaluator shall verify that the TLS implementation description includes the extensions as required in FCS_TLSC_EXT.1.4.
@@ -3596,11 +3686,11 @@
                   but indicates that presented names may be compared to IP address ranges present in name constraints. 
                   If the TSF supports IP address ranges as reference identifiers, the reference identifier matches if the presented name is in the range. 
                   IP ranges in name constraints (including reference identifiers) should be presented in CIDR format. </h:li>
-                <h:li>RFC 2822 names: RFC 5280 and updates RFC 8398 and RFC 8399 do not support special indicators representing 
+                <h:li>RFC 5322 names: RFC 5280 and updates RFC 8398 and RFC 8399 do not support special indicators representing 
                   more than a single mailbox as a presented name, but indicates that presented names may be compared to a single mailbox, 
                   ‘any’ email address at a host, or ‘any’ email address on a domain 
                   (e.g., “example.com” matches any email address on the host example.com and “.example.com” matches any email address in the domain example.com, 
-                  but does not match email addresses at the host “example.com”). Such matching is prohibited for internationalized RFC 2822 names.</h:li>
+                  but does not match email addresses at the host “example.com”). Such matching is prohibited for internationalized RFC 5322 names.</h:li>
                   <h:li>Embedded CN name types: The CN relative distinguished name of a DNS name type included in the subject field is not strongly typed. Attempts to match both the name type and wildcard specifications can result in matches not intended, and therefore, not authoritatively asserted by a certification authority. It is preferred that no matching of CN embedded names be supported, but if necessary for backward compatibility, the description should clearly indicate how different name types are interpreted in the matching algorithm. If an embedded CN is present, the DN structure containing the CN as an RDN is matched, and the CN component is further matched according to the specific rules for the implied name type. In particular, the ‘*’ character in a CN is not to be interpreted as representing more than a single entity unless the entirety of the RDN is properly formatted as a DNS, URI, or SVR name, and represents a wildcard meeting best practices as described above.</h:li>
                 </h:ul>
                 </h:p>
@@ -3756,10 +3846,11 @@
                       </h:p>
                       <h:p>
                         [conditional] (disallowed encryption algorithm) If the TSF supports TLS 1.2, send the TSF a TLS 1.2 ClientHello that is compliant with RFC 9151, except that for each 
-                        disallowed encryption algorithm (NULL, RC2, RC4, DES, IDEA, TDES, and AES-128), the evaluator shall attempt to establish a TLS 1.2 connection with a test TLS
+                        disallowed encryption algorithm (NULL, RC2, RC4, DES, IDEA, and TDES), the evaluator shall attempt to establish a TLS 1.2 connection with a test TLS
                         server configured to negotiate a ciphersuite using the disallowed encryption algorithm and observe that the TOE rejects the connection.
                       </h:p><h:p>
-                        [conditional] (disallowed encryption algorithm) If the TSF supports TLS 1.3, for each TLS 1.3 ciphersuite registered in IANA TLS parameters using AES-128 as the encryption algorithm, the evaluator shall attempt to establish a TLS 1.3 connection with a test TLS server configured to negotiate a ciphersuite using the disallowed encryption algorithm and observe that the TOE rejects the connection.   
+                        [conditional] (disallowed encryption algorithm) If the TSF supports DTLS 1.3, the evaluator shall ensure that any DTLS 1.3 ciphersuite registered in IANA TLS parameters that the TSF does not claim support for cannot be used to establish a DTLS 1.3 connection. For any such ciphersuites, the evaluator shall attempt to establish a TLS 1.3 connection with a test TLS server configured to negotiate a ciphersuite using the
+                        disallowed ciphersuite and observe that the TOE silently drops the message or rejects the connection.   
                       </h:p><h:p>
                       <h:b>Note:</h:b> It is preferred that the TSF sends a fatal error alert message (e.g., handshake failure, insufficient security) in response to this, 
                       but it is acceptable that the TSF terminates the connection silently (i.e., without sending a fatal error alert). 
@@ -3768,10 +3859,7 @@
                       For example, if the TSF only supports TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384, the test server could select
                       TLS_ECDHE_PSK_WITH_NULL_SHA_384, TLS_RSA_EXPORT_WITH_RC2_CBC_40_MD5, TLS_ECDHE_RSA_WITH_RC4_128_SHA, TLS_DHE_DSS_WITH_DES_CBC_SHA, TLS_RSA_WITH_IDEA_CBC_SHA, and TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA.  
                       </h:p>
-                   
-                      <h:p>
-                        [conditional] If TLS 1.3 is supported, the evaluator shall send the TSF a TLS 1.3 ClientHello that is compliant with RFC 9151, except that the ciphersuites field contains the single ciphersuite TLS_AES_128_GCM_SHA256. The evaluator shall observe that the TOE rejects the connection.
-                      </h:p>
+
                     </test>
                   </testlist>
                 </test>
@@ -3810,11 +3898,7 @@
                         <h:b>Note:</h:b> It is preferred that the TSF sends a fatal error alert message (e.g., unsupported certificate, bad certificate, decryption error, handshake failure) in response to this, 
                         but it is acceptable that the TSF terminates the connection silently (i.e., without sending a fatal error alert).  
                         </h:p><h:p>
-                        Certificate-based server authentication is required unless the TSF only supports TLS with shared PSK. 
-                        For TLS 1.2, this is the case if only TLS_ECDHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 8442,
-                        TLS_DHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 5487,
-                        TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256 as defined in RFC 8442, or
-                        TLS_DHE_PSK_WITH_AES_128_GCM_SHA256 as defined in RFC 5487, are supported. For TLS 1.3, certificate-based server authentication is required.
+                          Certificate-based server authentication is required unless the TSF only supports TLS with PSK authentication. TLS 1.3 always requires certificate-based server authentication (even if a PSK is also supported for key exchange), so the only circumstance where this would apply is if TLS 1.2 is claimed and the only supported ciphersuites are the TLS_*_PSK ciphersuites defined in RFCs 5487 and 8442.
                         </h:p></test>
                     </testlist>
                   </test>
@@ -3826,11 +3910,7 @@
                     but which is signed by a valid Certification Authority using a signature and hash combination not included in the TSF’s signature_algorithms_cert extension 
                     (e.g., a certificate signed using RSA and SHA-1). The evaluator shall confirm the TSF terminates the session.
                     </h:p><h:p>
-                    <h:b>Note:</h:b> Support for certificate-based authentication is assumed if the signature_algorithms_cert is supported. 
-                    For TLS 1.2, a non-PSK ciphersuite, or one of TLS_RSA_PSK_WITH_AES_256_GCM_SHA384  
-                    or TLS_RSA_PSK_WITH_AES_128_GCM_SHA256 as defined in RFC 5487 is used to indicate certificate-based server authentication. 
-                    For TLS 1.3, the test server completes a full handshake, even if a PSK is offered to indicate certificate-based server authentication. 
-                    If the TSF only supports shared PSK authentication, <xref to="tls-client-signature-algs-cert"/> is not performed.
+                      <h:b>Note:</h:b> Certificate-based server authentication is required unless the TSF only supports TLS with PSK authentication. TLS 1.3 always requires certificate-based server authentication (even if a PSK is also supported for key exchange), so the only circumstance where this would apply is if TLS 1.2 is claimed and the only supported ciphersuites are the TLS_*_PSK ciphersuites defined in RFCs 5487 and 8442. If the TSF only supports PSK authentication, <xref to="tls-client-signature-algs-cert"/> is not performed.
                     </h:p><h:p>
                     For TLS 1.3, the server certificate message is encrypted. 
                     The evaluator shall configure the test TLS server with the indicated certificate and ensure that the certificate is 
@@ -4158,7 +4238,7 @@
           </f-element> 
 	    <audit-event>
 	      <audit-event-descr>Failure to establish a TLS session</audit-event-descr>
-	      <audit-event-info>eason for failure</audit-event-info>
+	      <audit-event-info>Reason for failure</audit-event-info>
 	    </audit-event>
 	    <audit-event>
 	      <audit-event-descr>Failure to verify presented identifier</audit-event-descr>
@@ -4648,27 +4728,52 @@
           </f-element>
           <f-element>
             <title>
-              The TSF shall be able to support the following:
-              <selectables>
-                <selectable>TLS 1.2 ciphersuites:
-              <selectables linebreak="yes">
-                <selectable>TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
-                <selectable>TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
-                <selectable>TLS_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5288</selectable>
-                <selectable>TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5288</selectable>
-                <selectable>TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
-                <selectable>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
-                  <selectable>ciphersuites using pre-shared secrets:
-                    <selectables linebreak="yes">
-                      <selectable>TLS_ECDHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 8442</selectable>
-                      <selectable>TLS_DHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 5487</selectable>
-                      <selectable>TLS_RSA_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 5487</selectable>
-                    </selectables></selectable></selectables></selectable>
-              <selectable>TLS 1.3 ciphersuites:
-            <selectables linebreak="yes">
-                <selectable>TLS_AES_256_GCM_SHA384 as defined in RFC 8446</selectable>
-                <selectable><assignable>other TLS 1.3 ciphersuites</assignable></selectable>
-            </selectables></selectable></selectables>
+              The TSF shall be able to support the following <selectables linebreak="yes">
+                <selectable>TLS 1.2 ciphersuites: <selectables linebreak="yes">
+                  <selectable>CNSA 1.0 compliant <selectables>
+                    <selectable>TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
+                    <selectable>TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
+                    <selectable>TLS_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5288</selectable>
+                    <selectable>TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5288</selectable>
+                    <selectable>TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
+                    <selectable>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289 and RFC 8422</selectable>
+                    <selectable>ciphersuites using pre-shared secrets:
+                      <selectables linebreak="yes">
+                        <selectable>TLS_ECDHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 8442</selectable>
+                        <selectable>TLS_DHE_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 5487</selectable>
+                        <selectable>TLS_RSA_PSK_WITH_AES_256_GCM_SHA384 as defined in RFC 5487</selectable>
+                      </selectables></selectable>
+                  </selectables>
+                  </selectable>
+                  <selectable>non-CNSA compliant <selectables>
+                    <selectable>TLS_RSA_WITH_AES_256_CBC_SHA256 as defined in RFC 5246</selectable>
+                    <selectable>TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 as defined in RFC 5246</selectable>
+                    <selectable>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5289</selectable>
+                    <selectable>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5289</selectable>
+                    <selectable>TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5289</selectable>
+                    <selectable>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5289</selectable>
+                    <selectable>TLS_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</selectable>
+                    <selectable>TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246</selectable>
+                    <selectable>TLS_RSA_WITH_AES_128_CBC_SHA as defined in RFC 5246]</selectable>
+                    <selectable>ciphersuites using pre-shared secrets:
+                      <selectables linebreak="yes">
+                        <selectable>TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256 as defined in RFC 8442</selectable>
+                        <selectable>TLS_DHE_PSK_WITH_AES_128_GCM_SHA256 as defined in RFC 5487</selectable>
+                        <selectable>TLS_RSA_PSK_WITH_AES_128_GCM_SHA256 as defined in RFC 5487]</selectable>
+                      </selectables></selectable>
+                  </selectables></selectable></selectables> 
+                  and no other TLS 1.2 ciphersuites,</selectable>
+                <selectable>TLS 1.3 ciphersuites <selectables linebreak="yes">
+                  <selectable>CNSA 2.0 compliant TLS_AES_256_GCM_SHA384 as defined in RFC 8446 and no other TLS 1.3 ciphersuites</selectable>
+                  <selectable>non-CNSA compliant <selectables linebreak="yes">
+                    <selectable>TLS_AES_128_GCM_SHA256 as defined in RFC 8446</selectable>
+                    <selectable><assignable>other TLS 1.3 ciphersuites</assignable></selectable>
+                  </selectables>
+                  </selectable>
+                  
+                </selectables>
+                </selectable>
+              </selectables>
               using a preference order based on <selectables>
                 <selectable>RFC 9151 priority</selectable>
                 <selectable>ClientHello ordering</selectable>
@@ -4679,7 +4784,7 @@
               <title>
                 The TSF shall be able to support the following
                 <assignable>list of supported TLS ciphersuites</assignable>,
-                offering the supported ciphersuites in a ClientHello message in preference order: 
+                using a preference order based on
                 <assignable>priority</assignable>.
               </title>
             </ext-comp-def-title>
@@ -4696,8 +4801,7 @@
               with either of the other options.               
               </h:p>
               <h:p>
-              While indicated as mandatory in RFC 8446, the ciphersuite TLS_AES_128_GCM_SHA256 is disallowed by this SFR and should not be
-              included in “other TLS 1.3 ciphersuites.” The ST author may list additional TLS 1.3 ciphersuites as they are registered.
+                While mandatory for RFC 8446, TLS_AES_128_GCM_SHA256 is selectable by this SFR because it is expressly disallowed if the TSF intends to conform to CNSA restrictions on the supported algorithms.
               </h:p>
               <h:p>
               The ‘ClientHello ordering’ option is claimed if client priority is considered; 
@@ -4731,40 +4835,53 @@
           <title>
             The TSF shall be able to process the following TLS ClientHello message extensions: 
             <h:ul>
-              <h:li>signature_algorithms extension (RFC 8446) indicating support for 
+              <h:li>signature_algorithms extension (RFC 8446) indicating support for CNSA 1.0 compliant
                 <selectables linebreak="yes">
                   <selectable>ecdsa_secp384r1_sha384 (RFC 8446)</selectable>
-                  <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable></selectables>, and <selectables linebreak="yes">
+                  <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable>
+                </selectables>, and <selectables linebreak="yes">
+                  <selectable> CNSA 1.0 compliant <selectables linebreak="yes">
                     <selectable>rsa_pss_pss_sha384 (RFC 8446)</selectable>
                     <selectable>rsa_pss_rsae_sha384 (RFC 8446)</selectable>
-           
-                    <selectable>no other signature algorithms</selectable></selectables>
-                and
-                </h:li>
-            </h:ul>
-              
-                  <selectables linebreak="yes">
-                  <selectable>signature_algorithms_cert extension (RFC 8446) indicating support for <selectables linebreak="yes">
-                    <selectable>ecdsa_secp384r1_sha384 (RFC 8446)</selectable>
-                    <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable></selectables>, and <selectables linebreak="yes">
-                      <selectable>rsa_pss_pss_sha384 (RFC 8446)</selectable>
-                      <selectable>rsa_pss_rsae_sha384 (RFC 8446)</selectable>
-              
-                      <selectable>no other signature algorithms</selectable>
-                    </selectables></selectable>
-                  <selectable>supported_versions extension (RFC 8446) indicating support for TLS 1.3 and <selectables>
-                    <selectable>TLS 1.2</selectable>
-                    <selectable>no other versions</selectable>
                   </selectables></selectable>
-                  <selectable>supported_groups extension indicating support for <selectables linebreak="yes">
-                    <selectable>secp384r1 (RFC 8446)</selectable>
-                    <selectable>ffdhe3072 (RFC 7919)</selectable>
-                    <selectable>ffdhe4096 (RFC 7919)</selectable>
-                  </selectables> and <selectables linebreak="yes">
-                    <selectable>secp521r1 (RFC 8446)</selectable>
-                    <selectable>ffdhe6144 (RFC 7919)</selectable>
-                    <selectable>ffdhe8192 (RFC 7919)</selectable>
-                    <selectable>no other supported groups</selectable></selectables></selectable>
+                  <selectable><assignable>other non-degrecated, non-CNSA compliant signature algorithms</assignable></selectable>
+                </selectables> and no other signature algorithms, and
+              </h:li>
+            </h:ul>
+            <selectables linebreak="yes">
+              <selectable>signature_algorithms_cert extension (RFC 8446) indicating support for CNSA 1.0 compliant <selectables linebreak="yes">
+                <selectable>ecdsa_secp384r1_sha384 (RFC 8446)</selectable>
+                <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable>
+              </selectables>, and <selectables linebreak="yes">
+                <selectable>CNSA 1.0-compliant <selectables linebreak="yes">
+                  <selectable>rsa_pss_pss_sha384 (RFC 8446)</selectable>
+                  <selectable>rsa_pss_rsae_sha384 (RFC 8446)</selectable>
+                </selectables>
+                </selectable>
+                <selectable>non-CNSA compliant <selectables linebreak="yes">
+                  <selectable>rsa_pkcs1_sha256 (RFC 8446)</selectable>
+                  <selectable>rsa_pss_rsae_sha256 (RFC 8446)</selectable>
+                </selectables>
+                </selectable>
+                <selectable><assignable>other non-deprecated, non-CNSA compliant signature algorithms</assignable></selectable>
+              </selectables> and no other signature algorithms </selectable> 
+              <selectable>supported_versions extension (RFC 8446) indicating support for DTLS 1.3 and <selectables>
+                <selectable>DTLS 1.2</selectable>
+                <selectable>no other versions</selectable>
+              </selectables></selectable>
+              <selectable>supported_groups extension indicating support for <selectables linebreak="yes">
+                <selectable>CNSA 1.0 compliant <selectables linebreak="yes">
+                  <selectable>secp384r1 (RFC 8446)</selectable>
+                  <selectable>ffdhe3072 (RFC 7919)</selectable>
+                  <selectable>ffdhe4096 (RFC 7919)</selectable></selectables></selectable>
+                <selectable>non-CNSA compliant <selectables linebreak="yes">
+                  <selectable>secp256r1 (RFC 8446)</selectable>
+                  <selectable>ffdhe2048 (RFC7919)</selectable>
+                </selectables></selectable><selectable> and <selectables linebreak="yes">
+                  <selectable>secp521r1 (RFC 8446)</selectable>
+                  <selectable>ffdhe6144(RFC 7919)</selectable>
+                  <selectable>ffdhe8192 (RFC 7919)</selectable>
+                  <selectable>no other supported groups</selectable></selectables></selectable></selectables></selectable>
                   <selectable>key_share extension (RFC 8446)</selectable>
                   <selectable>post_handshake_auth (RFC 8446), pre_shared_key (RFC 8446), tls_cert_with_extern_psk (RFC 8773), 
                     and psk_key_exchange_modes (RFC 8446) indicating psk_dhe_ke (DHE or ECDHE) mode</selectable>
@@ -4780,14 +4897,8 @@
               <title>
                 The TSF shall be able to process the following TLS ClientHello message extensions: 
                 <h:ul>
-                  <h:li>signature_algorithms extension (RFC 8446) indicating support for 
-                    <selectables linebreak="yes">
-                      <selectable>ecdsa_secp384r1_sha384 (RFC 8446)</selectable>
-                      <selectable>rsa_pkcs1_sha384 (RFC 8446)</selectable></selectables>, and <selectables linebreak="yes">
-                        <selectable>rsa_pss_pss_sha384 (RFC 8446)</selectable>
-                        <selectable>rsa_pss_rsae_sha384 (RFC 8446)</selectable>
-                       
-                        <selectable>no other signature algorithms</selectable></selectables>
+                  <h:li>signature_algorithms extension (RFC 8446) indicating support for
+                    <assignable>supported signature_algorithm values</assignable>
                     and
                   </h:li>
                 </h:ul>
@@ -4822,27 +4933,28 @@
           <f-element id="fel-tlss-key-est">
             <title>
               The TSF shall perform key establishment for TLS using <selectables linebreak="yes">
-                <selectable>RSA with size <selectables>
+                <selectable>RSA with <selectables><selectable>CNSA 1.0 compliant size <selectables>
                   <selectable>3072</selectable>
-                  <selectable>4096</selectable></selectables> bits and no other sizes</selectable>
-         <!--        <selectable>Diffie-Hellman parameters with size <selectables>
-                  <selectable>3072</selectable>
-                  <selectable>4096</selectable>
-                  <selectable>6144</selectable>
-                  <selectable>8192</selectable></selectables> bits and no other sizes</selectable>  -->
-                <selectable>Diffie-Hellman groups <selectables>
+                  <selectable>4096</selectable></selectables></selectable>
+                  <selectable>non-CNSA compliant size 2048</selectable></selectables> bits and no other sizes</selectable>
+                <selectable><selectables><selectable>CNSA 1.0 compliant Diffie-Hellman groups <selectables>
                   <selectable>ffdhe3072</selectable>
                   <selectable>ffdhe4096</selectable>
                   <selectable>ffdhe6144</selectable>
-                  <selectable>ffdhe8192</selectable></selectables> and no other groups,
-                consistent with the client's supported_groups extension and <selectables>
-                  <selectable>key share</selectable>
-                  <selectable>no other</selectable></selectables> extension
+                  <selectable>ffdhe8192</selectable></selectables></selectable>
+                  <selectable>non-CNSA compliant Diffie-Hellman group ffdhe2048</selectable></selectables>
+                  and no other groups,
+                  consistent with the client's supported_groups extension and <selectables>
+                    <selectable>key_share extension</selectable>
+                    <selectable>no other</selectable></selectables> extension
                 </selectable>
-                <selectable>ECDHE parameters using elliptic curves <selectables>
-                  <selectable>secp256r1</selectable>
-                  <selectable id="s-tls-secp384">secp384r1</selectable>
-                  <selectable>secp521r1</selectable></selectables> and no other curves,  
+                <selectable>ECDHE parameters using <selectables>
+                  <selectable>CNSA 1.0 compliant elliptic curves
+                    <selectables>
+                      <selectable>secp384r1</selectable>
+                      <selectable>secp521r1</selectable></selectables></selectable>
+                  <selectable>non-CNSA compliant elliptic curve secp256r1</selectable>          
+                </selectables> and no other curves,  
                   consistent with the client's supported_groups extension and <selectables>
                     <selectable>key share</selectable>
                     <selectable>no other</selectable></selectables> extension and using non-compressed formatting for points
@@ -4883,7 +4995,7 @@
                 The evaluator shall check the description of the implementation of this protocol in the TSS to ensure the supported TLS versions, features, ciphersuites, and extensions, 
                 are specified in accordance with RFC 5246 (TLS 1.2) and RFC 8446 (TLS 1.3 and updates to TLS 1.2) as appropriate. The evaluator shall check the description to see if beta TLS 1.3 versions are supported.
                 </h:p><h:p>
-                  The evaluator shall verify that ciphersuites indicated in FCS_TLSS_EXT.1.2 are included in the description, and that none of the following ciphersuites are supported: ciphersuites indicating NULL, RC2, RC4, DES, IDEA, TDES, or AES-128 in the encryption algorithm component, indicating 'anon,' or indicating MD5 or SHA in the message digest algorithm component.
+                  The evaluator shall verify that ciphersuites indicated in FCS_TLSS_EXT.1.2 are included in the description, and that none of the following ciphersuites are supported: ciphersuites indicating NULL, RC2, RC4, DES, IDEA, or TDES in the encryption algorithm component, indicating 'anon,' or indicating MD5 or SHA in the message digest algorithm component.
                 </h:p><h:p>
                 The evaluator shall verify that the TLS implementation description includes the extensions as required in FCS_TLSS_EXT.1.4.
                 </h:p><h:p>
@@ -5032,11 +5144,11 @@
                         <h:p>
                         (disallowed encryption algorithm) The evaluator shall perform one or more of the following, depending on the supported versions: 
                         </h:p><h:p>
-                          [conditional] If TLS 1.2 is supported, the evaluator shall send the TSF a TLS 1.2 ClientHello that is compliant with RFC 9591, except that the ciphersuites field is a list consisting only of ciphersuites indicating a disallowed encryption algorithm, including at least one each of NULL, RC2, RC4, DES, IDEA, TDES, and AES-128. The evaluator shall observe that the TOE rejects the connection.
+                          [conditional] If TLS 1.2 is supported, the evaluator shall send the TSF a TLS 1.2 ClientHello that is compliant with RFC 9591, except that the ciphersuites field is a list consisting only of ciphersuites indicating a disallowed encryption algorithm, including at least one each of NULL, RC2, RC4, DES, IDEA, and TDES. The evaluator shall observe that the TOE rejects the connection.
                         </h:p><h:p>
                           <h:b>Note:</h:b> See IANA TLS parameters for available TLS 1.2 ciphersuites to be included. The test ciphersuite should use supported cryptographic algorithms for as many of the other components as possible. For example, if the TSF supports TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384, the test could include TLS_ECDHE_PSK_WITH_NULL_SHA_384, TLS_RSA_EXPORT_WITH_RC2_CBC_40_MD5, TLS_ECDHE_RSA_WITH_RC4_128_SHA, TLS_DHE_DSS_WITH_DES_CBC_SHA, TLS_RSA_WITH_IDEA_CBC_SHA, and TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA.
                         </h:p><h:p>
-                          [conditional] If TLS 1.3 is supported, the evaluator shall send the TSF a TLS 1.3 ClientHello that is compliant with RFC 9591, except that the ciphersuites field contains the single ciphersuite TLS_AES_128_GCM_SHA256. The evaluator shall observe that the TOE rejects the connection.
+                          [conditional] If TLS 1.3 is supported and the TSF only supports a subset of the TLS 1.3 ciphersuites registered in the IANA TLS parameters, the evaluator shall send the TSF a TLS 1.3 ClientHello that is compliant with RFC 9151, except that the ciphersuites field contains exclusively the full subset of ciphersuites for which the TSF does not claim to support. The evaluator shall observe that the TOE silently drops the message or rejects the connection. 
                         </h:p><h:p>
                           <h:b>Note:</h:b> It is preferred that the TSF sends a fatal error alert message (e.g., handshake failure, insufficient security) in response to this, but it is acceptable that the TSF terminates the connection silently (i.e., without sending a fatal error alert).
                         </h:p>
@@ -5215,7 +5327,7 @@
                       <test>(TLS 1.3 key establishment) [conditional] If the TSF supports TLS 1.3, then for each supported group the evaluator shall perform the following sub-tests: 
                         <testlist>
                           <test>The evaluator shall send the TSF a compliant TLS 1.3 ClientHello indicating a single key share value from the supported group and shall observe that the ServerHello 
-                            includes valid elements of the supported group.</test>
+                            includes valid key exchange parameters of the supported group, as specified by RFC 8446 section 4.2.8.</test>
                           <test>The evaluator shall send the TSF a TLS 1.3 ClientHello indicating a supported_groups value supported by the TSF 
                             but containing a key_share extension indicating an element claiming to be in the supported group that does not represent a valid element of the group. The evaluator shall observe that the TSF terminates the session.
                             <h:p>
@@ -5334,14 +5446,14 @@
                <selectable>dns_name</selectable>
                <selectable><assignable>supported name types</assignable></selectable></selectables>
                in the Subject Alternate Name extension contained in the client certificate does not match one of the expected identifiers for the client in accordance with <selectables>
-                 <selectable>RFC 2822</selectable>
+                 <selectable>RFC 5322</selectable>
                  <selectable>RFC 6125</selectable>
                  <selectable>RFC 5280</selectable>
                  <selectable><assignable>RFC for the supported name type</assignable></selectable></selectables>
                matching rules</selectable>
              <selectable>pass the <selectables>
                <selectable>validated certificate</selectable>
-               <selectable>RFC 2822 name normalized according to RFC 2822</selectable>
+               <selectable>RFC 5322 name normalized according to RFC 5322</selectable>
                <selectable>DNS name normalized according to RFC 6125</selectable>
                <selectable><assignable>list of RFC 5280 name types and normalization rules</assignable></selectable>
                <selectable><assignable>list of 'other' name types and standard normalization rules</assignable></selectable></selectables> 
@@ -5727,9 +5839,9 @@
                     and verify that the TSF does not resume the session, but instead either terminates the session or completes a full handshake, ignoring the resumption information.
                     <h:p>
                     <h:b>Note:</h:b> For TLS 1.2, resumption information should be established at the point the TSF sends a ServerHello, either acknowledging the session-based resumption 
-                    or acknowledging support for ticket-based resumption and sending a new_ticket message. 
+                      or acknowledging support for ticket-based resumption and sending a NewSessionTicket handshake message. 
                     A TLS 1.2 session can then be terminated by sending a modified finished message. 
-                    For TLS 1.3, the new_ticket message is sent after the finished message; once received by the client, the session can be terminated by modifying a byte of the encrypted application data. 
+                    For TLS 1.3, the NewSessionTicket message is sent after the finished message; once received by the client, the session can be terminated by modifying a byte of the encrypted application data. 
                     </h:p>
                   </test>
                 </testlist>
@@ -5829,6 +5941,10 @@
           <h:a href="https://commoncriteriaportal.org/files/ccfiles/CEM2022R1.pdf">Common
             Methodology for Information Technology Security - Evaluation Methodology</h:a>,
           CCMB-2022-11-006, CEM:2022, Revision 1, November 2022. </description>
+      </entry>
+      <entry id="bibIANA">
+        <tag>IANA TLS Parameters</tag>
+        <description><h:a href="https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#tls-parameters-6">IANA TLS Parameters - TLS Alerts</h:a></description>
       </entry>
     </bibliography>
 </Package>

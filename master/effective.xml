@@ -4174,6 +4174,28 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
           <fam-behavior>This family defines the ability of the TOE to provide a mechanism that can be used to verify its integrity
             when started.</fam-behavior>
 	</ext-comp-def>
+        <f-component cc-id="fpt_stm.1" name="Reliable Time Stamps">
+          <f-element id="fel-timestamp">
+            <title>The TSF shall be able to provide reliable time stamps <refinement>for its own use</refinement>. </title>
+            <aactivity>
+              <TSS>The evaluator shall examine the TSS to ensure that it lists each security
+                function that makes use of time. The TSS provides a description of how the time is
+                maintained and considered reliable in the context of each of the time related
+                functions. This documentation must identify whether the TSF uses a NTP server or the
+                cell carrier’s network time as the primary time sources. <h:br/><h:br/></TSS>
+              <Guidance>The evaluator examines the operational guidance to ensure it describes how
+                to set the time.<h:br/><h:br/></Guidance>
+              <Tests>
+                <testlist>
+                  <test>The evaluator uses the operational guide to set the time. The evaluator
+                        shall then use an available interface to observe that the time was set
+                        correctly.</test>
+                </testlist>
+              </Tests>
+            </aactivity>
+          </f-element>
+          <audit-event/>
+        </f-component>
         <f-component cc-id="fpt_tst_ext.1" name="Boot Integrity">
           
           <comp-lev> defines the mechanisms that the TSF uses to assert its own integrity at
@@ -5646,13 +5668,6 @@ The evaluator shall also perform the following tests:
 	  FMT_MOF_EXT.1 specifies role-based management functions that implicitly defines
 	  user and privileged accounts;
 	  therefore, it is duplicative to include separate role requirements.
-	</h:td>
-	</h:tr>
-	<h:tr>
-	<h:td>FPT_STM.1 - Reliable time stamps</h:td>
-	<h:td>
-	  FAU_GEN.1.2 explicitly requires that the OS associate timestamps with audit data;
-	  therefore it is duplicative to include a separate timestamp requirement.
 	</h:td>
 	</h:tr>
 	<h:tr>
