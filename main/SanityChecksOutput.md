@@ -32,4 +32,12 @@
  Failed to find s-keygen-rsa in /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[2]""/f-element[1]""/rule[1]""/then[1]""/ref-id[1]"s-keygen-" (use case or rule)
  Failed to find s-keygen-ecc in /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[2]""/f-element[1]""/rule[2]""/then[1]""/ref-id[1]"s-keygen-" (use case or rule)
  Failed to find s-keygen-ffc in /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[2]""/f-element[1]""/rule[3]""/then[1]""/ref-id[1]"s-keygen-" (use case or rule)
+warning: failed to load external entity "output/mod-wlanclient.xml"
+warning: failed to load external entity "output/mod-wlanclient.xml"
+warning: failed to load external entity "output/mod-wlanclient.xml"
+warning: failed to load external entity "output/mod-wlanclient.xml"
+warning: failed to load external entity "output/mod-bluetooth.xml"
+warning: failed to load external entity "output/mod-bluetooth.xml"
+warning: failed to load external entity "output/mod-bluetooth.xml"
+warning: failed to load external entity "output/mod-bluetooth.xml"
  Failed to find p-256-keygen in /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[9]""/f-component[1]""/f-element[1]""/note[1]""/rule[3]""/or[1]""/and[2]""/or[1]""/and[2]""/ref-id[1]"p-256-key" (use case or rule)
