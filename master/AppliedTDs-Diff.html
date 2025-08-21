@@ -353,7 +353,10 @@
                 The following <abbr class="dyn-abbr"><a href="#abbr_PP">PPs</a></abbr> and <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-Modules are allowed to be specified in a <abbr class="dyn-abbr"><a href="#abbr_PP-Configuration">PP-Configuration</a></abbr> with this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>: 
                 <ul>
                     <li>
-                        <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Virtual Private Network (<abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr>) Clients, version 2.6
+                        <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Virtual Private Network (<abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr>) Clients, version 2.4
+                    </li>
+                    <li>
+                        <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Virtual Private Network (<abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr>) Clients, version 2.5
                     </li>
                     <li>
                         <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Bluetooth, version 1.0
@@ -383,7 +386,7 @@
                         This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> is Functional Package for X.509 Version 1.0 conformant.
                     </li>
                     <li>
-                        This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> does not conform to any assurance packages.
+                        This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> is Assurance Package for Flaw Remediation Version 1.0 conformant.
                     </li>
                 </ul>
             </dd>
@@ -667,15 +670,6 @@
                 <td></td>
             </tr>
             <tr data-sortkey="FPT_SBOP_EXT.1.1">
-                <td>No events specified</td><td>N/A</td>
-            </tr>
-            <tr data-sortkey="FPT_STM.1">
-                <td rowspan="2"><a href="#FPT_STM.1">FPT_STM.1</a></td><td style="display:none"></td>
-            </tr>
-            <tr style="display:none;" data-sortkey="FPT_STM.1#">
-                <td></td>
-            </tr>
-            <tr data-sortkey="FPT_STM.1.1">
                 <td>No events specified</td><td>N/A</td>
             </tr>
             <tr data-sortkey="FPT_TST.1">
@@ -3109,10 +3103,10 @@ PT = CT[i]
                     <div class="ea">
                         <div class="ea">
                             <p>
-                                For stack-based OSes, the evaluator shall determine that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> contains a description of stack-based buffer overflow protections used by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>. These are referred to by a variety of terms. These include, but are not limited to, <abbr class="dyn-abbr"><a href="#abbr_ASLR">ASLR</a></abbr>, tagging, stack cookie, stack guard, and stack canaries. The <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> must include a rationale for any binaries that are not protected in this manner. The evaluator shall also preform the following test: <span class="testlist-">
+                                For stack-based OSes, the evaluator shall determine that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> contains a description of stack-based buffer overflow protections used by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>. These are referred to by a variety of terms, such as stack cookie, stack guard, and stack canaries. The <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> must include a rationale for any binaries that are not protected in this manner. The evaluator shall also preform the following test: <span class="testlist-">
                                     <ul>
                                         <li class="test-">
-                                            <a id="_t_56" class="defined" href="#_t_56">Test FPT_SBOP_EXT.1:1</a>: [Conditional: if stack-based overflow detection can be determined by inventorying]: The evaluator shall inventory the kernel, libraries, and application binaries to determine those that do not implement stack-based buffer overflow protections. This list should match up with the list provided in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>. 
+                                            <a id="_t_56" class="defined" href="#_t_56">Test FPT_SBOP_EXT.1:1</a>: The evaluator shall inventory the kernel, libraries, and application binaries to determine those that do not implement stack-based buffer overflow protections. This list should match up with the list provided in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>. 
                                         </li>
                                     </ul>
                                 </span> 
@@ -3188,57 +3182,6 @@ PT = CT[i]
                                  For each self-test, the evaluator shall verify that evidence is produced that the self-test is executed when specified by <a href="#FPT_TST.1.1">FPT_TST.1.1</a>. 
                             </p>
                             <p> If a self-test can be executed at the request of an authorized user, the evaluator shall verify that following the steps documented in the operational guidance to perform the self-test will result in execution of the self-test. </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="comp" id="FPT_STM.1">
-            <h4>FPT_STM.1 Reliable Time Stamps</h4>
-            <div class="element">
-                <div class="reqid" id="FPT_STM.1.1">
-                    <a href="#FPT_STM.1.1" class="abbr">FPT_STM.1.1</a>
-                </div>
-                <div class="reqdesc">
-                    The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be able to provide reliable time stamps <span class="refinement">for its own use</span>. 
-                </div>
-            </div>
-            <div class="activity_pane hide">
-                <div class="activity_pane_header">
-                    <a href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a>
-                </div>
-                <div class="activity_pane_body">
-                    <div class="component-activity-header">
-                        <a href="#FPT_STM.1">FPT_STM.1</a>
-                    </div>
-                    <div class="eacategory">
-                        <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
-                    </div>
-                    <div class="ea">
-                        <div class="ea">
-                            The evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to ensure that it lists each security function that makes use of time. The <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> provides a description of how the time is maintained and considered reliable in the context of each of the time related functions. This documentation must identify whether the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> uses a NTP server or the cell carrier&rsquo;s network time as the primary time sources. 
-                            <br>
-                            <br>
-                        </div>
-                    </div>
-                    <div class="eacategory">Guidance</div>
-                    <div class="ea">
-                        <div class="ea">
-                            The evaluator examines the operational guidance to ensure it describes how to set the time.
-                            <br>
-                            <br>
-                        </div>
-                    </div>
-                    <div class="eacategory">Tests</div>
-                    <div class="ea">
-                        <div class="ea">
-                             <span class="testlist-">
-                                <ul>
-                                    <li class="test-">
-                                        <a id="_t_67" class="defined" href="#_t_67">Test FPT_STM.1:1</a>: The evaluator uses the operational guide to set the time. The evaluator shall then use an available interface to observe that the time was set correctly.
-                                    </li>
-                                </ul>
-                            </span> 
                         </div>
                     </div>
                 </div>
@@ -3326,13 +3269,13 @@ PT = CT[i]
                                  The evaluator shall also perform the following tests: <span class="testlist-">
                                     <ul>
                                         <li class="test-">
-                                            <a id="_t_68" class="defined" href="#_t_68">Test FPT_TST_EXT.1:1</a>: The evaluator shall perform actions to cause <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> software to load and observe that the integrity mechanism does not flag any executables as containing integrity errors and that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> properly boots. 
+                                            <a id="_t_67" class="defined" href="#_t_67">Test FPT_TST_EXT.1:1</a>: The evaluator shall perform actions to cause <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> software to load and observe that the integrity mechanism does not flag any executables as containing integrity errors and that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> properly boots. 
                                         </li>
                                         <li class="test-">
-                                            <a id="_t_69" class="defined" href="#_t_69">Test FPT_TST_EXT.1:2</a>: The evaluator shall modify a <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> executable that is part of the bootchain verified by the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> (i.e. Not the first-stage bootloader) and attempt to boot. The evaluator shall ensure that an integrity violation is triggered and the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> does not boot (Care must be taken so that the integrity violation is determined to be the cause of the failure to load the module, and not the fact that in such a way to invalidate the structure of the module.). 
+                                            <a id="_t_68" class="defined" href="#_t_68">Test FPT_TST_EXT.1:2</a>: The evaluator shall modify a <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> executable that is part of the bootchain verified by the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> (i.e. Not the first-stage bootloader) and attempt to boot. The evaluator shall ensure that an integrity violation is triggered and the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> does not boot (Care must be taken so that the integrity violation is determined to be the cause of the failure to load the module, and not the fact that in such a way to invalidate the structure of the module.). 
                                         </li>
                                         <li class="test-">
-                                            <a id="_t_70" class="defined" href="#_t_70">Test FPT_TST_EXT.1:3</a>[conditional, to be performed if
+                                            <a id="_t_69" class="defined" href="#_t_69">Test FPT_TST_EXT.1:3</a>[conditional, to be performed if
                                             <ul>
                                                 <li>
                                                     <a href="#s-boot-x509">a digital signature using an X.509 certificate with hardware-based protection</a> is selected from <a href="#FPT_TST_EXT.1.1">FPT_TST_EXT.1.1</a>
@@ -3405,10 +3348,10 @@ PT = CT[i]
                              <span class="testlist-">
                                 <ul>
                                     <li class="test-">
-                                        <a id="_t_71" class="defined" href="#_t_71">Test FPT_TUD_EXT.1:1</a>: The evaluator shall ensure that the update has a digital signature belonging to the vendor prior to its installation. The evaluator shall modify the downloaded update in such a way that the digital signature is no longer valid. The evaluator will then attempt to install the modified update. The evaluator shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> does not install the modified update. 
+                                        <a id="_t_70" class="defined" href="#_t_70">Test FPT_TUD_EXT.1:1</a>: The evaluator shall ensure that the update has a digital signature belonging to the vendor prior to its installation. The evaluator shall modify the downloaded update in such a way that the digital signature is no longer valid. The evaluator will then attempt to install the modified update. The evaluator shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> does not install the modified update. 
                                     </li>
                                     <li class="test-">
-                                        <a id="_t_72" class="defined" href="#_t_72">Test FPT_TUD_EXT.1:2</a>: The evaluator shall ensure that the update has a digital signature belonging to the vendor. The evaluator shall then attempt to install the update (or permit installation to continue). The evaluator shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> successfully installs the update. 
+                                        <a id="_t_71" class="defined" href="#_t_71">Test FPT_TUD_EXT.1:2</a>: The evaluator shall ensure that the update has a digital signature belonging to the vendor. The evaluator shall then attempt to install the update (or permit installation to continue). The evaluator shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> successfully installs the update. 
                                     </li>
                                 </ul>
                             </span> 
@@ -3468,10 +3411,10 @@ PT = CT[i]
                              The evaluator shall initiate an update to an application. This may vary depending on the application, but it could be through the application vendor's website, a commercial <abbr class="dyn-abbr"><a href="#abbr_app">app</a></abbr> store, or another system. All origins supported by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> must be indicated in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> and evaluated. However, this only includes those mechanisms for which the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> is providing a trusted installation and update functionality. It does not include user or administrator-driven download and installation of arbitrary files. <span class="testlist-">
                                 <ul>
                                     <li class="test-">
-                                        <a id="_t_73" class="defined" href="#_t_73">Test FPT_TUD_EXT.2:1</a>: The evaluator shall ensure that the update has a digital signature which chains to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor or another trusted root managed through the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>. The evaluator shall modify the downloaded update in such a way that the digital signature is no longer valid. The evaluator shall then attempt to install the modified update. The evaluator shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> does not install the modified update. 
+                                        <a id="_t_72" class="defined" href="#_t_72">Test FPT_TUD_EXT.2:1</a>: The evaluator shall ensure that the update has a digital signature which chains to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor or another trusted root managed through the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>. The evaluator shall modify the downloaded update in such a way that the digital signature is no longer valid. The evaluator shall then attempt to install the modified update. The evaluator shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> does not install the modified update. 
                                     </li>
                                     <li class="test-">
-                                        <a id="_t_74" class="defined" href="#_t_74">Test FPT_TUD_EXT.2:2</a>: The evaluator shall ensure that the update has a digital signature belonging to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor or another trusted root managed through the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>. The evaluator shall then attempt to install the update. The evaluator shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> successfully installs the update. 
+                                        <a id="_t_73" class="defined" href="#_t_73">Test FPT_TUD_EXT.2:2</a>: The evaluator shall ensure that the update has a digital signature belonging to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor or another trusted root managed through the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>. The evaluator shall then attempt to install the update. The evaluator shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> successfully installs the update. 
                                     </li>
                                 </ul>
                             </span> 
@@ -3648,16 +3591,16 @@ PT = CT[i]
                              The evaluator shall also perform the following tests: <span class="testlist-">
                                 <ul>
                                     <li class="test-">
-                                        <a id="_t_78" class="defined" href="#_t_78">Test FTP_TRP.1:1</a>: The evaluator shall ensure that communications using each remote or local administration method is tested during the course of the evaluation, setting up the connections or initial user authentication as described in the operational guidance and ensuring that communication is successful. 
+                                        <a id="_t_77" class="defined" href="#_t_77">Test FTP_TRP.1:1</a>: The evaluator shall ensure that communications using each remote or local administration method is tested during the course of the evaluation, setting up the connections or initial user authentication as described in the operational guidance and ensuring that communication is successful. 
                                     </li>
                                     <li class="test-">
-                                        <a id="_t_79" class="defined" href="#_t_79">Test FTP_TRP.1:2</a>: [Conditional: if "remote" is selected in <a href="#FTP_TRP.1.1">FTP_TRP.1.1</a>]: For each method of remote administration supported, the evaluator shall follow the operational guidance to ensure that there is no available interface that can be used by a remote user to establish a remote administrative sessions without invoking the trusted path. 
+                                        <a id="_t_78" class="defined" href="#_t_78">Test FTP_TRP.1:2</a>: [Conditional: if "remote" is selected in <a href="#FTP_TRP.1.1">FTP_TRP.1.1</a>]: For each method of remote administration supported, the evaluator shall follow the operational guidance to ensure that there is no available interface that can be used by a remote user to establish a remote administrative sessions without invoking the trusted path. 
                                     </li>
                                     <li class="test-">
-                                        <a id="_t_80" class="defined" href="#_t_80">Test FTP_TRP.1:3</a>: [Conditional: if &ldquo;remote&rdquo; is selected in <a href="#FTP_TRP.1.1">FTP_TRP.1.1</a>]: The evaluator shall ensure, for each method of remote administration, the channel data is not sent in plaintext. 
+                                        <a id="_t_79" class="defined" href="#_t_79">Test FTP_TRP.1:3</a>: [Conditional: if &ldquo;remote&rdquo; is selected in <a href="#FTP_TRP.1.1">FTP_TRP.1.1</a>]: The evaluator shall ensure, for each method of remote administration, the channel data is not sent in plaintext. 
                                     </li>
                                     <li class="test-">
-                                        <a id="_t_81" class="defined" href="#_t_81">Test FTP_TRP.1:4</a>: [Conditional: if &ldquo;remote&rdquo; is selected in <a href="#FTP_TRP.1.1">FTP_TRP.1.1</a>]: The evaluator shall ensure, for each method of remote administration, modification of the channel data is detected by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>. 
+                                        <a id="_t_80" class="defined" href="#_t_80">Test FTP_TRP.1:4</a>: [Conditional: if &ldquo;remote&rdquo; is selected in <a href="#FTP_TRP.1.1">FTP_TRP.1.1</a>]: The evaluator shall ensure, for each method of remote administration, modification of the channel data is detected by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>. 
                                     </li>
                                 </ul>
                             </span> 
@@ -3678,7 +3621,7 @@ PT = CT[i]
                     <th>Threat</th><th>Addressed by</th><th>Rationale</th>
                 </tr>
                 <tr class="major-row">
-                    <td rowspan="30"><a href="#T.NETWORK_ATTACK">T.NETWORK_​ATTACK</a>
+                    <td rowspan="29"><a href="#T.NETWORK_ATTACK">T.NETWORK_​ATTACK</a>
                         <br>
                     </td><td><a href="#FAU_GEN.1">FAU_GEN.1</a></td><td><a href="#FAU_GEN.1">FAU_GEN.1</a> helps mitigate the threat of a network attack by logging evidence of potential malicious activity.</td>
                 </tr>
@@ -3741,9 +3684,6 @@ PT = CT[i]
                 </tr>
                 <tr>
                     <td><a href="#FCS_RBG.6">FCS_RBG.6</a> (optional)</td><td><a href="#FCS_RBG.6">FCS_RBG.6</a> helps mitigate the threat of a network attack by providing a secure <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> service for third-party applications running on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> which may use this service to generate their own cryptographic keys for trusted communications.</td>
-                </tr>
-                <tr>
-                    <td><a href="#FPT_STM.1">FPT_STM.1</a></td><td><a href="#FPT_STM.1">FPT_STM.1</a> helps mitigate the threat of malicious activity by providing reliable time stamps for the audit trail.</td>
                 </tr>
                 <tr>
                     <td><a href="#FPT_W^X_EXT.1">FPT_W^X_EXT.1</a> (optional)</td><td><a href="#FPT_W^X_EXT.1">FPT_W^X_EXT.1</a> helps mitigate the threat of a network attack by enforcing data execution prevention so that an external interface cannot attempt to write data to executable memory.</td>
@@ -4908,13 +4848,13 @@ PT = CT[i]
                              The evaluator shall also perform the following tests. <span class="testlist-">
                                 <ul>
                                     <li class="test-">
-                                        <a id="_t_75" class="defined" href="#_t_75">Test FPT_W^X_EXT.1:1</a>: The evaluator shall acquire or construct a test program which attempts to allocate memory that is both writable and executable. The evaluator shall run the program and confirm that it fails to allocate memory that is both writable and executable. 
+                                        <a id="_t_74" class="defined" href="#_t_74">Test FPT_W^X_EXT.1:1</a>: The evaluator shall acquire or construct a test program which attempts to allocate memory that is both writable and executable. The evaluator shall run the program and confirm that it fails to allocate memory that is both writable and executable. 
                                     </li>
                                     <li class="test-">
-                                        <a id="_t_76" class="defined" href="#_t_76">Test FPT_W^X_EXT.1:2</a>: The evaluator shall acquire or construct a test program which allocates memory that is executable and then subsequently requests additional write/modify permissions on that memory. The evaluator shall run the program and confirm that at no time during the lifetime of the process is the memory both writable and executable. 
+                                        <a id="_t_75" class="defined" href="#_t_75">Test FPT_W^X_EXT.1:2</a>: The evaluator shall acquire or construct a test program which allocates memory that is executable and then subsequently requests additional write/modify permissions on that memory. The evaluator shall run the program and confirm that at no time during the lifetime of the process is the memory both writable and executable. 
                                     </li>
                                     <li class="test-">
-                                        <a id="_t_77" class="defined" href="#_t_77">Test FPT_W^X_EXT.1:3</a>: The evaluator shall acquire or construct a test program which allocates memory that is writable and then subsequently requests additional execute permissions on that memory. The evaluator shall run the program and confirm that at no time during the lifetime of the process is the memory both writable and executable. 
+                                        <a id="_t_76" class="defined" href="#_t_76">Test FPT_W^X_EXT.1:3</a>: The evaluator shall acquire or construct a test program which allocates memory that is writable and then subsequently requests additional execute permissions on that memory. The evaluator shall run the program and confirm that at no time during the lifetime of the process is the memory both writable and executable. 
                                     </li>
                                 </ul>
                             </span> 
@@ -6531,6 +6471,9 @@ PT = CT[i]
             </tr>
             <tr>
                 <td>FMT_SMR.1 - Security roles</td><td> <a href="#FMT_MOF_EXT.1">FMT_MOF_EXT.1</a> specifies role-based management functions that implicitly defines user and privileged accounts; therefore, it is duplicative to include separate role requirements. </td>
+            </tr>
+            <tr>
+                <td>FPT_STM.1 - Reliable time stamps</td><td> <a href="#FAU_GEN.1.2">FAU_GEN.1.2</a> explicitly requires that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> associate timestamps with audit data; therefore it is duplicative to include a separate timestamp requirement. </td>
             </tr>
             <tr>
                 <td>FTA_SSL.1 - <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>-initiated session locking</td><td> <a href="#FMT_MOF_EXT.1">FMT_MOF_EXT.1</a> defines requirements for managing session locking; therefore, it is duplicative to include a separate session locking requirement. </td>

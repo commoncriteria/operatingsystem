@@ -368,7 +368,8 @@ it manages may be physical or virtual.
         <cc-pt3-conf>extended</cc-pt3-conf>
         <cc-pp-conf/>
         <cc-pp-config-with>       
-          <Mod-cc-ref>PP-Module for Virtual Private Network (VPN) Clients, version 2.6</Mod-cc-ref>
+          <Mod-cc-ref>PP-Module for Virtual Private Network (VPN) Clients, version 2.4</Mod-cc-ref>
+          <Mod-cc-ref>PP-Module for Virtual Private Network (VPN) Clients, version 2.5</Mod-cc-ref>
           <Mod-cc-ref>PP-Module for Bluetooth, version 1.0</Mod-cc-ref>
           <Mod-cc-ref>PP-Module for Mobile Device Management Agent, version 1.0</Mod-cc-ref>
           <Mod-cc-ref>PP-Module for Wireless LAN Clients, version 1.0</Mod-cc-ref>
@@ -378,6 +379,7 @@ it manages may be physical or virtual.
           <FP-cc-ref conf="conformant">Functional Package for Transport Layer Security Version 2.1</FP-cc-ref>
           <FP-cc-ref conf="conformant">Functional Package for Secure Shell Version 1.1</FP-cc-ref>
           <FP-cc-ref conf="conformant">Functional Package for X.509 Version 1.0</FP-cc-ref>
+          <AP-cc-ref conf="conformant">Assurance Package for Flaw Remediation Version 1.0</AP-cc-ref>
            <!-- <AP-cc-ref conf="conformant">Assurance Package for Flaw Remediation Version 1.0</AP-cc-ref> -->
         </cc-pkg-claim>
       </CClaimsInfo>	
@@ -481,8 +483,6 @@ it manages may be physical or virtual.
           
           <addressed-by>FCS_RBG.6 (optional)</addressed-by>
           <rationale>FCS_RBG.6 helps mitigate the threat of a network attack by providing a secure DRBG service for third-party applications running on the TOE which may use this service to generate their own cryptographic keys for trusted communications.</rationale>
-          <addressed-by>FPT_STM.1</addressed-by>
-          <rationale>FPT_STM.1 helps mitigate the threat of malicious activity by providing reliable time stamps for the audit trail.</rationale>
           <addressed-by>FPT_W^X_EXT.1 (optional)</addressed-by>
           <rationale>FPT_W^X_EXT.1 helps mitigate the threat of a network attack by enforcing data execution prevention so that an external interface cannot attempt to write data to executable memory.</rationale>
           <addressed-by>FTA_TAB.1 (optional)</addressed-by>
@@ -3982,12 +3982,12 @@ OSes that store parameters and variables separately from control flow values do 
               <Guidance>TBD</Guidance>
 	      <Tests>
 <h:p>For stack-based OSes, the evaluator shall determine that the TSS contains a description of stack-based buffer overflow protections used by the OS.
-These are referred to by a variety of terms. These include, but are not limited to, ASLR, tagging, stack cookie, stack guard, and stack canaries.
+These are referred to by a variety of terms, such as stack cookie, stack guard, and stack canaries.
 The TSS must include a rationale for any binaries that are not protected in this manner.
 The evaluator shall also preform the following test:
             <testlist>
                 <test>
-                  [Conditional: if stack-based overflow detection can be determined by inventorying]: The evaluator shall inventory the kernel, libraries, and application binaries
+                  The evaluator shall inventory the kernel, libraries, and application binaries
                   to determine those that do not implement stack-based buffer overflow protections. This list should
                   match up with the list provided in the TSS.
                 </test>
@@ -4176,28 +4176,6 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
           <fam-behavior>This family defines the ability of the TOE to provide a mechanism that can be used to verify its integrity
             when started.</fam-behavior>
 	</ext-comp-def>
-        <f-component cc-id="fpt_stm.1" name="Reliable Time Stamps">
-          <f-element id="fel-timestamp">
-            <title>The TSF shall be able to provide reliable time stamps <refinement>for its own use</refinement>. </title>
-            <aactivity>
-              <TSS>The evaluator shall examine the TSS to ensure that it lists each security
-                function that makes use of time. The TSS provides a description of how the time is
-                maintained and considered reliable in the context of each of the time related
-                functions. This documentation must identify whether the TSF uses a NTP server or the
-                cell carrier’s network time as the primary time sources. <h:br/><h:br/></TSS>
-              <Guidance>The evaluator examines the operational guidance to ensure it describes how
-                to set the time.<h:br/><h:br/></Guidance>
-              <Tests>
-                <testlist>
-                  <test>The evaluator uses the operational guide to set the time. The evaluator
-                        shall then use an available interface to observe that the time was set
-                        correctly.</test>
-                </testlist>
-              </Tests>
-            </aactivity>
-          </f-element>
-          <audit-event/>
-        </f-component>
         <f-component cc-id="fpt_tst_ext.1" name="Boot Integrity">
           
           <comp-lev> defines the mechanisms that the TSF uses to assert its own integrity at
@@ -5670,6 +5648,13 @@ The evaluator shall also perform the following tests:
 	  FMT_MOF_EXT.1 specifies role-based management functions that implicitly defines
 	  user and privileged accounts;
 	  therefore, it is duplicative to include separate role requirements.
+	</h:td>
+	</h:tr>
+	<h:tr>
+	<h:td>FPT_STM.1 - Reliable time stamps</h:td>
+	<h:td>
+	  FAU_GEN.1.2 explicitly requires that the OS associate timestamps with audit data;
+	  therefore it is duplicative to include a separate timestamp requirement.
 	</h:td>
 	</h:tr>
 	<h:tr>
