@@ -1071,6 +1071,57 @@ users of the same system.
           </f-element>
           <audit-event/>
         </f-component>
+        <f-component cc-id="fau_sel.1" name="Selective Audit" status="objective">
+          <f-element id="fel-audit-select">
+            <title>The TSF shall be able to select the set of events to be audited from the set of
+              all auditable events based on the following attributes <h:ol type="a">
+                <h:li>[<h:i>event type</h:i>]</h:li>
+                <h:li>[<h:i>success of auditable security events</h:i></h:li>
+                <h:li>
+                  <h:i>failure of auditable security events</h:i>
+                </h:li>
+                <h:li><h:i>
+                    <assignable>other attributes</assignable>
+                  </h:i>]</h:li>
+              </h:ol>
+            </title>
+            <note role="application"> The intent of this requirement is to identify all criteria
+              that can be selected to trigger an audit event. This can be configured through an
+              interface on the TSF for a user or administrator to invoke. For the ST author, the
+              assignment is used to list any additional criteria or "none". </note>
+            <aactivity>
+              <TSS>There are no TSS evaluation activities for this component.<h:br /><h:br /></TSS>
+              <Guidance> The evaluator shall review the administrative guidance to ensure that the
+                guidance itemizes all event types, as well as describes all attributes that are to
+                be selectable in accordance with the requirement, to include those attributes listed
+                in the assignment. The administrative guidance shall also contain instructions on
+                how to set the pre-selection as well as explain the syntax (if present) for
+                multi-value pre-selection. The administrative guidance shall also identify those
+                audit data that are always recorded, regardless of the selection criteria currently
+                being enforced.<h:br /><h:br />
+              </Guidance>
+              <Tests> The evaluator shall also perform the following tests:<h:br />
+                <testlist>
+                  <test>For each attribute listed in the requirement, the evaluator shall devise a
+                test to show that selecting the attribute causes only audit events with that
+                attribute (or those that are always recorded, as identified in the
+                    administrative guidance) to be recorded.</test>
+                  <h:br />
+                  <test>[conditional] If the TSF supports specification of more complex audit
+                pre-selection criteria (e.g., multiple attributes, logical expressions using
+                attributes) then the evaluator shall devise tests showing that this capability
+                    is correctly implemented. The evaluator shall also, in the test plan, provide a
+                short narrative justifying the set of tests as representative and sufficient to
+                exercise the capability.</test>
+                </testlist>
+              </Tests>
+            </aactivity>
+          </f-element>
+          <audit-event table="objective">
+            <audit-event-descr>All modifications to the audit configuration that
+              occur while the audit collection functions are operating</audit-event-descr>
+          </audit-event>
+        </f-component>
       </section>
       
       <section title="Cryptographic Support (FCS)" id="fcs">
@@ -4297,7 +4348,6 @@ the node certificate to be tested, two Intermediate CAs, and the
                   to="pkg-tls" />. </Tests>
             </aactivity>
           </management-function>
-                <!-- Start of the Optional to implement functions -->
           <management-function id="mf-externalPorts">
             <text>
                     <!-- <ctr id="externalPorts" pre="" ctr-type="function">.</ctr>--> Enable/disable all data signaling over <assignable>list of externally
