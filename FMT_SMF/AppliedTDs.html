@@ -630,24 +630,24 @@ function showTarget(id){
 
           }
     </style></head><body onLoad="init()"><h1 class="title" style="page-break-before:auto;">Protection Profile for General Purpose Operating Systems</h1><noscript><h1 style="text-align:center; border-style: dashed; border-width: medium; border-color: red;">This page is best viewed with JavaScript enabled!</h1></noscript><div class="center"><img src="images/niaplogo.png" alt="NIAP Logo"></img><br/>
-      Version: 4.4<br/>2025-03-31<br/><b>National Information Assurance Partnership</b><br/></div><h2 style="page-break-before:always;">Revision History</h2><table><tr class="header"><th>Version</th><th>Date</th><th>Comment</th></tr><tr><td>4.4</td><td>2024-09-06</td><td>
+      Version: 5.0<br/>2025-03-31<br/><b>National Information Assurance Partnership</b><br/></div><h2 style="page-break-before:always;">Revision History</h2><table><tr class="header"><th>Version</th><th>Date</th><th>Comment</th></tr><tr><td>4.0</td><td>2015-08-14</td><td>Release - significant revision</td></tr>
+<tr><td>4.1</td><td>2016-03-09</td><td>Minor updates - cryptographic modes</td></tr>
+<tr><td>4.2</td><td>2018-05-22</td><td>Multiple Technical Decisions applied</td></tr>
+<tr><td>4.2.1</td><td>2019-04-22</td><td>Formatting changes as a result of <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> evaluation</td></tr>
+<tr><td>4.3</td><td>2022-09-27</td><td>
+	     <ul>
+	     <li>Added compatibility with MDM Agent, Bluetooth, and <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Modules.</li>
+	     <li>Two factor authentication.</li>
+	     <li>Aligned with CNSA.</li>
+	     </ul>
+      </td></tr>
+<tr><td>5.0</td><td>2024-09-06</td><td>
         <ul>
           <li>Updated to conform to <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022.</li>
           <li>Incorporated X.509 package.</li>
           <li>Incorporated applicable technical decisions.</li>
         </ul>
       </td></tr>
-<tr><td>4.3</td><td>2022-09-27</td><td>
-	<ul>
-	  <li>Added compatibility with MDM Agent, Bluetooth, and <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Modules.</li>
-	  <li>Two factor authentication.</li>
-	  <li>Aligned with CNSA.</li>
-	</ul>
-      </td></tr>
-<tr><td>4.2.1</td><td>2019-04-22</td><td>Formatting changes as a result of <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> evaluation</td></tr>
-<tr><td>4.2</td><td>2018-05-22</td><td>Multiple Technical Decisions applied</td></tr>
-<tr><td>4.1</td><td>2016-03-09</td><td>Minor updates - cryptographic modes</td></tr>
-<tr><td>4.0</td><td>2015-08-14</td><td>Release - significant revision</td></tr>
 </table><h3>TDs Applied</h3><h2>Contents</h2><div class="toc" id="toc"><a href="#Introduction" style="text-indent:0px">1<span>Introduction</span></a><a href="#Overview" style="text-indent:10px">1.1<span>Overview</span></a><a href="#glossary" style="text-indent:10px">1.2<span>Terms</span></a><a href="#cc-terms" style="text-indent:20px">1.2.1<span>Common Criteria Terms</span></a><a href="#tech-terms" style="text-indent:20px">1.2.2<span>Technical Terms</span></a><a href="#Compliant_Targets_of_Evaluation" style="text-indent:10px">1.3<span>Compliant Targets of Evaluation</span></a><a href="#TOE_Boundary" style="text-indent:20px">1.3.1<span>TOE Boundary</span></a><a href="#TOE_Platform" style="text-indent:20px">1.3.2<span>TOE Platform</span></a><a href="#Use_Cases" style="text-indent:10px">1.4<span>Use Cases</span></a><a href="#Conformance_Claims" style="text-indent:0px">2<span>Conformance Claims</span></a><a href="#Security_Problem_Definition" style="text-indent:0px">3<span>Security Problem Definition</span></a><a href="#Threats" style="text-indent:10px">3.1<span>Threats</span></a><a href="#Assumptions" style="text-indent:10px">3.2<span>Assumptions</span></a><a href="#Security_Objectives" style="text-indent:0px">4<span>Security Objectives</span></a><a href="#Security_Objectives_for_the_Operational_Environment" style="text-indent:10px">4.1<span>Security Objectives for the Operational Environment</span></a><a href="#" style="text-indent:10px">4.2<span>Security Objectives Rationale</span></a><a href="#Security_Requirements" style="text-indent:0px">5<span>Security Requirements</span></a><a href="#SFRs" style="text-indent:10px">5.1<span>Security Functional Requirements</span></a><a href="#s-audit-table" style="text-indent:20px">5.1.1<span>Auditable Events for Mandatory SFRs</span></a><a href="#fau" style="text-indent:20px">5.1.2<span>Audit Data Generation (FAU)</span></a><a href="#fcs" style="text-indent:20px">5.1.3<span>Cryptographic Support (FCS)</span></a><a href="#fdp" style="text-indent:20px">5.1.4<span>User Data Protection (FDP)</span></a><a href="#fia" style="text-indent:20px">5.1.5<span>Identification and Authentication (FIA)</span></a><a href="#fmt" style="text-indent:20px">5.1.6<span>Security Management (FMT)</span></a><a href="#fpt" style="text-indent:20px">5.1.7<span>Protection of the TSF (FPT)</span></a><a href="#ftp" style="text-indent:20px">5.1.8<span>Trusted Path/Channels (FTP)</span></a><a href="#obj-req-map" style="text-indent:20px">5.1.9<span>TOE Security Functional Requirements Rationale</span></a><a href="#Security_Assurance_Requirements" style="text-indent:10px">5.2<span>Security Assurance Requirements</span></a><a href="#ase" style="text-indent:20px">5.2.1<span>Class ASE: Security Target</span></a><a href="#adv" style="text-indent:20px">5.2.2<span>Class ADV: Development</span></a><a href="#agd" style="text-indent:20px">5.2.3<span>Class AGD: Guidance Documentation</span></a><a href="#alc" style="text-indent:20px">5.2.4<span>Class ALC: Life-cycle Support</span></a><a href="#ate" style="text-indent:20px">5.2.5<span>Class ATE: Tests</span></a><a href="#ava" style="text-indent:20px">5.2.6<span>Class AVA: Vulnerability Assessment</span></a><a href="#opt-app" style="text-indent:0px">Appendix A - <span>Optional Requirements</span></a><a href="#optional-reqs" style="text-indent:10px">A.1<span>Strictly Optional  Requirements
     </span></a><a href="#optional-reqs-audit" style="text-indent:20px">A.1.1<span>
               Auditable Events for Strictly Optional  Requirements
@@ -879,9 +879,9 @@ The following sections list Common Criteria and technology terms used in this do
 					any Protection Profile.
 				</dd><p></p><dd>The following <abbr class="dyn-abbr"><a href="#abbr_PP">PPs</a></abbr> and <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-Modules are allowed to be specified in a 
 					<abbr class="dyn-abbr"><a href="#abbr_PP-Configuration">PP-Configuration</a></abbr> with this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>:
-					<ul><li><abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Virtual Private Network (<abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr>) Clients, version 2.6</li><li><abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Bluetooth, version 1.0</li><li><abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Mobile Device Management Agent, version 1.0</li><li><abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Wireless LAN Clients, version 1.0</li><li><abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr>-Module for Biometric Enrolment and Verification, version 1.1</li></ul></dd><dt>Package Claim</dt><p></p><dd><ul><li>This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> is 
+					<ul><li><abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Virtual Private Network (<abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr>) Clients, version 3.0</li><li><abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Bluetooth, version 2.0</li><li><abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Mobile Device Management Agent, version 2.0</li><li><abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Wireless LAN Clients, version 2.0</li><li><abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr>-Module for Biometric Enrolment and Verification, version 1.1</li></ul></dd><dt>Package Claim</dt><p></p><dd><ul><li>This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> is 
 					    Functional Package for Transport Layer Security Version 2.1 conformant.</li><li>This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> is 
-					    Functional Package for Secure Shell Version 1.1 conformant.</li><li>This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> is 
+					    Functional Package for Secure Shell Version 2.0 conformant.</li><li>This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> is 
 					    Functional Package for X.509 Version 1.0 conformant.</li><li>This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> does not conform to any 
 						assurance packages.</li></ul></dd><p></p><dd>
 		The functional packages to which the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> conforms may include <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> that are not mandatory 
@@ -1017,7 +1017,7 @@ The following sections list Common Criteria and technology terms used in this do
                     <li>Privilege or role escalation events (Success/Failure);</li>
                     <li>Auditable events as defined in the <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH),
         version 
-        1.0</a>;</li>
+        2.0</a>;</li>
                     <li>Auditable events as defined in the <a href="https://www.niap-ccevs.org/static_html/protection-profile/439/-439-/index.html">Functional Package for Transport Layer Security (TLS),
         version 
         2.1</a>;</li>
@@ -2680,7 +2680,7 @@ This result shall be compared to the result of running 1000 iterations with the 
 	      <b>[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-pass">authentication based on username and password</span></li><li style=""><span class="selectable-content" id="s-pin">authentication based on username and a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr> that releases an asymmetric key stored
 		in <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>-protected storage</span></li><li style=""><span class="selectable-content" id="s-otp">combination of authentication based on user name, password, and time-based one-time password</span></li><li style=""><span class="selectable-content" id="s-x509-auth">authentication based on X.509 certificates</span></li><li style=""><span class="selectable-content" id="s-uau-ssh">for use in SSH only, SSH public key-based authentication as specified by the <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH),
         version 
-        1.0</a></span></li></ul>]
+        2.0</a></span></li></ul>]
 	      </b>
 	      to support user authentication.
             <div class="appnote"><span class="note-header">Application
@@ -2812,7 +2812,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
         1.0</a>
 		  and <a href="#s-uau-ssh">SSH public key-based authentication</a> are tested in the <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH),
         version 
-        1.0</a>.
+        2.0</a>.
 		</p>
               </div><div class="ea">
 		
@@ -3145,9 +3145,9 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can enroll in such a
               includes the list of applications or groups of applications to which the
               enable/disable applies.</p><p> Function <a href="#mf-vpn">3</a> addresses enabling and disabling the IPsec <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> only. The
               configuration of the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> Client itself (with information such as <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> Gateway,
-              certificates, and algorithms) is addressed by the <a href="https://www.niap-ccevs.org/protectionprofiles/487">PP-Module for Virtual Private Network (VPN) Clients,
+              certificates, and algorithms) is addressed by the <a href="https://www.niap-ccevs.org/protectionprofiles/487">PP-Module for ,
         version 
-        2.5</a>.
+        </a>.
               The administrator options should only be listed if the administrator can
               remotely enable/disable the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> connection. <p> Function <a href="#mf-vpn">3</a>
               optionally allows the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> to be configured per-app or per-groups of apps. If
@@ -3309,9 +3309,9 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can enroll in such a
               to connect, all data leaving the device uses the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> when the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> is connected
               and no data leaves that device when the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> is disconnected. The configuration
               of the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> Client itself (with information such as <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> Gateway, certificates,
-              and algorithms) is addressed by the <a href="https://www.niap-ccevs.org/protectionprofiles/487">PP-Module for Virtual Private Network (VPN) Clients,
+              and algorithms) is addressed by the <a href="https://www.niap-ccevs.org/protectionprofiles/487">PP-Module for ,
         version 
-        2.5</a>. </p></span></div><div class="validationguidelines_label">Validation Guidelines:</div><p></p><b><a href="#r-killkey-user-mf">Rule #5</a></b><p></p><b><a href="#r-killkey-admin-mf">Rule #6</a></b></div></div>
+        </a>. </p></span></div><div class="validationguidelines_label">Validation Guidelines:</div><p></p><b><a href="#r-killkey-user-mf">Rule #5</a></b><p></p><b><a href="#r-killkey-admin-mf">Rule #6</a></b></div></div>
 	  
 	<div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FMT_SMF_EXT.1">FMT_SMF_EXT.1</a></div>
               
@@ -4121,7 +4121,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can enroll in such a
                 <li>[<b>assignment</b>: 
      <span class="assignable-content">other objects</span>]</li>
               </ul>
-	      .
+	     .
             </div></div>
           <div class="element"><div class="reqid" id="FPT_ACF_EXT.1.2"><a href="#FPT_ACF_EXT.1.2" class="abbr">FPT_ACF_EXT.1.2</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall implement access controls which prohibit unprivileged users from
               reading: <ul>
@@ -4130,7 +4130,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can enroll in such a
                 <li>[<b>assignment</b>: 
      <span class="assignable-content">list of other objects</span>]</li>
               </ul>
-	      .
+	     .
             <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -4439,7 +4439,7 @@ The evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_T
      <span class="assignable-content">list of other executable code</span>]</span></li><li style=""><span class="selectable-content" id="_s_168">no other executable code</span></li></ul>]
 	      prior to its execution through the use of
               [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_169">a digital signature using a hardware-protected asymmetric key</span></li><li style=""><span class="selectable-content" id="s-boot-x509">a digital signature using an X.509 certificate with hardware-based protection</span></li><li style=""><span class="selectable-content" id="_s_171">a hardware-protected hash</span></li></ul>]
-	      .
+	     .
             <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -4707,7 +4707,7 @@ The evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_T
     	  	    [<b>selection</b>: <span class="selectable-content" id="s-dtls-client">client</span>, <span class="selectable-content" id="s-dtls-server">server</span>]</span></li><li style=""><span class="selectable-content" id="s-itc-ipsec">IPsec as conforming to the <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Virtual Private Network (<abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr>) Clients</span></li></ul>]
       	        and [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-ftp_ssh">SSH as conforming to the <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH),
         version 
-        1.0</a> as a
+        2.0</a> as a
       	          [<b>selection</b>: <span class="selectable-content" id="s-ssh-client">client</span>, <span class="selectable-content" id="s-ssh-server">server</span>]</span></li><li style=""><span class="selectable-content" id="_s_184">no other protocols</span></li></ul>]
 		    to provide a trusted communication channel between itself and
 		    authorized <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr> entities supporting the following capabilities:
@@ -4737,7 +4737,7 @@ The evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_T
       	        If <a href="#s-ftp_ssh">SSH</a> is selected, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> must be validated against
       	        the <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH),
         version 
-        1.0</a> and the corresponding selection is expected to be made in <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a>.
+        2.0</a> and the corresponding selection is expected to be made in <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a>.
       	        The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must include the security functional requirements for the trusted channel protocol
       	        selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> in the main body of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
       	    </p>
@@ -5829,7 +5829,7 @@ The evaluator shall also perform the following tests:
           <div class="element"><div class="reqid" id="FPT_SRP_EXT.1.1"><a href="#FPT_SRP_EXT.1.1" class="abbr">FPT_SRP_EXT.1.1</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall restrict execution to only programs which match an administrator-specified
               [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-srp-path">file path</span></li><li style=""><span class="selectable-content" id="s-srp-signature">file digital signature</span></li><li style=""><span class="selectable-content" id="s-srp-version">version</span></li><li style=""><span class="selectable-content" id="s-srp-hash">hash</span></li><li style=""><span class="selectable-content" id="s-srp-other">[<b>assignment</b>: 
      <span class="assignable-content">other characteristics</span>]</span></li></ul>]
-	      .
+	     .
             <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -6188,7 +6188,7 @@ The evaluator shall also perform the following tests:
                 <li>[<b>assignment</b>: 
      <span class="assignable-content">other objects</span>]</li>
               </ul>
-	      .
+	     .
             <h4 id="ext-comp-FPT_ACF_EXT.1.2">FPT_ACF_EXT.1.2</h4> The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall implement access controls which prohibit unprivileged users from
               reading: <ul>
                 <li>Security audit logs</li>
@@ -6196,7 +6196,7 @@ The evaluator shall also perform the following tests:
                 <li>[<b>assignment</b>: 
      <span class="assignable-content">list of other objects</span>]</li>
               </ul>
-	      .
+	     .
             </div></div><h3 id="ext-comp-FPT_ASLR_EXT" class="indexable" data-level="4">C.2.2.2 FPT_ASLR_EXT Address Space Layout Randomization</h3><div style="margin-left: 1em;"><h4>Family Behavior</h4><div>This family defines the ability of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to implement address space layout randomization (<abbr class="dyn-abbr"><a href="#abbr_ASLR">ASLR</a></abbr>). This
             is a new family defined for the FPT class.</div><h4>Component Leveling</h4><svg style="max-height: 30px;"><text x="4" fill="black" font-size="15" y="24">FPT_ASLR_EXT</text><rect x="2" y="11" width="150" height="16" fill="none" stroke="black"></rect><text x="234" fill="black" font-size="15" y="24">1</text><rect x="232" y="11" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="17" x2="231" y2="17" stroke="black"></line></svg><p><a href="#FPT_ASLR_EXT.1">FPT_ASLR_EXT.1</a>,
              Address Space Layout Randomization,
@@ -6234,7 +6234,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selectio
 	  </ul></p><h4>Audit: FPT_SRP_EXT.1</h4><p>There are no auditable events foreseen.</p><h4>FPT_SRP_EXT.1 Software Restriction Policies</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td>No dependencies.</td></tr></table><h4 id="ext-comp-FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</h4> The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall restrict execution to only programs which match an administrator-specified
               [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-srp-path">file path</span></li><li style=""><span class="selectable-content" id="s-srp-signature">file digital signature</span></li><li style=""><span class="selectable-content" id="s-srp-version">version</span></li><li style=""><span class="selectable-content" id="s-srp-hash">hash</span></li><li style=""><span class="selectable-content" id="s-srp-other">[<b>assignment</b>: 
      <span class="assignable-content">other characteristics</span>]</span></li></ul>]
-	      .
+	     .
             </div></div><h3 id="ext-comp-FPT_TST_EXT" class="indexable" data-level="4">C.2.2.6 FPT_TST_EXT Boot Integrity</h3><div style="margin-left: 1em;"><h4>Family Behavior</h4><div>This family defines the ability of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to provide a mechanism that can be used to verify its integrity
             when started.</div><h4>Component Leveling</h4><svg style="max-height: 30px;"><text x="4" fill="black" font-size="15" y="24">FPT_TST_EXT</text><rect x="2" y="11" width="150" height="16" fill="none" stroke="black"></rect><text x="234" fill="black" font-size="15" y="24">1</text><rect x="232" y="11" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="17" x2="231" y2="17" stroke="black"></line></svg><p><a href="#FPT_TST_EXT.1">FPT_TST_EXT.1</a>,
              Boot Integrity,
@@ -6251,7 +6251,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selectio
      <span class="assignable-content">list of other executable code</span>]</span></li><li style=""><span class="selectable-content" id="_s_168">no other executable code</span></li></ul>]
 	      prior to its execution through the use of
               [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_169">a digital signature using a hardware-protected asymmetric key</span></li><li style=""><span class="selectable-content" id="s-boot-x509">a digital signature using an X.509 certificate with hardware-based protection</span></li><li style=""><span class="selectable-content" id="_s_171">a hardware-protected hash</span></li></ul>]
-	      .
+	     .
             </div></div><h3 id="ext-comp-FPT_TUD_EXT" class="indexable" data-level="4">C.2.2.7 FPT_TUD_EXT Trusted Update</h3><div style="margin-left: 1em;"><h4>Family Behavior</h4><div>This family defines the ability of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to provide mechanisms for assuring the integrity of updates to
 	    the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> or to non-TOE components that rely on the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to function. This is a new family defined for
 	    the FPT class.</div><h4>Component Leveling</h4><svg style="max-height: 50px;"><text x="4" fill="black" font-size="15" y="44">FPT_TUD_EXT</text><rect x="2" y="31" width="150" height="16" fill="none" stroke="black"></rect><text x="234" fill="black" font-size="15" y="24">1</text><rect x="232" y="11" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="37" x2="231" y2="17" stroke="black"></line><text x="234" fill="black" font-size="15" y="44">2</text><rect x="232" y="31" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="37" x2="231" y2="37" stroke="black"></line></svg><p><a href="#FPT_TUD_EXT.1">FPT_TUD_EXT.1</a>,
@@ -6810,13 +6810,13 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selectio
       From <a href="#FCS_CKM.2.1">FCS_CKM.2.1</a>:</div><div class="uc_sel">* select <a href="#s-keyestab-ffc">Finite field-based key establishment schemes
 					that meets NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"></td></tr></table><h2 id="r-wlan-aes">
          Rule #4</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="3">DECISION A</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="choicelabel">CHOICE A1</div><div class="uc,not,module">Exclude the 
-      <a href="https://www.niap-ccevs.org/protectionprofiles/463">PP-Module for Wireless LAN Clients,
+      <a href="https://www.niap-ccevs.org/protectionprofiles/463">PP-Module for ,
         version 
-        1.0</a> module from the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>
+        </a> module from the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>
       </div></td></tr><tr><td style="width: 99%"><div class="choicelabel">CHOICE A2</div>
-		  <div class="uc,module"> Include the <a href="https://www.niap-ccevs.org/protectionprofiles/463">PP-Module for Wireless LAN Clients,
+		  <div class="uc,module"> Include the <a href="https://www.niap-ccevs.org/protectionprofiles/463">PP-Module for ,
         version 
-        1.0</a> module in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> </div>
+        </a> module in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> </div>
 		  <table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="3">DECISION B</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="choicelabel">CHOICE B1</div><div class="uc_from_fel">
       From <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>:</div><div class="uc_sel">* select <a href="#s-aes-ccmp">AES-CCMP-256 (as defined in NIST SP 800-38C and IEEE 802.11ac-2013)</a></div></td></tr><tr><td style="width: 99%"><div class="choicelabel">CHOICE B2</div><div class="uc_from_fel">
       From <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>:</div><div class="uc_sel">* select <a href="#s-aes-gcmp">AES-GCMP-256 (as defined in NIST SP 800-38D and IEEE 802.11ac-2013)</a></div></td></tr></table>
@@ -6856,13 +6856,13 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selectio
       From <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a>:</div><div class="uc_sel">* select <a href="#s-ftp_ssh">SSH</a></div><div class="uc_sel">* select <a href="#s-ssh-server">server(SSH)</a></div></td></tr></table><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="2">THEN</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="uc_inc_pkg"> From the <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH)</a>: </div><div class="uc_from_fel">
       From FCS_SSH_EXT.1.1:</div><div class="uc_sel">* select server</div></td></tr></table><h2 id="r-bluetooth-ccm">
          Rule #13</h2><div></div><table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="3">DECISION C</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="choicelabel">CHOICE C1</div><div class="uc,not,module">Exclude the 
-      <a href="https://www.niap-ccevs.org/protectionprofiles/425">PP-Module for Bluetooth,
+      <a href="https://www.niap-ccevs.org/protectionprofiles/425">PP-Module for ,
         version 
-        1.0</a> module from the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>
+        </a> module from the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>
       </div></td></tr><tr><td style="width: 99%"><div class="choicelabel">CHOICE C2</div>
-      	            <div class="uc,module"> Include the <a href="https://www.niap-ccevs.org/protectionprofiles/425">PP-Module for Bluetooth,
+      	            <div class="uc,module"> Include the <a href="https://www.niap-ccevs.org/protectionprofiles/425">PP-Module for ,
         version 
-        1.0</a> module in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> </div>
+        </a> module in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> </div>
       	            <table class="uc_table_or" style="border: 1px solid black"><tr><td class="or_cell" rowspan="3">DECISION D</td><td style="display:none"></td></tr><tr><td style="width: 99%"><div class="choicelabel">CHOICE D1</div><div class="uc_from_fel">
       From <a href="#FCS_COP.1.1/ENCRYPT">FCS_COP.1.1/ENCRYPT</a>:</div><div class="uc_not">Do not choose:
       <div class="uc_not_sel">* <a href="#s-aes-ccm"> AES-CCM (as defined in NIST SP 800-38C)</a></div></div><div class="uc_not">Do not choose:
