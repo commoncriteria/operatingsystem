@@ -1728,6 +1728,396 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
   </f-element>
   <audit-event/>
         </f-component>
+
+        <f-component cc-id="fcs_ckm_ext.3" name="Cryptographic Key Generation" status="objective">
+          <comp-lev> requires the TSF to generate and manage the strength of Key Encryption Keys
+            (KEKs).</comp-lev>
+          <management>There are no management activities foreseen.</management>
+          <audit>There are no auditable events foreseen.</audit>
+          <dependencies>FCS_CKM.1 Cryptographic Key Generation<h:br /> FCS_COP.1 Cryptographic
+            Operation<h:br /> FCS_RBG.1 Random Bit Generation<h:br />
+          </dependencies>
+
+
+          <f-element id="fel-kek-asym">
+            <title>The TSF shall use <selectables>
+                <selectable id="s-kek-asym"><snip>asymmetric KEKs</snip> of <assignable
+                    id="a-kek-asym-size">security strength greater than or equal
+                    to 192 bits</assignable> security strength</selectable>
+                <selectable id="s-kek-sym"><snip>symmetric KEKs</snip> of 256-bit security strength
+              corresponding to at least the security strength of the keys encrypted by the KEK</selectable>
+              </selectables>
+              . </title>
+            <ext-comp-def-title>
+              <title>The TSF shall use <assignable>description of KEKs</assignable>.</title>
+            </ext-comp-def-title>
+            <note role="application"> The ST author selects all applicable KEK types implemented by
+              the TOE. </note>
+          </f-element>
+          <f-element id="fel-kek-gen">
+            <title>The TSF shall generate all KEKs using one of the following methods: <h:ul>
+                <h:li>Derive the KEK from a Password Authentication Factor according to FCS_COP.1.1<h:b>
+              /CONDITION</h:b> and </h:li>
+              </h:ul>
+              <selectables linebreak="yes">
+                <selectable>Generate the KEK using an RBG that meets this profile (as specified in
+              FCS_RBG.1)</selectable>
+                <selectable>Generate the KEK using a key generation scheme that meets this profile
+              (as specified in FCS_CKM.1)</selectable>
+                <selectable>Combine the KEK from other KEKs in a way that preserves the effective
+              entropy of each factor by <selectables>
+                    <selectable>using an XOR operation</selectable>
+                    <selectable>concatenating the keys and using a KDF (as described in SP
+                      800-108)</selectable>
+                    <selectable>concatenating the keys and using a KDF (as described in SP
+                      800-56C)</selectable>
+                    <selectable>encrypting one key with another</selectable>
+                  </selectables>
+                </selectable>
+              </selectables>
+              . </title>
+            <ext-comp-def-title>
+              <title>The TSF shall generate all KEKs using one of the following methods: <h:ul>
+                  <h:li>Derive the KEK from a Password Authentication Factor according to
+                    FCS_COP.1.1 and </h:li>
+                </h:ul>
+                <selectables linebreak="yes">
+                  <selectable>Generate the KEK using an RBG that meets this profile (as specified in
+                FCS_RBG.1)</selectable>
+                  <selectable>Generate the KEK using a key generation scheme that meets this profile
+                (as specified in FCS_CKM.1)</selectable>
+                  <selectable>Combine the KEK from other KEKs in a way that preserves the effective
+                entropy of each factor by <selectables>
+                      <selectable>using an XOR operation</selectable>
+                      <selectable>concatenating the keys and using a KDF (as described in SP
+                        800-108)</selectable>
+                      <selectable>concatenating the keys and using a KDF (as described in SP
+                        800-56C)</selectable>
+                      <selectable>encrypting one key with another</selectable>
+                    </selectables>
+                  </selectable>
+                </selectables>
+                . </title>
+            </ext-comp-def-title>
+            <note role="application"> The conditioning of passwords is performed in accordance with
+              FCS_COP.1/CONDITION. <h:br /><h:br /> It is expected that key generation derived from
+              conditioning, using an RBG or generation scheme, and through combination, will each be
+              necessary to meet the requirements set out in this document. In particular, <xref
+                to="Keys" /> has KEKs of each type: KEK_3 is generated, KEK_1 is derived from a
+              Password Authentication Factor, and KEK_2 is combined from two KEKs. In <xref
+                to="Keys" />, KEK_3 may either be a symmetric key generated from an RBG or an
+              asymmetric key generated using a key generation scheme according to FCS_CKM.1. <h:br /><h:br />
+              If combined, the ST author should describe which method of combination is used in
+              order to justify that the effective entropy of each factor is preserved. <h:br /><h:br />SP
+              800-56C specifies a two-step key derivation procedure that employs an
+              extraction-then-expansion technique for deriving keying material from a shared secret
+              generated during a key establishment scheme. The Randomness Extraction step as
+              described in Section 5 of SP 800-56C is followed by Key Expansion using the key
+              derivation functions defined in SP 800-108 (as described in Section 6 of SP 800-56C). </note>
+            <aactivity>
+              <TSS> The evaluator shall examine the key hierarchy section of the TSS to ensure that
+                the formation of all KEKs are described and that the key sizes match that described
+                by the ST author. The evaluator shall examine the key hierarchy section of the TSS
+                to ensure that each key (DEKs, software-based key storage, and KEKs) is encrypted by
+                keys of equal or greater security strength using one of the selected methods.<h:br /><h:br />
+                The evaluator shall review the TSS to verify that it contains a description of the
+                conditioning used to derive KEKs. This description must include the size and storage
+                location of salts. This activity may be performed in combination with that for
+                FCS_COP.1/CONDITION.<h:br /><h:br /> (conditional) If the symmetric KEK is generated
+                by an RBG, the evaluator shall review the TSS to determine that it describes how the
+                functionality described by FCS_RBG.1 is invoked. The evaluator uses the description
+                of the RBG functionality in FCS_RBG.1 or documentation available for the operational
+                environment to determine that the key size being requested is greater than or equal
+                to the key size and mode to be used for the encryption/decryption of the data.<h:br /><h:br />
+                (conditional) If the KEK is generated according to an asymmetric key scheme, the
+                evaluator shall review the TSS to determine that it describes how the functionality
+                described by FCS_CKM.1 is invoked. The evaluator uses the description of the key
+                generation functionality in FCS_CKM.1 or documentation available for the operational
+                environment to determine that the key strength being requested is greater than or
+                equal to 112 bits.<h:br /><h:br /> (conditional) If the KEK is formed from a
+                combination, the evaluator shall verify that the TSS describes the method of
+                combination and that this method is either an XOR, a KDF, or encryption.<h:br /><h:br />
+                (conditional) If a KDF is used, the evaluator shall ensure that the TSS includes a
+                description of the key derivation function and shall verify the key derivation uses
+                an approved derivation mode and key expansion algorithm according to SP 800-108. <h:br /><h:br />
+                (conditional) If <xref to="s-dek-800-56" /> is selected, the evaluator shall ensure
+                the TSS includes a description of the randomness extraction step. The description
+                must include <h:ul>
+                  <h:li>How an approved untruncated MAC function is being used for the randomness
+                extraction step and the evaluator must verify the TSS describes that the output
+                length (in bits) of the MAC function is at least as large as the targeted
+                    security strength (in bits) of the parameter set employed by the key
+                establishment scheme (see Tables 1-3 of SP 800-56C).</h:li>
+                  <h:li>How the MAC function being used for the randomness extraction step is
+                    related to the PRF used in the key expansion and verify the TSS description
+                includes the correct MAC function:</h:li>
+                  <h:ul>
+                    <h:li>If an HMAC-hash is used in the randomness extraction step, then the same
+                HMAC-hash (with the same hash function hash) is used as the PRF in the key
+                      expansion step.</h:li>
+                    <h:li>If an AES-CMAC (with key length 128, 192, or 256 bits) is used in the
+                randomness extraction step, then AES-CMAC with a 128-bit key is used as the
+                      PRF in the key expansion step.</h:li>
+                  </h:ul>
+                  <h:li>The lengths of the salt values being used in the randomness extraction
+                    step and the evaluator shall verify the TSS description includes correct salt
+                lengths:</h:li>
+                  <h:ul>
+                    <h:li>If an HMAC-hash is being used as the MAC, the salt length can be any
+                      value up to the maximum bit length permitted for input to the hash function
+                hash.</h:li>
+                    <h:li>If an AES-CMAC is being used as the MAC, the salt length shall be the
+                      same length as the AES key (i.e., 256 bits). </h:li>
+                  </h:ul>
+                </h:ul><h:br />
+                The evaluator shall also ensure that the documentation of the product's encryption
+                key management is detailed enough that, after reading, the product's key management
+                hierarchy is clear and that it meets the requirements to ensure the keys are
+                adequately protected. The evaluator shall ensure that the documentation includes
+                both an essay and one or more diagrams. Note that this may also be documented as
+                separate proprietary evidence rather than being included in the TSS.<h:br /><h:br />
+              </TSS>
+              <Guidance>There are no guidance evaluation activities for this component.<h:br /><h:br /></Guidance>
+              <Tests> If a KDF is used, the evaluator shall perform one or more of the following
+                tests to verify the correctness of the key derivation function, depending on the
+                modes that are supported. <xref to="KDF" /> maps the data fields to the notations
+                used in SP 800-108 and SP 800-56C. <h:br /><h:br />
+                <h:b>
+                  <ctr ctr-type="Table" id="KDF">: Notations used in SP 800-108 and SP 800-56C</ctr>
+                </h:b><h:br />
+                <h:table>
+                  <h:tr class="header">
+                    <h:td>Data Fields</h:td>
+                    <h:td colspan="2"
+                    >Notations</h:td>
+                  </h:tr>
+                  <h:tr class="header">
+                    <h:td />
+                    <h:td>SP 800-108</h:td>
+                    <h:td>SP
+                      800-56C</h:td>
+                  </h:tr>
+                  <h:tr>
+                    <h:td>Pseudorandom
+                      function</h:td>
+                    <h:td>PRF</h:td>
+                    <h:td>PRF</h:td>
+                  </h:tr>
+                  <h:tr>
+                    <h:td>Counter
+                      length</h:td>
+                    <h:td>r</h:td>
+                    <h:td>r</h:td>
+                  </h:tr>
+                  <h:tr>
+                    <h:td>Length of output of
+                      PRF</h:td>
+                    <h:td>h</h:td>
+                    <h:td>h</h:td>
+                  </h:tr>
+                  <h:tr>
+                    <h:td>Length of derived keying
+                      material</h:td>
+                    <h:td>L</h:td>
+                    <h:td>L</h:td>
+                  </h:tr>
+                  <h:tr>
+                    <h:td>Length of input
+                      values</h:td>
+                    <h:td>I_length</h:td>
+                    <h:td>I_length</h:td>
+                  </h:tr>
+                  <h:tr>
+                    <h:td>Pseudorandom input values I</h:td>
+                    <h:td>K<h:sub>1</h:sub> (key derivation key)</h:td>
+                    <h:td>Z (shared secret)</h:td>
+                  </h:tr>
+                  <h:tr>
+                    <h:td>Pseudorandom salt
+                      values</h:td>
+                    <h:td>n/a</h:td>
+                    <h:td>s</h:td>
+                  </h:tr>
+                  <h:tr>
+                    <h:td>Randomness extraction
+                      MAC</h:td>
+                    <h:td>n/a</h:td>
+                    <h:td>MAC</h:td>
+                  </h:tr>
+                </h:table>
+                <h:br /><h:br />
+                <h:b>Counter
+                Mode Tests:</h:b>
+                <h:br /><h:br /> The evaluator shall determine the following
+                characteristics of the key derivation function:<h:ul>
+                  <h:li>One or more pseudorandom functions that are supported by the
+                    implementation (PRF).</h:li>
+                  <h:li>One or more of the values {8, 16, 24, 32} that equal the length of the
+                    binary representation of the counter (r).</h:li>
+                  <h:li>The length (in bits) of the output of the PRF (h).</h:li>
+                  <h:li>Minimum and maximum values for the length (in bits) of the derived keying
+                material (L). These values can be equal if only one value of L is supported.
+                    These must be evenly divisible by h.</h:li>
+                  <h:li>Up to two values of L that are NOT evenly divisible by h.</h:li>
+                  <h:li>Location of the counter relative to fixed input data: before, after, or in
+                the middle.<h:ul>
+                      <h:li>Counter before fixed input data: fixed input data string length (in
+                bytes), fixed input data string value.</h:li>
+                      <h:li>Counter after fixed input data: fixed input data string length (in
+                bytes), fixed input data string value.</h:li>
+                      <h:li>Counter in the middle of fixed input data: length of data before
+                        counter (in bytes), length of data after counter (in bytes), value of string
+                input before counter, value of string input after counter.</h:li>
+                    </h:ul></h:li>
+                  <h:li>The length (I_length) of the input values I.</h:li>
+                </h:ul><h:br />
+                For each supported combination of I_length, MAC, salt, PRF, counter location, value
+                of r, and value of L, the evaluator shall generate 10 test vectors that include
+                pseudorandom input values I, and pseudorandom salt values. If there is only one
+                value of L that is evenly divisible by h, the evaluator shall generate 20 test
+                vectors for it. For each test vector, the evaluator shall supply this data to the
+                TOE in order to produce the keying material output.<h:br /><h:br /> The results from
+                each test may either be obtained by the evaluator directly or by supplying the
+                inputs to the implementer and receiving the results in response. To determine
+                correctness, the evaluator shall compare the resulting values to those obtained by
+                submitting the same inputs to a known good implementation. <h:br /><h:br />
+                <h:b>Feedback
+                Mode Tests:</h:b>
+                <h:br /> The evaluator shall determine the following
+                characteristics of the key derivation function:<h:br /><h:ul>
+                  <h:li>One or more pseudorandom functions that are supported by the
+                    implementation (PRF).</h:li>
+                  <h:li>The length (in bits) of the output of the PRF (h).</h:li>
+                  <h:li>Minimum and maximum values for the length (in bits) of the derived keying
+                material (L). These values can be equal if only one value of L is supported.
+                    These must be evenly divisible by h.</h:li>
+                  <h:li>Up to two values of L that are NOT evenly divisible by h.</h:li>
+                  <h:li>Whether or not zero-length IVs are supported.</h:li>
+                  <h:li>Whether or not a counter is used, and if so: <h:ul>
+                      <h:li>One or more of the values {8, 16, 24, 32} that equal the length of the
+                binary representation of the counter (r).</h:li>
+                      <h:li>Location of the counter relative to fixed input data: before, after,
+                        or in the middle.</h:li>
+                      <h:ul>
+                        <h:li>Counter before fixed input data: fixed input data string length (in
+                bytes), fixed input data string value.</h:li>
+                        <h:li>Counter after fixed input data: fixed input data string length (in
+                bytes), fixed input data string value.</h:li>
+                        <h:li>Counter in the middle of fixed input data: length of data before
+                counter (in bytes), length of data after counter (in bytes), value of
+                          string input before counter, value of string input after counter.</h:li>
+                      </h:ul>
+                    </h:ul>
+                  </h:li>
+                  <h:li>The length (I_length) of the input values I.</h:li>
+                </h:ul><h:br />
+                For each supported combination of I_length, MAC, salt, PRF, counter location (if a
+                counter is used), value of r (if a counter is used), and value of L, the evaluator
+                shall generate 10 test vectors that include pseudorandom input values I and
+                pseudorandom salt values. If the KDF supports zero-length IVs, five of these test
+                vectors will be accompanied by pseudorandom IVs and the other five will use
+                zero-length IVs. If zero-length IVs are not supported, each test vector will be
+                accompanied by an pseudorandom IV. If there is only one value of L that is evenly
+                divisible by h, the evaluator shall generate 20 test vectors for it.<h:br /><h:br />
+                For each test vector, the evaluator shall supply this data to the TOE in order to
+                produce the keying material output. The results from each test may either be
+                obtained by the evaluator directly or by supplying the inputs to the implementer and
+                receiving the results in response. To determine correctness, the evaluator shall
+                compare the resulting values to those obtained by submitting the same inputs to a
+                known good implementation.<h:br /><h:br />
+                <h:b>Double Pipeline Iteration Mode Tests:</h:b><h:br />
+                The evaluator shall determine the following characteristics of the key derivation
+                function:<h:br /><h:ul>
+                  <h:li>One or more pseudorandom functions that are supported by the
+                    implementation (PRF).</h:li>
+                  <h:li>The length (in bits) of the output of the PRF (h).</h:li>
+                  <h:li>Minimum and maximum values for the length (in bits) of the derived keying
+                material (L). These values can be equal if only one value of L is supported.
+                    These must be evenly divisible by h.</h:li>
+                  <h:li>Up to two values of L that are NOT evenly divisible by h.</h:li>
+                  <h:li>Whether or not a counter is used, and if so:<h:ul>
+                      <h:li>One or more of the values {8, 16, 24, 32} that equal the length of the
+                binary representation of the counter (r).</h:li>
+                      <h:li>Location of the counter relative to fixed input data: before, after, or
+                in the middle. <h:ul>
+                          <h:li>Counter before fixed input data: fixed input data string length
+                            (in bytes), fixed input data string value.</h:li>
+                          <h:li>Counter after fixed input data: fixed input data string length (in
+                bytes), fixed input data string value.</h:li>
+                          <h:li>Counter in the middle of fixed input data: length of data before
+                counter (in bytes), length of data after counter (in bytes), value of
+                            string input before counter, value of string input after
+                            counter.</h:li>
+                        </h:ul>
+                      </h:li>
+                    </h:ul>
+                  </h:li>
+                  <h:li>The length (I_length) of the input values I.</h:li>
+                </h:ul><h:br />
+                For each supported combination of I_length, MAC, salt, PRF, counter location (if a
+                counter is used), value of r (if a counter is used), and value of L, the evaluator
+                shall generate 10 test vectors that include pseudorandom input values I, and
+                pseudorandom salt values. If there is only one value of L that is evenly divisible
+                by h, the evaluator shall generate 20 test vectors for it. <h:br /><h:br /> For each
+                test vector, the evaluator shall supply this data to the TOE in order to produce the
+                keying material output. The results from each test may either be obtained by the
+                evaluator directly or by supplying the inputs to the implementer and receiving the
+                results in response. To determine correctness, the evaluator shall compare the
+                resulting values to those obtained by submitting the same inputs to a known good
+                implementation. </Tests>
+            </aactivity>
+          </f-element>
+          <audit-event />
+        </f-component>
+
+        <f-component cc-id="fcs_cop.1" name="Cryptographic Operation" iteration="CONDITION" status="objective">
+          <f-element id="fel-cond-how">
+            <title>The TSF shall perform [<h:li>conditioning</h:li>] in accordance with the
+              specified cryptographic algorithm <refinement>HMAC-SHA-384 using a salt, and <selectables>
+                  <selectable>PBKDF2 with <assignable>number of iterations</assignable> iterations</selectable>
+                  <selectable>
+                    <assignable>key stretching function</assignable>
+                  </selectable>
+                  <selectable exclusive="yes">no other function</selectable>
+                </selectables>
+              and output</refinement> cryptographic key sizes<refinement> 256 bits
+              </refinement> that meet the following: <refinement><selectables>
+                  <selectable>NIST SP 800-132</selectable>
+                  <selectable exclusive="yes">no standard</selectable>
+                </selectables>
+              .</refinement>
+            </title>
+            <note role="application">The key cryptographic key sizes in the third selection should
+              be made to correspond to the KEK key sizes selected in FCS_CKM_EXT.3. <h:br /><h:br />
+              This password must be conditioned into a string of bits that forms the submask to be
+              used as input into the KEK. Conditioning can be performed using one of the identified
+              hash functions and may include a key stretching function; the method used is selected
+              by the ST author. If selected, NIST SP 800-132 requires the use of a pseudorandom
+              function (PRF) consisting of HMAC with an approved hash function. The ST author
+              selects the hash function used, also includes the appropriate requirements for HMAC
+              and the hash function. <h:br /><h:br /> Appendix A of NIST SP 800-132 recommends
+              setting the iteration count in order to increase the computation needed to derive a
+              key from a password and, therefore, increase the workload of performing a dictionary
+              attack. </note>
+            <aactivity>
+              <TSS>The evaluator shall check that the TSS describes the method by which the password
+                is first encoded and then fed to the SHA algorithm and verify the SHA algorithm
+                matches the first selection.<h:br /><h:br /> If a key stretching function, such as
+                PBKDF2, is selected the settings for the algorithm (padding, blocking, etc.) shall
+                be described. The evaluator shall verify that the TSS contains a description of how
+                the output of the hash function or key stretching function is used to form the
+                submask that will be input into the function and is the same length as the KEK as
+                specified in FCS_CKM_EXT.3. <h:br /><h:br /> If any manipulation of the key is
+                performed in forming the submask that will be used to form the KEK, that process
+                shall be described in the TSS.<h:br /><h:br /></TSS>
+              <Guidance>There are no guidance evaluation activities for this component.<h:br /><h:br /></Guidance>
+              <Tests>There are no test evaluation activities for this component. No explicit testing
+                of the
+                formation of the submask from the input password is required.</Tests>
+            </aactivity>
+          </f-element>
+          <audit-event />
+        </f-component>
  
         <f-component cc-id="fcs_cop.1" iteration="ENCRYPT" name="Cryptographic Operation - Encryption/Decryption">
           <f-element id="fel-encrypt-how">
@@ -1741,16 +2131,16 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               </selectables>
 	      and
 	      <selectables linebreak="yes">
-	        <!-- <selectable>AES-CCMP (as defined in FIPS PUB 197, NIST SP 800-38C and IEEE 802.11-2012)</selectable> -->
+                  <!-- <selectable>AES-CCMP (as defined in FIPS PUB 197, NIST SP 800-38C and IEEE 802.11-2012)</selectable> -->
                 <selectable id="s-aes-kw">AES Key Wrap (KW) (as defined in NIST SP 800-38F)</selectable>
                 <selectable id="s-aes-kwp">AES Key Wrap with Padding (KWP) (as defined in NIST SP 800-38F)</selectable>
-                <!-- <selectable>AES-GCM (as defined in NIST SP 800-38D)</selectable> -->
-                <!-- <selectable>AES-CCM (as defined in NIST SP 800-38C)</selectable> -->
+                  <!-- <selectable>AES-GCM (as defined in NIST SP 800-38D)</selectable> -->
+                  <!-- <selectable>AES-CCM (as defined in NIST SP 800-38C)</selectable> -->
                 <selectable id="s-aes-ccmp">AES-CCMP-256 (as defined in NIST SP 800-38C and IEEE 802.11ac-2013)</selectable>
                 <selectable id="s-aes-gcmp">AES-GCMP-256 (as defined in NIST SP 800-38D and IEEE 802.11ac-2013)</selectable>
                 <selectable id="s-aes-ccm"> AES-CCM (as defined in NIST SP 800-38C)</selectable>
-	            <selectable id="s-aes-gcm">AES-GCM (as defined in NIST SP 800-38D)</selectable>	        
-<!-- <depends on="s-ftp_ssh"/> Could have added this to the previous, but choose to use rules.-->
+	            <selectable id="s-aes-gcm">AES-GCM (as defined in NIST SP 800-38D)</selectable>
+                  <!-- <depends on="s-ftp_ssh"/> Could have added this to the previous, but choose to use rules.-->
 		
                 <selectable exclusive="yes">no other modes</selectable>
               </selectables></h:b>
@@ -1765,11 +2155,11 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
       </title>
             <note role="application">
 	      <h:p>
-		<!-- AUTOMATION -->
+                <!-- AUTOMATION -->
               AES CCMP (which uses AES in CCM as specified in SP 800-38C) becomes mandatory and must
               be selected if the ST includes the PP-Module for Wireless LAN Clients.
-	      <!-- <!-\- AUTOMATION -\-> -->
-	      <!-- AES-CTR becomes mandatory and must be selected if the ST includes the <xref to="pkg-ssh"/>. -->
+                <!-- <!-\- AUTOMATION -\-> -->
+                <!-- AES-CTR becomes mandatory and must be selected if the ST includes the <xref to="pkg-ssh"/>. -->
         <h:p>
           AES-CCM becomes mandatory and must be selected if the ST includes the PP-Module for Bluetooth.
         </h:p>	    
@@ -1782,8 +2172,8 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 		      includes the PP-Module for Bluetooth, and it may only be used specifically
 		      with AES-CCM for Bluetooth functions.
 	      </h:p>
-	      <!-- <h:p>If <xref to="s-ftp_ssh"/> is selected in FTP_ITC_EXT.1.1, -->
-	      <!-- then <xref to="s-aes-ctr"/> must be selected.</h:p> -->
+              <!-- <h:p>If <xref to="s-ftp_ssh"/> is selected in FTP_ITC_EXT.1.1, -->
+              <!-- then <xref to="s-aes-ctr"/> must be selected.</h:p> -->
 	      
 	    </note>
             <aactivity>
@@ -1994,21 +2384,21 @@ PT = CT[i]
 This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation.
 </h:p>
 
-<!-- <h:p> -->
-<!--   If "invoke platform-provided" is selected, -->
-<!--   the evaluator confirms that SSH connections are only successful if appropriate algorithms and appropriate key sizes are configured. -->
-<!--   To do this, the evaluator shall perform the following tests: -->
-<!-- </h:p> -->
+                  <!-- <h:p> -->
+                  <!--   If "invoke platform-provided" is selected, -->
+                  <!--   the evaluator confirms that SSH connections are only successful if appropriate algorithms and appropriate key sizes are configured. -->
+                  <!--   To do this, the evaluator shall perform the following tests: -->
+                  <!-- </h:p> -->
 
-<!-- <h:p><h:b>Test 1</h:b>: [Conditional: TOE is an SSH server] -->
-<!-- The evaluator shall configure an SSH client to connect with an invalid cryptographic algorithm and key size for each listening SSH socket connection on the TOE. -->
-<!-- The evaluator initiates SSH client connections to each listening SSH socket connection on the TOE and observes that the connection fails in each attempt. -->
-<!-- </h:p> -->
+                  <!-- <h:p><h:b>Test 1</h:b>: [Conditional: TOE is an SSH server] -->
+                  <!-- The evaluator shall configure an SSH client to connect with an invalid cryptographic algorithm and key size for each listening SSH socket connection on the TOE. -->
+                  <!-- The evaluator initiates SSH client connections to each listening SSH socket connection on the TOE and observes that the connection fails in each attempt. -->
+                  <!-- </h:p> -->
 
-<!-- <h:p><h:b>Test 2</h:b>: [Conditional: TOE is an SSH client] -->
-<!-- The evaluator shall configure a listening SSH socket on a remote SSH server that accepts only invalid cryptographic algorithms and keys. -->
-<!-- The evaluator uses the TOE to attempt an SSH connection to this server and observes that the connection fails. -->
-<!-- </h:p> -->
+                  <!-- <h:p><h:b>Test 2</h:b>: [Conditional: TOE is an SSH client] -->
+                  <!-- The evaluator shall configure a listening SSH socket on a remote SSH server that accepts only invalid cryptographic algorithms and keys. -->
+                  <!-- The evaluator uses the TOE to attempt an SSH connection to this server and observes that the connection fails. -->
+                  <!-- </h:p> -->
 </h:div>
 	      <h:div>
 		<depends on="s-aes-kw" also="s-aes-kwp"/>
@@ -2210,13 +2600,13 @@ This result shall be compared to the result of running 1000 iterations with the 
 		</and>
 	      </or>
 	    </rule>
-	    <!-- <rule id="r-aes-ctr-for-ssh"> -->
-	    <!--   <if><ref-id>s-ftp_ssh</ref-id></if> -->
-	    <!--   <then><ref-id>s-aes-ctr</ref-id></then> -->
-	      <!-- <or><and><ref-id>s-aes-ctr</ref-id><ref-id>s-ftp_ssh</ref-id></and> -->
-	      <!-- <not><ref-id>s-ftp_ssh</ref-id></not> -->
-	      <!-- </or> -->
-	    <!-- </rule> -->
+            <!-- <rule id="r-aes-ctr-for-ssh"> -->
+            <!--   <if><ref-id>s-ftp_ssh</ref-id></if> -->
+            <!--   <then><ref-id>s-aes-ctr</ref-id></then> -->
+            <!-- <or><and><ref-id>s-aes-ctr</ref-id><ref-id>s-ftp_ssh</ref-id></and> -->
+            <!-- <not><ref-id>s-ftp_ssh</ref-id></not> -->
+            <!-- </or> -->
+            <!-- </rule> -->
           </f-element>
           <audit-event/>
         </f-component>
@@ -2431,9 +2821,9 @@ This result shall be compared to the result of running 1000 iterations with the 
           </f-element>
           <audit-event/>
         </f-component>
-        
-       
-<!--
+
+
+        <!--
 	<ext-comp-def fam-id="FCS_RBG_EXT" title="Random Bit Generation">
 	  <fam-behavior>Components in this family address the requirements for random bit and number generation. This is a
 	    new family defined for the FCS class.</fam-behavior>
@@ -2827,7 +3217,355 @@ only AES-based implementations for CTR_DRBG are allowed.
           </aactivity>
           </f-element>
           <audit-event/>
-        </f-component>    
+        </f-component>
+
+        <ext-comp-def fam-id="FCS_STG_EXT" title="Cryptographic Key Storage">
+          <fam-behavior>This family defines requirements for the implementation of secure key
+            storage with access control, confidentiality, and integrity protections.
+          </fam-behavior>
+        </ext-comp-def>
+
+        <!--   <h:div class="comp">
+          <h:h3>FCS_STG Cryptographic Storage</h:h3>
+          <h:p class="comp"> 
+            The following requirements describe how keys are protected. All keys
+            must ultimately be protected by a REK, and may optionally be protected by the user’s
+            authentication factor. Each key’s confidentiality and integrity must be protected. This
+            section also describes the secure key storage services to be provided by the Mobile
+            Device for use by applications and users, applying the same level of protection for
+            these keys as keys internal to the OS. </h:p>
+        </h:div>-->
+
+        <f-component cc-id="fcs_stg_ext.1" name="Cryptographic Key Storage" status="objective">
+
+          <comp-lev> requires the TSF to implement a secure key storage and defines the access
+            restrictions to be enforced on this. </comp-lev>
+          <management>The following actions could be considered for the management functions in FMT: <h:ul>
+              <h:li>Importing keys or secrets into the secure key storage.</h:li>
+              <h:li>Destroying imported keys or secrets in the secure key storage.</h:li>
+              <h:li>Approving exceptions for shared use of keys or secrets by multiple applications.</h:li>
+              <h:li>Approving exceptions for destruction of keys or secrets by applications that did
+            not import the key or secret</h:li>
+            </h:ul>
+          </management>
+          <audit>The following actions should be auditable if FAU_GEN Security audit data generation
+            is included in the PP/ST: <h:ul>
+              <h:li>Import or destruction of key.</h:li>
+              <h:li>Exceptions to use and destruction rules.</h:li>
+            </h:ul>
+          </audit>
+          <dependencies> [FCS_CKM.1 Cryptographic Key Generation, or<h:br /> FDP_ITC.1 Import of
+            User Data without Security Attributes, or<h:br /> FDP_ITC.2 Import of User Data with
+            Security Attributes]<h:br /> FMT_SMF.1 Specification of Management Functions<h:br />
+            FMT_SMR.1 Security Roles </dependencies>
+
+          <!--fcs_stg_ext.1.1 -->
+          <f-element id="fel-key-store">
+            <title>The TSF shall provide <selectables>
+                <selectable>mutable hardware</selectable>
+                <selectable id="s-software-store">software-based</selectable>
+              </selectables>
+              secure key storage for asymmetric private keys and <selectables>
+                <selectable>symmetric keys</selectable>
+                <selectable>persistent secrets</selectable>
+                <selectable exclusive="yes">no other keys</selectable>
+              </selectables>.</title>
+            <ext-comp-def-title>
+              <title>The TSF shall provide <assignable>storage medium</assignable> secure key
+                storage for asymmetric private keys and <assignable>list of secrets</assignable> .</title>
+            </ext-comp-def-title>
+
+            <note role="application">A hardware keystore can be exposed to the TSF through a variety
+              of interfaces, including embedded on the motherboard, USB, microSD, and Bluetooth. <h:br /><h:br />
+              Immutable hardware is considered outside of this requirement and will be covered
+              elsewhere. <h:br /><h:br /> If the secure key storage is implemented in software that
+              is protected as required by FCS_STG_EXT.2, the ST author must select <xref
+                to="s-software-store" />. If <xref to="s-software-store" /> is selected, the ST
+              author must select <xref to="s-all-software-key-store" /> in FCS_STG_EXT.2.1. <rule
+                id="r-store">
+                <if>
+                  <ref-id>s-software-store</ref-id>
+                </if>
+                <then>
+                  <ref-id>s-all-software-key-store</ref-id>
+                </then>
+              </rule>
+		<h:br /><h:br />
+              Support for secure key storage for all symmetric keys and persistent secrets will be
+              required in future revisions. </note>
+          </f-element>
+          <!--fcs_stg_ext.1.2 -->
+          <f-element id="fel-key-import">
+            <title>The TSF shall be capable of importing keys or secrets into the secure key storage
+              upon request of <selectables>
+                <selectable id="import-user">the user</selectable>
+                <selectable id="s-import-admin">the administrator</selectable>
+              </selectables>
+              and <selectables>
+                <selectable>applications running on the TSF</selectable>
+                <selectable exclusive="yes">no other subjects</selectable>
+              </selectables>
+              . </title>
+            <ext-comp-def-title>
+              <title>The TSF shall be capable of importing keys or secrets into the secure key
+                storage upon request of <assignable>list of users</assignable> and <assignable>list
+                of other subjects</assignable>. </title>
+            </ext-comp-def-title>
+            <note role="application"> If the ST selects only <xref to="import-user" />, the ST
+              author must select function <xref to="mf-keyStorage" /> in FMT_MOF_EXT.1.1. </note>
+          </f-element>
+          <!--fcs_stg_ext.1.3 -->
+          <f-element id="fel-keystore-kill">
+            <title>The TSF shall be capable of destroying keys or secrets in the secure key storage
+              upon request of <selectables>
+                <selectable>the user</selectable>
+                <selectable>the administrator</selectable>
+              </selectables>. </title>
+            <note role="application">If the ST selects <xref to="import-user" />, the ST author must
+              select function <xref to="mf-keyWipe" /> in FMT_MOF_EXT.1.1. </note>
+          </f-element>
+          <!--fcs_stg_ext.1.4 -->
+          <f-element id="fel-keystore-who-access">
+            <title>The TSF shall have the capability to allow only the application that imported the
+              key or secret the use of the key or secret. Exceptions may only be explicitly
+              authorized by <selectables>
+                <selectable>the user</selectable>
+                <selectable>the administrator</selectable>
+                <selectable>a common application developer</selectable>
+              </selectables>. </title>
+            <note role="application">If the ST selects <xref to="import-user" /> or <xref
+                to="s-import-admin" />, the ST author must also select <xref to="mf-sharedKeys" />
+              in FMT_SMF_EXT.1.1. If the ST selects <xref to="import-user" />, the ST author must
+              select function <xref to="mf-sharedKeys" /> in FMT_MOF_EXT.1.1. </note>
+          </f-element>
+          <!--fcs_stg_ext.5. -->
+          <f-element id="fel-keystore-who-kill">
+            <title>The TSF shall allow only the application that imported the key or secret to
+              request that the key or secret be destroyed. Exceptions may only be explicitly
+              authorized by <selectables>
+                <selectable id="s-killkey-user">the user</selectable>
+                <selectable id="s-killkey-admin">the administrator</selectable>
+                <selectable>a common application developer</selectable>
+              </selectables>. </title>
+            <ext-comp-def-title>
+              <title>The TSF shall allow only the application that imported the key or secret to
+                request that the key or secret be destroyed. Exceptions may only be explicitly
+                authorized by <assignable>list of subjects</assignable>.</title>
+            </ext-comp-def-title>
+
+            <note role="application">If the ST selects <xref to="s-killkey-user" /> or <xref
+                to="s-killkey-admin" />, the ST author must also select function <xref
+                to="mf-keyWipeRules" /> in FMT_SMF_EXT.1.1. If the ST selects only <xref
+                to="s-killkey-user" />, the ST author must select function <xref
+                to="mf-keyWipeRules" /> in FMT_MOF_EXT.1.1. </note>
+            <aactivity> The evaluator shall verify that the API documentation provided according to <xref
+                to="adv" /> includes the security functions (import, use, and destruction) described
+              in these requirements. The API documentation shall include the method by which
+              applications restrict access to their keys or secrets in order to meet
+              FCS_STG_EXT.1.4. <h:br /><h:br />
+                <TSS> The evaluator shall review the TSS to determine
+              that the TOE implements the required secure key storage. The evaluator shall ensure
+              that the TSS contains a description of the key storage mechanism that justifies the
+              selection of "mutable hardware" or "software-based". <h:br /><h:br />
+              </TSS>
+                <Guidance>
+              The evaluator shall review the AGD guidance to determine that it describes the steps
+              needed to import or destroy keys or secrets.<h:br /><h:br />
+              </Guidance>
+                <Tests>
+              The evaluator shall test the functionality of each security function: <testlist>
+                  <test>The evaluator shall import keys or secrets of each supported type according
+              to
+                    the AGD guidance. The evaluator shall write, or the developer shall provide
+              access to, an application that generates a key or secret of each supported type and
+              calls the import functions. The evaluator shall verify that no errors occur
+                    during import.</test>
+                  <h:br />
+                  <test>The evaluator shall write, or the developer shall provide access to, an
+              application that uses an imported key or secret: <h:br />
+                    <h:ul>
+                      <h:li>For RSA, the secret shall be used to sign data.</h:li>
+                      <h:li>For ECDSA, the secret shall be used to sign data.</h:li>
+                    </h:ul>
+                    <h:br />
+              In the future additional types will be required to be tested: <h:br />
+                    <h:ul>
+                      <h:li>For symmetric algorithms, the secret shall be used to encrypt
+                        data.</h:li>
+                      <h:li>For persistent secrets, the secret shall be compared to the imported
+              secret. </h:li>
+                    </h:ul>
+                    <h:br /> The evaluator shall repeat this
+              test with the application-imported keys or secrets and a different application’s
+              imported keys or secrets. The evaluator shall verify that the TOE requires approval
+              before allowing the application to use the key or secret imported by the user or by a
+              different application: <h:br />
+                    <h:ul>
+                      <h:li>The evaluator shall deny the approvals to verify that the application
+                        is not able to use the key or secret as described. </h:li>
+                      <h:li>The evaluator shall repeat the test, allowing the approvals to verify
+              that the application is able to use the key or secret as described.</h:li>
+                    </h:ul>
+                    <h:br />
+              If the ST author has selected "common application developer", this test is performed
+              by either using applications from different developers or appropriately (according to
+              API documentation) not authorizing sharing. </test>
+                  <h:br />
+                  <test>The evaluator shall destroy keys or secrets of each supported type according
+              to the AGD guidance. The evaluator shall write, or the developer shall provide access
+              to, an application that destroys an imported key or secret. <h:br /><h:br /> The
+              evaluator shall repeat this test with the application-imported keys or secrets and a
+              different application’s imported keys or secrets. The evaluator shall verify that the
+              TOE requires approval before allowing the application to destroy the key or secret
+              imported by the administrator or by a different application: <h:br /><h:br />
+                    <h:ul>
+                      <h:li>The evaluator shall deny the approvals and verify that the application
+                        is still able to use the key or secret as described. </h:li>
+                      <h:li>The evaluator shall repeat the test, allowing the approvals and
+                        verifying that the application is no longer able to use the key or secret as
+              described.</h:li>
+                    </h:ul>
+                    <h:br /> If the ST author has selected
+              "common application developer", this test is performed by either using applications
+              from different developers or appropriately (according to API documentation) not
+              authorizing sharing. </test>
+                </testlist>
+              </Tests>
+            </aactivity>
+          </f-element>
+          <audit-event>
+            <audit-event-descr>Import or destruction of key</audit-event-descr>
+            <audit-event-info>Identity of key, role and identity of requester</audit-event-info>
+          </audit-event>
+          <audit-event>
+            <audit-event-descr>
+              <selectables onlyone="yes">
+                <selectable>Exceptions to use and destruction rules</selectable>
+                <selectable>none</selectable>
+              </selectables>
+            </audit-event-descr>
+            <audit-event-info>Identity of key, role and identity of requester</audit-event-info>
+          </audit-event>
+
+
+        </f-component>
+        <f-component cc-id="fcs_stg_ext.2" name="Encrypted Cryptographic Key Storage" status="objective">
+
+          <comp-lev> requires the TSF to implement confidentiality measures to protect the key
+            storage.</comp-lev>
+          <management>There are no management activities foreseen.
+          </management>
+          <audit>There are no auditable events foreseen.
+          </audit>
+          <dependencies> FCS_CKM_EXT.3 Cryptographic Key Generation<h:br /> FCS_COP.1 Cryptographic
+            Operation<h:br /> FCS_STG_EXT.1 Cryptographic Key Storage </dependencies>
+
+          <f-element id="fel-encrypt-key-what">
+            <title>The TSF shall encrypt all DEKs, KEKs, <assignable>any long-term trusted channel
+              key material</assignable> and <selectables>
+                <selectable id="s-all-software-key-store">all software-based key storage</selectable>
+                <selectable exclusive="yes">no other keys</selectable>
+              </selectables>
+              by KEKs that are <selectables linebreak="yes">
+                <selectable>Protected by the REK with <selectables linebreak="yes">
+                    <selectable>encryption by a REK</selectable>
+                    <selectable>encryption by a KEK chaining from a REK</selectable>
+                    <selectable>encryption by a KEK that is derived from a REK</selectable>
+                  </selectables>
+                </selectable>
+                <selectable>Protected by the REK and the password with <selectables linebreak="yes">
+                    <selectable>encryption by a REK and the password-derived KEK</selectable>
+                    <selectable>encryption by a KEK chaining to a REK and the password-derived or
+              biometric-unlocked KEK</selectable>
+                    <selectable>encryption by a KEK that is derived from a REK and the
+              password-derived or biometric-unlocked KEK</selectable>
+                  </selectables>
+                </selectable>
+              </selectables>
+              .</title>
+            <ext-comp-def-title>
+              <title> The TSF shall encrypt all DEKs, KEKs, <assignable>any long-term trusted
+                channel
+                  key material</assignable> and <assignable>other secrets </assignable> by KEKs that
+                are <assignable>protection mechanism</assignable>. </title>
+            </ext-comp-def-title>
+            <note role="application">The ST author must select <xref to="s-all-software-key-store" />
+              if <xref to="s-software-store" /> is selected in FCS_STG_EXT.1.1. If the ST author
+              selects <xref to="mutable_hardware" /> in FCS_STG_EXT.1.1, the secure key storage is
+              not subject to this requirement. REKs are not subject to this requirement. <h:br /><h:br />
+              A REK and the password-derived KEK may be combined to form a combined KEK (as
+              described in FCS_CKM_EXT.3) in order to meet this requirement. <h:br /><h:br />
+              Software-based key storage must be protected by the password or biometric and REK. <h:br /><h:br />
+              All keys must ultimately be protected by a REK. In particular, <xref
+                to="Keys" /> has KEKs protected according to these requirements: DEK_1 meets the
+              "encryption by a REK and the password-derived KEK" case and would be appropriate for
+              sensitive data, DEK_2 meets the "encryption by a KEK chaining from a REK" case and
+              would not be appropriate for sensitive data, K_1 meets the "encryption by a REK" case
+              and is not considered a sensitive key, and K_2 meets the "encryption by a KEK chaining
+              to a REK and the password-derived or biometric-unlocked KEK" case and is considered a
+              sensitive key. <h:br /><h:br /> Long-term trusted channel key material includes Wi-Fi
+              (PSKs), IPsec (PSKs and client certificates) and Bluetooth keys. These keys must not
+              be protected by the password, as they may be necessary in the locked state. For
+              clarity, the ST author must assign any Long-term trusted channel key material
+              supported by the TOE . At a minimum, a TOE must support at least Wi-Fi and Bluetooth
+              keys.</note>
+            <aactivity>
+              <TSS>The evaluator shall review the TSS to determine that the TSS includes key
+                hierarchy description of the protection of each DEK for data-at-rest, of
+                software-based key storage, of long-term trusted channel keys, and of KEK related to
+                the protection of the DEKs, long-term trusted channel keys, and software-based key
+                storage. This description must include a diagram illustrating the key hierarchy
+                implemented by the TOE in order to demonstrate that the implementation meets
+                FCS_STG_EXT.2. The description shall indicate how the functionality described by
+                FCS_RBG.1 is invoked to generate DEKs (FCS_CKM_EXT.2), the key size (FCS_CKM_EXT.2
+                and FCS_CKM_EXT.3) for each key, how each KEK is formed (generated, derived, or
+                combined according to FCS_CKM_EXT.3), the integrity protection method for each
+                encrypted key (FCS_STG_EXT.3), and the IV generation for each key encrypted by the
+                same KEK (FCS_IV_EXT.1). More detail for each task follows the corresponding
+                requirement.<h:br />
+                  <h:br /> The evaluator shall also ensure that the documentation
+                of the product's encryption key management is detailed enough that, after reading,
+                the product's key management hierarchy is clear and that it meets the requirements
+                to ensure the keys are adequately protected. The evaluator shall ensure that the
+                documentation includes both an essay and one or more diagrams. Note that this may
+                also be documented as separate proprietary evidence rather than being included in
+                the TSS.<h:br /><h:br />
+              </TSS>
+              <!-- <Guidance></Guidance> -->
+              <!-- <Tests></Tests> -->
+            </aactivity>
+          </f-element>
+          <f-element id="fel-encrypt-key-how">
+            <title>DEKs, KEKs, <assignable>any long-term trusted channel key material</assignable>
+              and <selectables>
+                <selectable>all software-based key storage</selectable>
+                <selectable exclusive="yes">no other keys</selectable>
+              </selectables>
+              shall be encrypted using one of the following methods: <selectables>
+                <selectable>using a SP800-56B key establishment scheme</selectable>
+                <selectable>using AES in the <selectables>
+                    <selectable>Key Wrap (KW) mode</selectable>
+                    <selectable>Key Wrap with Padding (KWP) mode</selectable>
+                    <selectable>GCM</selectable>
+                    <selectable>CCM</selectable>
+                    <selectable>CBC mode</selectable>
+                  </selectables></selectable>
+              </selectables>
+              . </title>
+            <note role="application">The ST author selects which key encryption schemes are used by
+              the TOE. This requirement refers only to KEKs as defined this PP and does not refer to
+              those KEKs specified in other standards. The ST author must assign the same Long-term
+              trusted channel key material assigned in FCS_STG_EXT.2.1.</note>
+            <aactivity>
+              <TSS>The evaluator shall examine the key hierarchy description in the TSS section to
+                verify that each DEK and software-stored key is encrypted according to
+                FCS_STG_EXT.2.<h:br /><h:br /></TSS>
+              <Guidance>There are no guidance evaluation activities for this component.<h:br /><h:br /></Guidance>
+              <Tests>There are no test evaluation activities for this component.</Tests>
+            </aactivity>
+          </f-element>
+          <audit-event />
+        </f-component>
         
 
 	<ext-comp-def fam-id="FCS_STO_EXT" title="Storage of Sensitive Data">
@@ -3011,12 +3749,12 @@ only AES-based implementations for CTR_DRBG are allowed.
 		If the TSF implements a native VPN client, then the ST author must select 
 		<xref to="s-provides-vpnclient"/> and includes the PP-Module for VPN Client
 		as part of the ST.
-		  <!-- If the native VPN client is to be validated  -->
-		  <!-- (<xref to="s-itc-ipsec"/> is selected in FTP_ITC_EXT.1.1  -->
-		  <!-- and the TSF is validated against the  -->
-		  <!-- <h:i>Module for Virtual Private Network (VPN) Clients</h:i>), -->
-		  <!-- the ST author will also -->
-		  <!-- include FDP_IFC_EXT.1 from this package. -->
+                <!-- If the native VPN client is to be validated  -->
+                <!-- (<xref to="s-itc-ipsec"/> is selected in FTP_ITC_EXT.1.1  -->
+                <!-- and the TSF is validated against the  -->
+                <!-- <h:i>Module for Virtual Private Network (VPN) Clients</h:i>), -->
+                <!-- the ST author will also -->
+                <!-- include FDP_IFC_EXT.1 from this package. -->
 	      </h:p>
 	      <h:p>
 		  In the future, this requirement may also make a distinction between the
@@ -3183,8 +3921,8 @@ only AES-based implementations for CTR_DRBG are allowed.
 	      <Tests>
 		<h:div>
 		  <depends on="s-pass"/>
-		  <!-- If <xref to="s-pass"/> is selected, the evaluator shall configure the OS with a -->
-		  <!-- known user name and password and conduct the following tests: -->
+                  <!-- If <xref to="s-pass"/> is selected, the evaluator shall configure the OS with a -->
+                  <!-- known user name and password and conduct the following tests: -->
 		  <testlist>
                     <test>
 		      The evaluator shall attempt to authenticate to the OS using
@@ -3281,26 +4019,26 @@ The TSF shall authenticate any user's claimed identity according to the
 	      </h:p>
 	      </Guidance>
 	      <Tests>
-		
-              <!-- <testlist> -->
-              <!--   <test>For each -->
-	      <!-- 	authentication mechanism selected, the evaluator shall enable that -->
-	      <!-- 	mechanism and verify that it can be used to authenticate the user at -->
-	      <!-- 	the specified authentication factor interfaces. </test> -->
-	      <!-- 	<test> -->
+
+                <!-- <testlist> -->
+                <!--   <test>For each -->
+                <!-- 	authentication mechanism selected, the evaluator shall enable that -->
+                <!-- 	mechanism and verify that it can be used to authenticate the user at -->
+                <!-- 	the specified authentication factor interfaces. </test> -->
+                <!-- 	<test> -->
 	      <h:p>
 		  For each authentication mechanism rule, the evaluator shall ensure that
 		  the authentication mechanism(s) behave as documented in the TSS.
 	      </h:p>
-	      <!-- 	</test> -->
-              <!-- </testlist> -->
+                <!-- 	</test> -->
+                <!-- </testlist> -->
 	      </Tests>
           </aactivity>
           </f-element>
           <audit-event/>
         </f-component>
 
-<!--
+        <!--
         <ext-comp-def fam-id="FIA_X509_EXT" title="Authentication Using X.509 Certificates">
           <fam-behavior>This family defines the behavior, management, and use of X.509 certificates for functions to be
             performed by the TSF. Components in this family require validation of certificates according to a
@@ -3647,7 +4385,7 @@ the node certificate to be tested, two Intermediate CAs, and the
         <h:br/>
         <h:b><ctr id="fmt_smf" ctr-type="Table">: Management Functions</ctr></h:b><h:br/><h:br/> 
             Status Markers:<h:br/> M - Mandatory<h:br/> O - Optional/Objective<h:br/>
-            <!-- NOTE: management-function uses ctr variables crt-type=functions in the MOOO table,
+              <!-- NOTE: management-function uses ctr variables crt-type=functions in the MOOO table,
               so that they do not have to be renumbered when one is added or removed. However app 
               notes and AAs need to be in the same order as the functions.
 		          The list of IDs for each function is at the end of the xml.-->
@@ -4884,7 +5622,7 @@ the node certificate to be tested, two Intermediate CAs, and the
           </management-function>
           <management-function id="mf-auditCapacity">
             <text>
-              <!-- <ctr id="auditCapacity" pre="" ctr-type="function">.</ctr>--> Configure local audit storage capacity
+                    <!-- <ctr id="auditCapacity" pre="" ctr-type="function">.</ctr>--> Configure local audit storage capacity
             </text>
           </management-function>
           <management-function id="mf-lockout">
@@ -4902,7 +5640,7 @@ the node certificate to be tested, two Intermediate CAs, and the
           </management-function>
           <management-function id="mf-auditServer">
             <text>
-              <!-- <ctr id="auditServer" pre="" ctr-type="function">.</ctr>--> Configure name/address of audit/logging server to which to send
+                    <!-- <ctr id="auditServer" pre="" ctr-type="function">.</ctr>--> Configure name/address of audit/logging server to which to send
               audit/logging records
             </text>
           </management-function>
@@ -5088,7 +5826,7 @@ This test can also be completed on the same hardware and rebooting between appli
 	      </Tests>
 	    </aactivity>
           </f-element>
-<!--          <f-element>
+          <!--          <f-element>
             <title>The OS shall always randomize kernel address space memory locations</title>
                 <note role="application">
                   Randomizing the location of the kernel address spaces provides some defense against
@@ -5103,12 +5841,12 @@ This test can also be completed on the same hardware and rebooting between appli
         <!-- <f-component id="fpt_php_ext.1" name="External Interface Controls">-->
         <!--   <f-element> -->
         <!--     <title> -->
-	<!--       The OS shall provide a mechanism to  -->
-	<!--       <selectables> -->
-	<!-- 	<selectable>users</selectable> -->
-	<!-- 	<selectable>administrators</selectable> -->
-	<!--       </selectables> -->
-	<!--       to disable external interfaces (physical and logical) and -->
+        <!--       The OS shall provide a mechanism to  -->
+        <!--       <selectables> -->
+        <!-- 	<selectable>users</selectable> -->
+        <!-- 	<selectable>administrators</selectable> -->
+        <!--       </selectables> -->
+        <!--       to disable external interfaces (physical and logical) and -->
         <!--       services exposed to untrusted networks and devices:  -->
         <!--       <selectables linebreak="yes"> -->
         <!--         <selectable>WiFi</selectable> -->
@@ -5118,50 +5856,50 @@ This test can also be completed on the same hardware and rebooting between appli
         <!--         <selectable>FireWire</selectable> -->
         <!--         <selectable><assignable>list of other external interfaces</assignable></selectable> -->
         <!--       </selectables> -->
-	<!--       . -->
+        <!--       . -->
         <!--     </title> -->
         <!--     <note role="application"> -->
-	<!--       Different hardware platforms present different external interfaces. -->
-	<!--       The selection of tests to run against an OS varies depending on the hardware the OS  -->
-	<!--       is running on.  -->
-	<!--       However, where an OS supports an external interface -->
+        <!--       Different hardware platforms present different external interfaces. -->
+        <!--       The selection of tests to run against an OS varies depending on the hardware the OS  -->
+        <!--       is running on.  -->
+        <!--       However, where an OS supports an external interface -->
         <!--       type (e.g., FireWire) it is important that the OS also offers the ability to disable -->
         <!--       that interface.  -->
-	<!--       Requirements that ensure secure communication over WiFi are defined in the  -->
-	<!--       <a href="https://www.niap-ccevs.org/pp/PP_WLAN_AS_EP_V1.0/" -->
-	<!-- 	 >ND CPP EP Wireless LAN Access System</a>. -->
-	      
-	<!--     </note> -->
+        <!--       Requirements that ensure secure communication over WiFi are defined in the  -->
+        <!--       <a href="https://www.niap-ccevs.org/pp/PP_WLAN_AS_EP_V1.0/" -->
+        <!-- 	 >ND CPP EP Wireless LAN Access System</a>. -->
+
+        <!--     </note> -->
         <!--     <aactivity> -->
-	<!--       The evaluator shall install the OS onto a platform that has capabilities commiserate -->
-	<!--       with the OS capabilities (e.g., a USB capable OS must be evaluated on a USB capable -->
-	<!--       platform) and ensure that the following tests (where applicable) -->
+        <!--       The evaluator shall install the OS onto a platform that has capabilities commiserate -->
+        <!--       with the OS capabilities (e.g., a USB capable OS must be evaluated on a USB capable -->
+        <!--       platform) and ensure that the following tests (where applicable) -->
         <!--       succeed: <testlist> -->
         <!--         <test> The evaluator shall attempt to connect to a Wireless network and ensure that the OS successfully connects and allows network traffic to flow.</test> -->
         <!--         <test>  -->
-	<!-- 	  The evaluator shall connect to a Wireless network and then disable the WiFi -->
+        <!-- 	  The evaluator shall connect to a Wireless network and then disable the WiFi -->
         <!--           network interface from within the OS.  -->
-	<!-- 	  The evaluator shall ensure that the WiFi connection is terminated and that the OS -->
-	<!-- 	  does not list any wireless network as accessible. -->
-	<!-- 	  The evaluator shall run a wireless sniffer (e.g. Kismet, aircrack) and ensure that -->
-	<!-- 	  no signals, attributable to the test platform, are detected. -->
-	<!-- 	</test> -->
+        <!-- 	  The evaluator shall ensure that the WiFi connection is terminated and that the OS -->
+        <!-- 	  does not list any wireless network as accessible. -->
+        <!-- 	  The evaluator shall run a wireless sniffer (e.g. Kismet, aircrack) and ensure that -->
+        <!-- 	  no signals, attributable to the test platform, are detected. -->
+        <!-- 	</test> -->
         <!--         <test> The evaluator shall attempt to pair, and connect, a Bluetooth device to the OS and ensure that the OS successfully connects to the device.</test> -->
         <!--         <test> -->
-	<!-- 	  The evaluator shall pair, and connect, a Bluetooth device to the OS and then -->
+        <!-- 	  The evaluator shall pair, and connect, a Bluetooth device to the OS and then -->
         <!--           disable the Bluetooth interface within the OS.  -->
-	<!-- 	  The evaluator shall ensure that the Bluetooth connection is terminated and that -->
-	<!-- 	  the OS does not list any devices as accessible. -->
-	<!-- 	  The evaluator shall run a Bluetooth sniffer (e.g. UberTooth, Wireshark) -->
-	<!-- 	  and ensure that no signals, attributable to the test platform, are detected. -->
-	<!-- 	</test> -->
+        <!-- 	  The evaluator shall ensure that the Bluetooth connection is terminated and that -->
+        <!-- 	  the OS does not list any devices as accessible. -->
+        <!-- 	  The evaluator shall run a Bluetooth sniffer (e.g. UberTooth, Wireshark) -->
+        <!-- 	  and ensure that no signals, attributable to the test platform, are detected. -->
+        <!-- 	</test> -->
         <!--         <test> The evaluator shall attempt to pair, and connect, a NFC device to the OS and ensure that the OS successfully connects to the device.</test> -->
         <!--         <test> The evaluator shall pair, and connect, an NFC device to the OS and then disable -->
         <!--           the NFC interface within the OS. The evaluator shall ensure that the NFC connection -->
         <!--           is terminated. -->
-	<!-- 	  The evaluator shall run a NFC sniffer  -->
-	<!-- 	  and ensure that no signals, attributable to the test platform, are detected. -->
-	<!-- 	</test> -->
+        <!-- 	  The evaluator shall run a NFC sniffer  -->
+        <!-- 	  and ensure that no signals, attributable to the test platform, are detected. -->
+        <!-- 	</test> -->
         <!--         <test> The evaluator shall connect a USB device to the OS and then disable the USB -->
         <!--           interface within the OS. The evaluator shall ensure that the USB device no longer -->
         <!--           functions within the OS. </test> -->
@@ -5589,7 +6327,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
               software is cryptographically verified.
 	      </h:p>
 	      <h:p>
-              <!-- Out of scope, for now:
+                  <!-- Out of scope, for now:
 			  The evaluator shall verify that the TSS contains a justification for the protection of the
               cryptographic key or hash, preventing it from being modified by unverified or
               unauthenticated software.
@@ -5754,7 +6492,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
           <dependencies>
             <no-link>FCS_COP.1</no-link> Cryptographic Operation
           </dependencies>
-          
+
           <!-- TO DO: Cite references. -->
           <f-element id="fel-app-check-update">
             <title>
@@ -6043,7 +6781,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
   <if><ref-id>s-ssh-server</ref-id></if>
   <then><doc ref="pkg-ssh"><ref-id>ssh-server</ref-id></doc></then>
 </rule>
-      	      <!-- this rule isn't associated with the SFR but it was placed here for ordering purposes -->
+              <!-- this rule isn't associated with the SFR but it was placed here for ordering purposes -->
       	      <rule id="r-bluetooth-ccm">
       	        <or>
       	          <and><not><ref-id>mod-bluetooth</ref-id></not></and>
