@@ -1,3 +1,25 @@
+* Error: f-element FAU_GEN.1.2  appears not to have an associated evaluation activity.:
+        /PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[2]""/f-component[1]""/f-element[2]""
+* Error: f-element FCS_CKM.6.2  appears not to have an associated evaluation activity.:
+        /PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[3]""/f-component[3]""/f-element[2]""
+* Error: f-element FIA_AFL.1.2  appears not to have an associated evaluation activity.:
+        /PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[5]""/f-component[1]""/f-element[2]""
+* Error: f-element FIA_UAU.5.2  appears not to have an associated evaluation activity.:
+        /PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[5]""/f-component[2]""/f-element[2]""
+* Error: f-element FPT_ACF_EXT.1.2  appears not to have an associated evaluation activity.:
+        /PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[7]""/f-component[1]""/f-element[2]""
+* Error: f-element FPT_TST.1.2  appears not to have an associated evaluation activity.:
+        /PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[7]""/f-component[8]""/f-element[2]""
+* Error: f-element FPT_TST.1.3  appears not to have an associated evaluation activity.:
+        /PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[7]""/f-component[8]""/f-element[3]""
+* Error: f-element FPT_TUD_EXT.1.2  appears not to have an associated evaluation activity.:
+        /PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[7]""/f-component[10]""/f-element[2]""
+* Error: f-element FPT_TUD_EXT.2.2  appears not to have an associated evaluation activity.:
+        /PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[7]""/f-component[11]""/f-element[2]""
+* Error: f-element FTP_TRP.1.2  appears not to have an associated evaluation activity.:
+        /PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[9]""/f-component[2]""/f-element[2]""
+* Error: f-element FTP_TRP.1.3  appears not to have an associated evaluation activity.:
+        /PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[9]""/f-component[2]""/f-element[3]""
 * Error: Detected dangling id-reference to s-keygen-rsa from attribute
         ref/PP[1]""/sec:req[1]""/sec:SFRs[1]""/section[3]""/f-component[1]""/f-element[1]""/aactivity[1]""/Tests[1]""/testlist[1]""/test[1]""/depends[1]""/ref[1]""
 * Error: Detected dangling id-reference to s-keygen-ecc from attribute
