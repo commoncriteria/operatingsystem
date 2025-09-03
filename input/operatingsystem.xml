@@ -5,7 +5,7 @@
   <PPReference>
     <ReferenceTable>
       <PPTitle>Protection Profile for General Purpose Operating Systems</PPTitle>
-      <PPVersion>4.4</PPVersion>
+      <PPVersion>5.0</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
       <PPPubDate>2025-03-31</PPPubDate>
       <Keywords>OS; operating system</Keywords>
@@ -13,24 +13,9 @@
   </PPReference>
   <RevisionHistory>
     <entry>
-      <version>4.4</version>
-      <date>2024-09-06</date>
-      <subject><h:ul><h:li>Updated to conform to CC:2022.</h:li> <h:li>Incorporated X.509 package.</h:li> <h:li>Incorporated applicable technical decisions.</h:li></h:ul></subject>
-    </entry>
-    <entry>
-      <version>4.3</version>
-      <date>2022-09-27</date>
-      <subject><h:ul><h:li>Added compatibility with MDM Agent, Bluetooth, and TLS Modules.</h:li> <h:li>Two factor authentication.</h:li> <h:li>Aligned with CNSA.</h:li></h:ul></subject>
-    </entry>
-    <entry>
-      <version>4.2.1</version>
-      <date>2019-04-22</date>
-      <subject>Formatting changes as a result of PP evaluation</subject>
-    </entry>
-    <entry>
-      <version>4.2</version>
-      <date>2018-05-22</date>
-      <subject>Multiple Technical Decisions applied</subject>
+      <version>4.0</version>
+      <date>2015-08-14</date>
+      <subject>Release - significant revision</subject>
     </entry>
     <entry>
       <version>4.1</version>
@@ -38,15 +23,30 @@
       <subject>Minor updates - cryptographic modes</subject>
     </entry>
     <entry>
-      <version>4.0</version>
-      <date>2015-08-14</date>
-      <subject>Release - significant revision</subject>
+      <version>4.2</version>
+      <date>2018-05-22</date>
+      <subject>Multiple Technical Decisions applied</subject>
+    </entry>
+    <entry>
+      <version>4.2.1</version>
+      <date>2019-04-22</date>
+      <subject>Formatting changes as a result of PP evaluation</subject>
+    </entry>
+    <entry>
+      <version>4.3</version>
+      <date>2022-09-27</date>
+      <subject><h:ul><h:li>Added compatibility with MDM Agent, Bluetooth, and TLS Modules.</h:li> <h:li>Two factor authentication.</h:li> <h:li>Aligned with CNSA.</h:li></h:ul></subject>
+    </entry>
+    <entry>
+      <version>5.0</version>
+      <date>2024-09-06</date>
+      <subject><h:ul><h:li>Updated to conform to CC:2022.</h:li> <h:li>Incorporated X.509 package.</h:li> <h:li>Incorporated applicable technical decisions.</h:li></h:ul></subject>
     </entry>
   </RevisionHistory>
   <include-pkg id="pkg-ssh">
     <git>
       <url>https://github.com/commoncriteria/ssh</url>
-      <branch>release-1.0</branch>
+      <branch>release-2.0</branch>
     </git>
     <url>https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm</url>
     <depends on="s-ftp_ssh"/>
@@ -66,10 +66,10 @@
     </git>
     <url>https://www.niap-ccevs.org/protectionprofiles/511</url>
   </include-pkg>
-  <modules><module id="mod-vpnclient"><git><url>https://github.com/commoncriteria/vpnclient</url><branch>v2.5</branch></git><url></url><depends on="s-provides-vpnclient"/></module><module id="mod-bluetooth"><git><url>https://github.com/commoncriteria/bluetooth</url><branch>v1.0</branch></git><url></url></module><module id="mod-mdmagent"><git><url>https://github.com/commoncriteria/mdmagent</url><branch>Release-1.0</branch></git><url></url></module><module id="mod-wlanclient"><git><url>https://github.com/commoncriteria/wlanclient</url><branch>release-1.0</branch></git><url></url></module><!--   <module id="mod-biometric" version="1.1" name="cPP for Biometrics" product="Biometric Devices" short="BMcPP">   --><!--     <url>https://biometricitc.github.io/v1.1/1.1PRE/MOD-BIO-v1.1.pdf</url>   --><!--   </module>   --></modules>
+  <modules><module id="mod-vpnclient"><git><url>https://github.com/commoncriteria/vpnclient</url><branch>v3.0</branch></git><url></url><depends on="s-provides-vpnclient"/></module><module id="mod-bluetooth"><git><url>https://github.com/commoncriteria/bluetooth</url><branch>v2.0</branch></git><url></url></module><module id="mod-mdmagent"><git><url>https://github.com/commoncriteria/mdmagent</url><branch>Release-2.0</branch></git><url></url></module><module id="mod-wlanclient"><git><url>https://github.com/commoncriteria/wlanclient</url><branch>release-2.0</branch></git><url></url></module><!--   <module id="mod-biometric" version="1.1" name="cPP for Biometrics" product="Biometric Devices" short="BMcPP">   --><!--     <url>https://biometricitc.github.io/v1.1/1.1PRE/MOD-BIO-v1.1.pdf</url>   --><!--   </module>   --></modules>
   <pp-preferences><audit-events-in-sfrs/></pp-preferences>
   <sec:Introduction >
-    <sec:Overview> 
+    <sec:Overview title="Overview"> 
 The scope of this Protection Profile (PP) is to
 describe the security functionality of operating systems in terms of <xref g="CC"/>
 and to define functional and assurance requirements for such products.
@@ -295,15 +295,15 @@ it manages may be physical or virtual.
       <cc-pt3-conf>extended</cc-pt3-conf>
       <cc-pp-conf/>
       <cc-pp-config-with>
-        <Mod-cc-ref>PP-Module for Virtual Private Network (VPN) Clients, version 2.6</Mod-cc-ref>
-        <Mod-cc-ref>PP-Module for Bluetooth, version 1.0</Mod-cc-ref>
-        <Mod-cc-ref>PP-Module for Mobile Device Management Agent, version 1.0</Mod-cc-ref>
-        <Mod-cc-ref>PP-Module for Wireless LAN Clients, version 1.0</Mod-cc-ref>
+        <Mod-cc-ref>PP-Module for Virtual Private Network (VPN) Clients, version 3.0</Mod-cc-ref>
+        <Mod-cc-ref>PP-Module for Bluetooth, version 2.0</Mod-cc-ref>
+        <Mod-cc-ref>PP-Module for Mobile Device Management Agent, version 2.0</Mod-cc-ref>
+        <Mod-cc-ref>PP-Module for Wireless LAN Clients, version 2.0</Mod-cc-ref>
         <Mod-cc-ref>cPP-Module for Biometric Enrolment and Verification, version 1.1</Mod-cc-ref>
       </cc-pp-config-with>
       <cc-pkg-claim>
         <FP-cc-ref conf="conformant">Functional Package for Transport Layer Security Version 2.1</FP-cc-ref>
-        <FP-cc-ref conf="conformant">Functional Package for Secure Shell Version 1.1</FP-cc-ref>
+        <FP-cc-ref conf="conformant">Functional Package for Secure Shell Version 2.0</FP-cc-ref>
         <FP-cc-ref conf="conformant">Functional Package for X.509 Version 1.0</FP-cc-ref>
       </cc-pkg-claim>
     </CClaimsInfo>
@@ -395,9 +395,12 @@ it manages may be physical or virtual.
             <title>
               The TSF shall be able to generate audit data of the following auditable
               events:
-               <h:ol><h:li>Start-up and shut-down of the audit functions;</h:li> <h:li>All auditable events for the [<h:i>not specified</h:i>] level of audit; <h:li>Specifically defined auditable events listed in <xref g="t-audit-mandatory"/></h:li> [</h:li> <h:li><h:i><h:ul><h:li>Authentication events (Success/Failure);</h:li> <h:li>Use of privileged/special rights events (Successful and unsuccessful security, audit, and configuration changes);</h:li> <h:li>Privilege or role escalation events (Success/Failure);</h:li> <h:li>Auditable events as defined in the <xref to="pkg-ssh"/>;</h:li> <h:li>Auditable events as defined in the <xref to="pkg-tls"/>;</h:li> <h:li>Auditable events as defined in the <xref to="pkg-x509"/>;</h:li> <h:li> <selectables linebreak="yes"><selectable id="fau_gen.1.1_1" >File and object events (Successful and unsuccessful attempts to create, access, delete, modify, modify permissions)</selectable><selectable id="fau_gen.1.1_2" >User and Group management events (Successful and unsuccessful add, delete, modify, disable, enable, and credential change)</selectable><selectable id="fau_gen.1.1_3" >Audit and log data access events (Success/Failure)</selectable><selectable id="fau_gen.1.1_4" >Cryptographic verification of software (Success/Failure)</selectable><selectable id="fau_gen.1.1_5" >Attempted application invocation with arguments (Success/Failure e.g. due to software restriction policy)</selectable><selectable id="fau_gen.1.1_6" >System reboot, restart, and shutdown events (Success/Failure)</selectable><selectable id="fau_gen.1.1_7" >Kernel module loading and unloading events (Success/Failure)</selectable><selectable id="fau_gen.1.1_8" >Administrator or root-level access events (Success/Failure)</selectable><selectable id="fau_gen.1.1_9"> <assignable>other specifically defined auditable events</assignable>.</selectable></selectables> </h:li></h:ul></h:i>].
+              <h:ol><h:li>Start-up and shut-down of the audit functions;</h:li> <h:li>All auditable events for the [<h:i>not specified</h:i>] level of audit;
+                  <h:li>Specifically defined auditable events listed in <xref g="t-audit-mandatory"/></h:li>
+                  
+                  [</h:li> <h:li><h:i><h:ul><h:li>Authentication events (Success/Failure);</h:li> <h:li>Use of privileged/special rights events (Successful and unsuccessful security, audit, and configuration changes);</h:li> <h:li>Privilege or role escalation events (Success/Failure);</h:li> <h:li>Auditable events as defined in the <xref to="pkg-ssh"/>;</h:li> <h:li>Auditable events as defined in the <xref to="pkg-tls"/>;</h:li> <h:li>Auditable events as defined in the <xref to="pkg-x509"/>;</h:li> <h:li><selectables linebreak="yes"><selectable id="fau_gen.1.1_1" >File and object events (Successful and unsuccessful attempts to create, access, delete, modify, modify permissions)</selectable><selectable id="fau_gen.1.1_2" >User and Group management events (Successful and unsuccessful add, delete, modify, disable, enable, and credential change)</selectable><selectable id="fau_gen.1.1_3" >Audit and log data access events (Success/Failure)</selectable><selectable id="fau_gen.1.1_4" >Cryptographic verification of software (Success/Failure)</selectable><selectable id="fau_gen.1.1_5" >Attempted application invocation with arguments (Success/Failure e.g. due to software restriction policy)</selectable><selectable id="fau_gen.1.1_6" >System reboot, restart, and shutdown events (Success/Failure)</selectable><selectable id="fau_gen.1.1_7" >Kernel module loading and unloading events (Success/Failure)</selectable><selectable id="fau_gen.1.1_8" >Administrator or root-level access events (Success/Failure)</selectable><selectable id="fau_gen.1.1_9"> <assignable>other specifically defined auditable events</assignable>.</selectable></selectables> </h:li></h:ul></h:i>].
                 </h:li></h:ol></title>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS/>
               <Guidance><h:p>
                   The evaluator shall check the administrative guide and ensure
@@ -448,7 +451,7 @@ it manages may be physical or virtual.
                 “P-256” may only be selected if the PP-Module for Bluetooth is included
                 in the ST and may only be used specifically for Bluetooth functions.
               </h:p></note>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS><h:p>
 	      The evaluator shall ensure that the TSS identifies the key
               sizes supported by the OS. If the ST specifies
@@ -577,7 +580,7 @@ it manages may be physical or virtual.
 			  The domain parameters used for the finite field-based key establishment scheme are specified by the key generation according to FCS_CKM.1.1.
 			  The finite field-based key establishment schemes that conform to NIST SP 800-56A Revision 3 correspond to the "safe-prime" groups selection in FCS_CKM.1.1.
 				</h:p></note>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS>TBD</TSS>
               <Guidance>TBD</Guidance>
               <Tests>
@@ -670,12 +673,12 @@ it manages may be physical or virtual.
         <!-- FCS_CKM.6 Timing and Event of Cryptographic Key Destruction -->
         <f-component cc-id="fcs_ckm.6" id="fcs-ckm-6" name="Timing and Event of Cryptographic Key Destruction">
           <f-element id="fel-key-kill-when">
-            <title>The TSF shall destroy [<h:i>all keys and key material</h:i>] when [<h:i>no longer needed</h:i>].</title>
+            <title>The TSF shall destroy [<h:i>all keys and key material</h:i>] when [<h:i>no longer needed</h:i></title>
             <note role="application">
 	        For the purposes of this requirement, key material refers to authentication data, passwords, secret/private symmetric
 		      keys, private asymmetric keys, data used to derive keys, values derived from passwords, etc.	      
 	    </note>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS><h:p>
             The evaluator examines the TSS to ensure it describes how the keys are managed in volatile memory. This description
             includes details of how each identified key is introduced into volatile memory (e.g. by derivation from user input,
@@ -800,8 +803,10 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
           <f-element id="fel-encrypt-how">
             <title>
               The TSF shall perform [<h:i>encryption and decryption services for data</h:i>] in
-	      accordance with a specified cryptographic algorithm <h:b> <selectables linebreak="yes"><selectable id="s-aes-xts" >AES-XTS (as defined in NIST SP 800-38E)</selectable><selectable id="s-aes-cbc" >AES-CBC (as defined in NIST SP 800-38A)</selectable><selectable id="s-aes-ctr" >AES-CTR (as defined in NIST SP 800-38A)</selectable></selectables> and <selectables linebreak="yes"><selectable id="s-aes-kw" >AES Key Wrap (KW) (as defined in NIST SP 800-38F)</selectable><selectable id="s-aes-kwp" >AES Key Wrap with Padding (KWP) (as defined in NIST SP 800-38F)</selectable><selectable id="s-aes-ccmp" >AES-CCMP-256 (as defined in NIST SP 800-38C and IEEE 802.11ac-2013)</selectable><selectable id="s-aes-gcmp" >AES-GCMP-256 (as defined in NIST SP 800-38D and IEEE 802.11ac-2013)</selectable><selectable id="s-aes-ccm" >AES-CCM (as defined in NIST SP 800-38C)</selectable><selectable id="s-aes-gcm" >AES-GCM (as defined in NIST SP 800-38D)</selectable><selectable id="fcs_cop.1.1_ENCRYPT_1" exclusive="yes">no other modes</selectable></selectables> </h:b>
-              and cryptographic key sizes  <h:b>256-bit and <selectables><selectable id="s-128" >128-bit</selectable><selectable id="fcs_cop.1.1_ENCRYPT_2" >no other bit size</selectable></selectables> </h:b>.
+	      accordance with a specified cryptographic algorithm<h:b><selectables linebreak="yes"><selectable id="s-aes-xts" >AES-XTS (as defined in NIST SP 800-38E)</selectable><selectable id="s-aes-cbc" >AES-CBC (as defined in NIST SP 800-38A)</selectable><selectable id="s-aes-ctr" >AES-CTR (as defined in NIST SP 800-38A)</selectable></selectables> 
+	      and
+	       <selectables linebreak="yes"><selectable id="s-aes-kw" >AES Key Wrap (KW) (as defined in NIST SP 800-38F)</selectable><selectable id="s-aes-kwp" >AES Key Wrap with Padding (KWP) (as defined in NIST SP 800-38F)</selectable><selectable id="s-aes-ccmp" >AES-CCMP-256 (as defined in NIST SP 800-38C and IEEE 802.11ac-2013)</selectable><selectable id="s-aes-gcmp" >AES-GCMP-256 (as defined in NIST SP 800-38D and IEEE 802.11ac-2013)</selectable><selectable id="s-aes-ccm" >AES-CCM (as defined in NIST SP 800-38C)</selectable><selectable id="s-aes-gcm" >AES-GCM (as defined in NIST SP 800-38D)</selectable><selectable id="fcs_cop.1.1_ENCRYPT_1" exclusive="yes">no other modes</selectable></selectables> </h:b>
+              and cryptographic key sizes <h:b>256-bit and  <selectables><selectable id="s-128" >128-bit</selectable><selectable id="fcs_cop.1.1_ENCRYPT_2" >no other bit size</selectable></selectables> </h:b>.
               </title>
             <note role="application"><h:p>
               AES CCMP (which uses AES in CCM as specified in SP 800-38C) becomes mandatory and must
@@ -815,7 +820,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 		      includes the PP-Module for Bluetooth, and it may only be used specifically
 		      with AES-CCM for Bluetooth functions.
 	      </h:p></note>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS>If "128-bit" is selected, the evaluator shall examine the TSS to verify that 128-bit
 	        is only used with AES-CCM for Bluetooth functions.</TSS>
               <Guidance>
@@ -1090,7 +1095,7 @@ This result shall be compared to the result of running 1000 iterations with the 
 	      The hash selection should be consistent with the overall strength of
         the algorithm used.
 	      </h:p></note>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS>TBD</TSS>
               <Guidance>TBD</Guidance>
               <Tests> <h:p>
@@ -1132,7 +1137,7 @@ This result shall be compared to the result of running 1000 iterations with the 
                 The hash selection should be consistent with the overall strength of the
                 algorithm used for FCS_COP.1/HASH.
               </h:p></note>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS>TBD</TSS>
               <Guidance>TBD</Guidance>
               <Tests> <h:p>
@@ -1164,7 +1169,7 @@ This result shall be compared to the result of running 1000 iterations with the 
               author should make the appropriate assignments/selections to specify the parameters
               that are implemented for that algorithm.
             </note>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS>[Conditional: If “2048-bit (for secure boot only) or greater” is selected] The evaluator shall
 	         check that the TSS documents that 2048-bit RSA is used only for secure boot and a greater key
 	         size is used for any other functions.</TSS>
@@ -1311,10 +1316,10 @@ This result shall be compared to the result of running 1000 iterations with the 
               entropy rate of the noise source is so that the TSF can collect a sufficiently large sample of noise data to be
               conditioned into a seed value.
             </note>
-            <aactivity level="component">
-              
+            <aactivity level="element">
+              <h:p>
                 The evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it identifies, for each DRBG function implemented by the TOE, the TSF external interface used to seed the TOE's DRBG. The evaluator shall verify that this includes the amount of sampled data and the min-entropy rate of the sampled data such that it can be determined that sufficient entropy can be made available for the highest strength keys that the TSF can generate (e.g., 256 bits). If the seed data cannot be assumed to have full entropy (e.g., the min-entropy of the sampled bits is less than 1), the evaluator shall ensure that the entropy documentation describes the method by which the TOE estimates the amount of entropy that has been accumulated to ensure that sufficient data is collected and any conditioning that the TSF applies to the output data to create a seed of sufficient size with full entropy.
-              
+              </h:p>
               <TSS/>
               <Guidance/>
               <Tests/>
@@ -1331,10 +1336,10 @@ This result shall be compared to the result of running 1000 iterations with the 
               with a minimum of  <assignable>number of bits</assignable>  bits of min-entropy.
             </title>
             <note role="application">This requirement is claimed when a DRBG is seeded with entropy from a single noise source that is within the TOE boundary. Min-entropy should be expressed as a ratio of entropy bits to sampled bits so that the total amount of data needed to ensure full entropy is known, as well as the conditioning function by which that data is reduced in size to the seed.</note>
-            <aactivity level="component">
-              
+            <aactivity level="element">
+              <h:p>
                 The evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it identifies, for each DRBG function implemented by the TOE, the TSF noise source used to seed the TOE's DRBG. The evaluator shall verify that this includes the amount of sampled data and the min-entropy rate of the sampled data such that it can be determined that sufficient entropy can be made available for the highest strength keys that the TSF can generate (e.g., 256 bits). If the seed data cannot be assumed to have full entropy (e.g., the min-entropy of the sampled bits is less than 1), the evaluator shall ensure that the entropy documentation describes the method by which the TOE estimates the amount of entropy that has been accumulated to ensure that sufficient data is collected and any conditioning that the TSF applies to the output data to create a seed of sufficient size with full entropy.
-              
+              </h:p>
               <TSS/>
               <Guidance/>
               <Tests/>
@@ -1353,10 +1358,10 @@ This result shall be compared to the result of running 1000 iterations with the 
               This requirement is claimed when a DRBG is seeded with entropy from multiple noise sources that are within the TOE boundary. 
               FCS_RBG.5 defines the mechanism by which these sources are combined to ensure sufficient minimum entropy.
             </note>
-            <aactivity level="component">
-              
+            <aactivity level="element">
+              <h:p>
                 The evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it identifies, for each DRBG function implemented by the TOE, each TSF noise source used to seed the TOE's DRBG. The evaluator shall verify that this includes the amount of sampled data and the min-entropy rate of the sampled data from each data source.
-              
+              </h:p>
               <TSS/>
               <Guidance/>
               <Tests/>
@@ -1373,10 +1378,10 @@ This result shall be compared to the result of running 1000 iterations with the 
               to create the entropy input into the derivation function as defined in  <assignable>list of standards</assignable>, resulting
               in a minimum of  <assignable>number of bits</assignable>  bits of min-entropy.              
             </title>
-            <aactivity level="component">
-              
+            <aactivity level="element">
+              <h:p>
                 Using the entropy sources specified in FCS_RBG.4, the evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it describes the method by which the various entropy sources are combined into a single seed. This should include an estimation of the rate at which each noise source outputs data and whether this is dependent on any system-specific factors so that each source's relative contribution to the overall entropy is understood. The evaluator shall verify that the resulting combination of sampled data and the min-entropy rate of the sampled data is described in sufficient detail to determine that sufficient entropy can be made available for the highest strength keys that the TSF can generate (e.g., 256 bits). If the seed data cannot be assumed to have full entropy (e.g., the min-entropy of the sampled bits is less than 1), the evaluator shall ensure that the entropy documentation describes the method by which the TOE estimates the amount of entropy that has been accumulated to ensure that sufficient data is collected and any conditioning that the TSF applies to the output data to create a seed of sufficient size with full entropy.
-              
+              </h:p>
               <TSS/>
               <Guidance/>
               <Tests/>
@@ -1393,7 +1398,7 @@ This result shall be compared to the result of running 1000 iterations with the 
               available as a service to entities outside of the TOE.
             </title>
             <note role="application">This SFR is defined for the case where an operating system includes a mechanism for </note>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS>The evaluator shall verify that the TSS identifies the interface that the TSF makes available for calling applications to obtain DRBG output.</TSS>
               <Guidance>The evaluator shall verify that the guidance documentation includes an API specification for the random bit generation service such that it is clear how a calling application is able to obtain DRBG output from the TSF.</Guidance>
               <Tests>The evaluator shall invoke the API specified by the guidance documentation to determine that the TSF provides DRBG output upon proper invocation of the API.</Tests>
@@ -1419,7 +1424,7 @@ This result shall be compared to the result of running 1000 iterations with the 
 	    functionality could take a variety of forms: it could consist of an API,
 	    or simply well-documented conventions for accessing credentials stored as files.
 	    </note>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS>The evaluator shall check the TSS to ensure that it lists all persistent
               sensitive data for which the OS provides a storage capability.  For each of these
               items, the evaluator shall confirm that the TSS lists for what purpose it can be used,
@@ -1463,7 +1468,7 @@ This result shall be compared to the result of running 1000 iterations with the 
 	      that, for example, files and directories owned by one user in a multi user system
 	      can be protected from access by another user in that system.
             </note>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS><h:p>
 	      The evaluator shall confirm that the TSS comprehensively describes the access control policy enforced by the OS.
               The description must include the rules by which accesses to particular files and directories
@@ -1522,7 +1527,7 @@ This result shall be compared to the result of running 1000 iterations with the 
 		  channel) and having an option to force the establishment of an IPsec
 		  trusted channel to allow any communication by the TSF.
 	      </h:p></note>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS>The evaluator shall verify that the TSS section of the ST describes the
               routing of IP traffic when a VPN client is enabled.
 	      The evaluator shall ensure that the description indicates which traffic does not go
@@ -1551,12 +1556,14 @@ This result shall be compared to the result of running 1000 iterations with the 
             The TSF shall detect when
              <selectables linebreak="yes"><selectable id="fia_afl.1.1_2" ><assignable>positive integer number</assignable></selectable><selectable id="fia_afl.1.1_3">an administrator configurable positive integer within <assignable>range of acceptable values</assignable> </selectable></selectables> 
             unsuccessful authentication attempts occur related to
-	     <h:b> events with <selectables linebreak="yes"><selectable id="fia_afl.1.1_5" >authentication based on user name and password</selectable><selectable id="fia_afl.1.1_6" >authentication based on user name and a PIN that releases an asymmetric key stored in OE-protected storage</selectable><selectable id="fia_afl.1.1_7" >authentication based on X.509 certificates</selectable></selectables>.
+	    <h:b>
+	      events with
+             <selectables linebreak="yes"><selectable id="fia_afl.1.1_5" >authentication based on user name and password</selectable><selectable id="fia_afl.1.1_6" >authentication based on user name and a PIN that releases an asymmetric key stored in OE-protected storage</selectable><selectable id="fia_afl.1.1_7" >authentication based on X.509 certificates</selectable></selectables>.
 	    </h:b></title>
             <note role="application">
           Selections in FIA_AFL.1 and FIA_UAU.5 must match.
             </note>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS/>
               <Guidance/>
               <Tests>
@@ -1572,7 +1579,7 @@ This result shall be compared to the result of running 1000 iterations with the 
             <title>
 	      When the defined number of unsuccessful authentication attempts <h:b>for an
 	      account</h:b> has been [<h:i>met</h:i>], The TSF shall:
-	       <h:b> <selectables><selectable id="fia_afl.1.2_1" >Account Lockout</selectable><selectable id="fia_afl.1.2_2" >Account Disablement</selectable><selectable id="fia_afl.1.2_3" >Mandatory Credential Reset</selectable><selectable id="fia_afl.1.2_5" ><assignable>list of actions</assignable></selectable></selectables> </h:b>.
+	      <h:b><selectables><selectable id="fia_afl.1.2_1" >Account Lockout</selectable><selectable id="fia_afl.1.2_2" >Account Disablement</selectable><selectable id="fia_afl.1.2_3" >Mandatory Credential Reset</selectable><selectable id="fia_afl.1.2_5" ><assignable>list of actions</assignable></selectable></selectables> </h:b>.
             </title>
             <note role="application">
             	The action to be taken will be populated in the assignment of the ST and defined
@@ -1586,7 +1593,7 @@ This result shall be compared to the result of running 1000 iterations with the 
           <f-element id="fel-mult-auth">
             <title>
 	      The <h:b>OS</h:b> shall provide 
-	       <h:b> <selectables linebreak="yes"><selectable id="s-pass" >authentication based on username and password</selectable><selectable id="s-pin" >authentication based on username and a PIN that releases an asymmetric key stored in OE-protected storage</selectable><selectable id="s-otp" >combination of authentication based on user name, password, and time-based one-time password</selectable><selectable id="s-x509-auth" >authentication based on X.509 certificates</selectable><selectable id="s-uau-ssh" >for use in SSH only, SSH public key-based authentication as specified by the <xref to="pkg-ssh"/></selectable></selectables> </h:b>
+	      <h:b><selectables linebreak="yes"><selectable id="s-pass" >authentication based on username and password</selectable><selectable id="s-pin" >authentication based on username and a PIN that releases an asymmetric key stored in OE-protected storage</selectable><selectable id="s-otp" >combination of authentication based on user name, password, and time-based one-time password</selectable><selectable id="s-x509-auth" >authentication based on X.509 certificates</selectable><selectable id="s-uau-ssh" >for use in SSH only, SSH public key-based authentication as specified by the <xref to="pkg-ssh"/></selectable></selectables> </h:b>
 	      to support user authentication.
             </title>
             <note role="application"><h:p>
@@ -1595,7 +1602,7 @@ This result shall be compared to the result of running 1000 iterations with the 
 	        If "authentication based on X.509 certificates" is claimed, the TOE must claim conformance to <xref to="pkg-x509"/>.
 	      </h:p>.
 	    </note>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS>The evaluator shall ensure that the TSS describes
 		  the rules as to how each authentication mechanism specified in
 		  FIA_UAU.5.1 is implemented and used.
@@ -1661,7 +1668,7 @@ The TSF shall authenticate any user's claimed identity according to the
         the discretion of the ST author.  For such functions, the ST author indicates this
         by replacing an "O" with an "M" in the ST.
 	    </note>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS><h:p>
 		The evaluator shall verify that the TSS describes those management functions
 		that are restricted to Administrators, including how the user is prevented
@@ -1973,7 +1980,7 @@ The TSF shall authenticate any user's claimed identity according to the
 				</aactivity>
 			
 				</management-function>
-			</management-function-set></title>
+			</management-function-set>].</title>
             <note role="application"><h:p>
           The ST should indicate which of the optional management functions are implemented in the TOE.
           This can be done by copying the above table into the ST and adjusting the "Administrator"
@@ -1987,7 +1994,7 @@ The TSF shall authenticate any user's claimed identity according to the
 Sophisticated account management policies, such as intricate password complexity requirements and handling of temporary accounts, are a function of directory servers.
 The OS can enroll in such account management and enable the overall information system to achieve such policies by binding to a directory server.
 	      </h:p></note>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS>TBD</TSS>
               <Guidance>
 		The evaluator shall verify that every management function captured in the ST is described in the operational guidance and that the description contains the information required to perform the management duties associated with the management function.
@@ -2034,10 +2041,10 @@ The OS can enroll in such account management and enable the overall information 
           <dependencies>No dependencies.</dependencies>
           <f-element id="fel-protect-priv">
             <title> The TSF shall implement access controls which prohibit unprivileged users from
-              modifying:  <h:ul><h:li>Kernel and its drivers/modules</h:li> <h:li>Security audit logs</h:li> <h:li>Shared libraries</h:li> <h:li>System executables</h:li> <h:li>System configuration files</h:li> <h:li> <assignable>other objects</assignable> </h:li></h:ul>
-	      .
+              modifying:  <h:ul><h:li>Kernel and its drivers/modules</h:li> <h:li>Security audit logs</h:li> <h:li>Shared libraries</h:li> <h:li>System executables</h:li> <h:li>System configuration files</h:li> <h:li><assignable>other objects</assignable> </h:li></h:ul>
+	     .
             </title>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS/>
               <Guidance/>
               <Tests>
@@ -2052,8 +2059,8 @@ The OS can enroll in such account management and enable the overall information 
           </f-element>
           <f-element id="fel-no-read">
             <title> The TSF shall implement access controls which prohibit unprivileged users from
-              reading:  <h:ul><h:li>Security audit logs</h:li> <h:li>System-wide credential repositories</h:li> <h:li> <assignable>list of other objects</assignable> </h:li></h:ul>
-	      .
+              reading:  <h:ul><h:li>Security audit logs</h:li> <h:li>System-wide credential repositories</h:li> <h:li><assignable>list of other objects</assignable> </h:li></h:ul>
+	     .
             </title>
             <note role="application">"Credential repositories" refer, in this case, to structures containing cryptographic keys or passwords.
 	    </note>
@@ -2075,7 +2082,7 @@ The OS can enroll in such account management and enable the overall information 
 	    bits of entropy except for
                  <assignable>list of explicit exceptions</assignable>.
             </title>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS>TBD</TSS>
               <Guidance>TBD</Guidance>
               <Tests>The evaluator shall select 3 executables included with the TSF. If the TSF includes a web browser it must be selected. If the TSF includes a mail client it must be selected. For each of these apps, the evaluator shall launch the same executables on two separate instances of the OS on identical hardware and compare all memory mapping locations. The evaluator shall ensure that no memory mappings are placed in the same location. If the rare chance occurs that two mappings are the same for a single executable and not the same for the other two, the evaluator shall repeat the test with that executable to verify that in the second test the mappings are different. This test can also be completed on the same hardware and rebooting between application launches.</Tests>
@@ -2114,7 +2121,7 @@ The OS can enroll in such account management and enable the overall information 
 		  support for the OBEX profile should be suspended until the next time the user requests
 		  its use.
 		</h:p></note>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS>The evaluator shall ensure that the TSS lists all Bluetooth profiles that are
                 disabled while not in use by an application and which need explicit user action in
                 order to become enabled.</TSS>
@@ -2137,7 +2144,7 @@ The OS can enroll in such account management and enable the overall information 
               The TSF shall preserve a secure state when the following types of failures occur: [<h:i>DRBG self-test failure</h:i>].              
             </title>
             <note role="application">The intent of this requirement is to ensure that cryptographic services requiring random bit generation cannot be performed if a failure of a self-test defined in FPT_TST.1 occurs.</note>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS>The evaluator shall verify that the TSF describes how the TOE enters an error state in the event of a DRBG self-test failure.</TSS>
               <Guidance>
                 The evaluator shall verify that the guidance documentation describes the error state that results from a DRBG self-test failure and the actions that a user or administrator should take in response to attempt to resolve the error state.
@@ -2164,7 +2171,7 @@ Many OSes store control flow values (i.e. return addresses) in stack data struct
 For these OSes, it is expected that most of the OS, to include the kernel, libraries, and application software from the OS vendor be compiled with stack-based buffer overflow protection enabled.
 OSes that store parameters and variables separately from control flow values do not need additional stack protections.
             </note>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS>TBD</TSS>
               <Guidance>TBD</Guidance>
               <Tests> <h:p>For stack-based OSes, the evaluator shall determine that the TSS contains a description of stack-based buffer overflow protections used by the OS.
@@ -2198,7 +2205,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 	      It does not forbid interpreters which may take data as an input, even if
               this data can subsequently result in arbitrary computation.
             </note>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS>The evaluator shall ensure that the description of the supported characteristics in the TSS is consistent with the SFR.
 		The evaluator shall also ensure that any characteristics specified by the ST-author are described in sufficient detail to understand how to test those characteristics.</TSS>
               <Guidance>
@@ -2257,7 +2264,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
         <f-component cc-id="fpt_stm.1" id="fpt-stm-1" name="Reliable Time Stamps">
           <f-element id="fel-timestamp">
             <title>The TSF shall be able to provide reliable time stamps <h:b>for its own use</h:b>. </title>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS>The evaluator shall examine the TSS to ensure that it lists each security
                 function that makes use of time. The TSS provides a description of how the time is
                 maintained and considered reliable in the context of each of the time related
@@ -2281,7 +2288,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
               The TSF shall run a suite of the following self-tests  <selectables><selectable id="fpt_tst.1.1_1" >during initial start-up</selectable><selectable id="fpt_tst.1.1_2" >periodically during normal operation</selectable><selectable id="fpt_tst.1.1_3" >at the request of the authorized user</selectable><selectable id="fpt_tst.1.1_4">at the conditions <assignable>conditions under which self-test should occur</assignable> </selectable></selectables> 
               to demonstrate the correct operation of [<h:i>[TSF DRBG specified in FCS_RBG.1]</h:i>].              
             </title>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS><h:p>
                   The	evaluator shall examine the TSS to ensure that it details the self-tests that are run by the TSF along with how they are run. This description should include an outline of what the tests are actually doing. The evaluator shall ensure that the TSS makes an argument that the tests are sufficient to demonstrate that the DRBG is operating correctly.
                 </h:p> <h:p>
@@ -2347,7 +2354,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 		If certificates are used, they can be hardware-protected trust store elements or leaf certificates in a certificate chain that terminates in a root CA which is an element of a hardware protected trust store.
 		If the certificates themselves are not trust store elements, revocation information is expected to be available for each CA certificate in the chain that is not a trust element, in accordance with FIA_X509_EXT.1 as defined in the <xref to="pkg-x509"/>.
 	      </h:p></note>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS><h:p>
               The evaluator shall verify that the TSS section of the ST includes a comprehensive description of the boot
               procedures, including a description of the entire bootchain, for the TSF.
@@ -2391,7 +2398,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 				Use of the digital signature scheme ensures that an attacker cannot influence the response, 
 				regarding of whether updates are available.
 			</note>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS>TBD</TSS>
               <Guidance>TBD</Guidance>
               <Tests>
@@ -2454,7 +2461,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 			  Use of the digital signature scheme ensures that an attacker cannot influence the response,
 			  regarding of whether updates are available.
             </note>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS>TBD</TSS>
               <Guidance>TBD</Guidance>
               <Tests>
@@ -2511,7 +2518,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
               then "no exceptions" should be indicated in the assignment.
               Full realization of this requirement requires hardware support, but this is commonly available.
             </note>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS>The evaluator shall inspect the vendor-provided developer documentation and
                 verify that no memory-mapping can be made with
                 write and execute permissions except for the cases listed in the assignment.</TSS>
@@ -2538,7 +2545,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
             Before establishing a user session, the [<h:i>TSF</h:i>] shall display an [<h:i>advisory
             warning</h:i>] message <h:b>regarding unauthorized use of the OS</h:b>.
             </title>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS>TBD</TSS>
               <Guidance>TBD</Guidance>
               <Tests>The evaluator shall configure the OS, per instructions in the OS manual, to display the advisory warning message "TEST TEST Warning Message TEST TEST". The evaluator shall then log out and confirm that the advisory message is displayed before logging in can occur.</Tests>
@@ -2600,7 +2607,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
       	      </h:p> <h:p>
       	        If the TSF implements a protocol that requires the presentation of any certificates to an external entity, FIA_XCU_EXT.2 will be claimed. FIA_X509_EXT.3 will also be claimed, along with any applicable dependencies, depending on how the certificates presented by the TOE are obtained.  
       	      </h:p> <h:p><rule id="r-need-client-tls"><doc ref="pkg-tls"><ref-id>tlsc_impl</ref-id></doc></rule><rule id="r-tlss"><if><ref-id>s-tls-server</ref-id></if><then><doc ref="pkg-tls"><ref-id>tlss_impl</ref-id></doc></then></rule><rule id="r-dtlsc"><if><ref-id>s-dtls-client</ref-id></if><then><doc ref="pkg-tls"><ref-id>dtlsc_impl</ref-id></doc></then></rule><rule id="r-dtlss"><if><ref-id>s-dtls-server</ref-id></if><then><doc ref="pkg-tls"><ref-id>dtlss_impl</ref-id></doc></then></rule></h:p> <rule id="r-sshclient"><if><ref-id>s-ssh-client</ref-id></if><then><doc ref="pkg-ssh"><ref-id>ssh-client</ref-id></doc></then></rule><rule id="r-sshserver"><if><ref-id>s-ssh-server</ref-id></if><then><doc ref="pkg-ssh"><ref-id>ssh-server</ref-id></doc></then></rule><rule id="r-bluetooth-ccm"><or><and><not><ref-id>mod-bluetooth</ref-id></not></and><and><ref-id>mod-bluetooth</ref-id><or><and><not><ref-id>p-256-keygen</ref-id></not><not><ref-id>s-aes-ccm</ref-id></not><not><ref-id>s-128</ref-id></not></and><and><ref-id>p-256-keygen</ref-id><ref-id>s-aes-ccm</ref-id><ref-id>s-128</ref-id></and></or></and></or></rule></note>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS>TBD</TSS>
               <Guidance>TBD</Guidance>
               <Tests>The evaluator shall configure the OS to communicate with another trusted IT product as identified in the third selection. The evaluator shall monitor network traffic while the OS performs communication with each of the servers identified in the third selection. The evaluator shall ensure that for each session a trusted channel was established in conformance with the selected protocols.</Tests>
@@ -2639,7 +2646,7 @@ ST author must include the security functional requirements for the trusted
 channel protocol selected in
 FTP_ITC_EXT.1.1 in the main body of the ST.
 		</h:p></note>
-            <aactivity level="component">
+            <aactivity level="element">
               <TSS>The evaluator shall examine the TSS to determine that the methods of remote or local OS administration
                 are indicated, along with how those communications are protected. [Conditional: if "remote" is selected
                 in FTP_TRP.1.1], the evaluator shall also confirm that all protocols listed in the TSS in support of OS
