@@ -3802,6 +3802,79 @@ only AES-based implementations for CTR_DRBG are allowed.
           </f-element>
           <audit-event/>
         </f-component>
+
+        <f-component cc-id="fdp_upc_ext.1" iteration="APPS" name="Inter-TSF User Data Transfer Protection (Applications)" status="objective">
+          <f-element id="fel-tls-app">
+            <title>The TSF shall provide a means for non-TSF applications executing on the TOE to use <selectables linebreak='yes'>
+                <selectable >TLS as conforming to the <xref to="pkg-tls"/> as a
+    	  	    <selectables>
+    	  	      <selectable ><readable>client(TLS)</readable>client</selectable>
+    	  	      <selectable ><readable>server(TLS)</readable>server</selectable>
+              </selectables></selectable>
+              <selectable >DTLS as conforming to the <xref to="pkg-tls"/> as a
+    	  	    <selectables>
+    	  	      <selectable ><readable>client(DTLS)</readable>client</selectable>
+    	  	      <selectable ><readable>server(DTLS)</readable>server</selectable>
+    	  	    </selectables></selectable>
+      	      <selectable id="s-upc-ipsec">IPsec as conforming to the PP-Module for Virtual Private Network (VPN) Clients</selectable>
+      	      </selectables>
+      	        and <selectables linebreak='yes'>
+      	          <selectable><snip>SSH</snip> as conforming to the <xref to="pkg-ssh"/> as a
+      	          <selectables>
+      	          <selectable ><readable>client(SSH)</readable>client</selectable>
+      	            <selectable><readable>server(SSH)</readable>server</selectable>
+      	          </selectables></selectable>
+      	          <selectable>no other protocols</selectable>
+      	        </selectables> to provide a protected communication channel between the non-TSF
+              application and another IT product that is logically distinct from other communication
+              channels, provides assured identification of its end points, protects channel data
+              from disclosure, and detects modification of the channel data. </title>
+            <note role="application"> 
+              The intent of this requirement is that one of the selected protocols is available for use by user applications running on the device for use in connecting to distant-end services that are not necessarily part of the enterprise infrastructure. It should be noted that the FTP_ITC_EXT.1 requires that all TSF communications be protected using the protocols indicated in that requirement, so the protocols required by this component ride "on top of" those listed in FTP_ITC_EXT.1.<h:br/><h:br/> 
+              It should also be noted that some applications are part of the TSF, and FTP_ITC_EXT.1 requires that TSF applications be protected by at least one of the protocols in first selection in FTP_ITC_EXT.1. It is not required to have two different implementations of a protocol, or two different protocols, to satisfy both this requirement (for non-TSF apps) and FTP_ITC_EXT.1 (for TSF apps), as long as the services specified are provided. <h:br/><h:br/> 
+              The ST author must list which trusted channel protocols are implemented by the TOE for use by non-TSF apps.<h:br/><h:br/> 
+              If ST author selects <xref to="s-upc-ipsec"/>, the TSF must be validated against the PP-Module for Virtual Private Network (VPN) Clients. 
+            </note>
+          </f-element>
+          <f-element id="fel-tls-app-init">
+            <title>The TSF shall permit the non-TSF applications to initiate communication via the
+              trusted channel.</title>
+            <aactivity> The evaluator shall verify that the API documentation provided according to
+                <xref to="adv"/> includes the security functions (protection channel)
+              described in these requirements, and verify that the APIs implemented to support this
+              requirement include the appropriate settings/parameters so that the application can
+              both provide and obtain the information needed to assure mutual identification of the
+              endpoints of the communication as required by this component. <h:br/><h:br/>
+              <TSS> The evaluator shall examine the TSS to determine that it describes that all
+                protocols listed in the TSS are specified and included in the requirements in the
+                ST. <h:br/><h:br/>
+              </TSS>
+              <Guidance> The evaluator shall confirm that the operational guidance contains
+                instructions necessary for configuring the protocols selected for use by the
+                applications.<h:br/><h:br/>
+              </Guidance>
+              <Tests>
+                <h:b>Evaluation Activity Note:</h:b> The evaluator shall write, or the developer shall provide access to, an application that
+                requests protected channel services by the TSF. The evaluator shall verify that the
+                results from the protected channel match the expected results according to the API
+                documentation. This application may be used to assist in verifying the protected
+                channel Evaluation Activities for the protocol requirements. The evaluator shall also
+                perform the following tests: <testlist>
+                  <test>The evaluators shall ensure that the application is able to initiate
+                    communications with an external IT entity using each protocol specified in the
+                    requirement, setting up the connections as described in the operational guidance
+                    and ensuring that communication is successful. </test>
+                  <test>The evaluator shall ensure, for each communication channel with an
+                    authorized IT entity, the channel data are not sent in plaintext.</test>
+                </testlist>
+              </Tests>
+            </aactivity>
+          </f-element>
+	  <audit-event>
+	    <audit-event-descr>Application initiation of trusted channel</audit-event-descr>
+	    <audit-event-info>Identifier of application. Trusted channel protocol. Non-TOE endpoint of connection</audit-event-info>
+	  </audit-event>
+        </f-component>
       </section>
       
       
