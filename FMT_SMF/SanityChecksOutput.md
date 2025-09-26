@@ -22,7 +22,6 @@ warning: failed to load external entity "output/mod-vpnclient.xml"
  Failed to find a reference to mod-biometrics.
  Failed to find a reference to uau_hybr.
  Failed to find a reference to fel-wlan.
- Failed to find a reference to fel-tls-app.
 warning: failed to load external entity "output/mod-vpnclient.xml"
 warning: failed to load external entity "output/mod-vpnclient.xml"
  Failed to find a reference to uau_biometric.
