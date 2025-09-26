@@ -6863,10 +6863,11 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
               The TSF shall use
       	      <selectables linebreak='yes'>
                 <selectable id="tls">TLS as conforming to the <xref to="pkg-tls"/> as a
-    	  	    <selectables>
-    	  	      <selectable id="s-tls-client"><readable>client(TLS)</readable>client</selectable>
-    	  	      <selectable id="s-tls-server"><readable>server(TLS)</readable>server</selectable>
-              </selectables></selectable>
+    	  	        <selectables>
+    	  	          <selectable id="s-tls-client"><readable>client(TLS)</readable>client</selectable>
+    	  	          <selectable id="s-tls-server"><readable>server(TLS)</readable>server</selectable>
+                  </selectables>
+                </selectable>
               <selectable id="dtls">DTLS as conforming to the <xref to="pkg-tls"/> as a
     	  	    <selectables>
     	  	      <selectable id="s-dtls-client"><readable>client(DTLS)</readable>client</selectable>
@@ -6880,6 +6881,17 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
       	          <selectable id="s-ssh-client"><readable>client(SSH)</readable>client</selectable>
       	            <selectable id="s-ssh-server"><readable>server(SSH)</readable>server</selectable>
       	          </selectables></selectable>
+                  <selectable id="itc_mtls"><snip>Mutually authenticated TLS</snip> in accordance with the [<h:i><xref to="pkg-tls"/></h:i>] as a 
+                  <selectables>
+    	  	          <selectable id="itc_mtls-client"><readable>client(mutual TLS)</readable>client</selectable>
+    	  	          <selectable id="itc_mtls-server"><readable>server(mutual TLS)</readable>server</selectable>
+                  </selectables></selectable>
+                  <selectable id="itc_mdtls"><snip>Mutually authenticated DTLS</snip> as defined in the <xref to="pkg-tls"/>
+                  <selectables>
+    	  	          <selectable id="itc_mdtls-client"><readable>client(mutual TLS)</readable>client</selectable>
+    	  	          <selectable id="itc_mdtls-server"><readable>server(mutual TLS)</readable>server</selectable>
+                  </selectables></selectable></selectable>
+                  <selectable id="itc_https"><snip>HTTPS</snip></selectable>
       	          <selectable>no other protocols</selectable>
       	        </selectables>
 		    to provide a trusted communication channel between itself and
@@ -6915,7 +6927,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
                channel protocol selected in FTP_ITC_EXT.1.1 in the main body of the ST.
              </h:p>
       	     <h:p>
-      	       If TLS or DTLS is selected, the TSF must be validated against the appropriate requirements in the <xref to="pkg-tls"/>.
+      	       If TLS, DTLS, or their mutually authenticated versions are selected, the TSF must be validated against the appropriate requirements in the <xref to="pkg-tls"/>.
       	     </h:p>
       	     <h:p>
       	        If <xref to="s-itc-ipsec"/> is selected, then FDP_IFC_EXT.1 must be included in the ST.
@@ -6926,6 +6938,10 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
       	        The ST author must include the security functional requirements for the trusted channel protocol
       	        selected in FTP_ITC_EXT.1 in the main body of the ST.
       	    </h:p>
+            <h:p>
+            If <xref to="itc_https"/> is selected, <xref to="fcs_https_ext.1" /> must be included in the ST.
+            </h:p>
+          
       	      <h:p>
       	        Claims from the <xref to="pkg-x509"/> are only required to the extent that they are needed to support the functionality required by the trusted protocols that are claimed.
       	      </h:p><h:p>
