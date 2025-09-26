@@ -2822,6 +2822,110 @@ This result shall be compared to the result of running 1000 iterations with the 
           <audit-event/>
         </f-component>
 
+        <ext-comp-def fam-id="FCS_HTTPS_EXT" title="HTTPS Protocol">
+          <fam-behavior>This family defines requirements for implementation of the HTTPS protocol. 
+          </fam-behavior>
+        </ext-comp-def>
+        
+        
+        <f-component cc-id="fcs_https_ext.1" name="HTTPS Protocol" status="objective">
+          
+          <comp-lev> requires the TSF to implement the HTTPS protocol in accordance with the specified standard, using TLS, and notifying the application if invalid.</comp-lev>
+          <management>The following actions could be considered for the management functions in FMT:
+          <h:ul>
+            <h:li>Configuring whether to allow or disallow establishment of a trusted channel if the peer or server certificate is deemed invalid.</h:li>
+          </h:ul></management>
+          <audit>The following actions should be auditable if FAU_GEN Security audit data generation is included in the PP/ST:
+          <h:ul>
+            <h:li>Failure of the certificate validity check.</h:li>
+          </h:ul></audit>
+          <dependencies>
+            FCS_TLS_EXT.1 TLS Protocol<h:br/>
+            FIA_X509_EXT.1 X.509 Validation of Certificates
+          </dependencies>
+          
+          
+          <f-element id="fel-https-how">
+            <title>The TSF shall implement the HTTPS protocol that complies with RFC 2818. </title>
+          </f-element>
+
+          <f-element id="fel-https-tls">
+            <title>The TSF shall implement HTTPS using TLS as defined in [<h:i>the <xref to="pkg-tls"/></h:i>].</title>
+            <ext-comp-def-title>
+              <title>The TSF shall implement HTTPS using TLS as defined in 
+                <assignable>specification that defines TLS implementation requirements</assignable>. </title>
+            </ext-comp-def-title>
+            <note role="application"> 
+              The <xref to="pkg-tls"/> must be included in the ST, with the following selections made: <h:ul>
+                <h:li>FCS_TLS_EXT.1:</h:li>
+                <h:ul>
+                  <h:li>TLS must be selected</h:li>
+                  <h:li>Client must be selected</h:li>
+                </h:ul>
+              </h:ul>
+            </note>
+          </f-element>
+          <f-element id="fel-conn-notify">
+
+            <title>The TSF shall notify the application and <selectables>
+                <selectable id="s-not-estab">not establish the connection</selectable>
+                <selectable id="s-req-app-auth">request application authorization to establish the
+                  connection</selectable>
+            <selectable id="s-no-other-action" exclusive="yes">no other action</selectable></selectables> if the peer certificate is deemed invalid. </title>
+	    <ext-comp-def-title><title>The TSF shall notify the application and <assignable>a response</assignable> if the peer certificate is deemed invalid.</title></ext-comp-def-title>
+            <note role="application"> Validity is determined by the certificate path, the expiration
+            date, and the revocation status in accordance with RFC 5280. <h:br/><h:br/>
+
+	    If <xref to="s-not-estab"/> is selected then "the server certificate is invalid [with no TLS-specific exceptions]" must be selected
+            for FCS_TLSC_EXT.1.6 in the <xref to="pkg-tls"/>.
+	    <rule id="r-not-estab">
+	      <if><ref-id>s-not-estab</ref-id></if>
+	      <then><doc ref="pkg-tls"><ref-id>s-tlsc-no-excep</ref-id></doc></then>
+	    </rule>
+	    If <xref to="s-req-app-auth"/> is selected then
+              "the server certificate is invalid [except when override is authorized in the case where valid revocation information is not available]" must be selected
+	    for FCS_TLSC_EXT.1.6 in the Package for
+            Transport Layer Security.
+	    <rule id="r-override">
+	      <if><ref-id>s-req-app-auth</ref-id></if>
+	      <then><doc ref="pkg-tls"><ref-id>s-tlsc-override</ref-id></doc></then>
+	    </rule>
+	    If <xref to="s-no-other-action"/> is selected then "the server certificate is invalid" with either selection can be
+            made in FCS_TLSC_EXT.1.6.<h:br/><h:br/>
+	    FMT_SMF_EXT.1 Function <xref to="mf-certInvalid"/> configures whether to allow or disallow the establishment of a
+              trusted channel if the peer certificate is deemed invalid. </note>
+            <aactivity>
+              <!-- TODO: Need to fix EA and interweave FMT_SMF_EXT function certInvalid -->
+              <TSS>There are no TSS evaluation activities for this component.<h:br/><h:br/></TSS>
+              <Guidance>There are no guidance evaluation activities for this component.<h:br/><h:br/></Guidance>
+              
+              <Tests>
+                <testlist>
+                  <test>The evaluator shall attempt to establish an HTTPS connection with a
+                    webserver, observe the traffic with a packet analyzer, and verify that the
+                    connection succeeds and that the traffic is identified as TLS or HTTPS.
+                    <h:br/><h:br/> Other tests are performed in conjunction with testing in the
+                    <xref to="pkg-tls"/>. <h:br/><h:br/> Certificate validity
+                    shall be tested in accordance with testing performed for FIA_X509_EXT.1 as defined in <xref to="pkg-x509"/>, and the
+                    evaluator shall perform the following test: </test><h:br/>
+                  <test>The evaluator shall demonstrate that using a certificate without a valid
+                    certification path results in an application notification. Using the
+                    administrative guidance, the evaluator shall then load a certificate or
+                    certificates to the Trust Anchor Database needed to validate the certificate to
+                    be used in the function, and demonstrate that the function succeeds. The
+                    evaluator then shall delete one of the certificates, and show that the
+                    application is notified of the validation failure.</test>
+                </testlist>
+              </Tests>
+            </aactivity>
+          </f-element>
+	  <audit-event>
+	    <audit-event-descr>Failure of the certificate validity check.</audit-event-descr>
+	    <audit-event-info>Issuer Name and Subject Name of certificate</audit-event-info>
+	    <audit-event-info><selectables onlyone="yes"><selectable>User’s authorization decision</selectable><selectable>No additional information</selectable></selectables></audit-event-info>
+	  </audit-event>
+        </f-component>
+
 
         <!--
 	<ext-comp-def fam-id="FCS_RBG_EXT" title="Random Bit Generation">
