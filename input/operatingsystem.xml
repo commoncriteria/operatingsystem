@@ -2070,6 +2070,97 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
           <audit-event />
         </f-component>
 
+        <f-component cc-id="fcs_ckm_ext.5" name="TSF Wipe" status="objective">
+          
+          <comp-lev> requires the TSF to implement a cryptographic or other mechanism to make non-TSF data unreadable.</comp-lev>
+          <management>The following actions could be considered for the management functions in FMT:
+          <h:ul>
+            <h:li>TSF wipe of sensitive data.</h:li>
+            <!-- <h:li>TSF wipe of enterprise data.</h:li> -->
+          </h:ul></management>
+          <audit>The following actions should be auditable if FAU_GEN Security audit data generation is included in the PP/ST:
+          <h:ul>
+            <h:li>Failure of the wipe.</h:li>
+          </h:ul></audit>
+          <dependencies>
+            FCS_CKM.6 Timing and Event of Cryptographic Key Destruction<h:br/>
+            FCS_RBG.1 Random Bit Generation
+          </dependencies>
+          
+          <f-element id="fel-wipe-how">
+            <title>The TSF shall wipe all sensitive data by 
+            <selectables linebreak="yes">
+              <selectable>Cryptographically erasing the encrypted DEKs or the KEKs in non-volatile
+                 memory by following the requirements in FCS_CKM.6.2
+              </selectable>
+
+              <selectable>the invocation of an interface provided by the underlying platform that
+                <selectables>
+                  <selectable>logically addresses the storage location of the sensitive data and performs a 
+                    <selectables>
+                      <selectable>single</selectable>
+                      <selectable><assignable>ST author defined multi-pass</assignable></selectable>
+                    </selectables>overwrite consisting of
+                    <selectables>
+                      <selectable>zeroes</selectable>
+                      <selectable>ones</selectable>
+                      <selectable>pseudo-random pattern</selectable>
+                    </selectables>
+                  </selectable>
+                  <selectable>instructs the underlying platform to destroy the sensitive data
+                  </selectable>
+                </selectables>
+              </selectable>
+              <!-- <selectable>Overwriting all sensitive data according to the following rules: <h:ul>
+                    <h:li>For EEPROM, the destruction shall be executed by a single direct overwrite consisting of a pseudo random pattern using the TSF’s RBG (as specified in FCS_RBG.1, followed by a read-verify. </h:li>
+                    <h:li>For flash memory, that is not wear-leveled, the destruction shall be executed <selectables>
+                        <selectable>by a single direct overwrite consisting of zeros followed by a read-verify</selectable>
+                        <selectable>by a block erase that erases the reference to memory that stores data as well as the data itself</selectable></selectables>. </h:li>
+                    <h:li>For flash memory, that is wear-leveled, the destruction shall be executed <selectables>
+                        <selectable>by a single direct overwrite consisting of zeros</selectable>
+                        <selectable>by a block erase</selectable></selectables>. </h:li>
+                   <h:li>For non-volatile memory other than EEPROM and flash, the destruction shall be executed by a single direct overwrite with a random pattern that is changed before each write. </h:li>
+                  </h:ul>
+                </selectable> -->
+              </selectables>. 
+            </title>
+            <note role="Application"> 
+              Sensitive data is all non-TSF data, including all user or enterprise data.
+            </note>
+          </f-element>
+          <f-element id="fel-wipe-power">
+            <title>The TSF shall perform a power cycle on conclusion of the wipe procedure. </title>
+            
+            <aactivity>
+              <TSS> 
+                The evaluator shall check to ensure the TSS describes how the device is wiped, the type of clearing procedure that is performed (cryptographic erase or overwrite) and, if overwrite is performed, the overwrite procedure (overwrite with zeros, overwrite three or more times by a different alternating pattern, overwrite with random pattern, or block erase). <h:br/><h:br/>
+                If different types of memory are used to store the data to be protected, the evaluator shall check to ensure that the TSS describes the clearing procedure in terms of the memory in which the data are stored (for example, data stored on flash are cleared by overwriting once with zeros, while data stored on the internal persistent storage device are cleared by overwriting three times with a random pattern that is changed before each write). <h:br/><h:br/>
+              </TSS>
+              <Guidance>
+                The evaluator shall verify that the AGD guidance describes how to enable encryption, if it is not enabled by default. Additionally the evaluator shall verify that the AGD guidance describes how to initiate the wipe command.<h:br/><h:br/>
+              </Guidance>
+              <Tests> 
+                <testlist>
+                  <test>The evaluator shall perform one of the following tests. The test before and after the wipe command shall be identical. This test shall be repeated for each type of memory used to store the data to be protected. <h:br/><h:br/>
+                  <testlist>
+                    <test><h:b>For File-based Methods:</h:b><h:br/>
+                      The evaluator shall enable encryption according to the AGD guidance. The evaluator shall create a user data (sensitive data) file, for example, by using an application. The evaluator shall use a tool provided by the developer to examine this data stored in memory (for example, by examining a decrypted file). The evaluator shall initiate the wipe command according to the AGD guidance provided for FMT_SMF_EXT.1. The evaluator shall use a tool provided by the developer to examine the same data location in memory to verify that the data has been wiped according to the method described in the TSS (for example, the files are still encrypted and cannot be accessed). </test>
+                    <test><h:b>For Volume-based Methods:</h:b><h:br/>
+                      The evaluator shall enable encryption according to the AGD guidance. The evaluator shall create a unique data string, for example, by using an application. The evaluator shall use a tool provided by the developer to search decrypted data for the unique string. The evaluator shall initiate the wipe command according to the AGD guidance provided for FMT_SMF_EXT.1. The evaluator shall use a tool provided by the developer to search for the same unique string in decrypted memory to verify that the data has been wiped according to the method described in the TSS (for example, the files are still encrypted and cannot be accessed).</test>
+                  </testlist>               
+                  </test>
+                  <test>
+                    The evaluator shall cause the device to wipe and verify that the wipe concludes with a power cycle.                                 
+                  </test>
+                </testlist>
+              </Tests>
+            </aactivity>
+          </f-element>
+	  <audit-event>
+	    <audit-event-descr><selectables onlyone="yes"><selectable>Failure of the wipe</selectable><selectable>none</selectable></selectables></audit-event-descr>
+	  </audit-event>
+        </f-component>
+
         <f-component cc-id="fcs_cop.1" name="Cryptographic Operation" iteration="CONDITION" status="objective">
           <f-element id="fel-cond-how">
             <title>The TSF shall perform [<h:li>conditioning</h:li>] in accordance with the
