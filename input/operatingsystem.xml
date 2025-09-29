@@ -1095,7 +1095,7 @@ users of the same system.
               a specified cryptographic key generation algorithm<selectables>
                 <tabularize id="fcs-ckm-1-ak-sels" title="Recommended choices for FCS_CKM.1/AKG">
                   <textcol>Identifier</textcol>
-                  <selectcol>Cryptographic key generation algorithm</selectcol>
+                  <selectcol>Cryptographic Key Generation Algorithm</selectcol>
                   <reqtext>and specified cryptographic <h:b>algorithm parameters</h:b> <h:s>key sizes</h:s></reqtext>
                   <selectcol>Cryptographic algorithm parameters</selectcol>
                   <reqtext>that meet the following: </reqtext>
@@ -1282,32 +1282,28 @@ users of the same system.
 	      If the OS acts only as a receiver in the RSA key establishment scheme,
 	      the OS does not need to implement RSA key generation.
 	      </h:p>
-              <h:p>
-                “P-256” may only be selected if the PP-Module for Bluetooth is included
-                in the ST and may only be used specifically for Bluetooth functions.
-              </h:p>
-	    </note>
+            </note>
             <aactivity>
 	      <TSS>
 						The evaluator shall examine the TSS to verify that it describes how the TOE generates a key
 						based on output from a random bit generator as specified in FCS_RBG.1. The evaluator shall
 						review the TSS to verify that it describes how the functionality described by FCS_RBG.1 is
 						invoked.<h:p/>
-						The evaluator shall examine the TSS to verify that it identifies the usage, and key lifecycle
+						The evaluator shall examine the TSS to verify that it identifies the usage and key lifecycle
 						for keys generated using each selected algorithm.<h:p/>
 						The evaluator shall examine the TSS to verify that any one-time values such as nonces or masks
 						are constructed in accordance with the relevant standards.<h:p/>
-						If the TOE uses the generated key in a key chain/hierarchy then the evaluator shall verify that the
-						TSS describes how the key is used as part of the key chain/hierarchy.
+						If the TOE uses the generated key in a key chain or hierarchy then the evaluator shall verify that the
+						TSS describes how the key is used as part of the key chain or hierarchy.
 					</TSS>
 					<Guidance>
-						The evaluator shall verify that the Guidance instructs the administrator how to configure the TOE to
+						The evaluator shall verify that the guidance instructs the administrator how to configure the TOE to
 						generate keys for the selected key generation algorithms for all key types and uses identified in
 						the TSS.
 					</Guidance>
 					<Tests>
-						The following tests are conditional based upon the selections made in the SFR. 
-						The evaluator shall perform the following test or witness respective tests 
+						The following tests are conditional based on the selections made in the SFR. 
+						The evaluator shall perform the following tests or witness respective tests 
 						executed by the developer. The tests must be executed on a platform that is as 
 						close as practically possible to the operational platform (but which may be 
 						instrumented in terms of, for example, use of a debug mode). Where the test is
@@ -1333,8 +1329,8 @@ users of the same system.
 						FIPS PUB 186-5 Key Pair generation specifies five methods for generating the 
 						primes <h:i>p</h:i> and <h:i>q</h:i>.<h:p/>
 						These are:<h:ol> 
-						<h:li>Random Provable primes</h:li>
-						<h:li>Random Probable primes</h:li>
+						<h:li>Random provable primes</h:li>
+						<h:li>Random probable primes</h:li>
 						<h:li>Provable primes with conditions based on auxiliary provable primes</h:li>
 						<h:li>Probable primes with conditions based on auxiliary provable primes</h:li>
 						<h:li>Probable primes with conditions based on auxiliary probable primes</h:li>
@@ -1349,12 +1345,12 @@ users of the same system.
 						<h:li>Public exponent [fixed value, random]</h:li></h:ul><h:p/>
 						The evaluator shall verify the ability of the TSF to correctly produce values
 						for the RSA key components, including the public verification exponent <h:i>e</h:i>, the
-						private prime factors <h:i>p</h:i> and <h:i>q</h:i>, the public modulus <h:i>n</h:i> and 
+						private prime factors <h:i>p</h:i> and <h:i>q</h:i>, the public modulus <h:i>n</h:i>, and 
 						the calculation of the private signature exponent <h:i>d</h:i>.<h:p/>
 						
 						<h:br/><h:i><h:b>Testing for Random Provable Primes and Conditional Methods</h:b></h:i><h:p/> 
-						To test the key generation method for the Random Provable primes method and for
-						all the Primes with Conditions methods (methods 1, 3-5), the evaluator must seed 
+						To test the key generation method for the random provable primes method and for
+						all the primes with conditions methods (methods 1, 3-5), the evaluator must seed 
 						the TSF key generation routine with sufficient data to deterministically 
 						generate the RSA key pair. <h:p/>
 						For each supported combination of the above input parameters, the evaluator
@@ -1363,12 +1359,12 @@ users of the same system.
 						with those generated by a known good implementation using the same input 
 						parameters.<h:p/>
 						<h:br/><h:i><h:b>Testing for Random Probable Primes Method</h:b></h:i><h:p/>
-						If the TOE generates Random Probable Primes (method 2) then, if possible, the 
-						Random Probable primes method should also be verified against a known good
+						If the TOE generates random probable primes (method 2) then, if possible, the 
+						random probable primes method should also be verified against a known good
 						implementation as described above. If verification against a known good
 						implementation is not possible, the evaluator shall have the TSF generate 25 key
 						pairs for each supported key length nlen and verify that all of the following 
-						are true:<h:p/><h:ul>
+						are true.<h:p/><h:ul>
 						<h:li><h:i>n</h:i> = <h:i>p</h:i>*<h:i>q</h:i></h:li>
 						<h:li><h:i>p</h:i> and <h:i>q</h:i> are probably prime according to Miller-Rabin tests with error
 							probability &lt;2<h:sup>(-125)</h:sup></h:li>
@@ -1391,14 +1387,14 @@ users of the same system.
 							</h:tr>
 							<h:tr>
 								<h:td valign="top">ECC-ERB</h:td>
-								<h:td valign="top">ECC - Extra Random Bits</h:td>
+							  <h:td valign="top">ECC – Extra Random Bits</h:td>
 								<h:td valign="top">Elliptic Curve [<h:b>selection:</h:b> P-384, P-521]</h:td>
 								<h:td valign="top">NIST FIPS PUB 186-5 (Section A.2.1)<h:p/>
 													NIST SP 800-186 (Section 3) [NIST Curves]</h:td>
 							</h:tr>
 							<h:tr>
 								<h:td valign="top">ECC-RS</h:td>
-								<h:td valign="top">ECC - Rejection Sampling</h:td>
+							  <h:td valign="top">ECC – Rejection Sampling</h:td>
 								<h:td valign="top">Elliptic Curve [<h:b>selection:</h:b> P-384, P-521]</h:td>
 								<h:td valign="top">NIST FIPS PUB 186-5 (Section A.2.2)<h:p/>
 													NIST SP 800-186 (Section 3) [NIST Curves]</h:td>
@@ -1406,31 +1402,31 @@ users of the same system.
 						</h:table><h:p/>						
 						To test the TOE’s ability to generate asymmetric cryptographic keys using
 						elliptic curves, the evaluator shall perform the ECC Key Generation Test 
-						and the ECC Key Validation Test using the following input parameters:<h:ul>
+						and the ECC Key Validation Test using the following input parameters.<h:ul>
 						<h:li>Elliptic curve [P-384, P-521]</h:li>
 						<h:li>Key pair generation method [extra random bits, rejection sampling]</h:li></h:ul><h:p/>
 						
 						<h:br/><h:i><h:b>ECC Key Generation Test</h:b></h:i><h:br/>
 						For each supported combination of the above input parameters the evaluator shall
-						require the implementation under test to generate 10 private/public key pairs
+						require the implementation under test to generate 10 private and public key pairs
 						(<h:i>d, Q</h:i>). The private key, <h:i>d</h:i>, shall be generated using a
 						random bit generator as specified in FCS_RBG.1. The private key, <h:i>d</h:i>, is
-						used to compute the public key, <h:i>Q’</h:i>. The evaluator shall confirm that
+						used to compute the public key, <h:i>Q'</h:i>. The evaluator shall confirm that
 						0&lt;<h:i>d</h:i>&lt;<h:i>n</h:i> (where <h:i>n</h:i> is the order of the group),
-						and the computed value <h:i>Q’</h:i> is then compared to the generated 
-						public/private key pairs’ public key, <h:i>Q</h:i>, to confirm that <h:i>Q</h:i> is 
-						equal to <h:i>Q’</h:i>.	<h:p/>					
+						and the computed value <h:i>Q'</h:i> is then compared to the generated 
+						public and private key pairs’ public key, <h:i>Q</h:i>, to confirm that <h:i>Q</h:i> is 
+						equal to <h:i>Q'</h:i>.<h:p/>					
 						
 						<h:br/><h:i><h:b>ECC Key Validation Test</h:b></h:i><h:br/>
 						For each supported combination of the above parameters the evaluator shall
-						generate 12 private/public key pairs using the key generation function of a 
-						known-good implementation. For each set of 12 public keys, the evaluator shall
+						generate 12 private and public key pairs using the key generation function of a 
+						known good implementation. For each set of 12 public keys, the evaluator shall
 						modify four public key values by shifting <h:i>x</h:i> or <h:i>y</h:i> out of 
 						range by adding the order of the field and modify four other public key values 
 						by shifting <h:i>x</h:i> or <h:i>y</h:i> so that they are still in bounds, but 
 						not on the curve. The remaining public key values are left unchanged (i.e., 
 						correct). To determine correctness, the evaluator shall submit the public keys
-						to the public key validation (PKV) function of the TOE and shall confirm that 
+						to the public key validation (PKV) function of the TOE and confirm that 
 						the results correspond as expected for the modified and unmodified values.<h:p/>
 					
 						<h:br/><h:b>Finite Field Cryptography Key Generation</h:b><h:p/>
@@ -1476,8 +1472,8 @@ users of the same system.
 						
 						<h:br/><h:i><h:b>Safe Primes Verification Test</h:b></h:i><h:br/>
 						For each supported safe primes group, use a known good implementation to generate
-						10 key pairs. For each set of 10, the evaluator shall modify three such that 
-						they are incorrect. The remaining values are left unmodified (i.e. correct). To
+						10 key pairs. For each set of 10, the evaluator shall modify three so they are 
+						incorrect. The remaining values are left unmodified (i.e. correct). To
 						determine correctness, the evaluator shall submit the key pairs to the public 
 						key validation (PKV) function of the TOE and shall confirm that the results
 						correspond as expected for the modified and unmodified values.<h:p/>
@@ -1510,7 +1506,7 @@ users of the same system.
 						<h:li>Winternitz [1, 2, 4, 8]</h:li>
 						<h:li>Tree height [5, 10, 15, 20, 25]</h:li></h:ul><h:p/>
 						<h:br/><h:i><h:b>LMS Key Generation Test</h:b></h:i><h:br/>
-						For each supported combination of the hash algorithm, Winternitz parameter, and tree height the
+						For each supported combination of the hash algorithm, Winternitz parameter, and tree height, the
 						evaluator shall generate one public key for each of the test cases. The number of test cases
 						depends on the tree height:
 						<h:b><h:div style="text-align: center;">
@@ -1574,7 +1570,7 @@ users of the same system.
 						For each supported parameter set the evaluator shall require the implementation under test to
 						generate 25 key pairs using 25 different randomly generated pairs of 32-byte seed values (<h:i>d, z</h:i>).
 						To determine correctness, the evaluator shall compare the resulting key pairs (<h:i>ek, dk</h:i>) with those
-						generated using a known-good implementation using the same inputs.<h:p/>
+						generated using a known good implementation using the same inputs.<h:p/>
 
 						<h:br/><h:b>ML-DSA Key Generation</h:b><h:p/>
 						<h:table border="1">
@@ -1600,7 +1596,7 @@ users of the same system.
 							For each supported parameter set the evaluator shall require the implementation 
 							under test to generate 25 key pairs using 25 different randomly generated 32-byte 
 							seed values. To determine correctness, the evaluator shall compare the resulting
-							key pairs with those generated using a known-good implementation using the same 
+							key pairs with those generated using a known good implementation using the same 
 							inputs.<h:p/>	
 
 						<h:br/><h:b>XMSS Key Generation</h:b><h:p/>
@@ -1661,7 +1657,7 @@ users of the same system.
 						<h:br/><h:i><h:b>XMSS Key Generation Test</h:b></h:i><h:br/>
 						For each supported combination of hash algorithm and tree height, the evaluator 
 						shall generate one public key for each test case. The number of test cases
-						depends on the tree height as specified in <xref to="xmss-test-cases"/>.<h:p/>
+						depends on the tree height as specified in <xref to="xmss-akg-test-cases"/>.<h:p/>
 
 						The evaluator shall verify the correctness of the TSF’s implementation by comparing 
 						values generated by the TSF with those generated by a known good implementation using 
@@ -1676,7 +1672,7 @@ users of the same system.
         </f-component>
 		
 		
-        <f-component cc-id="fcs_ckm.2" name="Cryptographic Key Establishment">
+        <f-component cc-id="fcs_ckm.2" name="Cryptographic Key Distribution">
           <f-element id="fel-crypt-key-estab">
             <title>The TSF shall distribute cryptographic keys in accordance with a specified cryptographic 
               key distribution method <selectables>
@@ -1953,305 +1949,8 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
     </note>
   </f-element>
   <audit-event/>
-        </f-component>
- 
-        <f-component cc-id="fcs_cop.1" iteration="SKC" name="Cryptographic Operation - Encryption/Decryption">
-          <f-element id="fel-encrypt-how">
-            <title>
-              The TSF shall perform [symmetric-key encryption/decryption] in accordance with a 
-              specified cryptographic algorithm   
-              <selectables>
-                <tabularize id="fcs-cop-skc-sels" title="Recommended choices for FCS_COP.1/SKC">
-                  <textcol>Identifier</textcol>
-                  <reqtext></reqtext>
-                  <selectcol>Cryptographic algorithm</selectcol>
-                  <reqtext>and cryptographic key sizes</reqtext>
-                  <selectcol>Cryptographic key sizes</selectcol>
-                  <reqtext>that meet the following:</reqtext>
-                  <selectcol>List of standards</selectcol>
-                  <reqtext><h:p/><h:p/>The following table provides the recommended choices for
-                    completion of the selection operations of FCS_COP.1/SKC.</reqtext>							
-                </tabularize>
-                
-                <!-- AES-CBC -->
-                <selectable id="sel-fcs-cop-skc-aes-cbc">
-                  <col>AES-CBC</col>
-                  <col>AES in CBC mode with non-repeating and unpredictable IVs</col>
-                  <col>256 bits</col>
-                  <col><selectables>
-                    <selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable> 
-                    <selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/><selectables>
-                      <selectable>ISO/IEC 10116:2017 (Clause 7)</selectable> 
-                      <selectable>NIST SP 800-38A</selectable></selectables> [CBC]
-                  </col>
-                </selectable>
-                
-                <!-- XTS-AES -->
-                <selectable id="sel-fcs-cop-skc-aes-xts">
-                  <col>XTS-AES</col>
-                  <col>AES in XTS mode with unique tweak values that are consecutive non-negative 
-                    integers starting at an arbitrary non-negative integer</col>
-                  <col>512 bits</col>
-                  <col><selectables>
-                    <selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable> 
-                    <selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/><selectables>
-                      <selectable>IEEE Std. 1619-2018</selectable> 
-                      <selectable>NIST SP 800-38E</selectable></selectables> [XTS]
-                  </col>
-                </selectable>
-                
-                <!-- AES-CTR -->
-                <selectable id="sel-fcs-cop-skc-aes-ctr">
-                  <col>AES-CTR</col>
-                  <col>AES in Counter Mode with a non-repeating initial counter and with no repeated
-                    use of counter values across multiple messages with the same secret key</col>
-                  <col>256 bits</col>
-                  <col><selectables>
-                    <selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable> 
-                    <selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/><selectables>
-                      <selectable>: ISO/IEC 10116:2017 (Clause 10)</selectable> 
-                      <selectable>NIST SP 800-38A</selectable></selectables> [CBC]
-                  </col>
-                </selectable>
-              </selectables>
-            </title>
-            <note role="application">
-	      <h:p>
-		<!-- AUTOMATION -->
-              AES CCMP (which uses AES in CCM as specified in SP 800-38C) becomes mandatory and must
-              be selected if the ST includes the PP-Module for Wireless LAN Clients.
-	      <!-- <!-\- AUTOMATION -\-> -->
-	      <!-- AES-CTR becomes mandatory and must be selected if the ST includes the <xref to="pkg-ssh"/>. -->
-        <h:p>
-          AES-CCM becomes mandatory and must be selected if the ST includes the PP-Module for Bluetooth.
-        </h:p>	    
-	      </h:p>
-	      <h:p>
-	        For the second selection, the ST author should choose the mode
-		or modes in which AES operates.</h:p>
-		    <h:p>
-		      For the third selection, the ST author may only choose 128-bit if the ST
-		      includes the PP-Module for Bluetooth, and it may only be used specifically
-		      with AES-CCM for Bluetooth functions.
-	      </h:p>
-	      <!-- <h:p>If <xref to="s-ftp_ssh"/> is selected in FTP_ITC_EXT.1.1, -->
-	      <!-- then <xref to="s-aes-ctr"/> must be selected.</h:p> -->
-	      
-	    </note>
-            <aactivity>
-              <TSS>
-                The evaluator shall examine the TSS to ensure that it describes the construction of any IVs,
-                tweak values, and counters in conformance with the relevant specifications.<h:p/>
-                If XTS-AES is claimed then the evaluator shall examine the TSS to verify that the TOE creates
-                full-length keys by methods that ensure that the two key halves are different and independent.
-              </TSS>
-              <Guidance/>
-              <Tests>
-                The following tests require the developer to provide access to a test platform that
-                provides the evaluator with tools that are typically not found on factory products.<h:p/>
-                The following tests are conditional based upon the selections made in the SFR. The
-                evaluator shall perform the following test or witness respective tests executed by
-                the developer. The tests must be executed on a platform that is as close as practically
-                possible to the operational platform (but which may be instrumented in terms of,
-                for example, use of a debug mode). Where the test is not carried out on the TOE
-                itself, the test platform shall be identified and the differences between test
-                environment and TOE execution environment shall be described.<h:p/>
-                
-                <!-- AES-CBC -->
-                <h:br/><h:b>AES-CBC</h:b><h:p/>
-                <h:table border="1">
-                  <h:tr class="header" bgcolor="#cccccc">
-                    <h:td valign="top">Identifier</h:td>
-                    <h:td valign="top">Cryptographic Algorithm</h:td>
-                    <h:td valign="top">Cryptographic Key Sizes</h:td>
-                    <h:td valign="top">List of Standards</h:td>
-                  </h:tr>
-                  <h:tr>
-                    <h:td valign="top">AES-CBC</h:td>
-                    <h:td valign="top">AES in CBC mode with non-repeating and unpredictable IVs</h:td>
-                    <h:td valign="top">256 bits</h:td>
-                    <h:td valign="top">
-                      [<h:b>selection:</h:b> ISO/IEC 18033-3:2010 (Subclause 5.2),
-                      FIPS PUB 197] [AES]<h:p/>
-                      [<h:b>selection:</h:b>  ISO/IEC 10116:2017 (Clause 7), 
-                      NIST SP 800-38A] [CBC]</h:td>
-                  </h:tr>
-                </h:table><h:p/>	
-                
-                To test the TOE’s ability to encrypt/decrypt data using AES in CBC mode, the evaluator 
-                shall perform Algorithm Functional Tests and Monte Carlo Tests using the following
-                input parameters:<h:ul>
-                  <h:li>Key size [256] bits</h:li>
-                  <h:li>Direction [encryption, decryption]</h:li></h:ul><h:p/>
-                <h:br/><h:b>Algorithm Functional Tests</h:b><h:p/>
-                Algorithm Functional Tests are designed to verify the correct operation of the logical
-                components of the algorithm implementation under normal operation using different block sizes.
-                For AES-CBC, there are two types of AFTs:<h:p/>
-                <h:br/><h:b><h:i>Known-Answer Tests</h:i></h:b><h:p/>
-                For each combination of direction and claimed key size, the TOE must be tested using the
-                GFSBox, KeySbox, VarTxt, and VarKey test cases listed in Appendixes B through E of <h:i>The
-                  Advanced Encryption Standard Algorithm Validation Suite (AESAVS)</h:i>, NIST, 15 November 2002.<h:p/>
-                <h:br/><h:b><h:i>Multi-Block Message Tests</h:i></h:b><h:p/>
-                For each combination of direction and claimed key size, the TOE must be tested against 10 test
-                cases consisting of a random IV, random key, and random plaintext/ciphertext. The
-                plaintext/ciphertext starts with a length of 16 bytes and increases by 16 bytes for each test case
-                until reaching 160 bytes.<h:p/>
-                <h:br/><h:b><h:i>Monte Carlo Tests</h:i></h:b><h:p/>
-                Monte Carlo tests are intended to test the implementation under strenuous conditions. The TOE
-                must process the test cases according to the following algorithm once for each combination of
-                direction and key size:<h:p/>
-                <h:pre>
-                  Key[0] = Key
-                  IV[0] = IV
-                  PT[0] = PT
-                  for i = 0 to 99 {
-                  Output Key[i], IV[i], PT[0]
-                  for j = 0 to 999 {
-                  if (j == 0) {
-                  CT[j] = AES-CBC-Encrypt(Key[i], IV[i], PT[j])
-                  PT[j+1] = IV[i]
-                  } else {
-                  CT[j] = AES-CBC-Encrypt(Key[i], PT[j])
-                  PT[j+1] = CT[j-1]
-                  }
-                  }
-                  Output CT[j]
-                  AES_KEY_SHUFFLE(Key, CT)
-                  IV[i+1] = CT[j]
-                  PT[0] = CT[j-1]
-                  }
-                </h:pre><h:p/>	
-                where <h:pre>AES_KEY_SHUFFLE</h:pre> is defined as: <h:p/>
-                <h:pre>
-                  If ( keylen = 128 )
-                  Key[i+1] = Key[i] xor MSB(CT[j], 128)
-                  If ( keylen = 192 )
-                  Key[i+1] = Key[i] xor (LSB(CT[j-1], 64) || MSB(CT[j], 128))
-                  If ( keylen = 256 )
-                  Key[i+1] = Key[i] xor (MSB(CT[j-1], 128) || MSB(CT[j], 128))
-                </h:pre><h:p/>
-                The above pseudocode is for encryption. For decryption, swap all instances of CT and PT.<h:p/>
-                The initial IV, key, and plaintext/ciphertext should be random.<h:p/>
-                The evaluator shall test the decrypt functionality using the same test as above,
-                exchanging CT and PT, and replacing AES-CBC-Encrypt with AES-CBC-Decrypt.<h:p/>
-                
-                
-                <!-- XTS-AES -->
-                <h:br/><h:b>XTS-AES</h:b><h:p/>
-                <h:table border="1">
-                  <h:tr class="header" bgcolor="#cccccc">
-                    <h:td valign="top">Identifier</h:td>
-                    <h:td valign="top">Cryptographic Algorithm</h:td>
-                    <h:td valign="top">Cryptographic Key Sizes</h:td>
-                    <h:td valign="top">List of Standards</h:td>
-                  </h:tr>
-                  <h:tr>
-                    <h:td valign="top">XTS-AES</h:td>
-                    <h:td valign="top">AES in XTS mode with unique tweak values that are consecutive
-                      non-negative integers starting at an arbitrary non-negative integer</h:td>
-                    <h:td valign="top">512 bits</h:td>
-                    <h:td valign="top">
-                      [<h:b>selection:</h:b> ISO/IEC 18033-3:2010 (Subclause 5.2),
-                      FIPS PUB 197] [AES]<h:p/>
-                      [<h:b>selection:</h:b> IEEE Std. 1619-2018, 
-                      NIST SP 800-38E] [XTS]</h:td>
-                  </h:tr>
-                </h:table><h:p/>	
-                To test the TOE’s ability to encrypt/decrypt data using AES in XTS mode, the evaluator shall
-                perform the Single Data Unit Test and the Multiple Data Unit Test using the following input
-                parameters:<h:ul>
-                  <h:li>Direction [encryption, decryption]</h:li>
-                  <h:li>Key size [512] bits</h:li>
-                  <h:li>Tweak value format [128-bit hex string, data unit sequence number]</h:li></h:ul><h:p/>
-                <h:br/><h:b>Single Data Unit Test</h:b><h:p/>
-                For each combination of claimed key size, direction, and supported tweak value format, the
-                evaluator shall generate 50 test cases consisting of random payload data. The payload data size is
-                determined randomly for each test case from supported values within the range [128-65536] bits.
-                The payload size and data unit size must be equal.<h:p/>
-                <h:br/><h:b>Multiple Data Unit Test</h:b><h:p/>
-                For each combination of claimed key size, direction, and supported tweak value format, the
-                evaluator shall generate 50 test cases consisting of random payload data. The payload data size is
-                determined randomly for each test case from supported values within the range [128-65536] bits.
-                Likewise, the data unit size is determined randomly for each test case from supported values
-                within the range [128-65535] bits. The payload size and data unit size must not be equal.<h:p/>
-                The evaluator shall verify the correctness of the TSF’s implementation by comparing values
-                generated by the TSF with those generated by a known good implementation using the same
-                input parameters.<h:p/>
-                
-                <!-- AES-CTR -->
-                <h:br/><h:b>AES-CTR</h:b><h:p/>
-                <h:table border="1">
-                  <h:tr class="header" bgcolor="#cccccc">
-                    <h:td valign="top">Identifier</h:td>
-                    <h:td valign="top">Cryptographic Algorithm</h:td>
-                    <h:td valign="top">Cryptographic Key Sizes</h:td>
-                    <h:td valign="top">List of Standards</h:td>
-                  </h:tr>
-                  <h:tr>
-                    <h:td valign="top">AES-CTR</h:td>
-                    <h:td valign="top">AES in Counter Mode with a non-repeating initial counter and
-                      with no repeated use of counter values across multiple messages with the 
-                      same secret key.</h:td>
-                    <h:td valign="top">256 bits</h:td>
-                    <h:td valign="top">
-                      [<h:b>selection:</h:b> ISO/IEC 18033-3:2010 (Subclause 5.2),
-                      FIPS PUB 197] [AES]<h:p/>
-                      [<h:b>selection:</h:b>  ISO/IEC 10116:2017 (Clause 10), 
-                      NIST SP 800-38A] [CTR]</h:td>
-                  </h:tr>
-                </h:table><h:p/>	
-                To test the TOE’s ability to encrypt/decrypt data using AES in CTR mode, the evaluator shall
-                perform the Algorithm Functional Test and the Counter Test using the following input
-                parameters:<h:ul>
-                  <h:li>Direction [encryption, decryption]</h:li>
-                  <h:li>Key size [256] bits</h:li></h:ul><h:p/>
-                <h:br/><h:b>Algorithm Functional Tests</h:b><h:p/>
-                Algorithm Functional Tests are designed to verify the correct operation of the logical
-                components of the algorithm implementation under normal operation using different block sizes.
-                For AES-CTR, there are three types of AFTs:<h:p/>
-                <h:br/><h:b><h:i>Known-Answer Tests</h:i></h:b><h:p/>
-                For each combination of direction and claimed key size, the TOE must be tested using the
-                GFSBox, KeySbox, VarTxt, and VarKey test cases listed in Appendixes B through E of <h:i>The
-                  Advanced Encryption Standard Algorithm Validation Suite (AESAVS)</h:i>, NIST, 15 November 2002.<h:p/>
-                <h:br/><h:b><h:i>Single Block Message Tests</h:i></h:b><h:p/>
-                For each combination of direction and claimed key, the evaluator shall generate 10 test cases
-                with a data size of 128 bits.<h:p/>
-                <h:br/><h:b><h:i>Partial Block Message Tests</h:i></h:b><h:p/>
-                Monte Carlo tests are intended to test the implementation under strenuous conditions. The TOE
-                must process the test cases according to the following algorithm once for each combination of
-                direction and key size:<h:p/>
-                For each combination of direction and claimed key, the evaluator shall generate five test cases
-                such that the data size is not a multiple of 128 bits.<h:p/>
-                The evaluator shall verify the correctness of the TSF’s implementation by comparing values
-                generated by the TSF with those generated by a known good implementation using the same
-                input parameters.
-                <h:br/><h:b><h:i>Counter Test</h:i></h:b><h:p/>
-                The evaluator shall generate a single message of 1000 blocks (128000 bits) and either encrypt or
-                decrypt it. Back-compute the IVs used. Verify that they are unique and increasing (encryption) or
-                decreasing (decryption).<h:p/>
-                
-              </Tests>
-	    </aactivity>
-	    <rule id="r-wlan-aes">
-	      <or>
-		<and><not><ref-id>mod-wlanclient</ref-id></not></and>
-		<and>
-		  <ref-id>mod-wlanclient</ref-id>
-		  <or><ref-id>s-aes-ccmp</ref-id><ref-id>s-aes-gcmp</ref-id></or>
-		</and>
-	      </or>
-	    </rule>
-	    <!-- <rule id="r-aes-ctr-for-ssh"> -->
-	    <!--   <if><ref-id>s-ftp_ssh</ref-id></if> -->
-	    <!--   <then><ref-id>s-aes-ctr</ref-id></then> -->
-	      <!-- <or><and><ref-id>s-aes-ctr</ref-id><ref-id>s-ftp_ssh</ref-id></and> -->
-	      <!-- <not><ref-id>s-ftp_ssh</ref-id></not> -->
-	      <!-- </or> -->
-	    <!-- </rule> -->
-          </f-element>
-          <audit-event/>
-        </f-component>
-        
+        </f-component> 
+              
         <f-component cc-id="fcs_cop.1" iteration="HASH" name="Cryptographic Operation - Hashing">
           <f-element id="fel-hash-how">
             <title>
@@ -2287,8 +1986,8 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               <Tests>
                 The following tests may require the developer to provide access to a test platform that
                 provides the evaluator with tools that are typically not found on factory products.<h:p/>
-                The following tests are conditional based upon the selections made in the SFR. The
-                evaluator shall perform the following test or witness respective tests executed by
+                The following tests are conditional, based on the selections made in the SFR. The
+                evaluator shall perform the following tests or witness respective tests executed by
                 the developer. The tests must be executed on a platform that is as close as practically
                 possible to the operational platform (but which may be instrumented in terms of,
                 for example, use of a debug mode). Where the test is not carried out on the TOE
@@ -2296,20 +1995,18 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 environment and TOE execution environment shall be described.<h:p/>
                 
                 <h:br/><h:b>SHA-256, SHA-384, SHA-512</h:b><h:p/> 
-                To test the TOE’s ability to generate hash digests using SHA2 the evaluator shall
+                To test the TOE’s ability to generate hash digests using SHA2, the evaluator shall
                 perform the Algorithm Functional Test, Monte Carlo Test, and Large Data Test for each claimed
                 SHA2 algorithm.<h:p/>
                 <h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
                 The evaluator shall generate a number of test cases equal to the block size of the hash (512 for
                 SHA2-256; 1024 for the other SHA2 algorithms).<h:p/>
                 Each test case is to consist of random data of a random length between 0 and 65536 bits, or the
-                largest size supported.<h:p/>
-                Each test case is to consist of random data of a random length between 0 and 65536 bits, or the
-                largest size supported.<h:p/>
+                largest size supported.<h:p/>                
                 <h:br/><h:b>Monte Carlo Test</h:b><h:p/>
                 Monte Carlo tests begin with a single seed and run 100 iterations of the chained computation.<h:p/>
-                There are two versions of the Monte Carlo test for SHA-1 and SHA-2. Either one is acceptable.
-                For the Standard Monte Carlo test the message hashed is always three times the length of the
+                There are two versions of the Monte Carlo Test for SHA-1 and SHA-2. Either one is acceptable.
+                For the standard Monte Carlo test the message hashed is always three times the length of the
                 initial seed.<h:p/>
                 <h:pre>
                   For j = 0 to 99
@@ -2342,19 +2039,20 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                   Output MD
                   SEED = MD	
                 </h:pre><h:p/>
-                The evaluator shall compare the output against results generated by a known-good
+                The evaluator shall compare the output against results generated by a known good
                 implementation with the same input.<h:p/>
                 <h:br/><h:b>Large Data Test</h:b><h:p/>
                 The implementation must be tested against one test case each on large data messages of 1GB,
                 2GB, 4GB, and 8GB of data as supported. The data need not be random. It may, for example,
                 consist of a repeated pattern of 64 bits.<h:p/>
-                The evaluator shall compare the output against results generated by a known-good
+                The evaluator shall compare the output against results generated by a known good
                 implementation with the same input.<h:p/>
                 
-                <h:br/><h:b>SHA3-384, SHA3-512</h:b> 
+                <h:br/><h:b>SHA3-384, SHA3-512</h:b> <h:p/>
                 To test the TOE’s ability to generate hash digests using SHA3 the evaluator shall perform the
                 Algorithm Functional Test, Monte Carlo Test, and Large Data Tests for each claimed SHA3
-                algorithm.
+                algorithm.<h:p/>
+                
                 <h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
                 Generate a test case consisting of random data for every message length from 0 bits (or the
                 smallest supported message size) to rate bits, where rate equals<h:ul>
@@ -2362,7 +2060,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                   <h:li>576 for SHA3-512.</h:li></h:ul><h:p/>
                 Additionally, generate tests cases of random data for messages of every multiple of (rate+1) bits
                 starting at length rate, and continuing until 65535 is exceeded.<h:p/>
-                The evaluator shall compare the output against results generated by a known-good
+                The evaluator shall compare the output against results generated by a known good
                 implementation with the same input.<h:p/>
                 <h:br/><h:b>Monte Carlo Test</h:b><h:p/>
                 Monte Carlo tests begin with a single seed and run 100 iterations of the chained computation.<h:p/>
@@ -2381,13 +2079,13 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                   MD[0] = MD[1000]
                   Output MD[0]
                 </h:pre><h:p/>
-                The evaluator shall compare the output against results generated by a known-good
+                The evaluator shall compare the output against results generated by a known good
                 implementation with the same input.<h:p/>
                 <h:br/><h:b>Large Data Test</h:b><h:p/>
                 The implementation must be tested against one test case each on large data messages of 1GB,
                 2GB, 4GB, and 8GB of data as supported. The data need not be random. It may, for example,
                 consist of a repeated pattern of 64 bits.<h:p/>
-                The evaluator shall compare the output against results generated by a known-good
+                The evaluator shall compare the output against results generated by a known good
                 implementation with the same input.
               </Tests>
             </aactivity>
@@ -2395,17 +2093,17 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
           <audit-event/>
         </f-component>
         
-        <f-component cc-id="fcs_cop.1" iteration="KeyedHash" name="Cryptographic Operation - Keyed-Hash Message Authentication">
+        <f-component cc-id="fcs_cop.1" iteration="KeyedHash" name="Cryptographic Operation - Keyed Hash">
           <f-element id="fel-keyed-hash-how">
-            <title>The TSF shall perform [keyed hash message authentication] in accordance
+            <title>The TSF shall perform [<h:i>keyed hash message authentication</h:i>] in accordance
               with a specified cryptographic algorithm 
               <selectables>
                 <tabularize id="tab-fcs-cop-keyedhash-sels" title="Recommended choices for FCS_COP.1/KeyedHash">
                   <selectcol>Keyed Hash Algorithm</selectcol>
                   <reqtext>and cryptographic key sizes</reqtext>
-                  <selectcol>Cryptographic key sizes</selectcol>
+                  <selectcol>Cryptographic Key Sizes</selectcol>
                   <reqtext>that meet the following:</reqtext>
-                  <selectcol>List of standards</selectcol>
+                  <selectcol>List of Standards</selectcol>
                   <reqtext><h:p/><h:p/>The following table provides the recommended choices for
                     completion of the selection operations of FCS_COP.1/KeyedHash.</reqtext>
                 </tabularize>
@@ -2464,8 +2162,8 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               </TSS>
               <Guidance/>
               <Tests>
-                The following tests are conditional based upon the selections made in the SFR. The evaluator
-                shall perform the following test or witness respective tests executed by the developer. The tests
+                The following tests are conditional based on the selections made in the SFR. The evaluator
+                shall perform the following tests or witness respective tests executed by the developer. The tests
                 must be executed on a platform that is as close as practically possible to the operational platform
                 (but which may be instrumented in terms of, for example, use of a debug mode). Where the test
                 is not carried out on the TOE itself, the test platform shall be identified and the differences
@@ -2511,7 +2209,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                   <h:li>The key length includes the minimum, the maximum, a key length equal to the block
                     size, and key lengths that are both larger and smaller than the block size.</h:li>
                   <h:li>The MAC size includes the minimum, the maximum, and two other random values.</h:li></h:ul><h:p/>
-                The evaluator shall compare the output against results generated by a known-good
+                The evaluator shall compare the output against results generated by a known good
                 implementation with the same input.	
               </Tests>
             </aactivity>
@@ -2522,19 +2220,19 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 <f-component cc-id="fcs_cop.1" iteration="SigGen" name="Cryptographic Operation -
                   Signature Generation">
           <f-element id="fel-sign-how">
-            <title> The TSF shall perform [digital signature generation] in accordance with a specified 
+            <title> The TSF shall perform [<h:i>digital signature generation</h:i>] in accordance with a specified 
               cryptographic algorithm 
               <selectables>
                 <tabularize id="tab-fcs-cop-siggen-sels" title="Recommended choices for FCS_COP.1/SigGen">
                   <textcol>Identifier</textcol>
                   <reqtext></reqtext>
-                  <selectcol>Cryptographic algorithm</selectcol>
+                  <selectcol>Cryptographic Algorithm</selectcol>
                   <reqtext>and cryptographic key sizes</reqtext>
-                  <selectcol>Cryptographic key sizes</selectcol>
+                  <selectcol>Cryptographic Key Sizes</selectcol>
                   <reqtext>that meet the following:</reqtext>
-                  <selectcol>List of standards</selectcol>
+                  <selectcol>List of Standards</selectcol>
                   <reqtext><h:p/><h:p/>The following table provides the recommended choices for
-                    completion of the selection operations of FCS_COP.1/SigGen.</reqtext>
+                    completion of the selection operations in FCS_COP.1/SigGen.</reqtext>
                 </tabularize>
                 
                 <selectable id="sel-fcs-cop-siggen-rsa-pkcs">
@@ -2585,13 +2283,13 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                     <selectable>extra random bits</selectable>
                     <selectable>rejection sampling</selectable>
                     <selectable>deterministic</selectable>
-                  </selectables> and hash function using<selectables>
+                  </selectables> and hash function using <selectables>
                     <selectable>SHA-384</selectable>
                     <selectable>SHA-512</selectable>
                   </selectables></col>
                   <col><selectables>
                     <selectable>ISO/IEC 14888-3:2018 (Subclause 6.6)</selectable>
-                    <selectable>FIPS PUB 186-5 (Sections 6.3.1, 6.4.1]</selectable>
+                    <selectable>FIPS PUB 186-5 (Sections 6.3.1, 6.4.1</selectable>
                   </selectables>[ECDSA]<h:p/>
                     NIST SP-800 186 (Section 4) [NIST Curves]
                   </col>
@@ -2665,7 +2363,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
             <note role="application"> The ST author should choose the algorithm implemented to
               perform digital signatures; if more than one algorithm is available, this requirement
               should be iterated to specify the functionality. For the algorithm chosen, the ST
-              author should make the appropriate assignments/selections to specify the parameters
+              author should make the appropriate assignments and selections to specify the parameters
               that are implemented for that algorithm.
             </note>
        <aactivity>
@@ -2674,15 +2372,15 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 						The evaluator shall examine the TSS to verify that any one-time values such as nonces or masks
 						are constructed and used in accordance with the relevant standards.<h:p/>
 						The evaluator shall examine the TSS to verify that the TOE has appropriate measures in place to
-						ensure that hash-based signature algorithms do not reuse private keys</TSS>
+						ensure that hash-based signature algorithms do not reuse private keys.</TSS>
 					<Guidance/>
 					<Tests>
-						The following tests are conditional based upon the selections made in the SFR. The evaluator
-						shall perform the following test or witness respective tests executed by the developer. The tests
+						The following tests are conditional based on the selections made in the SFR. The evaluator
+						shall perform the following tests or witness respective tests executed by the developer. The tests
 						must be executed on a platform that is as close as practically possible to the operational platform
 						(but which may be instrumented in terms of, for example, use of a debug mode). Where the test
 						is not carried out on the TOE itself, the test platform shall be identified and the differences
-						between test environment and TOE execution environment shall be described.<h:p/>
+						between test environment and TOE execution environment shall be described.
 					
 						<!-- RSA-PKCS Signature Generation   -->
 						<h:br/><h:b>RSA-PKCS Signature Generation </h:b><h:p/>
@@ -2706,11 +2404,11 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 						signature type, the evaluator shall perform the Generated Data Test using the following input
 						parameters:<h:ul>
 						<h:li>Modulus size [3072, 4096, 6144, 8192] bits</h:li>
-						<h:li>Hash algorithm [SHA-384, SHA-512]</h:li></h:ul><h:p/>
+						<h:li>Hash algorithm [SHA-384, SHA-512]</h:li></h:ul>
 						<h:br/><h:b>Generated Data Test</h:b><h:p/>
 						For each supported combination of the above parameters, the evaluator shall cause the TOE to
 						generate three test cases using random data. The evaluator shall compare the results against those
-						from a known-good implementation.<h:p/>
+						from a known good implementation.
 
 						<!-- RSA-PSS Signature Generation    -->
 						<h:br/><h:b>RSA-PSS Signature Generation </h:b><h:p/>
@@ -2742,7 +2440,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 						<h:br/><h:b>Generated Data Test</h:b><h:p/>
 						For each supported combination of the above parameters, the evaluator shall cause the TOE to
 						generate three test cases using random data. The evaluator shall compare the results against those
-						from a known-good implementation.<h:p/>
+						from a known good implementation.
 
 						<!-- ECDSA Signature Generation  -->
 						<h:br/><h:b>ECDSA Signature Generation </h:b><h:p/>
@@ -2774,18 +2472,18 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 						secret number generation, the evaluator shall perform the Algorithm Functional Test using the
 						following input parameters:	<h:ul>
 						<h:li>Elliptic Curve [P-384, P-521]</h:li>
-						<h:li>Hash algorithm [SHA-384, SHA-512]</h:li></h:ul><h:p/>
+						<h:li>Hash algorithm [SHA-384, SHA-512]</h:li></h:ul>
 						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
 						For each supported combination of the above parameters, the evaluator shall cause the TOE to
 						generate 10 test cases using random data. The evaluator shall compare the results against those
-						from a known-good implementation.<h:p/>
+						from a known good implementation.
 
 						<!-- LMS Signature Genration  -->
-						<h:br/><h:b>LMS Signature Gneration </h:b><h:p/>
+						<h:br/><h:b>LMS Signature Generation </h:b><h:p/>
 						<h:table border="1">
 							<h:tr class="header" bgcolor="#cccccc">
 								<h:td valign="top">Identifier</h:td>
-								<h:td valign="top">Cryptogrphic Algorithm Parameters</h:td>
+								<h:td valign="top">Cryptographic Algorithm Parameters</h:td>
 								<h:td valign="top">Cryptographic Key Sizes</h:td>
 								<h:td valign="top">List of Standards</h:td>
 							</h:tr>
@@ -2801,7 +2499,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 										NIST SP 800-208 [parameters] </h:td>
 							</h:tr>
 						</h:table><h:p/>	
-						To test the TOE’s ability to generate cryptographic digital signature using LMS, the
+						To test the TOE’s ability to generate cryptographic digital signatures using LMS, the
 						evaluator shall perform the Algorithm Functional Test using the following input parameters:<h:ul>
 						<h:li>Hash algorithm [SHA-256/192, SHAKE256/192, SHA-256, SHAKE256]</h:li>
 						<h:li>Winterlitz [1, 2, 4, 8]</h:li>
@@ -2810,7 +2508,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 						For each supported combination of the above parameters, the evaluator shall generate 10
 						signatures. The evaluator shall verify the correctness of the implementation by comparing values
 						generated by the TOE with those generated by a known good implementation using the same
-						input parameters.<h:p/>
+						input parameters.
 						
 						<!-- ML-DSA Signature Generation  -->
 						<h:br/><h:b>ML-DSA Signature Generation</h:b><h:p/>
@@ -2841,7 +2539,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 						For each combination of supported parameter set and capabilities, the evaluator shall require the
 						implementation under test to generate 15 signatures pairs using 15 different randomly generated
 						32-byte seed values. To determine correctness, the evaluator shall
-						compare the resulting key pairs with those generated using a known-good implementation using
+						compare the resulting key pairs with those generated using a known good implementation using
 						the same inputs.<h:p/>
 						<h:br/><h:b>Known Answer Test for Rejection Cases</h:b><h:p/>
 						For each supported parameter set, the evaluator shall cause the TOE to generate signatures using
@@ -2985,11 +2683,11 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 						</h:pre>
 						
 						<!-- XMSS Signature Gneration  -->
-						<h:br/><h:b>XMSS Signature Gneration</h:b><h:p/>
+						<h:br/><h:b>XMSS Signature Generation</h:b><h:p/>
 						<h:table border="1">
 							<h:tr class="header" bgcolor="#cccccc">
 								<h:td valign="top">Identifier</h:td>
-								<h:td valign="top">Cryptogrphic Algorithm Parameters</h:td>
+								<h:td valign="top">Cryptographic Algorithm Parameters</h:td>
 								<h:td valign="top">Cryptographic Key Sizes</h:td>
 								<h:td valign="top">List of Standards</h:td>
 							</h:tr>
@@ -3007,12 +2705,12 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 						To test the TOE’s ability to generate digital signatures using XMSS, the evaluator
 						shall perform the XMSS Key Generation Test using the following input parameters:<h:ul>
 						<h:li>Hash algorithm [SHA-256/192, SHAKE256/192, SHA-256, SHAKE256]</h:li>
-						<h:li>Tree height [10, 16, 20]</h:li></h:ul><h:p/>
+						<h:li>Tree height [10, 16, 20]</h:li></h:ul>
 						<h:br/><h:b>XMSS Key Generation Test</h:b><h:p/>
 						For each supported combination of the above parameters, the evaluator shall generate 10
 						signatures. The evaluator shall verify the correctness of the implementation by comparing values
-						generated by the TOE with those generated by a known-good implementation using the same
-						input parameters.<h:p/>
+						generated by the TOE with those generated by a known good implementation using the same
+						input parameters.
 												
 					</Tests>
             </aactivity>
@@ -3020,23 +2718,22 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
           <audit-event/>
         </f-component>
         
-        <f-component cc-id="fcs_cop.1" iteration="SigVer" name="Cryptographic Operation -
-                  Signature Verification">
+        <f-component cc-id="fcs_cop.1" iteration="SigVer" name="Cryptographic Operation - Signature Verification">
           <f-element id="fel-sign-how">
             <title> 
-              The TSF shall perform [digital signature verification] in accordance with a specified 
+              The TSF shall perform [<h:i>digital signature verification</h:i>] in accordance with a specified 
               cryptographic algorithm  
               <selectables>
                 <tabularize id="tab-fcs-cop-sigver-sels" title="Recommended choices for FCS_COP.1/SigVer">
                   <textcol>Identifier</textcol>
                   <reqtext></reqtext>
-                  <selectcol>Cryptographic algorithm</selectcol>
+                  <selectcol>Cryptographic Algorithm</selectcol>
                   <reqtext>and cryptographic key sizes</reqtext>
-                  <selectcol>Cryptographic key sizes</selectcol>
+                  <selectcol>Cryptographic Key Sizes</selectcol>
                   <reqtext>that meet the following:</reqtext>
-                  <selectcol>List of standards</selectcol>
+                  <selectcol>List of Standards</selectcol>
                   <reqtext><h:p/><h:p/>The following table provides the recommended choices for
-                    completion of the selection operations of FCS_COP.1/SigVer.</reqtext>
+                    completion of the selection operations in FCS_COP.1/SigVer.</reqtext>
                 </tabularize>
                 
                 <selectable id="sel-fcs-cop-sigver-rsa-pkcs">
@@ -3047,7 +2744,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                     <selectable>4096</selectable>
                     <selectable>6144</selectable>
                     <selectable>8192</selectable>
-                  </selectables> bits and hash<selectables>
+                  </selectables> bits and hash <selectables>
                     <selectable>SHA-384</selectable>
                     <selectable>SHA-512</selectable>
                   </selectables></col>
@@ -3065,7 +2762,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                     <selectable>4096</selectable>
                     <selectable>6144</selectable>
                     <selectable>8192</selectable>
-                  </selectables> bits and hash<selectables>
+                  </selectables> bits and hash <selectables>
                     <selectable>SHA-384</selectable>
                     <selectable>SHA-512</selectable>
                   </selectables></col>
@@ -3172,7 +2869,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
             <note role="application"> The ST author should choose the algorithm implemented to
               perform digital signatures; if more than one algorithm is available, this requirement
               should be iterated to specify the functionality. For the algorithm chosen, the ST
-              author should make the appropriate assignments/selections to specify the parameters
+              author should make the appropriate assignments and selections to specify the parameters
               that are implemented for that algorithm.
             </note>
        <aactivity>
@@ -3182,12 +2879,12 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
          </TSS>
          <Guidance/>
          <Tests>
-           The following tests are conditional based upon the selections made in the SFR. The evaluator
-           shall perform the following test or witness respective tests executed by the developer. The tests
+           The following tests are conditional based on the selections made in the SFR. The evaluator
+           shall perform the following tests or witness respective tests executed by the developer. The tests
            must be executed on a platform that is as close as practically possible to the operational platform
            (but which may be instrumented in terms of, for example, use of a debug mode). Where the test
            is not carried out on the TOE itself, the test platform shall be identified and the differences
-           between test environment and TOE execution environment shall be described.<h:p/>
+           between test environment and TOE execution environment shall be described.
            
            <!-- RSA-PKCS Signature Verification   -->
            <h:br/><h:b>RSA-PKCS Signature Verification</h:b><h:p/>
@@ -3223,7 +2920,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
              <h:li>For one test case the IR is moved</h:li>
              <h:li>For one test case the Trailer is moved</h:li></h:ul><h:p/>
            The TOE must correctly verify the unmodified signatures and fail to verify the modified
-           signatures.<h:p/>
+           signatures.
            
            <!-- RSA-PSS Signature Verification    -->
            <h:br/><h:b>RSA-PSS Signature Verification </h:b><h:p/>
@@ -3259,7 +2956,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
              <h:li>For one test case the IR is moved</h:li>
              <h:li>For one test case the Trailer is moved</h:li></h:ul><h:p/>
            The TOE must correctly verify the unmodified signatures and fail to verify the modified
-           signatures.<h:p/>
+           signatures.
            
            <!-- DSA Signature Verification    -->
            <h:br/><h:b>DSA Signature Verification </h:b><h:p/>
@@ -3291,7 +2988,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
              <h:li>For three test cases the <h:i>r</h:i> value is modified</h:li>
              <h:li>For three test cases the <h:i>s</h:i> value is modified</h:li></h:ul><h:p/>
            The TOE must correctly verify the unmodified signatures and fail to verify the modified
-           signatures.<h:p/>
+           signatures.
            
            <!-- ECDSA Signature Verification  -->
            <h:br/><h:b>ECDSA Signature Verification </h:b><h:p/>
@@ -3328,7 +3025,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
              <h:li>For three test cases the value <h:i>r</h:i> is zeroed</h:li>
              <h:li>For three test cases the value <h:i>s</h:i> is zeroed</h:li></h:ul><h:p/>
            The TOE must correctly verify the unmodified signatures and fail to verify the modified
-           signatures.<h:p/>
+           signatures.
            
            <!-- LMS signature Verification  -->
            <h:br/><h:b>LMS Signature Verification </h:b><h:p/>
@@ -3357,14 +3054,14 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
              <h:li>Winternitz [1, 2, 4, 8]</h:li>
              <h:li>Tree height [5, 10, 15, 20, 25]</h:li></h:ul><h:p/>
            <h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
-           For each supported combination of the above parameters, the evaluator shall generate 4 test cases
+           For each supported combination of the above parameters, the evaluator shall generate four test cases
            consisting of signed messages and keys, such that<h:ul>
              <h:li>One test case is unmodified (i.e. correct)</h:li>
              <h:li>For one test case modify the message, i.e. the message is different</h:li>
              <h:li>For one test case modify the signature, i.e. signature is different</h:li>
              <h:li>For one test case modify the signature header so that it is a valid header for a different
                LMS parameter set.</h:li></h:ul><h:p/>
-           The TOE must correctly verify the unmodified test case and fail to verify the modified test cases.<h:p/>
+           The TOE must correctly verify the unmodified test case and fail to verify the modified test cases.
            
            <!-- XMSS Signature Verification  -->
            <h:br/><h:b>XMSS Signature Verification</h:b><h:p/>
@@ -3399,7 +3096,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
              <h:li>For one test case modify the signature header so that it is a valid header 
                for a different XMSS parameter set</h:li></h:ul><h:p/>
            The evaluator shall verify the correctness of the implementation by verifying that the TOE
-           correctly verifies the unmodified test case and fails to verify the modified test cases.<h:p/>	
+           correctly verifies the unmodified test case and fails to verify the modified test cases.	
            
            <!-- ML-DSA Signature Verification  -->
            <h:br/><h:b>ML-DSA Signature Verification</h:b><h:p/>
@@ -3423,7 +3120,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
              <h:li>Previously generated signed Message [8-65535] bytes</h:li>
              <h:li><h:i>Mu</h:i> value (if generated externally)</h:li>
              <h:li>Context (for external interface testing)</h:li>
-             <h:li>Previously generated Public key (<h:i>pk</h:i>)</h:li>
+             <h:li>Previously generated public key (<h:i>pk</h:i>)</h:li>
              <h:li>Previously generated Signature</h:li></h:ul><h:p/>
            <h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
            For each combination of supported parameter set and capabilities, the evaluator shall require the
@@ -3438,10 +3135,306 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
              <h:li>For three test cases the component of the signature that allows the verifier to construct the hint array
                is modified</h:li></h:ul><h:p/>
            The TOE must correctly verify the unmodified signatures and fail to verify the modified
-           signatures.	
-           
+           signatures.
          </Tests>
             </aactivity>
+          </f-element>
+          <audit-event/>
+        </f-component>
+        
+        <f-component cc-id="fcs_cop.1" iteration="SKC" name="Cryptographic Operation - Encryption/Decryption">
+          <f-element id="fel-encrypt-how">
+            <title>
+              The TSF shall perform [<h:i>symmetric-key encryption and decryption</h:i>] in accordance with a 
+              specified cryptographic algorithm   
+              <selectables>
+                <tabularize id="fcs-cop-skc-sels" title="Recommended choices for FCS_COP.1/SKC">
+                  <textcol>Identifier</textcol>
+                  <reqtext></reqtext>
+                  <selectcol>Cryptographic Algorithm</selectcol>
+                  <reqtext>and cryptographic key sizes</reqtext>
+                  <selectcol>Cryptographic Key Sizes</selectcol>
+                  <reqtext>that meet the following:</reqtext>
+                  <selectcol>List of Standards</selectcol>
+                  <reqtext><h:p/><h:p/>The following table provides the recommended choices for
+                    completion of the selection operations in FCS_COP.1/SKC.</reqtext>							
+                </tabularize>
+                
+                <!-- AES-CBC -->
+                <selectable id="sel-fcs-cop-skc-aes-cbc">
+                  <col>AES-CBC</col>
+                  <col>AES in CBC mode with non-repeating and unpredictable IVs</col>
+                  <col>256 bits</col>
+                  <col><selectables>
+                    <selectable><h:i>ISO/IEC 18033-3:2010 (Subclause 5.2)</h:i></selectable> 
+                    <selectable><h:i>FIPS PUB 197</h:i></selectable></selectables> [AES]<h:p/><selectables>
+                      <selectable><h:i>ISO/IEC 10116:2017 (Clause 7)</h:i></selectable> 
+                      <selectable><h:i>NIST SP 800-38A</h:i></selectable></selectables> [CBC]
+                  </col>
+                </selectable>
+                
+                <!-- XTS-AES -->
+                <selectable id="sel-fcs-cop-skc-aes-xts">
+                  <col>XTS-AES</col>
+                  <col>AES in XTS mode with unique tweak values that are consecutive non-negative 
+                    integers starting at an arbitrary non-negative integer</col>
+                  <col>512 bits</col>
+                  <col><selectables>
+                    <selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable> 
+                    <selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/><selectables>
+                      <selectable>IEEE Std. 1619-2018</selectable> 
+                      <selectable>NIST SP 800-38E</selectable></selectables> [XTS]
+                  </col>
+                </selectable>
+                
+                <!-- AES-CTR -->
+                <selectable id="sel-fcs-cop-skc-aes-ctr">
+                  <col>AES-CTR</col>
+                  <col>AES in Counter Mode with a non-repeating initial counter and with no repeated
+                    use of counter values across multiple messages with the same secret key</col>
+                  <col>256 bits</col>
+                  <col><selectables>
+                    <selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable> 
+                    <selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/><selectables>
+                      <selectable>ISO/IEC 10116:2017 (Clause 10)</selectable> 
+                      <selectable>NIST SP 800-38A</selectable></selectables> [CBC]
+                  </col>
+                </selectable>
+              </selectables>
+            </title>
+            <note role="application">
+              <h:p>
+                <!-- AUTOMATION -->
+                AES CCMP (which uses AES in CCM as specified in SP 800-38C) becomes mandatory and must
+                be selected if the ST includes the PP-Module for Wireless LAN Clients.
+                <!-- <!-\- AUTOMATION -\-> -->
+                <!-- AES-CTR becomes mandatory and must be selected if the ST includes the <xref to="pkg-ssh"/>. -->
+                <h:p>
+                  AES-CCM becomes mandatory and must be selected if the ST includes the PP-Module for Bluetooth.
+                </h:p>	    
+              </h:p>
+              <h:p>
+                For the second selection, the ST author should choose the mode
+                or modes in which AES operates.</h:p>
+              <h:p>
+                For the third selection, the ST author may only choose 128-bit if the ST
+                includes the PP-Module for Bluetooth, and it may only be used specifically
+                with AES-CCM for Bluetooth functions.
+              </h:p>
+              <!-- <h:p>If <xref to="s-ftp_ssh"/> is selected in FTP_ITC_EXT.1.1, -->
+              <!-- then <xref to="s-aes-ctr"/> must be selected.</h:p> -->
+              
+            </note>
+            <aactivity>
+              <TSS>
+                The evaluator shall examine the TSS to ensure that it describes the construction of any IVs,
+                tweak values, and counters in conformance with the relevant specifications.<h:p/>
+                If XTS-AES is claimed then the evaluator shall examine the TSS to verify that the TOE creates
+                full-length keys by methods that ensure that the two key halves are different and independent.
+              </TSS>
+              <Guidance/>
+              <Tests>
+                The following tests require the developer to provide access to a test platform that
+                provides the evaluator with tools that are typically not found on factory products.<h:p/>
+                The following tests are conditional based on the selections made in the SFR. The
+                evaluator shall perform the following tests or witness respective tests executed by
+                the developer. The tests must be executed on a platform that is as close as practically
+                possible to the operational platform (but which may be instrumented in terms of,
+                for example, use of a debug mode). Where the test is not carried out on the TOE
+                itself, the test platform shall be identified and the differences between test
+                environment and TOE execution environment shall be described.
+                
+                <!-- AES-CBC -->
+                <h:br/><h:b>AES-CBC</h:b><h:p/>
+                <h:table border="1">
+                  <h:tr class="header" bgcolor="#cccccc">
+                    <h:td valign="top">Identifier</h:td>
+                    <h:td valign="top">Cryptographic Algorithm</h:td>
+                    <h:td valign="top">Cryptographic Key Sizes</h:td>
+                    <h:td valign="top">List of Standards</h:td>
+                  </h:tr>
+                  <h:tr>
+                    <h:td valign="top">AES-CBC</h:td>
+                    <h:td valign="top">AES in CBC mode with non-repeating and unpredictable IVs</h:td>
+                    <h:td valign="top">256 bits</h:td>
+                    <h:td valign="top">
+                      [<h:b>selection:</h:b> <h:i>ISO/IEC 18033-3:2010 (Subclause 5.2),
+                      FIPS PUB 197</h:i>] [AES]<h:p/>
+                      [<h:b>selection:</h:b>  <h:i>ISO/IEC 10116:2017 (Clause 7), 
+                      NIST SP 800-38A</h:i>] [CBC]</h:td>
+                  </h:tr>
+                </h:table><h:p/>	
+                
+                To test the TOE’s ability to encrypt and decrypt data using AES in CBC mode, the evaluator 
+                shall perform Algorithm Functional Tests and Monte Carlo Tests using the following
+                input parameters:<h:ul>
+                  <h:li>Key size [256] bits</h:li>
+                  <h:li>Direction [encryption, decryption]</h:li></h:ul><h:p/>
+                <h:br/><h:b>Algorithm Functional Tests</h:b><h:p/>
+                Algorithm Functional Tests are designed to verify the correct operation of the logical
+                components of the algorithm implementation under normal operation using different block sizes.
+                For AES-CBC, there are two types of AFTs:<h:p/>
+                <h:br/><h:b><h:i>Known-Answer Tests</h:i></h:b><h:p/>
+                For each combination of direction and claimed key size, the TOE must be tested using the
+                GFSBox, KeySbox, VarTxt, and VarKey test cases listed in Appendixes B through E of <h:i>The
+                  Advanced Encryption Standard Algorithm Validation Suite (AESAVS)</h:i>, NIST, 15 November 2002.<h:p/>
+                <h:br/><h:b><h:i>Multi-Block Message Tests</h:i></h:b><h:p/>
+                For each combination of direction and claimed key size, the TOE must be tested against 10 test
+                cases consisting of a random IV, random key, and random plaintext or ciphertext. The
+                plaintext or ciphertext starts with a length of 16 bytes and increases by 16 bytes for each test case
+                until reaching 160 bytes.<h:p/>
+                <h:br/><h:b><h:i>Monte Carlo Tests</h:i></h:b><h:p/>
+                Monte Carlo tests are intended to test the implementation under strenuous conditions. The TOE
+                must process the test cases according to the following algorithm once for each combination of
+                direction and key size:<h:p/>
+                <h:pre>
+                  Key[0] = Key
+                  IV[0] = IV
+                  PT[0] = PT
+                  for i = 0 to 99 {
+                  Output Key[i], IV[i], PT[0]
+                  for j = 0 to 999 {
+                  if (j == 0) {
+                  CT[j] = AES-CBC-Encrypt(Key[i], IV[i], PT[j])
+                  PT[j+1] = IV[i]
+                  } else {
+                  CT[j] = AES-CBC-Encrypt(Key[i], PT[j])
+                  PT[j+1] = CT[j-1]
+                  }
+                  }
+                  Output CT[j]
+                  AES_KEY_SHUFFLE(Key, CT)
+                  IV[i+1] = CT[j]
+                  PT[0] = CT[j-1]
+                  }
+                </h:pre><h:p/>	
+                where <h:pre>AES_KEY_SHUFFLE</h:pre> is defined as: <h:p/>
+                <h:pre>
+                  If ( keylen = 128 )
+                  Key[i+1] = Key[i] xor MSB(CT[j], 128)
+                  If ( keylen = 192 )
+                  Key[i+1] = Key[i] xor (LSB(CT[j-1], 64) || MSB(CT[j], 128))
+                  If ( keylen = 256 )
+                  Key[i+1] = Key[i] xor (MSB(CT[j-1], 128) || MSB(CT[j], 128))
+                </h:pre><h:p/>
+                The above pseudocode is for encryption. For decryption, swap all instances of CT and PT.<h:p/>
+                The initial IV, key, and plaintext or ciphertext should be random.<h:p/>
+                The evaluator shall test the decrypt functionality using the same test as above,
+                exchanging CT and PT, and replacing AES-CBC-Encrypt with AES-CBC-Decrypt.<h:p/>
+                
+                
+                <!-- XTS-AES -->
+                <h:br/><h:b>XTS-AES</h:b><h:p/>
+                <h:table border="1">
+                  <h:tr class="header" bgcolor="#cccccc">
+                    <h:td valign="top">Identifier</h:td>
+                    <h:td valign="top">Cryptographic Algorithm</h:td>
+                    <h:td valign="top">Cryptographic Key Sizes</h:td>
+                    <h:td valign="top">List of Standards</h:td>
+                  </h:tr>
+                  <h:tr>
+                    <h:td valign="top">XTS-AES</h:td>
+                    <h:td valign="top">AES in XTS mode with unique tweak values that are consecutive
+                      non-negative integers starting at an arbitrary non-negative integer</h:td>
+                    <h:td valign="top">512 bits</h:td>
+                    <h:td valign="top">
+                      [<h:b>selection:</h:b> <h:i>ISO/IEC 18033-3:2010 (Subclause 5.2),
+                      FIPS PUB 197</h:i>] [AES]<h:p/>
+                      [<h:b>selection:</h:b> <h:i>IEEE Std. 1619-2018, 
+                      NIST SP 800-38E</h:i>] [XTS]</h:td>
+                  </h:tr>
+                </h:table><h:p/>	
+                To test the TOE’s ability to encrypt and decrypt data using AES in XTS mode, the evaluator shall
+                perform the Single Data Unit Test and the Multiple Data Unit Test using the following input
+                parameters:<h:ul>
+                  <h:li>Direction [encryption, decryption]</h:li>
+                  <h:li>Key size [512] bits</h:li>
+                  <h:li>Tweak value format [128-bit hex string, data unit sequence number]</h:li></h:ul><h:p/>
+                <h:br/><h:b>Single Data Unit Test</h:b><h:p/>
+                For each combination of claimed key size, direction, and supported tweak value format, the
+                evaluator shall generate 50 test cases consisting of random payload data. The payload data size is
+                determined randomly for each test case from supported values within the range [128-65536] bits.
+                The payload size and data unit size must be equal.<h:p/>
+                <h:br/><h:b>Multiple Data Unit Test</h:b><h:p/>
+                For each combination of claimed key size, direction, and supported tweak value format, the
+                evaluator shall generate 50 test cases consisting of random payload data. The payload data size is
+                determined randomly for each test case from supported values within the range [128-65536] bits.
+                Likewise, the data unit size is determined randomly for each test case from supported values
+                within the range [128-65535] bits. The payload size and data unit size must not be equal.<h:p/>
+                The evaluator shall verify the correctness of the TSF’s implementation by comparing values
+                generated by the TSF with those generated by a known good implementation using the same
+                input parameters.<h:p/>
+                
+                <!-- AES-CTR -->
+                <h:br/><h:b>AES-CTR</h:b><h:p/>
+                <h:table border="1">
+                  <h:tr class="header" bgcolor="#cccccc">
+                    <h:td valign="top">Identifier</h:td>
+                    <h:td valign="top">Cryptographic Algorithm</h:td>
+                    <h:td valign="top">Cryptographic Key Sizes</h:td>
+                    <h:td valign="top">List of Standards</h:td>
+                  </h:tr>
+                  <h:tr>
+                    <h:td valign="top">AES-CTR</h:td>
+                    <h:td valign="top">AES in Counter Mode with a non-repeating initial counter and
+                      with no repeated use of counter values across multiple messages with the 
+                      same secret key.</h:td>
+                    <h:td valign="top">256 bits</h:td>
+                    <h:td valign="top">
+                      [<h:b>selection:</h:b> <h:i>ISO/IEC 18033-3:2010 (Subclause 5.2),
+                      FIPS PUB 197</h:i>] [AES]<h:p/>
+                      [<h:b>selection:</h:b>  <h:i>ISO/IEC 10116:2017 (Clause 10), 
+                        NIST SP 800-38A</h:i>] [CTR]</h:td>
+                  </h:tr>
+                </h:table><h:p/>	
+                To test the TOE’s ability to encrypt and decrypt data using AES in CTR mode, the evaluator shall
+                perform the Algorithm Functional Test and the Counter Test using the following input
+                parameters:<h:ul>
+                  <h:li>Direction [encryption, decryption]</h:li>
+                  <h:li>Key size [256] bits</h:li></h:ul><h:p/>
+                <h:br/><h:b>Algorithm Functional Tests</h:b><h:p/>
+                Algorithm Functional Tests are designed to verify the correct operation of the logical
+                components of the algorithm implementation under normal operation using different block sizes.
+                For AES-CTR, there are three types of AFTs:<h:p/>
+                <h:br/><h:b><h:i>Known-Answer Tests</h:i></h:b><h:p/>
+                For each combination of direction and claimed key size, the TOE must be tested using the
+                GFSBox, KeySbox, VarTxt, and VarKey test cases listed in Appendixes B through E of <h:i>The
+                  Advanced Encryption Standard Algorithm Validation Suite (AESAVS)</h:i>, NIST, 15 November 2002.<h:p/>
+                <h:br/><h:b><h:i>Single Block Message Tests</h:i></h:b><h:p/>
+                For each combination of direction and claimed key, the evaluator shall generate 10 test cases
+                with a data size of 128 bits.<h:p/>
+                <h:br/><h:b><h:i>Partial Block Message Tests</h:i></h:b><h:p/>
+                Monte Carlo tests are intended to test the implementation under strenuous conditions. The TOE
+                must process the test cases according to the following algorithm once for each combination of
+                direction and key size:<h:p/>
+                For each combination of direction and claimed key, the evaluator shall generate five test cases
+                such that the data size is not a multiple of 128 bits.<h:p/>
+                The evaluator shall verify the correctness of the TSF’s implementation by comparing values
+                generated by the TSF with those generated by a known good implementation using the same
+                input parameters.<h:p/>
+                <h:br/><h:b><h:i>Counter Test</h:i></h:b><h:p/>
+                The evaluator shall generate a single message of 1000 blocks (128000 bits) and either encrypt or
+                decrypt it. Back-compute the IVs used and verify that they are unique and increasing (encryption) or
+                decreasing (decryption).<h:p/>
+                
+              </Tests>
+            </aactivity>
+            <rule id="r-wlan-aes">
+              <or>
+                <and><not><ref-id>mod-wlanclient</ref-id></not></and>
+                <and>
+                  <ref-id>mod-wlanclient</ref-id>
+                  <or><ref-id>s-aes-ccmp</ref-id><ref-id>s-aes-gcmp</ref-id></or>
+                </and>
+              </or>
+            </rule>
+            <!-- <rule id="r-aes-ctr-for-ssh"> -->
+            <!--   <if><ref-id>s-ftp_ssh</ref-id></if> -->
+            <!--   <then><ref-id>s-aes-ctr</ref-id></then> -->
+            <!-- <or><and><ref-id>s-aes-ctr</ref-id><ref-id>s-ftp_ssh</ref-id></and> -->
+            <!-- <not><ref-id>s-ftp_ssh</ref-id></not> -->
+            <!-- </or> -->
+            <!-- </rule> -->
           </f-element>
           <audit-event/>
         </f-component>
