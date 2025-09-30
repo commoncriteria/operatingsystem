@@ -18,16 +18,10 @@
 	  /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[9]""/f-component[1]""/f-element[1]""/note[1]""/rule[3]""/or[1]""/and[2]""/or[1]""/and[2]""/ref-id[1]"p-256-key"
 warning: failed to load external entity "output/mod-vpnclient.xml"
 warning: failed to load external entity "output/mod-vpnclient.xml"
- Failed to find a reference to uau_biometric.
- Failed to find a reference to mod-biometrics.
- Failed to find a reference to uau_hybr.
  Failed to find a reference to fel-wlan.
  Failed to find a reference to fel-tls-app.
 warning: failed to load external entity "output/mod-vpnclient.xml"
 warning: failed to load external entity "output/mod-vpnclient.xml"
- Failed to find a reference to uau_biometric.
- Failed to find a reference to mod-biometrics.
- Failed to find a reference to uau_hybr.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
