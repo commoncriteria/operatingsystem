@@ -121,9 +121,9 @@
       <url><![CDATA[https://www.niap-ccevs.org/protectionprofiles/463]]></url>
     </module>
     
-    <!-- <module id="mod-biometric" version="1.1" name="cPP for Biometrics" product="Biometric Devices" short="BMcPP"> -->
-    <!--   <url>https://biometricitc.github.io/v1.1/1.1PRE/MOD-BIO-v1.1.pdf</url> -->
-    <!-- </module> -->
+     <module id="mod-biometric" version="1.1" name="Biometric Enrollment and Verification" product="Biometric Devices" short="BMcPP">
+       <url>https://biometricitc.github.io/v1.1/1.1PRE/MOD-BIO-v1.1.pdf</url>
+     </module>
 </modules> 
   
   <pp-preferences>
@@ -4173,8 +4173,11 @@ only AES-based implementations for CTR_DRBG are allowed.
 		<selectable id="s-otp">combination of authentication based on user name, password, and time-based one-time password</selectable>
 		<selectable id="s-x509-auth">authentication based on X.509 certificates</selectable>
 		<selectable id="s-uau-ssh">for use in SSH only, <snip>SSH public key-based authentication</snip> as specified by the <xref to="pkg-ssh"/></selectable>
-	      </selectables>
-	      </h:b>
+	      </selectables> </h:b> and <selectables>
+                  <selectable id="uau_biometric"> biometric in accordance with the <xref to="mod-biometric"/></selectable>
+                  <selectable id="uau_hybr"> hybrid</selectable>
+                  <selectable exclusive="yes">no other mechanism</selectable>
+        </selectables>	      
 	      to support user authentication.
             </title>
             <note role="application">
@@ -4183,7 +4186,12 @@ only AES-based implementations for CTR_DRBG are allowed.
 		    FTP_ITC_EXT.1.1 selects <xref to="s-ftp_ssh"/>
 	      </h:p><h:p>
 	        If "authentication based on X.509 certificates" is claimed, the TOE must claim conformance to <xref to="pkg-x509"/>.
-	      </h:p>.
+	      </h:p>
+        <h:p>
+        The TSF may optionally implement a Biometric Authentication Factor. A hybrid authentication factor is where a user has to submit a combination of primary authentication mechanism, e.g.username and password, and biometric sample where both have to pass and if either fails the user is not made aware of which factor failed.</h:p>
+        <h:p>If <xref to="uau_biometric"/> or <xref to="uau_hybr"/> is selected, then the TSF must be validated against requirements from the <xref to="mod-biometric"/>.</h:p>
+        <h:p>If <xref to="uau_hybr"/> is selected, <xref to="uau_biometric"/> does not need to be selected, but should be
+        selected if the biometric authentication can be used independent of the hybrid authentication, i.e. without having to enter a PIN/password.</h:p>
 	    </note>
             <aactivity>
 	      <Tests>
@@ -4248,8 +4256,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 		</h:div>
 
 		<h:p>
-		  Authentication mechanisms related to <xref to="s-x509-auth"/> are tested under FIA_X509_EXT.1 as defined in the <xref to="pkg-x509"/>
-		  and <xref to="s-uau-ssh"/> are tested in the <xref to="pkg-ssh"/>.
+		  Authentication mechanisms related to <xref to="s-x509-auth"/> are tested under FIA_X509_EXT.1 as defined in the <xref to="pkg-x509"/> and <xref to="s-uau-ssh"/> are tested in the <xref to="pkg-ssh"/>. Biometric authentication mechanisms are tested in the <xref to="mod-biometric"/>.
 		</h:p>
               </Tests>
 	    </aactivity>
@@ -4277,7 +4284,7 @@ The TSF shall authenticate any user's claimed identity according to the
 		  interfaces (i.e. if there are times, for example, after a reboot,
 		  that only specific authentication mechanisms can be used).
 		  Rules regarding how the authentication factors interact in terms of
-		  unsuccessful authentication are covered in FIA_AFL.1.
+		  unsuccessful authentication are covered in FIA_AFL.1. If multiple Biometric Authentication Factors are claimed in FIA_MBV_EXT.1.1 in the Biometric Enrollment and Verification, version 1.1, the interaction between the BAFs must be described. For example, whether the multiple BAFs can be enabled at the same time.
 		</TSS>
 	      <Guidance>
 	      <h:p>
@@ -4741,7 +4748,8 @@ the node certificate to be tested, two Intermediate CAs, and the
               configuration of the VPN Client itself (with information such as VPN Gateway,
               certificates, and algorithms) is addressed by the <xref to="mod-vpnclient" />.
               The administrator options should only be listed if the administrator can
-              remotely enable/disable the VPN connection. <h:p> Function <xref to="mf-vpn" />
+              remotely enable/disable the VPN connection. 
+              <h:p> Function <xref to="mf-vpn" />
               optionally allows the VPN to be configured per-app or per-groups of apps. If
               this configuration is selected, it does not void FDP_IFC_EXT.1. Instead
               FDP_IFC_EXT.1 is applied to the application or group of applications the VPN is
@@ -5309,7 +5317,7 @@ the node certificate to be tested, two Intermediate CAs, and the
               FIA_UAU.5.1. If <xref to="uau_biometric" /> is selected in FIA_UAU.5.1,
               "Biometric Authentication Factor" must be selected and the user or admin must
               have the option to disable the use of it. If multiple BAFs are claimed in
-              FIA_MBV_EXT.1.1 in the <xref to="mod-biometrics" />, this applies to all
+              FIA_MBV_EXT.1.1 in the <xref to="mod-biometric" />, this applies to all
               different modalities. If <xref to="uau_hybr" /> is selected in FIA_UAU.5.1 it
               must be selected and the user or admin must have the option to disable the use
               of it. </app-note>
@@ -5319,7 +5327,7 @@ the node certificate to be tested, two Intermediate CAs, and the
                 authentication this test is implicitly met.<testlist>
                   <test>[conditional] If <xref to="uau_biometric" /> is selected in
                 FIA_UAU.5.1, for each BAF claimed in FIA_MBV_EXT.1.1 in the <xref
-                      to="mod-biometrics" /> the evaluator shall verify that the TSS describes
+                      to="mod-biometric" /> the evaluator shall verify that the TSS describes
                 the procedure to enable/disable the BAF.<!--If the TOE includes
                   multiple BAFs, the evaluator shall verify that the TSS describes how to
                   enable/disable each BAF, specifically if the different modalities can be
@@ -5330,7 +5338,7 @@ the node certificate to be tested, two Intermediate CAs, and the
                 confirm that the BAF cannot be used to authenticate. </test>
                   <test>[conditional] If <xref to="uau_hybr" /> is selected the evaluator
                 shall verify that the TSS describes the procedure to enable/disable the hybrid
-                (biometric credential and PIN/password) authentication. The evaluator shall
+                (e.g. username, password, and biometric credential) authentication. The evaluator shall
                 configure the TOE to allow hybrid authentication to authenticate and confirm
                 that successful authentication can be achieved using the hybrid
                 authentication. The evaluator shall configure the TOE to disable the use of
