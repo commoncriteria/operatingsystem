@@ -3997,6 +3997,203 @@ only AES-based implementations for CTR_DRBG are allowed.
           </f-element>
           <audit-event/>
         </f-component>
+        <f-component cc-id="fdp_acf_ext.2" name="Access Control for System Services" status="objective">
+	  
+	  <comp-lev> requires the TSF to be able to control access to its own services.</comp-lev>
+	  <management>The following actions could be considered for the management functions in FMT:
+	  <h:ul>
+	    <h:li>Placing applications into application groups based on enterprise configuration settings.</h:li>
+	    <h:li>Enabling/disabling location services.</h:li>
+	    <h:li>Enabling/disabling data signaling over externally-accessible hardware ports.</h:li>
+	  </h:ul>
+	  </management>
+	  <audit>There are no auditable events foreseen.</audit>
+	  <dependencies>FMT_MOF_EXT.1.1 Management of Functions Behavior</dependencies>
+	  
+	  
+          <f-element id="fel-restrict-sys-service">
+            <title>The TSF shall provide a mechanism to restrict the system services that are
+              accessible to an application. </title>
+            <note role="application">Examples of system services to which this requirement applies
+              include: <h:br/><h:br/>
+              <h:ul>
+                <h:li>Obtain data from camera and microphone input devices</h:li>
+                <h:li>Obtain current device location</h:li>
+                <h:li>Retrieve credentials from system-wide credential store</h:li>
+                <h:li>Retrieve contacts list / address book</h:li>
+                <h:li>Retrieve stored pictures</h:li>
+                <h:li>Retrieve text messages</h:li>
+                <h:li>Retrieve emails</h:li>
+                <h:li>Retrieve device identifier information</h:li>
+                <h:li>Obtain network access</h:li>
+              </h:ul>
+            </note>
+            <aactivity level="element">
+              <TSS><h:p>The evaluator shall ensure the TSS lists all system services available for use by
+                an application. The evaluator shall also ensure that the TSS describes how
+                applications interface with these system services, and means by which these system
+                services are protected by the TSF.</h:p>
+                <h:p>The TSS shall describe which of the following categories each system service falls in:<h:br/>
+                <h:ol>
+                  <h:li>No applications are allowed access</h:li>
+                  <h:li>Privileged applications are allowed access</h:li>
+                  <h:li>Applications are allowed access by user authorization</h:li>
+                  <h:li>All applications are allowed access</h:li>
+                </h:ol> Privileged applications include any applications developed by the TSF
+                developer. The TSS shall describe how privileges are granted to third-party
+                applications. For both types of privileged applications, the TSS shall describe how
+                and when the privileges are verified and how the TSF prevents unprivileged
+                applications from accessing those services. </h:p> 
+                <h:p>For any services for which the user may grant access, the evaluator shall ensure that the TSS identifies whether the user is prompted for authorization when the application is installed, or
+                during runtime. The evaluator shall ensure that the operational user guidance
+                contains instructions for restricting application access to system services.
+                </h:p>
+              </TSS>
+              <Guidance>There are no guidance evaluation activities for this element.<h:br/><h:br/></Guidance>
+              <Tests>
+                <h:b>Evaluation Activity Note:</h:b><h:p>The
+                evaluator shall write, or the developer shall provide, applications for the purposes
+                of the following tests.</h:p>
+                <testlist>
+                  <test>For each system service to which no applications are allowed access, the
+                    evaluator shall attempt to access the system service with a test application and
+                    verify that the application is not able to access that system service.</test>
+                  <test>For each system service to which only privileged applications are allowed
+                    access, the evaluator shall attempt to access the system service with an
+                    unprivileged application and verify that the application is not able to access
+                    that system service. The evaluator shall attempt to access the system service
+                    with a privileged application and verify that the application can access the
+                    service.</test>
+                  <test>For each system service to which the user may grant access, the evaluator
+                    shall attempt to access the system service with a test application. The
+                    evaluator shall ensure that either the system blocks such accesses or prompts
+                    for user authorization. The prompt for user authorization may occur at runtime
+                    or at installation time, and should be consistent with the behavior described in
+                    the TSS. </test>
+                  <test>For each system service listed in the TSS that is accessible by all
+                    applications, the evaluator shall test that an application can access that
+                    system service.</test>
+                </testlist>
+              </Tests>
+            </aactivity>
+          </f-element>
+          <f-element id="fel-acp">
+            <title>The TSF shall provide an access control policy that prevents <selectables>
+                <selectable id="s-fdp-app">application</selectable>
+                <selectable id="fdp_group">groups of applications</selectable>
+              </selectables> from accessing <selectables>
+                <selectable>all</selectable>
+                <selectable id="s-private">private</selectable>
+              </selectables> data stored by other <selectables>
+                <selectable>application</selectable>
+                <selectable>groups of applications</selectable>
+              </selectables>. Exceptions may only be explicitly authorized for such sharing by <selectables>
+                <selectable id="s-acl-user">the user</selectable>
+                <selectable id="s-acl-admin">the administrator</selectable>
+                <selectable id="s-acl-devel">a common application developer</selectable>
+                <selectable>no one</selectable>
+            </selectables>. </title>
+	    <ext-comp-def-title>
+              <title>The TSF shall provide an access control policy that prevents
+	      <assignable>list of subjects</assignable> from accessing
+	      <selectables><selectable>all</selectable><selectable>private</selectable>
+		</selectables> data stored by other <assignable>list of subjects</assignable>.
+		Exceptions may only be explicitly authorized for such sharing by
+		<assignable>list of authorized subjects</assignable>.</title>
+	    </ext-comp-def-title>
+            <note role="application">Application groups may be designated Enterprise or Personal.
+              Applications installed by the user default to being in the Personal application group
+              unless otherwise designated by the administrator in function <xref
+                to="mf-appGroups"/> of FMT_SMF_EXT.1.1. Applications installed by the administrator
+              default to being in the Enterprise application group (this category includes
+              applications that the user requests the administrator install, for instance by
+              selecting the application for installation through an enterprise application catalog)
+              unless otherwise designated by the administrator in function <xref
+                to="mf-appGroups"/> of FMT_SMF_EXT.1.1. It is acceptable for the same application to
+              have multiple instances installed, each in different application groups. Private data
+              is defined as data that is accessible only by the application that wrote it. Private
+              data is distinguished from data that an application may, by design, write to shared
+              storage areas. <h:br/><h:br/>
+	      If <xref to="fdp_group"/> is selected, FDP_ACF_EXT.3 must be included in the ST.
+	    </note>
+            <aactivity level="element">
+              <TSS>The evaluator shall examine the TSS to verify that it describes which data
+                sharing is permitted between applications, which data sharing is not permitted, and
+                how disallowed sharing is prevented. It is possible to select both "applications" and
+                "groups of applications", in which case the TSS is expected to describe the data
+                sharing policies that would be applied in each case.<h:br/><h:br/></TSS>
+              <Guidance>There are no guidance evaluation activities for this element.<h:br/><h:br/></Guidance>
+              <Tests>
+                <testlist>
+                  <test>The evaluator shall write, or the developer shall provide, two applications,
+                    one that saves data containing a unique string, and the other, which attempts to
+                    access that data.
+		    If <xref to="fdp_group"/> is selected, the applications
+                    shall be placed into different groups.
+		    If <xref to="s-fdp-app"/> is selected, the
+                    evaluator shall install the two applications.
+		    If <xref to="s-private"/> is selected, the
+                    application shall not write to a designated shared storage area.
+		    The evaluator
+                    shall verify that the second application is unable to access the stored unique
+                    string. <h:br/><h:br/> If <xref to="s-acl-user"/> is selected, the evaluator shall grant
+                    access as the user and verify that the second application is able to access the
+                    stored unique string. <h:br/><h:br/>
+
+		    If <xref to="s-acl-admin"/> is selected, the
+                    evaluator shall grant access as the administrator and verify that the second
+                    application is able to access the stored unique string. <h:br/><h:br/>
+
+		    If <xref to="s-acl-devel"/>  is selected, the evaluator shall grant access to
+                    an application with a common application developer to the first, and verify
+                    that the application is able to access the stored unique string. </test>
+                </testlist>
+              </Tests>
+            </aactivity>
+          </f-element>	  
+	  <audit-event/>
+        </f-component>
+        <f-component id="fc_access_control_system" cc-id="fdp_acf_ext.3" name="Access Control for System Resources" status="sel-based">
+          <depends on="fdp_group"/>
+          
+          <comp-lev> requires the TSF to be able to provide separate copies of system resources for different application groups.</comp-lev>
+          <management>The following actions could be considered for the management functions in FMT:
+            <h:ul>
+              <h:li>Approving exceptions for sharing data between applications or groups of applications.</h:li>
+            </h:ul>
+          </management>
+          <audit>There are no auditable events foreseen.</audit>
+          <dependencies>FDP_ACF_EXT.2 Access Control for System Services<h:br/>
+            FMT_MOF_EXT.1.1 Management of Functions Behavior</dependencies>
+          
+          <f-element id="fel-per-app-resources">
+            <title>The TSF shall provide a separate <selectables>
+                <selectable>address book</selectable>
+                <selectable>calendar</selectable>
+                <selectable>keystore</selectable>
+                <selectable>account credential database, <assignable>list of additional
+                    resources</assignable></selectable>
+              </selectables> for each application group and only allow applications within that
+              process group to access the resource. Exceptions may only be explicitly authorized for
+              such sharing by <selectables>
+                <selectable>the user</selectable>
+                <selectable>the administrator</selectable>
+                <selectable>no one</selectable>
+              </selectables>. </title>
+            <note role="application">If <xref to="fdp_group"/> is selected in FDP_ACF_EXT.2.2, <!-- taken care of by depends -->
+              FDP_ACF_EXT.3 must be included in the ST. </note>
+            <aactivity>
+              <TSS>There are no TSS evaluation activities for this component.<h:br/><h:br/></TSS>
+              <Guidance>There are no guidance evaluation activities for this component.<h:br/><h:br/></Guidance>
+              <Tests>For each selected resource, the evaluator shall cause data to be placed into
+                the Enterprise group’s instance of that shared resource. The evaluator shall install
+                an application into the Personal group that attempts to access the shared resource
+                information and verify that it cannot access the information. </Tests>
+            </aactivity>
+          </f-element>
+	  <audit-event/>
+          <audit-event table="sel-based"/>
+        </f-component>
 
         <f-component cc-id="fdp_upc_ext.1" iteration="APPS" name="Inter-TSF User Data Transfer Protection (Applications)" status="objective">
           <f-element id="fdp-app-comms">
