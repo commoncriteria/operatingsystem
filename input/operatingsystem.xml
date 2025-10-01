@@ -4008,6 +4008,12 @@ only AES-based implementations for CTR_DRBG are allowed.
       	        and <selectables linebreak='yes'>
                 <selectable>Mutually authenticated TLS as conforming to the <xref to="pkg-tls"/> as a server
     	  	    </selectable>
+              <selectable>TLS as conforming to the <xref to="pkg-tls"/> as a
+    	  	        <selectables>
+    	  	          <selectable><readable>client(TLS)</readable>client</selectable>
+    	  	          <selectable><readable>server(TLS)</readable>server</selectable>
+                  </selectables>
+                </selectable>
                 <selectable >DTLS as conforming to the <xref to="pkg-tls"/> as a
     	  	    <selectables>
     	  	      <selectable ><readable>client(DTLS)</readable>client</selectable>
@@ -4025,21 +4031,25 @@ only AES-based implementations for CTR_DRBG are allowed.
               channels, provides assured identification of its end points, protects channel data
               from disclosure, and detects modification of the channel data. </title>
             <note role="application"> 
-              The intent of this requirement is that one of the selected protocols is available for use by user applications running on the device for use in connecting to distant-end services that are not necessarily part of the enterprise infrastructure. It should be noted that the FTP_ITC_EXT.1 requires that all TSF communications be protected using the protocols indicated in that requirement, so the protocols required by this component ride "on top of" those listed in FTP_ITC_EXT.1.<h:br/><h:br/> 
-              It should also be noted that some applications are part of the TSF, and FTP_ITC_EXT.1 requires that TSF applications be protected by at least one of the protocols in first selection in FTP_ITC_EXT.1. It is not required to have two different implementations of a protocol, or two different protocols, to satisfy both this requirement (for non-TSF apps) and FTP_ITC_EXT.1 (for TSF apps), as long as the services specified are provided. <h:br/><h:br/> 
-              The ST author must list which trusted channel protocols are implemented by the TOE for use by non-TSF apps.<h:br/><h:br/> 
+              <h:p>The intent of this requirement is that one of the selected protocols is available for use by user applications running on the device for use in connecting to distant-end services that are not necessarily part of the enterprise infrastructure. It should be noted that the FTP_ITC_EXT.1 requires that all TSF communications be protected using the protocols indicated in that requirement, so the protocols required by this component ride "on top of" those listed in FTP_ITC_EXT.1.</h:p>
+              <h:p> 
+              It should also be noted that some applications are part of the TSF, and FTP_ITC_EXT.1 requires that TSF applications be protected by at least one of the protocols in first selection in FTP_ITC_EXT.1. It is not required to have two different implementations of a protocol, or two different protocols, to satisfy both this requirement (for non-TSF apps) and FTP_ITC_EXT.1 (for TSF apps), as long as the services specified are provided. </h:p>
+              <h:p> 
+              The ST author must list which trusted channel protocols are implemented by the TOE for use by non-TSF apps.</h:p>
+              <h:p> 
               If ST author selects <xref to="s-upc-ipsec"/>, the TSF must be validated against the PP-Module for Virtual Private Network (VPN) Clients. 
+              </h:p>
             </note>
           </f-element>
           <f-element id="fdp-app-comms-init">
             <title>The TSF shall permit the non-TSF applications to initiate communication via the
               trusted channel.</title>
-            <aactivity> The evaluator shall verify that the API documentation provided according to
-                <xref to="adv"/> includes the security functions (protection channel)
-              described in these requirements, and verify that the APIs implemented to support this
+            <aactivity> 
+            <h:p>The evaluator shall verify that the API documentation provided according to
+                <xref to="adv"/> includes the security functions (protection channel) described in these requirements, and verify that the APIs implemented to support this
               requirement include the appropriate settings/parameters so that the application can
               both provide and obtain the information needed to assure mutual identification of the
-              endpoints of the communication as required by this component. <h:br/><h:br/>
+              endpoints of the communication as required by this component. </h:p>
               <TSS> The evaluator shall examine the TSS to determine that it describes that all
                 protocols listed in the TSS are specified and included in the requirements in the
                 ST. <h:br/><h:br/>
