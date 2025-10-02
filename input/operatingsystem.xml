@@ -6010,7 +6010,7 @@ the node certificate to be tested, two Intermediate CAs, and the
                 <selectable>groups of applications</selectable>
               </selectables></text>
             <app-note> Functions <xref to="mf-dataSharing" /> and <xref
-                to="mf-appGroups" /> correspond to FDP_ACF_EXT.1.2. </app-note>
+                to="mf-appGroups" /> correspond to FDP_ACF_EXT.2.2 and should be included if FDP_ACF_EXT.2.2 is included in the ST.</app-note>
             <aactivity>
               <Tests>The test of this function is performed in conjunction with
                 FDP_ACF_EXT.1.2.</Tests>
@@ -6322,6 +6322,78 @@ This test can also be completed on the same hardware and rebooting between appli
           </f-element> -->
           <audit-event/>
 	</f-component>
+
+  <f-component cc-id="fmt_smf_ext.2" name="Specification of Remediation Actions" status="objective">
+          
+          <comp-lev> requires the TSF to automatically perform specific management functions in response to a specific event.</comp-lev>
+          <management>The following actions could be considered for the management functions in FMT: <h:ul>
+            <h:li>Configuration of the functions that are performed in response to unenrollment event.</h:li>
+          </h:ul>
+          </management>
+          <audit>The following actions should be auditable if FAU_GEN Security audit data generation is included in the PP/ST: <h:ul>
+            <h:li>Initiation of unenrollment.</h:li>
+            <h:li>Completion of unenrollment.</h:li>
+          </h:ul>
+          </audit>
+          <dependencies>No dependencies.</dependencies>
+          
+          
+          <f-element id="fmt-smf-ext-acts">
+            <title>The TSF shall offer <selectables>
+                <selectable id="s-smf-wipe-sen">wipe of sensitive data</selectable>
+                <selectable id="s-smf-ext-2-rem-ent-app">remove Enterprise applications</selectable>
+                <selectable>remove all device-stored Enterprise resource data</selectable>
+                <selectable>remove Enterprise secondary authentication data</selectable>
+                <selectable><assignable>list other available remediation
+                  actions</assignable></selectable>
+              </selectables> upon unenrollment and <selectables>
+                <selectable><assignable>other administrator-configured triggers</assignable></selectable>
+                <selectable exclusive="yes"> no other triggers</selectable>
+            </selectables>.</title>
+	    <ext-comp-def-title><title>
+	      The TSF shall offer <assignable>list of remediation actions</assignable>
+	      upon unenrollment and
+	      <assignable>list of triggers</assignable>.</title></ext-comp-def-title>
+            <note role="application"> <h:p>Unenrollment may consist of removing the MDM agent or
+              removing the administrator's policies. The functions in the selection are remediation
+              actions that TOE may provide (perhaps via APIs) to the administrator (perhaps via an MDM
+              agent) that may be performed upon unenrollment. "Enterprise applications" refers to
+              applications that are in the Enterprise application group. "Enterprise resource data"
+              refers to all stored Enterprise data and the separate resources that are available to
+              the Enterprise application group, per FDP_ACF_EXT.2.1. If FDP_ACF_EXT.2.1 is included
+              in the ST, then "remove all device-stored Enterprise resource data" must be selected,
+              and is defined to be all resources selected in FDP_ACF_EXT.2.1.</h:p> 
+              
+              <h:p>If FIA_UAU_EXT.4.1 is
+              included in the ST, then "remove Enterprise secondary authentication data" must be
+              selected. If FIA_UAU_EXT.4.1 is not included in the ST, then "remove Enterprise
+              secondary authentication data" cannot be selected. Enterprise secondary authentication
+              data only refers to any data stored on the TOE that is specifically used as part of a
+              secondary authentication mechanism to authenticate access to Enterprise applications
+              and shared resources. Material that is used for the TOE's primary authentication
+              mechanism or other purposes not related to authentication to or protection of
+              Enterprise applications or shared resources should not be removed. </h:p>
+        <h:p>      
+			  If <xref to="s-smf-wipe-sen"/> is selected the wipe  must be in accordance with FCS_CKM_EXT.5.1. Thus cryptographically wiping the device is an acceptable remediation action.</h:p>
+			</note>
+            <aactivity>
+              <TSS> The evaluator shall verify that the TSS describes all available remediation
+                actions, when they are available for use, and any other administrator-configured
+                triggers. The evaluator shall verify that the TSS describes how the remediation
+                actions are provided to the administrator.<h:br/><h:br/></TSS>
+              <Guidance>There are no guidance evaluation activities for this component.<h:br/><h:br/></Guidance>
+              <Tests> The evaluator shall use the test environment to iteratively configure the
+                device to perform each remediation action in the selection. The evaluator shall
+                configure the remediation action per how the TSS states it is provided to the
+                administrator. The test environment could be an MDM agent application, but can also
+                be an application with administrator access.</Tests>
+            </aactivity>
+          </f-element>
+	  <audit-event>
+	    <audit-event-descr>Unenrollment, Initiation of unenrollment</audit-event-descr>
+	    <audit-event-info>Identity of administrator Remediation action performed, failure of accepting command to unenroll</audit-event-info>
+	  </audit-event>
+        </f-component>
         <!-- <f-component id="fpt_php_ext.1" name="External Interface Controls">-->
         <!--   <f-element> -->
         <!--     <title> -->
