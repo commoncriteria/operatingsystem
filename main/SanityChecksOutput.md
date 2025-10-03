@@ -1,5 +1,23 @@
 * Error: Detected multiple elements with an id of 'fel-sign-how'.
 * Error: Detected multiple elements with an id of 'fel-sign-how'.
+* Error: Detected dangling ref-id to 'dummy-ref-id'.
+	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage-list[1]""/package-usage[1]""/usage[1]""/config[1]""/ref-id[1]"dummy-ref"
+* Error: Detected dangling ref-id to 'dummy-ref-id'.
+	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage-list[1]""/package-usage[1]""/usage[2]""/config[1]""/ref-id[1]"dummy-ref"
+* Error: Detected dangling ref-id to 'dummy-ref-id'.
+	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage-list[1]""/package-usage[1]""/usage[3]""/config[1]""/ref-id[1]"dummy-ref"
+* Error: Detected dangling ref-id to 'dummy-ref-id'.
+	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage-list[1]""/package-usage[1]""/usage[4]""/config[1]""/ref-id[1]"dummy-ref"
+* Error: Detected dangling ref-id to 'dummy-ref-id'.
+	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage-list[1]""/package-usage[1]""/usage[5]""/config[1]""/ref-id[1]"dummy-ref"
+* Error: Detected dangling ref-id to 'dummy-ref-id'.
+	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage-list[1]""/package-usage[1]""/usage[6]""/config[1]""/ref-id[1]"dummy-ref"
+* Error: Detected dangling ref-id to 'dummy-ref-id'.
+	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage-list[1]""/package-usage[1]""/usage[7]""/config[1]""/ref-id[1]"dummy-ref"
+* Error: Detected dangling ref-id to 'dummy-ref-id'.
+	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage-list[1]""/package-usage[1]""/usage[8]""/config[1]""/ref-id[1]"dummy-ref"
+* Error: Detected dangling ref-id to 'dummy-ref-id'.
+	  /PP[1]""/sec:Introduction[1]""/section[1]"This sect"/package-usage-list[1]""/package-usage[1]""/usage[9]""/config[1]""/ref-id[1]"dummy-ref"
 * Error: Detected dangling ref-id to 's-keyestab-rsa'.
 	  /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[2]""/f-element[1]""/rule[1]""/if[1]""/ref-id[1]"s-keyesta"
 * Error: Detected dangling ref-id to 's-keygen-rsa'.
