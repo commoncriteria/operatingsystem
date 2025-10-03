@@ -4297,6 +4297,8 @@ only AES-based implementations for CTR_DRBG are allowed.
               <selectable>authentication based on user name and a PIN that
 	      releases an asymmetric key stored in OE-protected storage</selectable>
               <selectable>authentication based on X.509 certificates</selectable>
+              <selectable>authentication based on biometric in accordance with the <xref to="mod-biometric"/></selectable>
+              <selectable>hybrid</selectable>
             </selectables>.
 	    </h:b>
 	    </title>
@@ -4310,7 +4312,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 		  The evaluator shall set an administrator-configurable threshold for
 		  failed attempts, or note the ST-specified assignment. The evaluator
 		  will then (per selection) repeatedly attempt to authenticate with an
-		  incorrect password, PIN, or certificate until the number of attempts
+		  incorrect password, PIN, certificate, or biometric until the number of attempts
 		  reaches the threshold.  Note that the authentication attempts and
 		  lockouts must also be logged as specified in FAU_GEN.1.
 	      </Tests>
@@ -4325,6 +4327,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 		<selectable>Account Lockout</selectable>
 		<selectable>Account Disablement</selectable>
 		<selectable>Mandatory Credential Reset</selectable>
+    <selectable>Wipe Sensitive Data</selectable>
 		<selectable><assignable>list of actions</assignable></selectable>
 	      </selectables>
 	      </h:b>.
@@ -4362,11 +4365,93 @@ only AES-based implementations for CTR_DRBG are allowed.
                   has had the actions detailed in the assignment list above applied to it. The evaluator shall ensure that
                   an event has been logged to the security event log detailing that the account has had these actions applied.
                 </test>
+                <test>
+                  [conditional, to be performed if "authentication based on biometric in accordance with the <xref to="mod-biometric"/>" or "hybrid" is selected in                  
+                  FIA_AFL.1 and FIA_UAU.5]:The evaluator shall attempt to authenticate repeatedly to the system 
+                  using a known bad biometric authentication factor.
+                  Once the defined number of failed authentication attempts has been
+                  reached the evaluator shall ensure that the account that was being used for testing
+                  has had the actions detailed in the assignment list above applied to it. The evaluator shall ensure that
+                  an event has been logged to the security event log detailing that the account has had these actions applied.
+                </test>
+                <test>
+                  [conditional, to be performed if "hybrid" is selected in                  
+                  FIA_AFL.1 and FIA_UAU.5]: <h:p>The evaluator shall attempt to authenticate repeatedly to the system 
+                  using a known bad primary authentication factor (PIN, Password, certificate).
+                  Once the defined number of failed authentication attempts has been
+                  reached the evaluator shall ensure that the account that was being used for testing
+                  has had the actions detailed in the assignment list above applied to it. The evaluator shall ensure that
+                  an event has been logged to the security event log detailing that the account has had these actions applied.</h:p>
+                  <h:p>
+                  The evaluator shall then attempt to authenticate repeatedly to the system 
+                  using a known good primary authentication factor (PIN, Password, certificate) but a known bad biometric authentication factor.
+                  Once the defined number of failed authentication attempts has been
+                  reached the evaluator shall ensure that the account that was being used for testing
+                  has had the actions detailed in the assignment list above applied to it. The evaluator shall ensure that
+                  an event has been logged to the security event log detailing that the account has had these actions applied.</h:p>
+                </test>
               </testlist>
               </Tests>
 	    </aactivity>
           </f-element>
           <audit-event/>
+        </f-component>
+
+        <f-component cc-id="fia_uau_ext.4" id="fc-fia-uau-ext-4" name="Secondary User Authentication" status="optional">
+          <comp-lev> requires the TSF to enforce the use of a secondary authentication factor to access certain user data.</comp-lev>
+          <management>There are no management activities foreseen.</management>
+          <audit>There are no auditable events foreseen.</audit>
+          <dependencies>FDP_ACF_EXT.2 Access Control for System Resources<h:br/>
+            FIA_UAU.5 Multiple Authentication Mechanisms
+          </dependencies>
+          
+          <f-element id="fel-two-auths">
+            <title>The TSF shall provide a secondary authentication mechanism for accessing
+              Enterprise applications and resources. The secondary authentication mechanism shall
+              control access to the Enterprise application and shared resources and shall be
+              incorporated into the encryption of protected and sensitive data belonging to
+              Enterprise applications and shared resources.</title>
+            <note role="application"><h:p>For the BYOD use case, Enterprise applications and data must
+              be protected using a different password than the user authentication to gain access to
+              the personal applications and data, if configured. </h:p> 
+
+              <h:p>This requirement must be included in the ST if the TOE implements a container solution, in which there
+              is a separate authentication, to separate user and Enterprise applications and
+              resources.</h:p></note>
+            <aactivity level="element">
+              <TSS>There are no TSS evaluation activities for this element.</TSS>
+              <Guidance>There are no guidance evaluation activities for this element.</Guidance>
+              <Tests><h:p>The Evaluation Activities for any selected requirements related to device
+                authentication must be separately performed for the secondary authentication
+                mechanism (in addition to activities performed for the primary authentication
+                mechanism). The requirements are: FCS_STG_EXT.2, FMT_SMF_EXT.1/FMT_MOF_EXT.1
+                #1, #2, #8, #21, and #36.</h:p> 
+                </Tests>
+            </aactivity>
+          </f-element>
+          <f-element id="fel-two-auth-when">
+            <title>The TSF shall require the user to present the secondary authentication factor
+              prior to decryption of Enterprise application data and Enterprise shared resource
+              data.</title>
+              <note role="application">
+		<!-- This requirement must be selected if FIA_UAU_EXT.4.1 is -->
+		<!-- selected. -->
+		The intent of this requirement is to prevent decryption of protected
+              Enterprise application data and Enterprise shared resource data before the user has
+              authenticated to the device using the secondary authentication factor. Enterprise
+              shared resource data consists of the FDP_ACF_EXT.2.1 selections.</note>
+            <aactivity level="element">
+              <TSS> The evaluator shall verify that the TSS section of the ST describes the process
+                for decrypting Enterprise application data and shared resource data. The evaluator
+                shall ensure that this process requires the user to enter an Authentication Factor
+                and, in accordance with FCS_CKM_EXT.3, derives a KEK which is used to protect the
+                software-based secure key storage and (optionally) DEKs for sensitive data, in
+                accordance with FCS_STG_EXT.2.</TSS>
+              <Guidance>There are no guidance evaluation activities for this element.</Guidance>
+              <Tests>There are no test evaluation activities for this element.</Tests>
+            </aactivity>
+          </f-element>
+	  <audit-event table="optional"/>
         </f-component>
         
         <f-component cc-id="fia_uau.5" name="Multiple Authentication Mechanisms">
@@ -4396,7 +4481,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 	        If "authentication based on X.509 certificates" is claimed, the TOE must claim conformance to <xref to="pkg-x509"/>.
 	      </h:p>
         <h:p>
-        The TSF may optionally implement a Biometric Authentication Factor. A hybrid authentication factor is where a user has to submit a combination of primary authentication mechanism (e.g. username and password) and biometric sample where both have to pass and if either fails the user is not made aware of which factor failed.</h:p>
+        The TSF may optionally implement a Biometric Authentication Factor. A hybrid authentication factor is where a user has to submit a combination of primary authentication factor (e.g. username and password) and biometric sample where both have to pass and if either fails the user is not made aware of which factor failed.</h:p>
         <h:p>If <xref to="uau_biometric"/> or <xref to="uau_hybr"/> is selected, then the TSF must be validated against requirements from the <xref to="mod-biometric"/>.</h:p>
         <h:p>If <xref to="uau_hybr"/> is selected, <xref to="uau_biometric"/> does not need to be selected, but should be
         selected if the biometric authentication can be used independent of the hybrid authentication, i.e. without having to enter a PIN/password.</h:p>
