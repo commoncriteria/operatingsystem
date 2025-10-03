@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../transforms/pp2html.xsl"?>
-<?xml-model href="https://github.com/commoncriteria/transforms/raw/master/schemas/CCProtectionProfile.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="../transforms/schemas/CCProtectionProfile.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 	
 
 <PP xmlns="https://niap-ccevs.org/cc/v1" target-product="General Purpose Operating Systems"
@@ -83,7 +83,7 @@
     </git>
     <url>https://www.niap-ccevs.org/static_html/protection-profile/439/-439-/index.html</url>
   </include-pkg>
-  <include-pkg id="pkg-x509">
+  <include-pkg id="X509">
     <git>
       <url>https://github.com/commoncriteria/X509</url>
       <branch>master</branch>
@@ -365,6 +365,99 @@ it manages may be physical or virtual.
         </usecase>
       </usecases>
     </sec:Use_Cases>
+
+    <section title="Package Usage">
+      This section contains selections and assignments that are required when the listed Functional Packages are claimed by this PP. 
+      <package-usage-list>
+        <package-usage ref="X509">
+          <usage id="usage-x509-notca" title="No CA Claims Permitted">
+            <description>
+              The TOE will not be a certificate authority because the PP does not provide for the operation of an operating system as a CA. Thus, the TOE shall select the option to request a certificate from an external CA in FIA_XCU_EXT.2.1 and shall not select any options elsewhere in the package that involve claiming the ability to be a CA. 
+            </description>
+            <config>
+              <ref-id>dummy-ref-id</ref-id>
+            </config>
+          </usage>
+          <usage id="usage-x509-noplatform" title="No Platform-Provided Functionality Claims Permitted">
+            <description>Because the TOE is the entire operating system and encompasses the platform, the TOE shall not claim platform-provided functionality. In other words, any applicable SFRs 
+              shall select the option to implement or provide the functionality, rather than rely on a platform. These may include one or more of the following, depending on the TOE, but apply to all package requirements that have such a selection:
+              <h:ul>
+                <h:li>FIA_CMCC_EXT.1</h:li>
+                <h:li>FIA_CMPC_EXT.1</h:li>
+                <h:li>FIA_ESTC_EXT.1</h:li>
+                <h:li>FIA_X509_EXT.1</h:li>
+                <h:li>FIA_X509_EXT.2</h:li>
+                <h:li>FIA_X509_EXT.3</h:li>
+              </h:ul>
+            </description>
+            <config>
+              <ref-id>dummy-ref-id</ref-id>   
+            </config>
+          </usage>
+           <usage id="usage-x509-revocation-sigalgs" title="Limitations on Signature Algorithms in FIA_X509_EXT.1.1">
+            <description>
+              The TOE must utilize appropriate cryptographic algorithms that conform to CNSA standards. Thus, the TOE shall utilize no other algorithms outside of those specified in RFC 8603 for certificate or CRL signatures. 
+              Additionally, the TOE shall not use ECDSA with SHA-512 signatures for OCSP responses, and shall utilize no other algorithms for OCSP responses.
+            </description>
+            <config>
+            <ref-id>dummy-ref-id</ref-id>
+          </config>
+          </usage>
+          <usage id="usage-x509-extensions" title="Required Extension Processing for FIA_X509_EXT.1.2">
+            <description>
+              The TOE shall select the options to process the basicConstraints and extendedKeyUsage extensions. Other extensions may be selected as appropriate without restriction.
+            </description>
+            <config>
+              <ref-id>dummy-ref-id</ref-id>
+            </config>
+          </usage>
+          <usage id="usage-x509-revocation-methods" title="CRL or OCSP-based Revocation Required for FIA_X509_EXT.1.3 ">
+            <description>
+              The TOE must use revocation involving CRL or OCSP. Accordingly, the TOE shall select only from options involving CRL or OCSP in FIA_X509_EXT.1.3.
+            </description> 
+            <config>
+              <ref-id>dummy-ref-id</ref-id>
+            </config>
+          </usage>
+          <usage id="usage-x509-revocation-connections" title="Connections to CRL or OCSP Servers Required for FIA_X509_EXT.1.4">
+            <description>
+              The TOE is required to utilize CRL or OCSP, thus it shall not select to not obtain revocation status information. 
+              Additionally, the TOE shall not utilize local revocation information or utilize a network connection to the CA to obtain its revocation information. 
+              In other words, the TOE shall utilize a network connection to a CRL distribution point, OCSP responder, OCSP stapling, or OCSP multi-stapling. 
+            </description>
+            <config>
+              <ref-id>dummy-ref-id</ref-id>
+            </config>
+          </usage>
+          <usage id="usage-x509-eku-values" title="Restrictions on Acceptable Key Usage Values for FIA_X509_EXT.1.5">
+            <description>
+              The TOE will always utilize X.509 extended key usage values to verify the proper usage of certificates for TOE functions. Accordingly, the TOE 
+              shall not pass certificate information to supported functions and shall verify certificates by evaluating the extendedKeyUsage field in the leaf certificate. <h:br/>
+              Additionally, the PP does not define SMIME functionality for X.509, therefore the TOE shall not validate certificates against any rules for SMIME certificates.
+            </description>
+            <config>
+              <ref-id>dummy-ref-id</ref-id>
+            </config>
+          </usage>
+          <usage id="usage-x509-functions" title="Restrictions on Acceptable Functions for FIA_X509_EXT.2.1">
+            <description>
+              The PP does not define SMIME functionality, therefore the TOE shall not select options that utilize these protocols.
+            </description>
+            <config>
+              <ref-id>dummy-ref-id</ref-id>
+            </config>
+          </usage>
+          <usage id="usage-x509-acquisition-purposes" title="Restrictions on Acceptable Purposes for Certificate Acquisition for FIA_XCU_EXT.2.1">
+            <description>
+              The PP does not define SMIME functionality, therefore the TOE shall not acquire a certificate to represent the TOE for these protocols.
+            </description>
+            <config>
+              <ref-id>dummy-ref-id</ref-id>
+            </config>
+          </usage>
+        </package-usage>
+      </package-usage-list>
+    </section>
   </sec:Introduction>
   
   
@@ -1007,7 +1100,7 @@ users of the same system.
                     <h:li>Privilege or role escalation events (Success/Failure);</h:li>
                     <h:li>Auditable events as defined in the <xref to="pkg-ssh"/>;</h:li>
                     <h:li>Auditable events as defined in the <xref to="pkg-tls"/>;</h:li>
-                    <h:li>Auditable events as defined in the <xref to="pkg-x509"/>;</h:li>
+                    <h:li>Auditable events as defined in the <xref to="X509"/>;</h:li>
                     <h:li><selectables linebreak='yes'>
                       <selectable>File and object events (Successful and unsuccessful attempts to create, access, delete, modify, modify permissions)</selectable>
                       <selectable>User and Group management events (Successful and unsuccessful add, delete, modify, disable, enable, and credential change)</selectable>
@@ -4289,7 +4382,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 	        The <xref to="s-uau-ssh"/> selection can only be included, and must be included, if
 		    FTP_ITC_EXT.1.1 selects <xref to="s-ftp_ssh"/>
 	      </h:p><h:p>
-	        If "authentication based on X.509 certificates" is claimed, the TOE must claim conformance to <xref to="pkg-x509"/>.
+	        If "authentication based on X.509 certificates" is claimed, the TOE must claim conformance to <xref to="X509"/>.
 	      </h:p>.
 	    </note>
             <aactivity>
@@ -4355,7 +4448,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 		</h:div>
 
 		<h:p>
-		  Authentication mechanisms related to <xref to="s-x509-auth"/> are tested under FIA_X509_EXT.1 as defined in the <xref to="pkg-x509"/>
+		  Authentication mechanisms related to <xref to="s-x509-auth"/> are tested under FIA_X509_EXT.1 as defined in the <xref to="X509"/>
 		  and <xref to="s-uau-ssh"/> are tested in the <xref to="pkg-ssh"/>.
 		</h:p>
               </Tests>
@@ -5431,7 +5524,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
               </h:p>
 	      <h:p>
 		If certificates are used, they can be hardware-protected trust store elements or leaf certificates in a certificate chain that terminates in a root CA which is an element of a hardware protected trust store.
-		If the certificates themselves are not trust store elements, revocation information is expected to be available for each CA certificate in the chain that is not a trust element, in accordance with FIA_X509_EXT.1 as defined in the <xref to="pkg-x509"/>.
+		If the certificates themselves are not trust store elements, revocation information is expected to be available for each CA certificate in the chain that is not a trust element, in accordance with FIA_X509_EXT.1 as defined in the <xref to="X509"/>.
 	      </h:p>
             </note>
             <aactivity>
@@ -5478,7 +5571,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 		  <depends on="s-boot-x509"/>
                   If the ST author indicates that the integrity verification is performed
                   using public key in an X509 certificate, the evaluator shall verify that the boot integrity mechanism includes a certificate
-                  validation according to in accordance with FIA_X509_EXT.1 as defined in the <xref to="pkg-x509"/> for all certificates in the chain from the certificate used for
+                  validation according to in accordance with FIA_X509_EXT.1 as defined in the <xref to="X509"/> for all certificates in the chain from the certificate used for
 				  boot integrity to a certificate in the trust store that are not themselves in the trust store.
 				  This means that, for each X.509 certificate in this chain that is not a trust store element, the evaluator must ensure that revocation information is available to the TOE during the bootstrap mechanism (before the TOE becomes fully operational).
 
@@ -5832,7 +5925,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 		      <selectable>authentication server</selectable>
 		      <selectable>management server</selectable>
 		      <selectable><assignable>other capabilities</assignable></selectable>
-		    </selectables> using certificates as defined in [<h:i><xref to="pkg-x509"/></h:i>]
+		    </selectables> using certificates as defined in [<h:i><xref to="X509"/></h:i>]
 		    that is logically distinct from other communication
 		    channels and provides assured identification of its end points and protection of the channel
 		    data from disclosure and detection of modification of the channel data.
@@ -5870,7 +5963,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
       	        selected in FTP_ITC_EXT.1 in the main body of the ST.
       	    </h:p>
       	      <h:p>
-      	        Claims from the <xref to="pkg-x509"/> are only required to the extent that they are needed to support the functionality required by the trusted protocols that are claimed.
+      	        Claims from the <xref to="X509"/> are only required to the extent that they are needed to support the functionality required by the trusted protocols that are claimed.
       	      </h:p><h:p>
       	        If the TSF implements a protocol that requires the validation of a certificate presented by an external entity, FIA_X509_EXT.1 and FIA_X509_EXT.2 will be claimed, as will FIA_TSM_EXT.1 for management of the trust store.
       	      </h:p><h:p>
