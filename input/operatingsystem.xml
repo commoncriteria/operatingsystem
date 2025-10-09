@@ -620,6 +620,8 @@ it manages may be physical or virtual.
           <rationale>FCS_COP.1/KeyEncp helps mitigate the threat of a network attack by using a secure key encapsulation method to transmit a symmetric key to a third party as part of key establishment for trusted communications.</rationale>
           <addressed-by>FCS_COP.1/KeyWrap (selection-based)</addressed-by>
           <rationale>FCS_COP.1/KeyWrap helps mitigate the threat of a network attack by using a secure key wrap method to distribute key material to a third party for use in trusted communications.</rationale>
+          <addressed-by>FCS_COP.1/XOF (selection-based)</addressed-by>
+          <rationale>FCS_COP.1/XOF helps mitigate the threat of a network attack by supporting extendable output function implementations that are dependencies of some secure key generation and signature verification algorithms.</rationale>      
           <addressed-by>FCS_RBG.2 (selection-based)</addressed-by>
           <rationale>FCS_RBG.2 helps mitigate the threat of a network attack by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>
           <addressed-by>FCS_RBG.3 (selection-based)</addressed-by>
@@ -629,8 +631,7 @@ it manages may be physical or virtual.
           <addressed-by>FCS_RBG.5 (selection-based)</addressed-by>
           <rationale>FCS_RBG.5 helps mitigate the threat of a network attack by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>
 
-          <addressed-by>FCS_XOF_EXT.1 (selection-based)</addressed-by>
-          <rationale>FCS_XOF_EXT.1 helps mitigate the threat of a network attack by supporting extensible output function implementations that are dependencies of some secure key generation and signature verification algorithms.</rationale>          
+          
 
           <addressed-by>FDP_IFC_EXT.1 (selection-based)</addressed-by>
           <rationale>FDP_IFC_EXT.1 helps mitigate the threat of a network attack by ensuring that the TOE has the ability to enforce the use of an IPsec VPN for all network traffic.</rationale>
@@ -763,7 +764,7 @@ it manages may be physical or virtual.
           <rationale>FCS_RBG.5 helps mitigate the threat of network eavesdropping by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>          
           
           <addressed-by>FCS_XOF_EXT.1 (selection-based)</addressed-by>
-          <rationale>FCS_XOF_EXT.1 helps mitigate the threat of network eavesdrop by supporting extensible output function implementations that are dependencies of algorithms used for protection of data in transit.</rationale>      
+          <rationale>FCS_XOF_EXT.1 helps mitigate the threat of network eavesdrop by supporting extendable output function implementations that are dependencies of algorithms used for protection of data in transit.</rationale>      
           
           <addressed-by>FDP_IFC_EXT.1 (selection-based)</addressed-by>
           <rationale>FDP_IFC_EXT.1 helps mitigate the threat of network eavesdropping by ensuring that the TOE has the ability to enforce the use of an IPsec VPN for all network traffic.</rationale>
@@ -2694,6 +2695,9 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 The hash selection must support the message digest size selection.
                 The hash selection should be consistent with the overall strength of the
                 algorithm used for FCS_COP.1/Hash.
+              </h:p>
+              <h:p>
+                In accordance with CNSA 1.0 and 2.0, HMAC-SHA-256 may be used only as a PRF or MAC step in a key derivation function.
               </h:p>
             </note>
             <aactivity>
