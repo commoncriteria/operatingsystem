@@ -453,6 +453,20 @@ it manages may be physical or virtual.
         </package-usage>
       </package-usage-list>
     </section>
+    <section title="Product Features Mapped to Implementation-dependent Requirements" id="sec-features">
+      The features enumerated below, if implemented by the TOE, require that additional SFRs be claimed in the ST.<h:br/>
+      <implements>
+        <feature id="key-encap-support" title="Key Encapsulation Support">
+          <description>A conformant TOE is required to implement trusted communications. Depending on the specific protocols used and the supported connection parameters for these protocols, it may be necessary to implement a key encapsulation algorithm as part of key establishment.<h:br/></description>
+        </feature>
+          <feature id="key-agreement-support" title="Key Agreement Support">
+            <description>A conformant TOE is required to implement trusted communications. Depending on the specific protocols used and the supported connection parameters for these protocols, it may be necessary to implement one or more key agreement algorithms as part of key establishment.<h:br/></description>
+          </feature>
+        <feature id="wlan-support" title="WLAN Support">
+          <description>A conformant TOE may implement WLAN client functionality. If so, it is necessary to implement authenticated encryption and key wrapping in support of secure wireless communications.<h:br/></description>
+        </feature>
+      </implements>			
+    </section>
   </sec:Introduction>
   
   
@@ -541,20 +555,21 @@ it manages may be physical or virtual.
           <rationale>FAU_GEN.1 helps mitigate the threat of a network attack by logging evidence of potential malicious activity.</rationale>
           <addressed-by>FCS_CKM.1/AKG</addressed-by>
           <rationale>FCS_CKM.1/AKG helps mitigate the threat of a network attack by ensuring the generation of strong keys used for trusted communications.</rationale>
-          <addressed-by>FCS_CKM.2</addressed-by>
-          <rationale>FCS_CKM.2 helps mitigate the threat of a network attack by implementing secure methods to perform key establishment for trusted communications.</rationale>
+          <addressed-by>FCS_CKM.1/SKG</addressed-by>
+          <rationale>FCS_CKM.1/SKG helps mitigate the threat of a network attack by ensuring the generation of strong keys used for trusted communications.</rationale>
           <addressed-by>FCS_CKM.6</addressed-by>
           <rationale>FCS_CKM.6 helps mitigate the threat of a network attack by ensuring that keys used for trusted communications are destroyed in a secure manner.</rationale>
-          <addressed-by>FCS_COP.1/SKC</addressed-by>
-          <rationale>FCS_COP.1/SKC helps mitigate the threat of a network attack by ensuring that secure symmetric algorithms are used for trusted communications.</rationale>
-          <addressed-by>FCS_COP.1/HASH</addressed-by>
-          <rationale>FCS_COP.1/HASH helps mitigate the threat of a network attack by ensuring that secure hash algorithms are used for trusted communications.</rationale>
+        
+          <addressed-by>FCS_COP.1/Hash</addressed-by>
+          <rationale>FCS_COP.1/Hash helps mitigate the threat of a network attack by ensuring that secure hash algorithms are used for trusted communications.</rationale>
           <addressed-by>FCS_COP.1/KeyedHash</addressed-by>
           <rationale>FCS_COP.1/KeyedHash helps mitigate the threat of a network attack by ensuring that secure HMAC algorithms are used for trusted communications.</rationale>
           <addressed-by>FCS_COP.1/SigGen</addressed-by>
           <rationale>FCS_COP.1/SigGen helps mitigate the threat of a network attack by ensuring that secure digital signature algorithms are used for trusted communications.</rationale>
           <addressed-by>FCS_COP.1/SigVer</addressed-by>
           <rationale>FCS_COP.1/SigVer helps mitigate the threat of a network attack by implementing signature verification functions used for protected storage.</rationale>
+          <addressed-by>FCS_COP.1/SKC</addressed-by>
+          <rationale>FCS_COP.1/SKC helps mitigate the threat of a network attack by ensuring that secure symmetric algorithms are used for trusted communications.</rationale>
           <addressed-by>FCS_RBG.1</addressed-by>
           <rationale>FCS_RBG.1 helps mitigate the threat of a network attack by ensuring that keys used for trusted communications are generated using a secure DRBG.</rationale>
           <addressed-by>FIA_AFL.1</addressed-by>
@@ -593,6 +608,18 @@ it manages may be physical or virtual.
           <addressed-by>FPT_BLT_EXT.1 (objective)</addressed-by>
           <rationale>FPT_BLT_EXT.1 helps mitigate the threat of a network attack by enforcing least functionality of the TOE's Bluetooth interface.</rationale>
           
+          
+          <addressed-by>FCS_CKM.2 (implementation-dependent)</addressed-by>
+          <rationale>FCS_CKM.2 helps mitigate the threat of a network attack by implementing secure methods to perform key distribution for trusted communications.</rationale>
+          <addressed-by>FCS_CKM_EXT.7 (implementation-dependent)</addressed-by>
+          <rationale>FCS_CKM_EXT.7 helps mitigate the threat of a network attack by implementing secure methods to perform key agreement for trusted communications.</rationale>
+          <addressed-by>FCS_COP.1/AEAD (implementation-dependent)</addressed-by>
+          <rationale>FCS_COP.1/AEAD helps mitigate the threat of a network attack by enforcing the use of secure authenticated encryption algorithms when wireless functionality is implemented by the TOE.</rationale>
+          
+          <addressed-by>FCS_COP.1/KeyEncap (selection-based)</addressed-by>
+          <rationale>FCS_COP.1/KeyEncp helps mitigate the threat of a network attack by using a secure key encapsulation method to transmit a symmetric key to a third party as part of key establishment for trusted communications.</rationale>
+          <addressed-by>FCS_COP.1/KeyWrap (selection-based)</addressed-by>
+          <rationale>FCS_COP.1/KeyWrap helps mitigate the threat of a network attack by using a secure key wrap method to distribute key material to a third party for use in trusted communications.</rationale>
           <addressed-by>FCS_RBG.2 (selection-based)</addressed-by>
           <rationale>FCS_RBG.2 helps mitigate the threat of a network attack by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>
           <addressed-by>FCS_RBG.3 (selection-based)</addressed-by>
@@ -600,7 +627,11 @@ it manages may be physical or virtual.
           <addressed-by>FCS_RBG.4 (selection-based)</addressed-by>
           <rationale>FCS_RBG.4 helps mitigate the threat of a network attack by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>
           <addressed-by>FCS_RBG.5 (selection-based)</addressed-by>
-          <rationale>FCS_RBG.5 helps mitigate the threat of a network attack by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>          
+          <rationale>FCS_RBG.5 helps mitigate the threat of a network attack by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>
+
+          <addressed-by>FCS_XOF_EXT.1 (selection-based)</addressed-by>
+          <rationale>FCS_XOF_EXT.1 helps mitigate the threat of a network attack by supporting extensible output function implementations that are dependencies of some secure key generation and signature verification algorithms.</rationale>          
+
           <addressed-by>FDP_IFC_EXT.1 (selection-based)</addressed-by>
           <rationale>FDP_IFC_EXT.1 helps mitigate the threat of a network attack by ensuring that the TOE has the ability to enforce the use of an IPsec VPN for all network traffic.</rationale>
           
@@ -677,20 +708,21 @@ it manages may be physical or virtual.
           
           <addressed-by>FCS_CKM.1/AKG</addressed-by>
           <rationale>FCS_CKM.1/AKG helps mitigate the threat of network eavesdropping by ensuring the generation of strong keys used for trusted communications.</rationale>
-          <addressed-by>FCS_CKM.2</addressed-by>
-          <rationale>FCS_CKM.2 helps mitigate the threat of network eavesdropping by implementing secure methods to perform key establishment for trusted communications.</rationale>
+          <addressed-by>FCS_CKM.1/SKG</addressed-by>
+          <rationale>FCS_CKM.1/SKG helps mitigate the threat of network eavesdropping by ensuring the generation of strong keys used for trusted communications.</rationale>
           <addressed-by>FCS_CKM.6</addressed-by>
           <rationale>FCS_CKM.6 helps mitigate the threat of network eavesdropping by ensuring that keys used for trusted communications are destroyed in a secure manner.</rationale>
-          <addressed-by>FCS_COP.1/SKC</addressed-by>
-          <rationale>FCS_COP.1/SKC helps mitigate the threat of network eavesdropping by ensuring that secure symmetric algorithms are used for trusted communications.</rationale>
-          <addressed-by>FCS_COP.1/HASH</addressed-by>
-          <rationale>FCS_COP.1/HASH helps mitigate the threat of network eavesdropping by ensuring that secure hash algorithms are used for trusted communications.</rationale>
+ 
+          <addressed-by>FCS_COP.1/Hash</addressed-by>
+          <rationale>FCS_COP.1/Hash helps mitigate the threat of network eavesdropping by ensuring that secure hash algorithms are used for trusted communications.</rationale>
           <addressed-by>FCS_COP.1/KeyedHash</addressed-by>
           <rationale>FCS_COP.1/KeyedHash helps mitigate the threat of network eavesdropping by ensuring that secure HMAC algorithms are used for trusted communications.</rationale>
           <addressed-by>FCS_COP.1/SigGen</addressed-by>
           <rationale>FCS_COP.1/SigGen helps mitigate the threat of network eavesdropping by ensuring that secure digital signature algorithms are used for trusted communications.</rationale>
           <addressed-by>FCS_COP.1/SigVer</addressed-by>
           <rationale>FCS_COP.1/SigVer helps mitigate the threat of network eavesdropping by implementing signature verification functions used for protected storage.</rationale>
+          <addressed-by>FCS_COP.1/SKC</addressed-by>
+          <rationale>FCS_COP.1/SKC helps mitigate the threat of network eavesdropping by ensuring that secure symmetric algorithms are used for trusted communications.</rationale>
           <addressed-by>FCS_RBG.1</addressed-by>
           <rationale>FCS_RBG.1 helps mitigate the threat of network eavesdropping by ensuring that keys used for trusted communications are generated using a secure DRBG.</rationale>
           <addressed-by>FPT_FLS.1</addressed-by>
@@ -708,6 +740,19 @@ it manages may be physical or virtual.
           <addressed-by>FPT_BLT_EXT.1 (objective)</addressed-by>
           <rationale>FPT_BLT_EXT.1 helps mitigate the threat of network eavesdropping by enforcing least functionality of the TOE's Bluetooth interface.</rationale>
           
+          <addressed-by>FCS_CKM.2 (implementation-dependent)</addressed-by>
+          <rationale>FCS_CKM.2 helps mitigate the threat of network eavesdropping by enforcing the use of a cryptographic algorithm to protect key data that is distributed in transit to a third party for use in trusted communications.</rationale>
+          <addressed-by>FCS_CKM_EXT.7 (implementation-based)</addressed-by>
+          <rationale>FCS_CKM_EXT.7 helps mitigate the threat of network eavesdropping by ensuring that a third party cannot obtain the key used by the TOE to communicate securely with a remote entity.</rationale>
+          <addressed-by>FCS_COP.1/AEAD (implementation-dependent)</addressed-by>
+          <rationale>FCS_COP.1/AEAD helps mitigate the threat of network eavesdrop by enforcing the use of a cryptographic algorithm to protect data in transit that includes assurance of both authenticity and confidentiality.</rationale>
+          
+          
+          <addressed-by>FCS_COP.1/KeyEncap (selection-based)</addressed-by>
+          <rationale>FCS_COP.1/KeyWrap helps mitigate the threat of network eavesdrop by using a key encapsulation algorithm to protect data in transit</rationale>
+          <addressed-by>FCS_COP.1/KeyWrap (selection-based)</addressed-by>
+          <rationale>FCS_COP.1/KeyWrap helps mitigate the threat of network eavesdrop by using a key wrap algorithm to protect data in transit.</rationale>
+          
           <addressed-by>FCS_RBG.2 (selection-based)</addressed-by>
           <rationale>FCS_RBG.2 helps mitigate the threat of network eavesdropping by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>
           <addressed-by>FCS_RBG.3 (selection-based)</addressed-by>
@@ -716,6 +761,10 @@ it manages may be physical or virtual.
           <rationale>FCS_RBG.4 helps mitigate the threat of network eavesdropping by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>
           <addressed-by>FCS_RBG.5 (selection-based)</addressed-by>
           <rationale>FCS_RBG.5 helps mitigate the threat of network eavesdropping by ensuring that the TOE's DRBG is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</rationale>          
+          
+          <addressed-by>FCS_XOF_EXT.1 (selection-based)</addressed-by>
+          <rationale>FCS_XOF_EXT.1 helps mitigate the threat of network eavesdrop by supporting extensible output function implementations that are dependencies of algorithms used for protection of data in transit.</rationale>      
+          
           <addressed-by>FDP_IFC_EXT.1 (selection-based)</addressed-by>
           <rationale>FDP_IFC_EXT.1 helps mitigate the threat of network eavesdropping by ensuring that the TOE has the ability to enforce the use of an IPsec VPN for all network traffic.</rationale>
           
@@ -782,8 +831,8 @@ it manages may be physical or virtual.
           
           <addressed-by>FAU_GEN.1</addressed-by>
           <rationale>FAU_GEN.1 helps mitigate the threat of a local attack by logging evidence of potential malicious activity.</rationale>
-          <addressed-by>FCS_COP.1/HASH</addressed-by>
-          <rationale>FCS_COP.1/HASH helps mitigate the threat of a local attack by ensuring that secure hash algorithms are used for trusted updates.</rationale>
+          <addressed-by>FCS_COP.1/Hash</addressed-by>
+          <rationale>FCS_COP.1/Hash helps mitigate the threat of a local attack by ensuring that secure hash algorithms are used for trusted updates.</rationale>
           <addressed-by>FCS_COP.1/KeyedHash</addressed-by>
           <rationale>FCS_COP.1/KeyedHash helps mitigate the threat of a local attack by ensuring that secure HMAC algorithms are used for trusted updates.</rationale>
           <addressed-by>FCS_COP.1/SigGen</addressed-by>
@@ -919,119 +968,7 @@ it manages may be physical or virtual.
   
   
   <sec:Security_Objectives>
-    <!--<sec:Security_Objectives_for_the_TOE>
-      
-      <SOs>
-        <SO name="O.ACCOUNTABILITY">
-          <description> Conformant OSes ensure that information exists that allows
-            administrators to discover unintentional issues with the configuration and operation of
-            the operating system and discover its cause.  Gathering event information and immediately
-            transmitting it to another system can also enable incident response in the event
-            of system compromise.</description>
-	    <addressed-by>FAU_GEN.1</addressed-by><rationale>Supports the objective by requiring that critical event information be gathered by the TOE. </rationale>
-	    <addressed-by>FTP_ITC_EXT.1</addressed-by><rationale>Supports the objective by ensuring that audit information can be securely transmitted to remote systems for analysis.</rationale>
-        </SO>
-        <SO name="O.INTEGRITY">
-          <description>Conformant OSes ensure the integrity of their update
-          packages. OSes are seldom if ever shipped without errors, and the
-          ability to deploy patches and updates with integrity is critical to enterprise network
-          security. Conformant OSes provide execution environment-based
-          mitigations that increase the cost to attackers by adding complexity to the task of
-          compromising systems. </description>
-	  <addressed-by>FPT_SBOP_EXT.1<h:br/>
-	                FPT_ASLR_EXT.1</addressed-by><rationale>Supports the objective by requiring that OS applications be hardened against buffer overflow attacks </rationale>
-	  <addressed-by>FPT_TUD_EXT.1    </addressed-by><rationale>Supports the objective by requiring that the OS be able to check for critical updates.</rationale>
-	  <addressed-by>FPT_TUD_EXT.2    </addressed-by><rationale>Supports the objective by requiring that the OS verify updates before applying them.</rationale>
-	  <addressed-by>FCS_COP.1/HASH   </addressed-by><rationale>Supports the objective by requiring the TSF to implement hash algorithms that are used in support of protected communications.</rationale>
-	  <addressed-by>FCS_COP.1/SigGen   </addressed-by><rationale>Supports the objective by requiring the TSF to implement digital signature algorithms that are used in support of protected communications.</rationale>
-	  <addressed-by>FCS_COP.1/KeyedHash</addressed-by><rationale>Supports the objective by requiring the TSF to implement HMAC algorithms that are used in support of protected communications.</rationale>
-	  <addressed-by>FPT_ACF_EXT.1    </addressed-by><rationale>Supports the objective by requiring the TSF restrict unprivileged users from changing critical components.</rationale>
-	  <addressed-by>FPT_SRP_EXT.1    </addressed-by><rationale>Supports the objective by requiring the TSF to implement a configurable allowlist mechanism.</rationale>
-	  <addressed-by>FIA_X509_EXT.1   </addressed-by><rationale>Supports the objective by requiring the TSF to validate certificates using industry standards.</rationale>
-
-	  
-	  <addressed-by>FPT_TST_EXT.1    </addressed-by><rationale>Supports the objective by requiring the TSF to verify executable code critical to its operation.</rationale>
-	  <addressed-by>FTP_ITC_EXT.1    </addressed-by><rationale>Supports the objective by requiring the OS to provide a trusted channel for critical communication.</rationale>
-	  <addressed-by>FPT_W^X_EXT.1 (Optional)</addressed-by><rationale>Supports the objective by requiring the OS to execute only non-writable memory.</rationale>
-	  <addressed-by>FIA_AFL.1        </addressed-by><rationale>Supports the objective by requiring the TSF to respond accordingly when the number of failed authentication attempts reaches a specified threshold.</rationale>
-	  <addressed-by>FIA_UAU.5        </addressed-by><rationale>Supports the objective by requiring the OS to provide standard authentication mechanisms.</rationale>
-	  <addressed-by>FPT_BLT_EXT.1 (Objective)</addressed-by>
-	  <rationale>
-            FPT_BLT_EXT.1 supports the objective by requiring the TSF to disable certain Bluetooth profiles when they are inactive such that explicit user authorization is required to re-enable them.
-	  </rationale>
-	  
-        </SO>
-        <SO name="O.MANAGEMENT">
-          <description> To facilitate management by users and the enterprise, conformant OSes
-	    provide consistent and supported interfaces for their
-            security-relevant configuration and maintenance. This includes the deployment of
-            applications and application updates through the use of platform-supported deployment
-            mechanisms and formats, as well as providing mechanisms for configuration and
-            application execution control. </description>
-	    <addressed-by>FMT_MOF_EXT.1</addressed-by><rationale>Supports this objective by requiring the TOE to restrict the ability to perform certain management functions to a privileged user. </rationale>
-	    <addressed-by>FMT_SMF_EXT.1</addressed-by><rationale>Supports this objective by requiring the TOE to implement specific management functions.</rationale>
-	    <addressed-by>FTA_TAB.1</addressed-by><rationale>Supports this objective by requiring the TOE to implement a trusted path between the itself and users.</rationale>
-            <addressed-by>FTP_TRP.1</addressed-by><rationale>Supports this objective by requiring a trusted path between users and the OS.</rationale>
-        </SO>
-	 <SO id="O.RESILIENCE"> 
-	   <description>  
-	     To address the issue of exploitation in the event of software vulnerabilities,  
-	     conformant OSs employ industry-standard exploitation countermeasures. 
-	   </description> 
-	 </SO> 
-        <SO name="O.PROTECTED_STORAGE">
-          <description>
-To address the issue of loss of confidentiality of credentials in the event of
-loss of physical control of the storage medium, conformant OSes
-provide data-at-rest protection for credentials.
-Conformant OSes also provide access controls which allow users to keep their files private from other
-users of the same system.
-          </description>
-	  <addressed-by>FCS_STO_EXT.1</addressed-by><rationale>Supports this objective by requiring the OS to provide encrypted storage.</rationale>
-	  <addressed-by>FCS_RBG_EXT.1</addressed-by><rationale>Supports this objective by requiring the OS to generate random bits according to industry standards.</rationale>
-	  <addressed-by>FCS_COP.1/SKC</addressed-by><rationale>Supports this objective requiring the OS to perform encryption according to industry stands.</rationale>
-	  <addressed-by>FDP_ACF_EXT.1</addressed-by><rationale>Supports this objective by requiring the OS to implement access controls.</rationale>
-        </SO>
-        <SO name="O.PROTECTED_COMMS">
-          <description> To address both passive (eavesdropping) and active (packet modification)
-            network attack threats, conformant OSes provide mechanisms to create
-            trusted channels for CSP and sensitive data. Both CSP and sensitive data
-          should not be exposed outside of the platform. </description>
-	  <addressed-by>FCS_RBG_EXT.1</addressed-by><rationale>Supports this objective by requiring the OS to generate random bits according to industry standards.</rationale>
-	  <addressed-by>FCS_CKM.1/AKG</addressed-by><rationale>Supports this objective by requiring the TSF to generate asymmetric cryptographic keys to industry standards.</rationale>
-	  <addressed-by>FCS_CKM.2</addressed-by><rationale>Supports this objective by requiring the TSF to perform key establishment according to industry standards.</rationale>
-	  <addressed-by>FCS_CKM_EXT.4</addressed-by><rationale>Supports this objective by requiring the TSF to destroy key material according to industry standards.</rationale>
-	  <addressed-by>FCS_COP.1/SKC</addressed-by><rationale>Supports this objective by requiring the TSF to encrypt data according to industry standards </rationale>
-	  <addressed-by>FCS_COP.1/HASH</addressed-by><rationale>Supports this objective by requiring the TSF to hash data according to industry standards.</rationale>
-	  <addressed-by>FCS_COP.1/SigGen</addressed-by><rationale>Supports this objective by requiring the TSF to cryptographically sign data according to industry standards.</rationale>
-	  <addressed-by>FCS_COP.1/KeyedHash</addressed-by><rationale>Supports this objective by requiring the TSF to perform keyed hashes according to industry standards. </rationale>
-    <addressed-by>FCS_DTLSC_EXT.1 (TLS Package)</addressed-by><rationale>Supports the objective by defining the TOE's implementation of DTLS as a client if this protocol is used for protected communications.</rationale>
-    <addressed-by>FCS_DTLSC_EXT.2 (TLS Package)</addressed-by><rationale>Supports the objective by defining the TOE's implementation of mutually-authenticated DTLS as a client if this protocol is used for protected communications.</rationale>
-    <addressed-by>FCS_DTLSS_EXT.1 (TLS Package)</addressed-by><rationale>Supports the objective by defining the TOE's implementation of DTLS as a server if this protocol is used for protected communications.</rationale>
-    <addressed-by>FCS_DTLSS_EXT.2 (TLS Package)</addressed-by><rationale>Supports the objective by defining the TOE's implementation of mutually-authenticated DTLS as a server if this protocol is used for protected communications.</rationale>
-    <addressed-by>FCS_TLS_EXT.1 (TLS Package)</addressed-by><rationale>Supports the objective by defining the TOE's implementation of TLS and DTLS if this protocol is used for protected communications.</rationale>
-    <addressed-by>FCS_TLSC_EXT.1 (TLS Package)</addressed-by><rationale>Supports the objective by defining the TOE's implementation of TLS as a client for protected communications.</rationale>
-    <addressed-by>FCS_TLSC_EXT.2 (TLS Package)</addressed-by><rationale>Supports the objective by defining the TOE's implementation of mutually-authenticated TLS as a client for protected communications.</rationale>          
-    <addressed-by>FCS_TLSC_EXT.3 (TLS Package) (Objective)</addressed-by><rationale>Supports the objective by requiring the TSF to support the TLS signature algorithms extension as part of establishing TLS protected communications.</rationale>
-    <addressed-by>FCS_TLSC_EXT.4 (TLS Package)</addressed-by><rationale>Supports the objective by defining the TOE's implementation of renegotiation for TLS as a client for protected communications.</rationale>          
-    <addressed-by>FCS_TLSC_EXT.5 (TLS Package)</addressed-by><rationale>Supports the objective by defining the TOE's implementation of supported groups extension for TLS as a client for protected communications.</rationale>
-    <addressed-by>FCS_TLSS_EXT.1 (TLS Package)</addressed-by><rationale>Supports the objective by defining the TOE's implementation of TLS as a server for protected communications.</rationale>
-    <addressed-by>FCS_TLSS_EXT.2 (TLS Package)</addressed-by><rationale>Supports the objective by defining the TOE's implementation of mutually-authenticated TLS as a server for protected communications.</rationale>        
-    <addressed-by>FCS_TLSS_EXT.3 (TLS Package) (Objective)</addressed-by><rationale>Supports the objective by requiring the TSF to support the TLS signature algorithms extension as part of establishing TLS protected communications.</rationale>
-    <addressed-by>FCS_TLSS_EXT.4 (TLS Package)</addressed-by><rationale>Supports the objective by defining the TOE's implementation of renegotiation  for TLS as a server for protected communications.</rationale>
-    <addressed-by>FCS_SSH_EXT.1 (SSH Package)</addressed-by><rationale>Supports the objective by defining the TOE's implementation of SSH if this protocol is used for protected communications.</rationale>
-    <addressed-by>FCS_SSHC_EXT.1 (SSH Package)</addressed-by><rationale>Supports the objective by defining the TOE's implementation of SSH as a client if this protocol is used for protected communications.</rationale>
-    <addressed-by>FCS_SSHS_EXT.1 (SSH Package)</addressed-by><rationale>Supports the objective by defining the TOE's implementation of SSH as a server if this protocol is used for protected communications.</rationale>
-    <addressed-by>FDP_IFC_EXT.1</addressed-by><rationale>Supports this objective by requiring the TSF to be compatible with at least one VPN.</rationale>
-	  <addressed-by>FIA_X509_EXT.1</addressed-by><rationale>Supports the objective by requiring the TSF to validate certificates using industry standards.</rationale>
-	  <addressed-by>FIA_X509_EXT.2</addressed-by><rationale>Supports this objective by requiring the TSF to validate TLS and related encrypted connections with x509 certificates.</rationale>
-	  
-	  <addressed-by>FTP_ITC_EXT.1</addressed-by><rationale>Supports the objective by requiring the OS to provide a trusted channel for critical communication.</rationale>
-          
-        </SO>
-      </SOs>
-    </sec:Security_Objectives_for_the_TOE>
-    -->
+  
     <sec:Security_Objectives_for_the_Operational_Environment>
       The following security objectives for the operational
       environment assist the OS in correctly providing its security functionality.
@@ -1181,14 +1118,14 @@ users of the same system.
             <title>
               The TSF shall generate <h:b>asymmetric</h:b> cryptographic keys in accordance with
               a specified cryptographic key generation algorithm<selectables>
-                <tabularize id="fcs-ckm-1-ak-sels" title="Recommended choices for FCS_CKM.1/AKG">
+                <tabularize id="fcs-ckm-1-ak-sels" title="Allowable choices for FCS_CKM.1/AKG">
                   <textcol>Identifier</textcol>
                   <selectcol>Cryptographic Key Generation Algorithm</selectcol>
                   <reqtext>and specified cryptographic <h:b>algorithm parameters</h:b> <h:s>key sizes</h:s></reqtext>
                   <selectcol>Cryptographic Algorithm Parameters</selectcol>
                   <reqtext>that meet the following: </reqtext>
                   <selectcol>List of Standards</selectcol>
-                  <reqtext><h:p/><h:p/>The following table provides the recommended choices for
+                  <reqtext><h:p/><h:p/>The following table provides the allowable choices for
                     completion of the selection operations of FCS_CKM.1/AKG.</reqtext>
                 </tabularize>
                 
@@ -1360,13 +1297,7 @@ users of the same system.
               </selectables>
             </title>
             <note role="application">
-	      <h:p>
-	      The ST author will select all key generation schemes used for key establishment and entity authentication.
-		  When key generation is used for key establishment, the schemes in
-	      FCS_CKM.2 and selected cryptographic protocols must match the selection.
-		  When key generation is used for entity authentication, the public key is
-          expected to be associated with an X.509v3 certificate.
-	      </h:p><h:p>
+<h:p>
               For RSA the choice of the modulus implies the resulting key sizes of the public and private keys generated using the specified standard methods. RSA key generation with modulus size 2048 bits is no longer permitted by CNSA.
 	      </h:p><h:p>
               For Finite Field Cryptography (FFC) DSA, ST authors should consult schemes for guidelines on use. FIPS PUB 186-5 does not approve DSA for digital signature generation but allows DSA for digital signature verification for legacy purposes. “FFC-ERB” or “FFC–RS” may be claimed only for generating private and public keys when “DH” is claimed in FCS_CKM_EXT.7.
@@ -1375,8 +1306,8 @@ users of the same system.
 	      </h:p><h:p>
               When generating ECC key pairs for digital signature generation and if “ECDSA” is claimed in FCS_COP.1/SigGen, then “ECC–ERB” or “ECC–RS” must be claimed. The sizes of the private key, which is a scalar, and the public key, which is a point on the elliptic curve, are determined by the choice of the curve.
               </h:p><h:p>
-	      If the OS acts only as a receiver in the RSA key establishment scheme,
-	      the OS does not need to implement RSA key generation.
+	      If the TSF acts only as a receiver in the RSA key establishment scheme,
+	      the ST does not need to implement RSA key generation.
 	      </h:p>
             </note>
             <aactivity>
@@ -1766,28 +1697,88 @@ users of the same system.
           </f-element>
           <audit-event/>
         </f-component>
-		
-		
-        <f-component cc-id="fcs_ckm.2" name="Cryptographic Key Distribution">
+        
+        
+        <!-- FCS_CKM.1/SKG Cryptographic Key Generation - Symmetric Key -->
+        <f-component id="sfr-fcs-ckm-1-skg" cc-id="fcs_ckm.1" iteration="SKG" name="Cryptographic Key Generation - Symmetric Key">
+          <f-element id="fcs-ckm-1e1-skg">
+            <title>
+              The TSF shall generate <h:b>symmetric</h:b> cryptographic keys in accordance with
+              a specified cryptographic key generation algorithm<selectables>
+                <tabularize id="fcs-ckm-1-skg-sels" title="Recommended choices for FCS_CKM.1/SKG">
+                  <textcol>Identifier</textcol>
+                  <selectcol>Cryptographic Key Generation Algorithm</selectcol>
+                  <reqtext>and specified cryptographic key sizes</reqtext>
+                  <selectcol>Cryptographic Key Sizes</selectcol>
+                  <reqtext>that meet the following: </reqtext>
+                  <selectcol>List of standards</selectcol>
+                  <reqtext><h:p/><h:p/>The following table provides the recommended choices for
+                    completion of the selection operations of FCS_CKM.1/SKG.</reqtext>
+                </tabularize>
+                
+                <!-- RSK -->
+                <selectable id="sel-fcs-ckm-sk-rsk">
+                  <col>RSK</col>
+                  <col>Direct Generation from a Random Bit Generator as specified in FCS_RBG.1</col>
+                  <col><selectables>
+                    <selectable id="sel-exp-skg-256">256</selectable>
+                    <selectable id="sel-exp-skg-256">384</selectable>
+                    <selectable id="sel-exp-skg-512">512</selectable></selectables> bits
+                  </col>
+                  <col>NIST SP 800-133 Revision 2 (Section 6.1)[Direct generation of symmetric keys]</col>
+                </selectable>
+              </selectables>
+            </title>
+            <aactivity>
+              <TSS>
+                The evaluator shall examine the TSS to verify that it describes how the TOE obtains a symmetric
+                cryptographic key through direct generation from a random bit generator as specified in
+                FCS_RBG.1. The evaluator shall review the TSS to verify that it describes how the functionality
+                described by FCS_RBG.1 is invoked.<h:p/>
+                The evaluator shall examine the TSS to verify that it identifies the usage, and key lifecycle for
+                keys generated using each selected algorithm.<h:p/>		
+                If the TOE uses the generated key in a key chain/hierarchy then the evaluator shall verify that the
+                TSS describes how the key is used as part of the key chain/hierarchy.
+              </TSS>
+              <Guidance>
+                The evaluator shall verify that the AGD instructs the administrator how to configure the TOE to
+                use the RBG to generate symmetric keys for all uses identified in the ST.
+              </Guidance>
+              <Tests>
+                The following tests are conditional based upon the selections made in the SFR.
+                The evaluator shall perform the following test or witness respective tests 
+                executed by the developer. The tests must be executed on a platform that is as 
+                close as practically possible to the operational platform (but which may be 
+                instrumented in terms of, for example, use of a debug mode). Where the test 
+                is not carried out on the TOE itself, the test platform shall be identified and
+                the differences between test environment and TOE execution environment shall be
+                described.<h:p/>
+                To test the TOE’s ability to generate symmetric cryptographic keys using a 
+                random bit generator, the evaluator shall configure the asymmetric cryptographic 
+                key generation capability for each claimed key size. The evaluator shall use the
+                description of the RBG interface to verify that the TOE requests and receives an
+                amount of RBG output greater than or equal to the requested key size.
+              </Tests>				
+            </aactivity>
+          </f-element>
+          <audit-event/>
+        </f-component>
+        
+        <f-component cc-id="fcs_ckm.2" name="Cryptographic Key Distribution" status="feat-based">
+          <depends on="key-encap-support"/>
+          <depends on="wlan-support"/>
           <f-element id="fel-crypt-key-estab">
             <title>The TSF shall distribute cryptographic keys in accordance with a specified cryptographic 
               key distribution method <selectables>
                 <selectable id="sel-ckm-2-encap">key encapsulation</selectable>
                 <selectable id="sel-ckm-2-wrap">key wrapping</selectable>
-                <selectable id="sel-ckm-2-echan">encrypted channels</selectable>
               </selectables> that meets the following: [none].
             </title>
             <note role="application">
-	      <h:p>
-	      The ST author will select all key establishment schemes used
-              for the selected cryptographic protocols.
-	      </h:p>
-	      <h:p>
-	        The elliptic curves used for the key establishment scheme shall correlate with the curves specified in FCS_CKM.1.1/AKG.
-	        The domain parameters used for the finite field-based key establishment scheme are specified by the key generation according to FCS_CKM.1.1/AKG.
-	        The finite field-based key establishment schemes that conform to NIST SP 800-56A Revision 3 correspond to the "safe-prime" groups selection in FCS_CKM.1.1/AKG.
-				</h:p>
-	    </note>
+              <h:p>
+                Key encapsulation is used in support of TLS when ML-KEM is used as the method of key establishment. Key wrapping is used in support of wireless LAN communications.
+              </h:p>
+            </note>
             <aactivity>
               <TSS>
                 The evaluator shall ensure that the TSS documents that the security strength supported by
@@ -1803,26 +1794,28 @@ users of the same system.
               </Guidance>
               <Tests>
                 Specific testing for this component is covered by testing for the claimed components in
-                FCS_COP.1/KeyEncap, FCS_COP.1/KeyWrap, or FTP_ITC_EXT.1.
+                FCS_COP.1/KeyEncap or FCS_COP.1/KeyWrap, depending on selections made.
               </Tests>
-	    </aactivity>
-	    <rule id="r-key-rsa">
-	      <if><ref-id>s-keyestab-rsa</ref-id></if>
-	      <then><ref-id>s-keygen-rsa</ref-id></then>
-	    </rule>
-	    <rule id="r-key-ecc">
-	      <if><ref-id>s-keyestab-ecc</ref-id></if>
-	      <then><ref-id>s-keygen-ecc</ref-id></then>
-	    </rule>
-	    <rule id="r-key-ffc">
-	      <if><ref-id>s-keyestab-ffc</ref-id></if>
-	      <then><ref-id>s-keygen-ffc</ref-id></then>
-	    </rule>
-	    
+            </aactivity>
+            <!--
+            <rule id="r-key-rsa">
+              <if><ref-id>s-keyestab-rsa</ref-id></if>
+              <then><ref-id>s-keygen-rsa</ref-id></then>
+            </rule>
+            <rule id="r-key-ecc">
+              <if><ref-id>s-keyestab-ecc</ref-id></if>
+              <then><ref-id>s-keygen-ecc</ref-id></then>
+            </rule>
+            <rule id="r-key-ffc">
+              <if><ref-id>s-keyestab-ffc</ref-id></if>
+              <then><ref-id>s-keygen-ffc</ref-id></then>
+            </rule>
+            -->
           </f-element>
           <audit-event/>
         </f-component>
-                
+		
+		
 <f-component cc-id="fcs_ckm.6" name="Timing and Event of Cryptographic Key Destruction">
 	 
           <f-element id="fel-key-kill-when">
@@ -2047,7 +2040,455 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
   <audit-event/>
         </f-component> 
               
-        <f-component cc-id="fcs_cop.1" iteration="HASH" name="Cryptographic Operation - Hashing">
+              
+              
+        <ext-comp-def title="Cryptographic Key Management" fam-id="FCS_CKM_EXT">
+          <fam-behavior>This family defines requirements for management of cryptographic keys using mechanisms beyond what are specified in CC Part 2.
+          </fam-behavior>
+        </ext-comp-def>
+        <f-component id="sfr-fcs-ckm-ext-7" cc-id="fcs_ckm_ext.7" name="Cryptographic Key Agreement" status="feat-based">
+          <depends on="key-agreement-support"/>
+                    
+          <consistency-rationale/>
+          <comp-lev>requires that cryptographic key agreement be performed in accordance with specified standards.</comp-lev>
+          <management/>
+          <audit>
+            The following actions should be auditable if FAU_GEN Security audit data generation is
+            included in the PP, PP-Module, functional package or ST:<h:br/><h:ul>
+              <h:li>minimal: Success and failure of the activity;</h:li>
+              <h:li>basic: The object attribute(s), and object value(s) excluding any sensitive information.</h:li>
+            </h:ul>
+          </audit>
+          <dependencies><h:br/>
+            <h:br/>[FDP_ITC.1 Import of user data without security attributes, or
+            <h:br/>FDP_ITC.2 Import of user data with security attributes, or 
+            <h:br/>FCS_CKM.1 Cryptographic key generation, or
+            <h:br/>FCS_CKM.5 Cryptographic key derivation, or
+            <h:br/>FCS_CKM_EXT.8 Password-based key derivation],
+            <h:br/>[FCS_CKM.2 Cryptographic key distribution, or
+            <h:br/>FCS_COP.1 Cryptographic operation]
+            <h:br/>FCS_CKM.6 Timing and event of cryptographic key destruction
+            <h:br/>FCS_COP.1 Cryptographic operation 
+          </dependencies>
+          
+          
+          <f-element id="fcs-ckm-ext-7e1">
+            <title>
+              The TSF shall derive shared cryptographic keys with input from multiple parties in accordance 
+              with specified cryptographic key agreement algorithms  
+              <selectables>
+                <tabularize id="fcs-ckm-ext-7-sels" 
+                  title="Allowable choices for FCS_CKM_EXT.7">
+                  <textcol>Identifier</textcol>
+                  <selectcol>Cryptographic algorithm</selectcol>
+                  <reqtext>and specified cryptographic parameters</reqtext>
+                  <selectcol>Cryptographic parameters</selectcol>
+                  <reqtext>that meet the following:</reqtext>
+                  <selectcol>List of standards</selectcol>
+                  <reqtext><h:p/><h:p/>The following table provides the allowable choices for
+                    completion of the selection operations of FCS_CKM_EXT.7.</reqtext>
+                </tabularize>
+                
+                <selectable id="sel-fcs-ckm-kat-kas2">
+                  <col>KAS2</col>
+                  <col>RSA</col>
+                  <col>Modulus size <selectables>
+                    <selectable>3072</selectable>
+                    <selectable>4096</selectable>
+                    <selectable>6144</selectable>
+                    <selectable>8192</selectable>
+                  </selectables> bits</col>
+                  <col>NIST SP 800-56B Revision 2 (Section 8.3) [KAS2]</col>
+                </selectable>
+                
+                <selectable id="sel-fcs-ckm-kat-dh">
+                  <col>DH</col>
+                  <col>Finite Field Cryptography Diffie-Hellman</col>
+                  <col>Static domain parameters approved for <selectables>
+                    <selectable>IKE Groups <selectables>
+                      <selectable id="sel-kat-ffc-modp3072">MODP-3072</selectable>
+                      <selectable id="sel-kat-ffc-modp4096">MODP-4096</selectable>
+                      <selectable id="sel-kat-ffc-modp6144">MODP-6144</selectable>
+                      <selectable id="sel-kat-ffc-modp8192">MODP-8192</selectable>
+                    </selectables></selectable>
+                    <selectable>TLS Groups <selectables>
+                      <selectable id="sel-kat-ffc-ffdhe3072">ffdhe3072</selectable>
+                      <selectable id="sel-kat-ffc-ffdhe4096">ffdhe4096</selectable>
+                      <selectable id="sel-kat-ffc-ffdhe6144">ffdhe6144</selectable>
+                      <selectable id="sel-kat-ffc-ffdhe8192">ffdhe8192</selectable>
+                    </selectables></selectable></selectables>
+                  </col>
+                  <col>
+                    NIST SP 800-56A Revision 3 (Section 5.7.1.1) [DH]<h:p/>
+                    <selectables>
+                      <selectable>RFC 3526 [IKE groups]</selectable>
+                      <selectable>RFC 7919 [TLS groups]</selectable></selectables>
+                  </col>
+                </selectable>
+                
+                <selectable id="sel-fcs-ckm-kat-ecdh">
+                  <col>ECDH</col>
+                  <col>Elliptic Curve Diffie-Hellman</col>
+                  <col>Elliptic Curve <selectables>
+                    <selectable id="sel-exp-kat-ecdh-P384">P-384</selectable>
+                    <selectable id="sel-exp-kat-ecdh-P521">P-521</selectable></selectables>
+                  </col>
+                  <col>
+                    NIST SP 800-56A Revision 3 (Section 5.7.1.2) [ECDH]<h:p/>
+                    NIST SP 800-186 (Section 3.2.1) [NIST Curves]
+                  </col>
+                </selectable>
+              </selectables>
+            </title>
+            <note role="application">
+              This SFR is claimed if the TSF supports key agreement schemes as a method of key establishment for trusted channels. This will generally apply to all conformant TOEs, except in the rare (but possible) case where only key encapsulation is used.<h:p/>
+              All of the above algorithms with the selectable parameters are CNSA 1.0 compliant.<h:p/>
+              This SFR must be included in the ST if key agreement or transport is a service provided by the TOE to 
+              tenant software, or if they are used by the TOE itself to support or implement PP-specified security 
+              functionality.<h:p/> 
+            </note>
+            <aactivity>
+              <TSS>
+                The evaluator shall ensure that the TSS documents that the security strength of the
+                material contributed by the TOE is sufficient for the security strength of the key and the
+                agreement method.
+              </TSS>
+              <Guidance>There are no additional Guidance evaluation activities for this component.</Guidance>
+              <Tests>
+                The following tests are conditional based upon the selections made in the SFR.
+                The evaluator shall perform the following test or witness respective tests
+                executed by the developer. The tests must be executed on a platform that is as 
+                close as practically possible to the operational platform (but which may be 
+                instrumented in terms of, for example, use of a debug mode). Where the test is 
+                not carried out on the TOE itself, the test platform shall be identified and the 
+                differences between test environment and TOE execution environment shall be 
+                described.<h:p/>
+                
+                <!-- KAS2 -->
+                <h:br/><h:b>KAS2</h:b><h:p/>
+                <h:table border="1">
+                  <h:tr class="header" bgcolor="#cccccc">
+                    <h:td valign="top">Identifier</h:td>
+                    <h:td valign="top">Cryptographic Algorithm</h:td>
+                    <h:td valign="top">Cryptographic Parameters</h:td>
+                    <h:td valign="top">List of Standards</h:td>
+                  </h:tr>
+                  <h:tr>
+                    <h:td valign="top">KAS2</h:td>
+                    <h:td valign="top">RSA</h:td>
+                    <h:td valign="top">Modulus Size [<h:b>selection:</h:b> 3072, 4096,
+                      6144, 8192] bits</h:td>
+                    <h:td valign="top">NIST SP 800-56B Revision 2 (Section 8.3) [KAS2]</h:td>
+                  </h:tr>
+                </h:table><h:p/>						
+                To test the TOE’s implementation of the of the KAS2 RSA Key Agreement scheme, the evaluator
+                shall perform the Algorithm Functional Test and Validation Test using the 
+                following input parameters:<h:ul>
+                  <h:li>RSA Private key format [Basic, Prime Factor, Chinese Remainder Theorem]</h:li>
+                  <h:li>Modulo value [3072, 4096, 6144, 8192]</h:li>
+                  <h:li>Role [initiator, responder]</h:li></h:ul><h:p/>
+                The evaluator shall generate a test group (i.e. set of tests) for each parameter
+                value of the above parameter type with the largest number of supported values.
+                For example, if the TOE supports all five Modulo values, then the evaluator 
+                shall generate five test groups. Each of the above supported parameter values
+                must be included in at least one test group.<h:p/>
+                Regardless of how many parameter values are supported, there must be at least two 
+                test groups.<h:p/>
+                Half of the test groups are designated as Algorithm Functional Tests (AFT) and the 
+                remainder are designated as Validation Tests (VAT). If there is an odd number of 
+                groups, then the extra group is designated randomly as either AFT or VAT.<h:p/>
+                <h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
+                For each test group designated as AFT, the evaluator shall generate 10 test 
+                cases using random data (except for a fixed public exponent, if supported). 
+                The resulting shared secrets shall be compared with those generated by a 
+                known-good implementation using the same inputs.<h:p/>
+                <h:br/><h:i><h:b>Validation Test</h:b></h:i><h:br/>
+                For each test group designated as VAT, the evaluator shall generate 25 test cases are
+                using random data (except for a fixed public exponent, if supported). Of the 25
+                test cases:<h:ul>
+                  <h:li>Two test cases must have a shared secret with a leading nibble of 0s,</h:li>
+                  <h:li>Two test cases have modified derived key material,</h:li>
+                  <h:li>Two test cases have modified tags, if key confirmation is supported,</h:li>
+                  <h:li>Two test cases have modified MACs, if key confirmation is supported, and</h:li>
+                  <h:li>The remaining test cases are not modified.</h:li></h:ul><h:p/>
+                To determine correctness, the evaluator shall confirm that the resulting 25 shared 
+                secrets correspond as expected for both the modified and unmodified values.<h:p/>
+                
+                <!-- FFC Diffie-Hellman Key Agreement -->
+                <h:br/><h:b>FFC Diffie-Hellman Key Agreement</h:b><h:p/>
+                <h:table border="1">
+                  <h:tr class="header" bgcolor="#cccccc">
+                    <h:td valign="top">Identifier</h:td>
+                    <h:td valign="top">Cryptographic Algorithm</h:td>
+                    <h:td valign="top">Cryptographic Parameters</h:td>
+                    <h:td valign="top">List of Standards</h:td>
+                  </h:tr>
+                  <h:tr>
+                    <h:td valign="top">DH</h:td>
+                    <h:td valign="top">Finite Field Cryptography Diffie-Hellman</h:td>
+                    <h:td valign="top">Static domain parameters approved for [<h:b>selection:</h:b>
+                      IKE groups [<h:b>selection:</h:b> MODP-3072, MODP-4096,
+                      MODP-6144, MODP-8192], TLS groups [<h:b>selection:</h:b> 
+                      ffdhe3072, ffdhe4096, ffdhe6144, ffdhe8192]]]</h:td>
+                    <h:td valign="top">NIST SP 800-56A Revision 3 (Section 5.7.1.1) [DH]<h:p/>
+                      [<h:b>selection:</h:b> RFC 3526 [IKE Groups], RFC 7919 [TLS Groups]]</h:td>
+                  </h:tr>
+                </h:table><h:p/>						
+                To test the TOE’s implementation of FFC Diffie-Hellman Key Agreement, the evaluator shall
+                perform the Algorithm Functional Test and Validation Test using the following 
+                input parameters:<h:ul>
+                  <h:li>Domain Parameter Group [MODP-3072, MODP-4096, MODP-6144, MODP-8192, 
+                    ffdhe3072, ffdhe4096, ffdhe6144, ffdhe8192]</h:li></h:ul><h:p/>
+                <h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
+                For each supported domain parameter group, the evaluator shall generate 10 test
+                cases by generating the initiator and responder secret keys using random data,
+                calculating the responder public key, and creating the shared secret. The 
+                resulting shared secrets shall be compared with those generated by a known-good 
+                implementation using the same inputs.<h:p/>
+                <h:br/><h:i><h:b>Validation Test</h:b></h:i><h:br/>
+                For each supported combination of the above parameters the evaluator shall
+                generate 15 Diffie Hellman initiator/responder key pairs using the key generation
+                function of a known-good implementation. For each set of key pairs, the 
+                evaluator shall modify five initiator private key values. The remaining key
+                values are left unchanged (i.e., correct). To determine correctness, the 
+                evaluator shall confirm that the 15 shared secrets correspond as expected for 
+                both the modified and unmodified inputs.<h:p/>
+                
+                <!-- Elliptic Curve Diffie-Hellman Key Agreement -->
+                <h:br/><h:b>Elliptic Curve Diffie-Hellman Key Agreement</h:b><h:p/>
+                <h:table border="1">
+                  <h:tr class="header" bgcolor="#cccccc">
+                    <h:td valign="top">Identifier</h:td>
+                    <h:td valign="top">Cryptographic Algorithm</h:td>
+                    <h:td valign="top">Cryptographic Parameters</h:td>
+                    <h:td valign="top">List of Standards</h:td>
+                  </h:tr>
+                  <h:tr>
+                    <h:td valign="top">ECDH</h:td>
+                    <h:td valign="top">Elliptic Curve Diffie-Hellman</h:td>
+                    <h:td valign="top">Elliptic Curve [<h:b>selection:</h:b> P-384, P-521</h:td>
+                    <h:td valign="top">NIST SP 800-56A Revision 3 (Section 5.7.1.2) [ECDH]<h:p/>
+                      NIST SP 800-186 (Section 3.2.1) [NIST Curves]</h:td>
+                  </h:tr>
+                </h:table><h:p/>						
+                To test the TOE’s implementation of Elliptic Curve Diffie-Hellman Key Agreement,
+                the evaluator shall perform the Algorithm Functional Test and Validation Test 
+                using the following input parameters:<h:ul>
+                  <h:li>Elliptic Curve [P-384, P-521]</h:li></h:ul><h:p/>
+                <h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
+                For each supported Elliptic Curve the evaluator shall generate 10 test cases by
+                generating the initiator and responder secret keys using random data, calculating 
+                the responder public key, and creating the shared secret. The resulting shared 
+                secrets shall be compared with those generated by a known-good implementation using
+                the same inputs.<h:p/>
+                <h:br/><h:i><h:b>Validation Test</h:b></h:i><h:br/>
+                For each supported Elliptic Curve the evaluator shall generate 15 Diffie Hellman
+                initiator/responder key pairs using the key generation function of a known-good 
+                implementation. For each set of key pairs, the evaluator shall modify five 
+                initiator private key values. The remaining key values are left unchanged (i.e.,
+                correct). To determine correctness, the evaluator shall confirm that the 15 
+                shared secrets correspond as expected for the modified and unmodified values.<h:p/>
+              </Tests>
+            </aactivity>
+          </f-element>
+          <audit-event/>
+        </f-component>
+        
+        
+        <!-- FCS_COP.1/AEAD Cryptographic Operation – Authenticated Encryption with Associated Data -->	
+        <f-component id="sfr-fcs-cop-1-aead" cc-id="fcs_cop.1" iteration="AEAD" name="Cryptographic Operation – Authenticated Encryption with Associated Data" status="feat-based">
+          <depends on="wlan-support"></depends>
+          <f-element id="fcs-cop-1e1-aead">
+            <title>
+              The TSF shall perform [authenticated encryption with associated data] in accordance with a specified 
+              cryptographic algorithm 
+              <selectables>
+                <tabularize id="fcs-cop-aead-sels" title="Alloweable choices for FCS_COP.1/AEAD">
+                  <textcol>Identifier</textcol>
+                  <reqtext></reqtext>
+                  <selectcol>Cryptographic algorithm</selectcol>
+                  <reqtext>and cryptographic key sizes</reqtext>
+                  <selectcol>Cryptographic key sizes</selectcol>
+                  <reqtext>that meet the following:</reqtext>
+                  <selectcol>List of standards</selectcol>
+                  <reqtext><h:p/><h:p/>The following table provides the allowable choices for
+                    completion of the selection operations of FCS_COP.1/AEAD.</reqtext>
+                </tabularize>
+                
+                <selectable id="sel-fcs-cop-aead-aes-ccm">
+                  <col>AES-CCM</col>
+                  <col>AES in CCM mode with unpredictable, non-repeating nonce, minimum size of 64 bits</col>
+                  <col>256 bits</col>
+                  <col><selectables>
+                    <selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable>
+                    <selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/>
+                    <selectables>
+                      <selectable>ISO/IEC 19772:2020 (Clause 7)</selectable> 
+                      <selectable>NIST SP 800-38C</selectable></selectables> [CCM]
+                  </col></selectable>
+                
+                <selectable id="sel-fcs-cop-aead-aes-gcm">
+                  <col>AES-GCM</col>
+                  <col>AES in GCM mode with non-repeating IVs using <selectables>
+                    <selectable>deterministic</selectable>
+                    <selectable>RBG-based</selectable></selectables>,
+                    IV construction; the tag must be of length
+                    <selectables>
+                      <selectable>96</selectable>
+                      <selectable>104</selectable>
+                      <selectable>112</selectable>
+                      <selectable>120</selectable>
+                      <selectable>128</selectable>
+                    </selectables> bits.
+                  </col>
+                  <col>256 bits</col>
+                  <col><selectables>
+                    <selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable>
+                    <selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/>
+                    <selectables>
+                      <selectable>ISO/IEC 19772:2020 (Clause 10)</selectable> 
+                      <selectable>NIST SP 800-38D</selectable></selectables> [GCM]
+                  </col></selectable>
+              </selectables>
+            </title>
+            <note role="application">
+              This SFR is claimed when the TOE has wireless LAN client functionality so that the TSF can provide AEAD algorithms in support of wireless communications.<h:p/>
+              The use of 256-bit keys for AES encryption is required by CNSA 1.0 and 2.0.
+            </note>
+            <aactivity>
+              <TSS>
+                The evaluator shall examine the TSS to ensure that it describes the construction of any IVs,
+                nonces, and tags in conformance with the relevant specifications.<h:p/>
+                If a CCM mode algorithm is selected, then the evaluator shall examine the TOE summary
+                specification to confirm that it describes how the nonce is generated and that the same nonce is
+                never reused to encrypt different plaintext pairs under the same key.<h:p/>
+                If a GCM mode algorithm is selected, then the evaluator shall examine the TOE summary
+                specification to confirm that it describes how the IV is generated and that the same IV is never
+                reused to encrypt different plaintext pairs under the same key. The evaluator shall also confirm
+                that for each invocation of GCM, the length of the plaintext is at most (2<h:sup>32</h:sup>)-2 blocks.
+              </TSS>
+              <Guidance/>
+              <Tests>
+                The following tests may require the developer to provide access to a test platform that
+                provides the evaluator with tools that are typically not found on factory products.<h:p/>
+                The following tests are conditional based upon the selections made in the SFR. The
+                evaluator shall perform the following test or witness respective tests executed by
+                the developer. The tests must be executed on a platform that is as close as practically
+                possible to the operational platform (but which may be instrumented in terms of,
+                for example, use of a debug mode). Where the test is not carried out on the TOE
+                itself, the test platform shall be identified and the differences between test
+                environment and TOE execution environment shall be described.<h:p/>
+                
+                <!-- AES-CCM -->
+                <h:br/><h:b>AES-CCM</h:b><h:p/>
+                <h:table border="1">
+                  <h:tr class="header" bgcolor="#cccccc">
+                    <h:td valign="top">Identifier</h:td>
+                    <h:td valign="top">Cryptographic Algorithm</h:td>
+                    <h:td valign="top">Cryptographic Key Sizes</h:td>
+                    <h:td valign="top">List of Standards</h:td>
+                  </h:tr>
+                  <h:tr>
+                    <h:td valign="top">AES-CCM </h:td>
+                    <h:td valign="top">AES in CCM mode with nonrepeating nonce, minimum size
+                      of 64 bits</h:td>
+                    <h:td valign="top">256 bits</h:td>
+                    <h:td valign="top">
+                      [<h:b>selection:</h:b> ISO/IEC 18033-3:2010 (Subclause 5.2),
+                      FIPS PUB 197] [AES]<h:p/>
+                      [<h:b>selection:</h:b>  ISO/IEC 19772:2020 (Clause 7), NIST SP 800-38C] [CCM]</h:td>
+                  </h:tr>
+                </h:table><h:p/>	
+                To test the TOE’s implementation of AES-CCM authenticated encryption functionality the
+                evaluator shall perform the Algorithm Functional Tests described below using the following
+                input parameters:<h:ul>
+                  <h:li>Key Size [256] bits</h:li>
+                  <h:li>Associated data size [0-65536] bits in increments of 8</h:li>
+                  <h:li>Payload size [0-256] bits in increments of 8</h:li>
+                  <h:li>IV/Nonce size [64-104] bits in increments of 8</h:li>
+                  <h:li>Tag size [32-128] bits in increments of 16</h:li></h:ul><h:p/>
+                <h:br/><h:b>Algorithm Functional Tests</h:b><h:p/>
+                Unless otherwise specified, the following tests should use random data, a tag size of 128 bits,
+                IV/Nonce size of 104 bits, payload size of 256 bits, and associated data size of 256 bits. If any of
+                these values are not supported, any supported value may be used. The evaluator shall compare
+                the output from each test case against results generated by a known-good implementation with
+                the same input parameters.<h:p/>
+                <h:br/><h:b><h:i>Variable Associated Data Test</h:i></h:b><h:p/>
+                For each claimed key size, and for each supported associated data size from 0 through 256 bits in
+                increments of 8 bits, the TOE must be tested by encrypting 10 test cases using all random data.
+                In addition, for each key size, the TOE must be tested by encrypting 10 cases with associated
+                data lengths of 65536 bits, if supported.<h:p/>				
+                <h:br/><h:b><h:i>Variable Payload Test</h:i></h:b><h:p/>
+                For each claimed key size, and for each supported payload size from 0 through 256 bits in
+                increments of 8 bits, the TOE must be tested by encrypting 10 test cases using all random data.<h:p/>
+                <h:br/><h:b><h:i>Variable Nonce Test</h:i></h:b><h:p/>
+                For each claimed key size, and for each supported IV/Nonce size from 64 through 104 bits in
+                increments of 8 bits, the TOE must be tested by encrypting 10 test cases using all random data.<h:p/>
+                <h:br/><h:b><h:i>Variable Tag Test</h:i></h:b><h:p/>
+                For each claimed key size, and for each supported tag size from 32 through 128 bits in
+                increments of 16 bits, the TOE must be tested by encrypting 10 test cases using all random data.<h:p/>
+                <h:br/><h:b><h:i>Decryption Verification Test</h:i></h:b><h:p/>
+                For each claimed key size, for each supported associated data size from 0 through 256 bits in
+                increments of 8 bits, for each supported payload size from 0 through 256 bits in increments of 8
+                bits, for each supported IV/Nonce size from 64 through 104 bits in increments of 8 bits, and for
+                each supported tag size from 32 through 128 bits in increments of 16 bits, the TOE must be
+                tested by decrypting 10 test cases using all random data.<h:p/>					
+                
+                <!-- AES-GCM -->
+                <h:br/><h:b>AES-GCM</h:b><h:p/>
+                <h:table border="1">
+                  <h:tr class="header" bgcolor="#cccccc">
+                    <h:td valign="top">Identifier</h:td>
+                    <h:td valign="top">Cryptographic Algorithm</h:td>
+                    <h:td valign="top">Cryptographic Key Sizes</h:td>
+                    <h:td valign="top">List of Standards</h:td>
+                  </h:tr>
+                  <h:tr>
+                    <h:td valign="top">AES-GCM </h:td>
+                    <h:td valign="top">AES in GCM mode with nonrepeating IVs using 
+                      [<h:b>selection:</h:b> deterministic, RBG-based] IV construction; 
+                      the tag must be of length [<h:b>selection:</h:b> 96, 104, 112, 120, or 128] bits.</h:td>
+                    <h:td valign="top">256 bits</h:td>
+                    <h:td valign="top">
+                      [<h:b>selection:</h:b> ISO/IEC 18033-3:2010 (Subclause 5.2),
+                      FIPS PUB 197] [AES]<h:p/>
+                      [<h:b>selection:</h:b>  ISO/IEC 19772:2020 (Clause 10), NIST SP 800-38D] [GCM]</h:td>
+                  </h:tr>
+                </h:table><h:p/>	
+                To test the TOE’s implementation of AES-GCM authenticated encryption functionality the
+                evaluator shall perform the Encryption Algorithm Functional Tests and Decryption Algorithm
+                Functional Tests as described below using the following input parameters:<h:ul>
+                  <h:li>Key Size [256] bits</h:li>
+                  <h:li>Associated data size [0-65536] bits</h:li>
+                  <h:li>Payload size [0-65536] bits</h:li>
+                  <h:li>IV size [96] bits</h:li>
+                  <h:li>Tag size [96, 104, 112, 120, 128] bits</h:li></h:ul><h:p/>
+                <h:br/><h:b>Encryption Algorithm Functional Tests</h:b><h:p/>
+                The evaluator shall generate 15 test cases using random data for each combination of
+                the above parameters as follows:<h:p/><h:ul>
+                  <h:li>Each claimed key size,</h:li>
+                  <h:li>Each supported tag size,</h:li>
+                  <h:li>Four supported non-zero payload sizes, such that two are multiples of 128 bits
+                    and two are not multiples of 128 bits,</h:li>
+                  <h:li>Four supported non-zero associated data sizes, such that two are multiples of 
+                    128 bits and two are not multiples of 128 bits, and</h:li>
+                  <h:li>An associated data size of zero, if supported.</h:li></h:ul><h:p/>
+                Note that the IV size is always 96 bits.<h:p/>
+                The evaluator shall compare the output from each test case against results generated by a known-
+                good implementation with the same input parameters.<h:p/>
+                <h:br/><h:b><h:i>Decryption Algorithm Functional Tests</h:i></h:b><h:p/>
+                The evaluator shall test the authenticated decrypt functionality of AES-GCM by supplying 15
+                test cases for the supported combinations of the parameters as described above. For each
+                parameter combination the evaluator shall introduce an error into either the Ciphertext or the Tag
+                such that approximately half of the cases are correct and half the cases contain errors.
+              </Tests>
+            </aactivity>
+          </f-element>
+          <audit-event/>
+        </f-component>
+              
+              
+        <f-component cc-id="fcs_cop.1" iteration="Hash" name="Cryptographic Operation - Hashing">
           <f-element id="fel-hash-how">
             <title>
               The TSF shall perform [<h:i>cryptographic hashing</h:i>] in accordance with a specified 
@@ -2067,10 +2508,16 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
             </title>
             <note role="application">
 	      <h:p>
-	      The intent of this requirement is to specify the hashing function.
-	      The hash selection must support the message digest size selection.
-	      The hash selection should be consistent with the overall strength of
-        the algorithm used.
+	        In accordance with CNSA 1.0 and 2.0:<h:ul>
+	          <h:li>SHA-1 hash is no longer permitted to be used as a hash function, </h:li>
+	          <h:li>SHA3 hashes may be used only for internal hardware functionality such as
+	            boot integrity checks, and</h:li>
+	          <h:li>SHA-256 is permitted only for use as a PRF or MAC as part of a key derivation function,
+	            or as part of LMS or XMSS.</h:li>
+	        </h:ul><h:p/>
+	        The hash selection should be consistent with the overall strength of the 
+	        algorithm used for signature generation. For example, the TOE should choose SHA-384 for 3072-bit RSA, 
+	        4096-bit RSA, or ECC with P-384; and SHA-512 for ECC with P-521.
 	      </h:p>
 	    </note>
             <aactivity>
@@ -2194,13 +2641,13 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
             <title>The TSF shall perform [<h:i>keyed hash message authentication</h:i>] in accordance
               with a specified cryptographic algorithm 
               <selectables>
-                <tabularize id="tab-fcs-cop-keyedhash-sels" title="Recommended choices for FCS_COP.1/KeyedHash">
+                <tabularize id="tab-fcs-cop-keyedhash-sels" title="Allowable choices for FCS_COP.1/KeyedHash">
                   <selectcol>Keyed Hash Algorithm</selectcol>
                   <reqtext>and cryptographic key sizes</reqtext>
                   <selectcol>Cryptographic Key Sizes</selectcol>
                   <reqtext>that meet the following:</reqtext>
                   <selectcol>List of Standards</selectcol>
-                  <reqtext><h:p/><h:p/>The following table provides the recommended choices for
+                  <reqtext><h:p/><h:p/>The following table provides the allowable choices for
                     completion of the selection operations of FCS_COP.1/KeyedHash.</reqtext>
                 </tabularize>
                 
@@ -2246,7 +2693,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 cryptographic protocols used by the OS (e.g., trusted channel).
                 The hash selection must support the message digest size selection.
                 The hash selection should be consistent with the overall strength of the
-                algorithm used for FCS_COP.1/HASH.
+                algorithm used for FCS_COP.1/Hash.
               </h:p>
             </note>
             <aactivity>
@@ -2313,13 +2760,307 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
           <audit-event/>
         </f-component>
         
+        
+        
+		<!-- FCS_COP.1/KeyEncap Cryptographic Operation - Key Encapsulation -->
+		<f-component id="sfr-fcs-cop-1-keyencap" cc-id="fcs_cop.1" iteration="KeyEncap" 
+				name="Cryptographic Operation - Key Encapsulation" status="sel-based">
+		  <depends on-sel="sel-ckm-2-encap"/>
+			<f-element id="fcs-cop-1e1-keyencap">
+				<title> The TSF shall perform [key encapsulation] in accordance with a specified cryptographic algorithm 
+					<selectables>
+						<tabularize id="tab-fcs-cop-keyencap-sels" title="Allowable choices for FCS_COP.1/KeyEncap">
+							<textcol>Identifier</textcol>
+							<reqtext></reqtext>
+							<selectcol>Cryptographic algorithm</selectcol>
+							<reqtext>and cryptographic key sizes</reqtext>
+							<selectcol>Cryptographic key sizes</selectcol>
+							<reqtext>that meet the following:</reqtext>
+							<selectcol>List of standards</selectcol>
+							<reqtext><h:p/><h:p/>The following table provides the allowable choices for
+										completion of the selection operations of FCS_COP.1/KeyEncap.</reqtext>
+						</tabularize>
+						
+						
+						<selectable id="sel-fcs-cop-keyencap-mlkem">
+							<col>ML-KEM</col>
+							<col>ML-KEM</col>
+							<col>Parameter set = ML-KEM-1024</col>
+							<col>NIST FIPS 203</col>
+						</selectable>			
+						
+					</selectables>
+				</title>
+				<note role="application">
+					For this PP, the only anticipated use of key encapsulation is the use of ML-KEM as part of key establishment for trusted communications.
+				</note>
+				<aactivity>
+					<TSS>The evaluator shall ensure that the TSS documents that the selection of the key size is
+						sufficient for the security strength of the key encapsulated.<h:p/>
+						The evaluator shall examine the TSS to verify that any one-time values such as nonces or masks
+						are constructed and used in accordance with the relevant standards.
+					</TSS>
+					<Guidance/>
+					<Tests>
+						The following tests may require the developer to provide access to a test platform that
+						provides the evaluator with tools that are typically not found on factory products.<h:p/>
+						The following tests are conditional based upon the selections made in the SFR. The
+						evaluator shall perform the following test or witness respective tests executed by
+						the developer. The tests must be executed on a platform that is as close as practically
+						possible to the operational platform (but which may be instrumented in terms of,
+						for example, use of a debug mode). Where the test is not carried out on the TOE
+						itself, the test platform shall be identified and the differences between test
+						environment and TOE execution environment shall be described.<h:p/>
+
+						<!-- ML-KEM  -->
+						<h:br/><h:b>ML-KEM Key Encapsulation</h:b><h:p/>
+						<h:table border="1">
+							<h:tr class="header" bgcolor="#cccccc">
+								<h:td valign="top">Identifier</h:td>
+								<h:td valign="top">Cryptographic Algorithm</h:td>
+								<h:td valign="top">Cryptographic Key Sizes</h:td>
+								<h:td valign="top">List of Standards</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">ML-KEM</h:td>
+								<h:td valign="top">ML-KEM</h:td>
+								<h:td valign="top">Parameter set = ML-KEM-1024</h:td>
+								<h:td valign="top">NIST FIPS PUB 203</h:td>
+							</h:tr>
+						</h:table><h:p/>	
+						To test the TOE’s implementation of ML-KEM key encapsulation/decapsulation, the evaluator
+						shall perform the Encapsulation Test and the Decapsulation Test using the following input
+						parameters:<h:ul>
+						<h:li>Encapsulation Parameters:<h:ul>
+							<h:li>Parameter set [ML-KEM-1024]</h:li>
+							<h:li>Previously generated encapsulation key (<h:i>ek</h:i>)</h:li>
+							<h:li>Random value (<h:i>m</h:i>) [32 bytes]</h:li></h:ul></h:li>
+						<h:li>Decapsulation Parameters:<h:ul>
+							<h:li>Parameter set [ML-KEM-1024]</h:li>
+							<h:li>Previously generated decapsulation key (<h:i>dk</h:i>)</h:li>
+							<h:li>Previously generated ciphertext (<h:i>c</h:i>) [32 bytes]</h:li></h:ul></h:li>
+						</h:ul><h:p/>
+						<h:br/><h:b>Encapsulation Test</h:b><h:p/>
+						For each supported parameter set the evaluator shall generate 25 test cases consisting of an
+						encapsulation key ek and random value m. For each test case the valuator shall require the
+						implementation under test to generate the corresponding shared secret k and ciphertext c. To
+						determine correctness, the evaluator shall compare the resulting values with those generated
+						using a known-good implementation using the same inputs.<h:p/>
+						<h:br/><h:b>Encapsulation Key Check (if supported)</h:b><h:p/>
+						The evaluator shall generate 10 encapsulation keys such that:<h:ul>
+						<h:li>Five of the encapsulation keys are valid, and</h:li>
+						<h:li>Five of the encapsulation keys are modified such that a value in the noisy linear 
+						system is encoded into the key as a value greater than Q.</h:li></h:ul><h:p/>
+						The evaluator shall invoke the TOE’s Encapsulation Key Check functionality to determine the
+						validity of the 10 keys. The unmodified keys should be determined valid, and the modified keys
+						should be determined invalid. <h:p/>
+						<h:br/><h:b>Decapsulation Key Check (if supported)</h:b><h:p/>
+						The evaluator shall generate 10 decapsulation keys such that:<h:ul>
+						<h:li>Five of the decapsulation keys are valid, and</h:li>
+						<h:li>Five of the decapsulation keys are modified such that the concatenated
+						values ek||H(ek) will no longer match by modifying H(ek) to be a different value.</h:li></h:ul><h:p/>
+						The evaluator shall invoke the TOE’s Decapsulation Key Check functionality to determine the
+						validity of the 10 keys. The unmodified keys should be determined valid, and the modified keys
+						should be determined invalid.<h:p/>				
+						<h:br/><h:b>Decapsulation Test</h:b><h:p/>
+						For each supported parameter set the evaluator shall use a single previously generated
+						decapsulation key <h:i>dk</h:i> and generate 10 test cases consisting of valid and invalid ciphertexts c. For
+						each test case the evaluator shall require the implementation under test to generate the
+						corresponding shared secret <h:i>k</h:i> whether or not the ciphertext is valid. To determine correctness,
+						the evaluator shall compare the resulting values with those generated using a known-good
+						implementation using the same inputs.<h:p/>						
+					</Tests>
+				</aactivity>
+			</f-element>
+			<audit-event/>
+		</f-component>
+
+
+		<!-- FCS_COP.1/KeyWrap Cryptographic Operation - Key Wrapping -->
+		<f-component id="sfr-fcs-cop-1-kw" cc-id="fcs_cop.1" iteration="KeyWrap" 
+			name="Cryptographic Operation - Key Wrapping" status="sel-based">
+		  <depends on-sel="sel-ckm-2-wrap"/>
+		  <f-element id="fcs-cop-1e1-kw">
+				<title>
+					The TSF shall perform [key wrapping] in accordance with a specified cryptographic algorithm 
+					<selectables>
+						<tabularize id="fcs-cop-kw-sels" title="Allowable choices for FCS_COP.1/KeyWrap">
+							<textcol>Identifier</textcol>
+							<reqtext></reqtext>
+							<selectcol>Cryptographic algorithm</selectcol>
+							<reqtext>and cryptographic key sizes</reqtext>
+							<selectcol>Cryptographic key sizes</selectcol>
+							<reqtext>that meet the following:</reqtext>
+							<selectcol>List of standards</selectcol>
+							<reqtext><h:p/><h:p/>The following table provides the allowable choices for
+								completion of the selection operations of FCS_COP.1/KeyWrap.</reqtext>
+						</tabularize>
+						
+						<!-- AES-KW  -->
+						<selectable id="sel-fcs-cop-kw-aes-kw">
+							<col>AES-KW</col>
+							<col>AES in KW mode</col>
+							<col>256 bits</col>
+							<col><selectables>
+								<selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable>
+								<selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/>
+								<selectables>
+								<selectable>ISO/IEC 19772:2020 (clause 6)</selectable>
+								<selectable>NIST SP 800-38F (Section 6.2)</selectable> 
+							</selectables> [KW mode]</col>
+						</selectable>
+
+						<!-- KWP mode -->
+						<selectable id="sel-fcs-cop-kw-aes-kwp">
+							<col>AES-KWP</col>
+							<col>AES in KWP mode</col>
+							<col>256 bits</col>
+							<col><selectables>
+								<selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable>
+								<selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/>
+								NIST SP 800-38F (Section 6.3) [KWP mode]</col>
+						</selectable>
+						
+						<selectable id="sel-fcs-cop-kw-aes-ccm">
+						<col>AES-CCM</col>
+						<col>AES in CCM mode with unpredictable, non-repeating nonce, minimum size of 64 bits</col>
+						<col>256 bits</col>
+						<col><selectables>
+							<selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable>
+							<selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/>
+							<selectables>
+							<selectable>ISO/IEC 19772:2020 (Clause 7)</selectable> 
+							<selectable>NIST SP 800-38C</selectable></selectables> [CCM]
+						</col></selectable>
+
+						<selectable id="sel-fcs-cop-kw-aes-gcm">
+						<col>AES-GCM</col>
+						<col>AES in GCM mode with non-repeating IVs using <selectables>
+							<selectable>deterministic</selectable>
+							<selectable>RBG-based</selectable></selectables>,
+							IV construction; the tag must be of length
+							<selectables>
+								<selectable>96</selectable>
+								<selectable>104</selectable>
+								<selectable>112</selectable>
+								<selectable>120</selectable>
+								<selectable>128</selectable>
+							</selectables> bits.
+						</col>
+						<col>256 bits</col>
+						<col><selectables>
+							<selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable>
+							<selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/>
+							<selectables>
+							<selectable>ISO/IEC 19772:2020 (Clause 10)</selectable> 
+							<selectable>NIST SP 800-38D</selectable></selectables> [GCM]
+						</col></selectable>
+					</selectables>
+				</title>
+				<note role="application">
+					NIST 800-57p1rev5 sec. 5.6.2 specifies that the size of key used to protect the key being 
+					transported should be at least the security strength of the key it is protecting.
+				</note>
+				<aactivity>
+					<TSS>
+						The evaluator shall ensure that the TSS documents that the selection of the key size is
+						sufficient for the security strength of the key wrapped.<h:p/>
+						The evaluator shall examine the TSS to ensure that it describes the construction of any IVs,
+						nonces, and MACs in conformance with the relevant specifications.
+					</TSS>
+					<Guidance/>
+					<Tests>
+						For tests of AES-GCM and AES-CCM, see testing for FCS_COP.1/AEAD.<h:p/>
+						The following tests are conditional based upon the selections made in the SFR. The evaluator
+						shall perform the following test or witness respective tests executed by the developer. The tests
+						must be executed on a platform that is as close as practically possible to the operational platform
+						(but which may be instrumented in terms of, for example, use of a debug mode). Where the test
+						is not carried out on the TOE itself, the test platform shall be identified and the differences
+						between test environment and TOE execution environment shall be described.<h:p/>
+						
+						<!-- AES-KW -->
+						<h:br/><h:b>AES-KW</h:b><h:p/>
+						<h:table border="1">
+							<h:tr class="header" bgcolor="#cccccc">
+								<h:td valign="top">Identifier</h:td>
+								<h:td valign="top">Cryptographic Algorithm</h:td>
+								<h:td valign="top">Cryptographic Key Sizes</h:td>
+								<h:td valign="top">List of Standards</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">AES-KW</h:td>
+								<h:td valign="top">AES in KW mode</h:td>
+								<h:td valign="top">256 bits</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 18033-3:2010 (Subclause 5.2),
+														FIPS PUB 197] [AES]<h:p/>
+													[<h:b>selection:</h:b> ISO/IEC 19772:2020 (clause 6), 
+														NIST SP 800-38F (Section 6.2)] [KW mode] </h:td>
+							</h:tr>
+						</h:table><h:p/>	
+						To test the TOE’s ability to wrap keys using AES in Key Wrap mode the evaluator shall perform
+						the Algorithm Functional Tests using the following input parameters:<h:ul>
+						<h:li>Key size [256] bits</h:li>
+						<h:li>Keyword cipher type [cipher, inverse]</h:li>
+						<h:li>Payload sizes [128-4096] bits by 64s</h:li></h:ul><h:p/>
+						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
+						The evaluator shall generate 100 encryption test cases using random data for each combination
+						of claimed key size, keyword cipher type, and six supported payload sizes such that the payload
+						sizes include the minimum, the maximum, two that are divisible by 128, and two that are not
+						divisible by 128.<h:p/>
+						The results shall be compared with those generated by a known-good implementation using the
+						same inputs.<h:p/>
+						The evaluator shall generate 100 decryption test cases using the same parameters as above, but
+						with 20 of each 100 test cases having modified ciphertext to produce an incorrect result. To
+						determine correctness, the evaluator shall confirm that the results correspond as expected for
+						both the modified and unmodified values.<h:p/>
+
+						<!-- AES-KWP -->
+						<h:br/><h:b>AES-KWP</h:b><h:p/>
+						<h:table border="1">
+							<h:tr class="header" bgcolor="#cccccc">
+								<h:td valign="top">Identifier</h:td>
+								<h:td valign="top">Cryptographic Algorithm</h:td>
+								<h:td valign="top">Cryptographic Key Sizes</h:td>
+								<h:td valign="top">List of Standards</h:td>
+							</h:tr>
+							<h:tr>
+								<h:td valign="top">AES-KWP</h:td>
+								<h:td valign="top">AES in KWP mode</h:td>
+								<h:td valign="top">256 bits</h:td>
+								<h:td valign="top">[<h:b>selection:</h:b> ISO/IEC 18033-3:2010 (Subclause 5.2),
+														FIPS PUB 197] [AES]<h:p/>
+													NIST SP 800-38F (Section 6.3) [KWP mode] </h:td>
+							</h:tr>
+						</h:table><h:p/>	
+						To test the TOE’s ability to wrap keys using AES in Key Wrap with Padding mode with padding
+						the evaluator shall perform the Algorithm Functional Tests using the following input parameters:<h:ul>
+						<h:li>Key size [256] bits</h:li>
+						<h:li>Keyword cipher type [cipher, inverse]</h:li>
+						<h:li>Payload sizes [8-4096] bits by 8s</h:li></h:ul><h:p/>
+						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
+						The evaluator shall generate 100 encryption test cases using random data for each combination
+						of claimed key size, keyword cipher type, and six supported payload sizes such that the payload
+						sizes include the minimum, the maximum, two that are divisible by 128, and two that are not
+						divisible by 128.<h:p/>
+						The results shall be compared with those generated by a known-good implementation using the
+						same inputs.<h:p/>
+						The evaluator shall generate 100 decryption test cases using the same parameters as above, but
+						with 20 of each 100 test cases having modified ciphertext to produce an incorrect result. To
+						determine correctness, the evaluator shall confirm that the results correspond as expected for
+						both the modified and unmodified values.<h:p/>					
+					</Tests>
+				</aactivity>
+			</f-element>
+			<audit-event/>
+		</f-component>
+        
                 <f-component cc-id="fcs_cop.1" iteration="SigGen" name="Cryptographic Operation -
                   Signature Generation">
           <f-element id="fel-sign-how">
             <title> The TSF shall perform [<h:i>digital signature generation</h:i>] in accordance with a specified 
               cryptographic algorithm 
               <selectables>
-                <tabularize id="tab-fcs-cop-siggen-sels" title="Recommended choices for FCS_COP.1/SigGen">
+                <tabularize id="tab-fcs-cop-siggen-sels" title="Allowable choices for FCS_COP.1/SigGen">
                   <textcol>Identifier</textcol>
                   <reqtext></reqtext>
                   <selectcol>Cryptographic Algorithm</selectcol>
@@ -2327,7 +3068,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                   <selectcol>Cryptographic Key Sizes</selectcol>
                   <reqtext>that meet the following:</reqtext>
                   <selectcol>List of Standards</selectcol>
-                  <reqtext><h:p/><h:p/>The following table provides the recommended choices for
+                  <reqtext><h:p/><h:p/>The following table provides the allowable choices for
                     completion of the selection operations in FCS_COP.1/SigGen.<h:p/></reqtext>
                 </tabularize>
                 
@@ -2390,37 +3131,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                     NIST SP-800 186 (Section 4) [NIST Curves]
                   </col>
                 </selectable>
-                
-                <!-- LMS -->
-                <selectable id="sel-fcs-cop-siggen-lms">
-                  <col>LMS</col>
-                  <col>LMS</col>
-                  <col>Private key size = <selectables>
-                    <selectable><h:i>192 bits with</h:i> <selectables>
-                      <selectable><h:i>SHA-256/192</h:i></selectable>
-                      <selectable><h:i>SHAKE256/192</h:i></selectable>
-                    </selectables></selectable>
-                    <selectable>256 bits with <selectables>
-                      <selectable><h:i>SHA-256</h:i></selectable>
-                      <selectable><h:i>SHAKE256</h:i></selectable>
-                    </selectables></selectable>
-                  </selectables><h:p/>
-                    Winternitz parameter = <selectables>
-                      <selectable><h:i>1</h:i></selectable>
-                      <selectable><h:i>2</h:i></selectable>
-                      <selectable><h:i>4</h:i></selectable>
-                      <selectable><h:i>8</h:i></selectable></selectables><h:p/>
-                    Tree height = <selectables>
-                      <selectable><h:i>5</h:i></selectable>
-                      <selectable><h:i>10</h:i></selectable>
-                      <selectable><h:i>15</h:i></selectable>
-                      <selectable><h:i>20</h:i></selectable>
-                      <selectable><h:i>25</h:i></selectable></selectables>
-                  </col>
-                  <col>RFC 8554 [LMS]<h:p/>
-                    NIST SP 800-208 [parameters]
-                  </col>
-                </selectable>
+       
                 
                 <!-- ML-DSA Signature Generation -->
                 <selectable id="sel-fcs-cop-siggen-mldsa">
@@ -2430,30 +3141,6 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                   <col>NIST FIPS 204 (Section 5.2)</col>
                 </selectable>
                 
-                <!-- XMSS -->
-                <selectable id="sel-fcs-cop-siggen-xmss">
-                  <col>XMSS</col>
-                  <col>XMSS</col>
-                  <col>Private key size = <selectables>
-                    <selectable><h:i>192 bits with </h:i><selectables>
-                      <selectable><h:i>SHA-256/192</h:i></selectable>
-                      <selectable><h:i>SHAKE256/192</h:i></selectable>
-                    </selectables></selectable>
-                    <selectable><h:i>256 bits with </h:i><selectables>
-                      <selectable><h:i>SHA-256</h:i></selectable>
-                      <selectable><h:i>SHAKE256</h:i></selectable>
-                    </selectables></selectable>
-                  </selectables><h:p/>
-                    Tree height = <selectables>
-                      <selectable><h:i>10</h:i></selectable>
-                      <selectable><h:i>16</h:i></selectable>
-                      <selectable><h:i>20</h:i></selectable>
-                    </selectables>
-                  </col>
-                  <col>RFC 8391 [XMSS]<h:p/>
-                    NIST SP 800-208 [parameters]
-                  </col>
-                </selectable>
               </selectables>
             </title>
             <note role="application"> The ST author should choose the algorithm implemented to
@@ -2574,37 +3261,6 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 						generate 10 test cases using random data. The evaluator shall compare the results against those
 						from a known good implementation.<h:p/>
 
-						<!-- LMS Signature Genration  -->
-						<h:br/><h:b>LMS Signature Generation </h:b><h:p/>
-						<h:table border="1">
-							<h:tr class="header" bgcolor="#cccccc">
-								<h:td valign="top">Identifier</h:td>
-								<h:td valign="top">Cryptographic Algorithm Parameters</h:td>
-								<h:td valign="top">Cryptographic Key Sizes</h:td>
-								<h:td valign="top">List of Standards</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">LMS</h:td>
-								<h:td valign="top">LMS</h:td>
-								<h:td valign="top">Private key size = [<h:b>selection:</h:b>
-									<h:i>192 bits with [<h:b>selection:</h:b> SHA256/192, SHAKE256/192], 
-									256 bits with [<h:b>selection:</h:b> SHA-256, SHAKE256]</h:i>] , 
-								  Winternitz parameter = [<h:b>selection:</h:b> <h:i>1, 2, 4, 8</h:i>], 
-								  and tree height = [<h:b>selection:</h:b> <h:i>5, 10, 15, 20, 25</h:i>]</h:td>
-								<h:td valign="top">RFC 8554 [LMS]<h:p/>
-										NIST SP 800-208 [parameters] </h:td>
-							</h:tr>
-						</h:table><h:p/>	
-						To test the TOE’s ability to generate cryptographic digital signatures using LMS, the
-						evaluator shall perform the Algorithm Functional Test using the following input parameters:<h:ul>
-						<h:li>Hash algorithm [SHA-256/192, SHAKE256/192, SHA-256, SHAKE256]</h:li>
-						<h:li>Winterlitz [1, 2, 4, 8]</h:li>
-						<h:li>Tree height [5, 10, 15, 20, 25]</h:li></h:ul><h:p/>
-						<h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
-						For each supported combination of the above parameters, the evaluator shall generate 10
-						signatures. The evaluator shall verify the correctness of the implementation by comparing values
-						generated by the TOE with those generated by a known good implementation using the same
-						input parameters.<h:p/>
 						
 						<!-- ML-DSA Signature Generation  -->
 						<h:br/><h:b>ML-DSA Signature Generation</h:b><h:p/>
@@ -2778,35 +3434,6 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 		Hash of sig: 	46C669D2FEB643A38E54FF87B790CC33F44043A1B6B31DB9474D301328CA2A7F
 						</h:pre>
 						
-						<!-- XMSS Signature Gneration  -->
-						<h:br/><h:b>XMSS Signature Generation</h:b><h:p/>
-						<h:table border="1">
-							<h:tr class="header" bgcolor="#cccccc">
-								<h:td valign="top">Identifier</h:td>
-								<h:td valign="top">Cryptographic Algorithm Parameters</h:td>
-								<h:td valign="top">Cryptographic Key Sizes</h:td>
-								<h:td valign="top">List of Standards</h:td>
-							</h:tr>
-							<h:tr>
-								<h:td valign="top">XMSS</h:td>
-								<h:td valign="top">XMSS</h:td>
-								<h:td valign="top">Private key size = [<h:b>selection:</h:b>
-									<h:i>192 bits with [<h:b>selection:</h:b> SHA256/192, SHAKE256/192], 
-									256 bits with [<h:b>selection:</h:b> SHA-256, SHAKE256]</h:i>], 
-								  and tree height = [<h:b>selection:</h:b> <h:i>10, 16, 20</h:i>] </h:td>
-								<h:td valign="top">RFC 8391 [XMSS] <h:p/>
-										NIST SP 800-208 [parameters]</h:td>
-							</h:tr>
-						</h:table><h:p/>	
-						To test the TOE’s ability to generate digital signatures using XMSS, the evaluator
-						shall perform the XMSS Key Generation Test using the following input parameters:<h:ul>
-						<h:li>Hash algorithm [SHA-256/192, SHAKE256/192, SHA-256, SHAKE256]</h:li>
-						<h:li>Tree height [10, 16, 20]</h:li></h:ul>
-						<h:br/><h:b>XMSS Key Generation Test</h:b><h:p/>
-						For each supported combination of the above parameters, the evaluator shall generate 10
-						signatures. The evaluator shall verify the correctness of the implementation by comparing values
-						generated by the TOE with those generated by a known good implementation using the same
-						input parameters.
 												
 					</Tests>
             </aactivity>
@@ -2820,7 +3447,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               The TSF shall perform [<h:i>digital signature verification</h:i>] in accordance with a specified 
               cryptographic algorithm  
               <selectables>
-                <tabularize id="tab-fcs-cop-sigver-sels" title="Recommended choices for FCS_COP.1/SigVer">
+                <tabularize id="tab-fcs-cop-sigver-sels" title="Allowable choices for FCS_COP.1/SigVer">
                   <textcol>Identifier</textcol>
                   <reqtext></reqtext>
                   <selectcol>Cryptographic Algorithm</selectcol>
@@ -2828,7 +3455,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                   <selectcol>Cryptographic Key Sizes</selectcol>
                   <reqtext>that meet the following:</reqtext>
                   <selectcol>List of Standards</selectcol>
-                  <reqtext><h:p/><h:p/>The following table provides the recommended choices for
+                  <reqtext><h:p/><h:p/>The following table provides the allowable choices for
                     completion of the selection operations in FCS_COP.1/SigVer.<h:p/></reqtext>
                 </tabularize>
                 
@@ -2867,15 +3494,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                     FIPS PUB 186-5 (Section 5.4) [RSASSA-PSS]
                   </col>
                 </selectable>
-                
-                <selectable id="sel-fcs-cop-sigver-dsa">
-                  <col>DSA</col>
-                  <col>DSA</col>
-                  <col>Domain parameters for (L, N) = (3072, 256) bits</col>
-                  <col>
-                    FIPS PUB 186-4 (Section 4.7) [DSA Signature Verification]
-                  </col>
-                </selectable>				
+              
                 
                 <selectable id="sel-fcs-cop-sigver-ecdsa">
                   <col>ECDSA</col>
@@ -3054,37 +3673,6 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
            The TOE must correctly verify the unmodified signatures and fail to verify the modified
            signatures.<h:p/>
            
-           <!-- DSA Signature Verification    -->
-           <h:br/><h:b>DSA Signature Verification </h:b><h:p/>
-           <h:table border="1">
-             <h:tr class="header" bgcolor="#cccccc">
-               <h:td valign="top">Identifier</h:td>
-               <h:td valign="top">Cryptographic Algorithm Parameters</h:td>
-               <h:td valign="top">Cryptographic Key Sizes</h:td>
-               <h:td valign="top">List of Standards</h:td>
-             </h:tr>
-             <h:tr>
-               <h:td valign="top">DSA</h:td>
-               <h:td valign="top">DSA</h:td>
-               <h:td valign="top">Domain parameters for (L, N) = [(3072, 256)] bits</h:td>
-               <h:td valign="top">FIPS PUB 186-4 (Section 4.7) [DSA Signature Verification]</h:td>
-             </h:tr>
-           </h:table><h:p/>	
-           To test the TOE’s ability to perform DSA Digital Signature Verification, the evaluator shall
-           perform the Algorithm Functional Test using the following input parameters:<h:ul>
-             <h:li>(L, N) = (3072, 256)</h:li>
-             <h:li>Hash algorithm [SHA-384, SHA-512]</h:li></h:ul><h:p/>
-           <h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
-           For each supported combination of the above parameters, the evaluator shall cause the TOE to
-           generate 15 test cases consisting of messages and signatures such that the 15 test cases are
-           modified as follows:<h:p/><h:ul>
-             <h:li>Three test cases are left unmodified</h:li>
-             <h:li>For three test cases the Message is modified</h:li>
-             <h:li>For three test cases the key is modified</h:li>
-             <h:li>For three test cases the <h:i>r</h:i> value is modified</h:li>
-             <h:li>For three test cases the <h:i>s</h:i> value is modified</h:li></h:ul><h:p/>
-           The TOE must correctly verify the unmodified signatures and fail to verify the modified
-           signatures.<h:p/>
            
            <!-- ECDSA Signature Verification  -->
            <h:br/><h:b>ECDSA Signature Verification </h:b><h:p/>
@@ -3244,7 +3832,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               The TSF shall perform [<h:i>symmetric-key encryption and decryption</h:i>] in accordance with a 
               specified cryptographic algorithm   
               <selectables>
-                <tabularize id="fcs-cop-skc-sels" title="Recommended choices for FCS_COP.1/SKC">
+                <tabularize id="fcs-cop-skc-sels" title="Allowable choices for FCS_COP.1/SKC">
                   <textcol>Identifier</textcol>
                   <reqtext></reqtext>
                   <selectcol>Cryptographic Algorithm</selectcol>
@@ -3252,7 +3840,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                   <selectcol>Cryptographic Key Sizes</selectcol>
                   <reqtext>that meet the following:</reqtext>
                   <selectcol>List of Standards</selectcol>
-                  <reqtext><h:p/><h:p/>The following table provides the recommended choices for
+                  <reqtext><h:p/><h:p/>The following table provides the allowable choices for
                     completion of the selection operations in FCS_COP.1/SKC.</reqtext>							
                 </tabularize>
                 
@@ -3296,31 +3884,9 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                       <selectable>NIST SP 800-38A</selectable></selectables> [CBC]
                   </col>
                 </selectable>
+        
               </selectables>
             </title>
-            <note role="application">
-              <h:p>
-                <!-- AUTOMATION -->
-                AES CCMP (which uses AES in CCM as specified in SP 800-38C) becomes mandatory and must
-                be selected if the ST includes the PP-Module for Wireless LAN Clients.
-                <!-- <!-\- AUTOMATION -\-> -->
-                <!-- AES-CTR becomes mandatory and must be selected if the ST includes the <xref to="pkg-ssh"/>. -->
-                <h:p>
-                  AES-CCM becomes mandatory and must be selected if the ST includes the PP-Module for Bluetooth.
-                </h:p>	    
-              </h:p>
-              <h:p>
-                For the second selection, the ST author should choose the mode
-                or modes in which AES operates.</h:p>
-              <h:p>
-                For the third selection, the ST author may only choose 128-bit if the ST
-                includes the PP-Module for Bluetooth, and it may only be used specifically
-                with AES-CCM for Bluetooth functions.
-              </h:p>
-              <!-- <h:p>If <xref to="s-ftp_ssh"/> is selected in FTP_ITC_EXT.1.1, -->
-              <!-- then <xref to="s-aes-ctr"/> must be selected.</h:p> -->
-              
-            </note>
             <aactivity>
               <TSS>
                 The evaluator shall examine the TSS to ensure that it describes the construction of any IVs,
@@ -3515,6 +4081,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 
               </Tests>
             </aactivity>
+            <!--
             <rule id="r-wlan-aes">
               <or>
                 <and><not><ref-id>mod-wlanclient</ref-id></not></and>
@@ -3524,6 +4091,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 </and>
               </or>
             </rule>
+            -->
             <!-- <rule id="r-aes-ctr-for-ssh"> -->
             <!--   <if><ref-id>s-ftp_ssh</ref-id></if> -->
             <!--   <then><ref-id>s-aes-ctr</ref-id></then> -->
@@ -3537,19 +4105,21 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
         
         <f-component id="sfr-fcs-cop-1-xof" cc-id="fcs_cop.1" iteration="XOF" 
           name="Cryptographic Operation - Extendable-Output Function" status="sel-based">
+          <depends on-sel="sel-fcs-ckm-ak-lms"/>
+          <depends on-sel="sel-fcs-ckm-ak-xmss"/>
           <depends on-sel="sel-fcs-cop-sigver-lms"/>
           <depends on-sel="sel-fcs-cop-sigver-xmss"/>
           <f-element id="fcs-cop-1e1-xof">
             <title>
               The TSF shall perform [<h:i>extendable-output function</h:i>] in accordance with a specified cryptographic algorithm  
               <selectables>
-                <tabularize id="fcs-cop-xof-sels" title="Recommended choices for FCS_COP.1/XOF">
+                <tabularize id="fcs-cop-xof-sels" title="Allowable choices for FCS_COP.1/XOF">
                   <selectcol>Cryptographic Algorithm</selectcol>
                   <reqtext>and parameters</reqtext>
                   <selectcol>Parameters</selectcol>
                   <reqtext>that meet the following:</reqtext>
                   <selectcol>List of Standards</selectcol>
-                  <reqtext><h:p/><h:p/>The following table provides the recommended choices for
+                  <reqtext><h:p/><h:p/>The following table provides the allowable choices for
                     completion of the selection operations of FCS_COP.1/XOF.</reqtext>
                 </tabularize>
                 
@@ -5972,6 +6542,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
       	      </h:p><h:p>
       	        If the TSF implements a protocol that requires the presentation of any certificates to an external entity, FIA_XCU_EXT.2 will be claimed. FIA_X509_EXT.3 will also be claimed, along with any applicable dependencies, depending on how the certificates presented by the TOE are obtained.  
       	      </h:p>
+      	      <!--
 	          <h:p>
 		          <rule id="r-need-client-tls">
 		          <doc ref="pkg-tls"><ref-id>tlsc_impl</ref-id></doc>
@@ -5996,8 +6567,9 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 <rule id="r-sshserver">
   <if><ref-id>s-ssh-server</ref-id></if>
   <then><doc ref="pkg-ssh"><ref-id>ssh-server</ref-id></doc></then>
-</rule>
+</rule> -->
       	      <!-- this rule isn't associated with the SFR but it was placed here for ordering purposes -->
+      	      <!--
       	      <rule id="r-bluetooth-ccm">
       	        <or>
       	          <and><not><ref-id>mod-bluetooth</ref-id></not></and>
@@ -6010,7 +6582,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
       	          </and>
       	        </or>
       	      </rule>
-
+-->
 
       	    </note>
       	    <aactivity>
