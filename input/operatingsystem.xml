@@ -456,6 +456,9 @@ it manages may be physical or virtual.
     <section title="Product Features Mapped to Implementation-dependent Requirements" id="sec-features">
       The features enumerated below, if implemented by the TOE, require that additional SFRs be claimed in the ST.<h:br/>
       <implements>
+        <feature id="bluetooth-support" title="Bluetooth Support">
+          <description>A conformant TOE may implement Bluetooth functionality. If so, it is necessary for the TOE to support specific cryptographic algorithms and key sizes to support Bluetooth communications. The TOE will also claim a PP-Configuration that includes the PP-Module for Bluetooth.<h:br/></description>
+        </feature>
         <feature id="key-encap-support" title="Key Encapsulation Support">
           <description>A conformant TOE is required to implement trusted communications. Depending on the specific protocols used and the supported connection parameters for these protocols, it may be necessary to implement a key encapsulation algorithm as part of key establishment.<h:br/></description>
         </feature>
@@ -463,7 +466,7 @@ it manages may be physical or virtual.
             <description>A conformant TOE is required to implement trusted communications. Depending on the specific protocols used and the supported connection parameters for these protocols, it may be necessary to implement one or more key agreement algorithms as part of key establishment.<h:br/></description>
           </feature>
         <feature id="wlan-support" title="WLAN Support">
-          <description>A conformant TOE may implement WLAN client functionality. If so, it is necessary to implement authenticated encryption and key wrapping in support of secure wireless communications.<h:br/></description>
+          <description>A conformant TOE may implement WLAN client functionality. If so, it is necessary to implement authenticated encryption and key wrapping in support of secure wireless communications. The TOE will also claim a PP-Configuration that includes the PP-Module for Wireless LAN Clients.<h:br/></description>
         </feature>
       </implements>			
     </section>
@@ -1149,6 +1152,7 @@ it manages may be physical or virtual.
                   <col>ECC-ERB</col>
                   <col>ECC-ERB - Extra Random Bits</col>
                   <col>Elliptic Curve <selectables>
+                    <selectable id="sel-exp-ak-edcsa-erb-P256">P-256</selectable>
                     <selectable id="sel-exp-ak-edcsa-erb-P384">P-384</selectable>
                     <selectable id="sel-exp-ak-edcsa-erb-P521">P-521</selectable></selectables>
                   </col>
@@ -1163,6 +1167,7 @@ it manages may be physical or virtual.
                   <col>ECC-RS</col>
                   <col>ECC-RS - Rejection Sampling</col>
                   <col>Elliptic Curve <selectables>
+                    <selectable id="sel-exp-ak-edcsa-rs-P256">P-256</selectable>
                     <selectable id="sel-exp-ak-edcsa-rs-P384">P-384</selectable>
                     <selectable id="sel-exp-ak-edcsa-rs-P521">P-521</selectable></selectables>
                   </col>
@@ -1302,6 +1307,7 @@ it manages may be physical or virtual.
               For RSA the choice of the modulus implies the resulting key sizes of the public and private keys generated using the specified standard methods. RSA key generation with modulus size 2048 bits is no longer permitted by CNSA.
 	      </h:p><h:p>
               For Finite Field Cryptography (FFC) DSA, ST authors should consult schemes for guidelines on use. FIPS PUB 186-5 does not approve DSA for digital signature generation but allows DSA for digital signature verification for legacy purposes. “FFC-ERB” or “FFC–RS” may be claimed only for generating private and public keys when “DH” is claimed in FCS_CKM_EXT.7.
+	      </h:p><h:p>For ECC selections, “P-256” may only be selected if the PP-Module for Bluetooth is included in the ST and P-256 may only be used specifically for Bluetooth functions.
 	      </h:p><h:p>
               When generating ECC keys pairs for key agreement and if “ECDH” is claimed in FCS_CKM_EXT.7, then “ECC–ERB” or “ECC–RS” must be claimed. The sizes of the private key, which is a scalar, and the public key, which is a point on the elliptic curve, are determined by the choice of the curve.
 	      </h:p><h:p>
@@ -1316,7 +1322,7 @@ it manages may be physical or virtual.
 						The evaluator shall examine the TSS to verify that it describes how the TOE generates a key
 						based on output from a random bit generator as specified in FCS_RBG.1. The evaluator shall
 						review the TSS to verify that it describes how the functionality described by FCS_RBG.1 is
-						invoked.<h:p/>
+						invoked. If support for P-256 is claimed, the evaluator shall examine the TSS to verify that it is only used for Bluetooth functions.<h:p/>
 						The evaluator shall examine the TSS to verify that it identifies the usage and key lifecycle
 						for keys generated using each selected algorithm.<h:p/>
 						The evaluator shall examine the TSS to verify that any one-time values such as nonces or masks
@@ -1416,14 +1422,14 @@ it manages may be physical or virtual.
 							<h:tr>
 								<h:td valign="top">ECC-ERB</h:td>
 							  <h:td valign="top">ECC – Extra Random Bits</h:td>
-								<h:td valign="top">Elliptic Curve [<h:b>selection:</h:b> <h:i>P-384, P-521</h:i>]</h:td>
+								<h:td valign="top">Elliptic Curve [<h:b>selection:</h:b> <h:i>P-256, P-384, P-521</h:i>]</h:td>
 								<h:td valign="top">NIST FIPS PUB 186-5 (Section A.2.1)<h:p/>
 													NIST SP 800-186 (Section 3) [NIST Curves]</h:td>
 							</h:tr>
 							<h:tr>
 								<h:td valign="top">ECC-RS</h:td>
 							  <h:td valign="top">ECC – Rejection Sampling</h:td>
-							  <h:td valign="top">Elliptic Curve [<h:b>selection:</h:b> <h:i>P-384, P-521</h:i>]</h:td>
+							  <h:td valign="top">Elliptic Curve [<h:b>selection:</h:b> <h:i>P-256, P-384, P-521</h:i>]</h:td>
 								<h:td valign="top">NIST FIPS PUB 186-5 (Section A.2.2)<h:p/>
 													NIST SP 800-186 (Section 3) [NIST Curves]</h:td>
 							</h:tr>
@@ -1431,7 +1437,7 @@ it manages may be physical or virtual.
 						To test the TOE’s ability to generate asymmetric cryptographic keys using
 						elliptic curves, the evaluator shall perform the ECC Key Generation Test 
 						and the ECC Key Validation Test using the following input parameters.<h:ul>
-						<h:li>Elliptic curve [P-384, P-521]</h:li>
+						<h:li>Elliptic curve [P-256, P-384, P-521]</h:li>
 						<h:li>Key pair generation method [extra random bits, rejection sampling]</h:li></h:ul><h:p/>
 						
 						<h:br/><h:i><h:b>ECC Key Generation Test</h:b></h:i><h:br/>
@@ -1706,14 +1712,14 @@ it manages may be physical or virtual.
             <title>
               The TSF shall generate <h:b>symmetric</h:b> cryptographic keys in accordance with
               a specified cryptographic key generation algorithm<selectables>
-                <tabularize id="fcs-ckm-1-skg-sels" title="Recommended choices for FCS_CKM.1/SKG">
+                <tabularize id="fcs-ckm-1-skg-sels" title="Allowable choices for FCS_CKM.1/SKG">
                   <textcol>Identifier</textcol>
                   <selectcol>Cryptographic Key Generation Algorithm</selectcol>
                   <reqtext>and specified cryptographic key sizes</reqtext>
                   <selectcol>Cryptographic Key Sizes</selectcol>
                   <reqtext>that meet the following: </reqtext>
                   <selectcol>List of standards</selectcol>
-                  <reqtext><h:p/><h:p/>The following table provides the recommended choices for
+                  <reqtext><h:p/><h:p/>The following table provides the allowable choices for
                     completion of the selection operations of FCS_CKM.1/SKG.</reqtext>
                 </tabularize>
                 
@@ -1755,7 +1761,7 @@ it manages may be physical or virtual.
                 the differences between test environment and TOE execution environment shall be
                 described.<h:p/>
                 To test the TOE’s ability to generate symmetric cryptographic keys using a 
-                random bit generator, the evaluator shall configure the asymmetric cryptographic 
+                random bit generator, the evaluator shall configure the symmetric cryptographic 
                 key generation capability for each claimed key size. The evaluator shall use the
                 description of the RBG interface to verify that the TOE requests and receives an
                 amount of RBG output greater than or equal to the requested key size.
@@ -1907,7 +1913,7 @@ it manages may be physical or virtual.
 Steps 1-6 ensure that the complete key does not exist anywhere in volatile memory. If a copy is found, then the test fails.
 		  </h:p>
 </test>
-<test>Applied to each key help in non-volatile memory and subject to destruction by the TOE. The evaluator shall use special tools (as needed), provided by the TOE developer if necessary, to ensure the tests function as intended.
+<test>Applied to each key held in non-volatile memory and subject to destruction by the TOE. The evaluator shall use special tools (as needed), provided by the TOE developer if necessary, to ensure the tests function as intended.
 <h:ol>
   <h:li>Identify the purpose of the key and what access should fail when it is deleted. (e.g. the data encryption key being deleted would cause data decryption to fail.)</h:li>
   <h:li>Cause the TOE to clear the key.</h:li>
@@ -2297,8 +2303,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
         
         
         <!-- FCS_COP.1/AEAD Cryptographic Operation – Authenticated Encryption with Associated Data -->	
-        <f-component id="sfr-fcs-cop-1-aead" cc-id="fcs_cop.1" iteration="AEAD" name="Cryptographic Operation – Authenticated Encryption with Associated Data" status="feat-based">
-          <depends on="wlan-support"></depends>
+        <f-component id="sfr-fcs-cop-1-aead" cc-id="fcs_cop.1" iteration="AEAD" name="Cryptographic Operation – Authenticated Encryption with Associated Data">
           <f-element id="fcs-cop-1e1-aead">
             <title>
               The TSF shall perform [authenticated encryption with associated data] in accordance with a specified 
@@ -2319,7 +2324,10 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 <selectable id="sel-fcs-cop-aead-aes-ccm">
                   <col>AES-CCM</col>
                   <col>AES in CCM mode with unpredictable, non-repeating nonce, minimum size of 64 bits</col>
-                  <col>256 bits</col>
+                  <col><selectables>
+                    <selectable>128 bits</selectable>
+                    <selectable>256 bits</selectable>
+                  </selectables></col>
                   <col><selectables>
                     <selectable>ISO/IEC 18033-3:2010 (Subclause 5.2)</selectable>
                     <selectable>FIPS PUB 197</selectable></selectables> [AES]<h:p/>
@@ -2353,8 +2361,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               </selectables>
             </title>
             <note role="application">
-              This SFR is claimed when the TOE has wireless LAN client functionality so that the TSF can provide AEAD algorithms in support of wireless communications.<h:p/>
-              The use of 256-bit keys for AES encryption is required by CNSA 1.0 and 2.0.
+              The use of 256-bit keys for AES encryption is required by CNSA 1.0 and 2.0. 128-bit keys may only be used when <xref to="blueooth"/> is claimed and only for the purpose of Bluetooth communications.
             </note>
             <aactivity>
               <TSS>
@@ -2362,7 +2369,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 nonces, and tags in conformance with the relevant specifications.<h:p/>
                 If a CCM mode algorithm is selected, then the evaluator shall examine the TOE summary
                 specification to confirm that it describes how the nonce is generated and that the same nonce is
-                never reused to encrypt different plaintext pairs under the same key.<h:p/>
+                never reused to encrypt different plaintext pairs under the same key. If the use of 128-bit keys is selected in conjunction with AES-CCM, the evaluator shall verify that the TSS describes the use of 128-bit AES-CCM as being solely for Bluetooth.<h:p/>
                 If a GCM mode algorithm is selected, then the evaluator shall examine the TOE summary
                 specification to confirm that it describes how the IV is generated and that the same IV is never
                 reused to encrypt different plaintext pairs under the same key. The evaluator shall also confirm
@@ -2393,7 +2400,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                     <h:td valign="top">AES-CCM </h:td>
                     <h:td valign="top">AES in CCM mode with nonrepeating nonce, minimum size
                       of 64 bits</h:td>
-                    <h:td valign="top">256 bits</h:td>
+                    <h:td valign="top">[<h:b>selection:</h:b>128 bits, 256 bits]</h:td>
                     <h:td valign="top">
                       [<h:b>selection:</h:b> ISO/IEC 18033-3:2010 (Subclause 5.2),
                       FIPS PUB 197] [AES]<h:p/>
@@ -2403,7 +2410,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 To test the TOE’s implementation of AES-CCM authenticated encryption functionality the
                 evaluator shall perform the Algorithm Functional Tests described below using the following
                 input parameters:<h:ul>
-                  <h:li>Key Size [256] bits</h:li>
+                  <h:li>Key Size [128,256] bits</h:li>
                   <h:li>Associated data size [0-65536] bits in increments of 8</h:li>
                   <h:li>Payload size [0-256] bits in increments of 8</h:li>
                   <h:li>IV/Nonce size [64-104] bits in increments of 8</h:li>
@@ -3467,6 +3474,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                   <col>RSA-PKCS</col>
                   <col>RSASSA-PKCS1-v1_5</col>
                   <col>Modulus of size <selectables>
+                    <selectable><h:i>2048 (for secure boot only)</h:i></selectable>
                     <selectable><h:i>3072</h:i></selectable>
                     <selectable><h:i>4096</h:i></selectable>
                     <selectable><h:i>6144</h:i></selectable>
@@ -3485,6 +3493,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                   <col>RSA-PSS</col>
                   <col>RSASSA-PSS</col>
                   <col>Modulus of size <selectables>
+                    <selectable><h:i>2048 (for secure boot only)</h:i></selectable>
                     <selectable><h:i>3072</h:i></selectable>
                     <selectable><h:i>4096</h:i></selectable>
                     <selectable><h:i>6144</h:i></selectable>
@@ -3593,10 +3602,18 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
             </note>
        <aactivity>
          <TSS>
+           <h:p>
            The evaluator shall examine the TSS to verify that any one-time values such as nonces or masks
            are constructed and used in accordance with the relevant standards.
+           </h:p><h:p>
+           If "2048 (for secure boot only)" is selected for RSA, the evaluator shall check that the TSS documents that 2048-bit RSA is used only for secure boot and that a larger key size is used for any other function.
+           </h:p>
          </TSS>
-         <Guidance/>
+         <Guidance>
+           <h:p>
+             If "2048 (for secure boot only)" is selected for RSA, the evaluator shall check that the guidance includes an configuration needed to ensure that 2048-bit RSA is used only for secure boot and that a larger key size is used for any other function.
+           </h:p>
+         </Guidance>
          <Tests>
            The following tests are conditional based on the selections made in the SFR. The evaluator
            shall perform the following tests or witness respective tests executed by the developer. The tests
@@ -4440,7 +4457,7 @@ only AES-based implementations for CTR_DRBG are allowed.
               <h:p>
                 For the 
                 selection in this requirement, the ST author selects "TSF noise source" if
-                a single noise source is used as input to the DRBG. The ST author selects "multiple TSF noise sources" if a seed is formed from a combination of two or more noise sources within the TOE boundary. If the TSF implements two or more separate DRBGs that are seeded in separate manners, this SFR should be iterated for each DRBG. It multiple distinct noise sources exist such that each DRBG only uses one of them, then each iteration would select "TSF noise source"; "multiple TSF noise sources" is only selected if a single DRBG uses multiple noise sources for its seed. The ST author selects "TSF interface for seeding" if noise source data is generated outside the TOE boundary.
+                a single noise source is used as input to the DRBG. The ST author selects "multiple TSF noise sources" if a seed is formed from a combination of two or more noise sources within the TOE boundary. If the TSF implements two or more separate DRBGs that are seeded in separate manners, this SFR should be iterated for each DRBG. If multiple distinct noise sources exist such that each DRBG only uses one of them, then each iteration would select "TSF noise source"; "multiple TSF noise sources" is only selected if a single DRBG uses multiple noise sources for its seed. The ST author selects "TSF interface for seeding" if noise source data is generated outside the TOE boundary.
               </h:p>
               <h:p>
                 If "TSF noise source" is selected, FCS_RBG.3 must be claimed.
@@ -4599,7 +4616,7 @@ only AES-based implementations for CTR_DRBG are allowed.
               interface to make the RBG output, as specified in FCS_RBG.1 Random bit generation (RBG),
               available as a service to entities outside of the TOE.
             </title>        
-            <note role="application">This SFR is defined for the case where an operating system includes a mechanism for </note>
+            <note role="application">This SFR is defined for the case where an operating system includes a mechanism for e.g. an application or a virtualization system running on the operating system to obtain random bits from the TOE, whether those bits are generated by the TSF or the TSF provides an interface for the third party to access a hardware interface on the platform.</note>
           <aactivity>              
             <TSS>
               The evaluator shall verify that the TSS identifies the interface that the TSF makes available for calling applications to obtain DRBG output. 
@@ -4702,7 +4719,7 @@ only AES-based implementations for CTR_DRBG are allowed.
         <Guidance>TBD</Guidance>
 	      <Tests>
 	      <h:p>
-              The evaluator shall create two new standard user accounts on the system and conduct the following tests:
+	        The evaluator shall create two new standard user accounts on the TOE and conduct the tests below. If the TOE's home directory prevents exercising the permissions directly (i.e., because the home directory itself or its contents are restricted by permissions), the evaluator shall temporarily relax the permissions on the parent directory/directories in order to perform the tests.
               <testlist>
                 <test>
                   The evaluator shall authenticate to the system as the first user and create a file within that user&apos;s home directory.
@@ -4753,7 +4770,6 @@ only AES-based implementations for CTR_DRBG are allowed.
 
         <f-component cc-id="fdp_ifc_ext.1" name="Information Flow Control" status="sel-based">
 	  <depends on="s-itc-ipsec"/>
-	  <depends><optional/></depends>
           
           <comp-lev> requires the TSF to provide the ability to protect IP traffic
             using IPsec.</comp-lev>
@@ -5476,6 +5492,10 @@ Configure lockout policy for unsuccessful authentication attempts through
 Sophisticated account management policies, such as intricate password complexity requirements and handling of temporary accounts, are a function of directory servers.
 The OS can enroll in such account management and enable the overall information system to achieve such policies by binding to a directory server.
 	      </h:p>
+	      <h:p>
+	        For management functions 12, 13, and 14, it is expected that the interfaces to these remote entities are trusted channels and the ST author is expected to claim them in FTP_ITC_EXT.1 accordingly.
+	      </h:p>
+	      
 	    </note>
 	    <aactivity>
 	      <TSS>TBD</TSS>
@@ -5831,7 +5851,7 @@ OSes that store parameters and variables separately from control flow values do 
               <Guidance>TBD</Guidance>
 	      <Tests>
 <h:p>For stack-based OSes, the evaluator shall determine that the TSS contains a description of stack-based buffer overflow protections used by the OS.
-These are referred to by a variety of terms. These include, but are not limited to, ASLR, tagging, stack cookie, stack guard, and stack canaries.
+These are referred to by a variety of terms. These include, but are not limited to, tagging, stack cookie, stack guard, and stack canaries.
 The TSS must include a rationale for any binaries that are not protected in this manner.
 The evaluator shall also preform the following test:
             <testlist>
@@ -6032,8 +6052,8 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
               <TSS>The evaluator shall examine the TSS to ensure that it lists each security
                 function that makes use of time. The TSS provides a description of how the time is
                 maintained and considered reliable in the context of each of the time related
-                functions. This documentation must identify whether the TSF uses a NTP server or the
-                cell carrier’s network time as the primary time sources. <h:br/><h:br/></TSS>
+                functions. The evaluator shall examine the TSS to verify that it describes the TOE's ability to obtain time data from an NTP server, a cellular carrier network, or a hypercall to a virtualization system on which the TOE runs.  
+                <h:br/><h:br/></TSS>
               <Guidance>The evaluator examines the operational guidance to ensure it describes how
                 to set the time.<h:br/><h:br/></Guidance>
               <Tests>
@@ -6192,7 +6212,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
           
           <f-element id="fel-os-update">
             <title>The TSF shall provide the ability to check for updates to the OS
-              software itself and shall use a digital signature scheme specified in FCS_COP.1/SigGen to validate the authenticity of the response. </title>
+              software itself and shall use a digital signature scheme specified in FCS_COP.1/SigVer to validate the authenticity of the response. </title>
             <note role="application">
 				This requirement is about the ability to check for the availability of
 			    authentic updates, while the installation of authentic updates is covered by
@@ -6211,16 +6231,17 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 			  configuration in conflict with secure configuration guidance
 			  which specifies automatic update.
 			  </h:p>
-			  <h:p>The evaluator is also to ensure that the response to this query is authentic by using a digital signature scheme specified in FCS_COP.1/SigGen. 
-				The digital signature verification may be performed as part of a network protocol occurs over a trusted channel as described in FTP_ITC_EXT.1.)
+			  <h:p>The evaluator is also to ensure that the response to this query is authentic by using a digital signature scheme specified in FCS_COP.1/SigVer. 
+				The digital signature verification may be performed as part of a network protocol that uses a trusted channel as described in FTP_ITC_EXT.1.)
 				If the signature verification is not performed as part of a trusted channel, the evaluator shall send a query response with a bad signature and verify that the signature verification fails.
 				The evaluator shall then send a query response with a good signature and verify that the signature verification is successful.</h:p>
 	      <h:p>For the following tests, the evaluator shall initiate the download of an update and
 	        capture the update prior to installation.
 	        The download could originate from the vendor's website, an enterprise-hosted
 	        update repository, or another system (e.g. network peer).
-	        All supported origins
-	        for the update must be indicated in the TSS and evaluated.</h:p>
+	        All update mechanisms supported by the TOE must be evaluated.  However, this only includes
+	        those mechanisms for which the TSF is providing a trusted installation and update functionality.
+	        It does not include user or administrator-driven download and installation of arbitrary files.</h:p>
 	        <testlist>
 	          <test>
 	            The evaluator shall ensure that the update has a digital
@@ -6250,7 +6271,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 			<selectable>invoke platform-provided functionality to cryptographically verify</selectable>
 		</selectables>
               updates to itself using a digital
-              signature prior to installation using schemes specified in FCS_COP.1/SigGen.
+              signature prior to installation using schemes specified in FCS_COP.1/SigVer.
 	    </title>
 		 <note role="application">The intent of the requirement is to ensure that only digitally signed and verified TOE updates are applied to the TOE.</note>
            
@@ -6288,7 +6309,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
             <title>
 	          The TSF shall provide the ability to check for updates to
               application software and shall use a digital signature scheme specified in 
-		      FCS_COP.1/SigGen to validate the authenticity of the response.
+		      FCS_COP.1/SigVer to validate the authenticity of the response.
 	        </title>
             <note role="application">This requirement is about the ability to check for authentic updates,
               while the actual installation of such updates is covered by FPT_TUD_EXT.2.2.
@@ -6310,16 +6331,15 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 			  update.
 			  </h:p>
 			  <h:p>
-				The evaluator shall also ensure that the response to this query is authentic by using a digital signature scheme specified in FCS_COP.1/SigGen.
-    			The digital signature verification may be performed as part of a network protocol
-			     as described in FTP_ITC_EXT.1. 
+				The evaluator shall also ensure that the response to this query is authentic by using a digital signature scheme specified in FCS_COP.1/SigVer.
+    			The digital signature verification may be performed as part of a network protocol that uses a trusted channel as described in FTP_ITC_EXT.1. 
                 If the signature verification is not performed as part of a trusted channel, the evaluator shall send a query response with a bad signature and verify that the signature verification fails. 
 				The evaluator shall then send a query response with a good signature and verify that the signature verification is successful.
 			  </h:p>
 	        The evaluator shall initiate an update to an application.  This may vary depending on the application,
 	        but it could be through the application vendor&apos;s website, a commercial app store, or another system.
-	        All origins supported by the OS must be indicated in the TSS and evaluated.  However, this only includes
-	        those mechanisms for which the OS is providing a trusted installation and update functionality.
+	        All update mechanisms supported by the TOE must be evaluated.  However, this only includes
+	        those mechanisms for which the TSF is providing a trusted installation and update functionality.
 	        It does not include user or administrator-driven download and installation of arbitrary files.
 	        <testlist>
 	          <test>
@@ -6346,7 +6366,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
             <title>
 	      The TSF shall cryptographically verify the integrity of updates
 	      to applications using a digital signature specified by
-	      FCS_COP.1/SigGen prior to installation.
+	      FCS_COP.1/SigVer prior to installation.
 	    </title>
           </f-element>
           <audit-event>
@@ -6430,13 +6450,10 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
             warning</h:i>] message <h:b>regarding unauthorized use of the OS</h:b>.
             </title>
             <aactivity>
-        <TSS>TBD</TSS>
-        <Guidance>TBD</Guidance>
+        <TSS>The evaluator shall examine the TSS to verify that it identifies the user interfaces to the TOE and specifies that a configurable warning banner can be displayed on each interface.</TSS>
+        <Guidance>The evaluator shall verify that the operational guidance includes instructions on how to set the warning banner, and whether different interfaces to the TOE have independently-configurable banner text or share the configured value.</Guidance>
 	      <Tests>
-            The evaluator shall configure the OS, per instructions in the OS manual,
-            to display the advisory warning message "TEST TEST Warning Message TEST TEST".
-            The evaluator shall then log out and confirm that the advisory message is
-            displayed before logging in can occur.
+            For each mechanism used to configure the banner as specified in the operational guidance and each user interface with which that banner is associated, the evaluator shall configure the banner to a different arbitrary text string, record that string, and access the TOE to verify that the configured banner is displayed prior to user authentication on that particular interface. 
               </Tests>
 	    </aactivity>
           </f-element>
@@ -6502,7 +6519,11 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 		      <selectable>authentication server</selectable>
 		      <selectable>management server</selectable>
 		      <selectable><assignable>other capabilities</assignable></selectable>
-		    </selectables> using certificates as defined in [<h:i><xref to="X509"/></h:i>]
+		    </selectables> using <selectables>
+		      <selectable>certificates as defined in <xref to="X509"/></selectable>
+		      <selectable>SSH host keys as defined in <xref to="pkg-ssh"/></selectable>
+		    </selectables> 
+      	     
 		    that is logically distinct from other communication
 		    channels and provides assured identification of its end points and protection of the channel
 		    data from disclosure and detection of modification of the channel data.
@@ -6517,7 +6538,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
       	          <selectable>authentication server</selectable>
       	          <selectable>management server</selectable>
       	          <selectable><assignable>other capabilities</assignable></selectable>
-      	        </selectables> using certificates as defined in <assignable>requirement or standard defining the use of certificates</assignable>
+      	        </selectables> using <assignable>peer authentication</assignable> 
       	        that is logically distinct from other communication channels and provides assured identification of its end points and
       	        protection of the channel data from disclosure and detection of modification of the channel data.
       	      </title>
@@ -6627,9 +6648,11 @@ Authorized remote administrators must initiate all communication with the OS via
 a trusted path and all communication with the OS by remote administrators must
 be performed over this path. The data passed in this trusted communication
 channel is encrypted as defined in FTP_ITC_EXT.1.1.
-If <xref to="s-local"/> users access is selected and no unprotected traffic is sent to remote
+		</h:p><h:p>
+If "local" is selected and no unprotected traffic is sent to remote
 users, then this requirement is met.
-If <xref to="s-remote"/> users access is selected, the
+		</h:p><h:p>
+If "remote" is selected, the
 ST author must include the security functional requirements for the trusted
 channel protocol selected in
 FTP_ITC_EXT.1.1 in the main body of the ST.
