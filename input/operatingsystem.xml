@@ -556,6 +556,7 @@ it manages may be physical or virtual.
             consist of altering existing legitimate communications.</description>
           <addressed-by>FAU_GEN.1</addressed-by>
           <rationale>FAU_GEN.1 helps mitigate the threat of a network attack by logging evidence of potential malicious activity.</rationale>
+          
           <addressed-by>FCS_CKM.1/AKG</addressed-by>
           <rationale>FCS_CKM.1/AKG helps mitigate the threat of a network attack by ensuring the generation of strong keys used for trusted communications.</rationale>
           <addressed-by>FCS_CKM.1/SKG</addressed-by>
@@ -563,6 +564,8 @@ it manages may be physical or virtual.
           <addressed-by>FCS_CKM.6</addressed-by>
           <rationale>FCS_CKM.6 helps mitigate the threat of a network attack by ensuring that keys used for trusted communications are destroyed in a secure manner.</rationale>
         
+          <addressed-by>FCS_COP.1/AEAD</addressed-by>
+          <rationale>FCS_COP.1/AEAD helps mitigate the threat of a network attack by ensuring the use of authenticated encryption algorithms in trusted communications.</rationale>
           <addressed-by>FCS_COP.1/Hash</addressed-by>
           <rationale>FCS_COP.1/Hash helps mitigate the threat of a network attack by ensuring that secure hash algorithms are used for trusted communications.</rationale>
           <addressed-by>FCS_COP.1/KeyedHash</addressed-by>
@@ -616,8 +619,7 @@ it manages may be physical or virtual.
           <rationale>FCS_CKM.2 helps mitigate the threat of a network attack by implementing secure methods to perform key distribution for trusted communications.</rationale>
           <addressed-by>FCS_CKM_EXT.7 (implementation-dependent)</addressed-by>
           <rationale>FCS_CKM_EXT.7 helps mitigate the threat of a network attack by implementing secure methods to perform key agreement for trusted communications.</rationale>
-          <addressed-by>FCS_COP.1/AEAD (implementation-dependent)</addressed-by>
-          <rationale>FCS_COP.1/AEAD helps mitigate the threat of a network attack by enforcing the use of secure authenticated encryption algorithms when wireless functionality is implemented by the TOE.</rationale>
+
           
           <addressed-by>FCS_COP.1/KeyEncap (selection-based)</addressed-by>
           <rationale>FCS_COP.1/KeyEncp helps mitigate the threat of a network attack by using a secure key encapsulation method to transmit a symmetric key to a third party as part of key establishment for trusted communications.</rationale>
@@ -717,6 +719,8 @@ it manages may be physical or virtual.
           <addressed-by>FCS_CKM.6</addressed-by>
           <rationale>FCS_CKM.6 helps mitigate the threat of network eavesdropping by ensuring that keys used for trusted communications are destroyed in a secure manner.</rationale>
  
+          <addressed-by>FCS_COP.1/AEAD</addressed-by>
+          <rationale>FCS_COP.1/AEAD helps mitigate the threat of network eavesdrop by enforcing the use of a cryptographic algorithm to protect data in transit that includes assurance of both authenticity and confidentiality.</rationale>
           <addressed-by>FCS_COP.1/Hash</addressed-by>
           <rationale>FCS_COP.1/Hash helps mitigate the threat of network eavesdropping by ensuring that secure hash algorithms are used for trusted communications.</rationale>
           <addressed-by>FCS_COP.1/KeyedHash</addressed-by>
@@ -748,8 +752,7 @@ it manages may be physical or virtual.
           <rationale>FCS_CKM.2 helps mitigate the threat of network eavesdropping by enforcing the use of a cryptographic algorithm to protect key data that is distributed in transit to a third party for use in trusted communications.</rationale>
           <addressed-by>FCS_CKM_EXT.7 (implementation-based)</addressed-by>
           <rationale>FCS_CKM_EXT.7 helps mitigate the threat of network eavesdropping by ensuring that a third party cannot obtain the key used by the TOE to communicate securely with a remote entity.</rationale>
-          <addressed-by>FCS_COP.1/AEAD (implementation-dependent)</addressed-by>
-          <rationale>FCS_COP.1/AEAD helps mitigate the threat of network eavesdrop by enforcing the use of a cryptographic algorithm to protect data in transit that includes assurance of both authenticity and confidentiality.</rationale>
+     
           
           
           <addressed-by>FCS_COP.1/KeyEncap (selection-based)</addressed-by>
@@ -2274,7 +2277,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                   <h:tr>
                     <h:td valign="top">ECDH</h:td>
                     <h:td valign="top">Elliptic Curve Diffie-Hellman</h:td>
-                    <h:td valign="top">Elliptic Curve [<h:b>selection:</h:b>P-256, P-384, P-521</h:td>
+                    <h:td valign="top">Elliptic Curve [<h:b>selection:</h:b> P-256, P-384, P-521</h:td>
                     <h:td valign="top">NIST SP 800-56A Revision 3 (Section 5.7.1.2) [ECDH]<h:p/>
                       NIST SP 800-186 (Section 3.2.1) [NIST Curves]</h:td>
                   </h:tr>
@@ -2362,7 +2365,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               </selectables>
             </title>
             <note role="application">
-              The use of 256-bit keys for AES encryption is required by CNSA 1.0 and 2.0. 128-bit keys may only be used when <xref to="blueooth"/> is claimed and only for the purpose of Bluetooth communications.
+              The use of 256-bit keys for AES encryption is required by CNSA 1.0 and 2.0. 128-bit keys may only be used when the PP-Module for Bluetooth is claimed and only for the purpose of Bluetooth communications.
             </note>
             <aactivity>
               <TSS>
@@ -3155,11 +3158,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 
               </selectables>
             </title>
-            <note role="application"> The ST author should choose the algorithm implemented to
-              perform digital signatures; if more than one algorithm is available, this requirement
-              should be iterated to specify the functionality. For the algorithm chosen, the ST
-              author should make the appropriate assignments and selections to specify the parameters
-              that are implemented for that algorithm.
+            <note role="application">As stated in the selection, 2048-bit RSA signatures may be used only for secure boot.
             </note>
        <aactivity>
 	       <TSS>The evaluator shall examine the TSS and verify that any hash function is the appropriate security
@@ -3595,12 +3594,6 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 
               </selectables>
             </title>
-            <note role="application"> The ST author should choose the algorithm implemented to
-              perform digital signatures; if more than one algorithm is available, this requirement
-              should be iterated to specify the functionality. For the algorithm chosen, the ST
-              author should make the appropriate assignments and selections to specify the parameters
-              that are implemented for that algorithm.
-            </note>
        <aactivity>
          <TSS>
            <h:p>
@@ -4720,7 +4713,7 @@ only AES-based implementations for CTR_DRBG are allowed.
         <Guidance>TBD</Guidance>
 	      <Tests>
 	      <h:p>
-	        The evaluator shall create two new standard user accounts on the TOE and conduct the tests below. If the TOE's home directory prevents exercising the permissions directly (i.e., because the home directory itself or its contents are restricted by permissions), the evaluator shall temporarily relax the permissions on the parent directory/directories in order to perform the tests.
+	        The evaluator shall create two new standard user accounts on the TOE and conduct the tests below. If the the TSF enforces access controls on user home directories that prevents the evaluator from exercising the permissions directly (i.e., because the home directory itself or its contents are restricted by permissions), the evaluator shall temporarily relax the permissions on the parent directory/directories in order to perform the tests.
               <testlist>
                 <test>
                   The evaluator shall authenticate to the system as the first user and create a file within that user&apos;s home directory.
@@ -6048,20 +6041,19 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 	</ext-comp-def>
         <f-component cc-id="fpt_stm.1" name="Reliable Time Stamps">
           <f-element id="fel-timestamp">
-            <title>The TSF shall be able to provide reliable time stamps <refinement>for its own use</refinement>. </title>
+            <title>The TSF shall be able to <refinement>obtain</refinement> reliable time stamps <refinement>from a primary time source for its own use</refinement>. </title>
+            <note role="application">In the context of this SFR, a primary time source is that which can be synchronized with a time source that is considered to be authoritative in the context of the overall organization deploying the TOE. Specifically, primary time sources include connectivity to an external NTP server, connectivity to a cellular carrier network, or in the case of a TOE that runs on a virtualization system, a hypercall to the virtualization system's host platform (as this platform could feasibly have its own connectivity to a primary time source). A primary time source does not include the hardware clock on the TOE platform if it is localized only to that system.</note>
             <aactivity>
               <TSS>The evaluator shall examine the TSS to ensure that it lists each security
-                function that makes use of time. The TSS provides a description of how the time is
-                maintained and considered reliable in the context of each of the time related
-                functions. The evaluator shall examine the TSS to verify that it describes the TOE's ability to obtain time data from an NTP server, a cellular carrier network, or a hypercall to a virtualization system on which the TOE runs.  
+                function that makes use of time, and that it identifies the primary time source that can be considered to be reliable. The evaluator shall examine the TSS to verify that it describes the TOE's ability to obtain time data from an NTP server, a cellular carrier network, or a hypercall to the TOE's hardware platform if running on a virtualization system.  
                 <h:br/><h:br/></TSS>
-              <Guidance>The evaluator examines the operational guidance to ensure it describes how
-                to set the time.<h:br/><h:br/></Guidance>
+              <Guidance>If this functionality is configurable, the evaluator shall examines the operational guidance to ensure it describes how
+                to set the time directly or how to configure the TOE's primary time source.<h:br/><h:br/></Guidance>
               <Tests>
                 <testlist>
-                  <test>The evaluator uses the operational guide to set the time. The evaluator
+                  <test>If the time is configurable, the evaluator shall follow the operational guidance to set the time. The evaluator
                         shall then use an available interface to observe that the time was set
-                        correctly.</test>
+                        correctly. If the primary time source is configurable, the evaluator shall deliberately set the time to an incorrect value, verify the incorrect time setting is applied, configure the TOE to connect to the primary time source, and verify that the time is subsequently synchronized to the expected time.</test>
                 </testlist>
               </Tests>
             </aactivity>
@@ -6233,7 +6225,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 			  which specifies automatic update.
 			  </h:p>
 			  <h:p>The evaluator is also to ensure that the response to this query is authentic by using a digital signature scheme specified in FCS_COP.1/SigVer. 
-				The digital signature verification may be performed as part of a network protocol that uses a trusted channel as described in FTP_ITC_EXT.1.)
+				The digital signature verification may be performed as part of a network protocol that uses a trusted channel as described in FTP_ITC_EXT.1.
 				If the signature verification is not performed as part of a trusted channel, the evaluator shall send a query response with a bad signature and verify that the signature verification fails.
 				The evaluator shall then send a query response with a good signature and verify that the signature verification is successful.</h:p>
 	      <h:p>For the following tests, the evaluator shall initiate the download of an update and
@@ -6448,7 +6440,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
           <f-element id="fel-banner">
             <title>
             Before establishing a user session, the [<h:i>TSF</h:i>] shall display an [<h:i>advisory
-            warning</h:i>] message <h:b>regarding unauthorized use of the OS</h:b>.
+            warning</h:i>] message <h:b>regarding unauthorized use of the TSF</h:b>.
             </title>
             <aactivity>
         <TSS>The evaluator shall examine the TSS to verify that it identifies the user interfaces to the TOE and specifies that a configurable warning banner can be displayed on each interface.</TSS>
@@ -6547,7 +6539,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
       	    <note role="application">
              <h:p>
                The ST author must include the security functional requirements for the trusted
-               channel protocol selected in FTP_ITC_EXT.1.1 in the main body of the ST.
+               channel protocol selected in FTP_ITC_EXT.1.1 as part of the TSF.
              </h:p>
       	     <h:p>
       	       If TLS or DTLS is selected, the TSF must be validated against the appropriate requirements in the <xref to="pkg-tls"/>.
@@ -6559,7 +6551,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
       	        If <xref to="s-ftp_ssh"/> is selected, the TSF must be validated against
       	        the <xref to="pkg-ssh"/> and the corresponding selection is expected to be made in FIA_UAU.5.1.
       	        The ST author must include the security functional requirements for the trusted channel protocol
-      	        selected in FTP_ITC_EXT.1 in the main body of the ST.
+      	        selected in FTP_ITC_EXT.1 as part of the TSF.
       	    </h:p>
       	      <h:p>
       	        Claims from the <xref to="X509"/> are only required to the extent that they are needed to support the functionality required by the trusted protocols that are claimed.
@@ -6656,7 +6648,7 @@ users, then this requirement is met.
 If "remote" is selected, the
 ST author must include the security functional requirements for the trusted
 channel protocol selected in
-FTP_ITC_EXT.1.1 in the main body of the ST.
+FTP_ITC_EXT.1.1 as part of the TSF.
 		</h:p>
 	      </note>
             </f-element>
