@@ -2137,6 +2137,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                   <col>ECDH</col>
                   <col>Elliptic Curve Diffie-Hellman</col>
                   <col>Elliptic Curve <selectables>
+                    <selectable id="sel-exp-kat-ecdh-P256">P-256</selectable>
                     <selectable id="sel-exp-kat-ecdh-P384">P-384</selectable>
                     <selectable id="sel-exp-kat-ecdh-P521">P-521</selectable></selectables>
                   </col>
@@ -2149,7 +2150,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
             </title>
             <note role="application">
               This SFR is claimed if the TSF supports key agreement schemes as a method of key establishment for trusted channels. This will generally apply to all conformant TOEs, except in the rare (but possible) case where only key encapsulation is used.<h:p/>
-              All of the above algorithms with the selectable parameters are CNSA 1.0 compliant.<h:p/>
+              All of the above algorithms with the selectable parameters are CNSA 1.0 compliant with the exception of P-256 ECDH. This may only be selected if the PP-Module for Bluetooth is included in the ST and P-256 may only be used specifically for Bluetooth functions.<h:p/>
               This SFR must be included in the ST if key agreement or transport is a service provided by the TOE to 
               tenant software, or if they are used by the TOE itself to support or implement PP-specified security 
               functionality.<h:p/> 
@@ -2158,9 +2159,9 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               <TSS>
                 The evaluator shall ensure that the TSS documents that the security strength of the
                 material contributed by the TOE is sufficient for the security strength of the key and the
-                agreement method.
+                agreement method. If support for P-256 is claimed, the evaluator shall examine the TSS to verify that it is only used for Bluetooth functions.
               </TSS>
-              <Guidance>There are no additional Guidance evaluation activities for this component.</Guidance>
+              <Guidance>There are no guidance EAs for this component.</Guidance>
               <Tests>
                 The following tests are conditional based upon the selections made in the SFR.
                 The evaluator shall perform the following test or witness respective tests
@@ -2273,7 +2274,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                   <h:tr>
                     <h:td valign="top">ECDH</h:td>
                     <h:td valign="top">Elliptic Curve Diffie-Hellman</h:td>
-                    <h:td valign="top">Elliptic Curve [<h:b>selection:</h:b> P-384, P-521</h:td>
+                    <h:td valign="top">Elliptic Curve [<h:b>selection:</h:b>P-256, P-384, P-521</h:td>
                     <h:td valign="top">NIST SP 800-56A Revision 3 (Section 5.7.1.2) [ECDH]<h:p/>
                       NIST SP 800-186 (Section 3.2.1) [NIST Curves]</h:td>
                   </h:tr>
@@ -2281,7 +2282,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 To test the TOE’s implementation of Elliptic Curve Diffie-Hellman Key Agreement,
                 the evaluator shall perform the Algorithm Functional Test and Validation Test 
                 using the following input parameters:<h:ul>
-                  <h:li>Elliptic Curve [P-384, P-521]</h:li></h:ul><h:p/>
+                  <h:li>Elliptic Curve [P-256, P-384, P-521]</h:li></h:ul><h:p/>
                 <h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
                 For each supported Elliptic Curve the evaluator shall generate 10 test cases by
                 generating the initiator and responder secret keys using random data, calculating 
