@@ -2030,7 +2030,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               </table><div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-              The use of 256-bit keys for <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> encryption is required by CNSA 1.0 and 2.0. 128-bit keys may only be used when <a href="#blueooth" class="dynref" data-format=""></a> is claimed and only for the purpose of Bluetooth communications.
+              The use of 256-bit keys for <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> encryption is required by CNSA 1.0 and 2.0. 128-bit keys may only be used when the <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Bluetooth is claimed and only for the purpose of Bluetooth communications.
             </span></div></div></div>
           
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_COP.1/AEAD">FCS_COP.1/AEAD</a></div>
@@ -2522,11 +2522,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
                 
               </table><div class="appnote"><span class="note-header">Application
       Note:
-    </span><span class="note"> The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author should choose the algorithm implemented to
-              perform digital signatures; if more than one algorithm is available, this requirement
-              should be iterated to specify the functionality. For the algorithm chosen, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>
-              author should make the appropriate assignments and selections to specify the parameters
-              that are implemented for that algorithm.
+    </span><span class="note">As stated in the selection, 2048-bit RSA signatures may be used only for secure boot.
             </span></div></div></div>
           
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_COP.1/SigGen">FCS_COP.1/SigGen</a></div>
@@ -2923,14 +2919,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 
                 
                 
-              </table><div class="appnote"><span class="note-header">Application
-      Note:
-    </span><span class="note"> The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author should choose the algorithm implemented to
-              perform digital signatures; if more than one algorithm is available, this requirement
-              should be iterated to specify the functionality. For the algorithm chosen, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>
-              author should make the appropriate assignments and selections to specify the parameters
-              that are implemented for that algorithm.
-            </span></div></div></div>
+              </table></div></div>
           
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_COP.1/SigVer">FCS_COP.1/SigVer</a></div>
          
@@ -3646,7 +3635,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      </p>
 	      </div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">TBD</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
 	      <p>
-	        The evaluator shall create two new standard user accounts on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and conduct the tests below. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s home directory prevents exercising the permissions directly (i.e., because the home directory itself or its contents are restricted by permissions), the evaluator shall temporarily relax the permissions on the parent directory/directories in order to perform the tests.
+	        The evaluator shall create two new standard user accounts on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and conduct the tests below. If the the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> enforces access controls on user home directories that prevents the evaluator from exercising the permissions directly (i.e., because the home directory itself or its contents are restricted by permissions), the evaluator shall temporarily relax the permissions on the parent directory/directories in order to perform the tests.
               <span class="testlist-"><ul>
                 <li class="test-"><a id="_t_5" class="defined" href="#_t_5">Test FDP_ACF_EXT.1:1</a>:
       
@@ -4365,23 +4354,23 @@ The evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_T
 
         
         <div class="comp" id="FPT_STM.1"><h4>FPT_STM.1 Reliable Time Stamps</h4>
-          <div class="element"><div class="reqid" id="FPT_STM.1.1"><a href="#FPT_STM.1.1" class="abbr">FPT_STM.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be able to provide reliable time stamps <span class="refinement">for its own use</span>. </div></div>
+          <div class="element"><div class="reqid" id="FPT_STM.1.1"><a href="#FPT_STM.1.1" class="abbr">FPT_STM.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be able to <span class="refinement">obtain</span> reliable time stamps <span class="refinement">from a primary time source for its own use</span>. <div class="appnote"><span class="note-header">Application
+      Note:
+    </span><span class="note">In the context of this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr>, a primary time source is that which can be synchronized with a time source that is considered to be authoritative in the context of the overall organization deploying the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. Specifically, primary time sources include connectivity to an external NTP server, connectivity to a cellular carrier network, or in the case of a <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> that runs on a virtualization system, a hypercall to the virtualization system's host platform (as this platform could feasibly have its own connectivity to a primary time source). A primary time source does not include the hardware clock on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> platform if it is localized only to that system.</span></div></div></div>
           
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FPT_STM.1">FPT_STM.1</a></div>
               
               
               
             <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">The evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to ensure that it lists each security
-                function that makes use of time. The <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> provides a description of how the time is
-                maintained and considered reliable in the context of each of the time related
-                functions. The evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to verify that it describes the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s ability to obtain time data from an NTP server, a cellular carrier network, or a hypercall to a virtualization system on which the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> runs.  
-                <br/><br/></div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">The evaluator examines the operational guidance to ensure it describes how
-                to set the time.<br/><br/></div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
+                function that makes use of time, and that it identifies the primary time source that can be considered to be reliable. The evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to verify that it describes the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s ability to obtain time data from an NTP server, a cellular carrier network, or a hypercall to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s hardware platform if running on a virtualization system.  
+                <br/><br/></div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">If this functionality is configurable, the evaluator shall examines the operational guidance to ensure it describes how
+                to set the time directly or how to configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s primary time source.<br/><br/></div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
                 <span class="testlist-"><ul>
                   <li class="test-"><a id="_t_46" class="defined" href="#_t_46">Test FPT_STM.1:1</a>:
-      The evaluator uses the operational guide to set the time. The evaluator
+      If the time is configurable, the evaluator shall follow the operational guidance to set the time. The evaluator
                         shall then use an available interface to observe that the time was set
-                        correctly.</li>
+                        correctly. If the primary time source is configurable, the evaluator shall deliberately set the time to an incorrect value, verify the incorrect time setting is applied, configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to connect to the primary time source, and verify that the time is subsequently synchronized to the expected time.</li>
                 </ul></span>
               </div></div></div></div></div>
         <div class="comp" id="FPT_TST_EXT.1"><h4>FPT_TST_EXT.1 Boot Integrity</h4>
@@ -4529,7 +4518,7 @@ The evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_T
 			  which specifies automatic update.
 			  </p>
 			  <p>The evaluator is also to ensure that the response to this query is authentic by using a digital signature scheme specified in <a href="#FCS_COP.1/SigVer">FCS_COP.1/SigVer</a>. 
-				The digital signature verification may be performed as part of a network protocol that uses a trusted channel as described in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a>.)
+				The digital signature verification may be performed as part of a network protocol that uses a trusted channel as described in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a>.
 				If the signature verification is not performed as part of a trusted channel, the evaluator shall send a query response with a bad signature and verify that the signature verification fails.
 				The evaluator shall then send a query response with a good signature and verify that the signature verification is successful.</p>
 	      <p>For the following tests, the evaluator shall initiate the download of an update and
@@ -4682,7 +4671,7 @@ The evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_T
     </span><span class="note">
              <p>
                The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must include the security functional requirements for the trusted
-               channel protocol selected in <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a> in the main body of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
+               channel protocol selected in <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a> as part of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.
              </p>
       	     <p>
       	       If <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> is selected, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> must be validated against the appropriate requirements in the <a href="https://www.niap-ccevs.org/static_html/protection-profile/439/-439-/index.html">Functional Package for Transport Layer Security (TLS),
@@ -4698,7 +4687,7 @@ The evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_T
         version 
         2.0</a> and the corresponding selection is expected to be made in <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a>.
       	        The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must include the security functional requirements for the trusted channel protocol
-      	        selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> in the main body of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
+      	        selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> as part of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.
       	    </p>
       	      <p>
       	        Claims from the <a href="https://www.niap-ccevs.org/protectionprofiles/511">Functional Package for X.509,
@@ -4751,7 +4740,7 @@ users, then this requirement is met.
 If "remote" is selected, the
 <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must include the security functional requirements for the trusted
 channel protocol selected in
-<a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a> in the main body of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
+<a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a> as part of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.
 		</p>
 	      </span></div></div></div>
             <div class="element"><div class="reqid" id="FTP_TRP.1.2"><a href="#FTP_TRP.1.2" class="abbr">FTP_TRP.1.2</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall permit
@@ -4825,6 +4814,7 @@ The evaluator shall also perform the following tests:
 <tr><td><a href="#FCS_CKM.1/AKG">FCS_CKM.1/AKG</a></td><td><a href="#FCS_CKM.1/AKG">FCS_CKM.1/AKG</a> helps mitigate the threat of a network attack by ensuring the generation of strong keys used for trusted communications.</td></tr>
 <tr><td><a href="#FCS_CKM.1/SKG">FCS_CKM.1/SKG</a></td><td><a href="#FCS_CKM.1/SKG">FCS_CKM.1/SKG</a> helps mitigate the threat of a network attack by ensuring the generation of strong keys used for trusted communications.</td></tr>
 <tr><td><a href="#FCS_CKM.6">FCS_CKM.6</a></td><td><a href="#FCS_CKM.6">FCS_CKM.6</a> helps mitigate the threat of a network attack by ensuring that keys used for trusted communications are destroyed in a secure manner.</td></tr>
+<tr><td><a href="#FCS_COP.1/AEAD">FCS_COP.1/AEAD</a></td><td><a href="#FCS_COP.1/AEAD">FCS_COP.1/AEAD</a> helps mitigate the threat of a network attack by ensuring the use of authenticated encryption algorithms in trusted communications.</td></tr>
 <tr><td><a href="#FCS_COP.1/Hash">FCS_COP.1/Hash</a></td><td><a href="#FCS_COP.1/Hash">FCS_COP.1/Hash</a> helps mitigate the threat of a network attack by ensuring that secure hash algorithms are used for trusted communications.</td></tr>
 <tr><td><a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a></td><td><a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a> helps mitigate the threat of a network attack by ensuring that secure <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> algorithms are used for trusted communications.</td></tr>
 <tr><td><a href="#FCS_COP.1/SigGen">FCS_COP.1/SigGen</a></td><td><a href="#FCS_COP.1/SigGen">FCS_COP.1/SigGen</a> helps mitigate the threat of a network attack by ensuring that secure digital signature algorithms are used for trusted communications.</td></tr>
@@ -4849,7 +4839,6 @@ The evaluator shall also perform the following tests:
 <tr><td><a href="#FPT_BLT_EXT.1">FPT_BLT_EXT.1</a> (objective)</td><td><a href="#FPT_BLT_EXT.1">FPT_BLT_EXT.1</a> helps mitigate the threat of a network attack by enforcing least functionality of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s Bluetooth interface.</td></tr>
 <tr><td><a href="#FCS_CKM.2">FCS_CKM.2</a> (implementation-dependent)</td><td><a href="#FCS_CKM.2">FCS_CKM.2</a> helps mitigate the threat of a network attack by implementing secure methods to perform key distribution for trusted communications.</td></tr>
 <tr><td><a href="#FCS_CKM_EXT.7">FCS_CKM_EXT.7</a> (implementation-dependent)</td><td><a href="#FCS_CKM_EXT.7">FCS_CKM_EXT.7</a> helps mitigate the threat of a network attack by implementing secure methods to perform key agreement for trusted communications.</td></tr>
-<tr><td><a href="#FCS_COP.1/AEAD">FCS_COP.1/AEAD</a> (implementation-dependent)</td><td><a href="#FCS_COP.1/AEAD">FCS_COP.1/AEAD</a> helps mitigate the threat of a network attack by enforcing the use of secure authenticated encryption algorithms when wireless functionality is implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.</td></tr>
 <tr><td><a href="#FCS_COP.1/KeyEncap">FCS_COP.1/KeyEncap</a> (selection-based)</td><td>FCS_COP.1/KeyEncp helps mitigate the threat of a network attack by using a secure key encapsulation method to transmit a symmetric key to a third party as part of key establishment for trusted communications.</td></tr>
 <tr><td><a href="#FCS_COP.1/KeyWrap">FCS_COP.1/KeyWrap</a> (selection-based)</td><td><a href="#FCS_COP.1/KeyWrap">FCS_COP.1/KeyWrap</a> helps mitigate the threat of a network attack by using a secure key wrap method to distribute key material to a third party for use in trusted communications.</td></tr>
 <tr><td><a href="#FCS_COP.1/XOF">FCS_COP.1/XOF</a> (selection-based)</td><td><a href="#FCS_COP.1/XOF">FCS_COP.1/XOF</a> helps mitigate the threat of a network attack by supporting extendable output function implementations that are dependencies of some secure key generation and signature verification algorithms.</td></tr>
@@ -4861,6 +4850,7 @@ The evaluator shall also perform the following tests:
 <tr class="major-row"><td rowspan="26"><a href="#T.NETWORK_EAVESDROP">T.NETWORK_​EAVESDROP</a></td><td><a href="#FCS_CKM.1/AKG">FCS_CKM.1/AKG</a></td><td><a href="#FCS_CKM.1/AKG">FCS_CKM.1/AKG</a> helps mitigate the threat of network eavesdropping by ensuring the generation of strong keys used for trusted communications.</td></tr>
 <tr><td><a href="#FCS_CKM.1/SKG">FCS_CKM.1/SKG</a></td><td><a href="#FCS_CKM.1/SKG">FCS_CKM.1/SKG</a> helps mitigate the threat of network eavesdropping by ensuring the generation of strong keys used for trusted communications.</td></tr>
 <tr><td><a href="#FCS_CKM.6">FCS_CKM.6</a></td><td><a href="#FCS_CKM.6">FCS_CKM.6</a> helps mitigate the threat of network eavesdropping by ensuring that keys used for trusted communications are destroyed in a secure manner.</td></tr>
+<tr><td><a href="#FCS_COP.1/AEAD">FCS_COP.1/AEAD</a></td><td><a href="#FCS_COP.1/AEAD">FCS_COP.1/AEAD</a> helps mitigate the threat of network eavesdrop by enforcing the use of a cryptographic algorithm to protect data in transit that includes assurance of both authenticity and confidentiality.</td></tr>
 <tr><td><a href="#FCS_COP.1/Hash">FCS_COP.1/Hash</a></td><td><a href="#FCS_COP.1/Hash">FCS_COP.1/Hash</a> helps mitigate the threat of network eavesdropping by ensuring that secure hash algorithms are used for trusted communications.</td></tr>
 <tr><td><a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a></td><td><a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a> helps mitigate the threat of network eavesdropping by ensuring that secure <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> algorithms are used for trusted communications.</td></tr>
 <tr><td><a href="#FCS_COP.1/SigGen">FCS_COP.1/SigGen</a></td><td><a href="#FCS_COP.1/SigGen">FCS_COP.1/SigGen</a> helps mitigate the threat of network eavesdropping by ensuring that secure digital signature algorithms are used for trusted communications.</td></tr>
@@ -4875,7 +4865,6 @@ The evaluator shall also perform the following tests:
 <tr><td><a href="#FPT_BLT_EXT.1">FPT_BLT_EXT.1</a> (objective)</td><td><a href="#FPT_BLT_EXT.1">FPT_BLT_EXT.1</a> helps mitigate the threat of network eavesdropping by enforcing least functionality of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s Bluetooth interface.</td></tr>
 <tr><td><a href="#FCS_CKM.2">FCS_CKM.2</a> (implementation-dependent)</td><td><a href="#FCS_CKM.2">FCS_CKM.2</a> helps mitigate the threat of network eavesdropping by enforcing the use of a cryptographic algorithm to protect key data that is distributed in transit to a third party for use in trusted communications.</td></tr>
 <tr><td><a href="#FCS_CKM_EXT.7">FCS_CKM_EXT.7</a> (implementation-based)</td><td><a href="#FCS_CKM_EXT.7">FCS_CKM_EXT.7</a> helps mitigate the threat of network eavesdropping by ensuring that a third party cannot obtain the key used by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to communicate securely with a remote entity.</td></tr>
-<tr><td><a href="#FCS_COP.1/AEAD">FCS_COP.1/AEAD</a> (implementation-dependent)</td><td><a href="#FCS_COP.1/AEAD">FCS_COP.1/AEAD</a> helps mitigate the threat of network eavesdrop by enforcing the use of a cryptographic algorithm to protect data in transit that includes assurance of both authenticity and confidentiality.</td></tr>
 <tr><td><a href="#FCS_COP.1/KeyEncap">FCS_COP.1/KeyEncap</a> (selection-based)</td><td><a href="#FCS_COP.1/KeyWrap">FCS_COP.1/KeyWrap</a> helps mitigate the threat of network eavesdrop by using a key encapsulation algorithm to protect data in transit</td></tr>
 <tr><td><a href="#FCS_COP.1/KeyWrap">FCS_COP.1/KeyWrap</a> (selection-based)</td><td><a href="#FCS_COP.1/KeyWrap">FCS_COP.1/KeyWrap</a> helps mitigate the threat of network eavesdrop by using a key wrap algorithm to protect data in transit.</td></tr>
 <tr><td><a href="#FCS_RBG.2">FCS_RBG.2</a> (selection-based)</td><td><a href="#FCS_RBG.2">FCS_RBG.2</a> helps mitigate the threat of network eavesdropping by ensuring that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</td></tr>
@@ -5628,7 +5617,7 @@ The evaluator shall also perform the following tests:
               </div></div></div></div></div><h3 id="fta-optional" class="indexable" data-level="3">A.1.5 TOE Access (FTA)</h3><div class="comp" id="FTA_TAB.1"><h4>FTA_TAB.1 Default TOE access banners</h4>
           <div class="element"><div class="reqid" id="FTA_TAB.1.1"><a href="#FTA_TAB.1.1" class="abbr">FTA_TAB.1.1</a></div><div class="reqdesc">
             Before establishing a user session, the [<i><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></i>] shall display an [<i>advisory
-            warning</i>] message <b>regarding unauthorized use of the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></b>.
+            warning</i>] message <b>regarding unauthorized use of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></b>.
             </div></div>
           
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FTA_TAB.1">FTA_TAB.1</a></div>
@@ -6061,7 +6050,7 @@ The evaluator shall also perform the following tests:
                   <tr>
                     <td valign="top">ECDH</td>
                     <td valign="top">Elliptic Curve Diffie-Hellman</td>
-                    <td valign="top">Elliptic Curve [<b>selection:</b>P-256, P-384, P-521</td>
+                    <td valign="top">Elliptic Curve [<b>selection:</b> P-256, P-384, P-521</td>
                     <td valign="top"><abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-56A Revision 3 (Section 5.7.1.2) [ECDH]<p></p>
                       <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-186 (Section 3.2.1) [<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> Curves]</td>
                   </tr>
