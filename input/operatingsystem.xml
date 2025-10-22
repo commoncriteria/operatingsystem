@@ -2057,6 +2057,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
           </fam-behavior>
         </ext-comp-def>
         <f-component id="sfr-fcs-ckm-ext-7" cc-id="fcs_ckm_ext.7" name="Cryptographic Key Agreement" status="feat-based">
+          <depends on="bluetooth-support"/>
           <depends on="key-agreement-support"/>
                     
           <consistency-rationale/>
@@ -3628,7 +3629,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
              <h:tr>
                <h:td valign="top">RSA-PKCS </h:td>
                <h:td valign="top">RSASSA-PKCS1-v1_5</h:td>
-               <h:td valign="top">Modulus of size [<h:b>selection:</h:b> <h:i>3072, 4096, 6144, 8192</h:i>] bits,
+               <h:td valign="top">Modulus of size [<h:b>selection:</h:b> <h:i>2048 (for secure boot only), 3072, 4096, 6144, 8192</h:i>] bits,
                  hash [<h:b>selection:</h:b> <h:i>SHA-384, SHA-512</h:i>]</h:td>
                <h:td valign="top">RFC 8017 (Section 8.2) [PKCS #1 v2.2]<h:p/>
                  NIST FIPS PUB 186-5 (Section 5.4) [RSASSA-PKCS1-v1_5]</h:td>
@@ -3637,7 +3638,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
            To test the TOE’s ability to perform RSA Digital Signature Verification using PKCS1-v1,5
            signature type, the evaluator shall perform Generated Data Test using the following input
            parameters:<h:ul>
-             <h:li>Modulus size [3072, 4096, 6144, 8192] bits</h:li>
+             <h:li>Modulus size [2048, 3072, 4096, 6144, 8192] bits</h:li>
              <h:li>Hash algorithm [SHA-384, SHA-512]</h:li></h:ul><h:p/>
            <h:br/><h:b>Generated Data Test</h:b><h:p/>
            For each supported combination of the above parameters, the evaluator shall cause the TOE to
@@ -3664,7 +3665,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
              <h:tr>
                <h:td valign="top">RSA-PSS</h:td>
                <h:td valign="top">RSASSA-PSS</h:td>
-               <h:td valign="top">Modulus of size [<h:b>selection:</h:b> <h:i>3072, 4096, 6144, 8192</h:i>] bits,
+               <h:td valign="top">Modulus of size [<h:b>selection:</h:b> <h:i>2048 (for secure boot only), 3072, 4096, 6144, 8192</h:i>] bits,
                  hash [<h:b>selection:</h:b> <h:i>SHA-384, SHA-512</h:i>]</h:td>
                <h:td valign="top">RFC 8017 (Section 8.2) [PKCS #1 v2.2]<h:p/>
                  NIST FIPS PUB 186-5 (Section 5.4) [RSASSA-PSS]</h:td>
@@ -3672,7 +3673,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
            </h:table><h:p/>	
            To test the TOE’s ability to perform RSA Digital Signature Verification using PSS signature
            type, the evaluator shall perform the Generated Data Test using the following input parameters:<h:ul>
-             <h:li>Modulus size [3072, 4096, 6144, 8192] bits</h:li>
+             <h:li>Modulus size [2048, 3072, 4096, 6144, 8192] bits</h:li>
              <h:li>Hash algorithm [SHA-384, SHA-512]</h:li>
              <h:li>Salt length [0-hash length]</h:li>
              <h:li>Mask function [MGF1]</h:li></h:ul><h:p/>
@@ -6087,8 +6088,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
                 <selectable>a digital signature using a hardware-protected asymmetric key</selectable>
 		<selectable id="s-boot-x509">a digital signature using an X.509 certificate with hardware-based protection</selectable>
                 <selectable>a hardware-protected hash</selectable>
-              </selectables>
-	     .
+              </selectables>.
             </title>
             <note role="application">
 	      <h:p>
