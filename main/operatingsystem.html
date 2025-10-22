@@ -887,7 +887,7 @@ The following sections list Common Criteria and technology terms used in this do
       The features enumerated below, if implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, require that additional <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.<br/>
       <h3 class="indexable" data-level="3" id="bluetooth-support">1.6.1 Bluetooth Support</h3><span class="description">A conformant <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> may implement Bluetooth functionality. If so, it is necessary for the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to support specific cryptographic algorithms and key sizes to support Bluetooth communications. The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> will also claim a <abbr class="dyn-abbr"><a href="#abbr_PP-Configuration">PP-Configuration</a></abbr> that includes the <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Bluetooth.<br/></span><br/><p>
 	  If this feature is implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the following requirements must be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>:
-            <ul></ul></p><h3 class="indexable" data-level="3" id="key-encap-support">1.6.2 Key Encapsulation Support</h3><span class="description">A conformant <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is required to implement trusted communications. Depending on the specific protocols used and the supported connection parameters for these protocols, it may be necessary to implement a key encapsulation algorithm as part of key establishment.<br/></span><br/><p>
+            <ul><li><b><a href="#FCS_CKM_EXT.7">FCS_CKM_EXT.7</a></b></li></ul></p><h3 class="indexable" data-level="3" id="key-encap-support">1.6.2 Key Encapsulation Support</h3><span class="description">A conformant <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is required to implement trusted communications. Depending on the specific protocols used and the supported connection parameters for these protocols, it may be necessary to implement a key encapsulation algorithm as part of key establishment.<br/></span><br/><p>
 	  If this feature is implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the following requirements must be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>:
             <ul><li><b><a href="#FCS_CKM.2">FCS_CKM.2</a></b></li></ul></p><h3 class="indexable" data-level="3" id="key-agreement-support">1.6.3 Key Agreement Support</h3><span class="description">A conformant <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is required to implement trusted communications. Depending on the specific protocols used and the supported connection parameters for these protocols, it may be necessary to implement one or more key agreement algorithms as part of key establishment.<br/></span><br/><p>
 	  If this feature is implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the following requirements must be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>:
@@ -1993,9 +1993,10 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
         
         <div class="comp" id="FCS_CKM_EXT.7"><h4>FCS_CKM_EXT.7 Cryptographic Key Agreement</h4><div class="statustag"><i><b>This is an implementation-based component.
                 Its inclusion in depends on whether the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements one or more of the following features:
-                <ul><li><a href="#key-agreement-support">Key Agreement Support</a></li></ul>
+                <ul><li><a href="#bluetooth-support">Bluetooth Support</a></li><li><a href="#key-agreement-support">Key Agreement Support</a></li></ul>
                 as described in Appendix A.3: Implementation-based Requirements.
                </b></i></div>
+          
           
                     
           
@@ -3505,7 +3506,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
              <tr>
                <td valign="top">RSA-PKCS </td>
                <td valign="top">RSASSA-PKCS1-v1_5</td>
-               <td valign="top">Modulus of size [<b>selection:</b> <i>3072, 4096, 6144, 8192</i>] bits,
+               <td valign="top">Modulus of size [<b>selection:</b> <i>2048 (for secure boot only), 3072, 4096, 6144, 8192</i>] bits,
                  hash [<b>selection:</b> <i><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512</i>]</td>
                <td valign="top"><abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 8017 (Section 8.2) [PKCS #1 v2.2]<p></p>
                  <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-5 (Section 5.4) [RSASSA-PKCS1-v1_5]</td>
@@ -3514,7 +3515,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
            To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to perform RSA Digital Signature Verification using PKCS1-v1,5
            signature type, the evaluator shall perform Generated Data Test using the following input
            parameters:<ul>
-             <li>Modulus size [3072, 4096, 6144, 8192] bits</li>
+             <li>Modulus size [2048, 3072, 4096, 6144, 8192] bits</li>
              <li>Hash algorithm [<abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512]</li></ul><p></p>
            <br/><b>Generated Data Test</b><p></p>
            For each supported combination of the above parameters, the evaluator shall cause the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to
@@ -3541,7 +3542,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
              <tr>
                <td valign="top">RSA-PSS</td>
                <td valign="top">RSASSA-PSS</td>
-               <td valign="top">Modulus of size [<b>selection:</b> <i>3072, 4096, 6144, 8192</i>] bits,
+               <td valign="top">Modulus of size [<b>selection:</b> <i>2048 (for secure boot only), 3072, 4096, 6144, 8192</i>] bits,
                  hash [<b>selection:</b> <i><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512</i>]</td>
                <td valign="top"><abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 8017 (Section 8.2) [PKCS #1 v2.2]<p></p>
                  <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-5 (Section 5.4) [RSASSA-PSS]</td>
@@ -3549,7 +3550,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
            </table><p></p>	
            To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to perform RSA Digital Signature Verification using PSS signature
            type, the evaluator shall perform the Generated Data Test using the following input parameters:<ul>
-             <li>Modulus size [3072, 4096, 6144, 8192] bits</li>
+             <li>Modulus size [2048, 3072, 4096, 6144, 8192] bits</li>
              <li>Hash algorithm [<abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512]</li>
              <li>Salt length [0-hash length]</li>
              <li>Mask function [MGF1]</li></ul><p></p>
@@ -5443,8 +5444,7 @@ The evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_T
               [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-verify-all-code">all executable code stored in mutable media</span></li><li style=""><span class="selectable-content" id="_s_345">[<b>assignment</b>: 
      <span class="assignable-content">list of other executable code</span>]</span></li><li style=""><span class="selectable-content" id="_s_346">no other executable code</span></li></ul>]
 	      prior to its execution through the use of
-              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_347">a digital signature using a hardware-protected asymmetric key</span></li><li style=""><span class="selectable-content" id="s-boot-x509">a digital signature using an X.509 certificate with hardware-based protection</span></li><li style=""><span class="selectable-content" id="_s_349">a hardware-protected hash</span></li></ul>]
-	     .
+              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_347">a digital signature using a hardware-protected asymmetric key</span></li><li style=""><span class="selectable-content" id="s-boot-x509">a digital signature using an X.509 certificate with hardware-based protection</span></li><li style=""><span class="selectable-content" id="_s_349">a hardware-protected hash</span></li></ul>].
             <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -6542,7 +6542,7 @@ The evaluator shall also perform the following tests:
 		For this technology type, the following product features require the claiming of additional <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr>:
   <h3 class="indexable" data-level="3" id="bluetooth-support">A.0.1 Bluetooth Support</h3><span class="description">A conformant <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> may implement Bluetooth functionality. If so, it is necessary for the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to support specific cryptographic algorithms and key sizes to support Bluetooth communications. The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> will also claim a <abbr class="dyn-abbr"><a href="#abbr_PP-Configuration">PP-Configuration</a></abbr> that includes the <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Bluetooth.<br/></span><br/><p>
 	  If this feature is implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the following requirements must be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>:
-            <ul></ul></p><h3 class="indexable" data-level="3" id="key-encap-support">A.0.2 Key Encapsulation Support</h3><span class="description">A conformant <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is required to implement trusted communications. Depending on the specific protocols used and the supported connection parameters for these protocols, it may be necessary to implement a key encapsulation algorithm as part of key establishment.<br/></span><br/><p>
+            <ul><li><b><a href="#FCS_CKM_EXT.7">FCS_CKM_EXT.7</a></b></li></ul></p><h3 class="indexable" data-level="3" id="key-encap-support">A.0.2 Key Encapsulation Support</h3><span class="description">A conformant <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is required to implement trusted communications. Depending on the specific protocols used and the supported connection parameters for these protocols, it may be necessary to implement a key encapsulation algorithm as part of key establishment.<br/></span><br/><p>
 	  If this feature is implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the following requirements must be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>:
             <ul><li><b><a href="#FCS_CKM.2">FCS_CKM.2</a></b></li></ul></p><h3 class="indexable" data-level="3" id="key-agreement-support">A.0.3 Key Agreement Support</h3><span class="description">A conformant <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is required to implement trusted communications. Depending on the specific protocols used and the supported connection parameters for these protocols, it may be necessary to implement one or more key agreement algorithms as part of key establishment.<br/></span><br/><p>
 	  If this feature is implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the following requirements must be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>:
@@ -6729,8 +6729,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selectio
               [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-verify-all-code">all executable code stored in mutable media</span></li><li style=""><span class="selectable-content" id="_s_345">[<b>assignment</b>: 
      <span class="assignable-content">list of other executable code</span>]</span></li><li style=""><span class="selectable-content" id="_s_346">no other executable code</span></li></ul>]
 	      prior to its execution through the use of
-              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_347">a digital signature using a hardware-protected asymmetric key</span></li><li style=""><span class="selectable-content" id="s-boot-x509">a digital signature using an X.509 certificate with hardware-based protection</span></li><li style=""><span class="selectable-content" id="_s_349">a hardware-protected hash</span></li></ul>]
-	     .
+              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_347">a digital signature using a hardware-protected asymmetric key</span></li><li style=""><span class="selectable-content" id="s-boot-x509">a digital signature using an X.509 certificate with hardware-based protection</span></li><li style=""><span class="selectable-content" id="_s_349">a hardware-protected hash</span></li></ul>].
             </div></div><h3 id="ext-comp-FPT_TUD_EXT" class="indexable" data-level="4">B.2.2.7 FPT_TUD_EXT Trusted Update</h3><div style="margin-left: 1em;"><h4>Family Behavior</h4><div>This family defines the ability of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to provide mechanisms for assuring the integrity of updates to
 	    the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> or to non-TOE components that rely on the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to function. This is a new family defined for
 	    the FPT class.</div><h4>Component Leveling</h4><svg style="max-height: 50px;"><text x="4" fill="black" font-size="15" y="44">FPT_TUD_EXT</text><rect x="2" y="31" width="150" height="16" fill="none" stroke="black"></rect><text x="234" fill="black" font-size="15" y="24">1</text><rect x="232" y="11" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="37" x2="231" y2="17" stroke="black"></line><text x="234" fill="black" font-size="15" y="44">2</text><rect x="232" y="31" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="37" x2="231" y2="37" stroke="black"></line></svg><p><a href="#FPT_TUD_EXT.1">FPT_TUD_EXT.1</a>,
