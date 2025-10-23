@@ -1058,14 +1058,9 @@ it manages may be physical or virtual.
               </h:ol>
             </title>
             <aactivity>
-              <TSS>TBD</TSS>
+              <TSS>The evaluator shall examine the TSS to verify that it describes any mechanisms the TSF uses to generate audit data for security-relevant audit events. If multiple separate mechanisms are used, the evaluator shall verify that the TSS identifies the events that are logged via each mechanism.</TSS>
               <Guidance>
-                <h:p>
-                  The evaluator shall check the administrative guide and ensure
-                  that it lists all of the auditable events.  The evaluator shall
-                  check to make sure that every audit event type selected in the ST
-                  is included.
-                </h:p>
+                The evaluator shall examine the operational guidance to verify that it includes information on how security-relevant audit events are logged and what the format for the audit records are. The evaluator shall also verify that the operational guidance includes sample audit records for each security-relevant event so that it is clear to the reader how the TSF identifies those events in the audit data.
               </Guidance>
               <Tests>
                 <h:p>
@@ -4661,7 +4656,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 		The evaluator shall consult the developer documentation to verify that instructions
 		exists on applications should securely store credentials.
 	      </Guidance>
-        <Tests>TBD</Tests>
+        <Tests/>
             </aactivity>
           </f-element>
           <audit-event/>
@@ -4711,7 +4706,7 @@ only AES-based implementations for CTR_DRBG are allowed.
               the OS the access control decision is unambiguous.
 	      </h:p>
 	      </TSS>
-        <Guidance>TBD</Guidance>
+        <Guidance/>
 	      <Tests>
 	      <h:p>
 	        The evaluator shall create two new standard user accounts on the TOE and conduct the tests below. If the the TSF enforces access controls on user home directories that prevents the evaluator from exercising the permissions directly (i.e., because the home directory itself or its contents are restricted by permissions), the evaluator shall temporarily relax the permissions on the parent directory/directories in order to perform the tests.
@@ -4830,7 +4825,7 @@ only AES-based implementations for CTR_DRBG are allowed.
               for establishing the VPN connection (IKE traffic and perhaps HTTPS or DNS traffic) is
               not encapsulated by the VPN protocol (IPsec).
 	      </TSS>
-        <Guidance>TBD</Guidance>
+        <Guidance>The evaluator shall examine the operational guidance to verify whether the TOE provides its own VPN client or if VPN client capability must be implemented by a third-party application.</Guidance>
 	      <Tests>
 	      The evaluator shall perform the following test:
 	      <testlist><test><steplist>
@@ -4885,14 +4880,16 @@ only AES-based implementations for CTR_DRBG are allowed.
           Selections in FIA_AFL.1 and FIA_UAU.5 must match.
             </note>
             <aactivity>
-              <TSS>TBD</TSS>
-              <Guidance>TBD</Guidance>
+              <TSS>The evaluator shall examine the TSS to verify that it defines the mechanism by which excessive authentication failures are checked (i.e, whether it is a fixed or configurable value) and the actions that are taken against that account when the failure threshold has been reached.</TSS>
+              <Guidance>The evaluator shall examine the operational guidance to verify that it identifies either the fixed number of successive authentication failures that triggers a response to occur, or if this is a configurable value, the mechanism by which the value is configured. The evaluator shall also examine the operational guidance to verify that it describes the behavior that occurs when the failure threshold is met. If this behavior is configurable, the evaluator shall verify that the operational guidance provides instructions for how to set each response as claimed in FIA_AFL.1.2.</Guidance>
 	      <Tests>
-		  The evaluator shall set an administrator-configurable threshold for
-		  failed attempts, or note the ST-specified assignment. The evaluator
+		  If configurable, the evaluator shall set an administrator-configurable threshold for
+		  failed authentication attempts, or note the ST-specified assignment. The evaluator
 		  will then (per selection) repeatedly attempt to authenticate with an
 		  incorrect password, PIN, or certificate until the number of attempts
-		  reaches the threshold.  Note that the authentication attempts and
+		  reaches the threshold and observe that the behavior claimed in FIA_AFL.1.2 occurs. If the behavior in FIA_AFL.1.2 is configurable, the evaluator shall repeat this test as necessary for each configured behavior and verify that the configured behavior occurs in all cases.
+		  
+		  Note that the authentication attempts and
 		  lockouts must also be logged as specified in FAU_GEN.1.
 	      </Tests>
 	    </aactivity>
@@ -5399,7 +5396,7 @@ the node certificate to be tested, two Intermediate CAs, and the
 	      </h:p>
 
 	      </TSS>
-              <Guidance>TBD</Guidance>
+              <Guidance>The evaluator shall examine the operational guidance to verify that for the functions claimed in FMT_SMF_EXT.1 as being restricted to the administrator (i.e., the user cannot perform them), the guidance identifies how that restriction is enforced (i.e., what role or permission permits the ability to perform the function).</Guidance>
 		<Tests>
 		The evaluator shall also perform the following test.
   	      <testlist><test>For each function that is indicated as restricted to the administrator,
@@ -5493,9 +5490,9 @@ The OS can enroll in such account management and enable the overall information 
 	      
 	    </note>
 	    <aactivity>
-	      <TSS>TBD</TSS>
+	      <TSS>The evaluator shall examine the TSS to verify that identifies the management functions claimed by the TOE and whether they can be performed by an administrator, a user, or both.</TSS>
 	      <Guidance>
-		The evaluator shall verify that every management function captured in the ST is described in the operational guidance and that the description contains the information required to perform the management duties associated with the management function.
+		The evaluator shall examing the operational guidance verify that every management function captured in the ST is described in the operational guidance and that the description contains the information required to perform the management duties associated with the management function.
 	      </Guidance>
 	      <Tests>
 	      The evaluator shall test the OS's ability to provide the management functions by configuring the operating system and testing each option selected from above.
@@ -5544,7 +5541,7 @@ The OS can enroll in such account management and enable the overall information 
 	      file does not need to be individually identified, but the system's conventions for storing and protecting
 	      such files must be specified.
 	      </TSS>
-        <Guidance>TBD</Guidance>
+        <Guidance/>
 	      <Tests>
 	      The evaluator shall create an unprivileged user account.
 	      Using this account, the evaluator shall ensure that the following tests result in a negative
@@ -5615,8 +5612,8 @@ The OS can enroll in such account management and enable the overall information 
                 <assignable>list of explicit exceptions</assignable>.
             </title>
             <aactivity>
-              <TSS>TBD</TSS>
-              <Guidance>TBD</Guidance>
+              <TSS>The evaluator shall examine the TSS to verify that it identifies the number of entropy bits used for ASLR and what exceptions there are to this, if any.</TSS>
+              <Guidance/>
 	      <Tests>
 The evaluator shall select 3 executables included with the TSF.
 If the TSF includes a web browser it must be selected.
@@ -5842,8 +5839,8 @@ For these OSes, it is expected that most of the OS, to include the kernel, libra
 OSes that store parameters and variables separately from control flow values do not need additional stack protections.
             </note>
             <aactivity>
-              <TSS>TBD</TSS>
-              <Guidance>TBD</Guidance>
+              <TSS>The evaluator shall examine the TSS to verify that it describes how stack-based buffer overflow protection is implemented, or how the TOE is designed in such a way that these protections are not explicitly needed.</TSS>
+              <Guidance/>
 	      <Tests>
 <h:p>For stack-based OSes, the evaluator shall determine that the TSS contains a description of stack-based buffer overflow protections used by the OS.
 These are referred to by a variety of terms. These include, but are not limited to, tagging, stack cookie, stack guard, and stack canaries.
@@ -6139,7 +6136,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
               protection afforded to the mechanism performing the cryptographic verification.
 	      </h:p>
 	      </TSS>
-              <Guidance>TBD</Guidance>
+              <Guidance/>
 	      <Tests>
 	      <h:p>
               The evaluator shall also perform the following tests:
@@ -6214,8 +6211,8 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 				regarding of whether updates are available.
 			</note>
             <aactivity>
-              <TSS>TBD</TSS>
-              <Guidance>TBD</Guidance>
+              <TSS>The evaluator shall examine the TSS to verify that it describes how the TSF checks for updates and how it verifies those updates are genuine.</TSS>
+              <Guidance>The evaluator shall examine the operational guidance to verify that it describes how to use the TOE to check for and initiate updates to itself and how to determine that an integrity check of the update has failed.</Guidance>
 	      <Tests>
               <h:p>The evaluator shall check for an update using procedures described in the
               documentation and verify that the OS provides a list of available updates.
@@ -6311,8 +6308,8 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
             </note>
 
             <aactivity>
-              <TSS>TBD</TSS>
-              <Guidance>TBD</Guidance>
+              <TSS>The evaluator shall examine the TSS to verify that it describes the TOE's ability to check for updates to application software and how the authenticity and integrity of these updates are verified.</TSS>
+              <Guidance>The evaluator shall examine the operational guidance to verify that it provides instructions for how to use the TOE to check for updates to application software, and how to determine if the check for authenticity or integrity of the update failed.</Guidance>
 	      <Tests>
 			  <h:p>
 	      The evaluator shall check for updates to application software
@@ -6402,7 +6399,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
                 verify that no memory-mapping can be made with
                 write and execute permissions except for the cases listed in the assignment.
               </TSS>
-              <Guidance>TBD</Guidance>           
+              <Guidance/>           
               <Tests>
                 The evaluator shall also perform the following tests.
                 <testlist>
@@ -6604,8 +6601,8 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 
       	    </note>
       	    <aactivity>
-      	      <TSS>TBD</TSS>
-      	      <Guidance>TBD</Guidance>
+      	      <TSS>The evaluator shall examine the TSS to verify that it describes all trusted channels implemented by the TOE and what the purpose is for each channel. The evaluator shall also check to verify that the ST claims conformance to any functional packagses or PP-Modules that are needed to implement these protocols (e.g. if the TOE implements TLS, both the <xref to="pkg-tls"/> and <xref to="X509"/> shall be included in the ST conformance claims).</TSS>
+      	      <Guidance>For each trusted channel, the evaluator shall verify that the operational guidance provides instructions on how to establish the trusted channel with a remote entity and how to specify any configuration options that are related to this.</Guidance>
 	      <Tests>
 	         The evaluator shall configure the OS to communicate with another trusted IT product as identified in the third selection.
       	   The evaluator shall monitor network traffic while the OS performs communication with each of the servers identified in the
