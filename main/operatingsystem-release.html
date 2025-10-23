@@ -1110,13 +1110,8 @@ The following sections list Common Criteria and technology terms used in this do
               
             
               
-            <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">TBD</div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">
-                <p>
-                  The evaluator shall check the administrative guide and ensure
-                  that it lists all of the auditable events.  The evaluator shall
-                  check to make sure that every audit event type selected in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>
-                  is included.
-                </p>
+            <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">The evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to verify that it describes any mechanisms the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> uses to generate audit data for security-relevant audit events. If multiple separate mechanisms are used, the evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> identifies the events that are logged via each mechanism.</div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">
+                The evaluator shall examine the operational guidance to verify that it includes information on how security-relevant audit events are logged and what the format for the audit records are. The evaluator shall also verify that the operational guidance includes sample audit records for each security-relevant event so that it is clear to the reader how the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> identifies those events in the audit data.
               </div><div class="ea">
                 <p>
                   The evaluator shall check the administrative guide and ensure
@@ -3596,7 +3591,8 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      </div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">
 		The evaluator shall consult the developer documentation to verify that instructions
 		exists on applications should securely store credentials.
-	      </div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">TBD</div></div></div></div></div>
+	      </div></div><div class="eacategory">Tests</div><div class="ea">
+			There are no test activities for this component.<br/></div></div></div></div>
 
       
       <h3 id="fdp" class="indexable" data-level="3">5.1.4 User Data Protection (FDP)</h3>
@@ -3633,7 +3629,8 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
               in such detail that given any possible scenario between a user and a file governed by
               the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> the access control decision is unambiguous.
 	      </p>
-	      </div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">TBD</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
+	      </div></div><div class="eacategory">Guidance</div><div class="ea">
+			There are no additional Guidance evaluation activities for this component.<br/></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
 	      <p>
 	        The evaluator shall create two new standard user accounts on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and conduct the tests below. If the the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> enforces access controls on user home directories that prevents the evaluator from exercising the permissions directly (i.e., because the home directory itself or its contents are restricted by permissions), the evaluator shall temporarily relax the permissions on the parent directory/directories in order to perform the tests.
               <span class="testlist-"><ul>
@@ -3722,12 +3719,14 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      
 	    
 	      
-	    <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">TBD</div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">TBD</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
-		  The evaluator shall set an administrator-configurable threshold for
-		  failed attempts, or note the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>-specified assignment. The evaluator
+	    <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">The evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to verify that it defines the mechanism by which excessive authentication failures are checked (i.e, whether it is a fixed or configurable value) and the actions that are taken against that account when the failure threshold has been reached.</div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">The evaluator shall examine the operational guidance to verify that it identifies either the fixed number of successive authentication failures that triggers a response to occur, or if this is a configurable value, the mechanism by which the value is configured. The evaluator shall also examine the operational guidance to verify that it describes the behavior that occurs when the failure threshold is met. If this behavior is configurable, the evaluator shall verify that the operational guidance provides instructions for how to set each response as claimed in <a href="#FIA_AFL.1.2">FIA_AFL.1.2</a>.</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
+		  If configurable, the evaluator shall set an administrator-configurable threshold for
+		  failed authentication attempts, or note the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>-specified assignment. The evaluator
 		  will then (per selection) repeatedly attempt to authenticate with an
 		  incorrect password, <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr>, or certificate until the number of attempts
-		  reaches the threshold.  Note that the authentication attempts and
+		  reaches the threshold and observe that the behavior claimed in <a href="#FIA_AFL.1.2">FIA_AFL.1.2</a> occurs. If the behavior in <a href="#FIA_AFL.1.2">FIA_AFL.1.2</a> is configurable, the evaluator shall repeat this test as necessary for each configured behavior and verify that the configured behavior occurs in all cases.
+		  
+		  Note that the authentication attempts and
 		  lockouts must also be logged as specified in <a href="#FAU_GEN.1">FAU_GEN.1</a>.
 	      </div><div class="ea">
               <span class="testlist-"><ul>
@@ -3959,7 +3958,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
 		allow access to that function.
 	      </p>
 
-	      </div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">TBD</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
+	      </div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">The evaluator shall examine the operational guidance to verify that for the functions claimed in <a href="#FMT_SMF_EXT.1">FMT_SMF_EXT.1</a> as being restricted to the administrator (i.e., the user cannot perform them), the guidance identifies how that restriction is enforced (i.e., what role or permission permits the ability to perform the function).</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
 		The evaluator shall also perform the following test.
   	      <span class="testlist-"><ul><li class="test-"><a id="_t_23" class="defined" href="#_t_23">Test FMT_MOF_EXT.1:1</a>:
       For each function that is indicated as restricted to the administrator,
@@ -4039,8 +4038,8 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can enroll in such a
 	      
 	      
 	      
-	    <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">TBD</div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">
-		The evaluator shall verify that every management function captured in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> is described in the operational guidance and that the description contains the information required to perform the management duties associated with the management function.
+	    <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">The evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to verify that identifies the management functions claimed by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and whether they can be performed by an administrator, a user, or both.</div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">
+		The evaluator shall examing the operational guidance verify that every management function captured in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> is described in the operational guidance and that the description contains the information required to perform the management duties associated with the management function.
 	      </div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
 	      The evaluator shall test the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>'s ability to provide the management functions by configuring the operating system and testing each option selected from above.
 	      The evaluator is expected to test these functions in all the ways in which the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> and guidance documentation state the configuration can be managed.
@@ -4094,7 +4093,8 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can enroll in such a
 	      audit logs, shared libraries, system executables, and system configuration files.  Every
 	      file does not need to be individually identified, but the system's conventions for storing and protecting
 	      such files must be specified.
-	      </div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">TBD</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
+	      </div></div><div class="eacategory">Guidance</div><div class="ea">
+			There are no additional Guidance evaluation activities for this component.<br/></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
 	      The evaluator shall create an unprivileged user account.
 	      Using this account, the evaluator shall ensure that the following tests result in a negative
               outcome (i.e., the action results in the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> denying the evaluator permission to
@@ -4150,7 +4150,8 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can enroll in such a
               
               
 	      
-	    <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">TBD</div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">TBD</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
+	    <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">The evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to verify that it identifies the number of entropy bits used for <abbr class="dyn-abbr"><a href="#abbr_ASLR">ASLR</a></abbr> and what exceptions there are to this, if any.</div></div><div class="eacategory">Guidance</div><div class="ea">
+			There are no additional Guidance evaluation activities for this component.<br/></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
 The evaluator shall select 3 executables included with the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.
 If the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> includes a web browser it must be selected.
 If the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> includes a mail client it must be selected.
@@ -4288,7 +4289,8 @@ OSes that store parameters and variables separately from control flow values do 
               
               
 	      
-	    <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">TBD</div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">TBD</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
+	    <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">The evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to verify that it describes how stack-based buffer overflow protection is implemented, or how the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is designed in such a way that these protections are not explicitly needed.</div></div><div class="eacategory">Guidance</div><div class="ea">
+			There are no additional Guidance evaluation activities for this component.<br/></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
 <p>For stack-based OSes, the evaluator shall determine that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> contains a description of stack-based buffer overflow protections used by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>.
 These are referred to by a variety of terms. These include, but are not limited to, tagging, stack cookie, stack guard, and stack canaries.
 The <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> must include a rationale for any binaries that are not protected in this manner.
@@ -4437,7 +4439,8 @@ The evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_T
               The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> contains a description of the
               protection afforded to the mechanism performing the cryptographic verification.
 	      </p>
-	      </div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">TBD</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
+	      </div></div><div class="eacategory">Guidance</div><div class="ea">
+			There are no additional Guidance evaluation activities for this component.<br/></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
 	      <p>
               The evaluator shall also perform the following tests:
               <span class="testlist-"><ul>
@@ -4508,7 +4511,7 @@ The evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_T
               
               
 	      
-	    <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">TBD</div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">TBD</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
+	    <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">The evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to verify that it describes how the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> checks for updates and how it verifies those updates are genuine.</div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">The evaluator shall examine the operational guidance to verify that it describes how to use the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to check for and initiate updates to itself and how to determine that an integrity check of the update has failed.</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
               <p>The evaluator shall check for an update using procedures described in the
               documentation and verify that the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> provides a list of available updates.
 			  Testing this capability may require
@@ -4579,7 +4582,7 @@ The evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_T
               
               
 	      
-	    <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">TBD</div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">TBD</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
+	    <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">The evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to verify that it describes the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s ability to check for updates to application software and how the authenticity and integrity of these updates are verified.</div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">The evaluator shall examine the operational guidance to verify that it provides instructions for how to use the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to check for updates to application software, and how to determine if the check for authenticity or integrity of the update failed.</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
 			  <p>
 	      The evaluator shall check for updates to application software
 			  using procedures described in the
@@ -4710,7 +4713,11 @@ The evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_T
       	      
       	      
 	      
-	    <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">TBD</div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">TBD</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
+	    <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">The evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to verify that it describes all trusted channels implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and what the purpose is for each channel. The evaluator shall also check to verify that the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> claims conformance to any functional packagses or <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-Modules that are needed to implement these protocols (e.g. if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr>, both the <a href="https://www.niap-ccevs.org/static_html/protection-profile/439/-439-/index.html">Functional Package for Transport Layer Security (TLS),
+        version 
+        2.1</a> and <a href="https://www.niap-ccevs.org/protectionprofiles/511">Functional Package for X.509,
+        version 
+        1.0</a> shall be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> conformance claims).</div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">For each trusted channel, the evaluator shall verify that the operational guidance provides instructions on how to establish the trusted channel with a remote entity and how to specify any configuration options that are related to this.</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
 	         The evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to communicate with another trusted <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr> product as identified in the third selection.
       	   The evaluator shall monitor network traffic while the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> performs communication with each of the servers identified in the
       	   third selection. The evaluator shall ensure that for each session a trusted channel was established in conformance with the
@@ -5586,7 +5593,8 @@ The evaluator shall also perform the following tests:
                 The evaluator shall inspect the vendor-provided developer documentation and
                 verify that no memory-mapping can be made with
                 write and execute permissions except for the cases listed in the assignment.
-              </div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">TBD</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
+              </div></div><div class="eacategory">Guidance</div><div class="ea">
+			There are no additional Guidance evaluation activities for this component.<br/></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
                 The evaluator shall also perform the following tests.
                 <span class="testlist-"><ul>
                   <li class="test-"><a id="_t_54" class="defined" href="#_t_54">Test FPT_W^X_EXT.1:1</a>:
@@ -6666,7 +6674,7 @@ The evaluator shall also perform the following tests:
               in which only the traffic identified by the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author as necessary
               for establishing the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> connection (IKE traffic and perhaps <abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_DNS">DNS</a></abbr> traffic) is
               not encapsulated by the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> protocol (IPsec).
-	      </div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">TBD</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
+	      </div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">The evaluator shall examine the operational guidance to verify whether the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> provides its own <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client or if <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client capability must be implemented by a third-party application.</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
 	      The evaluator shall perform the following test:
 	      <span class="testlist-"><ul><li class="test-"><a id="_t_11" class="defined" href="#_t_11">Test FDP_IFC_EXT.1:1</a>:
       <ul>
