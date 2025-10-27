@@ -1824,7 +1824,8 @@ it manages may be physical or virtual.
 <f-component cc-id="fcs_ckm.6" name="Timing and Event of Cryptographic Key Destruction">
 	 
           <f-element id="fel-key-kill-when">
-            <title>The TSF shall destroy [<h:i>all keys and key material</h:i>] when [<h:i>no longer needed</h:i>].</title>
+            <title>The TSF shall destroy [<h:i>all plaintext keying material and critical security
+              parameters (CSPs)</h:i>] when [<h:i>no longer needed</h:i>].</title>
 	    <note role="application">
 	        For the purposes of this requirement, key material refers to authentication data, passwords, secret/private symmetric
 		      keys, private asymmetric keys, data used to derive keys, values derived from passwords, etc.	      
@@ -1963,47 +1964,27 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	      </Tests>
             </aactivity>
           </f-element>
+  
   <f-element id="fel-key-kill">
-    <title>
-      The TSF shall destroy cryptographic keys and keying material specified by FCS_CKM.6.1 in accordance with a specified cryptographic key destruction method
-      <selectables>
-        <selectable>For volatile memory, the destruction shall be executed by a
-          <selectables>
-            <selectable>single overwrite consisting of <selectables>
-              <selectable>a pseudo-random pattern using the TSF&apos;s RBG</selectable>
-              <selectable>zeroes</selectable>
-              <selectable>ones</selectable>
-              <selectable>a new value of a key</selectable>
-              <selectable><assignable> any value that does not contain any CSP</assignable></selectable></selectables></selectable>
-            <selectable>removal of power to the memory</selectable>
-            <selectable>destruction of reference to the key directly followed by a request for garbage collection</selectable>
-          </selectables></selectable>
-        <selectable>For non-volatile memory that consists of 
-          <selectables>
-            <selectable id="s-kek-kill">destruction
-              of all key encrypting keys (KEKs) protecting the target key
-              according to FCS_CKM.6.2, where none of the KEKs protecting the target key are derived
-            </selectable>
-            <selectable>the invocation of an interface provided by the underlying platform that
-              <selectables>
-                <selectable>logically addresses the storage location of the key and performs a 
-                  <selectables>
-                    <selectable>single</selectable>
-                    <selectable><assignable>ST author defined multi-pass</assignable></selectable>
-                  </selectables>overwrite consisting of
-                  <selectables>
-                    <selectable>zeroes</selectable>
-                    <selectable>ones</selectable>
-                    <selectable>pseudo-random pattern</selectable>
-                    <selectable>a new value of a key of the same size</selectable>
-                    <selectable><assignable>any value that does not contain any CSP</assignable></selectable></selectables></selectable>
-                <selectable>instructs the underlying platform to destroy the abstraction that represents the key</selectable>
-              </selectables>
-            </selectable>
-          </selectables>
-        </selectable>
-      </selectables>
-      .
+    <title> The TSF shall destroy <h:b>plaintext</h:b> keying material <h:b>and critical security parameters</h:b> by       
+      implementing key destruction in accordance with the following rules: <h:ul>
+        <h:li>For volatile memory, the destruction shall be executed by a single direct overwrite <selectables>
+          <selectable>consisting of a pseudo-random pattern using the TSF or platform RBG (as specified in FCS_RBG.1)</selectable>
+          <selectable>consisting of zeroes</selectable>
+        </selectables></h:li>
+        <h:li>For non-volatile EEPROM, the destruction shall be executed by a single direct overwrite consisting of a pseudo-random pattern using the 
+          TSF or platform RBG (as specified in FCS_RBG.1), followed by a read-verify.</h:li>
+        <h:li>For non-volatile flash memory, that is not wear-leveled, the destruction shall be executed <selectables>
+          <selectable>by a single direct overwrite consisting of zeros followed by a read-verify</selectable>
+          <selectable>by a block erase that erases the reference to memory that stores data as well as the data itself</selectable>
+        </selectables>
+        </h:li>
+        <h:li>For non-volatile flash memory, that is wear-leveled, the destruction shall be executed <selectables>
+          <selectable>by a single direct overwrite consisting of zeros</selectable>
+          <selectable>by a block erase</selectable>
+        </selectables></h:li>
+        <h:li>For non-volatile memory other than EEPROM and flash, the destruction shall be executed by a single direct overwrite with a random pattern that 
+          is changed before each write</h:li></h:ul>.
     </title>
     <note role="application">
       <h:p>
