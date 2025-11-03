@@ -68,7 +68,7 @@
     </entry>
      </RevisionHistory>
 
-  <include-pkg id="pkg-ssh">
+  <include-pkg id="ssh">
     <git>
       <url>https://github.com/commoncriteria/ssh</url>
       <branch>release-2.0</branch>
@@ -76,7 +76,7 @@
     <url>https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm</url>
     <depends on="s-ftp_ssh" also="s-uau-ssh"/>
   </include-pkg>
-  <include-pkg id="pkg-tls">
+  <include-pkg id="tls">
     <git>
       <url>https://github.com/commoncriteria/tls</url>
       <branch>master</branch>
@@ -1037,8 +1037,8 @@ it manages may be physical or virtual.
                   <h:ul><h:li>Authentication events (Success/Failure);</h:li>
                     <h:li>Use of privileged/special rights events (Successful and unsuccessful security, audit, and configuration changes);</h:li>
                     <h:li>Privilege or role escalation events (Success/Failure);</h:li>
-                    <h:li>Auditable events as defined in the <xref to="pkg-ssh"/>;</h:li>
-                    <h:li>Auditable events as defined in the <xref to="pkg-tls"/>;</h:li>
+                    <h:li>Auditable events as defined in the <xref to="ssh"/>;</h:li>
+                    <h:li>Auditable events as defined in the <xref to="tls"/>;</h:li>
                     <h:li>Auditable events as defined in the <xref to="X509"/>;</h:li>
                     <h:li><selectables linebreak='yes'>
                       <selectable>File and object events (Successful and unsuccessful attempts to create, access, delete, modify, modify permissions)</selectable>
@@ -1825,64 +1825,71 @@ it manages may be physical or virtual.
 	 
           <f-element id="fel-key-kill-when">
             <title>The TSF shall destroy [<h:i>all plaintext keying material and critical security
-              parameters (CSPs)</h:i>] when [<h:i>no longer needed</h:i>].</title>
-	    <note role="application">
-	        For the purposes of this requirement, key material refers to authentication data, passwords, secret/private symmetric
-		      keys, private asymmetric keys, data used to derive keys, values derived from passwords, etc.	      
-	    </note>
-	    <aactivity>
-	      <TSS>
-	        <h:p>
-            The evaluator examines the TSS to ensure it describes how the keys are managed in volatile memory. This description
-            includes details of how each identified key is introduced into volatile memory (e.g. by derivation from user input,
-            or by unwrapping a wrapped key stored in non-volatile memory) and how they are overwritten.
-	        </h:p>
-	        <h:p>
-            The evaluator shall check to ensure the TSS lists each type of key that is stored in non-volatile memory, and 
-            identifies how the TOE interacts with the underlying platform to manage keys (e.g., store, retrieve, destroy). The
-            description includes details on the method of how the TOE interacts with the platform, including an identification
-            and description of the interfaces it uses to manage keys (e.g., file system APIs, platform key store APIs).
-	        </h:p>
-	        <h:p>
-            If the ST makes use of the open assignment and fills in the type of pattern that is used, the evaluator examines 
-            the TSS to ensure it describes how that pattern is obtained and used. The evaluator shall verify that the pattern
-            does not contain any CSPs.
-	        </h:p>
-	        <h:p>
-            The evaluator shall check that the TSS identifies any configurations or circumstances that may not strictly conform
-            to the key destruction requirement.
-	        </h:p>
-	        <h:p>
-            If the selection "destruction of all key encrypting keys (KEKs) protecting the target key 
-            according to FCS_CKM.6.2, where none of the KEKs protecting the target key 
-            are derived" is included, the evaluator shall examine the TOE’s keychain in the TSS and
-            identify each instance when a key is destroyed by this method. In each instance the evaluator
-            will verify all keys capable of decrypting the target key are destroyed in accordance with a
-            specified key destruction method in FCS_CKM.6.2. The evaluator shall verify that all of the
-            keys capable of decrypting the target key are not able to be derived to reestablish the keychain
-            after their destruction. 	      
-	        </h:p>      
-	      </TSS>
-	      <Guidance>	      
-	      <h:p>
+              parameters (CSPs)</h:i>] when 
+              <selectables>
+                <selectable>no longer needed</selectable>
+                <selectable><assignable>other circumstances for destruction</assignable></selectable>
+              </selectables>.
+            </title>
+          </f-element>
+  
+  <f-element id="fel-key-kill">
+    <title> The TSF shall destroy <h:b>plaintext</h:b> keying material <h:b>and critical security parameters</h:b> by 
+      implementing key destruction in accordance with the following rules: [<h:i><h:ul>
+        <h:li>For volatile memory, the destruction shall be executed by a single direct overwrite consisting of <selectables>
+          <selectable>a pseudo-random pattern using a TSF DRBG (as specified in FCS_RBG.1)</selectable>
+          <selectable>zeroes</selectable>
+        </selectables></h:li>
+        <h:li>For non-volatile EEPROM, the destruction shall be executed by a single direct overwrite consisting of a pseudo-random pattern using a 
+          TSF DRBG (as specified in FCS_RBG.1), followed by a read-verify.</h:li>
+        <h:li>For non-volatile flash memory, that is not wear-leveled, the destruction shall be executed by<selectables>
+          <selectable>a single direct overwrite consisting of zeros followed by a read-verify</selectable>
+          <selectable>a block erase that erases the reference to memory that stores data as well as the data itself</selectable>
+        </selectables>
+        </h:li>
+        <h:li>For non-volatile flash memory that is wear-leveled, the destruction shall be executed by<selectables>
+          <selectable>a single direct overwrite consisting of zeros</selectable>
+          <selectable>a block erase</selectable>
+        </selectables></h:li>
+        <h:li>For non-volatile memory other than EEPROM and flash, the destruction shall be executed by a single direct overwrite with a random pattern that 
+          is changed before each write.</h:li></h:ul></h:i>]
+    </title>
+    <note role="application">
+      <h:p>
+      For the purposes of this requirement, keying material refers to authentication data, passwords, secret/private symmetric keys, private asymmetric keys, data used to derive keys, values derived from passwords, etc. “Plaintext keying material” may refer to a KEK that is used to encrypt other keying material. Destruction of encrypted keying material may be accomplished by destroying the KEK used to encrypt it. If different mechanisms are used for destroying different keying material, all relevant claims should be selected and the TSS should identify which keying material is destroyed by which mechanism. 
+      </h:p><h:p>
+        Key storage areas in non-volatile storage can be overwritten with any value that renders the keys unrecoverable. The value used can be all zeroes, all ones, or any other pattern or combination of values significantly different than the value of the key itself. When ‘a value that does not contain any CSP’ is chosen, it means that the TOE uses some other specified data not drawn from a source that may contain keying material or reveal information about it or any other TSF-protected data. In other words, the data used for overwriting is carefully selected and not taken from a general ‘pool’ that might contain current or residual data that itself requires confidentiality protection. If multiple copies exist, all copies must be destroyed. 
+      </h:p><h:p>
+        Since this is a software-only TOE, the hardware controllers that manage non-volatile storage media are necessarily outside the TOE boundary. Thus, the TOE developer is likely to have little control over—or insight into—the functioning of these storage devices. The TOE must make a “best-effort” to destroy disused cryptographic keys by invoking the appropriate hardware interfaces—recognizing that the specific actions taken by the hardware are out of the TOE’s control. But in cases where the TOE has insight into the non-volatile storage technologies used by the hardware, or where the TOE can specify a preference or method for destroying keys, the destruction should be executed by a single, direct overwrite consisting of pseudorandom data or a new key, by a repeating pattern of any static value, or by a block erase.
+      </h:p>
+    </note>
+    <aactivity>
+      <TSS>
+        <h:p>
+          The evaluator shall verify that the TSS identifies all plaintext keying material and CSPs stored by the TOE, the type of memory in which it is stored, and when and how the keying material is erased. If the TOE uses one or more KEKs to protect stored keying material, the evaluator shall verify that the TSS describes the destruction of that keying material, either directly or by destruction of the KEK used to encrypt it.</h:p><h:p>
+            If different types of memory are used to store the materials to be protected, the evaluator shall check to ensure that the TSS describes the clearing procedure in terms of the memory in which the data are stored (for example, "secret keys stored on flash are cleared by overwriting once with zeros, while secret keys stored on the internal persistent storage device are cleared by overwriting one time with a random pattern that is changed before each write"). For block erases, the evaluator shall also ensure that the TSS identifies the block erase command that is used and shall verify that the command used also addresses any copies of the plaintext key material that may be created, e.g. in order to optimize the use of Flash memory.
+          </h:p>    
+      </TSS>
+      <Guidance>	      
+        <h:p>
           There are a variety of concerns that may prevent or delay key destruction in some cases. The evaluator
           shall check that the guidance documentation identifies configurations or circumstances that may not 
           strictly conform to the key destruction requirement, and that this description is consistent with the
           relevant parts of the TSS and any other relevant Required Supplementary Information. The evaluator 
           shall check that the guidance documentation provides guidance on situations where key destruction may 
           be delayed at the physical layer and how such situations can be avoided or mitigated if possible.
-	      </h:p>
-	      <h:p>
+        </h:p>
+        <h:p>
           Some examples of what is expected to be in the documentation are provided here.
-	      </h:p>
-	      <h:p>
+        </h:p>
+        <h:p>
           When the TOE does not have full access to the physical memory, it is possible that the storage may be
           implementing wear-leveling and garbage collection. This may create additional copies of the key that 
           are logically inaccessible but persist physically. In this case, to mitigate this the drive should 
           support the TRIM command and implements garbage collection to destroy these persistent copies when
           not actively engaged in other tasks.
-	      </h:p>
-	      <h:p>
+        </h:p>
+        <h:p>
           Drive vendors implement garbage collection in a variety of different ways, as such there is a variable
           amount of time until data is truly removed from these solutions. There is a risk that data may persist
           for a longer amount of time if it is contained in a block with other data not ready for erasure. To 
@@ -1890,138 +1897,92 @@ it manages may be physical or virtual.
           the non-volatile memory to erase copies via garbage collection upon their deletion. If a RAID array
           is being used, only set-ups that support TRIM are utilized. If the drive is connected via PCI-Express,
           the operating system supports TRIM over that channel.
-	      </h:p>
-	      <h:p>
+        </h:p>
+        <h:p>
           The drive should be healthy and contains minimal corrupted data and should be end-of-lifed before a
           significant amount of damage to drive health occurs, this minimizes the risk that small amounts of
           potentially recoverable data may remain in damaged areas of the drive.
-	      </h:p>
-	      </Guidance>
-	      <Tests>
-		<testlist>
-		  <test>Applied to each key held as in volatile memory and subject to destruction by overwrite by the TOE (whether or not the value is subsequently encrypted for storage in volatile or non-volatile memory). In the case where the only selection made for the destruction method key was removal of power, then this test is unnecessary. The evaluator shall:
-		  <h:ol>
-		    <h:li>Record the value of the key in the TOE subject to clearing.</h:li>
-		    <h:li>Cause the TOE to perform a normal cryptographic processing with the key from Step #1.</h:li>
-		    <h:li>Cause the TOE to clear the key.</h:li>
-		    <h:li>Cause the TOE to stop the execution but not exit.</h:li>
-		    <h:li>Cause the TOE to dump the entire memory of the TOE into a binary file.</h:li>
-		    <h:li>Search the content of the binary file created in Step #5 for instances of the known key value from Step #1.</h:li>
-		  </h:ol>
-		  <h:p>
-Steps 1-6 ensure that the complete key does not exist anywhere in volatile memory. If a copy is found, then the test fails.
-		  </h:p>
-</test>
-<test>Applied to each key held in non-volatile memory and subject to destruction by the TOE. The evaluator shall use special tools (as needed), provided by the TOE developer if necessary, to ensure the tests function as intended.
-<h:ol>
-  <h:li>Identify the purpose of the key and what access should fail when it is deleted. (e.g. the data encryption key being deleted would cause data decryption to fail.)</h:li>
-  <h:li>Cause the TOE to clear the key.</h:li>
-  <h:li>Have the TOE attempt the functionality that the cleared key would be necessary for.</h:li>
-</h:ol>
-
-<h:p>
-  The test succeeds if step 3 fails.
-</h:p>
-</test>
-<test>
-  <h:p>
-Tests 3 and 4 do not apply for the selection 
-<h:i>instructing the underlying platform to destroy the representation of the key</h:i>
-as the TOE has no visibility into the inner workings and completely relies on the underlying platform.
-  </h:p>
-  <h:p>
-The following tests are used to determine if the TOE is able to request the platform to overwrite the key with a TOE supplied pattern.
-  </h:p>
-<h:p>
-
-Applied to each key held in non-volatile memory and subject to destruction by overwrite by the TOE. The evaluator shall use a tool that provides a logical view of the media (e.g., MBR file system):
-<h:ol>
-<h:li>Record the value of the key in the TOE subject to clearing.</h:li>
-
-<h:li>Cause the TOE to perform a normal cryptographic processing with the key from Step #1.</h:li>
-
-<h:li>Cause the TOE to clear the key.</h:li>
-
-<h:li>Search the logical view that the key was stored in for instances of the known key value from Step #1. If a copy is found, then the test fails.</h:li>
-</h:ol>
-</h:p>
-</test>
-<test> Applied to each key held as non-volatile memory and subject to destruction by overwrite by the TOE. The evaluator shall use a tool that provides a logical view of the media:
-<h:ol>
-<h:li>Record the logical storage location of the key in the TOE subject to clearing.</h:li>
-
-<h:li>Cause the TOE to perform a normal cryptographic processing with the key from Step #1.</h:li>
-
-<h:li>Cause the TOE to clear the key.</h:li>
-
-<h:li>Read the logical storage location in Step #1 of non-volatile memory to ensure the appropriate pattern is utilized.</h:li>
-</h:ol>
-<h:p>
-  The test succeeds if correct pattern is used to overwrite the key in the memory location. If the pattern is not found the test fails.
-</h:p>
-</test>
-		</testlist>
-	      </Tests>
-            </aactivity>
-          </f-element>
-  
-  <f-element id="fel-key-kill">
-    <title> The TSF shall destroy <h:b>plaintext</h:b> keying material <h:b>and critical security parameters</h:b> by       
-      implementing key destruction in accordance with the following rules: <h:ul>
-        <h:li>For volatile memory, the destruction shall be executed by a single direct overwrite <selectables>
-          <selectable>consisting of a pseudo-random pattern using the TSF or platform RBG (as specified in FCS_RBG.1)</selectable>
-          <selectable>consisting of zeroes</selectable>
-        </selectables></h:li>
-        <h:li>For non-volatile EEPROM, the destruction shall be executed by a single direct overwrite consisting of a pseudo-random pattern using the 
-          TSF or platform RBG (as specified in FCS_RBG.1), followed by a read-verify.</h:li>
-        <h:li>For non-volatile flash memory, that is not wear-leveled, the destruction shall be executed <selectables>
-          <selectable>by a single direct overwrite consisting of zeros followed by a read-verify</selectable>
-          <selectable>by a block erase that erases the reference to memory that stores data as well as the data itself</selectable>
-        </selectables>
-        </h:li>
-        <h:li>For non-volatile flash memory, that is wear-leveled, the destruction shall be executed <selectables>
-          <selectable>by a single direct overwrite consisting of zeros</selectable>
-          <selectable>by a block erase</selectable>
-        </selectables></h:li>
-        <h:li>For non-volatile memory other than EEPROM and flash, the destruction shall be executed by a single direct overwrite with a random pattern that 
-          is changed before each write.</h:li></h:ul>
-    </title>
-    <note role="application">
-      <h:p>
-        The interface referenced in the requirement could take different forms, 
-        the most likely of which is an application programming interface to an OS kernel. 
-        There may be various levels of abstraction visible.
-        For instance, in a given implementation that overwrites a key stored in non-volatile memory, 
-        the application may have access to the file system details and 
-        may be able to logically address specific memory locations.
-        In another implementation, that instructs the underlying platform to destroy the 
-        representation of a key stored in non-volatile memory, 
-        the application may simply have a handle to a resource and 
-        can only ask the platform to delete the resource, as may be the case with a platforms secure key store.
-        The latter implementation should only be used for the most restricted access.
-        The level of detail to which the TOE has access will be reflected in the TSS section of the ST.
-      </h:p>
-      <h:p>
-        Several selections allow assignment of a 'value that does not contain any CSP.'
-        This means that the TOE uses some other specified data not drawn from a source that 
-        may contain key material or reveal information about key material, 
-        and not being any of the particular values listed as other selection options. 
-        The point of the phrase 'does not contain any CSP' is to ensure that the overwritten 
-        data is carefully selected, and not taken from a general 'pool' that might contain current or 
-        residual data that itself requires confidentiality protection.
-      </h:p>
-      <h:p>      
-        For the selection <xref to="s-kek-kill"/>,
-        a key can be considered destroyed by destroying the key that protects the key.
-        If a key is wrapped or encrypted it is not necessary to "overwrite" that key,
-        overwriting the key that is used to wrap or encrypt the key used to encrypt/decrypt data,
-        using the appropriate method for the memory type involved, will suffice.
-        For example, if a product uses a KEK to encrypt a Data Encryption Key
-        (DEK), destroying the KEK using one of the methods in FCS_CKM.6 is sufficient, 
-        since the DEK would no longer be usable (of course, presumes the DEK is still encrypted 
-        and the KEK cannot be recovered or re-derived.).
-      </h:p>
-    </note>
+        </h:p>
+      </Guidance>
+      <Tests>
+        <h:p><h:b>Evaluation Activity Note:</h:b> The following tests likely require the TOE developer to
+          provide access to a test platform that provides the evaluator with tools that are
+          typically not found on the end consumer version of the TOE.</h:p>
+        <h:p>
+          For each software and
+          firmware key clearing situation (including on system power off, on wipe function, on
+          disconnection of trusted channels, when no longer needed by the trusted channel per
+          the protocol, when transitioning to the locked state, and possibly including
+          immediately after use, and while in the locked state) the evaluator shall repeat the
+          following tests.
+        </h:p><h:p>
+          For these tests,the evaluator shall utilize an
+          appropriate development environment (e.g., a virtual machine) and development tools
+          (debuggers, simulators, etc.) to test that keys are cleared, including all copies of
+          the key that may have been created internally by the TOE during normal cryptographic
+          processing with that key.</h:p>
+        <testlist>
+          <test> Applied to each key held as plaintext in volatile memory and subject to
+            destruction by overwrite by the TOE (whether or not the plaintext value is
+            subsequently encrypted for storage in volatile or non-volatile memory). In the
+            case where the only selection made for the destruction method key was removal of
+            power, then this test is unnecessary. The evaluator shall: <h:br/>
+            <h:ol>
+              <h:li>Record the value of the key in the TOE subject to clearing.</h:li>
+              <h:li>Cause the TOE to perform a normal cryptographic processing with the
+                key from Step #1.</h:li>
+              <h:li>Cause the TOE to clear the key.</h:li>
+              <h:li>Cause the TOE to stop the execution but not exit.</h:li>
+              <h:li>Cause the TOE to dump the entire memory of the TOE into a binary
+                file.</h:li>
+              <h:li>Search the content of the binary file created in Step #5 for instances
+                of the known key value from Step #1.</h:li>
+              <h:li>Break the key value from Step #1 into 3 similar sized pieces and
+                perform a search using each piece.</h:li>
+            </h:ol>
+            <h:br/> Steps 1-6 ensure that the complete key does not exist anywhere in
+            volatile memory. If a copy is found, then the test fails. <h:br/><h:br/>
+            Step 7 ensures that partial key fragments do not remain in memory. If a fragment
+            is found, there is a minuscule chance that it is not within the context of a key
+            (e.g., some random bits that happen to match). If this is the case the test
+            should be repeated with a different key in Step #1. If a fragment is found the
+            test fails. <h:br/><h:br/>
+          </test>
+          <test> Applied to each key held in non-volatile memory and subject to destruction
+            by overwrite by the TOE. The evaluator shall use special tools (as needed),
+            provided by the TOE developer if necessary, to view the key storage location: <h:br/>
+            <h:ol>
+              <h:li>Record the value of the key in the TOE subject to clearing.</h:li>
+              <h:li>Cause the TOE to perform a normal cryptographic processing with the
+                key from Step #1.</h:li>
+              <h:li>Cause the TOE to clear the key.</h:li>
+              <h:li>Search the non-volatile memory the key was stored in for instances of
+                the known key value from Step #1. If a copy is found, then the test
+                fails.</h:li>
+              <h:li>Break the key value from Step #1 into 3 similar sized pieces and
+                perform a search using each piece. If a fragment is found then the test is
+                repeated (as described for test 1 above), and if a fragment is found in the
+                repeated test then the test fails.</h:li>
+            </h:ol>
+            <h:br/><h:br/>
+          </test>
+          <test> Applied to each key held as non-volatile memory and subject to destruction
+            by overwrite by the TOE. The evaluator shall use special tools (as needed),
+            provided by the TOE developer if necessary, to view the key storage location: <h:br/>
+            <h:ol>
+              <h:li>Record the storage location of the key in the TOE subject to
+                clearing.</h:li>
+              <h:li>Cause the TOE to perform a normal cryptographic processing with the
+                key from Step #1.</h:li>
+              <h:li>Cause the TOE to clear the key.</h:li>
+              <h:li>Read the storage location in Step #1 of non-volatile memory to ensure
+                the appropriate pattern is utilized. </h:li>
+            </h:ol>
+            <h:br/> The test succeeds if correct pattern is used to overwrite the key in
+            the memory location. If the pattern is not found the test fails. </test>
+        </testlist>
+      </Tests>
+    </aactivity>
   </f-element>
   <audit-event/>
         </f-component> 
@@ -4938,7 +4899,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 		in OE-protected storage</selectable>
 		<selectable id="s-otp">combination of authentication based on user name, password, and time-based one-time password</selectable>
 		<selectable id="s-x509-auth">authentication based on X.509 certificates</selectable>
-		<selectable id="s-uau-ssh">for use in SSH only, <snip>SSH public key-based authentication</snip> as specified by the <xref to="pkg-ssh"/></selectable>
+		<selectable id="s-uau-ssh">for use in SSH only, <snip>SSH public key-based authentication</snip> as specified by the <xref to="ssh"/></selectable>
 	      </selectables>
 	      </h:b>
 	      to support user authentication.
@@ -5015,7 +4976,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 
 		<h:p>
 		  Authentication mechanisms related to <xref to="s-x509-auth"/> are tested under FIA_X509_EXT.1 as defined in the <xref to="X509"/>
-		  and <xref to="s-uau-ssh"/> are tested in the <xref to="pkg-ssh"/>.
+		  and <xref to="s-uau-ssh"/> are tested in the <xref to="ssh"/>.
 		</h:p>
               </Tests>
 	    </aactivity>
@@ -5204,7 +5165,7 @@ If CRL is selected, the evaluator shall configure the CA to sign a CRL with a ce
 (The signature of the certificate will not validate.)</test>
 <test>
       <depends on="s-ec-certs"/>
-      <depends on="sel-rfc6187"><external-doc ref="pkg-ssh"/></depends>
+      <depends on="sel-rfc6187"><external-doc ref="ssh"/></depends>
       <testlist><test id="t-ecdsa-valid">
 	The evaluator shall establish a valid, trusted certificate chain consisting of an EC leaf certificate, an EC Intermediate CA certificate not designated as a trust anchor, and an EC certificate designated as a trusted anchor, where the elliptic curve parameters are specified as a named curve.
     The evaluator shall confirm that the TOE validates the certificate chain.
@@ -6463,12 +6424,12 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
       	    <title>
               The TSF shall use
       	      <selectables linebreak='yes'>
-                <selectable id="tls">TLS as conforming to the <xref to="pkg-tls"/> as a
+                <selectable id="tls">TLS as conforming to the <xref to="tls"/> as a
     	  	    <selectables>
     	  	      <selectable id="s-tls-client"><readable>client(TLS)</readable>client</selectable>
     	  	      <selectable id="s-tls-server"><readable>server(TLS)</readable>server</selectable>
               </selectables></selectable>
-              <selectable id="dtls">DTLS as conforming to the <xref to="pkg-tls"/> as a
+              <selectable id="dtls">DTLS as conforming to the <xref to="tls"/> as a
     	  	    <selectables>
     	  	      <selectable id="s-dtls-client"><readable>client(DTLS)</readable>client</selectable>
     	  	      <selectable id="s-dtls-server"><readable>server(DTLS)</readable>server</selectable>
@@ -6476,7 +6437,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
       	      <selectable id="s-itc-ipsec">IPsec as conforming to the PP-Module for Virtual Private Network (VPN) Clients</selectable>
       	      </selectables>
       	        and <selectables linebreak='yes'>
-      	          <selectable id="s-ftp_ssh"><snip>SSH</snip> as conforming to the <xref to="pkg-ssh"/> as a
+      	          <selectable id="s-ftp_ssh"><snip>SSH</snip> as conforming to the <xref to="ssh"/> as a
       	          <selectables>
       	          <selectable id="s-ssh-client"><readable>client(SSH)</readable>client</selectable>
       	            <selectable id="s-ssh-server"><readable>server(SSH)</readable>server</selectable>
@@ -6492,7 +6453,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 		      <selectable><assignable>other capabilities</assignable></selectable>
 		    </selectables> using <selectables>
 		      <selectable>certificates as defined in <xref to="X509"/></selectable>
-		      <selectable>SSH host keys as defined in <xref to="pkg-ssh"/></selectable>
+		      <selectable>SSH host keys as defined in <xref to="ssh"/></selectable>
 		    </selectables> 
       	     
 		    that is logically distinct from other communication
@@ -6520,14 +6481,14 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
                channel protocol selected in FTP_ITC_EXT.1.1 as part of the TSF.
              </h:p>
       	     <h:p>
-      	       If TLS or DTLS is selected, the TSF must be validated against the appropriate requirements in the <xref to="pkg-tls"/>.
+      	       If TLS or DTLS is selected, the TSF must be validated against the appropriate requirements in the <xref to="tls"/>.
       	     </h:p>
       	     <h:p>
       	        If <xref to="s-itc-ipsec"/> is selected, then FDP_IFC_EXT.1 must be included in the ST.
       	    </h:p>
       	    <h:p>
       	        If <xref to="s-ftp_ssh"/> is selected, the TSF must be validated against
-      	        the <xref to="pkg-ssh"/> and the corresponding selection is expected to be made in FIA_UAU.5.1.
+      	        the <xref to="ssh"/> and the corresponding selection is expected to be made in FIA_UAU.5.1.
       	        The ST author must include the security functional requirements for the trusted channel protocol
       	        selected in FTP_ITC_EXT.1 as part of the TSF.
       	    </h:p>
@@ -6541,28 +6502,28 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
       	      <!--
 	          <h:p>
 		          <rule id="r-need-client-tls">
-		          <doc ref="pkg-tls"><ref-id>tlsc_impl</ref-id></doc>
+		          <doc ref="tls"><ref-id>tlsc_impl</ref-id></doc>
 		          </rule>
 		          <rule id="r-tlss">
 		          <if><ref-id>s-tls-server</ref-id></if>
-		          <then><doc ref="pkg-tls"><ref-id>tlss_impl</ref-id></doc></then>
+		          <then><doc ref="tls"><ref-id>tlss_impl</ref-id></doc></then>
 		          </rule>
 		          <rule id="r-dtlsc">
 		          <if><ref-id>s-dtls-client</ref-id></if>
-		          <then><doc ref="pkg-tls"><ref-id>dtlsc_impl</ref-id></doc></then>
+		          <then><doc ref="tls"><ref-id>dtlsc_impl</ref-id></doc></then>
 		          </rule>
 		          <rule id="r-dtlss">
 		          <if><ref-id>s-dtls-server</ref-id></if>
-		          <then><doc ref="pkg-tls"><ref-id>dtlss_impl</ref-id></doc></then>
+		          <then><doc ref="tls"><ref-id>dtlss_impl</ref-id></doc></then>
 		          </rule>
 	         </h:p>
 <rule id="r-sshclient">
   <if><ref-id>s-ssh-client</ref-id></if>
-  <then><doc ref="pkg-ssh"><ref-id>ssh-client</ref-id></doc></then>
+  <then><doc ref="ssh"><ref-id>ssh-client</ref-id></doc></then>
 </rule>
 <rule id="r-sshserver">
   <if><ref-id>s-ssh-server</ref-id></if>
-  <then><doc ref="pkg-ssh"><ref-id>ssh-server</ref-id></doc></then>
+  <then><doc ref="ssh"><ref-id>ssh-server</ref-id></doc></then>
 </rule> -->
       	      <!-- this rule isn't associated with the SFR but it was placed here for ordering purposes -->
       	      <!--
@@ -6582,7 +6543,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 
       	    </note>
       	    <aactivity>
-      	      <TSS>The evaluator shall examine the TSS to verify that it describes all trusted channels implemented by the TOE and what the purpose is for each channel. The evaluator shall also check to verify that the ST claims conformance to any functional packages or PP-Modules that are needed to implement these protocols (e.g. if the TOE implements TLS, both the <xref to="pkg-tls"/> and <xref to="X509"/> shall be included in the ST conformance claims).</TSS>
+      	      <TSS>The evaluator shall examine the TSS to verify that it describes all trusted channels implemented by the TOE and what the purpose is for each channel. The evaluator shall also check to verify that the ST claims conformance to any functional packages or PP-Modules that are needed to implement these protocols (e.g. if the TOE implements TLS, both the <xref to="tls"/> and <xref to="X509"/> shall be included in the ST conformance claims).</TSS>
       	      <Guidance>For each trusted channel, the evaluator shall verify that the operational guidance provides instructions on how to establish the trusted channel with a remote entity and how to specify any configuration options that are related to this.</Guidance>
 	      <Tests>
 	         The evaluator shall configure the OS to communicate with another trusted IT product as identified in the third selection.
