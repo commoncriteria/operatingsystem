@@ -68,7 +68,7 @@
     </entry>
      </RevisionHistory>
 
-  <include-pkg id="pkg-ssh">
+  <include-pkg id="ssh">
     <git>
       <url>https://github.com/commoncriteria/ssh</url>
       <branch>release-2.0</branch>
@@ -76,7 +76,7 @@
     <url>https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm</url>
     <depends on="s-ftp_ssh" also="s-uau-ssh"/>
   </include-pkg>
-  <include-pkg id="pkg-tls">
+  <include-pkg id="tls">
     <git>
       <url>https://github.com/commoncriteria/tls</url>
       <branch>master</branch>
@@ -1037,8 +1037,8 @@ it manages may be physical or virtual.
                   <h:ul><h:li>Authentication events (Success/Failure);</h:li>
                     <h:li>Use of privileged/special rights events (Successful and unsuccessful security, audit, and configuration changes);</h:li>
                     <h:li>Privilege or role escalation events (Success/Failure);</h:li>
-                    <h:li>Auditable events as defined in the <xref to="pkg-ssh"/>;</h:li>
-                    <h:li>Auditable events as defined in the <xref to="pkg-tls"/>;</h:li>
+                    <h:li>Auditable events as defined in the <xref to="ssh"/>;</h:li>
+                    <h:li>Auditable events as defined in the <xref to="tls"/>;</h:li>
                     <h:li>Auditable events as defined in the <xref to="X509"/>;</h:li>
                     <h:li><selectables linebreak='yes'>
                       <selectable>File and object events (Successful and unsuccessful attempts to create, access, delete, modify, modify permissions)</selectable>
@@ -4938,7 +4938,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 		in OE-protected storage</selectable>
 		<selectable id="s-otp">combination of authentication based on user name, password, and time-based one-time password</selectable>
 		<selectable id="s-x509-auth">authentication based on X.509 certificates</selectable>
-		<selectable id="s-uau-ssh">for use in SSH only, <snip>SSH public key-based authentication</snip> as specified by the <xref to="pkg-ssh"/></selectable>
+		<selectable id="s-uau-ssh">for use in SSH only, <snip>SSH public key-based authentication</snip> as specified by the <xref to="ssh"/></selectable>
 	      </selectables>
 	      </h:b>
 	      to support user authentication.
@@ -5015,7 +5015,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 
 		<h:p>
 		  Authentication mechanisms related to <xref to="s-x509-auth"/> are tested under FIA_X509_EXT.1 as defined in the <xref to="X509"/>
-		  and <xref to="s-uau-ssh"/> are tested in the <xref to="pkg-ssh"/>.
+		  and <xref to="s-uau-ssh"/> are tested in the <xref to="ssh"/>.
 		</h:p>
               </Tests>
 	    </aactivity>
@@ -6463,12 +6463,12 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
       	    <title>
               The TSF shall use
       	      <selectables linebreak='yes'>
-                <selectable id="tls">TLS as conforming to the <xref to="pkg-tls"/> as a
+                <selectable id="tls">TLS as conforming to the <xref to="tls"/> as a
     	  	    <selectables>
     	  	      <selectable id="s-tls-client"><readable>client(TLS)</readable>client</selectable>
     	  	      <selectable id="s-tls-server"><readable>server(TLS)</readable>server</selectable>
               </selectables></selectable>
-              <selectable id="dtls">DTLS as conforming to the <xref to="pkg-tls"/> as a
+              <selectable id="dtls">DTLS as conforming to the <xref to="tls"/> as a
     	  	    <selectables>
     	  	      <selectable id="s-dtls-client"><readable>client(DTLS)</readable>client</selectable>
     	  	      <selectable id="s-dtls-server"><readable>server(DTLS)</readable>server</selectable>
@@ -6476,7 +6476,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
       	      <selectable id="s-itc-ipsec">IPsec as conforming to the PP-Module for Virtual Private Network (VPN) Clients</selectable>
       	      </selectables>
       	        and <selectables linebreak='yes'>
-      	          <selectable id="s-ftp_ssh"><snip>SSH</snip> as conforming to the <xref to="pkg-ssh"/> as a
+      	          <selectable id="s-ftp_ssh"><snip>SSH</snip> as conforming to the <xref to="ssh"/> as a
       	          <selectables>
       	          <selectable id="s-ssh-client"><readable>client(SSH)</readable>client</selectable>
       	            <selectable id="s-ssh-server"><readable>server(SSH)</readable>server</selectable>
@@ -6492,7 +6492,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 		      <selectable><assignable>other capabilities</assignable></selectable>
 		    </selectables> using <selectables>
 		      <selectable>certificates as defined in <xref to="X509"/></selectable>
-		      <selectable>SSH host keys as defined in <xref to="pkg-ssh"/></selectable>
+		      <selectable>SSH host keys as defined in <xref to="ssh"/></selectable>
 		    </selectables> 
       	     
 		    that is logically distinct from other communication
@@ -6520,14 +6520,14 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
                channel protocol selected in FTP_ITC_EXT.1.1 as part of the TSF.
              </h:p>
       	     <h:p>
-      	       If TLS or DTLS is selected, the TSF must be validated against the appropriate requirements in the <xref to="pkg-tls"/>.
+      	       If TLS or DTLS is selected, the TSF must be validated against the appropriate requirements in the <xref to="tls"/>.
       	     </h:p>
       	     <h:p>
       	        If <xref to="s-itc-ipsec"/> is selected, then FDP_IFC_EXT.1 must be included in the ST.
       	    </h:p>
       	    <h:p>
       	        If <xref to="s-ftp_ssh"/> is selected, the TSF must be validated against
-      	        the <xref to="pkg-ssh"/> and the corresponding selection is expected to be made in FIA_UAU.5.1.
+      	        the <xref to="ssh"/> and the corresponding selection is expected to be made in FIA_UAU.5.1.
       	        The ST author must include the security functional requirements for the trusted channel protocol
       	        selected in FTP_ITC_EXT.1 as part of the TSF.
       	    </h:p>
@@ -6582,7 +6582,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 
       	    </note>
       	    <aactivity>
-      	      <TSS>The evaluator shall examine the TSS to verify that it describes all trusted channels implemented by the TOE and what the purpose is for each channel. The evaluator shall also check to verify that the ST claims conformance to any functional packages or PP-Modules that are needed to implement these protocols (e.g. if the TOE implements TLS, both the <xref to="pkg-tls"/> and <xref to="X509"/> shall be included in the ST conformance claims).</TSS>
+      	      <TSS>The evaluator shall examine the TSS to verify that it describes all trusted channels implemented by the TOE and what the purpose is for each channel. The evaluator shall also check to verify that the ST claims conformance to any functional packages or PP-Modules that are needed to implement these protocols (e.g. if the TOE implements TLS, both the <xref to="tls"/> and <xref to="X509"/> shall be included in the ST conformance claims).</TSS>
       	      <Guidance>For each trusted channel, the evaluator shall verify that the operational guidance provides instructions on how to establish the trusted channel with a remote entity and how to specify any configuration options that are related to this.</Guidance>
 	      <Tests>
 	         The evaluator shall configure the OS to communicate with another trusted IT product as identified in the third selection.
