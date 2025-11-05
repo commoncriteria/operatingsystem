@@ -81,7 +81,7 @@
       <url>https://github.com/commoncriteria/tls</url>
       <branch>master</branch>
     </git>
-    <url>https://www.niap-ccevs.org/static_html/protection-profile/439/-439-/index.html</url>
+    <url><![CDATA[https://www.niap-ccevs.org/protectionprofiles/519]]></url>
   </include-pkg>
   <include-pkg id="X509">
     <git>
@@ -1038,7 +1038,7 @@ it manages may be physical or virtual.
                     <h:li>Use of privileged/special rights events (Successful and unsuccessful security, audit, and configuration changes);</h:li>
                     <h:li>Privilege or role escalation events (Success/Failure);</h:li>
                     <h:li>Auditable events as defined in the <xref to="ssh"/>;</h:li>
-                    <h:li>Auditable events as defined in the TLS Package;</h:li>
+                    <h:li>Auditable events as defined in the <xref to="tls"/>;</h:li>
                     <h:li>Auditable events as defined in the <xref to="X509"/>;</h:li>
                     <h:li><selectables linebreak='yes'>
                       <selectable>File and object events (Successful and unsuccessful attempts to create, access, delete, modify, modify permissions)</selectable>
@@ -6463,12 +6463,12 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
       	    <title>
               The TSF shall use
       	      <selectables linebreak='yes'>
-                <selectable id="tls">TLS as conforming to the TLS Package as a
+                <selectable id="tls">TLS as conforming to the <xref to="tls"/> as a
     	  	    <selectables>
     	  	      <selectable id="s-tls-client"><readable>client(TLS)</readable>client</selectable>
     	  	      <selectable id="s-tls-server"><readable>server(TLS)</readable>server</selectable>
               </selectables></selectable>
-              <selectable id="dtls">DTLS as conforming to the TLS Package as a
+              <selectable id="dtls">DTLS as conforming to the <xref to="tls"/> as a
     	  	    <selectables>
     	  	      <selectable id="s-dtls-client"><readable>client(DTLS)</readable>client</selectable>
     	  	      <selectable id="s-dtls-server"><readable>server(DTLS)</readable>server</selectable>
@@ -6520,7 +6520,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
                channel protocol selected in FTP_ITC_EXT.1.1 as part of the TSF.
              </h:p>
       	     <h:p>
-      	       If TLS or DTLS is selected, the TSF must be validated against the appropriate requirements in the TLS Package.
+      	       If TLS or DTLS is selected, the TSF must be validated against the appropriate requirements in the <xref to="tls"/>.
       	     </h:p>
       	     <h:p>
       	        If <xref to="s-itc-ipsec"/> is selected, then FDP_IFC_EXT.1 must be included in the ST.
@@ -6582,7 +6582,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 
       	    </note>
       	    <aactivity>
-      	      <TSS>The evaluator shall examine the TSS to verify that it describes all trusted channels implemented by the TOE and what the purpose is for each channel. The evaluator shall also check to verify that the ST claims conformance to any functional packages or PP-Modules that are needed to implement these protocols (e.g. if the TOE implements TLS, both the TLS Package and <xref to="X509"/> shall be included in the ST conformance claims).</TSS>
+      	      <TSS>The evaluator shall examine the TSS to verify that it describes all trusted channels implemented by the TOE and what the purpose is for each channel. The evaluator shall also check to verify that the ST claims conformance to any functional packages or PP-Modules that are needed to implement these protocols (e.g. if the TOE implements TLS, both the <xref to="tls"/> and <xref to="X509"/> shall be included in the ST conformance claims).</TSS>
       	      <Guidance>For each trusted channel, the evaluator shall verify that the operational guidance provides instructions on how to establish the trusted channel with a remote entity and how to specify any configuration options that are related to this.</Guidance>
 	      <Tests>
 	         The evaluator shall configure the OS to communicate with another trusted IT product as identified in the third selection.
