@@ -1054,15 +1054,9 @@ The following sections list Common Criteria and technology terms used in this do
                   <ul><li>Authentication events (Success/Failure);</li>
                     <li>Use of privileged/special rights events (Successful and unsuccessful security, audit, and configuration changes);</li>
                     <li>Privilege or role escalation events (Success/Failure);</li>
-                    <li>Auditable events as defined in the <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH),
-        version 
-        2.0</a>;</li>
-                    <li>Auditable events as defined in the <a href="https://www.niap-ccevs.org/static_html/protection-profile/439/-439-/index.html">Functional Package for Transport Layer Security (TLS),
-        version 
-        2.1</a>;</li>
-                    <li>Auditable events as defined in the <a href="https://www.niap-ccevs.org/protectionprofiles/511">Functional Package for X.509,
-        version 
-        1.0</a>;</li>
+                    <li>Auditable events as defined in the SSH Package;</li>
+                    <li>Auditable events as defined in the <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Package;</li>
+                    <li>Auditable events as defined in the X.509 Package;</li>
                     <li>[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_1">File and object events (Successful and unsuccessful attempts to create, access, delete, modify, modify permissions)</span></li><li style=""><span class="selectable-content" id="_s_2">User and Group management events (Successful and unsuccessful add, delete, modify, disable, enable, and credential change)</span></li><li style=""><span class="selectable-content" id="_s_3">Audit and log data access events (Success/Failure)</span></li><li style=""><span class="selectable-content" id="_s_4">Cryptographic verification of software (Success/Failure)</span></li><li style=""><span class="selectable-content" id="_s_5">Attempted application invocation with arguments (Success/Failure e.g. due to software restriction policy)</span></li><li style=""><span class="selectable-content" id="_s_6">System reboot, restart, and shutdown events (Success/Failure)</span></li><li style=""><span class="selectable-content" id="_s_7">Kernel module loading and unloading events (Success/Failure)</span></li><li style=""><span class="selectable-content" id="_s_8">Administrator or root-level access events (Success/Failure)</span></li><li style=""><span class="selectable-content" id="_s_9">[<b>assignment</b>: 
      <span class="assignable-content">other specifically defined auditable events</span>].</span></li></ul>]
                     </li>
@@ -4453,9 +4447,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
           <div class="element"><div class="reqid" id="FIA_UAU.5.1"><a href="#FIA_UAU.5.1" class="abbr">FIA_UAU.5.1</a></div><div class="reqdesc">
 	      The <span class="refinement"><abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr></span> shall provide 
 	      <b>[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-pass">authentication based on username and password</span></li><li style=""><span class="selectable-content" id="s-pin">authentication based on username and a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr> that releases an asymmetric key stored
-		in <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>-protected storage</span></li><li style=""><span class="selectable-content" id="s-otp">combination of authentication based on user name, password, and time-based one-time password</span></li><li style=""><span class="selectable-content" id="s-x509-auth">authentication based on X.509 certificates</span></li><li style=""><span class="selectable-content" id="s-uau-ssh">for use in SSH only, SSH public key-based authentication as specified by the <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH),
-        version 
-        2.0</a></span></li></ul>]
+		in <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>-protected storage</span></li><li style=""><span class="selectable-content" id="s-otp">combination of authentication based on user name, password, and time-based one-time password</span></li><li style=""><span class="selectable-content" id="s-x509-auth">authentication based on X.509 certificates</span></li><li style=""><span class="selectable-content" id="s-uau-ssh">for use in SSH only, SSH public key-based authentication as specified by the SSH Package</span></li></ul>]
 	      </b>
 	      to support user authentication.
             <div class="appnote"><span class="note-header">Application
@@ -4465,9 +4457,7 @@ Applied to each key held in non-volatile memory and subject to destruction by ov
 	        The <a href="#s-uau-ssh">SSH public key-based authentication</a> selection can only be included, and must be included, if
 		    <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a> selects <a href="#s-ftp_ssh">SSH</a>
 	      </p><p>
-	        If "authentication based on X.509 certificates" is claimed, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> must claim conformance to <a href="https://www.niap-ccevs.org/protectionprofiles/511">Functional Package for X.509,
-        version 
-        1.0</a>.
+	        If "authentication based on X.509 certificates" is claimed, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> must claim conformance to X.509 Package.
 	      </p>.
 	    </span></div></div></div>
            <div class="element"><div class="reqid" id="FIA_UAU.5.2"><a href="#FIA_UAU.5.2" class="abbr">FIA_UAU.5.2</a></div><div class="reqdesc">
@@ -4582,12 +4572,8 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
 		</div></div></div>
 
 		<p>
-		  Authentication mechanisms related to <a href="#s-x509-auth">authentication based on X.509 certificates</a> are tested under FIA_X509_EXT.1 as defined in the <a href="https://www.niap-ccevs.org/protectionprofiles/511">Functional Package for X.509,
-        version 
-        1.0</a>
-		  and <a href="#s-uau-ssh">SSH public key-based authentication</a> are tested in the <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH),
-        version 
-        2.0</a>.
+		  Authentication mechanisms related to <a href="#s-x509-auth">authentication based on X.509 certificates</a> are tested under FIA_X509_EXT.1 as defined in the X.509 Package
+		  and <a href="#s-uau-ssh">SSH public key-based authentication</a> are tested in the SSH Package.
 		</p>
               </div><div class="ea">
 		
@@ -5288,9 +5274,7 @@ The evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_T
               </p>
 	      <p>
 		If certificates are used, they can be hardware-protected trust store elements or leaf certificates in a certificate chain that terminates in a root CA which is an element of a hardware protected trust store.
-		If the certificates themselves are not trust store elements, revocation information is expected to be available for each CA certificate in the chain that is not a trust element, in accordance with FIA_X509_EXT.1 as defined in the <a href="https://www.niap-ccevs.org/protectionprofiles/511">Functional Package for X.509,
-        version 
-        1.0</a>.
+		If the certificates themselves are not trust store elements, revocation information is expected to be available for each CA certificate in the chain that is not a trust element, in accordance with FIA_X509_EXT.1 as defined in the X.509 Package.
 	      </p>
             </span></div></div></div>
           
@@ -5340,9 +5324,7 @@ The evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_T
 		  
                   If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author indicates that the integrity verification is performed
                   using public key in an X509 certificate, the evaluator shall verify that the boot integrity mechanism includes a certificate
-                  validation according to in accordance with FIA_X509_EXT.1 as defined in the <a href="https://www.niap-ccevs.org/protectionprofiles/511">Functional Package for X.509,
-        version 
-        1.0</a> for all certificates in the chain from the certificate used for
+                  validation according to in accordance with FIA_X509_EXT.1 as defined in the X.509 Package for all certificates in the chain from the certificate used for
 				  boot integrity to a certificate in the trust store that are not themselves in the trust store.
 				  This means that, for each X.509 certificate in this chain that is not a trust store element, the evaluator must ensure that revocation information is available to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> during the bootstrap mechanism (before the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> becomes fully operational).
 
@@ -5590,25 +5572,15 @@ The evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_T
       	  
       	  <div class="element"><div class="reqid" id="FTP_ITC_EXT.1.1"><a href="#FTP_ITC_EXT.1.1" class="abbr">FTP_ITC_EXT.1.1</a></div><div class="reqdesc">
               The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall use
-      	      [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="tls"><abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as conforming to the <a href="https://www.niap-ccevs.org/static_html/protection-profile/439/-439-/index.html">Functional Package for Transport Layer Security (TLS),
-        version 
-        2.1</a> as a
-    	  	    [<b>selection</b>: <span class="selectable-content" id="s-tls-client">client</span>, <span class="selectable-content" id="s-tls-server">server</span>]</span></li><li style=""><span class="selectable-content" id="dtls"><abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as conforming to the <a href="https://www.niap-ccevs.org/static_html/protection-profile/439/-439-/index.html">Functional Package for Transport Layer Security (TLS),
-        version 
-        2.1</a> as a
+      	      [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="tls"><abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as conforming to the <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Package as a
+    	  	    [<b>selection</b>: <span class="selectable-content" id="s-tls-client">client</span>, <span class="selectable-content" id="s-tls-server">server</span>]</span></li><li style=""><span class="selectable-content" id="dtls"><abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as conforming to the <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Package as a
     	  	    [<b>selection</b>: <span class="selectable-content" id="s-dtls-client">client</span>, <span class="selectable-content" id="s-dtls-server">server</span>]</span></li><li style=""><span class="selectable-content" id="s-itc-ipsec">IPsec as conforming to the <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Virtual Private Network (<abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr>) Clients</span></li></ul>]
-      	        and [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-ftp_ssh">SSH as conforming to the <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH),
-        version 
-        2.0</a> as a
+      	        and [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-ftp_ssh">SSH as conforming to the SSH Package as a
       	          [<b>selection</b>: <span class="selectable-content" id="s-ssh-client">client</span>, <span class="selectable-content" id="s-ssh-server">server</span>]</span></li><li style=""><span class="selectable-content" id="_s_347">no other protocols</span></li></ul>]
 		    to provide a trusted communication channel between itself and
 		    authorized <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr> entities supporting the following capabilities:
 		    [<b>selection</b>: <span class="selectable-content" id="_s_348">audit server</span>, <span class="selectable-content" id="_s_349">authentication server</span>, <span class="selectable-content" id="_s_350">management server</span>, <span class="selectable-content" id="_s_351">[<b>assignment</b>: 
-     <span class="assignable-content">other capabilities</span>]</span>] using [<b>selection</b>: <span class="selectable-content" id="_s_352">certificates as defined in <a href="https://www.niap-ccevs.org/protectionprofiles/511">Functional Package for X.509,
-        version 
-        1.0</a></span>, <span class="selectable-content" id="_s_353">SSH host keys as defined in <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH),
-        version 
-        2.0</a></span>] 
+     <span class="assignable-content">other capabilities</span>]</span>] using [<b>selection</b>: <span class="selectable-content" id="_s_352">certificates as defined in X.509 Package</span>, <span class="selectable-content" id="_s_353">SSH host keys as defined in SSH Package</span>] 
       	     
 		    that is logically distinct from other communication
 		    channels and provides assured identification of its end points and protection of the channel
@@ -5621,25 +5593,19 @@ The evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_T
                channel protocol selected in <a href="#FTP_ITC_EXT.1.1">FTP_ITC_EXT.1.1</a> as part of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.
              </p>
       	     <p>
-      	       If <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> is selected, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> must be validated against the appropriate requirements in the <a href="https://www.niap-ccevs.org/static_html/protection-profile/439/-439-/index.html">Functional Package for Transport Layer Security (TLS),
-        version 
-        2.1</a>.
+      	       If <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> is selected, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> must be validated against the appropriate requirements in the <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Package.
       	     </p>
       	     <p>
       	        If <a href="#s-itc-ipsec">IPsec as conforming to the PP-Module for Virtual Private Network (VPN) Clients</a> is selected, then <a href="#FDP_IFC_EXT.1">FDP_IFC_EXT.1</a> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
       	    </p>
       	    <p>
       	        If <a href="#s-ftp_ssh">SSH</a> is selected, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> must be validated against
-      	        the <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH),
-        version 
-        2.0</a> and the corresponding selection is expected to be made in <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a>.
+      	        the SSH Package and the corresponding selection is expected to be made in <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a>.
       	        The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must include the security functional requirements for the trusted channel protocol
       	        selected in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> as part of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.
       	    </p>
       	      <p>
-      	        Claims from the <a href="https://www.niap-ccevs.org/protectionprofiles/511">Functional Package for X.509,
-        version 
-        1.0</a> are only required to the extent that they are needed to support the functionality required by the trusted protocols that are claimed.
+      	        Claims from the X.509 Package are only required to the extent that they are needed to support the functionality required by the trusted protocols that are claimed.
       	      </p><p>
       	        If the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> implements a protocol that requires the validation of a certificate presented by an external entity, FIA_X509_EXT.1 and FIA_X509_EXT.2 will be claimed, as will FIA_TSM_EXT.1 for management of the trust store.
       	      </p><p>
@@ -5658,11 +5624,7 @@ The evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_T
       	      
       	      
 	      
-	    <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">The evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to verify that it describes all trusted channels implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and what the purpose is for each channel. The evaluator shall also check to verify that the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> claims conformance to any functional packages or <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-Modules that are needed to implement these protocols (e.g. if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr>, both the <a href="https://www.niap-ccevs.org/static_html/protection-profile/439/-439-/index.html">Functional Package for Transport Layer Security (TLS),
-        version 
-        2.1</a> and <a href="https://www.niap-ccevs.org/protectionprofiles/511">Functional Package for X.509,
-        version 
-        1.0</a> shall be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> conformance claims).</div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">For each trusted channel, the evaluator shall verify that the operational guidance provides instructions on how to establish the trusted channel with a remote entity and how to specify any configuration options that are related to this.</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
+	    <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">The evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to verify that it describes all trusted channels implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and what the purpose is for each channel. The evaluator shall also check to verify that the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> claims conformance to any functional packages or <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-Modules that are needed to implement these protocols (e.g. if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr>, both the <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Package and X.509 Package shall be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> conformance claims).</div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">For each trusted channel, the evaluator shall verify that the operational guidance provides instructions on how to establish the trusted channel with a remote entity and how to specify any configuration options that are related to this.</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
 	         The evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to communicate with another trusted <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr> product as identified in the third selection.
       	   The evaluator shall monitor network traffic while the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> performs communication with each of the servers identified in the
       	   third selection. The evaluator shall ensure that for each session a trusted channel was established in conformance with the
