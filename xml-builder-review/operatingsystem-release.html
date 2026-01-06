@@ -682,6 +682,12 @@ The following sections list Common Criteria and technology terms used in this do
       accredited by the National Voluntary Laboratory Accreditation Program (NVLAP) and approved by the NIAP Validation Body to conduct Common Criteria-based evaluations.
     </td></tr>
 <tr><td><div id="Common_Evaluation_Methodology">Common Evaluation Methodology (CEM)</div></td><td>Common Evaluation Methodology for Information Technology Security Evaluation.</td></tr>
+<tr><td><div id="Direct_Rationale">Direct Rationale</div></td><td>
+		A type of Protection Profile, PP-Module, or Security Target in which the security
+		problem definition (SPD) elements are mapped directly to the SFRs and possibly to the 
+		security objectives for the operational environment. There are no security objectives
+		for the TOE.
+	</td></tr>
 <tr><td><div id="Distributed_TOE">Distributed TOE</div></td><td>A TOE composed of multiple components operating as a logical whole.</td></tr>
 <tr><td><div id="Extended_Package">Extended Package (EP)</div></td><td>A deprecated document form for collecting SFRs that implement a particular protocol, technology,
 	    or functionality. See Functional Packages.</td></tr>
@@ -833,16 +839,7 @@ The following sections list Common Criteria and technology terms used in this do
     
     <h2 class="indexable" data-level="2" id="_sec_1">1.5 Package Usage</h2>
       This section contains selections and assignments that are required when the listed Functional Packages are claimed by this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>.
-      
-        
-          
-            <span class="description">The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> will not be a certificate authority because the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> does not provide for the operation of an operating system as a CA. Thus, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall select the option to request a certificate from an external CA in FIA_XCU_EXT.2.1 and shall not select any options elsewhere in the package that involve claiming the ability to be a CA.</span>
-            
-              
-            
-          
-          
-            <span class="description">
+      <dt><b>Functional Package for X.509, Version 1.0</b><p></p></dt><dd><b>No CA Claims Permitted</b><p></p><span class="description">The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> will not be a certificate authority because the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> does not provide for the operation of an operating system as a CA. Thus, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall select the option to request a certificate from an external CA in FIA_XCU_EXT.2.1 and shall not select any options elsewhere in the package that involve claiming the ability to be a CA.</span><p></p></dd><dd><b>No Platform-Provided Functionality Claims Permitted</b><p></p><span class="description">
               Because the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> boundary is the entire operating system, there is no "platform" that exists outside the logical boundary of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> that the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> could access. Therefore, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall not claim platform-provided functionality for any of the functions specified in the <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr>. In other words, any applicable <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> 
               shall include the claim to implement or provide the functionality, rather than rely on a platform. These may include one or more of the following examples, depending on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, but apply to any requirements where such a selection exists:
               <ul>
@@ -853,55 +850,7 @@ The following sections list Common Criteria and technology terms used in this do
                 <li>FIA_X509_EXT.2</li>
                 <li>FIA_X509_EXT.3</li>
               </ul>
-            </span>
-            
-              
-            
-          
-          
-            <span class="description">The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> must utilize appropriate cryptographic algorithms that conform to CNSA standards. Thus, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> shall utilize no other algorithms outside of those specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 8603 for certificate validation and <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> signature validation (if claimed). If <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> is claimed, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall only claim support for algorithms that use <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384 and either 3072-bit RSA or greater, or <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> P-384. In all cases, the assignment that allows the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author to specify additional algorithms shall not be selected.</span>
-            
-              
-            
-          
-          
-            <span class="description">The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall select the options to process the basicConstraints and extendedKeyUsage extensions. Other extensions may be selected as appropriate without restriction.</span>
-            
-              
-            
-          
-          
-            <span class="description">The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> must support revocation that only involves <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr>. Accordingly, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> shall select only from options involving <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> in FIA_X509_EXT.1.3 (e.g., the selection to treat all certificates older than a given short timeframe is not an acceptable substitute or alternative for supporting <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr>).</span>
-            
-              
-            
-          
-          
-            <span class="description">Because the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is required to support <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr>, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall support an appropriate mechanism for obtaining revocation status information. In the case of <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr>, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall claim that revocation status information is obtained via network connection to a <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> distribution point. In the case of <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr>, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall claim that revocation status information is obtained via network connection to an <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> responder, via <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling, or via <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> multi-stapling.</span>
-            
-              
-            
-          
-          
-            <span class="description">The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> will always support the use of extendedKeyUsage values to verify that X.509 certificates are used in accordance with their intended purpose. Accordingly, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall claim that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supports the processing of extendedKeyUsage fields in the leaf certificate (as opposed to application of trust store context rules or passing the certification path or other supported context information to an external function) and shall select all values that are relevant to the claimed uses of X.509 in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. In particular, since the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> does not define any functions that require the use of <abbr class="dyn-abbr"><a href="#abbr_S/MIME">S/MIME</a></abbr>, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall not select this as an extendedKeyUsage value to be validated.</span>
-            
-              
-            
-          
-          
-            <span class="description">The <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> does not define SMIME functionality, therefore the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> shall not select this as a function for which X.509 validation functionality is used.</span>
-            
-              
-            
-          
-          
-            <span class="description">The <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> does not define SMIME functionality, therefore the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> shall not select this as a function for which X.509 validation functionality is used.</span>
-            
-              
-            
-          
-        
-      
+            </span><p></p></dd><dd><b>Limitations on Signature Algorithms in FIA_X509_EXT.1.1</b><p></p><span class="description">The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> must utilize appropriate cryptographic algorithms that conform to CNSA standards. Thus, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> shall utilize no other algorithms outside of those specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 8603 for certificate validation and <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> signature validation (if claimed). If <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> is claimed, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall only claim support for algorithms that use <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384 and either 3072-bit RSA or greater, or <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> P-384. In all cases, the assignment that allows the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author to specify additional algorithms shall not be selected.</span><p></p></dd><dd><b>Required Extension Processing for FIA_X509_EXT.1.2</b><p></p><span class="description">The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall select the options to process the basicConstraints and extendedKeyUsage extensions. Other extensions may be selected as appropriate without restriction.</span><p></p></dd><dd><b><abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr>-based Revocation Required for FIA_X509_EXT.1.3 </b><p></p><span class="description">The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> must support revocation that only involves <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr>. Accordingly, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> shall select only from options involving <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> in FIA_X509_EXT.1.3 (e.g., the selection to treat all certificates older than a given short timeframe is not an acceptable substitute or alternative for supporting <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr>).</span><p></p></dd><dd><b>Connections to <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> Servers Required for FIA_X509_EXT.1.4</b><p></p><span class="description">Because the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is required to support <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr>, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall support an appropriate mechanism for obtaining revocation status information. In the case of <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr>, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall claim that revocation status information is obtained via network connection to a <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> distribution point. In the case of <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr>, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall claim that revocation status information is obtained via network connection to an <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> responder, via <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> stapling, or via <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> multi-stapling.</span><p></p></dd><dd><b>Restrictions on Acceptable Key Usage Values for FIA_X509_EXT.1.5</b><p></p><span class="description">The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> will always support the use of extendedKeyUsage values to verify that X.509 certificates are used in accordance with their intended purpose. Accordingly, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall claim that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supports the processing of extendedKeyUsage fields in the leaf certificate (as opposed to application of trust store context rules or passing the certification path or other supported context information to an external function) and shall select all values that are relevant to the claimed uses of X.509 in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. In particular, since the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> does not define any functions that require the use of <abbr class="dyn-abbr"><a href="#abbr_S/MIME">S/MIME</a></abbr>, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall not select this as an extendedKeyUsage value to be validated.</span><p></p></dd><dd><b>Restrictions on Acceptable Functions for FIA_X509_EXT.2.1</b><p></p><span class="description">The <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> does not define SMIME functionality, therefore the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> shall not select this as a function for which X.509 validation functionality is used.</span><p></p></dd><dd><b>Restrictions on Acceptable Purposes for Certificate Acquisition for FIA_XCU_EXT.2.1</b><p></p><span class="description">The <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> does not define SMIME functionality, therefore the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> shall not select this as a function for which X.509 validation functionality is used.</span><p></p></dd>
     
     <h2 class="indexable" data-level="2" id="sec-features">1.6 Product Features Mapped to Implementation-dependent Requirements</h2>
       The features enumerated below, if implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, require that additional <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
@@ -978,10 +927,8 @@ The following sections list Common Criteria and technology terms used in this do
           </span></dd></dl>
     
     
-    <h2 class="indexable" data-level="2" id="Organizational_Security_Policies">3.3 Organizational Security Policies</h2>
+    <h2 class="indexable" data-level="2" id="Organizational_Security_Policies">3.3 Organizational Security Policies</h2><p>This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> defines no Organizational Security Policies.</p>
       
-      This document does not define any additional OSPs.
-    
     
   <h1 class="indexable" data-level="1" id="Security_Objectives">4 Security Objectives</h1>
     
@@ -2493,36 +2440,33 @@ The following sections list Common Criteria and technology terms used in this do
 		addressed in the AGD guidance.</p>
               </div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
                 <span class="testlist-"><ul>
-                  <li class="test-"><a id="_t_8" class="defined" href="#_t_8">Test FIA_UAU.5:1</a>[conditional, to be performed if<ul><li><a href="#s-pass">authentication based on username and password</a>
+                  <div class="dependent">The following content should be included if:<ul><li><a href="#s-pass">authentication based on username and password</a>
              is selected from 
-             <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a></li></ul>]:
-      
+             <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a></li></ul><div class="dependent-content"><test>
                     
-                  </li>
+                  </test></div></div>
                 </ul></span>
                 <span class="testlist-"><ul>
-                  <li class="test-"><a id="_t_9" class="defined" href="#_t_9">Test FIA_UAU.5:2</a>[conditional, to be performed if<ul><li><a href="#s-pin">authentication based on username and a PIN that releases an asymmetric key stored in OE-protected storage</a>
+                  <div class="dependent">The following content should be included if:<ul><li><a href="#s-pin">authentication based on username and a PIN that releases an asymmetric key stored in OE-protected storage</a>
              is selected from 
-             <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a></li></ul>]:
-      
+             <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a></li></ul><div class="dependent-content"><test>
                     
                     The evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> for guidance on supported
 		  protected storage and will then configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr> to establish a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr>
 		  which enables release of the asymmetric key from the protected storage (such as a TPM, a hardware token, or
 		  isolated execution environment) with which the
 		  <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can interface.  The evaluator shall then conduct the following tests:
-                  </li>
+                  </test></div></div>
                 </ul></span>
                 <span class="testlist-"><ul>
-                  <li class="test-"><a id="_t_10" class="defined" href="#_t_10">Test FIA_UAU.5:3</a>[conditional, to be performed if<ul><li><a href="#s-otp">combination of authentication based on user name, password, and time-based one-time password</a>
+                  <div class="dependent">The following content should be included if:<ul><li><a href="#s-otp">combination of authentication based on user name, password, and time-based one-time password</a>
              is selected from 
-             <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a></li></ul>]:
-      
+             <a href="#FIA_UAU.5.1">FIA_UAU.5.1</a></li></ul><div class="dependent-content"><test>
                     
                     The evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to authentication to authenticate to the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> using
 		  a username, password, and one-time password mechanism.
 		  The evaluator shall then perform the following tests.
-                  </li>
+                  </test></div></div>
                 </ul></span>
                 <p>
                   Authentication mechanisms related to
@@ -3209,14 +3153,14 @@ channel protocol selected in
             <ul></ul></p>
       
     <h3 id="obj-req-map" class="indexable" data-level="3">5.1.17 TOE Security Functional Requirements Rationale</h3><p>The following rationale provides justification for each <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> for the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, 
-    showing that the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> are suitable to address the specified threats:<br/><table><caption><span class="ctr" data-myid="t-obj_map" data-counter-type="ct-Table" id="t-obj_map">Table <span class="counter">12</span></span>: <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> Rationale</caption><tr><th>Threat</th><th>Addressed by</th><th>Rationale</th></tr><tr class="major-row"><td rowspan="7"><a href="#T.LIMITED_PHYSICAL_ACCESS">T.LIMITED_​PHYSICAL_​ACCESS</a><br/></td><td><a href="#FAU_GEN.1">FAU_GEN.1</a></td><td><a href="#FAU_GEN.1">FAU_GEN.1</a> helps mitigate the threat of by logging evidence of potential malicious activity should illicit access to the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> be gained.</td></tr>
+    showing that the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> are suitable to address the specified threats:<br/><table><caption><span class="ctr" data-myid="t-obj_map" data-counter-type="ct-Table" id="t-obj_map">Table <span class="counter">12</span></span>: <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> Rationale</caption><tr><th>Threat</th><th>Addressed by</th><th>Rationale</th></tr><tr class="major-row"><td rowspan="7"><a href="#T.LIMITED_PHYSICAL_ACCESS">T.LIMITED_​PHYSICAL_​ACCESS</a></td><td><a href="#FAU_GEN.1">FAU_GEN.1</a></td><td><a href="#FAU_GEN.1">FAU_GEN.1</a> helps mitigate the threat of by logging evidence of potential malicious activity should illicit access to the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> be gained.</td></tr>
 <tr><td><a href="#FCS_STO_EXT.1">FCS_STO_EXT.1</a></td><td><a href="#FCS_STO_EXT.1">FCS_STO_EXT.1</a> helps mitigate the threat by providing a mechanism to protect sensitive data at rest which prevents exfiltration of sensitive data during a limited access window.</td></tr>
 <tr><td><a href="#FIA_AFL.1">FIA_AFL.1</a></td><td><a href="#FIA_AFL.1">FIA_AFL.1</a> helps mitigate the threat by preventing an unprivileged user from gaining access to the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> by brute force guessing the credential in a limited time window.</td></tr>
 <tr><td><a href="#FIA_UAU.5">FIA_UAU.5</a></td><td><a href="#FIA_UAU.5">FIA_UAU.5</a> helps mitigate the threat by providing specified authentication mechanisms for user authentication to prevent unauthorized access to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.</td></tr>
 <tr><td><a href="#FMT_MOF_EXT.1">FMT_MOF_EXT.1</a></td><td><a href="#FMT_MOF_EXT.1">FMT_MOF_EXT.1</a> helps mitigate the threat by limiting the management functions that are available to a given user which minimizes the impact of compromise should illicit access be gained.</td></tr>
 <tr><td><a href="#FMT_SMF_EXT.1">FMT_SMF_EXT.1</a></td><td><a href="#FMT_SMF_EXT.1">FMT_SMF_EXT.1</a> helps mitigate the threat by limiting the management functions that are available to a given user which minimizes the impact of compromise should illicit access be gained.</td></tr>
 <tr><td><a href="#FPT_ACF_EXT.1">FPT_ACF_EXT.1</a></td><td><a href="#FPT_ACF_EXT.1">FPT_ACF_EXT.1</a> helps mitigate the threat by limiting the ability of an unprivileged user to modify the behavior of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> should illicit access be gained.</td></tr>
-<tr class="major-row"><td rowspan="20"><a href="#T.LOCAL_ATTACK">T.LOCAL_​ATTACK</a><br/></td><td><a href="#FAU_GEN.1">FAU_GEN.1</a></td><td><a href="#FAU_GEN.1">FAU_GEN.1</a> helps mitigate the threat of a local attack by logging evidence of potential malicious activity.</td></tr>
+<tr class="major-row"><td rowspan="20"><a href="#T.LOCAL_ATTACK">T.LOCAL_​ATTACK</a></td><td><a href="#FAU_GEN.1">FAU_GEN.1</a></td><td><a href="#FAU_GEN.1">FAU_GEN.1</a> helps mitigate the threat of a local attack by logging evidence of potential malicious activity.</td></tr>
 <tr><td><a href="#FCS_COP.1/Hash">FCS_COP.1/Hash</a></td><td><a href="#FCS_COP.1/Hash">FCS_COP.1/Hash</a> helps mitigate the threat of a local attack by ensuring that secure hash algorithms are used for trusted updates.</td></tr>
 <tr><td><a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a></td><td><a href="#FCS_COP.1/KeyedHash">FCS_COP.1/KeyedHash</a> helps mitigate the threat of a local attack by ensuring that secure <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> algorithms are used for trusted updates.</td></tr>
 <tr><td><a href="#FCS_COP.1/SigGen">FCS_COP.1/SigGen</a></td><td><a href="#FCS_COP.1/SigGen">FCS_COP.1/SigGen</a> helps mitigate the threat of a local attack by ensuring that secure digital signature algorithms are used for trusted updates.</td></tr>
@@ -3236,7 +3180,7 @@ channel protocol selected in
 <tr><td><a href="#FPT_TUD_EXT.2">FPT_TUD_EXT.2</a></td><td>helps mitigate the threat of a local attack by ensuring the integrity of updates applied to applications running the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.</td></tr>
 <tr><td><a href="#FPT_W^X_EXT.1">FPT_W^X_EXT.1</a> (Optional)</td><td><a href="#FPT_W^X_EXT.1">FPT_W^X_EXT.1</a> helps mitigate the threat of a local attack by enforcing data execution prevention so that an application cannot attempt to write data to executable memory.</td></tr>
 <tr><td><a href="#FTA_TAB.1">FTA_TAB.1</a> (Optional)</td><td><a href="#FTA_TAB.1">FTA_TAB.1</a> helps mitigate the threat of a local attack by providing actionable consequences for misuse of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.</td></tr>
-<tr class="major-row"><td rowspan="37"><a href="#T.NETWORK_ATTACK">T.NETWORK_​ATTACK</a><br/></td><td><a href="#FAU_GEN.1">FAU_GEN.1</a></td><td><a href="#FAU_GEN.1">FAU_GEN.1</a> helps mitigate the threat of a network attack by logging evidence of potential malicious activity.</td></tr>
+<tr class="major-row"><td rowspan="37"><a href="#T.NETWORK_ATTACK">T.NETWORK_​ATTACK</a></td><td><a href="#FAU_GEN.1">FAU_GEN.1</a></td><td><a href="#FAU_GEN.1">FAU_GEN.1</a> helps mitigate the threat of a network attack by logging evidence of potential malicious activity.</td></tr>
 <tr><td><a href="#FCS_CKM_EXT.7">FCS_CKM_EXT.7</a> (Implementation-based)</td><td><a href="#FCS_CKM_EXT.7">FCS_CKM_EXT.7</a> helps mitigate the threat of a network attack by implementing secure methods to perform key agreement for trusted communications.</td></tr>
 <tr><td><a href="#FCS_CKM.1/AKG">FCS_CKM.1/AKG</a></td><td><a href="#FCS_CKM.1/AKG">FCS_CKM.1/AKG</a> helps mitigate the threat of a network attack by ensuring the generation of strong keys used for trusted communications.</td></tr>
 <tr><td><a href="#FCS_CKM.1/SKG">FCS_CKM.1/SKG</a></td><td><a href="#FCS_CKM.1/SKG">FCS_CKM.1/SKG</a> helps mitigate the threat of a network attack by ensuring the generation of strong keys used for trusted communications.</td></tr>
@@ -3273,7 +3217,7 @@ channel protocol selected in
 <tr><td><a href="#FTA_TAB.1">FTA_TAB.1</a> (Optional)</td><td><a href="#FTA_TAB.1">FTA_TAB.1</a> helps mitigate the threat of a network attack by providing actionable consequences for misuse of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.</td></tr>
 <tr><td><a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a></td><td><a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> helps mitigate the threat of a network attack by requiring the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to implement trusted protocols for network communication.</td></tr>
 <tr><td><a href="#FTP_TRP.1">FTP_TRP.1</a></td><td><a href="#FTP_TRP.1">FTP_TRP.1</a> helps mitigate the threat of a network attack by requiring the use of a trusted path for any remote administration that can be performed on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.</td></tr>
-<tr class="major-row"><td rowspan="26"><a href="#T.NETWORK_EAVESDROP">T.NETWORK_​EAVESDROP</a><br/></td><td><a href="#FCS_CKM_EXT.7">FCS_CKM_EXT.7</a> (Implementation-based)</td><td><a href="#FCS_CKM_EXT.7">FCS_CKM_EXT.7</a> helps mitigate the threat of network eavesdropping by ensuring that a third party cannot obtain the key used by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to communicate securely with a remote entity.</td></tr>
+<tr class="major-row"><td rowspan="26"><a href="#T.NETWORK_EAVESDROP">T.NETWORK_​EAVESDROP</a></td><td><a href="#FCS_CKM_EXT.7">FCS_CKM_EXT.7</a> (Implementation-based)</td><td><a href="#FCS_CKM_EXT.7">FCS_CKM_EXT.7</a> helps mitigate the threat of network eavesdropping by ensuring that a third party cannot obtain the key used by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to communicate securely with a remote entity.</td></tr>
 <tr><td><a href="#FCS_CKM.1/AKG">FCS_CKM.1/AKG</a></td><td><a href="#FCS_CKM.1/AKG">FCS_CKM.1/AKG</a> helps mitigate the threat of network eavesdropping by ensuring the generation of strong keys used for trusted communications.</td></tr>
 <tr><td><a href="#FCS_CKM.1/SKG">FCS_CKM.1/SKG</a></td><td><a href="#FCS_CKM.1/SKG">FCS_CKM.1/SKG</a> helps mitigate the threat of network eavesdropping by ensuring the generation of strong keys used for trusted communications.</td></tr>
 <tr><td><a href="#FCS_CKM.2">FCS_CKM.2</a> (Implementation-based)</td><td><a href="#FCS_CKM.2">FCS_CKM.2</a> helps mitigate the threat of network eavesdropping by enforcing the use of a cryptographic algorithm to protect key data that is distributed in transit to a third party for use in trusted communications.</td></tr>
@@ -4022,80 +3966,70 @@ channel protocol selected in
 		The evaluator shall also ensure that any characteristics specified by the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>-author are described in sufficient detail to understand how to test those characteristics.</div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">The evaluator shall ensure that the characteristics are described in sufficient detail for administrators to configure policies using them, and that the list of characteristics in the guidance is consistent with the information in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>.</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
                 There are two tests for each selection above.
                 <span class="testlist-"><ul>
-                  <li class="test-"><a id="_t_23" class="defined" href="#_t_23">Test FPT_SRP_EXT.1:1</a>[conditional, to be performed if<ul><li><a href="#s-srp-path">file path</a>
+                  <div class="dependent">The following content should be included if:<ul><li><a href="#s-srp-path">file path</a>
              is selected from 
-             <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]:
-      
+             <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul><div class="dependent-content"><test>
                     
                     The evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to only allow code execution from the core <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> directories. The evaluator shall then attempt to execute code from a directory that is in the allowed list. The evaluator shall ensure that the code they attempted to execute has been executed.
-                  </li>
-                  <li class="test-"><a id="_t_24" class="defined" href="#_t_24">Test FPT_SRP_EXT.1:2</a>[conditional, to be performed if<ul><li><a href="#s-srp-path">file path</a>
+                  </test></div></div>
+                  <div class="dependent">The following content should be included if:<ul><li><a href="#s-srp-path">file path</a>
              is selected from 
-             <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]:
-      
+             <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul><div class="dependent-content"><test>
                     
                     The evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to only allow code execution from the core <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> directories. The evaluator shall then attempt to execute code from a directory that is not in the allowed list. The evaluator shall ensure that the code they attempted to execute has not been executed.
-                  </li>
-                  <li class="test-"><a id="_t_25" class="defined" href="#_t_25">Test FPT_SRP_EXT.1:3</a>[conditional, to be performed if<ul><li><a href="#s-srp-signature">file digital signature</a>
+                  </test></div></div>
+                  <div class="dependent">The following content should be included if:<ul><li><a href="#s-srp-signature">file digital signature</a>
              is selected from 
-             <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]:
-      
+             <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul><div class="dependent-content"><test>
                     
                     The evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to only allow code that has been signed by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor to execute. The evaluator shall then attempt to execute code signed by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor. The evaluator shall ensure that the code they attempted to execute has been executed.
-                  </li>
-                  <li class="test-"><a id="_t_26" class="defined" href="#_t_26">Test FPT_SRP_EXT.1:4</a>[conditional, to be performed if<ul><li><a href="#s-srp-signature">file digital signature</a>
+                  </test></div></div>
+                  <div class="dependent">The following content should be included if:<ul><li><a href="#s-srp-signature">file digital signature</a>
              is selected from 
-             <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]:
-      
+             <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul><div class="dependent-content"><test>
                     
                     The evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to only allow code that has been signed by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor to execute. The evaluator shall then attempt to execute code signed by another digital authority. The evaluator shall ensure that the code they attempted to execute has not been executed.
-                  </li>
-                  <li class="test-"><a id="_t_27" class="defined" href="#_t_27">Test FPT_SRP_EXT.1:5</a>[conditional, to be performed if<ul><li><a href="#s-srp-version">version</a>
+                  </test></div></div>
+                  <div class="dependent">The following content should be included if:<ul><li><a href="#s-srp-version">version</a>
              is selected from 
-             <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]:
-      
+             <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul><div class="dependent-content"><test>
                     
                     The evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to allow execution of a specific application based on version. The evaluator shall then attempt to execute the same version of the application. The evaluator shall ensure that the code they attempted to execute has been executed.
-                  </li>
-                  <li class="test-"><a id="_t_28" class="defined" href="#_t_28">Test FPT_SRP_EXT.1:6</a>[conditional, to be performed if<ul><li><a href="#s-srp-version">version</a>
+                  </test></div></div>
+                  <div class="dependent">The following content should be included if:<ul><li><a href="#s-srp-version">version</a>
              is selected from 
-             <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]:
-      
+             <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul><div class="dependent-content"><test>
                     
                     The evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to allow execution of a specific application based on version. The evaluator shall then attempt to execute an older version of the application. The evaluator shall ensure that the code they attempted to execute has not been executed.
-                  </li>
-                  <li class="test-"><a id="_t_29" class="defined" href="#_t_29">Test FPT_SRP_EXT.1:7</a>[conditional, to be performed if<ul><li><a href="#s-srp-hash">hash</a>
+                  </test></div></div>
+                  <div class="dependent">The following content should be included if:<ul><li><a href="#s-srp-hash">hash</a>
              is selected from 
-             <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]:
-      
+             <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul><div class="dependent-content"><test>
                     
                     The evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to allow execution based on the hash of the application executable. The evaluator shall then attempt to execute the application with the matching hash. The evaluator shall ensure that the code they attempted to execute has been executed.
-                  </li>
-                  <li class="test-"><a id="_t_30" class="defined" href="#_t_30">Test FPT_SRP_EXT.1:8</a>[conditional, to be performed if<ul><li><a href="#s-srp-hash">hash</a>
+                  </test></div></div>
+                  <div class="dependent">The following content should be included if:<ul><li><a href="#s-srp-hash">hash</a>
              is selected from 
-             <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul>]:
-      
+             <a href="#FPT_SRP_EXT.1.1">FPT_SRP_EXT.1.1</a></li></ul><div class="dependent-content"><test>
                     
                     The evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to allow execution based on the hash of the application executable. The evaluator shall modify the application in such a way that the application hash is changed. The evaluator will then attempt to execute the application with the matching hash. The evaluator shall ensure that the code they attempted to execute has not been executed.
-                  </li>
-                  <li class="test-"><a id="_t_31" class="defined" href="#_t_31">Test FPT_SRP_EXT.1:9</a>[conditional, to be performed if<ul><li>
+                  </test></div></div>
+                  <div class="dependent">The following content should be included if:<ul><li>
            the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements 
            
              ""
-           </li></ul>]:
-      
+           </li></ul><div class="dependent-content"><test>
                     
                     The evaluator shall attempt to run an application that should be allowed based on the defined software restriction policy and ensure that it runs.
-                  </li>
-                  <li class="test-"><a id="_t_32" class="defined" href="#_t_32">Test FPT_SRP_EXT.1:10</a>[conditional, to be performed if<ul><li>
+                  </test></div></div>
+                  <div class="dependent">The following content should be included if:<ul><li>
            the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements 
            
              ""
-           </li></ul>]:
-      
+           </li></ul><div class="dependent-content"><test>
                     
                     The evaluator shall then attempt to run an application that should not be allowed the defined software restriction policy and ensure that it does not run.
-                  </li>
+                  </test></div></div>
                 </ul></span>
               </div></div></div></div></div><h2 id="feat-based-reqs" class="indexable" data-level="2">A.3 Implementation-dependent  Requirements
     </h2><h3 id="feat-based-reqs-audit" class="indexable" data-level="3">A.3.1 
