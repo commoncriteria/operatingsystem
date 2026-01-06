@@ -418,7 +418,7 @@
 									<selectable>dNSName</selectable>
 									<selectable>directoryName</selectable>
 									<selectable>uniformResourceIdentifier</selectable>
-									<selectable>iPAddress</selectable>
+									<selectable>IPAddress</selectable>
 									<selectable> <assignable>other name</assignable></selectable>
 								</selectables></selectable>
 							<selectable>basicConstraints is populated with <selectables>
@@ -471,7 +471,7 @@
 					usages "serverAuth" or "clientAuth" are claimed only when "digitalSignature," "keyEncipherment," or "keyAgreement" are supported
 					according to the supported TLS function's version and ciphersuite capabilities.
 					</h:p><h:p>
-						If “subjectAlternateName” is claimed as a supported extension, the ST author claims all RFC 5280 name types supported and designates any other standard name types in the assignment, indicating the formatting and normalization standard used for each supported name type. Standards used to refine or provide alternate normalization for RFC 5280 name types are claimed via the assignment.
+						If “subjectAltName” is claimed as a supported extension, the ST author claims all RFC 5280 name types supported and designates any other standard name types in the assignment, indicating the formatting and normalization standard used for each supported name type. Standards used to refine or provide alternate normalization for RFC 5280 name types are claimed via the assignment.
 					</h:p>
 				</note>
 			</f-element>
@@ -518,7 +518,7 @@
 							<selectable>dNSName</selectable>
 							<selectable>directoryName</selectable>
 							<selectable>uniformResourceIdentifier</selectable>
-							<selectable>iPAddress</selectable>
+							<selectable>IPAddress</selectable>
 							<selectable> <assignable>other name type</assignable></selectable>							
 						</selectables></selectable></selectables>
 						of the issued certificate is determined by <selectables linebreak="yes">
@@ -586,7 +586,7 @@
 						The evaluator shall further examine the TSS to ensure that it describes how the TSF updates and enforces each 
 						certificate profile based on the configuration of the CA and inputs provided by the supported function.
 						</h:p><h:p>
-							For each subject DN or subjectAlternateName name type supported, the evaluator shall verify that the ST indicates the normalization standard used for the name type and the method used for ensuring the name populated in the certificate is appropriately normalized.	
+							For each subject DN or subjectAltName name type supported, the evaluator shall verify that the ST indicates the normalization standard used for the name type and the method used for ensuring the name populated in the certificate is appropriately normalized.	
 						</h:p>
 					</TSS>
 					<Guidance>
@@ -606,7 +606,7 @@
                             	[conditional] If “subjectName” is claimed and standard certificate requests are supported that allow a general DN to be input, the  evaluator shall send the TSF a certificate request that includes a DN with an RDN component containing multiple elements and verify that TSF rejects the request.
                             </test>
 							<test>
-								[conditional] If “subjectAlternateName” is claimed, and standard certificate requests are supported that allow multiple SAN entries, then for each name type supported, the evaluator shall send the TSF a certificate request with multiple SAN entries of the indicated name type, where the first entry is valid and the second entry is invalid. The evaluator shall confirm that the TSF issues a certificate containing only the first entry.
+								[conditional] If “subjectAltName” is claimed, and standard certificate requests are supported that allow multiple SAN entries, then for each name type supported, the evaluator shall send the TSF a certificate request with multiple SAN entries of the indicated name type, where the first entry is valid and the second entry is invalid. The evaluator shall confirm that the TSF issues a certificate containing only the first entry.
 								Note: the method to create an invalid entry depends on the validation methods claimed.
 							</test>							
 						</testlist>
@@ -711,7 +711,7 @@
 										<selectable>dNSName</selectable>
 										<selectable>directoryName</selectable>
 										<selectable>uniformResourceIdentifier</selectable>
-										<selectable>iPAddress</selectable>
+										<selectable>IPAddress</selectable>
 										<selectable> <assignable>other name</assignable></selectable>
 									</selectables></selectable>
 									<selectable>basicConstraints is populated with CA flag equal to false</selectable>
@@ -775,7 +775,7 @@
 								<selectable>dNSName</selectable>
 								<selectable>directoryName</selectable>
 								<selectable>uniformResourceIdentifier</selectable>
-								<selectable>iPAddress</selectable>
+								<selectable>IPAddress</selectable>
 								<selectable> <assignable>other name type</assignable></selectable>							
 							</selectables></selectable></selectables>
 							of the issued certificate is determined by <selectables linebreak="yes">
@@ -1625,7 +1625,7 @@
 							in accordance with <no-link>FCS_HTTPS_EXT.1</no-link>.
 						</h:p>	
 						<h:p>When HTTPS is claimed, the certificate used to authenticate the session meets the requirements in this FP for a
-							TLS client certificate and has the same subjectName and subjectAlternateName as the certificate being renewed; if
+							TLS client certificate and has the same subjectName and subjectAltName as the certificate being renewed; if
 							the TSF does not possess such a certificate, this option is not claimed.
 						</h:p>
 				</note>
@@ -2378,7 +2378,7 @@
 							<h:li>keyUsage</h:li>
 							and <selectables linebreak="yes">
 								<selectable>basicConstraints</selectable>
-								<selectable>authorityInformationAccess</selectable>
+								<selectable>authorityInfoAccess</selectable>
 								<selectable>cRLDistributionPoints</selectable>
 								<selectable>certificatePolicies</selectable>
 								<selectable>policyMapping</selectable>
@@ -2387,7 +2387,7 @@
 									<selectable>dNSName</selectable>
 									<selectable>directoryName</selectable>
 									<selectable>uniformResourceIdentifier</selectable>
-									<selectable>iPAddress</selectable>
+									<selectable>IPAddress</selectable>
 									<selectable> <assignable>other name types</assignable></selectable>
 								</selectables></selectable>
 								<selectable>extendedKeyUsage</selectable>
@@ -2411,17 +2411,17 @@
 			<f-element id="fia-x509-ext-1e3">
 				<title>
 					The TSF shall  <selectables>
-						<selectable>invoke platform-provided functionality</selectable>
-						<selectable>implement functionality</selectable></selectables>
+						<selectable id="sel-fia-x509-1e3-platfunc">invoke platform-provided functionality</selectable>
+						<selectable id="sel-fia-x509-1e3-implfunc">implement functionality</selectable></selectables>
 					to validate revocation status of the certificate using <selectables linebreak="yes">
-							<selectable>The Online Certificate Status Protocol (OCSP) as specified in RFC 6960</selectable>
-							<selectable>Certificate Revocation Lists (CRL) as specified in RFC 5280 and refined by RFC 8603</selectable>
-							<selectable>Certificate Revocation Lists as specified in RFC 5280</selectable>
-							<selectable>Based on validity period: Certificates expiring within <assignable>time less than 24 hours</assignable> of the current 
+							<selectable id="sel-fia-x509-1e3-ocsp">The Online Certificate Status Protocol (OCSP) as specified in RFC 6960</selectable>
+							<selectable id="sel-fia-x509-1e3-crl8603">Certificate Revocation Lists (CRL) as specified in RFC 5280 and refined by RFC 8603</selectable>
+							<selectable id="sel-fia-x509-1e3-cr5280">Certificate Revocation Lists as specified in RFC 5280</selectable>
+							<selectable id="sel-fia-x509-1e3-valperiod">Based on validity period: Certificates expiring within <assignable>time less than 24 hours</assignable> of the current 
 								time are considered valid when no other valid revocation status information is available</selectable>
-							<selectable>Administrative notification of revocation: <assignable>administrative action upon notification</assignable> using <assignable>
+							<selectable id="sel-fia-x509-1e3-adminnotity">Administrative notification of revocation: <assignable>administrative action upon notification</assignable> using <assignable>
 								method to invalidate use of certificates in supported functions</assignable> when the certificate is revoked.</selectable>
-							<selectable>Direct association with Certification Authority: <assignable>direct revocation status information 
+							<selectable id="sel-fia-x509-1e3-directassoc">Direct association with Certification Authority: <assignable>direct revocation status information 
 								implementations</assignable></selectable>
 						</selectables>.
 				</title>
@@ -2459,23 +2459,20 @@
 			<f-element id="fia-x509-ext-1e4">
 				<title>
 					The TSF shall  <selectables>
-						<selectable>not obtain revocation status information by the TSF due to <selectables>
+						<selectable id="sel-fia-x509-1e4-notobtain">not obtain revocation status information by the TSF due to <selectables>
 							<selectable>determining that the certificate expires within <assignable>time less than 24 hours</assignable></selectable>
 							<selectable>determining that the <assignable>supported function</assignable> validates revocation status using <assignable>methods supported by the function</assignable></selectable>
 						</selectables> 
 						
 						</selectable>
 						
-						
-						
-						
-						<selectable>invoke platform-provided functionality</selectable>
-						<selectable>implement functionality</selectable></selectables> to obtain supported revocation status information
+						<selectable id="sel-fia-x509-1e4-platfunc">invoke platform-provided functionality</selectable>
+						<selectable id="sel-fia-x509-1e4-implfunc">implement functionality</selectable></selectables> to obtain supported revocation status information
 							via <selectables linebreak="yes">
 								<selectable>Network connection to <selectables><selectable>CA</selectable><selectable>CRL distribution 
-									point</selectable><selectable>OCSP responder</selectable><selectable> <assignable>alternate sources
+									point</selectable><selectable>OCSP responder</selectable><selectable id="sel-fia-x509-1e4-altsrc"> <assignable>alternate sources
 									</assignable></selectable></selectables></selectable>
-								<selectable>Local revocation status information from <selectables><selectable>cached CRL</selectable>
+								<selectable id="sel-fia-x509-1e4-localrevinfo">Local revocation status information from <selectables><selectable>cached CRL</selectable>
 									<selectable id="toe-uses-embedded-ca">embedded CA repository</selectable><selectable>local OCSP responder</selectable>
 									<selectable>administrator configuration</selectable></selectables></selectable>
 								<selectable>An OCSP TLS Status Request Extension (OCSP stapling) as specified in RFC 6066,</selectable>
@@ -2724,7 +2721,7 @@
 									method of certification path context processing claimed.</h:p>											
 							</test>
 							<test>
-								The evaluator shall establish a certificate with an empty subject field and not containing a subjectAlternateName extension, but which is otherwise valid and trusted by the TSF. The evaluator shall demonstrate that the TSF rejects the certificate.
+								The evaluator shall establish a certificate with an empty subject field and not containing a subjectAltName extension, but which is otherwise valid and trusted by the TSF. The evaluator shall demonstrate that the TSF rejects the certificate.
 							</test>
 							<test>
 								[conditional]: If certificates with non-empty subject fields are validated and if either name constraints processing is supported or one or more reference ID checking rules are included in trust store context rules, then for each RDN supported, the evaluator shall configure the TOE to enforce a rule on the RDN value, establish a value for the RDN that matches the rule, and perform the following steps: <h:ul>
@@ -2906,7 +2903,7 @@
 							<selectable>dNSName</selectable>
 							<selectable>directoryName</selectable>
 							<selectable>uniformResourceIdentifier</selectable>
-							<selectable>iPAddress</selectable>
+							<selectable>IPAddress</selectable>
 							<selectable> <assignable>other SAN types</assignable></selectable>
 						</selectables>
 						</selectable>
@@ -3046,20 +3043,32 @@
 			<f-element id="fia-xcu-ext-2e1">
 				<title>The TSF shall
 					 <selectables>
-						<selectable id="toe-requests-certs">request certificates from an <selectables><selectable>external</selectable>
+						<selectable id="toe-requests-certs">request certificates from an <selectables>
+							<selectable id="toe-requests-certs-from-external-ca">external</selectable>
 							<selectable id="toe-requests-certs-from-embedded-ca">embedded
 						</selectable></selectables> CA,</selectable>
 						<selectable id="toe-obtains-certs">obtain certificates from an embedded CA</selectable></selectables> to represent <assignable>TOE functions 
 						</assignable> for
 					 <selectables linebreak="yes">
-						<selectable> <selectables><selectable>TLS</selectable><selectable>DTLS</selectable><selectable>IPsec or IKE
-							</selectable><selectable>SMIME</selectable><selectable>SSH</selectable><selectable> <assignable>other 
-								authenticated communications protocol</assignable></selectable></selectables>
+						<selectable> <selectables>
+							<selectable id="sel-fia-xcu-2e1-tls">TLS</selectable>
+							<selectable id="sel-fia-xcu-2e1-dtls">DTLS</selectable>
+							<selectable id="sel-fia-xcu-2e1-ipsec">IPsec or IKE</selectable>
+							<selectable id="sel-fia-xcu-2e1-smime">SMIME</selectable>
+							<selectable id="sel-fia-xcu-2e1-ssh">SSH</selectable>
+							<selectable id="sel-fia-xcu-2e1-other"> 
+								<assignable id="asn-fia-xcu-2e1-other">other authenticated communications protocol</assignable>
 							</selectable>
-						<selectable> <selectables><selectable>code signing for system software updates</selectable><selectable>code 
-								signing for software integrity testing</selectable><selectable>integrity verification for TSF protected 
-									data</selectable><selectable>administrator authentication</selectable><selectable>user authentication</selectable>
-							<selectable> <assignable>other uses</assignable></selectable></selectables> </selectable>
+						</selectables>
+					</selectable>
+						<selectable> <selectables>
+						<selectable>code signing for system software updates</selectable>
+						<selectable>code signing for software integrity testing</selectable>
+						<selectable>integrity verification for TSF protected data</selectable>
+						<selectable id="sel-fia-xcu-2e1-adminauth">administrator authentication</selectable>
+						<selectable id="sel-fia-xcu-2e1-userauth">user authentication</selectable>
+							<selectable id="sel-fia-xcu-2e1-otheruses"> 
+								<assignable id="asn-fia-xcu-2e1-otheruses">other uses</assignable></selectable></selectables> </selectable>
 						</selectables>.								
 				</title>
 				<note role="application">
