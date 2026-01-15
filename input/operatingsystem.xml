@@ -4960,6 +4960,8 @@ the node certificate to be tested, two Intermediate CAs, and the
 	      <management-function-set default="O">
           <manager cid="U">User</manager>
           <manager cid="A">Administrator</manager>
+          <manager cid="AM">Administrator (When enrolled in management)</manager>
+          <manager cid="AO">Administrator Only (When enrolled in management)</manager>
           <management-function id="mf-pwd">
             <text>
                     <!-- <ctr id="pwd" pre="" ctr-type="function">.</ctr>--> Configure password policy:
@@ -4971,6 +4973,8 @@ the node certificate to be tested, two Intermediate CAs, and the
             </text>
             <O ref="U" />
             <M ref="A" />
+            <M ref="AM" />
+            <M ref="AO" />
             <aactivity>
               <TSS>The evaluator shall verify
                 the TSS defines the allowable policy options: the range of values for both
@@ -5000,6 +5004,8 @@ the node certificate to be tested, two Intermediate CAs, and the
             </text>
             <O ref="U" />
             <M ref="A" />
+            <M ref="AM" />
+            <M ref="AO" />
             <aactivity>
               <TSS>The evaluator shall
                 verify the TSS defines the range of values for both timeout period and number
@@ -5032,6 +5038,10 @@ the node certificate to be tested, two Intermediate CAs, and the
                 </selectables>
               </h:div>
             </text>
+            <O ref="U" />
+            <O ref="A" />
+            <M ref="AM" />
+            <O ref="AO" />
             <app-note><also ref-id="mf-audioVisual" /><also ref-id="mf-location" /> Functions <_ />
               must be implemented on a device-wide basis but may also be implemented on a
               per-app basis or on a per-group of applications basis in which the configuration
@@ -5082,6 +5092,10 @@ the node certificate to be tested, two Intermediate CAs, and the
             <text>
                     <!-- <ctr id="radios" pre="" ctr-type="function">.</ctr>--> Enable/disable <assignable id="a-mf-radios">list of all radios</assignable>
             </text>
+            <O ref="U" />
+            <O ref="A" />
+            <M ref="AM" />
+            <O ref="AO" />
             <app-note> The assignment in function <_ /> consists of all radios present on the
               TSF, such as Wi-Fi, cellular, NFC, Bluetooth BR/EDR, and Bluetooth LE, which can
               be enabled and disabled. In the future, if both Bluetooth BR/EDR and Bluetooth
@@ -5127,7 +5141,7 @@ the node certificate to be tested, two Intermediate CAs, and the
                 each radio, the evaluator shall:<h:br /><h:br /> Step 1: Place the antenna of
                 the spectrum analyzer inside the RF shielded enclosure. Configure the spectrum
                 analyzer to sweep desired frequency range for the radio to be tested (based on
-                range provided in the TSS)). The ambient noise floor shall be set to -110 dBm.
+                range provided in the TSS). The ambient noise floor shall be set to -110 dBm.
                 Place the TOE into the RF shielded enclosure to isolate them from all other RF
                 traffic. <h:br /><h:br /> Step 2: The evaluator shall create a baseline of the
                 expected behavior of RF signals. The evaluator shall power on the device,
@@ -5169,6 +5183,10 @@ the node certificate to be tested, two Intermediate CAs, and the
                 </selectables>
               </h:div>
             </text>
+            <O ref="U" />
+            <O ref="A" />
+            <M ref="AM" />
+            <O ref="AO" />
             <app-note>The assignment in function <_ /> consists of at least one audio or
               visual device, such as camera and microphone, which can be enabled and disabled
               by either the user or administrator. Disablement of the microphone does not
@@ -5229,6 +5247,10 @@ the node certificate to be tested, two Intermediate CAs, and the
             <text>
                     <!-- 6. -->
                     <!-- <ctr id="lockState" pre="" ctr-type="function">.</ctr>--> Transition to the locked state </text>
+            <O ref="U" />
+            <O ref="A" />
+            <M ref="AM" />
+            <O ref="AO" />
             <aactivity>
               <Tests>
                 The evaluator shall use the test environment to instruct the TSF, both as a
@@ -5242,6 +5264,10 @@ the node certificate to be tested, two Intermediate CAs, and the
             <text>
                     <!-- 7. -->
                     <!-- <ctr id="wipe" pre="" ctr-type="function">.</ctr>--> TSF wipe of protected data </text>
+            <O ref="U" />
+            <O ref="A" />
+            <M ref="AM" />
+            <O ref="AO" />
             <app-note> Wipe of the TSF (function <xref to="mf-wipe" />) is performed according
               to FCS_CKM_EXT.5. Protected data is all non-TSF data, including all user or
               enterprise data. Some or all of this data may be considered sensitive data as
@@ -5271,6 +5297,10 @@ the node certificate to be tested, two Intermediate CAs, and the
                 </selectables>
               </h:div>
             </text>
+            <O ref="U" />
+            <O ref="A" />
+            <M ref="AM" />
+            <M ref="AO" />
             <app-note> The selection in function <xref to="mf-appInstallRules" /> allows the
               ST author to select which mechanisms are available to the administrator through
               the MDM Agent to restrict the applications which the user may install. The ST
@@ -5314,6 +5344,10 @@ the node certificate to be tested, two Intermediate CAs, and the
             <text>
                     <!-- 9. -->
                     <!-- <ctr id="keyStorage" pre="" ctr-type="function">.</ctr>--> Import keys or secrets into the secure key storage </text>
+            <O ref="U" />
+            <O ref="A" />
+            <M ref="AM" />
+            <O ref="AO" />
             <aactivity>
               <also ref-id="mf-keyWipe" />
               <TSS>The evaluator shall verify that the TSS
@@ -5336,11 +5370,19 @@ the node certificate to be tested, two Intermediate CAs, and the
                 </selectable>
               </selectables>
               in the secure key storage </text>
+            <O ref="U" />
+            <O ref="A" />
+            <M ref="AM" />
+            <O ref="AO" />
           </management-function>
           <management-function id="mf-certImport">
-            <text>
+            <text>            
                     <!-- 11. -->
                     <!-- <ctr id="certImport" pre="" ctr-type="function">.</ctr>--> Import X.509v3 certificates into the Trust Anchor Database </text>
+            <O ref="U" />
+            <O ref="A" />
+            <M ref="AM" />
+            <O ref="AO" />
             <aactivity>
               <Guidance>The evaluator shall
                 review the AGD guidance to determine that it describes the steps needed to
@@ -5370,6 +5412,10 @@ the node certificate to be tested, two Intermediate CAs, and the
                 </selectable>
               </selectables>
               in the Trust Anchor Database </text>
+            <O ref="U" />
+            <O ref="A" />
+            <M ref="AM" />
+            <O ref="AO" />
             <app-note> In the future, function <xref to="mf-certWipe" /> may require
               destruction or disabling of any default trusted CA certificates, excepting those
               CA certificates necessary for continued operation of the TSF, such as the
@@ -5394,6 +5440,10 @@ the node certificate to be tested, two Intermediate CAs, and the
             <text>
                     <!-- 13. -->
                     <!-- <ctr id="enroll" pre="" ctr-type="function">.</ctr>--> Enroll the TOE in management </text>
+            <O ref="U" />
+            <O ref="A" />
+            <M ref="AM" />
+            <O ref="AO" />
             <app-note> For function <xref to="mf-enroll" />, the enrollment function may be
               installing an MDM agent and includes the policies to be applied to the device.
               It is acceptable for the user approval notice to require the user to
@@ -5418,6 +5468,10 @@ the node certificate to be tested, two Intermediate CAs, and the
             <text>
                     <!-- 14. -->
                     <!-- <ctr id="appRemove" pre="" ctr-type="function">.</ctr>--> Remove applications </text>
+            <O ref="U" />
+            <O ref="A" />
+            <M ref="AM" />
+            <O ref="AO" />
             <aactivity>
               <TSS>
                 The evaluator shall
@@ -5447,6 +5501,10 @@ the node certificate to be tested, two Intermediate CAs, and the
             <text>
                     <!-- 15 -->
                     <!-- <ctr id="update" pre="" ctr-type="function">.</ctr>--> Update system software </text>
+            <O ref="U" />
+            <O ref="A" />
+            <M ref="AM" />
+            <O ref="AO" />
             <app-note> For function <xref to="mf-update" />, the administrator capability to
               update the system software may be limited to causing a prompt to the user to
               update rather than the ability to initiate the update itself. As the
@@ -5468,6 +5526,10 @@ the node certificate to be tested, two Intermediate CAs, and the
             <text>
                     <!-- 16. -->
                     <!-- <ctr id="appInstall" pre="" ctr-type="function">.</ctr>--> Install applications </text>
+            <O ref="U" />
+            <O ref="A" />
+            <M ref="AM" />
+            <O ref="AO" />
             <app-note> Function <xref
                 to="mf-appInstall" /> addresses both installation and update. This protection
               profile does not distinguish between installation and update of applications
@@ -5484,6 +5546,10 @@ the node certificate to be tested, two Intermediate CAs, and the
             <text>
                     <!-- 17. -->
                     <!-- <ctr id="entAppRemove" pre="" ctr-type="function">.</ctr>--> Remove Enterprise applications </text>
+            <O ref="U" />
+            <O ref="A" />
+            <M ref="AM" />
+            <O ref="AO" />
             <app-note> For function <xref
                 to="mf-entAppRemove" />, "Enterprise applications" are those applications that
               belong to the Enterprise application group. Applications installed by the
@@ -5516,6 +5582,10 @@ the node certificate to be tested, two Intermediate CAs, and the
                 <selectable>all notifications</selectable>
               </selectables>
             </text>
+            <O ref="U" />
+            <O ref="A" />
+            <M ref="AM" />
+            <O ref="AO" />
             <app-note> If the display of notifications in the locked state is supported, the
               configuration of these notifications (function <xref to="mf-notifications" />)
               must be included in the selection. </app-note>
@@ -5535,6 +5605,10 @@ the node certificate to be tested, two Intermediate CAs, and the
             <text>
                     <!-- 20. -->
                     <!-- <ctr id="dar" pre="" ctr-type="function">.</ctr>--> Enable data-at rest protection </text>
+            <O ref="U" />
+            <O ref="A" />
+            <M ref="AM" />
+            <O ref="AO" />
             <app-note> Function <xref to="mf-dar" /> must be included in the selection if
               data-at-rest protection is not natively enabled. </app-note>
             <aactivity>
@@ -5552,6 +5626,10 @@ the node certificate to be tested, two Intermediate CAs, and the
             <text>
                     <!-- 21. -->
                     <!-- <ctr id="rmediaDar" pre="" ctr-type="function">.</ctr>--> Enable removable media’s data-at-rest protection </text>
+            <O ref="U" />
+            <O ref="A" />
+            <M ref="AM" />
+            <O ref="AO" />
             <app-note> Function <xref to="mf-rmediaDar" /> is implicitly met if the TSF does
               not support removable media. </app-note>
             <aactivity>
@@ -5578,6 +5656,10 @@ the node certificate to be tested, two Intermediate CAs, and the
                 </selectables>
               </h:div>
             </text>
+            <O ref="U" />
+            <O ref="A" />
+            <M ref="AM" />
+            <O ref="AO" />
             <app-note> For function <xref to="mf-location" />, location services include
               location information gathered from GPS, cellular, and Wi-Fi. </app-note>
             <aactivity>
@@ -5940,6 +6022,10 @@ the node certificate to be tested, two Intermediate CAs, and the
           <management-function id="mf-unlockBanner">
             <text>
                     <!-- <ctr id="unlockBanner" pre="" ctr-type="function">.</ctr>--> Configure the unlock banner </text>
+            <O ref="U" />
+            <O ref="A" />
+            <M ref="AM" />
+            <O ref="AO" />
             <app-note>
                     <!-- ToDo Removed because FTA_TAB is now mandatory: Function <xref
               to="mf-unlockBanner"/> must be
