@@ -471,7 +471,7 @@
 					usages "serverAuth" or "clientAuth" are claimed only when "digitalSignature," "keyEncipherment," or "keyAgreement" are supported
 					according to the supported TLS function's version and ciphersuite capabilities.
 					</h:p><h:p>
-						If “subjectAlternateName” is claimed as a supported extension, the ST author claims all RFC 5280 name types supported and designates any other standard name types in the assignment, indicating the formatting and normalization standard used for each supported name type. Standards used to refine or provide alternate normalization for RFC 5280 name types are claimed via the assignment.
+						If “subjectAltName” is claimed as a supported extension, the ST author claims all RFC 5280 name types supported and designates any other standard name types in the assignment, indicating the formatting and normalization standard used for each supported name type. Standards used to refine or provide alternate normalization for RFC 5280 name types are claimed via the assignment.
 					</h:p>
 				</note>
 			</f-element>
@@ -586,7 +586,7 @@
 						The evaluator shall further examine the TSS to ensure that it describes how the TSF updates and enforces each 
 						certificate profile based on the configuration of the CA and inputs provided by the supported function.
 						</h:p><h:p>
-							For each subject DN or subjectAlternateName name type supported, the evaluator shall verify that the ST indicates the normalization standard used for the name type and the method used for ensuring the name populated in the certificate is appropriately normalized.	
+							For each subject DN or subjectAltName name type supported, the evaluator shall verify that the ST indicates the normalization standard used for the name type and the method used for ensuring the name populated in the certificate is appropriately normalized.	
 						</h:p>
 					</TSS>
 					<Guidance>
@@ -606,7 +606,7 @@
                             	[conditional] If “subjectName” is claimed and standard certificate requests are supported that allow a general DN to be input, the  evaluator shall send the TSF a certificate request that includes a DN with an RDN component containing multiple elements and verify that TSF rejects the request.
                             </test>
 							<test>
-								[conditional] If “subjectAlternateName” is claimed, and standard certificate requests are supported that allow multiple SAN entries, then for each name type supported, the evaluator shall send the TSF a certificate request with multiple SAN entries of the indicated name type, where the first entry is valid and the second entry is invalid. The evaluator shall confirm that the TSF issues a certificate containing only the first entry.
+								[conditional] If “subjectAltName” is claimed, and standard certificate requests are supported that allow multiple SAN entries, then for each name type supported, the evaluator shall send the TSF a certificate request with multiple SAN entries of the indicated name type, where the first entry is valid and the second entry is invalid. The evaluator shall confirm that the TSF issues a certificate containing only the first entry.
 								Note: the method to create an invalid entry depends on the validation methods claimed.
 							</test>							
 						</testlist>
@@ -1625,7 +1625,7 @@
 							in accordance with <no-link>FCS_HTTPS_EXT.1</no-link>.
 						</h:p>	
 						<h:p>When HTTPS is claimed, the certificate used to authenticate the session meets the requirements in this FP for a
-							TLS client certificate and has the same subjectName and subjectAlternateName as the certificate being renewed; if
+							TLS client certificate and has the same subjectName and subjectAltName as the certificate being renewed; if
 							the TSF does not possess such a certificate, this option is not claimed.
 						</h:p>
 				</note>
@@ -2378,7 +2378,7 @@
 							<h:li>keyUsage</h:li>
 							and <selectables linebreak="yes">
 								<selectable>basicConstraints</selectable>
-								<selectable>authorityInformationAccess</selectable>
+								<selectable>authorityInfoAccess</selectable>
 								<selectable>cRLDistributionPoints</selectable>
 								<selectable>certificatePolicies</selectable>
 								<selectable>policyMapping</selectable>
@@ -2721,7 +2721,7 @@
 									method of certification path context processing claimed.</h:p>											
 							</test>
 							<test>
-								The evaluator shall establish a certificate with an empty subject field and not containing a subjectAlternateName extension, but which is otherwise valid and trusted by the TSF. The evaluator shall demonstrate that the TSF rejects the certificate.
+								The evaluator shall establish a certificate with an empty subject field and not containing a subjectAltName extension, but which is otherwise valid and trusted by the TSF. The evaluator shall demonstrate that the TSF rejects the certificate.
 							</test>
 							<test>
 								[conditional]: If certificates with non-empty subject fields are validated and if either name constraints processing is supported or one or more reference ID checking rules are included in trust store context rules, then for each RDN supported, the evaluator shall configure the TOE to enforce a rule on the RDN value, establish a value for the RDN that matches the rule, and perform the following steps: <h:ul>
