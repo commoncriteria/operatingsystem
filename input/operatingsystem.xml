@@ -140,6 +140,7 @@ resources, and provides common services for application programs. The hardware
 it manages may be physical or virtual.
     </sec:Overview>
     <tech-terms>
+      <suppress>Distributed TOE, Extended Package</suppress>
       <term abbr='AES' full="Advanced Encryption Standard"/>
       <term full="Address Space Layout Randomization" abbr="ASLR">
 	An anti-exploitation feature which loads memory mappings into unpredictable
@@ -175,7 +176,7 @@ it manages may be physical or virtual.
 	password.
       </term>
       <term abbr='CRL' full="Certificate Revocation List"/>
-      <term abbr='CSA' full="Computer Security Act"/>
+      
       <term full="Critical Security Parameters" abbr="CSP">
 	Information that is either user or system defined and
 	is used to operate a cryptographic module in processing encryption functions including
@@ -183,8 +184,8 @@ it manages may be physical or virtual.
 	of which can compromise the security of a cryptographic module or the security of the
 	information protected by the module.
       </term>
-      <term full="Data At Rest" abbr="DAR" />
-      <term full="DAR Protection">
+
+      <term full="Data At Rest Protection">
 	Countermeasures that prevent attackers, even those with physical access,
 	from extracting data from non-volatile storage.
 	Common techniques include data encryption and wiping.
@@ -203,11 +204,10 @@ it manages may be physical or virtual.
       <term abbr='DHE' full="Diffie-Hellman Ephemeral"/>
       <term abbr='DNS' full="Domain Name System"/>
       <term abbr='DRBG' full="Deterministic Random Bit Generator"/>
-      <term abbr='DSS' full="Digital Signature Standard"/>
+      
       <term abbr='DT' full="Date/Time Vector"/>
       <term abbr='DTLS' full="Datagram Transport Layer Security"/>
-      <term abbr='EAP' full="Extensible Authentication Protocol"/>
-      <term abbr='ECDHE' full="Elliptic Curve Diffie-Hellman Ephemeral"/>
+      
       <term abbr='ECDSA' full="Elliptic Curve Digital Signature Algorithm"/>
       <term abbr='EST' full="Enrollment over Secure Transport"/>
       <term abbr='FIPS' full="Federal Information Processing Standards"/>
@@ -230,7 +230,7 @@ it manages may be physical or virtual.
       </term>
       <term abbr='HTTP'  full="Hypertext Transfer Protocol"/>
       <term abbr='HTTPS' full="Hypertext Transfer Protocol Secure"/>
-      <term abbr='IETF'  full="Internet Engineering Task Force"/>
+     
       <term abbr='IP'    full="Internet Protocol"/>
       <term abbr='ISO'   full="International Organization for Standardization"/>
       <term abbr='IT'    full="Information Technology"/>
@@ -280,7 +280,7 @@ it manages may be physical or virtual.
       <term abbr='TLS' full="Transport Layer Security"/>
       <term abbr='URI' full="Uniform Resource Identifier"/>
       <term abbr='URL' full="Uniform Resource Locator"/>
-      <term abbr='USB' full="Universal Serial Bus"/>
+     
       <term full="User">
 	A user is subject to configuration policies applied
 	to the operating system by administrators.  On some systems under certain
@@ -330,14 +330,14 @@ it manages may be physical or virtual.
 	    These devices may optionally be bound to a directory server or management server.
 	    </h:p>
 	    <h:p>
-            As this Protection Profile does not address threats against data-at-rest,
+            As this Protection Profile does not address threats against data at rest,
             enterprises deploying operating systems in mobile scenarios should ensure that these systems
-            include data-at-rest protection spelled out in other
+            include data at rest protection spelled out in other
 	    Protection Profiles. Specifically, this includes the Protection Profiles for
 	    <h:i>Full Drive Encryption - Encryption Engine</h:i>,
 	    <h:i>Full Drive Encryption - Authorization Acquisition</h:i>,
 	    and <h:i>Software File Encryption</h:i>.  The <h:i>Protection Profile for Mobile
-		Device Fundamentals</h:i> includes requirements for data-at-rest protection and is appropriate
+		Device Fundamentals</h:i> includes requirements for data at rest protection and is appropriate
 		for many mobile devices.
 	    </h:p>
           </description>
@@ -1037,10 +1037,11 @@ it manages may be physical or virtual.
                   <h:ul><h:li>Authentication events (Success/Failure);</h:li>
                     <h:li>Use of privileged/special rights events (Successful and unsuccessful security, audit, and configuration changes);</h:li>
                     <h:li>Privilege or role escalation events (Success/Failure);</h:li>
-                    <h:li>Auditable events as defined in the <xref to="ssh"/>;</h:li>
-                    <h:li>Auditable events as defined in the <xref to="tls"/>;</h:li>
-                    <h:li>Auditable events as defined in the <xref to="X509"/>;</h:li>
+                
                     <h:li><selectables linebreak='yes'>
+                      <selectable>Auditable events as defined in the <xref to="ssh"/></selectable>
+                      <selectable>Auditable events as defined in the <xref to="tls"/></selectable>
+                      <selectable>Auditable events as defined in the <xref to="X509"/></selectable>
                       <selectable>File and object events (Successful and unsuccessful attempts to create, access, delete, modify, modify permissions)</selectable>
                       <selectable>User and Group management events (Successful and unsuccessful add, delete, modify, disable, enable, and credential change)</selectable>
                       <selectable>Audit and log data access events (Success/Failure)</selectable>
@@ -1057,6 +1058,7 @@ it manages may be physical or virtual.
                 </h:li>
               </h:ol>
             </title>
+            <note role="application">For each functional package referenced in item d, the ST author is expected to include the corresponding selection if the TOE includes that functional package claim. If the TOE claims any SFRs in these functional packages for which a corresponding auditable event is defined, the ST must include those auditable events.</note>
             <aactivity>
               <TSS>The evaluator shall examine the TSS to verify that it describes any mechanisms the TSF uses to generate audit data for security-relevant audit events. If multiple separate mechanisms are used, the evaluator shall verify that the TSS identifies the events that are logged via each mechanism.</TSS>
               <Guidance>
@@ -2248,7 +2250,7 @@ it manages may be physical or virtual.
         <f-component id="sfr-fcs-cop-1-aead" cc-id="fcs_cop.1" iteration="AEAD" name="Cryptographic Operation – Authenticated Encryption with Associated Data">
           <f-element id="fcs-cop-1e1-aead">
             <title>
-              The TSF shall perform [authenticated encryption with associated data] in accordance with a specified 
+              The TSF shall perform [<h:i>authenticated encryption with associated data</h:i>] in accordance with a specified 
               cryptographic algorithm 
               <selectables>
                 <tabularize id="fcs-cop-aead-sels" title="Allowable choices for FCS_COP.1/AEAD">
@@ -2720,7 +2722,7 @@ it manages may be physical or virtual.
 				name="Cryptographic Operation - Key Encapsulation" status="sel-based">
 		  <depends on-sel="sel-ckm-2-encap"/>
 			<f-element id="fcs-cop-1e1-keyencap">
-				<title> The TSF shall perform [key encapsulation] in accordance with a specified cryptographic algorithm 
+			  <title> The TSF shall perform [<h:i>key encapsulation</h:i>] in accordance with a specified cryptographic algorithm 
 					<selectables>
 						<tabularize id="tab-fcs-cop-keyencap-sels" title="Allowable choices for FCS_COP.1/KeyEncap">
 							<textcol>Identifier</textcol>
@@ -2745,7 +2747,7 @@ it manages may be physical or virtual.
 					</selectables>
 				</title>
 				<note role="application">
-					For this PP, the only anticipated use of key encapsulation is the use of ML-KEM as part of key establishment for trusted communications.
+					This SFR is claimed when "key encapsulation" is selected in FCS_CKM.2.1. For this PP, the only anticipated use of key encapsulation is the use of ML-KEM as part of key establishment for trusted communications.
 				</note>
 				<aactivity>
 					<TSS>The evaluator shall ensure that the TSS documents that the selection of the key size is
@@ -2835,7 +2837,7 @@ it manages may be physical or virtual.
 		  <depends on-sel="sel-ckm-2-wrap"/>
 		  <f-element id="fcs-cop-1e1-kw">
 				<title>
-					The TSF shall perform [key wrapping] in accordance with a specified cryptographic algorithm 
+				  The TSF shall perform [<h:i>key wrapping</h:i>] in accordance with a specified cryptographic algorithm 
 					<selectables>
 						<tabularize id="fcs-cop-kw-sels" title="Allowable choices for FCS_COP.1/KeyWrap">
 							<textcol>Identifier</textcol>
@@ -2911,7 +2913,7 @@ it manages may be physical or virtual.
 					</selectables>
 				</title>
 				<note role="application">
-					NIST 800-57p1rev5 sec. 5.6.2 specifies that the size of key used to protect the key being 
+				  This SFR is claimed when "key wrapping" is selected in FCS_CKM.2.1. NIST 800-57p1rev5 sec. 5.6.2 specifies that the size of key used to protect the key being 
 					transported should be at least the security strength of the key it is protecting.
 				</note>
 				<aactivity>
@@ -4058,8 +4060,7 @@ it manages may be physical or virtual.
         
         <f-component id="sfr-fcs-cop-1-xof" cc-id="fcs_cop.1" iteration="XOF" 
           name="Cryptographic Operation - Extendable-Output Function" status="sel-based">
-          <depends on-sel="sel-fcs-ckm-ak-lms"/>
-          <depends on-sel="sel-fcs-ckm-ak-xmss"/>
+         
           <depends on-sel="sel-fcs-cop-sigver-lms"/>
           <depends on-sel="sel-fcs-cop-sigver-xmss"/>
           <f-element id="fcs-cop-1e1-xof">
@@ -4079,7 +4080,7 @@ it manages may be physical or virtual.
                 <!-- SHAKE -->
                 <selectable id="sel-fcs-cop-xof-shake">
                   <col>SHAKE</col>
-                  <col>Functions = [SHAKE128, SHAKE256]
+                  <col>Functions = [SHAKE256]
                   </col>
                   <col>NIST FIPS PUB 202 Section 6.2 [SHAKE]</col>
                 </selectable>
@@ -4088,9 +4089,7 @@ it manages may be physical or virtual.
             </title>
             <note role="application">
               In accordance with CNSA 2.0, SHAKE is permitted to be used only as a component of LMS or XMSS. 
-              Therefore this component is claimed only if LMS or XMSS is claimed in FCS_COP.1/SigVer. <h:p/>
-              Since LMS and XMSS use both SHAKE128 and SHAKE256 internally, claiming and testing of both
-              functions is mandatory.
+              Therefore this component is claimed only if LMS or XMSS is claimed in FCS_COP.1/SigVer.
             </note>
             <aactivity>
               <TSS/>
@@ -4113,25 +4112,22 @@ it manages may be physical or virtual.
                   </h:tr>
                   <h:tr>
                     <h:td valign="top">SHAKE</h:td>
-                    <h:td valign="top">Function = [SHAKE128, SHAKE256]</h:td>
+                    <h:td valign="top">Function = [SHAKE256]</h:td>
                     <h:td valign="top">NIST FIPS PUB 202 Section 6.2 [SHAKE]</h:td>
                   </h:tr>
                 </h:table><h:p/>	
                 To test the TOE’s implementation of the SHAKE Extendable Output Function the evaluator shall
                 perform the Algorithm Functional Test, Monte Carlo Test, and Variable Output Test using the
                 following input parameters:<h:ul>
-                  <h:li>Function [SHAKE128, SHAKE256]</h:li>
+                  <h:li>Function [SHAKE256]</h:li>
                   <h:li>Output length [16-65536] bits</h:li></h:ul><h:p/>
                 <h:br/><h:b><h:i>Algorithm Functional Test</h:i></h:b><h:p/>
                 For each supported function, generate test cases consisting of random data for every message
-                length from 0 bits (if supported) to <h:i>rate</h:i>-1 bits, where <h:i>rate</h:i> equals<h:p/><h:ul>
-                  <h:li>1344 for SHAKE128, and</h:li>
-                  <h:li>1088 for SHAKE256.</h:li></h:ul><h:p/>
+                length from 0 bits (if supported) to <h:i>rate</h:i>-1 bits, where <h:i>rate</h:i> equals<h:p/> 1088.<h:p/>
                 Additionally, generate tests cases of random data for messages of every multiple of (rate+1) bits
-                starting at length rate, and continuing until 65535 is exceeded. For SHAKE128, this should
-                result in a total of 1391 test cases.<h:p/>
+                starting at length rate, and continuing until 65535 is exceeded.<h:p/>
                 <h:br/><h:b><h:i>Monte Carlo Test</h:i></h:b><h:p/>
-                The Monte Carlos test takes in a single 128-bit message (SEED) and desired output length in
+                The Monte Carlo test takes in a single 128-bit message (SEED) and desired output length in
                 bits, and runs 100 iterations of the chained computation. MaxOutBytes and MinOutBytes are the
                 largest and smallest supported input and output sizes in bytes, respectively.<h:p/>
                 <h:pre>
@@ -4471,12 +4467,10 @@ only AES-based implementations for CTR_DRBG are allowed.
           <depends on="internal-seed"/>
           <f-element id="fel-rbg-seed-int-sing">
             <title>
-              The TSF shall be able to seed the RBG using a <selectables onlyone="yes">
-                <selectable>TSF software-based noise source</selectable>
-                <selectable>TSF hardware-based noise source <assignable>name of noise source</assignable></selectable></selectables>
+              The TSF shall be able to seed the RBG using a [<h:i>TSF software-based noise source</h:i>] <assignable>name of noise source</assignable>
               with a minimum of <assignable>number of bits</assignable> bits of min-entropy.
             </title>        
-            <note role="application">This requirement is claimed when a DRBG is seeded with entropy from a single noise source that is within the TOE boundary. Min-entropy should be expressed as a ratio of entropy bits to sampled bits so that the total amount of data needed to ensure full entropy is known, as well as the conditioning function by which that data is reduced in size to the seed.</note>
+            <note role="application">This SFR is claimed when the ST author claims "TSF noise source..." in FCS_RBG.1.2. Since this PP defines the TOE as software, it does not have any hardware components and therefore would only claim a software-based noise source here. If the TOE obtains seed material from a hardware component, this is specified using FCS_RBG.2. Min-entropy should be expressed as a ratio of entropy bits to sampled bits so that the total amount of data needed to ensure full entropy is known, as well as the conditioning function by which that data is reduced in size to the seed.</note>
             
             <aactivity>
               <h:p>
@@ -4494,14 +4488,10 @@ only AES-based implementations for CTR_DRBG are allowed.
           <depends on="internal-seeds"/>
           <f-element id="fel-rbg-seed-int-mult">
             <title>
-              The TSF shall be able to seed the RBG using <selectables>
-                <selectable><assignable>number</assignable> TSF software-based noise source(s)</selectable>
-                <selectable><assignable>number</assignable> TSF hardware-based noise source(s)</selectable>
-              </selectables>.
+              The TSF shall be able to seed the RBG using [<h:i><assignable>number</assignable> TSF software-based noise sources]</h:i>.
             </title>
             <note role="application">
-              This requirement is claimed when a DRBG is seeded with entropy from multiple noise sources that are within the TOE boundary. 
-              FCS_RBG.5 defines the mechanism by which these sources are combined to ensure sufficient minimum entropy.
+              This SFR is claimed when the ST author claims "multiple TSF noise sources..." in FCS_RBG.1.2. Since this PP defines the TOE as software, it does not have any hardware components and therefore would only claim software-based noise sources here. If the TOE obtains seed material from any hardware components, this is specified using FCS_RBG.2. FCS_RBG.5 defines the mechanism by which all sources are combined to ensure sufficient minimum entropy.
             </note>
             <aactivity>
               <h:p>
@@ -4819,7 +4809,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 	    </h:b>
 	    </title>
         <note role="application">
-          Selections in FIA_AFL.1 and FIA_UAU.5 must match.
+          Selections in FIA_AFL.1 and FIA_UAU.5 must be consistent.
             </note>
             <aactivity>
               <TSS>The evaluator shall examine the TSS to verify that it defines the mechanism by which excessive authentication failures are checked (i.e, whether it is a fixed or configurable value) and the actions that are taken against that account when the failure threshold has been reached.</TSS>
@@ -5419,7 +5409,7 @@ Configure lockout policy for unsuccessful authentication attempts through
           how to indicate Administrator or User capability.
 	      </h:p>
 	      <h:p>
-          The terms "Administrator" and "User" are defined in the <xref g="glossary"/>.
+          The terms "Administrator" and "User" are defined in section 1.2.2.
           The intent of this requirement is to ensure that the ST is populated with the
           relevant management functions that are provided by the OS.	      </h:p>
 	      <h:p>
