@@ -380,12 +380,9 @@
  Failed to find a reference to fel-tls-app.
  Failed to find a reference to pkg-x509.
  Failed to find a reference to pkg-x509.
- Failed to find a reference to pkg-tls.
  Failed to find a reference to pkg-x509.
  Failed to find a reference to pkg-x509.
  Failed to find a reference to pkg-x509.
- Failed to find a reference to pkg-tls.
- Failed to find a reference to pkg-tls.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
@@ -395,18 +392,9 @@
  Failed to find a reference to Keys.
  Failed to find a reference to Keys.
  Failed to find a reference to s-dek-800-56.
- Failed to find a reference to pkg-tls.
- Failed to find a reference to pkg-tls.
- Failed to find a reference to pkg-tls.
- Failed to find a reference to pkg-tls.
  Failed to find a reference to pkg-x509.
  Failed to find a reference to mutable_hardware.
  Failed to find a reference to Keys.
- Failed to find a reference to pkg-tls.
- Failed to find a reference to pkg-tls.
- Failed to find a reference to pkg-tls.
- Failed to find a reference to pkg-tls.
- Failed to find a reference to pkg-ssh.
 * Warning: Since FDP_IFC_EXT.1.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
                        
 * Warning: Since FMT_SMF_EXT.1.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
@@ -415,13 +403,3 @@
                        
 * Warning: Since FPT_TST_EXT.1.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
                        
-warning: failed to load external entity "output/pkg-tls.xml"
-warning: failed to load external entity "output/pkg-tls.xml"
-warning: failed to load external entity "output/pkg-tls.xml"
-warning: failed to load external entity "output/pkg-tls.xml"
- Failed to find s-tlsc-no-excep in /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[18]""/f-element[3]""/note[1]"Validity "/rule[1]""/then[1]""/doc[1]""/ref-id[1]"s-tlsc-no"
-warning: failed to load external entity "output/pkg-tls.xml"
-warning: failed to load external entity "output/pkg-tls.xml"
-warning: failed to load external entity "output/pkg-tls.xml"
-warning: failed to load external entity "output/pkg-tls.xml"
- Failed to find fcs_tlsc_ext.1.6_2 in /PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[18]""/f-element[3]""/note[1]"Validity "/rule[2]""/then[1]""/doc[1]""/ref-id[1]"fcs_tlsc_"
