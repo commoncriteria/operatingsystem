@@ -4729,13 +4729,13 @@ it manages may be physical or virtual.
           </f-element>
 
           <f-element id="fel-https-tls">
-            <title>The TSF shall implement HTTPS using TLS as defined in [<h:i>the <xref to="pkg-tls"/></h:i>].</title>
+            <title>The TSF shall implement HTTPS using TLS as defined in [<h:i>the <xref to="tls"/></h:i>].</title>
             <ext-comp-def-title>
               <title>The TSF shall implement HTTPS using TLS as defined in 
                 <assignable>specification that defines TLS implementation requirements</assignable>. </title>
             </ext-comp-def-title>
             <note role="application"> 
-              The <xref to="pkg-tls"/> must be included in the ST, with the following selections made: <h:ul>
+              The <xref to="tls"/> must be included in the ST, with the following selections made: <h:ul>
                 <h:li>FCS_TLS_EXT.1:</h:li>
                 <h:ul>
                   <h:li>TLS must be selected</h:li>
@@ -4756,10 +4756,10 @@ it manages may be physical or virtual.
             date, and the revocation status in accordance with RFC 5280. <h:br/><h:br/>
 
 	    If <xref to="s-not-estab"/> is selected then "the server certificate is invalid [with no TLS-specific exceptions]" must be selected
-            for FCS_TLSC_EXT.1.6 in the <xref to="pkg-tls"/>.
+            for FCS_TLSC_EXT.1.6 in the <xref to="tls"/>.
 	    <rule id="r-not-estab">
 	      <if><ref-id>s-not-estab</ref-id></if>
-	      <then><doc ref="pkg-tls"><ref-id>s-tlsc-no-excep</ref-id></doc></then>
+	      <then><doc ref="tls"><ref-id>s-tlsc-no-excep</ref-id></doc></then>
 	    </rule>
 	    If <xref to="s-req-app-auth"/> is selected then
               "the server certificate is invalid [except when override is authorized in the case where valid revocation information is not available]" must be selected
@@ -4767,7 +4767,7 @@ it manages may be physical or virtual.
             Transport Layer Security.
 	    <rule id="r-override">
 	      <if><ref-id>s-req-app-auth</ref-id></if>
-	      <then><doc ref="pkg-tls"><ref-id>fcs_tlsc_ext.1.6_2</ref-id></doc></then>
+	      <then><doc ref="tls"><ref-id>fcs_tlsc_ext.1.6_2</ref-id></doc></then>
 	    </rule>
 	    If <xref to="s-no-other-action"/> is selected then "the server certificate is invalid" with either selection can be
             made in FCS_TLSC_EXT.1.6.<h:br/><h:br/>
@@ -4784,7 +4784,7 @@ it manages may be physical or virtual.
                     webserver, observe the traffic with a packet analyzer, and verify that the
                     connection succeeds and that the traffic is identified as TLS or HTTPS.
                     <h:br/><h:br/> Other tests are performed in conjunction with testing in the
-                    <xref to="pkg-tls"/>. <h:br/><h:br/> Certificate validity
+                    <xref to="tls"/>. <h:br/><h:br/> Certificate validity
                     shall be tested in accordance with testing performed for FIA_X509_EXT.1 as defined in <xref to="pkg-x509"/>, and the
                     evaluator shall perform the following test: </test><h:br/>
                   <test>The evaluator shall demonstrate that using a certificate without a valid
@@ -5984,26 +5984,26 @@ only AES-based implementations for CTR_DRBG are allowed.
         <depends on="mdm-management"/>
           <f-element id="fdp-app-comms">
             <title>The TSF shall provide a means for non-TSF applications executing on the TOE to use <selectables linebreak='yes'>
-                <selectable>Mutually authenticated TLS as conforming to the <xref to="pkg-tls"/> as a client
+                <selectable>Mutually authenticated TLS as conforming to the <xref to="tls"/> as a client
     	  	    </selectable>
               <selectable>HTTPS</selectable>
       	      </selectables>
       	        and <selectables linebreak='yes'>
-                <selectable>Mutually authenticated TLS as conforming to the <xref to="pkg-tls"/> as a server
+                <selectable>Mutually authenticated TLS as conforming to the <xref to="tls"/> as a server
     	  	    </selectable>
-              <selectable>TLS as conforming to the <xref to="pkg-tls"/> as a
+              <selectable>TLS as conforming to the <xref to="tls"/> as a
     	  	        <selectables>
     	  	          <selectable><readable>client(TLS)</readable>client</selectable>
     	  	          <selectable><readable>server(TLS)</readable>server</selectable>
                   </selectables>
                 </selectable>
-                <selectable >DTLS as conforming to the <xref to="pkg-tls"/> as a
+                <selectable >DTLS as conforming to the <xref to="tls"/> as a
     	  	    <selectables>
     	  	      <selectable ><readable>client(DTLS)</readable>client</selectable>
     	  	      <selectable ><readable>server(DTLS)</readable>server</selectable>
     	  	    </selectables></selectable>
-      	      <selectable id="s-upc-ipsec">IPsec as conforming to the PP-Module for Virtual Private Network (VPN) Clients</selectable>
-      	          <selectable><snip>SSH</snip> as conforming to the <xref to="pkg-ssh"/> as a
+      	      <selectable id="s-upc-ipsec">IPsec as defined in the <xref to="mod-vpnclient"/></selectable>
+      	          <selectable><snip>SSH</snip> as conforming to the <xref to="ssh"/> as a
       	          <selectables>
       	          <selectable ><readable>client(SSH)</readable>client</selectable>
       	            <selectable><readable>server(SSH)</readable>server</selectable>
@@ -6020,7 +6020,7 @@ only AES-based implementations for CTR_DRBG are allowed.
               <h:p> 
               The ST author must list which trusted channel protocols are implemented by the TOE for use by non-TSF apps.</h:p>
               <h:p> 
-              If ST author selects <xref to="s-upc-ipsec"/>, the TSF must be validated against the PP-Module for Virtual Private Network (VPN) Clients. 
+              If ST author selects <xref to="s-upc-ipsec"/>, the TSF must be validated against the <xref to="mod-vpnclient"/>. 
               </h:p>
             </note>
           </f-element>
@@ -7527,7 +7527,7 @@ the node certificate to be tested, two Intermediate CAs, and the
             <aactivity>
               <Tests>The test of this function is performed in conjunction with
                 FIA_X509_EXT.2.2 in <xref to="pkg-x509" />, FCS_TLSC_EXT.1.6 in the <xref
-                  to="pkg-tls" />. </Tests>
+                  to="tls" />. </Tests>
             </aactivity>
           </management-function>
           <management-function id="mf-externalPorts">
@@ -9248,12 +9248,12 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
       	          <selectable id="s-ssh-client"><readable>client(SSH)</readable>client</selectable>
       	            <selectable id="s-ssh-server"><readable>server(SSH)</readable>server</selectable>
       	          </selectables></selectable>
-                  <selectable id="itc_mtls"><snip>Mutually authenticated TLS</snip> in accordance with the [<h:i><xref to="pkg-tls"/></h:i>] as a 
+                  <selectable id="itc_mtls"><snip>Mutually authenticated TLS</snip> in accordance with the [<h:i><xref to="tls"/></h:i>] as a 
                   <selectables>
     	  	          <selectable id="itc_mtls-client"><readable>client(mutual TLS)</readable>client</selectable>
     	  	          <selectable id="itc_mtls-server"><readable>server(mutual TLS)</readable>server</selectable>
                   </selectables></selectable>
-                  <selectable id="itc_mdtls"><snip>Mutually authenticated DTLS</snip> as defined in the <xref to="pkg-tls"/>
+                  <selectable id="itc_mdtls"><snip>Mutually authenticated DTLS</snip> as defined in the <xref to="tls"/>
                   <selectables>
     	  	          <selectable id="itc_mdtls-client"><readable>client(mutual TLS)</readable>client</selectable>
     	  	          <selectable id="itc_mdtls-server"><readable>server(mutual TLS)</readable>server</selectable>
