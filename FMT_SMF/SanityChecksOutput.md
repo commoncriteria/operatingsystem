@@ -393,6 +393,7 @@
  Failed to find a reference to Keys.
  Failed to find a reference to s-dek-800-56.
  Failed to find a reference to pkg-x509.
+ Failed to find a reference to s-import-admin.
  Failed to find a reference to mutable_hardware.
  Failed to find a reference to Keys.
 * Warning: Since FDP_IFC_EXT.1.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
