@@ -6206,6 +6206,10 @@ only AES-based implementations for CTR_DRBG are allowed.
                 mechanism (in addition to activities performed for the primary authentication
                 mechanism). The requirements are: FCS_STG_EXT.2, FMT_SMF_EXT.1/FMT_MOF_EXT.1
                 #1, #2, #8, #21, and #36.</h:p> 
+                <h:p>Additionally, FIA_AFL_EXT.1 must be
+                met, except that in FIA_AFL_EXT.1.2 the separate test is performed with the text
+                "wipe of all sensitive data" changed to "wipe of all Enterprise application data and
+                all Enterprise shared resource data."</h:p>
                 </Tests>
             </aactivity>
           </f-element>
@@ -7043,20 +7047,19 @@ the node certificate to be tested, two Intermediate CAs, and the
           <management-function id="mf-wipe">
             <text>
                     <!-- 7. -->
-                    <!-- <ctr id="wipe" pre="" ctr-type="function">.</ctr>--> TSF wipe of protected data </text>
+                    <!-- <ctr id="wipe" pre="" ctr-type="function">.</ctr>--> TSF wipe of sensitive data </text>
             <O ref="U" />
             <O ref="A" />
             <M ref="AM" />
             <O ref="AO" />
             <app-note> Wipe of the TSF (function <xref to="mf-wipe" />) is performed according
-              to FCS_CKM_EXT.5. Protected data is all non-TSF data, including all user or
-              enterprise data. Some or all of this data may be considered sensitive data as
-              well.
+              to FCS_CKM_EXT.5. Sensitive data is all non-TSF data, including all user or
+              enterprise data.
             </app-note>
             <aactivity>
               <Tests>The evaluator shall use the test environment to instruct the TSF, both as
                 a user and as the administrator, to command the device to perform a wipe of
-                protected data.
+                sensitive data.
                 The evaluator must ensure that this management setup is used when conducting
                 the Evaluation Activities in FCS_CKM_EXT.5.
               </Tests>
@@ -8154,7 +8157,7 @@ The OS can enroll in such account management and enable the overall information 
           <management>There are no management functions foreseen.</management>
           <audit>The following actions should be auditable if FAU_GEN Security audit data generation is included in the PP or ST:
             <h:ul>
-              <h:li>Unauthorized attempts to perform operations against protected data</h:li>
+              <h:li>Unauthorized attempts to perform operations against sensitive data</h:li>
             </h:ul>
           </audit>
           <dependencies>No dependencies.</dependencies>
@@ -8222,7 +8225,7 @@ The OS can enroll in such account management and enable the overall information 
             </aactivity>
           </f-element>
           <audit-event>
-            <audit-event-descr>Unauthorized attempts to perform operations against protected data</audit-event-descr>
+            <audit-event-descr>Unauthorized attempts to perform operations against sensitive data</audit-event-descr>
           </audit-event>
         </f-component>
 
@@ -8316,9 +8319,9 @@ This test can also be completed on the same hardware and rebooting between appli
               agent) that may be performed upon unenrollment. "Enterprise applications" refers to
               applications that are in the Enterprise application group. "Enterprise resource data"
               refers to all stored Enterprise data and the separate resources that are available to
-              the Enterprise application group, per FDP_ACF_EXT.2.1. If FDP_ACF_EXT.2.1 is included
+              the Enterprise application group, per FDP_ACF_EXT.3.1. If FDP_ACF_EXT.3.1 is included
               in the ST, then "remove all device-stored Enterprise resource data" must be selected,
-              and is defined to be all resources selected in FDP_ACF_EXT.2.1.</h:p> 
+              and is defined to be all resources selected in FDP_ACF_EXT.3.1.</h:p> 
               
               <h:p>If FIA_UAU_EXT.4.1 is
               included in the ST, then "remove Enterprise secondary authentication data" must be
