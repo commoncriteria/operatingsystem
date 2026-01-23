@@ -5275,11 +5275,9 @@ only AES-based implementations for CTR_DRBG are allowed.
           <!--fcs_stg_ext.1.2 -->
           <f-element id="fel-key-import">
             <title>The TSF shall be capable of importing keys or secrets into the secure key storage
-              upon request of <selectables>
+              upon request of the administrator and 
+              <selectables>
                 <selectable id="import-user">the user</selectable>
-                <selectable id="s-import-admin">the administrator</selectable>
-              </selectables>
-              and <selectables>
                 <selectable>applications running on the TSF</selectable>
                 <selectable exclusive="yes">no other subjects</selectable>
               </selectables>
@@ -5289,18 +5287,15 @@ only AES-based implementations for CTR_DRBG are allowed.
                 storage upon request of <assignable>list of users</assignable> and <assignable>list
                 of other subjects</assignable>. </title>
             </ext-comp-def-title>
-            <note role="application"> If the ST selects only <xref to="import-user" />, the ST
-              author must select function <xref to="mf-keyStorage" /> in FMT_MOF_EXT.1.1. </note>
           </f-element>
           <!--fcs_stg_ext.1.3 -->
           <f-element id="fel-keystore-kill">
             <title>The TSF shall be capable of destroying keys or secrets in the secure key storage
-              upon request of <selectables>
+              upon request of the administrator and 
+              <selectables> 
                 <selectable>the user</selectable>
-                <selectable>the administrator</selectable>
+                <selectable exclusive="yes">no other subjects</selectable>
               </selectables>. </title>
-            <note role="application">If the ST selects <xref to="import-user" />, the ST author must
-              select function <xref to="mf-keyWipe" /> in FMT_MOF_EXT.1.1. </note>
           </f-element>
           <!--fcs_stg_ext.1.4 -->
           <f-element id="fel-keystore-who-access">
@@ -5313,8 +5308,7 @@ only AES-based implementations for CTR_DRBG are allowed.
               </selectables>. </title>
             <note role="application">If the ST selects <xref to="import-user" /> or <xref
                 to="s-import-admin" />, the ST author must also select <xref to="mf-sharedKeys" />
-              in FMT_SMF_EXT.1.1. If the ST selects <xref to="import-user" />, the ST author must
-              select function <xref to="mf-sharedKeys" /> in FMT_MOF_EXT.1.1. </note>
+              in FMT_SMF_EXT.1.1.</note>
           </f-element>
           <!--fcs_stg_ext.5. -->
           <f-element id="fel-keystore-who-kill">
@@ -5333,9 +5327,7 @@ only AES-based implementations for CTR_DRBG are allowed.
 
             <note role="application">If the ST selects <xref to="s-killkey-user" /> or <xref
                 to="s-killkey-admin" />, the ST author must also select function <xref
-                to="mf-keyWipeRules" /> in FMT_SMF_EXT.1.1. If the ST selects only <xref
-                to="s-killkey-user" />, the ST author must select function <xref
-                to="mf-keyWipeRules" /> in FMT_MOF_EXT.1.1. </note>
+                to="mf-keyWipeRules" /> in FMT_SMF_EXT.1.1.</note>
             <aactivity> The evaluator shall verify that the API documentation provided according to <xref
                 to="adv" /> includes the security functions (import, use, and destruction) described
               in these requirements. The API documentation shall include the method by which
