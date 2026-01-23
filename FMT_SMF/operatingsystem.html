@@ -943,7 +943,7 @@ The following sections list Common Criteria and technology terms used in this do
 	  If this feature is implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the following requirements must be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>:
             <ul><li><b><a href="#FCS_CKM.2">FCS_CKM.2</a></b></li></ul></p><h3 class="indexable" data-level="3" id="mdm-management">1.6.5 Mobile Device Management Support</h3><span class="description">A conformant <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> may interface with a Mobile Device Management server for remote administration and security policies. This is either through an MDM Agent built into the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> or a 3rd party MDM Agent application installed onto the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> includes a built-in MDM Agent, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> will claim a <abbr class="dyn-abbr"><a href="#abbr_PP-Configuration">PP-Configuration</a></abbr> that includes the <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Mobile Device Management Agents.<br/></span><br/><p>
 	  If this feature is implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the following requirements must be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>:
-            <ul><li><b><a href="#FCS_CKM_EXT.3">FCS_CKM_EXT.3</a></b></li><li><b><a href="#FCS_CKM_EXT.5">FCS_CKM_EXT.5</a></b></li><li><b><a href="#FCS_COP.1/CONDITION">FCS_COP.1/CONDITION</a></b></li><li><b><a href="#FCS_HTTPS_EXT.1">FCS_HTTPS_EXT.1</a></b></li><li><b><a href="#FCS_STG_EXT.1">FCS_STG_EXT.1</a></b></li><li><b><a href="#FCS_STG_EXT.2">FCS_STG_EXT.2</a></b></li><li><b><a href="#FDP_ACF_EXT.2">FDP_ACF_EXT.2</a></b></li><li><b><a href="#FDP_UPC_EXT.1/APPS">FDP_UPC_EXT.1/APPS</a></b></li><li><b><a href="#FMT_SMF_EXT.2">FMT_SMF_EXT.2</a></b></li></ul></p>			
+            <ul><li><b><a href="#FCS_CKM_EXT.3">FCS_CKM_EXT.3</a></b></li><li><b><a href="#FCS_CKM_EXT.5">FCS_CKM_EXT.5</a></b></li><li><b><a href="#FCS_CKM_EXT.8">FCS_CKM_EXT.8</a></b></li><li><b><a href="#FCS_HTTPS_EXT.1">FCS_HTTPS_EXT.1</a></b></li><li><b><a href="#FCS_STG_EXT.1">FCS_STG_EXT.1</a></b></li><li><b><a href="#FCS_STG_EXT.2">FCS_STG_EXT.2</a></b></li><li><b><a href="#FDP_ACF_EXT.2">FDP_ACF_EXT.2</a></b></li><li><b><a href="#FDP_UPC_EXT.1/APPS">FDP_UPC_EXT.1/APPS</a></b></li><li><b><a href="#FMT_SMF_EXT.2">FMT_SMF_EXT.2</a></b></li></ul></p>			
     
   <h1 class="indexable" data-level="1" id="Conformance_Claims">2 Conformance Claims</h1>
       
@@ -2139,7 +2139,7 @@ The following sections list Common Criteria and technology terms used in this do
               . <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note"> The conditioning of passwords is performed in accordance with
-              <a href="#FCS_COP.1/CONDITION">FCS_COP.1/CONDITION</a>. <br/><br/> It is expected that key generation derived from
+              FCS_COP.1/CONDITION. <br/><br/> It is expected that key generation derived from
               conditioning, using an <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> or generation scheme, and through combination, will each be
               necessary to meet the requirements set out in this document. In particular, <a href="#Keys" class="dynref" data-format=""></a> has KEKs of each type: KEK_3 is generated, KEK_1 is derived from a
               Password Authentication Factor, and KEK_2 is combined from two KEKs. In <a href="#Keys" class="dynref" data-format=""></a>, KEK_3 may either be a symmetric key generated from an <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> or an
@@ -2164,7 +2164,7 @@ The following sections list Common Criteria and technology terms used in this do
                 The evaluator shall review the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to verify that it contains a description of the
                 conditioning used to derive KEKs. This description must include the size and storage
                 location of salts. This activity may be performed in combination with that for
-                <a href="#FCS_COP.1/CONDITION">FCS_COP.1/CONDITION</a>.<br/><br/> (conditional) If the symmetric KEK is generated
+                FCS_COP.1/CONDITION.<br/><br/> (conditional) If the symmetric KEK is generated
                 by an <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr>, the evaluator shall review the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to determine that it describes how the
                 functionality described by <a href="#FCS_RBG.1">FCS_RBG.1</a> is invoked. The evaluator uses the description
                 of the <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> functionality in <a href="#FCS_RBG.1">FCS_RBG.1</a> or documentation available for the operational
@@ -2463,53 +2463,86 @@ The following sections list Common Criteria and technology terms used in this do
                 </ul></span>
               </div></div></div></div></div>
 
-        <div class="comp" id="FCS_COP.1/CONDITION"><h4>FCS_COP.1/CONDITION Cryptographic Operation</h4><div class="statustag"><i><b>This is an implementation-based component.
+        <div class="comp" id="FCS_CKM_EXT.8"><h4>FCS_CKM_EXT.8 Password-Based Key Derivation</h4><div class="statustag"><i><b>This is an implementation-based component.
                 Its inclusion in depends on whether the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements one or more of the following features:
                 <ul><li><a href="#mdm-management">Mobile Device Management Support</a></li></ul>
                 as described in Appendix A.3: Implementation-based Requirements.
-               </b></i></div>
-        
-          <div class="element"><div class="reqid" id="FCS_COP.1.1/CONDITION"><a href="#FCS_COP.1.1/CONDITION" class="abbr">FCS_COP.1.1/CONDITION</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall perform [<li>conditioning</li>] in accordance with the
-              specified cryptographic algorithm <span class="refinement"><abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-384 using a salt, and [<b>selection</b>: <span class="selectable-content" id="_s_117">PBKDF2 with [<b>assignment</b>: 
-     <span class="assignable-content">number of iterations</span>] iterations</span>, <span class="selectable-content" id="_s_118">
-                    [<b>assignment</b>: 
-     <span class="assignable-content">key stretching function</span>]
-                  </span>, <span class="selectable-content" id="_s_119">no other function</span>]
-              and output</span> cryptographic key sizes<span class="refinement"> 256 bits
-              </span> that meet the following: <span class="refinement">[<b>selection</b>: <span class="selectable-content" id="_s_120"><abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-132</span>, <span class="selectable-content" id="_s_121">no standard</span>]
-              .</span>
+               </b></i></div>   
+               
+          
+          
+          
+          
+          
+          
+          <div class="element"><div class="reqid" id="FCS_CKM_EXT.8.1"><a href="#FCS_CKM_EXT.8.1" class="abbr">FCS_CKM_EXT.8.1</a></div><div class="reqdesc">
+              The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall perform password-based key derivation functions in accordance with a specified 
+              cryptographic algorithm [<abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-[<b>selection</b>: <span class="selectable-content" id="_s_117"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384</span>, <span class="selectable-content" id="_s_118"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512</span>], with iteration count of 
+              [<b>assignment</b>: 
+     <span class="assignable-content">number of iterations</span>]
+              using a randomly generated salt of length
+              [<b>assignment</b>: 
+     <span class="assignable-content">equal to or greater than 128</span>]
+              and output cryptographic key sizes [<b>selection</b>: <span class="selectable-content" id="_s_119">256</span>, <span class="selectable-content" id="_s_120">384</span>, <span class="selectable-content" id="_s_121">512</span>]
+              bits that meet the following standard: [<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-132 (Section 5.3) [PBKDF2]].
             <div class="appnote"><span class="note-header">Application
       Note:
-    </span><span class="note">The key cryptographic key sizes in the third selection should
-              be made to correspond to the KEK key sizes selected in <a href="#FCS_CKM_EXT.3">FCS_CKM_EXT.3</a>. <br/><br/>
-              This password must be conditioned into a string of bits that forms the submask to be
-              used as input into the KEK. Conditioning can be performed using one of the identified
-              hash functions and may include a key stretching function; the method used is selected
-              by the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author. If selected, <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-132 requires the use of a pseudorandom
-              function (PRF) consisting of <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> with an approved hash function. The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author
-              selects the hash function used, also includes the appropriate requirements for <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>
-              and the hash function. <br/><br/> Appendix A of <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-132 recommends
-              setting the iteration count in order to increase the computation needed to derive a
-              key from a password and, therefore, increase the workload of performing a dictionary
-              attack. </span></div></div></div>
+    </span><span class="note">
+              <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> recommends a minimum “number of iterations” of 1000 but prefers the largest number feasible
+              given performance constraints.<p></p>
+              <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> recommends that the randomly generated portion of the salt have length of at least 128 bits 
+              and must be derived from Random Bit Generation.<p></p>
+              
+              For CNSA 1.0 and 2.0 compliance, only <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384 or <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512 may be used.
+            </span></div></div></div>
           
-        <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_COP.1/CONDITION">FCS_COP.1/CONDITION</a></div>
+        <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_CKM_EXT.8">FCS_CKM_EXT.8</a></div>
               
               
               
-            <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">The evaluator shall check that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes the method by which the password
-                is first encoded and then fed to the <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr> algorithm and verify the <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr> algorithm
-                matches the first selection.<br/><br/> If a key stretching function, such as
-                PBKDF2, is selected the settings for the algorithm (padding, blocking, etc.) shall
-                be described. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> contains a description of how
-                the output of the hash function or key stretching function is used to form the
-                submask that will be input into the function and is the same length as the KEK as
-                specified in <a href="#FCS_CKM_EXT.3">FCS_CKM_EXT.3</a>. <br/><br/> If any manipulation of the key is
-                performed in forming the submask that will be used to form the KEK, that process
-                shall be described in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>.<br/><br/></div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">There are no guidance evaluation activities for this component.<br/><br/></div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">There are no test evaluation activities for this component. No explicit testing
-                of the
-                formation of the submask from the input password is required.</div></div></div></div></div>        
-        
+            <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">
+                The evaluator must verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> documents that the selection of the keyed hash
+                algorithm, iteration count, length of salt, and other mitigations are sufficient for the
+                security strength of the key derived.<p></p>
+                The evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to verify that the salt is generated in accordance with the
+                relevant specification.<p></p>
+                The evaluator shall examine the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to determine whether the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements other 
+                mitigations against password-exhaustion attacks. Examples include the use of 
+                interface-based mitigations and secret salts.
+              </div></div><div class="eacategory">Guidance</div><div class="ea">
+			There are no additional Guidance evaluation activities for this component.<br/></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
+                The following tests are conditional based upon the selections made in the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr>.
+                The evaluator shall perform the following test or witness respective tests
+                executed by the developer. The tests must be executed on a platform that is as 
+                close as practically possible to the operational platform (but which may be 
+                instrumented in terms of, for example, use of a debug mode). Where the test is 
+                not carried out on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> itself, the test platform shall be identified and the 
+                differences between test environment and <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> execution environment shall be 
+                described.<p></p>
+                
+                To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to derive cryptographic keys from a password using PBKDF2 the
+                evaluator shall perform the Algorithm Functional Test using the following input 
+                parameters:<ul>
+                  <li><abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> algorithms [<abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384, <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512]</li>
+                  <li>Iteration count [1-10000000]</li>
+                  <li>Derived Key size [256, 384, 512] bits</li>
+                  <li>Password length [8-128] bytes</li>
+                  <li>Salt length [128-4096] bits in multiples of 8.</li></ul><p></p>
+                
+                <br/><b>Algorithm Functional Test</b><p></p>
+                For each supported <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr> algorithm, the evaluator shall generate 50 test cases using 
+                supported values for the above parameters such that<ul>
+                  <li>All supported derived key sizes are tested at least 10 times, </li>
+                  <li>Iteration counts are random values between the supported minimum and maximum
+                    values, with the supported minimum and maximum tested at least once each, </li>
+                  <li>Passwords are random byte strings representing upper- and lower-case letters of random
+                    supported lengths such that the minimum and maximum lengths are tested at least once, and </li>
+                  <li>Salts are random values between the supported minimum and maximum lengths such that
+                    the supported minimum and maximum lengths are both tested at least once. </li></ul><p></p>
+                The evaluator shall compare the resulting keys from each test case with keys derived using a
+                known-good implementation with the same input parameters.
+              </div></div></div></div></div>
+
         	
         <div class="comp" id="FCS_COP.1/AEAD"><h4>FCS_COP.1/AEAD Cryptographic Operation – Authenticated Encryption with Associated Data</h4>
           <div class="element"><div class="reqid" id="FCS_COP.1.1/AEAD"><a href="#FCS_COP.1.1/AEAD" class="abbr">FCS_COP.1.1/AEAD</a></div><div class="reqdesc">
@@ -8694,7 +8727,7 @@ The evaluator shall also perform the following tests:
 	  If this feature is implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the following requirements must be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>:
             <ul><li><b><a href="#FCS_CKM.2">FCS_CKM.2</a></b></li></ul></p><h3 class="indexable" data-level="3" id="mdm-management">A.0.5 Mobile Device Management Support</h3><span class="description">A conformant <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> may interface with a Mobile Device Management server for remote administration and security policies. This is either through an MDM Agent built into the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> or a 3rd party MDM Agent application installed onto the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> includes a built-in MDM Agent, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> will claim a <abbr class="dyn-abbr"><a href="#abbr_PP-Configuration">PP-Configuration</a></abbr> that includes the <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Mobile Device Management Agents.<br/></span><br/><p>
 	  If this feature is implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the following requirements must be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>:
-            <ul><li><b><a href="#FCS_CKM_EXT.3">FCS_CKM_EXT.3</a></b></li><li><b><a href="#FCS_CKM_EXT.5">FCS_CKM_EXT.5</a></b></li><li><b><a href="#FCS_COP.1/CONDITION">FCS_COP.1/CONDITION</a></b></li><li><b><a href="#FCS_HTTPS_EXT.1">FCS_HTTPS_EXT.1</a></b></li><li><b><a href="#FCS_STG_EXT.1">FCS_STG_EXT.1</a></b></li><li><b><a href="#FCS_STG_EXT.2">FCS_STG_EXT.2</a></b></li><li><b><a href="#FDP_ACF_EXT.2">FDP_ACF_EXT.2</a></b></li><li><b><a href="#FDP_UPC_EXT.1/APPS">FDP_UPC_EXT.1/APPS</a></b></li><li><b><a href="#FMT_SMF_EXT.2">FMT_SMF_EXT.2</a></b></li></ul></p><h1 id="ext-comp-defs" class="indexable" data-level="A">Appendix B -  Extended Component Definitions</h1>
+            <ul><li><b><a href="#FCS_CKM_EXT.3">FCS_CKM_EXT.3</a></b></li><li><b><a href="#FCS_CKM_EXT.5">FCS_CKM_EXT.5</a></b></li><li><b><a href="#FCS_CKM_EXT.8">FCS_CKM_EXT.8</a></b></li><li><b><a href="#FCS_HTTPS_EXT.1">FCS_HTTPS_EXT.1</a></b></li><li><b><a href="#FCS_STG_EXT.1">FCS_STG_EXT.1</a></b></li><li><b><a href="#FCS_STG_EXT.2">FCS_STG_EXT.2</a></b></li><li><b><a href="#FDP_ACF_EXT.2">FDP_ACF_EXT.2</a></b></li><li><b><a href="#FDP_UPC_EXT.1/APPS">FDP_UPC_EXT.1/APPS</a></b></li><li><b><a href="#FMT_SMF_EXT.2">FMT_SMF_EXT.2</a></b></li></ul></p><h1 id="ext-comp-defs" class="indexable" data-level="A">Appendix B -  Extended Component Definitions</h1>
 	This appendix contains the definitions for all extended requirements specified in the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>.
 
     <h2 id="ext-comp-defs-bg" class="indexable" data-level="2">B.1 Extended Components Table</h2>
@@ -8704,14 +8737,16 @@ The evaluator shall also perform the following tests:
 <table class="sort_kids_"><caption data-sortkey="#0"><b><span class="ctr" data-myid="" data-counter-type="ct-Table" id="">Table <span class="counter">17</span></span>: Extended Component Definitions</b></caption><tr data-sortkey="#1"><th>Functional Class</th><th>Functional Components</th></tr><tr data-sortkey="Cryptographic Support (FCS)"><td>Cryptographic Support (FCS)</td><td>FCS_CKM_EXT Cryptographic Key Management<br/>FCS_HTTPS_EXT <abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr> Protocol<br/>FCS_STG_EXT Cryptographic Key Storage<br/>FCS_STO_EXT Storage of Sensitive Data<br/></td></tr><tr data-sortkey="Protection of the TSF (FPT)"><td>Protection of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> (FPT)</td><td>FPT_ACF_EXT Access Controls<br/>FPT_ASLR_EXT Address Space Layout Randomization<br/>FPT_BLT_EXT Limitation of Bluetooth Profile Support<br/>FPT_SBOP_EXT Stack Buffer Overflow Protection<br/>FPT_SRP_EXT Software Restriction Policies<br/>FPT_TST_EXT Boot Integrity<br/>FPT_TUD_EXT Trusted Update<br/>FPT_W^X_EXT Write <abbr class="dyn-abbr"><a href="#abbr_XOR">XOR</a></abbr> Execute Memory Pages<br/></td></tr><tr data-sortkey="Security Management (FMT)"><td>Security Management (FMT)</td><td>FMT_MOF_EXT Management of Functions Behavior<br/>FMT_SMF_EXT Specification of Management Functions<br/></td></tr><tr data-sortkey="Trusted Path/Channels (FTP)"><td>Trusted Path/Channels (FTP)</td><td>FTP_ITC_EXT Trusted Channel Communication<br/></td></tr><tr data-sortkey="User Data Protection (FDP)"><td>User Data Protection (FDP)</td><td>FDP_ACF_EXT Access Controls for Protecting User Data<br/>FDP_IFC_EXT Information Flow Control<br/></td></tr></table><h2 id="ext-comp-defs-bg" class="indexable" data-level="2">B.2 Extended Component Definitions</h2><span class="sort_kids_"><span data-sortkey="Cryptographic Support (FCS)"><h3 id="ext-comp-FCS" class="indexable" data-level="3">B.2.1 Cryptographic Support (FCS)</h3>This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> defines the following extended components as part of the
 	 FCS class originally defined by <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr> Part 2:
 	<h3 id="ext-comp-FCS_CKM_EXT" class="indexable" data-level="4">B.2.1.1 FCS_CKM_EXT Cryptographic Key Management</h3><div style="margin-left: 1em;"><h4>Family Behavior</h4><div>This family defines requirements for management of cryptographic keys using mechanisms beyond what are specified in <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr> Part 2.
-          </div><h4>Component Leveling</h4><svg style="max-height: 70px;"><text x="4" fill="black" font-size="15" y="44">FCS_CKM_EXT</text><rect x="2" y="31" width="150" height="16" fill="none" stroke="black"></rect><text x="234" fill="black" font-size="15" y="24">7</text><rect x="232" y="11" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="37" x2="231" y2="17" stroke="black"></line><text x="234" fill="black" font-size="15" y="44">3</text><rect x="232" y="31" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="37" x2="231" y2="37" stroke="black"></line><text x="234" fill="black" font-size="15" y="64">5</text><rect x="232" y="51" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="37" x2="231" y2="57" stroke="black"></line></svg><p><a href="#FCS_CKM_EXT.7">FCS_CKM_EXT.7</a>,
+          </div><h4>Component Leveling</h4><svg style="max-height: 90px;"><text x="4" fill="black" font-size="15" y="64">FCS_CKM_EXT</text><rect x="2" y="51" width="150" height="16" fill="none" stroke="black"></rect><text x="234" fill="black" font-size="15" y="24">7</text><rect x="232" y="11" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="57" x2="231" y2="17" stroke="black"></line><text x="234" fill="black" font-size="15" y="44">3</text><rect x="232" y="31" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="57" x2="231" y2="37" stroke="black"></line><text x="234" fill="black" font-size="15" y="64">5</text><rect x="232" y="51" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="57" x2="231" y2="57" stroke="black"></line><text x="234" fill="black" font-size="15" y="84">8</text><rect x="232" y="71" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="57" x2="231" y2="77" stroke="black"></line></svg><p><a href="#FCS_CKM_EXT.7">FCS_CKM_EXT.7</a>,
              Cryptographic Key Agreement,
              requires that cryptographic key agreement be performed in accordance with specified standards.</p><p><a href="#FCS_CKM_EXT.3">FCS_CKM_EXT.3</a>,
              Cryptographic Key Generation,
               requires the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to generate and manage the strength of Key Encryption Keys
             (KEKs).</p><p><a href="#FCS_CKM_EXT.5">FCS_CKM_EXT.5</a>,
              <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> Wipe,
-              requires the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to implement a cryptographic or other mechanism to make non-TSF data unreadable.</p><h4>Management: FCS_CKM_EXT.7</h4><p>There are no management functions foreseen.</p><h4>Audit: FCS_CKM_EXT.7</h4><p>
+              requires the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to implement a cryptographic or other mechanism to make non-TSF data unreadable.</p><p><a href="#FCS_CKM_EXT.8">FCS_CKM_EXT.8</a>,
+             Password-Based Key Derivation,
+             requires that password-based key derivation be performed in accordance with specified standards.</p><h4>Management: FCS_CKM_EXT.7</h4><p>There are no management functions foreseen.</p><h4>Audit: FCS_CKM_EXT.7</h4><p>
             The following actions should be auditable if FAU_GEN Security audit data generation is
             included in the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr>, functional package or <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>:<br/><ul>
               <li>minimal: Success and failure of the activity;</li>
@@ -8722,7 +8757,7 @@ The evaluator shall also perform the following tests:
             <br/>FDP_ITC.2 Import of user data with security attributes, or 
             <br/>FCS_CKM.1 Cryptographic key generation, or
             <br/>FCS_CKM.5 Cryptographic key derivation, or
-            <br/>FCS_CKM_EXT.8 Password-based key derivation],
+            <br/><a href="#FCS_CKM_EXT.8">FCS_CKM_EXT.8</a> Password-based key derivation],
             <br/>[<a href="#FCS_CKM.2">FCS_CKM.2</a> Cryptographic key distribution, or
             <br/>FCS_COP.1 Cryptographic operation]
             <br/><a href="#FCS_CKM.6">FCS_CKM.6</a> Timing and event of cryptographic key destruction
@@ -8768,7 +8803,28 @@ The evaluator shall also perform the following tests:
                   </span></li><li style=""><span class="selectable-content" id="_s_114">instructs the underlying platform to destroy the sensitive data
                   </span></li></ul>]
               </span></li></ul>]. 
-            <h4 id="ext-comp-FCS_CKM_EXT.5.2">FCS_CKM_EXT.5.2</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall perform a power cycle on conclusion of the wipe procedure. </div></div><h3 id="ext-comp-FCS_HTTPS_EXT" class="indexable" data-level="4">B.2.1.2 FCS_HTTPS_EXT HTTPS Protocol</h3><div style="margin-left: 1em;"><h4>Family Behavior</h4><div>This family defines requirements for implementation of the <abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr> protocol. 
+            <h4 id="ext-comp-FCS_CKM_EXT.5.2">FCS_CKM_EXT.5.2</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall perform a power cycle on conclusion of the wipe procedure. </div><h4>Management: FCS_CKM_EXT.8</h4><p>There are no management functions foreseen.</p><h4>Audit: FCS_CKM_EXT.8</h4><p>
+            The following actions should be auditable if FAU_GEN Security audit data generation is
+            included in the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr>, functional package or <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>:<br/><ul>
+              <li>minimal: Success and failure of the activity;</li>
+              <li>basic: The object attribute(s), and object value(s) excluding any sensitive information.</li>
+            </ul>
+          </p><h4>FCS_CKM_EXT.8 Password-Based Key Derivation</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td><br/>
+            <br/>[<a href="#FCS_CKM.2">FCS_CKM.2</a> Cryptographic Key Distribution, or
+            <br/>FCS_COP.1 Cryptographic Operation]
+            <br/><a href="#FCS_CKM_EXT.7">FCS_CKM_EXT.7</a> Cryptographic Key Agreement],
+            <br/><a href="#FCS_CKM.6">FCS_CKM.6</a> Timing and Event of Cryptographic Key Destruction
+          </td></tr></table><h4 id="ext-comp-FCS_CKM_EXT.8.1">FCS_CKM_EXT.8.1</h4>
+              The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall perform password-based key derivation functions in accordance with a specified 
+              cryptographic algorithm [<abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-[<b>selection</b>: <span class="selectable-content" id="_s_117"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384</span>, <span class="selectable-content" id="_s_118"><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512</span>], with iteration count of 
+              [<b>assignment</b>: 
+     <span class="assignable-content">number of iterations</span>]
+              using a randomly generated salt of length
+              [<b>assignment</b>: 
+     <span class="assignable-content">equal to or greater than 128</span>]
+              and output cryptographic key sizes [<b>selection</b>: <span class="selectable-content" id="_s_119">256</span>, <span class="selectable-content" id="_s_120">384</span>, <span class="selectable-content" id="_s_121">512</span>]
+              bits that meet the following standard: [<abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> SP 800-132 (Section 5.3) [PBKDF2]].
+            </div></div><h3 id="ext-comp-FCS_HTTPS_EXT" class="indexable" data-level="4">B.2.1.2 FCS_HTTPS_EXT HTTPS Protocol</h3><div style="margin-left: 1em;"><h4>Family Behavior</h4><div>This family defines requirements for implementation of the <abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr> protocol. 
           </div><h4>Component Leveling</h4><svg style="max-height: 30px;"><text x="4" fill="black" font-size="15" y="24">FCS_HTTPS_EXT</text><rect x="2" y="11" width="150" height="16" fill="none" stroke="black"></rect><text x="234" fill="black" font-size="15" y="24">1</text><rect x="232" y="11" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="17" x2="231" y2="17" stroke="black"></line></svg><p><a href="#FCS_HTTPS_EXT.1">FCS_HTTPS_EXT.1</a>,
              <abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr> Protocol,
               requires the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to implement the <abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr> protocol in accordance with the specified standard, using <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr>, and notifying the application if invalid.</p><h4>Management: FCS_HTTPS_EXT.1</h4><p>The following actions could be considered for the management functions in FMT:
