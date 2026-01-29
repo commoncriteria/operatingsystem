@@ -636,7 +636,7 @@ function showTarget(id){
 <tr><td>4.2.1</td><td>2019-04-22</td><td>Formatting changes as a result of <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> evaluation</td></tr>
 <tr><td>4.3</td><td>2022-09-27</td><td>
 	     <ul>
-	     <li>Added compatibility with MDM Agent, Bluetooth, and <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Modules.</li>
+	     <li>Added compatibility with <abbr class="dyn-abbr"><a href="#abbr_MDM">MDM</a></abbr> Agent, Bluetooth, and <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Modules.</li>
 	     <li>Two factor authentication.</li>
 	     <li>Aligned with CNSA.</li>
 	     </ul>
@@ -719,6 +719,7 @@ The following sections list Common Criteria and technology terms used in this do
 	from extracting data from non-volatile storage.
 	Common techniques include data encryption and wiping.
       </td></tr>
+<tr><td><div id="Data_Encryption_Key">Data Encryption Key (DEK)</div></td><td>A key used to encrypt data-at-rest.</td></tr>
 <tr><td><div id="Data_Execution_Prevention">Data Execution Prevention (DEP)</div></td><td>
 	An anti-exploitation feature of modern operating systems executing on
 	modern computer hardware, which enforces a non-execute permission on pages of memory.
@@ -742,9 +743,19 @@ The following sections list Common Criteria and technology terms used in this do
       </td></tr>
 <tr><td><div id="Hybrid_Authentication">Hybrid Authentication</div></td><td>
 	A hybrid authentication factor is one where a user has to
-	submit a combination of a cryptographic token and a PIN or password and both must pass.
-	If either factor fails, the entire attempt fails.
+	submit a combination of authentication factors and both must pass.
+	If either factor fails, the entire attempt fails. Examples can include a combination of a cryptographic token and a PIN or password, or a biometric factor and a PIN or password.
       </td></tr>
+<tr><td><div id="Key_Encryption_Key">Key Encryption Key (KEK)</div></td><td> A key used to encrypt other keys, such as DEKs or
+        storage that contains keys.</td></tr>
+<tr><td><div id="Locked_State">Locked State</div></td><td> Powered on but most functionality is unavailable for use. User
+        authentication is required to access functionality.</td></tr>
+<tr><td><div id="MDM_Agent">MDM Agent</div></td><td> The MDM Agent is installed on a Mobile Device as an application or is
+        part of the Mobile Device’s OS. The MDM Agent establishes a secure connection back to the
+        MDM Server controlled by the administrator.</td></tr>
+<tr><td><div id="Mobile_Device_Management">Mobile Device Management (MDM)</div></td><td> Mobile device management (MDM) products
+        allow enterprises to apply security policies to mobile devices. This system consists of two
+        primary components: the MDM Server and the MDM Agent. </td></tr>
 <tr><td><div id="Operating_System">Operating System (OS)</div></td><td>
 	Software that manages physical and logical resources and provides services
 	for applications. The terms <i>TOE</i> and <i>OS</i> are interchangeable in this
@@ -765,6 +776,8 @@ The following sections list Common Criteria and technology terms used in this do
 	birth, mother's maiden name, biometric records, etc., including any other personal
 	information which is linked or linkable to an individual.<a href="#bibOMB">[OMB]</a>
       </td></tr>
+<tr><td><div id="Root_Encryption_Key">Root Encryption Key (REK)</div></td><td> A key tied to the device used to encrypt other
+        keys. </td></tr>
 <tr><td><div id="Sensitive_Data">Sensitive Data</div></td><td>
 	Sensitive data may include all user or enterprise data or may be specific
 	application data such as PII, emails, messaging, documents, calendar items, and contacts.
@@ -941,7 +954,7 @@ The following sections list Common Criteria and technology terms used in this do
 	  If this feature is implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the following requirements must be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>:
             <ul><li><b><a href="#FCS_CKM_EXT.7">FCS_CKM_EXT.7</a></b></li></ul></p><h3 class="indexable" data-level="3" id="wlan-support">1.6.4 WLAN Support</h3><span class="description">A conformant <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> may implement WLAN client functionality. If so, it is necessary to implement authenticated encryption and key wrapping in support of secure wireless communications. The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> will also claim a <abbr class="dyn-abbr"><a href="#abbr_PP-Configuration">PP-Configuration</a></abbr> that includes the <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Wireless LAN Clients.<br/></span><br/><p>
 	  If this feature is implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the following requirements must be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>:
-            <ul><li><b><a href="#FCS_CKM.2">FCS_CKM.2</a></b></li></ul></p><h3 class="indexable" data-level="3" id="mdm-management">1.6.5 Mobile Device Management Support</h3><span class="description">A conformant <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> may interface with a Mobile Device Management server for remote administration and security policies. This is either through an MDM Agent built into the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> or a 3rd party MDM Agent application installed onto the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> includes a built-in MDM Agent, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> will claim a <abbr class="dyn-abbr"><a href="#abbr_PP-Configuration">PP-Configuration</a></abbr> that includes the <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Mobile Device Management Agents.<br/></span><br/><p>
+            <ul><li><b><a href="#FCS_CKM.2">FCS_CKM.2</a></b></li></ul></p><h3 class="indexable" data-level="3" id="mdm-management">1.6.5 Mobile Device Management Support</h3><span class="description">A conformant <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> may interface with a Mobile Device Management server for remote administration and security policies. This is either through an <abbr class="dyn-abbr"><a href="#abbr_MDM">MDM</a></abbr> Agent built into the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> or a 3rd party <abbr class="dyn-abbr"><a href="#abbr_MDM">MDM</a></abbr> Agent application installed onto the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> includes a built-in <abbr class="dyn-abbr"><a href="#abbr_MDM">MDM</a></abbr> Agent, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> will claim a <abbr class="dyn-abbr"><a href="#abbr_PP-Configuration">PP-Configuration</a></abbr> that includes the <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Mobile Device Management Agents.<br/></span><br/><p>
 	  If this feature is implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the following requirements must be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>:
             <ul><li><b><a href="#FCS_CKM_EXT.3">FCS_CKM_EXT.3</a></b></li><li><b><a href="#FCS_CKM_EXT.5">FCS_CKM_EXT.5</a></b></li><li><b><a href="#FCS_CKM_EXT.8">FCS_CKM_EXT.8</a></b></li><li><b><a href="#FCS_HTTPS_EXT.1">FCS_HTTPS_EXT.1</a></b></li><li><b><a href="#FCS_STG_EXT.1">FCS_STG_EXT.1</a></b></li><li><b><a href="#FCS_STG_EXT.2">FCS_STG_EXT.2</a></b></li><li><b><a href="#FDP_ACF_EXT.2">FDP_ACF_EXT.2</a></b></li><li><b><a href="#FDP_UPC_EXT.1/APPS">FDP_UPC_EXT.1/APPS</a></b></li><li><b><a href="#FMT_SMF_EXT.2">FMT_SMF_EXT.2</a></b></li></ul></p>			
     
@@ -1749,7 +1762,7 @@ The following sections list Common Criteria and technology terms used in this do
       Note:
     </span><span class="note">
       <p>
-      For the purposes of this requirement, keying material refers to authentication data, passwords, secret/private symmetric keys, private asymmetric keys, data used to derive keys, values derived from passwords, etc. “Plaintext keying material” may refer to a KEK that is used to encrypt other keying material. Destruction of encrypted keying material may be accomplished by destroying the KEK used to encrypt it. If different mechanisms are used for destroying different keying material, all relevant claims should be selected and the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> should identify which keying material is destroyed by which mechanism. 
+      For the purposes of this requirement, keying material refers to authentication data, passwords, secret/private symmetric keys, private asymmetric keys, data used to derive keys, values derived from passwords, etc. “Plaintext keying material” may refer to a <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> that is used to encrypt other keying material. Destruction of encrypted keying material may be accomplished by destroying the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> used to encrypt it. If different mechanisms are used for destroying different keying material, all relevant claims should be selected and the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> should identify which keying material is destroyed by which mechanism. 
       </p><p>
         Key storage areas in non-volatile storage can be overwritten with any value that renders the keys unrecoverable. The value used can be all zeroes, all ones, or any other pattern or combination of values significantly different than the value of the key itself. When ‘a value that does not contain any <abbr class="dyn-abbr"><a href="#abbr_CSP">CSP</a></abbr>’ is chosen, it means that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> uses some other specified data not drawn from a source that may contain keying material or reveal information about it or any other <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>-protected data. In other words, the data used for overwriting is carefully selected and not taken from a general ‘pool’ that might contain current or residual data that itself requires confidentiality protection. If multiple copies exist, all copies must be destroyed. 
       </p><p>
@@ -1763,7 +1776,7 @@ The following sections list Common Criteria and technology terms used in this do
       
     <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">
         <p>
-          The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> identifies all plaintext keying material and CSPs stored by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the type of memory in which it is stored, and when and how the keying material is erased. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> uses one or more KEKs to protect stored keying material, the evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes the destruction of that keying material, either directly or by destruction of the KEK used to encrypt it.</p><p>
+          The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> identifies all plaintext keying material and CSPs stored by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the type of memory in which it is stored, and when and how the keying material is erased. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> uses one or more KEKs to protect stored keying material, the evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes the destruction of that keying material, either directly or by destruction of the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> used to encrypt it.</p><p>
             If different types of memory are used to store the materials to be protected, the evaluator shall check to ensure that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes the clearing procedure in terms of the memory in which the data are stored (for example, "secret keys stored on flash are cleared by overwriting once with zeros, while secret keys stored on the internal persistent storage device are cleared by overwriting one time with a random pattern that is changed before each write"). For block erases, the evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> identifies the block erase command that is used and shall verify that the command used also addresses any copies of the plaintext key material that may be created, e.g. in order to optimize the use of Flash memory.
           </p>    
       </div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">	      
@@ -2120,18 +2133,18 @@ The following sections list Common Criteria and technology terms used in this do
           <div class="element"><div class="reqid" id="FCS_CKM_EXT.3.1"><a href="#FCS_CKM_EXT.3.1" class="abbr">FCS_CKM_EXT.3.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall use [<b>selection</b>: <span class="selectable-content" id="s-kek-asym">asymmetric KEKs of [<b>assignment</b>: 
      <span class="assignable-content" id="a-kek-asym-size">security strength greater than or equal
                     to 192 bits</span>] security strength</span>, <span class="selectable-content" id="s-kek-sym">symmetric KEKs of 256-bit security strength
-              corresponding to at least the security strength of the keys encrypted by the KEK</span>]
+              corresponding to at least the security strength of the keys encrypted by the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr></span>]
               . <div class="appnote"><span class="note-header">Application
       Note:
-    </span><span class="note"> The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects all applicable KEK types implemented by
+    </span><span class="note"> The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects all applicable <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> types implemented by
               the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. </span></div></div></div>
           <div class="element"><div class="reqid" id="FCS_CKM_EXT.3.2"><a href="#FCS_CKM_EXT.3.2" class="abbr">FCS_CKM_EXT.3.2</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall generate all KEKs using one of the following methods: <ul>
-                <li>Derive the KEK from a Password Authentication Factor according to FCS_COP.1.1<b>
+                <li>Derive the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> from a Password Authentication Factor according to <a href="#FCS_CKM_EXT.8.1">FCS_CKM_EXT.8.1</a><b>
               /CONDITION</b> and </li>
               </ul>
-              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_92">Generate the KEK using an <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> that meets this profile (as specified in
-              <a href="#FCS_RBG.1">FCS_RBG.1</a>)</span></li><li style=""><span class="selectable-content" id="_s_93">Generate the KEK using a key generation scheme that meets this profile
-              (as specified in FCS_CKM.1)</span></li><li style=""><span class="selectable-content" id="_s_94">Combine the KEK from other KEKs in a way that preserves the effective
+              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_92">Generate the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> using an <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> that meets this profile (as specified in
+              <a href="#FCS_RBG.1">FCS_RBG.1</a>)</span></li><li style=""><span class="selectable-content" id="_s_93">Generate the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> using a key generation scheme that meets this profile
+              (as specified in FCS_CKM.1)</span></li><li style=""><span class="selectable-content" id="_s_94">Combine the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> from other KEKs in a way that preserves the effective
               entropy of each factor by [<b>selection</b>: <span class="selectable-content" id="_s_95">using an <abbr class="dyn-abbr"><a href="#abbr_XOR">XOR</a></abbr> operation</span>, <span class="selectable-content" id="_s_96">concatenating the keys and using a KDF (as described in SP
                       800-108)</span>, <span class="selectable-content" id="_s_97">concatenating the keys and using a KDF (as described in SP
                       800-56C)</span>, <span class="selectable-content" id="_s_98">encrypting one key with another</span>]
@@ -2139,7 +2152,7 @@ The following sections list Common Criteria and technology terms used in this do
               . <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note"> The conditioning of passwords is performed in accordance with
-              FCS_COP.1/CONDITION. <br/><br/> It is expected that key generation derived from
+              <a href="#FCS_CKM_EXT.8.1">FCS_CKM_EXT.8.1</a>. <br/><br/> It is expected that key generation derived from
               conditioning, using an <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> or generation scheme, and through combination, will each be
               necessary to meet the requirements set out in this document. In particular, <a href="#Keys" class="dynref" data-format=""></a> has KEKs of each type: KEK_3 is generated, KEK_1 is derived from a
               Password Authentication Factor, and KEK_2 is combined from two KEKs. In <a href="#Keys" class="dynref" data-format=""></a>, KEK_3 may either be a symmetric key generated from an <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> or an
@@ -2159,23 +2172,23 @@ The following sections list Common Criteria and technology terms used in this do
             <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea"> The evaluator shall examine the key hierarchy section of the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to ensure that
                 the formation of all KEKs are described and that the key sizes match that described
                 by the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author. The evaluator shall examine the key hierarchy section of the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>
-                to ensure that each key (DEKs, software-based key storage, and KEKs) is encrypted by
+                to ensure that each key (<abbr class="dyn-abbr"><a href="#abbr_DEK">DEKs</a></abbr>, software-based key storage, and KEKs) is encrypted by
                 keys of equal or greater security strength using one of the selected methods.<br/><br/>
                 The evaluator shall review the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to verify that it contains a description of the
                 conditioning used to derive KEKs. This description must include the size and storage
                 location of salts. This activity may be performed in combination with that for
-                FCS_COP.1/CONDITION.<br/><br/> (conditional) If the symmetric KEK is generated
+                FCS_COP.1/CONDITION.<br/><br/> (conditional) If the symmetric <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> is generated
                 by an <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr>, the evaluator shall review the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to determine that it describes how the
                 functionality described by <a href="#FCS_RBG.1">FCS_RBG.1</a> is invoked. The evaluator uses the description
                 of the <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> functionality in <a href="#FCS_RBG.1">FCS_RBG.1</a> or documentation available for the operational
                 environment to determine that the key size being requested is greater than or equal
                 to the key size and mode to be used for the encryption/decryption of the data.<br/><br/>
-                (conditional) If the KEK is generated according to an asymmetric key scheme, the
+                (conditional) If the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> is generated according to an asymmetric key scheme, the
                 evaluator shall review the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to determine that it describes how the functionality
                 described by FCS_CKM.1 is invoked. The evaluator uses the description of the key
                 generation functionality in FCS_CKM.1 or documentation available for the operational
                 environment to determine that the key strength being requested is greater than or
-                equal to 112 bits.<br/><br/> (conditional) If the KEK is formed from a
+                equal to 112 bits.<br/><br/> (conditional) If the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> is formed from a
                 combination, the evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes the method of
                 combination and that this method is either an <abbr class="dyn-abbr"><a href="#abbr_XOR">XOR</a></abbr>, a KDF, or encryption.<br/><br/>
                 (conditional) If a KDF is used, the evaluator shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> includes a
@@ -2417,7 +2430,7 @@ The following sections list Common Criteria and technology terms used in this do
           
           
           <div class="element"><div class="reqid" id="FCS_CKM_EXT.5.1"><a href="#FCS_CKM_EXT.5.1" class="abbr">FCS_CKM_EXT.5.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall wipe all sensitive data by 
-            [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_106">Cryptographically erasing the encrypted DEKs or the KEKs in non-volatile
+            [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_106">Cryptographically erasing the encrypted <abbr class="dyn-abbr"><a href="#abbr_DEK">DEKs</a></abbr> or the KEKs in non-volatile
                  memory by following the requirements in <a href="#FCS_CKM.6.2">FCS_CKM.6.2</a>
               </span></li><li style=""><span class="selectable-content" id="_s_107">the invocation of an interface provided by the underlying platform that
                 [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_108">logically addresses the storage location of the sensitive data and performs a 
@@ -4771,7 +4784,7 @@ The following sections list Common Criteria and technology terms used in this do
               secure key storage for asymmetric private keys and [<b>selection</b>: <span class="selectable-content" id="_s_306">symmetric keys</span>, <span class="selectable-content" id="_s_307">persistent secrets</span>, <span class="selectable-content" id="_s_308">no other keys</span>].<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">A hardware keystore can be exposed to the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> through a variety
-              of interfaces, including embedded on the motherboard, USB, microSD, and Bluetooth. <br/><br/>
+              of interfaces, including embedded on the motherboard, <abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr>, microSD, and Bluetooth. <br/><br/>
               Immutable hardware is considered outside of this requirement and will be covered
               elsewhere. <br/><br/> If the secure key storage is implemented in software that
               is protected as required by <a href="#FCS_STG_EXT.2">FCS_STG_EXT.2</a>, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must select <a href="#s-software-store">software-based</a>. If <a href="#s-software-store">software-based</a> is selected, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>
@@ -4900,36 +4913,36 @@ The following sections list Common Criteria and technology terms used in this do
           
           
 
-          <div class="element"><div class="reqid" id="FCS_STG_EXT.2.1"><a href="#FCS_STG_EXT.2.1" class="abbr">FCS_STG_EXT.2.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall encrypt all DEKs, KEKs, [<b>assignment</b>: 
+          <div class="element"><div class="reqid" id="FCS_STG_EXT.2.1"><a href="#FCS_STG_EXT.2.1" class="abbr">FCS_STG_EXT.2.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall encrypt all <abbr class="dyn-abbr"><a href="#abbr_DEK">DEKs</a></abbr>, KEKs, [<b>assignment</b>: 
      <span class="assignable-content">any long-term trusted channel
               key material</span>] and [<b>selection</b>: <span class="selectable-content" id="s-all-software-key-store">all software-based key storage</span>, <span class="selectable-content" id="_s_323">no other keys</span>]
-              by KEKs that are [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_324">Protected by the REK with [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_325">encryption by a REK</span></li><li style=""><span class="selectable-content" id="_s_326">encryption by a KEK chaining from a REK</span></li><li style=""><span class="selectable-content" id="_s_327">encryption by a KEK that is derived from a REK</span></li></ul>]
-                </span></li><li style=""><span class="selectable-content" id="_s_328">Protected by the REK and the password with [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_329">encryption by a REK and the password-derived KEK</span></li><li style=""><span class="selectable-content" id="_s_330">encryption by a KEK chaining to a REK and the password-derived or
-              biometric-unlocked KEK</span></li><li style=""><span class="selectable-content" id="_s_331">encryption by a KEK that is derived from a REK and the
-              password-derived or biometric-unlocked KEK</span></li></ul>]
+              by KEKs that are [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_324">Protected by the <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr> with [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_325">encryption by a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr></span></li><li style=""><span class="selectable-content" id="_s_326">encryption by a <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> chaining from a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr></span></li><li style=""><span class="selectable-content" id="_s_327">encryption by a <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> that is derived from a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr></span></li></ul>]
+                </span></li><li style=""><span class="selectable-content" id="_s_328">Protected by the <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr> and the password with [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_329">encryption by a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr> and the password-derived <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr></span></li><li style=""><span class="selectable-content" id="_s_330">encryption by a <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> chaining to a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr> and the password-derived or
+              biometric-unlocked <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr></span></li><li style=""><span class="selectable-content" id="_s_331">encryption by a <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> that is derived from a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr> and the
+              password-derived or biometric-unlocked <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr></span></li></ul>]
                 </span></li></ul>]
               .<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must select <a href="#s-all-software-key-store">all software-based key storage</a>
               if <a href="#s-software-store">software-based</a> is selected in <a href="#FCS_STG_EXT.1.1">FCS_STG_EXT.1.1</a>. If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author
               selects <a href="#mutable_hardware" class="dynref" data-format=""></a> in <a href="#FCS_STG_EXT.1.1">FCS_STG_EXT.1.1</a>, the secure key storage is
-              not subject to this requirement. REKs are not subject to this requirement. <br/><br/>
-              A REK and the password-derived KEK may be combined to form a combined KEK (as
+              not subject to this requirement. <abbr class="dyn-abbr"><a href="#abbr_REK">REKs</a></abbr> are not subject to this requirement. <br/><br/>
+              A <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr> and the password-derived <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> may be combined to form a combined <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> (as
               described in <a href="#FCS_CKM_EXT.3">FCS_CKM_EXT.3</a>) in order to meet this requirement. <br/><br/>
-              Software-based key storage must be protected by the password or biometric and REK. <br/><br/>
-              All keys must ultimately be protected by a REK. In particular, <a href="#Keys" class="dynref" data-format=""></a> has KEKs protected according to these requirements: DEK_1 meets the
-              "encryption by a REK and the password-derived KEK" case and would be appropriate for
-              sensitive data, DEK_2 meets the "encryption by a KEK chaining from a REK" case and
-              would not be appropriate for sensitive data, K_1 meets the "encryption by a REK" case
-              and is not considered a sensitive key, and K_2 meets the "encryption by a KEK chaining
-              to a REK and the password-derived or biometric-unlocked KEK" case and is considered a
+              Software-based key storage must be protected by the password or biometric and <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr>. <br/><br/>
+              All keys must ultimately be protected by a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr>. In particular, <a href="#Keys" class="dynref" data-format=""></a> has KEKs protected according to these requirements: DEK_1 meets the
+              "encryption by a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr> and the password-derived <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr>" case and would be appropriate for
+              sensitive data, DEK_2 meets the "encryption by a <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> chaining from a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr>" case and
+              would not be appropriate for sensitive data, K_1 meets the "encryption by a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr>" case
+              and is not considered a sensitive key, and K_2 meets the "encryption by a <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> chaining
+              to a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr> and the password-derived or biometric-unlocked <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr>" case and is considered a
               sensitive key. <br/><br/> Long-term trusted channel key material includes Wi-Fi
               (PSKs), IPsec (PSKs and client certificates) and Bluetooth keys. These keys must not
               be protected by the password, as they may be necessary in the locked state. For
               clarity, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must assign any Long-term trusted channel key material
               supported by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> . At a minimum, a <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> must support at least Wi-Fi and Bluetooth
               keys.</span></div><div class="validationguidelines_label">Validation Guidelines:</div><p></p><b><a href="#r-store">Rule #3</a></b></div></div>
-          <div class="element"><div class="reqid" id="FCS_STG_EXT.2.2"><a href="#FCS_STG_EXT.2.2" class="abbr">FCS_STG_EXT.2.2</a></div><div class="reqdesc">DEKs, KEKs, [<b>assignment</b>: 
+          <div class="element"><div class="reqid" id="FCS_STG_EXT.2.2"><a href="#FCS_STG_EXT.2.2" class="abbr">FCS_STG_EXT.2.2</a></div><div class="reqdesc"><abbr class="dyn-abbr"><a href="#abbr_DEK">DEKs</a></abbr>, KEKs, [<b>assignment</b>: 
      <span class="assignable-content">any long-term trusted channel key material</span>]
               and [<b>selection</b>: <span class="selectable-content" id="_s_332">all software-based key storage</span>, <span class="selectable-content" id="_s_333">no other keys</span>]
               shall be encrypted using one of the following methods: [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_334">using a SP800-56B key establishment scheme</span></li><li style=""><span class="selectable-content" id="_s_335">using <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> in the [<b>selection</b>: <span class="selectable-content" id="_s_336">Key Wrap (KW) mode</span>, <span class="selectable-content" id="_s_337">Key Wrap with Padding (KWP) mode</span>, <span class="selectable-content" id="_s_338">GCM</span>, <span class="selectable-content" id="_s_339">CCM</span>, <span class="selectable-content" id="_s_340">CBC mode</span>]</span></li></ul>]
@@ -4949,17 +4962,17 @@ The following sections list Common Criteria and technology terms used in this do
               
               
             <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">The evaluator shall review the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to determine that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> includes key
-                hierarchy description of the protection of each DEK for data-at-rest, of
-                software-based key storage, of long-term trusted channel keys, and of KEK related to
-                the protection of the DEKs, long-term trusted channel keys, and software-based key
+                hierarchy description of the protection of each <abbr class="dyn-abbr"><a href="#abbr_DEK">DEK</a></abbr> for data-at-rest, of
+                software-based key storage, of long-term trusted channel keys, and of <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> related to
+                the protection of the <abbr class="dyn-abbr"><a href="#abbr_DEK">DEKs</a></abbr>, long-term trusted channel keys, and software-based key
                 storage. This description must include a diagram illustrating the key hierarchy
                 implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> in order to demonstrate that the implementation meets
                 <a href="#FCS_STG_EXT.2">FCS_STG_EXT.2</a>. The description shall indicate how the functionality described by
-                <a href="#FCS_RBG.1">FCS_RBG.1</a> is invoked to generate DEKs (FCS_CKM_EXT.2), the key size (FCS_CKM_EXT.2
-                and <a href="#FCS_CKM_EXT.3">FCS_CKM_EXT.3</a>) for each key, how each KEK is formed (generated, derived, or
+                <a href="#FCS_RBG.1">FCS_RBG.1</a> is invoked to generate <abbr class="dyn-abbr"><a href="#abbr_DEK">DEKs</a></abbr> (FCS_CKM_EXT.2), the key size (FCS_CKM_EXT.2
+                and <a href="#FCS_CKM_EXT.3">FCS_CKM_EXT.3</a>) for each key, how each <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> is formed (generated, derived, or
                 combined according to <a href="#FCS_CKM_EXT.3">FCS_CKM_EXT.3</a>), the integrity protection method for each
                 encrypted key (FCS_STG_EXT.3), and the IV generation for each key encrypted by the
-                same KEK (FCS_IV_EXT.1). More detail for each task follows the corresponding
+                same <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> (FCS_IV_EXT.1). More detail for each task follows the corresponding
                 requirement.<br/>
                   <br/> The evaluator shall also ensure that the documentation
                 of the product's encryption key management is detailed enough that, after reading,
@@ -4969,7 +4982,7 @@ The following sections list Common Criteria and technology terms used in this do
                 also be documented as separate proprietary evidence rather than being included in
                 the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>.<br/><br/>
               </div><div class="ea">The evaluator shall examine the key hierarchy description in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> section to
-                verify that each DEK and software-stored key is encrypted according to
+                verify that each <abbr class="dyn-abbr"><a href="#abbr_DEK">DEK</a></abbr> and software-stored key is encrypted according to
                 <a href="#FCS_STG_EXT.2">FCS_STG_EXT.2</a>.<br/><br/></div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">There are no guidance evaluation activities for this component.<br/><br/></div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">There are no test evaluation activities for this component.</div></div></div></div></div>
         
 
@@ -5578,8 +5591,8 @@ The following sections list Common Criteria and technology terms used in this do
               <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"> The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> section of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> describes the process
                 for decrypting Enterprise application data and shared resource data. The evaluator
                 shall ensure that this process requires the user to enter an Authentication Factor
-                and, in accordance with <a href="#FCS_CKM_EXT.3">FCS_CKM_EXT.3</a>, derives a KEK which is used to protect the
-                software-based secure key storage and (optionally) DEKs for sensitive data, in
+                and, in accordance with <a href="#FCS_CKM_EXT.3">FCS_CKM_EXT.3</a>, derives a <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> which is used to protect the
+                software-based secure key storage and (optionally) <abbr class="dyn-abbr"><a href="#abbr_DEK">DEKs</a></abbr> for sensitive data, in
                 accordance with <a href="#FCS_STG_EXT.2">FCS_STG_EXT.2</a>.</div>
               <div class="eacategory">Guidance</div><div class="ea">There are no guidance evaluation activities for this element.</div>
               <div class="eacategory">Tests</div><div class="ea">There are no test evaluation activities for this element.</div>
@@ -5984,7 +5997,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
 <tr id="mf-integ"><td>38</td><td style="text-align:left">
                      Retrieve <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>-software integrity verification values </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-USB"><td>39</td><td style="text-align:left">
-                     Enable/disable [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-usbstore">USB mass storage mode</span></li><li style=""><span class="selectable-content" id="_s_433">USB data transfer without user authentication</span></li><li style=""><span class="selectable-content" id="_s_434">USB data transfer without authentication of the connecting
+                     Enable/disable [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-usbstore"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> mass storage mode</span></li><li style=""><span class="selectable-content" id="_s_433"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> data transfer without user authentication</span></li><li style=""><span class="selectable-content" id="_s_434"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> data transfer without authentication of the connecting
                   system</span></li></ul>]
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-backup"><td>40</td><td style="text-align:left">
@@ -5992,7 +6005,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
               to [<b>selection</b>: <span class="selectable-content" id="_s_439">locally connected system</span>, <span class="selectable-content" id="_s_440">remote system</span>]
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-hotspot"><td>41</td><td style="text-align:left">
-                     Enable/disable [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_441">Hotspot functionality authenticated by [<b>selection</b>: <span class="selectable-content" id="_s_442">pre-shared key</span>, <span class="selectable-content" id="_s_443">passcode</span>, <span class="selectable-content" id="_s_444">no authentication</span>]</span></li><li style=""><span class="selectable-content" id="s-tether">USB tethering authenticated by [<b>selection</b>: <span class="selectable-content" id="_s_446">pre-shared key</span>, <span class="selectable-content" id="_s_447">passcode</span>, <span class="selectable-content" id="_s_448">no authentication</span>]
+                     Enable/disable [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_441">Hotspot functionality authenticated by [<b>selection</b>: <span class="selectable-content" id="_s_442">pre-shared key</span>, <span class="selectable-content" id="_s_443">passcode</span>, <span class="selectable-content" id="_s_444">no authentication</span>]</span></li><li style=""><span class="selectable-content" id="s-tether"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> tethering authenticated by [<b>selection</b>: <span class="selectable-content" id="_s_446">pre-shared key</span>, <span class="selectable-content" id="_s_447">passcode</span>, <span class="selectable-content" id="_s_448">no authentication</span>]
                 </span></li></ul>]
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-dataSharing"><td>42</td><td style="text-align:left">
@@ -6047,11 +6060,15 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
 	      <p>
           The terms "Administrator" and "User" are defined in section 1.2.2.
           The intent of this requirement is to ensure that the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> is populated with the
-          relevant management functions that are provided by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>.	      </p>
-	      <p>
-Sophisticated account management policies, such as intricate password complexity requirements and handling of temporary accounts, are a function of directory servers.
-The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can enroll in such account management and enable the overall information system to achieve such policies by binding to a directory server.
-	      </p>
+          relevant management functions that are provided by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>.
+        </p>
+        <p>
+        The columns labled with "When enrolled in management" refer to situations where the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> is
+        enrolled in a management infrastructure utilizing a Mobile Device Managenment system. These 
+        functions labled as "M" are only required when the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> is capable of being enrolled in management and recieving configuration policies, if the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> lacks such capability then only the "User" and "Administrator" columns need to be considered.
+        </p>
+      
+	      
 	      <p>
 	        For management functions 12, 13, and 14, it is expected that the interfaces to these remote entities are trusted channels and the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author is expected to claim them in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> accordingly.
 	      </p>
@@ -6107,7 +6124,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can enroll in such a
               enterprise data.
             </p><p> The selection in function <a href="#mf-appInstallRules">8</a> allows the
               <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author to select which mechanisms are available to the administrator through
-              the MDM Agent to restrict the applications which the user may install. The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>
+              the <abbr class="dyn-abbr"><a href="#abbr_MDM">MDM</a></abbr> Agent to restrict the applications which the user may install. The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>
               author must state if application allowlist is applied device-wide or if it can
               be specified to apply to either the Enterprise or Personal applications. <ul>
                 <li>If the administrator can restrict the sources from which applications
@@ -6129,7 +6146,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can enroll in such a
               developer’s certificate. At this time, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must indicate in the
               assignment whether pre-installed or any other category of X.509v3 certificates
               may be removed from the Trust Anchor Database. </p><p> For function <a href="#mf-enroll">13</a>, the enrollment function may be
-              installing an MDM agent and includes the policies to be applied to the device.
+              installing an <abbr class="dyn-abbr"><a href="#abbr_MDM">MDM</a></abbr> agent and includes the policies to be applied to the device.
               It is acceptable for the user approval notice to require the user to
               intentionally opt to view the policies (for example, by "tapping" on a "View"
               icon) rather than listing the policies in full in the notice. </p><p> For function <a href="#mf-update">15</a>, the administrator capability to
@@ -6168,7 +6185,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can enroll in such a
               configuration can be different depending on the specific trusted channel(s) and
               they must be filled in for the assignment. </p><p>
                      The assignment in function <a href="#mf-externalPorts">24</a> consists of
-              all externally accessible hardware ports, such as USB, the SD card, and HDMI,
+              all externally accessible hardware ports, such as <abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr>, the SD card, and HDMI,
               whose data transfer capabilities can be enabled and disabled by either the user
               or administrator. Disablement of data transfer over an external port must be
               effective during and after boot into the normal operative mode of the device. If
@@ -6177,14 +6194,14 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can enroll in such a
               meet this requirement by ensuring that data transfer is disabled by default
               while in these states. Each of the ports may be enabled or disabled separately.
               The configuration policy need not disable all ports together. In the case of
-              USB, charging is still allowed if data transfer capabilities have been disabled. </p><p> The assignment in function <a href="#mf-serverProtocols">25</a> consists of
+              <abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr>, charging is still allowed if data transfer capabilities have been disabled. </p><p> The assignment in function <a href="#mf-serverProtocols">25</a> consists of
               all protocols where the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> acts as a server, which can be enabled and disabled
               by either the user or administrator. </p><p> Function <a href="#mf-devModes">26</a> must be included in the selection if developer modes are
               supported by the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>. </p><p> Function <a href="#mf-authBypass">27</a> must be included in the selection
               if bypass of local user authentication, such as a "Forgot Password", password
               hint, or remote authentication feature, is supported. </p><p> Function <a href="#mf-appCert">29</a> must be included in the selection if
-              the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> allows applications, other than the MDM Agents, to import or remove
-              X.509v3 certificates from the Trust Anchor Database. The MDM Agent is considered
+              the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> allows applications, other than the <abbr class="dyn-abbr"><a href="#abbr_MDM">MDM</a></abbr> Agents, to import or remove
+              X.509v3 certificates from the Trust Anchor Database. The <abbr class="dyn-abbr"><a href="#abbr_MDM">MDM</a></abbr> Agent is considered
               the administrator. This function does not apply to applications trusting a
               certificate for its own validations. The function only applies to situations
               where the application modifies the device-wide Trust Anchor Database, affecting
@@ -6553,7 +6570,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can enroll in such a
       [conditional] The evaluator shall attempt to install two applications
                 (one allowlisted, and one not) from a known allowed repository and verify
                     that the application not on the allowlist is rejected. The evaluator shall
-                also attempt to side-load executables or installation packages via USB
+                also attempt to side-load executables or installation packages via <abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr>
                 connections to determine that the white list is still adhered to
                   </li>
                 </ul></span>
@@ -6729,7 +6746,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can enroll in such a
               <div class="eacategory">Tests</div><div class="ea">The evaluator shall exercise the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> configuration to enable and disable
                 data transfer capabilities over each externally accessible hardware ports
                 (e.g.
-                USB, SD card, HDMI) listed by the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author. The evaluator shall use test
+                <abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr>, SD card, HDMI) listed by the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author. The evaluator shall use test
                 equipment for the particular interface to ensure that while the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> may
                 continue to
                 receive data on the RX pins, it is not responding on TX pins used for data
@@ -6877,22 +6894,22 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can enroll in such a
               <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea">The
                 evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> includes a description of how data
                 transfers
-                can be managed over USB.</div>
+                can be managed over <abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr>.</div>
               <div class="eacategory">Tests</div><div class="ea">The evaluator shall perform the following tests based on the selections
                 made in the table: <span class="testlist-"><ul>
                   <li class="test-"><a id="_t_57" class="defined" href="#_t_57">Test FMT_SMF_EXT.1:15</a>:
-      [conditional] The evaluator shall disable USB mass storage mode,
+      [conditional] The evaluator shall disable <abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> mass storage mode,
                     attach the device to a computer, and verify that the computer cannot mount
                 the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> as a drive. The evaluator shall reboot the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and repeat this test
                 with other supported auxiliary boot modes. </li>
                   <li class="test-"><a id="_t_58" class="defined" href="#_t_58">Test FMT_SMF_EXT.1:16</a>:
-      [conditional] The evaluator shall disable USB data transfer without
+      [conditional] The evaluator shall disable <abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> data transfer without
                 user authentication, attach the device to a computer, and verify that the
                     <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> requires user authentication before the computer can access <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> data.
                 The evaluator shall reboot the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and repeat this test with other supported
                 auxiliary boot modes. </li>
                   <li class="test-"><a id="_t_59" class="defined" href="#_t_59">Test FMT_SMF_EXT.1:17</a>:
-      [conditional] The evaluator shall disable USB data transfer without
+      [conditional] The evaluator shall disable <abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> data transfer without
                 connecting system authentication, attach the device to a computer, and
                     verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> requires connecting system authentication before the
                 computer can access <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> data. The evaluator shall then connect the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to
@@ -6929,7 +6946,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can enroll in such a
             <br/></div><div class="management_function_ea"><b>Function <a href="#mf-hotspot">41</a> [CONDITIONAL] </b><br/>
               <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"> The
                 evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> includes a description of Hotspot
-                functionality and USB tethering to include any authentication for these.</div>
+                functionality and <abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> tethering to include any authentication for these.</div>
               <div class="eacategory">Tests</div><div class="ea">The evaluator shall perform the following tests based on the selections
                 in Function <a href="#mf-hotspot">41</a>. <span class="testlist-"><ul>
                   <li class="test-"><a id="_t_60" class="defined" href="#_t_60">Test FMT_SMF_EXT.1:18</a>:
@@ -6938,9 +6955,9 @@ The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> can enroll in such a
                     connect to the hotspot with another device and verify that the hotspot
                 functionality requires the configured authentication method. </li>
                   <li class="test-"><a id="_t_61" class="defined" href="#_t_61">Test FMT_SMF_EXT.1:19</a>:
-      [conditional] The evaluator shall enable USB tethering functionality
+      [conditional] The evaluator shall enable <abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> tethering functionality
                 with each of the of the support authentication methods. The evaluator shall
-                connect to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> over USB with another device and verify that the
+                connect to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> over <abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> with another device and verify that the
                     tethering functionality requires the configured authentication method.
                   </li>
                 </ul></span></div>
@@ -7146,9 +7163,9 @@ This test can also be completed on the same hardware and rebooting between appli
                   actions</span>]</span>] upon unenrollment and [<b>selection</b>: <span class="selectable-content" id="_s_463">[<b>assignment</b>: 
      <span class="assignable-content">other administrator-configured triggers</span>]</span>, <span class="selectable-content" id="_s_464"> no other triggers</span>].<div class="appnote"><span class="note-header">Application
       Note:
-    </span><span class="note"> <p>Unenrollment may consist of removing the MDM agent or
+    </span><span class="note"> <p>Unenrollment may consist of removing the <abbr class="dyn-abbr"><a href="#abbr_MDM">MDM</a></abbr> agent or
               removing the administrator's policies. The functions in the selection are remediation
-              actions that <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> may provide (perhaps via APIs) to the administrator (perhaps via an MDM
+              actions that <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> may provide (perhaps via APIs) to the administrator (perhaps via an <abbr class="dyn-abbr"><a href="#abbr_MDM">MDM</a></abbr>
               agent) that may be performed upon unenrollment. "Enterprise applications" refers to
               applications that are in the Enterprise application group. "Enterprise resource data"
               refers to all stored Enterprise data and the separate resources that are available to
@@ -7179,7 +7196,7 @@ This test can also be completed on the same hardware and rebooting between appli
                 actions are provided to the administrator.<br/><br/></div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">There are no guidance evaluation activities for this component.<br/><br/></div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea"> The evaluator shall use the test environment to iteratively configure the
                 device to perform each remediation action in the selection. The evaluator shall
                 configure the remediation action per how the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> states it is provided to the
-                administrator. The test environment could be an MDM agent application, but can also
+                administrator. The test environment could be an <abbr class="dyn-abbr"><a href="#abbr_MDM">MDM</a></abbr> agent application, but can also
                 be an application with administrator access.</div></div></div></div></div>
         
         
@@ -7950,10 +7967,10 @@ The evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_T
                   [<b>selection</b>: <span class="selectable-content" id="itc_mdtls-client">client</span>, <span class="selectable-content" id="itc_mdtls-server">server</span>]</span></li><li style=""><span class="selectable-content" id="itc_https"><abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr></span></li><li style=""><span class="selectable-content" id="_s_503">no other protocols</span></li></ul>]
 		    to provide a trusted communication channel between itself and
 		    authorized <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr> entities supporting the following capabilities:
-		    [<b>selection</b>: <span class="selectable-content" id="_s_504">audit server</span>, <span class="selectable-content" id="_s_505">authentication server</span>, <span class="selectable-content" id="itc_management_server">management server</span>, <span class="selectable-content" id="_s_507">[<b>assignment</b>: 
-     <span class="assignable-content">other capabilities</span>]</span>] using [<b>selection</b>: <span class="selectable-content" id="_s_508">certificates as defined in <a href="https://www.niap-ccevs.org/protectionprofiles/511">Functional Package for X.509,
+		    [<b>selection</b>: <span class="selectable-content" id="_s_504">audit server</span>, <span class="selectable-content" id="_s_505">authentication server</span>, <span class="selectable-content" id="_s_506">[<b>assignment</b>: 
+     <span class="assignable-content">other capabilities</span>]</span>] using [<b>selection</b>: <span class="selectable-content" id="_s_507">certificates as defined in <a href="https://www.niap-ccevs.org/protectionprofiles/511">Functional Package for X.509,
         version 
-        1.0</a></span>, <span class="selectable-content" id="_s_509">SSH host keys as defined in <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH),
+        1.0</a></span>, <span class="selectable-content" id="_s_508">SSH host keys as defined in <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH),
         version 
         2.0</a></span>] 
       	     
@@ -7985,11 +8002,7 @@ The evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_T
       	    </p>
             <p>
             If <a href="#itc_https">HTTPS</a> is selected, <a href="#FCS_HTTPS_EXT.1">FCS_HTTPS_EXT.1</a> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
-            </p>
-            <p>
-            <a href="#itc_management_server">management server</a> should be selected if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> either includes and MDM agent or supports third-party MDM agents to facilitate intercacing with a management server. If <a href="#itc_management_server">management server</a> is selected, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must include FDP_UPC_EXT.1, <a href="#FCS_HTTPS_EXT.1">FCS_HTTPS_EXT.1</a>, <a href="#FCS_CKM_EXT.5">FCS_CKM_EXT.5</a>, <a href="#FDP_ACF_EXT.2">FDP_ACF_EXT.2</a>, <a href="#FMT_SMF_EXT.2">FMT_SMF_EXT.2</a>, <a href="#FCS_STG_EXT.1">FCS_STG_EXT.1</a>, <a href="#FCS_STG_EXT.2">FCS_STG_EXT.2</a>.
-            </p>
-          
+            </p>          
       	      <p>
       	        Claims from the <a href="https://www.niap-ccevs.org/protectionprofiles/511">Functional Package for X.509,
         version 
@@ -8049,10 +8062,10 @@ channel protocol selected in
 		</p>
 	      </span></div></div></div>
             <div class="element"><div class="reqid" id="FTP_TRP.1.2"><a href="#FTP_TRP.1.2" class="abbr">FTP_TRP.1.2</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall permit
-                [<b>selection</b>: <span class="selectable-content" id="_s_516">the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></span>, <span class="selectable-content" id="_s_517">local users</span>, <span class="selectable-content" id="_s_518">remote users</span>]
+                [<b>selection</b>: <span class="selectable-content" id="_s_515">the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></span>, <span class="selectable-content" id="_s_516">local users</span>, <span class="selectable-content" id="_s_517">remote users</span>]
                 to initiate communication via the trusted path.
               </div></div>
-            <div class="element"><div class="reqid" id="FTP_TRP.1.3"><a href="#FTP_TRP.1.3" class="abbr">FTP_TRP.1.3</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall require use of the trusted path for [<b>selection</b>: <span class="selectable-content" id="_s_519">initial user authentication</span>, <span class="selectable-content" id="_s_520"><i>[all remote administrative actions]</i></span>]           
+            <div class="element"><div class="reqid" id="FTP_TRP.1.3"><a href="#FTP_TRP.1.3" class="abbr">FTP_TRP.1.3</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall require use of the trusted path for [<b>selection</b>: <span class="selectable-content" id="_s_518">initial user authentication</span>, <span class="selectable-content" id="_s_519"><i>[all remote administrative actions]</i></span>]           
               <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -8725,7 +8738,7 @@ The evaluator shall also perform the following tests:
 	  If this feature is implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the following requirements must be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>:
             <ul><li><b><a href="#FCS_CKM_EXT.7">FCS_CKM_EXT.7</a></b></li></ul></p><h3 class="indexable" data-level="3" id="wlan-support">A.0.4 WLAN Support</h3><span class="description">A conformant <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> may implement WLAN client functionality. If so, it is necessary to implement authenticated encryption and key wrapping in support of secure wireless communications. The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> will also claim a <abbr class="dyn-abbr"><a href="#abbr_PP-Configuration">PP-Configuration</a></abbr> that includes the <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Wireless LAN Clients.<br/></span><br/><p>
 	  If this feature is implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the following requirements must be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>:
-            <ul><li><b><a href="#FCS_CKM.2">FCS_CKM.2</a></b></li></ul></p><h3 class="indexable" data-level="3" id="mdm-management">A.0.5 Mobile Device Management Support</h3><span class="description">A conformant <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> may interface with a Mobile Device Management server for remote administration and security policies. This is either through an MDM Agent built into the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> or a 3rd party MDM Agent application installed onto the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> includes a built-in MDM Agent, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> will claim a <abbr class="dyn-abbr"><a href="#abbr_PP-Configuration">PP-Configuration</a></abbr> that includes the <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Mobile Device Management Agents.<br/></span><br/><p>
+            <ul><li><b><a href="#FCS_CKM.2">FCS_CKM.2</a></b></li></ul></p><h3 class="indexable" data-level="3" id="mdm-management">A.0.5 Mobile Device Management Support</h3><span class="description">A conformant <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> may interface with a Mobile Device Management server for remote administration and security policies. This is either through an <abbr class="dyn-abbr"><a href="#abbr_MDM">MDM</a></abbr> Agent built into the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> or a 3rd party <abbr class="dyn-abbr"><a href="#abbr_MDM">MDM</a></abbr> Agent application installed onto the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> includes a built-in <abbr class="dyn-abbr"><a href="#abbr_MDM">MDM</a></abbr> Agent, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> will claim a <abbr class="dyn-abbr"><a href="#abbr_PP-Configuration">PP-Configuration</a></abbr> that includes the <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> for Mobile Device Management Agents.<br/></span><br/><p>
 	  If this feature is implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the following requirements must be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>:
             <ul><li><b><a href="#FCS_CKM_EXT.3">FCS_CKM_EXT.3</a></b></li><li><b><a href="#FCS_CKM_EXT.5">FCS_CKM_EXT.5</a></b></li><li><b><a href="#FCS_CKM_EXT.8">FCS_CKM_EXT.8</a></b></li><li><b><a href="#FCS_HTTPS_EXT.1">FCS_HTTPS_EXT.1</a></b></li><li><b><a href="#FCS_STG_EXT.1">FCS_STG_EXT.1</a></b></li><li><b><a href="#FCS_STG_EXT.2">FCS_STG_EXT.2</a></b></li><li><b><a href="#FDP_ACF_EXT.2">FDP_ACF_EXT.2</a></b></li><li><b><a href="#FDP_UPC_EXT.1/APPS">FDP_UPC_EXT.1/APPS</a></b></li><li><b><a href="#FMT_SMF_EXT.2">FMT_SMF_EXT.2</a></b></li></ul></p><h1 id="ext-comp-defs" class="indexable" data-level="A">Appendix B -  Extended Component Definitions</h1>
 	This appendix contains the definitions for all extended requirements specified in the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>.
@@ -8772,12 +8785,12 @@ The evaluator shall also perform the following tests:
             Operation<br/> <a href="#FCS_RBG.1">FCS_RBG.1</a> Random Bit Generation<br/>
           </td></tr></table><h4 id="ext-comp-FCS_CKM_EXT.3.1">FCS_CKM_EXT.3.1</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall use [<b>assignment</b>: 
      <span class="assignable-content">description of KEKs</span>].<h4 id="ext-comp-FCS_CKM_EXT.3.2">FCS_CKM_EXT.3.2</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall generate all KEKs using one of the following methods: <ul>
-                  <li>Derive the KEK from a Password Authentication Factor according to
+                  <li>Derive the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> from a Password Authentication Factor according to
                     FCS_COP.1.1 and </li>
                 </ul>
-                [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_99">Generate the KEK using an <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> that meets this profile (as specified in
-                <a href="#FCS_RBG.1">FCS_RBG.1</a>)</span></li><li style=""><span class="selectable-content" id="_s_100">Generate the KEK using a key generation scheme that meets this profile
-                (as specified in FCS_CKM.1)</span></li><li style=""><span class="selectable-content" id="_s_101">Combine the KEK from other KEKs in a way that preserves the effective
+                [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_99">Generate the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> using an <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> that meets this profile (as specified in
+                <a href="#FCS_RBG.1">FCS_RBG.1</a>)</span></li><li style=""><span class="selectable-content" id="_s_100">Generate the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> using a key generation scheme that meets this profile
+                (as specified in FCS_CKM.1)</span></li><li style=""><span class="selectable-content" id="_s_101">Combine the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> from other KEKs in a way that preserves the effective
                 entropy of each factor by [<b>selection</b>: <span class="selectable-content" id="_s_102">using an <abbr class="dyn-abbr"><a href="#abbr_XOR">XOR</a></abbr> operation</span>, <span class="selectable-content" id="_s_103">concatenating the keys and using a KDF (as described in SP
                         800-108)</span>, <span class="selectable-content" id="_s_104">concatenating the keys and using a KDF (as described in SP
                         800-56C)</span>, <span class="selectable-content" id="_s_105">encrypting one key with another</span>]
@@ -8793,7 +8806,7 @@ The evaluator shall also perform the following tests:
             <a href="#FCS_CKM.6">FCS_CKM.6</a> Timing and Event of Cryptographic Key Destruction<br/>
             <a href="#FCS_RBG.1">FCS_RBG.1</a> Random Bit Generation
           </td></tr></table><h4 id="ext-comp-FCS_CKM_EXT.5.1">FCS_CKM_EXT.5.1</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall wipe all sensitive data by 
-            [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_106">Cryptographically erasing the encrypted DEKs or the KEKs in non-volatile
+            [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_106">Cryptographically erasing the encrypted <abbr class="dyn-abbr"><a href="#abbr_DEK">DEKs</a></abbr> or the KEKs in non-volatile
                  memory by following the requirements in <a href="#FCS_CKM.6.2">FCS_CKM.6.2</a>
               </span></li><li style=""><span class="selectable-content" id="_s_107">the invocation of an interface provided by the underlying platform that
                 [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_108">logically addresses the storage location of the sensitive data and performs a 
@@ -8879,13 +8892,13 @@ The evaluator shall also perform the following tests:
      <span class="assignable-content">list of subjects</span>].</div><h4>Management: FCS_STG_EXT.2</h4><p>There are no management activities foreseen.
           </p><h4>Audit: FCS_STG_EXT.2</h4><p>There are no auditable events foreseen.
           </p><h4>FCS_STG_EXT.2 Encrypted Cryptographic Key Storage</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td> <a href="#FCS_CKM_EXT.3">FCS_CKM_EXT.3</a> Cryptographic Key Generation<br/> FCS_COP.1 Cryptographic
-            Operation<br/> <a href="#FCS_STG_EXT.1">FCS_STG_EXT.1</a> Cryptographic Key Storage </td></tr></table><h4 id="ext-comp-FCS_STG_EXT.2.1">FCS_STG_EXT.2.1</h4> The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall encrypt all DEKs, KEKs, [<b>assignment</b>: 
+            Operation<br/> <a href="#FCS_STG_EXT.1">FCS_STG_EXT.1</a> Cryptographic Key Storage </td></tr></table><h4 id="ext-comp-FCS_STG_EXT.2.1">FCS_STG_EXT.2.1</h4> The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall encrypt all <abbr class="dyn-abbr"><a href="#abbr_DEK">DEKs</a></abbr>, KEKs, [<b>assignment</b>: 
      <span class="assignable-content">any long-term trusted
                 channel
                   key material</span>] and [<b>assignment</b>: 
      <span class="assignable-content">other secrets </span>] by KEKs that
                 are [<b>assignment</b>: 
-     <span class="assignable-content">protection mechanism</span>]. <h4 id="ext-comp-FCS_STG_EXT.2.2">FCS_STG_EXT.2.2</h4>DEKs, KEKs, [<b>assignment</b>: 
+     <span class="assignable-content">protection mechanism</span>]. <h4 id="ext-comp-FCS_STG_EXT.2.2">FCS_STG_EXT.2.2</h4><abbr class="dyn-abbr"><a href="#abbr_DEK">DEKs</a></abbr>, KEKs, [<b>assignment</b>: 
      <span class="assignable-content">any long-term trusted channel key material</span>]
               and [<b>selection</b>: <span class="selectable-content" id="_s_332">all software-based key storage</span>, <span class="selectable-content" id="_s_333">no other keys</span>]
               shall be encrypted using one of the following methods: [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_334">using a SP800-56B key establishment scheme</span></li><li style=""><span class="selectable-content" id="_s_335">using <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> in the [<b>selection</b>: <span class="selectable-content" id="_s_336">Key Wrap (KW) mode</span>, <span class="selectable-content" id="_s_337">Key Wrap with Padding (KWP) mode</span>, <span class="selectable-content" id="_s_338">GCM</span>, <span class="selectable-content" id="_s_339">CCM</span>, <span class="selectable-content" id="_s_340">CBC mode</span>]</span></li></ul>]
@@ -9244,7 +9257,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selectio
 <tr id="mf-integ"><td>38</td><td style="text-align:left">
                      Retrieve <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>-software integrity verification values </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-USB"><td>39</td><td style="text-align:left">
-                     Enable/disable [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-usbstore">USB mass storage mode</span></li><li style=""><span class="selectable-content" id="_s_433">USB data transfer without user authentication</span></li><li style=""><span class="selectable-content" id="_s_434">USB data transfer without authentication of the connecting
+                     Enable/disable [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-usbstore"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> mass storage mode</span></li><li style=""><span class="selectable-content" id="_s_433"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> data transfer without user authentication</span></li><li style=""><span class="selectable-content" id="_s_434"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> data transfer without authentication of the connecting
                   system</span></li></ul>]
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-backup"><td>40</td><td style="text-align:left">
@@ -9252,7 +9265,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selectio
               to [<b>selection</b>: <span class="selectable-content" id="_s_439">locally connected system</span>, <span class="selectable-content" id="_s_440">remote system</span>]
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-hotspot"><td>41</td><td style="text-align:left">
-                     Enable/disable [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_441">Hotspot functionality authenticated by [<b>selection</b>: <span class="selectable-content" id="_s_442">pre-shared key</span>, <span class="selectable-content" id="_s_443">passcode</span>, <span class="selectable-content" id="_s_444">no authentication</span>]</span></li><li style=""><span class="selectable-content" id="s-tether">USB tethering authenticated by [<b>selection</b>: <span class="selectable-content" id="_s_446">pre-shared key</span>, <span class="selectable-content" id="_s_447">passcode</span>, <span class="selectable-content" id="_s_448">no authentication</span>]
+                     Enable/disable [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_441">Hotspot functionality authenticated by [<b>selection</b>: <span class="selectable-content" id="_s_442">pre-shared key</span>, <span class="selectable-content" id="_s_443">passcode</span>, <span class="selectable-content" id="_s_444">no authentication</span>]</span></li><li style=""><span class="selectable-content" id="s-tether"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> tethering authenticated by [<b>selection</b>: <span class="selectable-content" id="_s_446">pre-shared key</span>, <span class="selectable-content" id="_s_447">passcode</span>, <span class="selectable-content" id="_s_448">no authentication</span>]
                 </span></li></ul>]
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-dataSharing"><td>42</td><td style="text-align:left">
@@ -9329,7 +9342,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selectio
       	        [<b>assignment</b>: 
      <span class="assignable-content">trusted protocol</span>], to provide a trusted communication channel between itself and authorized <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr>
       	        entities supporting the following capabilities:
-      	        [<b>selection</b>: <span class="selectable-content" id="_s_510">audit server</span>, <span class="selectable-content" id="_s_511">authentication server</span>, <span class="selectable-content" id="_s_512">management server</span>, <span class="selectable-content" id="_s_513">[<b>assignment</b>: 
+      	        [<b>selection</b>: <span class="selectable-content" id="_s_509">audit server</span>, <span class="selectable-content" id="_s_510">authentication server</span>, <span class="selectable-content" id="_s_511">management server</span>, <span class="selectable-content" id="_s_512">[<b>assignment</b>: 
      <span class="assignable-content">other capabilities</span>]</span>] using [<b>assignment</b>: 
      <span class="assignable-content">peer authentication</span>] 
       	        that is logically distinct from other communication channels and provides assured identification of its end points and
@@ -9615,6 +9628,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selectio
 <tr><td><span class="term" id="abbr_cPP" data-plural="cPPs"><abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr></span></td><td><span id="long_abbr_cPP">Collaborative Protection Profile</span></td></tr>
 <tr><td><span class="term" id="abbr_CRL"><abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr></span></td><td><span id="long_abbr_CRL">Certificate Revocation List</span></td></tr>
 <tr><td><span class="term" id="abbr_CSP"><abbr class="dyn-abbr"><a href="#abbr_CSP">CSP</a></abbr></span></td><td><span id="long_abbr_CSP">Critical Security Parameters</span></td></tr>
+<tr><td><span class="term" id="abbr_DEK" data-plural="DEKs"><abbr class="dyn-abbr"><a href="#abbr_DEK">DEK</a></abbr></span></td><td><span id="long_abbr_DEK">Data Encryption Key</span></td></tr>
 <tr><td><span class="term" id="abbr_DEP"><abbr class="dyn-abbr"><a href="#abbr_DEP">DEP</a></abbr></span></td><td><span id="long_abbr_DEP">Data Execution Prevention</span></td></tr>
 <tr><td><span class="term" id="abbr_DES"><abbr class="dyn-abbr"><a href="#abbr_DES">DES</a></abbr></span></td><td><span id="long_abbr_DES">Data Encryption Standard</span></td></tr>
 <tr><td><span class="term" id="abbr_DHE"><abbr class="dyn-abbr"><a href="#abbr_DHE">DHE</a></abbr></span></td><td><span id="long_abbr_DHE">Diffie-Hellman Ephemeral</span></td></tr>
@@ -9633,6 +9647,8 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selectio
 <tr><td><span class="term" id="abbr_ISO"><abbr class="dyn-abbr"><a href="#abbr_ISO">ISO</a></abbr></span></td><td><span id="long_abbr_ISO">International Organization for Standardization</span></td></tr>
 <tr><td><span class="term" id="abbr_IT"><abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr></span></td><td><span id="long_abbr_IT">Information Technology</span></td></tr>
 <tr><td><span class="term" id="abbr_ITSEF"><abbr class="dyn-abbr"><a href="#abbr_ITSEF">ITSEF</a></abbr></span></td><td><span id="long_abbr_ITSEF">Information Technology Security Evaluation Facility</span></td></tr>
+<tr><td><span class="term" id="abbr_KEK"><abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr></span></td><td><span id="long_abbr_KEK">Key Encryption Key</span></td></tr>
+<tr><td><span class="term" id="abbr_MDM"><abbr class="dyn-abbr"><a href="#abbr_MDM">MDM</a></abbr></span></td><td><span id="long_abbr_MDM">Mobile Device Management</span></td></tr>
 <tr><td><span class="term" id="abbr_NIAP"><abbr class="dyn-abbr"><a href="#abbr_NIAP">NIAP</a></abbr></span></td><td><span id="long_abbr_NIAP">National Information Assurance Partnership</span></td></tr>
 <tr><td><span class="term" id="abbr_NIST"><abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr></span></td><td><span id="long_abbr_NIST">National Institute of Standards and Technology</span></td></tr>
 <tr><td><span class="term" id="abbr_OCSP"><abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr></span></td><td><span id="long_abbr_OCSP">Online Certificate Status Protocol</span></td></tr>
@@ -9647,6 +9663,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selectio
 <tr><td><span class="term" id="abbr_PP-Configuration"><abbr class="dyn-abbr"><a href="#abbr_PP-Configuration">PP-Configuration</a></abbr></span></td><td><span id="long_abbr_PP-Configuration">Protection Profile Configuration</span></td></tr>
 <tr><td><span class="term" id="abbr_PP-Module"><abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr></span></td><td><span id="long_abbr_PP-Module">Protection Profile Module</span></td></tr>
 <tr><td><span class="term" id="abbr_RBG"><abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr></span></td><td><span id="long_abbr_RBG">Random Bit Generator</span></td></tr>
+<tr><td><span class="term" id="abbr_REK" data-plural="REKs"><abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr></span></td><td><span id="long_abbr_REK">Root Encryption Key</span></td></tr>
 <tr><td><span class="term" id="abbr_RFC"><abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr></span></td><td><span id="long_abbr_RFC">Request for Comment</span></td></tr>
 <tr><td><span class="term" id="abbr_RNG"><abbr class="dyn-abbr"><a href="#abbr_RNG">RNG</a></abbr></span></td><td><span id="long_abbr_RNG">Random Number Generator</span></td></tr>
 <tr><td><span class="term" id="abbr_S/MIME"><abbr class="dyn-abbr"><a href="#abbr_S/MIME">S/MIME</a></abbr></span></td><td><span id="long_abbr_S/MIME">Secure/Multi-purpose Internet Mail Extensions</span></td></tr>
@@ -9664,6 +9681,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selectio
 <tr><td><span class="term" id="abbr_TSS"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></span></td><td><span id="long_abbr_TSS"><abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> Summary Specification</span></td></tr>
 <tr><td><span class="term" id="abbr_URI"><abbr class="dyn-abbr"><a href="#abbr_URI">URI</a></abbr></span></td><td><span id="long_abbr_URI">Uniform Resource Identifier</span></td></tr>
 <tr><td><span class="term" id="abbr_URL"><abbr class="dyn-abbr"><a href="#abbr_URL">URL</a></abbr></span></td><td><span id="long_abbr_URL">Uniform Resource Locator</span></td></tr>
+<tr><td><span class="term" id="abbr_USB"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr></span></td><td><span id="long_abbr_USB">Universal Serial Bus</span></td></tr>
 <tr><td><span class="term" id="abbr_VPN"><abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr></span></td><td><span id="long_abbr_VPN">Virtual Private Network</span></td></tr>
 <tr><td><span class="term" id="abbr_XCCDF"><abbr class="dyn-abbr"><a href="#abbr_XCCDF">XCCDF</a></abbr></span></td><td><span id="long_abbr_XCCDF">eXtensible Configuration Checklist Description Format</span></td></tr>
 <tr><td><span class="term" id="abbr_XOR"><abbr class="dyn-abbr"><a href="#abbr_XOR">XOR</a></abbr></span></td><td><span id="long_abbr_XOR">Exclusive Or</span></td></tr>
