@@ -190,6 +190,7 @@ it manages may be physical or virtual.
 	from extracting data from non-volatile storage.
 	Common techniques include data encryption and wiping.
       </term>
+      <term full="Data Encryption Key" abbr="DEK" plural="DEKs">A key used to encrypt data-at-rest.</term>
       <term full="Data Execution Prevention" abbr="DEP">
 	An anti-exploitation feature of modern operating systems executing on
 	modern computer hardware, which enforces a non-execute permission on pages of memory.
@@ -220,8 +221,8 @@ it manages may be physical or virtual.
       </term>
       <term full="Hybrid Authentication">
 	A hybrid authentication factor is one where a user has to
-	submit a combination of a cryptographic token and a PIN or password and both must pass.
-	If either factor fails, the entire attempt fails.
+	submit a combination of authentication factors and both must pass.
+	If either factor fails, the entire attempt fails. Examples can include a combination of a cryptographic token and a PIN or password, or a biometric factor and a PIN or password.
       </term>
       <term abbr='HMAC' full="Hash-based Message Authentication Code"/>
       <term full="Host-based Firewall">
@@ -235,6 +236,16 @@ it manages may be physical or virtual.
       <term abbr='ISO'   full="International Organization for Standardization"/>
       <term abbr='IT'    full="Information Technology"/>
       <term abbr='ITSEF' full="Information Technology Security Evaluation Facility"/>
+      <term full="Key Encryption Key" abbr="KEK"> A key used to encrypt other keys, such as DEKs or
+        storage that contains keys.</term>
+      <term full="Locked State"> Powered on but most functionality is unavailable for use. User
+        authentication is required to access functionality.</term>
+      <term full="Mobile Device Management" abbr="MDM"> Mobile device management (MDM) products
+        allow enterprises to apply security policies to mobile devices. This system consists of two
+        primary components: the MDM Server and the MDM Agent. </term>
+      <term full="MDM Agent"> The MDM Agent is installed on a Mobile Device as an application or is
+        part of the Mobile Device’s OS. The MDM Agent establishes a secure connection back to the
+        MDM Server controlled by the administrator.</term>
       <term abbr='NIAP'  full="National Information Assurance Partnership"/>
       <term abbr='NIST'  full="National Institute of Standards and Technology"/>
       <term abbr='OCSP'  full="Online Certificate Status Protocol"/>
@@ -258,6 +269,8 @@ it manages may be physical or virtual.
       <term abbr='RFC' full="Request for Comment"/>
       <term abbr='RNG' full="Random Number Generator"/>
       <!-- <term abbr='RNGVS' full="Random Number Generator Validation System"/> -->
+      <term full="Root Encryption Key" abbr="REK" plural="REKs"> A key tied to the device used to encrypt other
+        keys. </term>
       <term full="Personally Identifiable Information" abbr="PII">
 	Any information about an individual maintained by an agency, including, but
 	not limited to, education, financial transactions, medical history, and criminal or
@@ -280,7 +293,7 @@ it manages may be physical or virtual.
       <term abbr='TLS' full="Transport Layer Security"/>
       <term abbr='URI' full="Uniform Resource Identifier"/>
       <term abbr='URL' full="Uniform Resource Locator"/>
-     
+      <term abbr="USB" full="Universal Serial Bus"/>     
       <term full="User">
 	A user is subject to configuration policies applied
 	to the operating system by administrators.  On some systems under certain
@@ -2331,7 +2344,7 @@ it manages may be physical or virtual.
           </f-element>
           <f-element id="fel-kek-gen">
             <title>The TSF shall generate all KEKs using one of the following methods: <h:ul>
-                <h:li>Derive the KEK from a Password Authentication Factor according to FCS_COP.1.1<h:b>
+                <h:li>Derive the KEK from a Password Authentication Factor according to FCS_CKM_EXT.8.1<h:b>
               /CONDITION</h:b> and </h:li>
               </h:ul>
               <selectables linebreak="yes">
@@ -2375,7 +2388,7 @@ it manages may be physical or virtual.
                 . </title>
             </ext-comp-def-title>
             <note role="application"> The conditioning of passwords is performed in accordance with
-              FCS_COP.1/CONDITION. <h:br /><h:br /> It is expected that key generation derived from
+              FCS_CKM_EXT.8.1. <h:br /><h:br /> It is expected that key generation derived from
               conditioning, using an RBG or generation scheme, and through combination, will each be
               necessary to meet the requirements set out in this document. In particular, <xref
                 to="Keys" /> has KEKs of each type: KEK_3 is generated, KEK_1 is derived from a
@@ -8161,11 +8174,18 @@ the node certificate to be tested, two Intermediate CAs, and the
 	      <h:p>
           The terms "Administrator" and "User" are defined in section 1.2.2.
           The intent of this requirement is to ensure that the ST is populated with the
-          relevant management functions that are provided by the OS.	      </h:p>
-	      <h:p>
+          relevant management functions that are provided by the OS.
+        </h:p>
+        <h:p>
+        The columns labled with "When enrolled in management" refer to situations where the OS is
+        enrolled in a management infrastructure utilizing a Mobile Device Managenment system. These 
+        functions labled as "M" are only required when the OS is capable of being enrolled in management and recieving configuration policies, if the OS lacks such capability then only the "User" and "Administrator" columns need to be considered.
+        </h:p>
+      
+	      <!--<h:p>
 Sophisticated account management policies, such as intricate password complexity requirements and handling of temporary accounts, are a function of directory servers.
 The OS can enroll in such account management and enable the overall information system to achieve such policies by binding to a directory server.
-	      </h:p>
+	      </h:p>-->
 	      <h:p>
 	        For management functions 12, 13, and 14, it is expected that the interfaces to these remote entities are trusted channels and the ST author is expected to claim them in FTP_ITC_EXT.1 accordingly.
 	      </h:p>
@@ -9303,7 +9323,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 		    <selectables>
 		      <selectable>audit server</selectable>
 		      <selectable>authentication server</selectable>
-		      <selectable id="itc_management_server">management server</selectable>
+		      <!--<selectable id="itc_management_server">management server</selectable> -->
 		      <selectable><assignable>other capabilities</assignable></selectable>
 		    </selectables> using <selectables>
 		      <selectable>certificates as defined in <xref to="X509"/></selectable>
@@ -9348,11 +9368,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
       	    </h:p>
             <h:p>
             If <xref to="itc_https"/> is selected, FCS_HTTPS_EXT.1 must be included in the ST.
-            </h:p>
-            <h:p>
-            <xref to="itc_management_server"/> should be selected if the TOE either includes and MDM agent or supports third-party MDM agents to facilitate intercacing with a management server. If <xref to="itc_management_server"/> is selected, the ST author must include FDP_UPC_EXT.1, FCS_HTTPS_EXT.1, FCS_CKM_EXT.5, FDP_ACF_EXT.2, FMT_SMF_EXT.2, FCS_STG_EXT.1, FCS_STG_EXT.2.
-            </h:p>
-          
+            </h:p>          
       	      <h:p>
       	        Claims from the <xref to="X509"/> are only required to the extent that they are needed to support the functionality required by the trusted protocols that are claimed.
       	      </h:p><h:p>
