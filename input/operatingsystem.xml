@@ -6799,8 +6799,8 @@ the node certificate to be tested, two Intermediate CAs, and the
 	      <management-function-set default="O">
           <manager cid="U">User</manager>
           <manager cid="A">Administrator</manager>
-          <manager cid="AM">Administrator (When enrolled in management)</manager>
-          <manager cid="AO">Administrator Only (When enrolled in management)</manager>
+          <manager cid="AM">Administrator (When managed with an MDM)</manager>
+          <manager cid="AO">Administrator Only (When managed with an MDM)</manager>
           <management-function id="mf-pwd">
             <text>
                     <!-- <ctr id="pwd" pre="" ctr-type="function">.</ctr>--> Configure password policy:
@@ -8177,8 +8177,8 @@ the node certificate to be tested, two Intermediate CAs, and the
           relevant management functions that are provided by the OS.
         </h:p>
         <h:p>
-        The columns labled with "When enrolled in management" refer to situations when "Mobile Device Management Support" is claimed as an implemented feature of the TOE and the OS is
-        enrolled in a management infrastructure utilizing a Mobile Device Managenment system. The functions containing an "M" under these colums are manadtory and must be implemented by the TOE. The functions with an "M" in the "Administrator Only" column must be restricted to (or overridden by) the administrator. The functions with an "O" in the "Administrator Only" column may optionally be restricted to (or overridden by) the administrator when implemented in the TOE at the discretion of the ST author. For such functions, the ST author indicates this by replacing an "O" with an "M" in the ST. If the TOE does not claim "Mobile Device Management Support" as an implemented feature then the columns labeled with "When enrolled in managemet" are not applicable. 
+        The columns labled with "When managed with an MDM" refer to situations when "Mobile Device Management Support" is claimed as an implemented feature of the TOE and the OS is
+        enrolled in a management infrastructure utilizing a Mobile Device Managenment system. The functions containing an "M" under these colums are manadtory and must be implemented by the TOE. The functions with an "M" in the "Administrator Only" column must be restricted to (or overridden by) the administrator. The functions with an "O" in the "Administrator Only" column may optionally be restricted to (or overridden by) the administrator when implemented in the TOE at the discretion of the ST author. For such functions, the ST author indicates this by replacing an "O" with an "M" in the ST. If the TOE does not claim "Mobile Device Management Support" as an implemented feature then the columns labeled with "When managed with an MDM" are not applicable. 
         </h:p>
       
 	      <!--<h:p>
@@ -9322,7 +9322,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 		    <selectables>
 		      <selectable>audit server</selectable>
 		      <selectable>authentication server</selectable>
-		      <!--<selectable id="itc_management_server">management server</selectable> -->
+		      <selectable id="itc_management_server">management server</selectable>
 		      <selectable><assignable>other capabilities</assignable></selectable>
 		    </selectables> using <selectables>
 		      <selectable>certificates as defined in <xref to="X509"/></selectable>
@@ -9375,6 +9375,9 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
       	      </h:p><h:p>
       	        If the TSF implements a protocol that requires the presentation of any certificates to an external entity, FIA_XCU_EXT.2 will be claimed. FIA_X509_EXT.3 will also be claimed, along with any applicable dependencies, depending on how the certificates presented by the TOE are obtained.  
       	      </h:p>
+            <h:p>
+           <xref to="itc_management_server"/> should be selected if the TOE interoperates with a server that supports setting group policy objects and settings on the TOE. These classes of management server are different than an MDM in that thier scope and capabilities are generally more limited to stationary desktops with limited exposure to threats compared to more mobile devices. If <xref to="itc_management_server"/> is selected then "Mobile Device Management Support" does not necessarily have to be claimed as a supported implementation, but should be claimed if the TOE also supports MDM integration in addition to the traditional management server.
+            </h:p>
       	      <!--
 	          <h:p>
 		          <rule id="r-need-client-tls">
