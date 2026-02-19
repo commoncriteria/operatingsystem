@@ -3714,7 +3714,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
         <b><span class="ctr" data-myid="fmt_smf" data-counter-type="ct-Table" id="fmt_smf">Table <span class="counter">10</span>: Management Functions</span></b><br/><br/> 
             Status Markers:<br/> M - Mandatory<br/> O - Optional/Objective<br/>
               
-	      <table class="mfs" style="width: 100%;"><tr class="header"><td>#</td><td>Management Function</td><td>User</td><td>Administrator</td><td>Administrator (When enrolled in management)</td><td>Administrator Only (When enrolled in management)</td></tr>
+	      <table class="mfs" style="width: 100%;"><tr class="header"><td>#</td><td>Management Function</td><td>User</td><td>Administrator</td><td>Administrator (When managed with an <abbr class="dyn-abbr"><a href="#abbr_MDM">MDM</a></abbr>)</td><td>Administrator Only (When managed with an <abbr class="dyn-abbr"><a href="#abbr_MDM">MDM</a></abbr>)</td></tr>
 <tr id="mf-pwd"><td>1</td><td style="text-align:left">
                      Configure password policy:
                 <ul>
@@ -3945,8 +3945,8 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
           relevant management functions that are provided by the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>.
         </p>
         <p>
-        The columns labled with "When enrolled in management" refer to situations when "Mobile Device Management Support" is claimed as an implemented feature of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> is
-        enrolled in a management infrastructure utilizing a Mobile Device Managenment system. The functions containing an "M" under these colums are manadtory and must be implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. The functions with an "M" in the "Administrator Only" column must be restricted to (or overridden by) the administrator. The functions with an "O" in the "Administrator Only" column may optionally be restricted to (or overridden by) the administrator when implemented in the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> at the discretion of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author. For such functions, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author indicates this by replacing an "O" with an "M" in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> does not claim "Mobile Device Management Support" as an implemented feature then the columns labeled with "When enrolled in managemet" are not applicable. 
+        The columns labled with "When managed with an <abbr class="dyn-abbr"><a href="#abbr_MDM">MDM</a></abbr>" refer to situations when "Mobile Device Management Support" is claimed as an implemented feature of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> is
+        enrolled in a management infrastructure utilizing a Mobile Device Managenment system. The functions containing an "M" under these colums are manadtory and must be implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. The functions with an "M" in the "Administrator Only" column must be restricted to (or overridden by) the administrator. The functions with an "O" in the "Administrator Only" column may optionally be restricted to (or overridden by) the administrator when implemented in the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> at the discretion of the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author. For such functions, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author indicates this by replacing an "O" with an "M" in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> does not claim "Mobile Device Management Support" as an implemented feature then the columns labeled with "When managed with an <abbr class="dyn-abbr"><a href="#abbr_MDM">MDM</a></abbr>" are not applicable. 
         </p>
       
 	      
@@ -5526,10 +5526,10 @@ The evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_T
         2.1</a>[<b>selection</b>: <span class="selectable-content" id="itc_mdtls-client">client</span>, <span class="selectable-content" id="itc_mdtls-server">server</span>]</span></li><li style=""><span class="selectable-content" id="itc_https"><abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr></span></li><li style=""><span class="selectable-content" id="_s_503">no other protocols</span></li></ul>]
 		    to provide a trusted communication channel between itself and
 		    authorized <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr> entities supporting the following capabilities:
-		    [<b>selection</b>: <span class="selectable-content" id="_s_504">audit server</span>, <span class="selectable-content" id="_s_505">authentication server</span>, <span class="selectable-content" id="_s_506">[<b>assignment</b>: 
-     <span class="assignable-content">other capabilities</span>]</span>] using [<b>selection</b>: <span class="selectable-content" id="_s_507">certificates as defined in <a href="https://www.niap-ccevs.org/protectionprofiles/511">Functional Package for X.509,
+		    [<b>selection</b>: <span class="selectable-content" id="_s_504">audit server</span>, <span class="selectable-content" id="_s_505">authentication server</span>, <span class="selectable-content" id="itc_management_server">management server</span>, <span class="selectable-content" id="_s_507">[<b>assignment</b>: 
+     <span class="assignable-content">other capabilities</span>]</span>] using [<b>selection</b>: <span class="selectable-content" id="_s_508">certificates as defined in <a href="https://www.niap-ccevs.org/protectionprofiles/511">Functional Package for X.509,
         version 
-        1.0</a></span>, <span class="selectable-content" id="_s_508">SSH host keys as defined in <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH),
+        1.0</a></span>, <span class="selectable-content" id="_s_509">SSH host keys as defined in <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH),
         version 
         2.0</a></span>] 
       	     
@@ -5571,6 +5571,9 @@ The evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_T
       	      </p><p>
       	        If the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> implements a protocol that requires the presentation of any certificates to an external entity, FIA_XCU_EXT.2 will be claimed. FIA_X509_EXT.3 will also be claimed, along with any applicable dependencies, depending on how the certificates presented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> are obtained.  
       	      </p>
+            <p>
+           <a href="#itc_management_server">management server</a> should be selected if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> interoperates with a server that supports setting group policy objects and settings on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. These classes of management server are different than an <abbr class="dyn-abbr"><a href="#abbr_MDM">MDM</a></abbr> in that thier scope and capabilities are generally more limited to stationary desktops with limited exposure to threats compared to more mobile devices. If <a href="#itc_management_server">management server</a> is selected then "Mobile Device Management Support" does not necessarily have to be claimed as a supported implementation, but should be claimed if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> also supports <abbr class="dyn-abbr"><a href="#abbr_MDM">MDM</a></abbr> integration in addition to the traditional management server.
+            </p>
       	      
       	      
       	      
@@ -5621,10 +5624,10 @@ channel protocol selected in
 		</p>
 	      </span></div></div></div>
             <div class="element"><div class="reqid" id="FTP_TRP.1.2"><a href="#FTP_TRP.1.2" class="abbr">FTP_TRP.1.2</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall permit
-                [<b>selection</b>: <span class="selectable-content" id="_s_515">the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></span>, <span class="selectable-content" id="_s_516">local users</span>, <span class="selectable-content" id="_s_517">remote users</span>]
+                [<b>selection</b>: <span class="selectable-content" id="_s_516">the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></span>, <span class="selectable-content" id="_s_517">local users</span>, <span class="selectable-content" id="_s_518">remote users</span>]
                 to initiate communication via the trusted path.
               </div></div>
-            <div class="element"><div class="reqid" id="FTP_TRP.1.3"><a href="#FTP_TRP.1.3" class="abbr">FTP_TRP.1.3</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall require use of the trusted path for [<b>selection</b>: <span class="selectable-content" id="_s_518">initial user authentication</span>, <span class="selectable-content" id="_s_519"><i>[all remote administrative actions]</i></span>]           
+            <div class="element"><div class="reqid" id="FTP_TRP.1.3"><a href="#FTP_TRP.1.3" class="abbr">FTP_TRP.1.3</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall require use of the trusted path for [<b>selection</b>: <span class="selectable-content" id="_s_519">initial user authentication</span>, <span class="selectable-content" id="_s_520"><i>[all remote administrative actions]</i></span>]           
               <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -8929,7 +8932,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selectio
         <b><span class="ctr" data-myid="fmt_smf" data-counter-type="ct-Table" id="fmt_smf">Table <span class="counter">22</span>: Management Functions</span></b><br/><br/> 
             Status Markers:<br/> M - Mandatory<br/> O - Optional/Objective<br/>
               
-	      <table class="mfs" style="width: 100%;"><tr class="header"><td>#</td><td>Management Function</td><td>User</td><td>Administrator</td><td>Administrator (When enrolled in management)</td><td>Administrator Only (When enrolled in management)</td></tr>
+	      <table class="mfs" style="width: 100%;"><tr class="header"><td>#</td><td>Management Function</td><td>User</td><td>Administrator</td><td>Administrator (When managed with an <abbr class="dyn-abbr"><a href="#abbr_MDM">MDM</a></abbr>)</td><td>Administrator Only (When managed with an <abbr class="dyn-abbr"><a href="#abbr_MDM">MDM</a></abbr>)</td></tr>
 <tr id="mf-pwd"><td>1</td><td style="text-align:left">
                      Configure password policy:
                 <ul>
@@ -9179,7 +9182,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selectio
       	        [<b>assignment</b>: 
      <span class="assignable-content">trusted protocol</span>], to provide a trusted communication channel between itself and authorized <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr>
       	        entities supporting the following capabilities:
-      	        [<b>selection</b>: <span class="selectable-content" id="_s_509">audit server</span>, <span class="selectable-content" id="_s_510">authentication server</span>, <span class="selectable-content" id="_s_511">management server</span>, <span class="selectable-content" id="_s_512">[<b>assignment</b>: 
+      	        [<b>selection</b>: <span class="selectable-content" id="_s_510">audit server</span>, <span class="selectable-content" id="_s_511">authentication server</span>, <span class="selectable-content" id="_s_512">management server</span>, <span class="selectable-content" id="_s_513">[<b>assignment</b>: 
      <span class="assignable-content">other capabilities</span>]</span>] using [<b>assignment</b>: 
      <span class="assignable-content">peer authentication</span>] 
       	        that is logically distinct from other communication channels and provides assured identification of its end points and
