@@ -241,10 +241,10 @@ it manages may be physical or virtual.
       <term full="Locked State"> Powered on but most functionality is unavailable for use. User
         authentication is required to access functionality.</term>
       <term full="Mobile Device Management" abbr="MDM"> Mobile device management (MDM) products
-        allow enterprises to apply security policies to mobile devices. This system consists of two
+        allow enterprises to apply security policies to managed devices. This system consists of two
         primary components: the MDM Server and the MDM Agent. </term>
-      <term full="MDM Agent"> The MDM Agent is installed on a Mobile Device as an application or is
-        part of the Mobile Device’s OS. The MDM Agent establishes a secure connection back to the
+      <term full="MDM Agent"> The MDM Agent is installed on a managed device as an application or is
+        part of the managed device’s OS. The MDM Agent establishes a secure connection back to the
         MDM Server controlled by the administrator.</term>
       <term abbr='NIAP'  full="National Information Assurance Partnership"/>
       <term abbr='NIST'  full="National Institute of Standards and Technology"/>
@@ -6939,7 +6939,7 @@ the node certificate to be tested, two Intermediate CAs, and the
               TSF, such as Wi-Fi, cellular, NFC, Bluetooth BR/EDR, and Bluetooth LE, which can
               be enabled and disabled. In the future, if both Bluetooth BR/EDR and Bluetooth
               LE are supported, they will be required to be enabled and disabled separately.
-              Disablement of the cellular radio does not imply that the radio may not be
+              If the TOE supports cellular calling, disablement of the cellular radio does not imply that the radio may not be
               enabled in order to place emergency phone calls; however, it is not expected
               that a device in "airplane mode", where all radios are disabled, will
               automatically (without authorization) turn on the cellular radio to place
@@ -7028,7 +7028,7 @@ the node certificate to be tested, two Intermediate CAs, and the
             <O ref="AO" />
             <app-note>The assignment in function <_ /> consists of at least one audio or
               visual device, such as camera and microphone, which can be enabled and disabled
-              by either the user or administrator. Disablement of the microphone does not
+              by either the user or administrator. If the TOE supports cellular calling, disablement of the microphone does not
               imply that the microphone may not be enabled in order to place emergency phone
               calls. If certain devices are able to be restricted to the enterprise (either
               device-wide, per-app or per-group of applications) and others are able to be
@@ -7042,7 +7042,7 @@ the node certificate to be tested, two Intermediate CAs, and the
               acceptable to meet this requirement by ensuring that these devices are disabled
               by default while in these states. That these devices are disabled during
               auxiliary boot modes does not imply that the device (particularly the cellular
-              radio) may not be enabled in order to perform emergency phone calls. </h:p>
+              radio) may not be enabled in order to perform emergency phone calls, if supported by the TOE. </h:p>
             </app-note>
             <aactivity>
               <TSS>
@@ -7369,10 +7369,10 @@ the node certificate to be tested, two Intermediate CAs, and the
             <M ref="AM" />
             <O ref="AO" />
             <app-note> Function <xref
-                to="mf-appInstall" /> addresses both installation and update. This protection
+                to="mf-appInstall" /> addresses both installation and update. <!-- This protection
               profile does not distinguish between installation and update of applications
               because mobile devices typically completely overwrite the previous installation
-              with a new installation during an application update. </app-note>
+              with a new installation during an application update. --> </app-note>
             <aactivity>
               <Tests>The evaluator shall attempt to install an application following the
                 procedures in the AGD guidance and verify that the application is installed
@@ -7992,7 +7992,7 @@ the node certificate to be tested, two Intermediate CAs, and the
               </selectables>
             </text>
             <app-note> For function <xref to="mf-hotspot" />, hotspot functionality refers to
-              the condition in which the mobile device is serving as an access point to other
+              the condition in which the managed device is serving as an access point to other
               devices, not the connection of the TOE to external hotspots. </app-note>
             <aactivity>
               <TSS> The
@@ -8186,7 +8186,7 @@ Sophisticated account management policies, such as intricate password complexity
 The OS can enroll in such account management and enable the overall information system to achieve such policies by binding to a directory server.
 	      </h:p>-->
 	      <h:p>
-	        For management functions 12, 13, and 14, it is expected that the interfaces to these remote entities are trusted channels and the ST author is expected to claim them in FTP_ITC_EXT.1 accordingly.
+	        For management functions 50, 51, and 52, it is expected that the interfaces to these remote entities are trusted channels and the ST author is expected to claim them in FTP_ITC_EXT.1 accordingly.
 	      </h:p>
 	      
 	    </note>
