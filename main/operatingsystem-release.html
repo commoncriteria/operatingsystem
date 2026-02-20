@@ -768,11 +768,11 @@ The following sections list Common Criteria and technology terms used in this do
         storage that contains keys.</td></tr>
 <tr><td><div id="Locked_State">Locked State</div></td><td> Powered on but most functionality is unavailable for use. User
         authentication is required to access functionality.</td></tr>
-<tr><td><div id="MDM_Agent">MDM Agent</div></td><td> The MDM Agent is installed on a Mobile Device as an application or is
-        part of the Mobile Device’s OS. The MDM Agent establishes a secure connection back to the
+<tr><td><div id="MDM_Agent">MDM Agent</div></td><td> The MDM Agent is installed on a managed device as an application or is
+        part of the managed device’s OS. The MDM Agent establishes a secure connection back to the
         MDM Server controlled by the administrator.</td></tr>
 <tr><td><div id="Mobile_Device_Management">Mobile Device Management (MDM)</div></td><td> Mobile device management (MDM) products
-        allow enterprises to apply security policies to mobile devices. This system consists of two
+        allow enterprises to apply security policies to managed devices. This system consists of two
         primary components: the MDM Server and the MDM Agent. </td></tr>
 <tr><td><div id="Operating_System">Operating System (OS)</div></td><td>
 	Software that manages physical and logical resources and provides services
@@ -3951,7 +3951,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
       
 	      
 	      <p>
-	        For management functions 12, 13, and 14, it is expected that the interfaces to these remote entities are trusted channels and the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author is expected to claim them in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> accordingly.
+	        For management functions 50, 51, and 52, it is expected that the interfaces to these remote entities are trusted channels and the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author is expected to claim them in <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> accordingly.
 	      </p>
 	      
 	    <br/><br/><b>Function-specific Application Notes:</b><br/><br/><p> Functions <a href="#mf-vpn">3</a>
@@ -3980,13 +3980,13 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
               <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>, such as Wi-Fi, cellular, NFC, Bluetooth BR/EDR, and Bluetooth LE, which can
               be enabled and disabled. In the future, if both Bluetooth BR/EDR and Bluetooth
               LE are supported, they will be required to be enabled and disabled separately.
-              Disablement of the cellular radio does not imply that the radio may not be
+              If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supports cellular calling, disablement of the cellular radio does not imply that the radio may not be
               enabled in order to place emergency phone calls; however, it is not expected
               that a device in "airplane mode", where all radios are disabled, will
               automatically (without authorization) turn on the cellular radio to place
               emergency calls.</p><p>The assignment in function <a href="#mf-audioVisual">5</a> consists of at least one audio or
               visual device, such as camera and microphone, which can be enabled and disabled
-              by either the user or administrator. Disablement of the microphone does not
+              by either the user or administrator. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supports cellular calling, disablement of the microphone does not
               imply that the microphone may not be enabled in order to place emergency phone
               calls. If certain devices are able to be restricted to the enterprise (either
               device-wide, per-app or per-group of applications) and others are able to be
@@ -3999,7 +3999,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
               acceptable to meet this requirement by ensuring that these devices are disabled
               by default while in these states. That these devices are disabled during
               auxiliary boot modes does not imply that the device (particularly the cellular
-              radio) may not be enabled in order to perform emergency phone calls. </p>
+              radio) may not be enabled in order to perform emergency phone calls, if supported by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. </p>
             </p><p> Wipe of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> (function <a href="#mf-wipe">7</a>) is performed according
               to <a href="#FCS_CKM_EXT.5">FCS_CKM_EXT.5</a>. Sensitive data is all non-TSF data, including all user or
               enterprise data.
@@ -4038,10 +4038,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
               and the device to become inoperable. The user can refuse to accept the update in
               such situations. It is expected that system architects will be cognizant of this
               limitation and will enforce network access controls in order to enforce
-              enterprise-critical updates. </p><p> Function <a href="#mf-appInstall">16</a> addresses both installation and update. This protection
-              profile does not distinguish between installation and update of applications
-              because mobile devices typically completely overwrite the previous installation
-              with a new installation during an application update. </p><p> For function <a href="#mf-entAppRemove">17</a>, "Enterprise applications" are those applications that
+              enterprise-critical updates. </p><p> Function <a href="#mf-appInstall">16</a> addresses both installation and update.  </p><p> For function <a href="#mf-entAppRemove">17</a>, "Enterprise applications" are those applications that
               belong to the Enterprise application group. Applications installed by the
               enterprise administrator (including automatic installation by the administrator
               after being requested by the user from a catalog of enterprise applications) are
@@ -4116,7 +4113,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
                     
             </p><p> Function <a href="#mf-auditItems">37</a> must be included in the selection
               if <a href="#FAU_SEL.1">FAU_SEL.1</a> is included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. </p><p> For function <a href="#mf-hotspot">41</a>, hotspot functionality refers to
-              the condition in which the mobile device is serving as an access point to other
+              the condition in which the managed device is serving as an access point to other
               devices, not the connection of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to external hotspots. </p><p> Functions <a href="#mf-dataSharing">42</a> and <a href="#mf-appGroups">43</a> correspond to <a href="#FDP_ACF_EXT.2.2">FDP_ACF_EXT.2.2</a> and should be included if <a href="#FDP_ACF_EXT.2.2">FDP_ACF_EXT.2.2</a> is included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.</p><p> For function <a href="#mf-unenroll">44</a>, <a href="#FMT_SMF_EXT.2.1">FMT_SMF_EXT.2.1</a> specifies
               actions to be performed when the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is unenrolled from management. </p><p> Function <a href="#mf-alwaysOnVPN">45</a> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if IPsec is selected in
               <a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> and the native IPsec <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client can be configured to be Always-On.
