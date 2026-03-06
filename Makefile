@@ -3,7 +3,7 @@
 -include User.make
 TRANS?=transforms
 DIFF_USER_MAKE=User.make
-DIFF_TAGS=master
+DIFF_TAGS=main
 
 include $(TRANS)/Helper.make
 
