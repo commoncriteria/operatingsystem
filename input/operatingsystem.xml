@@ -8795,6 +8795,27 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
         </f-component>
         
         
+        <f-component cc-id="fpt_stm.1" name="Reliable Time Stamps">
+          <f-element id="fel-timestamp">
+            <title>The TSF shall be able to <refinement>obtain</refinement> reliable time stamps <refinement>from a primary time source for its own use</refinement>. </title>
+            <note role="application">In the context of this SFR, a primary time source is that which can be synchronized with a time source that is considered to be authoritative in the context of the overall organization deploying the TOE. Specifically, primary time sources include connectivity to an external NTP server, connectivity to a cellular carrier network, or in the case of a TOE that runs on a virtualization system, a hypercall to the virtualization system's host platform (as this platform could feasibly have its own connectivity to a primary time source). A primary time source does not include the hardware clock on the TOE platform if it is localized only to that system.</note>
+            <aactivity>
+              <TSS>The evaluator shall examine the TSS to ensure that it lists each security
+                function that makes use of time, and that it identifies the primary time source that can be considered to be reliable. The evaluator shall examine the TSS to verify that it describes the TOE's ability to obtain time data from an NTP server, a cellular carrier network, or a hypercall to the TOE's hardware platform if running on a virtualization system.  
+                <h:br/><h:br/></TSS>
+              <Guidance>If this functionality is configurable, the evaluator shall examines the operational guidance to ensure it describes how
+                to set the time directly or how to configure the TOE's primary time source.<h:br/><h:br/></Guidance>
+              <Tests>
+                <testlist>
+                  <test>If the time is configurable, the evaluator shall follow the operational guidance to set the time. The evaluator
+                        shall then use an available interface to observe that the time was set
+                        correctly. If the primary time source is configurable, the evaluator shall deliberately set the time to an incorrect value, verify the incorrect time setting is applied, configure the TOE to connect to the primary time source, and verify that the time is subsequently synchronized to the expected time.</test>
+                </testlist>
+              </Tests>
+            </aactivity>
+          </f-element>
+          <audit-event/>
+        </f-component>
         <f-component cc-id="fpt_tst.1" name="TSF Self-Testing">
           <f-element id="fel-tsf-self-test">
             <title>
@@ -8848,27 +8869,6 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
           <fam-behavior>This family defines the ability of the TOE to provide a mechanism that can be used to verify its integrity
             when started.</fam-behavior>
 	</ext-comp-def>
-        <f-component cc-id="fpt_stm.1" name="Reliable Time Stamps">
-          <f-element id="fel-timestamp">
-            <title>The TSF shall be able to <refinement>obtain</refinement> reliable time stamps <refinement>from a primary time source for its own use</refinement>. </title>
-            <note role="application">In the context of this SFR, a primary time source is that which can be synchronized with a time source that is considered to be authoritative in the context of the overall organization deploying the TOE. Specifically, primary time sources include connectivity to an external NTP server, connectivity to a cellular carrier network, or in the case of a TOE that runs on a virtualization system, a hypercall to the virtualization system's host platform (as this platform could feasibly have its own connectivity to a primary time source). A primary time source does not include the hardware clock on the TOE platform if it is localized only to that system.</note>
-            <aactivity>
-              <TSS>The evaluator shall examine the TSS to ensure that it lists each security
-                function that makes use of time, and that it identifies the primary time source that can be considered to be reliable. The evaluator shall examine the TSS to verify that it describes the TOE's ability to obtain time data from an NTP server, a cellular carrier network, or a hypercall to the TOE's hardware platform if running on a virtualization system.  
-                <h:br/><h:br/></TSS>
-              <Guidance>If this functionality is configurable, the evaluator shall examines the operational guidance to ensure it describes how
-                to set the time directly or how to configure the TOE's primary time source.<h:br/><h:br/></Guidance>
-              <Tests>
-                <testlist>
-                  <test>If the time is configurable, the evaluator shall follow the operational guidance to set the time. The evaluator
-                        shall then use an available interface to observe that the time was set
-                        correctly. If the primary time source is configurable, the evaluator shall deliberately set the time to an incorrect value, verify the incorrect time setting is applied, configure the TOE to connect to the primary time source, and verify that the time is subsequently synchronized to the expected time.</test>
-                </testlist>
-              </Tests>
-            </aactivity>
-          </f-element>
-          <audit-event/>
-        </f-component>
         <f-component cc-id="fpt_tst_ext.1" name="Boot Integrity">
           
           <comp-lev> defines the mechanisms that the TSF uses to assert its own integrity at
