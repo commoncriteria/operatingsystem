@@ -2044,19 +2044,21 @@ The following sections list Common Criteria and technology terms used in this do
                       800-56C)</span>, <span class="selectable-content" id="_s_98">encrypting one key with another</span>]</span></li></ul>]
               . <div class="appnote"><span class="note-header">Application
       Note:
-    </span><span class="note"> The conditioning of passwords is performed in accordance with
-              <a href="#FCS_CKM_EXT.8.1">FCS_CKM_EXT.8.1</a>. <br/><br/> It is expected that key generation derived from
+    </span><span class="note">
+            <p> The conditioning of passwords is performed in accordance with <a href="#FCS_CKM_EXT.8.1">FCS_CKM_EXT.8.1</a>.</p>
+            <p>It is expected that key generation derived from
               conditioning, using an <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> or generation scheme, and through combination, will each be
-              necessary to meet the requirements set out in this document. In particular, <a href="#Keys" class="dynref" data-format=""></a> has KEKs of each type: KEK_3 is generated, KEK_1 is derived from a
-              Password Authentication Factor, and KEK_2 is combined from two KEKs. In <a href="#Keys" class="dynref" data-format=""></a>, KEK_3 may either be a symmetric key generated from an <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> or an
-              asymmetric key generated using a key generation scheme according to FCS_CKM.1. <br/><br/>
+              necessary to meet the requirements set out in this document. 
+              </p>
+              <p>
               If combined, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author should describe which method of combination is used in
-              order to justify that the effective entropy of each factor is preserved. <br/><br/>SP
-              800-56C specifies a two-step key derivation procedure that employs an
+              order to justify that the effective entropy of each factor is preserved. </p>
+              
+              <p>SP 800-56C specifies a two-step key derivation procedure that employs an
               extraction-then-expansion technique for deriving keying material from a shared secret
               generated during a key establishment scheme. The Randomness Extraction step as
               described in Section 5 of SP 800-56C is followed by Key Expansion using the key
-              derivation functions defined in SP 800-108 (as described in Section 6 of SP 800-56C). </span></div></div></div>
+              derivation functions defined in SP 800-108 (as described in Section 6 of SP 800-56C).</p> </span></div></div></div>
           
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_CKM_EXT.3">FCS_CKM_EXT.3</a></div>
               
@@ -4732,25 +4734,23 @@ The following sections list Common Criteria and technology terms used in this do
               password-derived or biometric-unlocked <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr></span></li></ul>]</span></li></ul>]
               .<div class="appnote"><span class="note-header">Application
       Note:
-    </span><span class="note">The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must select <a href="#s-all-software-key-store">all software-based key storage</a>
+    </span><span class="note"><p>The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must select <a href="#s-all-software-key-store">all software-based key storage</a>
               if <a href="#s-software-store">software-based</a> is selected in <a href="#FCS_STG_EXT.1.1">FCS_STG_EXT.1.1</a>. If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author
               selects <a href="#mutable_hardware" class="dynref" data-format=""></a> in <a href="#FCS_STG_EXT.1.1">FCS_STG_EXT.1.1</a>, the secure key storage is
-              not subject to this requirement. <abbr class="dyn-abbr"><a href="#abbr_REK">REKs</a></abbr> are not subject to this requirement. <br/><br/>
+              not subject to this requirement. <abbr class="dyn-abbr"><a href="#abbr_REK">REKs</a></abbr> are not subject to this requirement. </p>
+              <p>
               A <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr> and the password-derived <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> may be combined to form a combined <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> (as
-              described in <a href="#FCS_CKM_EXT.3">FCS_CKM_EXT.3</a>) in order to meet this requirement. <br/><br/>
-              Software-based key storage must be protected by the password or biometric and <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr>. <br/><br/>
-              All keys must ultimately be protected by a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr>. In particular, <a href="#Keys" class="dynref" data-format=""></a> has KEKs protected according to these requirements: DEK_1 meets the
-              "encryption by a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr> and the password-derived <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr>" case and would be appropriate for
-              sensitive data, DEK_2 meets the "encryption by a <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> chaining from a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr>" case and
-              would not be appropriate for sensitive data, K_1 meets the "encryption by a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr>" case
-              and is not considered a sensitive key, and K_2 meets the "encryption by a <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> chaining
-              to a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr> and the password-derived or biometric-unlocked <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr>" case and is considered a
-              sensitive key. <br/><br/> Long-term trusted channel key material includes Wi-Fi
+              described in <a href="#FCS_CKM_EXT.3">FCS_CKM_EXT.3</a>) in order to meet this requirement. </p>
+              <p>
+              Software-based key storage must be protected by the password or biometric and <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr>. All keys must ultimately be protected by a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr>.</p>
+              
+              <p> Long-term trusted channel key material includes Wi-Fi
               (PSKs), IPsec (PSKs and client certificates) and Bluetooth keys. These keys must not
               be protected by the password, as they may be necessary in the locked state. For
               clarity, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must assign any Long-term trusted channel key material
               supported by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> . At a minimum, a <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> must support at least Wi-Fi and Bluetooth
-              keys.</span></div><div class="validationguidelines_label">Validation Guidelines:</div><p></p><b><a href="#r-store">Rule #3</a></b></div></div>
+              keys.</p>
+              </span></div><div class="validationguidelines_label">Validation Guidelines:</div><p></p><b><a href="#r-store">Rule #3</a></b></div></div>
           <div class="element"><div class="reqid" id="FCS_STG_EXT.2.2"><a href="#FCS_STG_EXT.2.2" class="abbr">FCS_STG_EXT.2.2</a></div><div class="reqdesc"><abbr class="dyn-abbr"><a href="#abbr_DEK">DEKs</a></abbr>, KEKs, [<b>assignment</b>: 
      <span class="assignable-content">any long-term trusted channel key material</span>]
               and [<b>selection</b>: <span class="selectable-content" id="_s_342">all software-based key storage</span>, <span class="selectable-content" id="_s_343">no other keys</span>]
