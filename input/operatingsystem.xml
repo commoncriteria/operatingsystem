@@ -2075,7 +2075,8 @@ it manages may be physical or virtual.
           <dependencies><h:br/>
             <h:br/>[FDP_ITC.1 Import of user data without security attributes, or
             <h:br/>FDP_ITC.2 Import of user data with security attributes, or 
-            <h:br/>FCS_CKM.1 Cryptographic key generation, or
+            <h:br/>FCS_CKM.1/AKG Cryptographic Key Generation - Asymmetric Key, or
+            <h:br/>FCS_CKM.1/SKG Cryptographic Key Generation - Symmetric Key, or
             <h:br/>FCS_CKM.5 Cryptographic key derivation, or
             <h:br/>FCS_CKM_EXT.8 Password-based key derivation],
             <h:br/>[FCS_CKM.2 Cryptographic key distribution, or
@@ -2322,8 +2323,10 @@ it manages may be physical or virtual.
             (KEKs).</comp-lev>
           <management>There are no management activities foreseen.</management>
           <audit>There are no auditable events foreseen.</audit>
-          <dependencies>FCS_CKM.1 Cryptographic Key Generation<h:br /> FCS_COP.1 Cryptographic
-            Operation<h:br /> FCS_RBG.1 Random Bit Generation<h:br />
+          <dependencies>FCS_CKM.1/AKG Cryptographic Key Generation - Asymmetric Key<h:br />
+          FCS_CKM.1/SKG Cryptographic Key Generation - Symmetric Key<h:br />
+          FCS_COP.1 Cryptographic Operation<h:br />
+          FCS_RBG.1 Random Bit Generation<h:br />
           </dependencies>
 
 
@@ -2421,8 +2424,8 @@ it manages may be physical or virtual.
                 to the key size and mode to be used for the encryption/decryption of the data.<h:br /><h:br />
                 (conditional) If the KEK is generated according to an asymmetric key scheme, the
                 evaluator shall review the TSS to determine that it describes how the functionality
-                described by FCS_CKM.1 is invoked. The evaluator uses the description of the key
-                generation functionality in FCS_CKM.1 or documentation available for the operational
+                described by FCS_CKM.1/AKG is invoked. The evaluator uses the description of the key
+                generation functionality in FCS_CKM.1/AKG or documentation available for the operational
                 environment to determine that the key strength being requested is greater than or
                 equal to 112 bits.<h:br /><h:br /> (conditional) If the KEK is formed from a
                 combination, the evaluator shall verify that the TSS describes the method of
@@ -5326,10 +5329,13 @@ only AES-based implementations for CTR_DRBG are allowed.
               <h:li>Exceptions to use and destruction rules.</h:li>
             </h:ul>
           </audit>
-          <dependencies> [FCS_CKM.1 Cryptographic Key Generation, or<h:br /> FDP_ITC.1 Import of
-            User Data without Security Attributes, or<h:br /> FDP_ITC.2 Import of User Data with
-            Security Attributes]<h:br /> FMT_SMF.1 Specification of Management Functions<h:br />
-            FMT_SMR.1 Security Roles </dependencies>
+          <dependencies> [FCS_CKM.1/AKG Cryptographic Key Generation - Asymmetric Key, or<h:br />
+          FCS_CKM.1/SKG Cryptographic Key Generation - Symmetric Key, or<h:br />
+          FDP_ITC.1 Import of User Data without Security Attributes, or<h:br />
+          FDP_ITC.2 Import of User Data with Security Attributes]<h:br />
+          FMT_SMF.1 Specification of Management Functions<h:br />
+          FMT_SMR.1 Security Roles
+          </dependencies>
 
           <!--fcs_stg_ext.1.1 -->
           <f-element id="fel-key-store">
@@ -7792,7 +7798,7 @@ the node certificate to be tested, two Intermediate CAs, and the
               certificate</text>
             <app-note> Function <xref to="mf-certValidity" /> must be included in the ST if
               "administrator is allowed to configure certificate acceptance" is selected in
-              FIA_X509_EXT.2.2 in <xref to="X509" />
+              FIA_X509_EXT.2.2 as defined in the <xref to="X509" />
             </app-note>
             <aactivity>
               <Tests>The test of this function is performed in conjunction with
