@@ -386,8 +386,6 @@
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[17]""/f-element[1]""/aactivity[1]""/Tests[1]"The follo"/h:p[14]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[19]""/f-element[1]""/title[1]"The TSF s"/selectables[1]""/tabularize[1]""/reqtext[3]"after ini"/h:p[1]""
 * Warning: Detected an empty _p_ element./PP[1]""/sec:Security_Requirements[1]""/sec:SFRs[1]""/section[3]""/f-component[19]""/f-element[1]""/title[1]"The TSF s"/selectables[1]""/tabularize[1]""/reqtext[3]"after ini"/h:p[2]""
- Failed to find a reference to fel-wlan.
- Failed to find a reference to fel-tls-app.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
  Failed to find a reference to bibCEM.
@@ -396,7 +394,6 @@
  Failed to find a reference to bibCEM.
  Failed to find a reference to s-dek-800-56.
  Failed to find a reference to s-import-admin.
- Failed to find a reference to mutable_hardware.
 * Warning: Since FDP_IFC_EXT.1.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
                        
 * Warning: Since FMT_SMF_EXT.1.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
