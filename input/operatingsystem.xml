@@ -2387,21 +2387,23 @@ it manages may be physical or virtual.
                 </selectables>
                 . </title>
             </ext-comp-def-title>
-            <note role="application"> The conditioning of passwords is performed in accordance with
-              FCS_CKM_EXT.8.1. <h:br /><h:br /> It is expected that key generation derived from
+            <note role="application">
+            <h:p> The conditioning of passwords is performed in accordance with FCS_CKM_EXT.8.1.</h:p>
+            <h:p>It is expected that key generation derived from
               conditioning, using an RBG or generation scheme, and through combination, will each be
-              necessary to meet the requirements set out in this document. In particular, <xref
-                to="Keys" /> has KEKs of each type: KEK_3 is generated, KEK_1 is derived from a
-              Password Authentication Factor, and KEK_2 is combined from two KEKs. In <xref
-                to="Keys" />, KEK_3 may either be a symmetric key generated from an RBG or an
-              asymmetric key generated using a key generation scheme according to FCS_CKM.1. <h:br /><h:br />
+              necessary to meet the requirements set out in this document. 
+              <!--In particular, <xref to="Keys" /> has KEKs of each type: KEK_3 is generated, KEK_1 is derived from a
+              Password Authentication Factor, and KEK_2 is combined from two KEKs. In <xref to="Keys" />, KEK_3 may either be a symmetric key generated from an RBG or an
+              asymmetric key generated using a key generation scheme according to FCS_CKM.1. --></h:p>
+              <h:p>
               If combined, the ST author should describe which method of combination is used in
-              order to justify that the effective entropy of each factor is preserved. <h:br /><h:br />SP
-              800-56C specifies a two-step key derivation procedure that employs an
+              order to justify that the effective entropy of each factor is preserved. </h:p>
+              
+              <h:p>SP 800-56C specifies a two-step key derivation procedure that employs an
               extraction-then-expansion technique for deriving keying material from a shared secret
               generated during a key establishment scheme. The Randomness Extraction step as
               described in Section 5 of SP 800-56C is followed by Key Expansion using the key
-              derivation functions defined in SP 800-108 (as described in Section 6 of SP 800-56C). </note>
+              derivation functions defined in SP 800-108 (as described in Section 6 of SP 800-56C).</h:p> </note>
             <aactivity>
               <TSS> The evaluator shall examine the key hierarchy section of the TSS to ensure that
                 the formation of all KEKs are described and that the key sizes match that described
@@ -5552,26 +5554,30 @@ only AES-based implementations for CTR_DRBG are allowed.
                   key material</assignable> and <assignable>other secrets </assignable> by KEKs that
                 are <assignable>protection mechanism</assignable>. </title>
             </ext-comp-def-title>
-            <note role="application">The ST author must select <xref to="s-all-software-key-store" />
+            <note role="application"><h:p>The ST author must select <xref to="s-all-software-key-store" />
               if <xref to="s-software-store" /> is selected in FCS_STG_EXT.1.1. If the ST author
               selects <xref to="mutable_hardware" /> in FCS_STG_EXT.1.1, the secure key storage is
-              not subject to this requirement. REKs are not subject to this requirement. <h:br /><h:br />
+              not subject to this requirement. REKs are not subject to this requirement. </h:p>
+              <h:p>
               A REK and the password-derived KEK may be combined to form a combined KEK (as
-              described in FCS_CKM_EXT.3) in order to meet this requirement. <h:br /><h:br />
-              Software-based key storage must be protected by the password or biometric and REK. <h:br /><h:br />
-              All keys must ultimately be protected by a REK. In particular, <xref
-                to="Keys" /> has KEKs protected according to these requirements: DEK_1 meets the
+              described in FCS_CKM_EXT.3) in order to meet this requirement. </h:p>
+              <h:p>
+              Software-based key storage must be protected by the password or biometric and REK. All keys must ultimately be protected by a REK.</h:p>
+              <!--              
+              <h:p>In particular, <xref to="Keys" /> has KEKs protected according to these requirements: DEK_1 meets the
               "encryption by a REK and the password-derived KEK" case and would be appropriate for
               sensitive data, DEK_2 meets the "encryption by a KEK chaining from a REK" case and
               would not be appropriate for sensitive data, K_1 meets the "encryption by a REK" case
               and is not considered a sensitive key, and K_2 meets the "encryption by a KEK chaining
               to a REK and the password-derived or biometric-unlocked KEK" case and is considered a
-              sensitive key. <h:br /><h:br /> Long-term trusted channel key material includes Wi-Fi
+              sensitive key. </h:p>-->
+              <h:p> Long-term trusted channel key material includes Wi-Fi
               (PSKs), IPsec (PSKs and client certificates) and Bluetooth keys. These keys must not
               be protected by the password, as they may be necessary in the locked state. For
               clarity, the ST author must assign any Long-term trusted channel key material
               supported by the TOE . At a minimum, a TOE must support at least Wi-Fi and Bluetooth
-              keys.</note>
+              keys.</h:p>
+              </note>
             <aactivity>
               <TSS>The evaluator shall review the TSS to determine that the TSS includes key
                 hierarchy description of the protection of each DEK for data-at-rest, of
