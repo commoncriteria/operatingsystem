@@ -4119,7 +4119,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
               administrator may be provided the ability to globally allow or deny any
               application requests in order to meet this requirement. </p><p> Function <a href="#mf-certValidity">30</a> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> if
               "administrator is allowed to configure certificate acceptance" is selected in
-              FIA_X509_EXT.2.2 in <a href="https://www.niap-ccevs.org/protectionprofiles/511">Functional Package for X.509,
+              FIA_X509_EXT.2.2 as defined in the <a href="https://www.niap-ccevs.org/protectionprofiles/511">Functional Package for X.509,
         version 
         1.0</a>
             </p><p> Function <a href="#mf-digSign">33</a> should be included in the selection
@@ -7183,8 +7183,8 @@ The evaluator shall also perform the following tests:
                 to the key size and mode to be used for the encryption/decryption of the data.<br/><br/>
                 (conditional) If the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> is generated according to an asymmetric key scheme, the
                 evaluator shall review the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to determine that it describes how the functionality
-                described by FCS_CKM.1 is invoked. The evaluator uses the description of the key
-                generation functionality in FCS_CKM.1 or documentation available for the operational
+                described by <a href="#FCS_CKM.1/AKG">FCS_CKM.1/AKG</a> is invoked. The evaluator uses the description of the key
+                generation functionality in <a href="#FCS_CKM.1/AKG">FCS_CKM.1/AKG</a> or documentation available for the operational
                 environment to determine that the key strength being requested is greater than or
                 equal to 112 bits.<br/><br/> (conditional) If the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> is formed from a
                 combination, the evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes the method of
@@ -8691,7 +8691,8 @@ The evaluator shall also perform the following tests:
           </p><h4>FCS_CKM_EXT.7 Cryptographic Key Agreement</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td><br/>
             <br/>[FDP_ITC.1 Import of user data without security attributes, or
             <br/>FDP_ITC.2 Import of user data with security attributes, or 
-            <br/>FCS_CKM.1 Cryptographic key generation, or
+            <br/><a href="#FCS_CKM.1/AKG">FCS_CKM.1/AKG</a> Cryptographic Key Generation - Asymmetric Key, or
+            <br/><a href="#FCS_CKM.1/SKG">FCS_CKM.1/SKG</a> Cryptographic Key Generation - Symmetric Key, or
             <br/>FCS_CKM.5 Cryptographic key derivation, or
             <br/><a href="#FCS_CKM_EXT.8">FCS_CKM_EXT.8</a> Password-based key derivation],
             <br/>[<a href="#FCS_CKM.2">FCS_CKM.2</a> Cryptographic key distribution, or
@@ -8704,8 +8705,10 @@ The evaluator shall also perform the following tests:
                 and specified cryptographic parameters [<b>assignment</b>: 
      <span class="assignable-content">cryptographic parameters</span>] that meet the
                 following: [<b>assignment</b>: 
-     <span class="assignable-content">list of standards</span>]</div><h4>Management: FCS_CKM_EXT.3</h4><p>There are no management activities foreseen.</p><h4>Audit: FCS_CKM_EXT.3</h4><p>There are no auditable events foreseen.</p><h4>FCS_CKM_EXT.3 Cryptographic Key Generation</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td>FCS_CKM.1 Cryptographic Key Generation<br/> FCS_COP.1 Cryptographic
-            Operation<br/> <a href="#FCS_RBG.1">FCS_RBG.1</a> Random Bit Generation<br/>
+     <span class="assignable-content">list of standards</span>]</div><h4>Management: FCS_CKM_EXT.3</h4><p>There are no management activities foreseen.</p><h4>Audit: FCS_CKM_EXT.3</h4><p>There are no auditable events foreseen.</p><h4>FCS_CKM_EXT.3 Cryptographic Key Generation</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td><a href="#FCS_CKM.1/AKG">FCS_CKM.1/AKG</a> Cryptographic Key Generation - Asymmetric Key<br/>
+          <a href="#FCS_CKM.1/SKG">FCS_CKM.1/SKG</a> Cryptographic Key Generation - Symmetric Key<br/>
+          FCS_COP.1 Cryptographic Operation<br/>
+          <a href="#FCS_RBG.1">FCS_RBG.1</a> Random Bit Generation<br/>
           </td></tr></table><h4 id="ext-comp-FCS_CKM_EXT.3.1">FCS_CKM_EXT.3.1</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall use [<b>assignment</b>: 
      <span class="assignable-content">description of KEKs</span>].<h4 id="ext-comp-FCS_CKM_EXT.3.2">FCS_CKM_EXT.3.2</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall generate all KEKs using one of the following methods: <ul>
                   <li>Derive the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> from a Password Authentication Factor according to
@@ -8792,10 +8795,13 @@ The evaluator shall also perform the following tests:
               <li>Import or destruction of key.</li>
               <li>Exceptions to use and destruction rules.</li>
             </ul>
-          </p><h4>FCS_STG_EXT.1 Cryptographic Key Storage</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td> [FCS_CKM.1 Cryptographic Key Generation, or<br/> FDP_ITC.1 Import of
-            User Data without Security Attributes, or<br/> FDP_ITC.2 Import of User Data with
-            Security Attributes]<br/> FMT_SMF.1 Specification of Management Functions<br/>
-            FMT_SMR.1 Security Roles </td></tr></table><h4 id="ext-comp-FCS_STG_EXT.1.1">FCS_STG_EXT.1.1</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall provide [<b>assignment</b>: 
+          </p><h4>FCS_STG_EXT.1 Cryptographic Key Storage</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td> [<a href="#FCS_CKM.1/AKG">FCS_CKM.1/AKG</a> Cryptographic Key Generation - Asymmetric Key, or<br/>
+          <a href="#FCS_CKM.1/SKG">FCS_CKM.1/SKG</a> Cryptographic Key Generation - Symmetric Key, or<br/>
+          FDP_ITC.1 Import of User Data without Security Attributes, or<br/>
+          FDP_ITC.2 Import of User Data with Security Attributes]<br/>
+          FMT_SMF.1 Specification of Management Functions<br/>
+          FMT_SMR.1 Security Roles
+          </td></tr></table><h4 id="ext-comp-FCS_STG_EXT.1.1">FCS_STG_EXT.1.1</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall provide [<b>assignment</b>: 
      <span class="assignable-content">storage medium</span>] secure key
                 storage for asymmetric private keys and [<b>assignment</b>: 
      <span class="assignable-content">list of secrets</span>] .<h4 id="ext-comp-FCS_STG_EXT.1.2">FCS_STG_EXT.1.2</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be capable of importing keys or secrets into the secure key
