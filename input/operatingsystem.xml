@@ -1822,7 +1822,7 @@ it manages may be physical or virtual.
               </TSS>
               <Guidance>
                 The evaluator shall verify that the AGD instructs the administrator how to configure the TOE to
-                use the RBG to generate symmetric keys for all uses identified in the ST.
+                use the DRBG to generate symmetric keys for all uses identified in the ST.
               </Guidance>
               <Tests>
                 The following tests are conditional based upon the selections made in the SFR.
@@ -1836,8 +1836,8 @@ it manages may be physical or virtual.
                 To test the TOE’s ability to generate symmetric cryptographic keys using a 
                 random bit generator, the evaluator shall configure the symmetric cryptographic 
                 key generation capability for each claimed key size. The evaluator shall use the
-                description of the RBG interface to verify that the TOE requests and receives an
-                amount of RBG output greater than or equal to the requested key size.
+                description of the DRBG interface to verify that the TOE requests and receives an
+                amount of DRBG output greater than or equal to the requested key size.
               </Tests>				
             </aactivity>
           </f-element>
@@ -2351,7 +2351,7 @@ it manages may be physical or virtual.
               </h:b> and </h:li>
               </h:ul>
               <selectables linebreak="yes">
-                <selectable>Generate the KEK using an RBG that meets this profile (as specified in
+                <selectable>Generate the KEK using a DRBG that meets this profile (as specified in
               FCS_RBG.1)</selectable>
                 <selectable>Generate the KEK using a key generation scheme that meets this profile
               (as specified in FCS_CKM.1)</selectable>
@@ -2373,7 +2373,7 @@ it manages may be physical or virtual.
                     FCS_COP.1.1 and </h:li>
                 </h:ul>
                 <selectables linebreak="yes">
-                  <selectable>Generate the KEK using an RBG that meets this profile (as specified in
+                  <selectable>Generate the KEK using a DRBG that meets this profile (as specified in
                 FCS_RBG.1)</selectable>
                   <selectable>Generate the KEK using a key generation scheme that meets this profile
                 (as specified in FCS_CKM.1)</selectable>
@@ -2393,10 +2393,10 @@ it manages may be physical or virtual.
             <note role="application">
             <h:p> The conditioning of passwords is performed in accordance with FCS_CKM_EXT.8.1.</h:p>
             <h:p>It is expected that key generation derived from
-              conditioning, using an RBG or generation scheme, and through combination, will each be
+              conditioning, using a DRBG or generation scheme, and through combination, will each be
               necessary to meet the requirements set out in this document. 
               <!--In particular, <xref to="Keys" /> has KEKs of each type: KEK_3 is generated, KEK_1 is derived from a
-              Password Authentication Factor, and KEK_2 is combined from two KEKs. In <xref to="Keys" />, KEK_3 may either be a symmetric key generated from an RBG or an
+              Password Authentication Factor, and KEK_2 is combined from two KEKs. In <xref to="Keys" />, KEK_3 may either be a symmetric key generated from a DRBG or an
               asymmetric key generated using a key generation scheme according to FCS_CKM.1. --></h:p>
               <h:p>
               If combined, the ST author should describe which method of combination is used in
@@ -2417,9 +2417,9 @@ it manages may be physical or virtual.
                 conditioning used to derive KEKs. This description must include the size and storage
                 location of salts. This activity may be performed in combination with that for
                 FCS_CKM_EXT.8.1.<h:br /><h:br /> (conditional) If the symmetric KEK is generated
-                by an RBG, the evaluator shall review the TSS to determine that it describes how the
+                by a DRBG, the evaluator shall review the TSS to determine that it describes how the
                 functionality described by FCS_RBG.1 is invoked. The evaluator uses the description
-                of the RBG functionality in FCS_RBG.1 or documentation available for the operational
+                of the DRBG functionality in FCS_RBG.1 or documentation available for the operational
                 environment to determine that the key size being requested is greater than or equal
                 to the key size and mode to be used for the encryption/decryption of the data.<h:br /><h:br />
                 (conditional) If the KEK is generated according to an asymmetric key scheme, the
@@ -2706,7 +2706,7 @@ it manages may be physical or virtual.
                 </selectables>
               </selectable>
               <!-- <selectable>Overwriting all sensitive data according to the following rules: <h:ul>
-                    <h:li>For EEPROM, the destruction shall be executed by a single direct overwrite consisting of a pseudo random pattern using the TSF’s RBG (as specified in FCS_RBG.1, followed by a read-verify. </h:li>
+                    <h:li>For EEPROM, the destruction shall be executed by a single direct overwrite consisting of a pseudo random pattern using the TSF’s DRBG (as specified in FCS_RBG.1, followed by a read-verify. </h:li>
                     <h:li>For flash memory, that is not wear-leveled, the destruction shall be executed <selectables>
                         <selectable>by a single direct overwrite consisting of zeros followed by a read-verify</selectable>
                         <selectable>by a block erase that erases the reference to memory that stores data as well as the data itself</selectable></selectables>. </h:li>
@@ -2999,7 +2999,7 @@ it manages may be physical or virtual.
                   <h:tr>
                     <h:td valign="top">AES-GCM </h:td>
                     <h:td valign="top">AES in GCM mode with non-repeating IVs using 
-                      [<h:b>selection:</h:b> deterministic, RBG-based] IV construction; 
+                      [<h:b>selection:</h:b> deterministic, DRBG-based] IV construction; 
                       the tag must be of length [<h:b>selection:</h:b> 96, 104, 112, 120, or 128] bits.</h:td>
                     <h:td valign="top">256 bits</h:td>
                     <h:td valign="top">
@@ -4865,146 +4865,6 @@ it manages may be physical or virtual.
 	  </audit-event>
         </f-component>
 
-
-        <!--
-	<ext-comp-def fam-id="FCS_RBG_EXT" title="Random Bit Generation">
-	  <fam-behavior>Components in this family address the requirements for random bit and number generation. This is a
-	    new family defined for the FCS class.</fam-behavior>
-	</ext-comp-def>
-        
-        <f-component cc-id="fcs_rbg_ext.1" name="Random Bit Generation">
-          <comp-lev> requires random bit generation to be performed in accordance with selected standards and seeded by an entropy source.</comp-lev>
-          <management> There are no management activities foreseen.</management>
-          <audit>The following actions should be auditable if FAU_GEN Security audit data generation is included in the PP or ST:
-            <h:ul>
-              <h:li>Failure of the randomization process</h:li>
-            </h:ul>
-          </audit>
-          <dependencies>
-            <no-link>FCS_COP.1</no-link> Cryptographic Operation
-          </dependencies>
-          
-          <f-element id="fel-rbg-how">
-            <title>
-              The OS shall perform all deterministic random bit generation (DRBG) services in
-              accordance with NIST Special Publication 800-90A using
-              <selectables linebreak="yes">
-                <selectable>Hash_DRBG (any)</selectable>
-                <selectable>HMAC_DRBG (any)</selectable>
-                <selectable>CTR_DRBG (AES)</selectable>
-              </selectables>
-	      .
-            </title>
-            <note role="application">
-NIST SP 800-90A contains three different methods of generating random numbers;
-each of these, in turn, depends on underlying cryptographic primitives (hash functions/ciphers).
-The ST author will select the function used and include the specific underlying cryptographic primitives used in the requirement or in the TSS.
-While any of the identified hash functions (SHA-224, SHA-256, SHA-384, SHA-512) are allowed for Hash_DRBG or HMAC_DRBG,
-only AES-based implementations for CTR_DRBG are allowed.
-            </note>
-            <aactivity>
-	      <Tests>
-	      <h:p>
-	      The evaluator shall perform the following tests:
-	      </h:p><h:p>
-              The evaluator shall perform 15 trials for the RNG implementation. If the RNG
-              is configurable, the evaluator shall perform 15 trials for each configuration. The
-              evaluator shall also confirm that the operational guidance contains appropriate
-              instructions for configuring the RNG functionality.
-	      </h:p><h:p>
-	      If the RNG has  prediction resistance enabled, each trial consists of (1) instantiate DRBG, (2)
-              generate the first block of random bits (3) generate a second block of random bits
-              (4) uninstantiate. The evaluator verifies that the second block of random bits is
-              the expected value. The evaluator shall generate eight input values for each
-              trial. The first is a count (0 – 14). The next three are entropy input, nonce, and
-              personalization string for the instantiate operation. The next two are additional
-              input and entropy input for the first call to generate. The final two are
-              additional input and entropy input for the second call to generate. These values
-              are randomly generated. "generate one block of random bits" means to generate
-              random bits with number of returned bits equal to the Output Block Length (as
-              defined in NIST SP 800-90A).
-	      </h:p><h:p>
-	      If the RNG does not have prediction resistance,
-              each trial consists of (1) instantiate DRBG, (2) generate the first block of
-              random bits (3) reseed, (4) generate a second block of random bits (5)
-              uninstantiate. The evaluator verifies that the second block of random bits is the
-              expected value. The evaluator shall generate eight input values for each trial.
-              The first is a count (0 – 14). The next three are entropy input, nonce, and
-              personalization string for the instantiate operation. The fifth value is
-              additional input to the first call to generate. The sixth and seventh are
-              additional input and entropy input to the call to reseed. The final value is
-              additional input to the second generate call.
-	      </h:p><h:p>
-	      The following list contains more information on some of the input values to be generated/selected by the evaluator.
-	      <h:ul>
-		<h:li> <h:b>Entropy input:</h:b> The length of the entropy input value must equal the seed
-                  length.</h:li>
-		  
-                  <h:li><h:b>Nonce:</h:b> If a nonce is supported (CTR_DRBG with no Derivation Function does
-                  not use a nonce), the nonce bit length is one-half the seed length. </h:li>
-                  <h:li><h:b>Personalization string:</h:b> The length of the personalization string must be
-                  less than or equal to seed length. If the implementation only supports one
-                  personalization string length, then the same length can be used for both values.
-                  If more than one string length is support, the evaluator shall use personalization
-                  strings of two different lengths. If the implementation does not use a
-                  personalization string, no value needs to be supplied. </h:li>
-                  <h:li><h:b>Additional input:</h:b> The additional input bit lengths have the same defaults
-                  and restrictions as the personalization string lengths.</h:li>
-		</h:ul>
-	      </h:p>
-	      </Tests>
-            </aactivity>
-          </f-element>
-          
-          <f-element id="fel-rbg-seed-how">
-            <title>
-              The deterministic RBG used by the OS shall be seeded by an entropy source that
-              accumulates entropy from a
-              <selectables linebreak="yes">
-                <selectable>software-based noise source</selectable>
-                <selectable>platform-based noise source</selectable>
-              </selectables>
-              with a minimum of 256 bits
-              <selectables linebreak="yes"> 
-                 <selectable>128 bits</selectable> 
-                 <selectable>256 bits</selectable> 
-               </selectables> 
-              of entropy at least equal to the greatest security strength (according to NIST SP 800-57)
-              of the keys and hashes that it will generate.
-	    </title>
-            <note role="application">
-	      <h:p>
-		For the first
-		selection in this requirement, the ST author selects 'software-based noise source' if
-		any additional noise sources are used as input to the DRBG.
-	      </h:p><h:p>
-	      In the second selection in this requirement, the ST author selects the
-              appropriate number of bits of entropy that corresponds to the greatest security
-              strength of the algorithms included in the ST.
-	      Security strength is defined in Tables
-              2 and 3 of NIST SP 800-57A.
-	      For example, if the implementation includes 3072-bit RSA
-              (security strength of 128 bits), AES 256 (security strength 256 bits), and
-              HMAC-SHA-256 (security strength 256 bits), then the ST author would select 256 bits.
-	    </h:p>
-            </note>
-            <aactivity>
-	    <Tests>
-	      <h:p>
-		Documentation will be produced - and the evaluator shall perform the
-		activities - in accordance with <xref to="entropyappendix"/> and
-		the
-	        <h:a href="https://niap-ccevs.org/Documents_and_Guidance/ccevs/Entropy%20Documentation%20and%20Assessment%20Clarification.pdf"
-		     >Clarification to the Entropy Documentation and Assessment Annex</h:a>.
-	      </h:p><h:p>
-              In the future, specific statistical testing (in line with NIST SP 800-90B) will
-              be required to verify the entropy estimates.
-	    </h:p>
-	    </Tests>
-            </aactivity>
-          </f-element>
-        </f-component>
-        -->
         
         <f-component cc-id="fcs_rbg.1" name="Random Bit Generation (RBG)">
           <f-element id="fel-rbg-init-seed">
@@ -5017,7 +4877,7 @@ only AES-based implementations for CTR_DRBG are allowed.
                   <selectcol>DRBG Algorithm</selectcol>
                   <reqtext> in accordance with </reqtext>
                   <selectcol>List of standards</selectcol>
-                  <reqtext>after initialization with a seed.<h:p/><h:p/><xref to="fcs-rbg-1-sels"/> provides the allowable choices for
+                  <reqtext>after initialization.<h:p/><h:p/><xref to="fcs-rbg-1-sels"/> provides the allowable choices for
                     completion of the selection operations of FCS_RBG.1.</reqtext>
                 </tabularize>
                 
@@ -5118,26 +4978,26 @@ only AES-based implementations for CTR_DRBG are allowed.
           <f-element id="fel-rbg-init-seed-how">
             <title>
               The TSF shall use a <selectables>
-                <selectable id="internal-seed">TSF noise source <assignable>name of noise source</assignable></selectable>
-                <selectable id="internal-seeds"><h:b>multiple TSF noise sources <assignable>names of noise sources</assignable></h:b></selectable>
-                <selectable id="external-seed">TSF interface for seeding</selectable>
+                <selectable id="internal-seed">TSF entropy source <assignable>name of entropy source</assignable></selectable>
+                <selectable id="internal-seeds"><h:b>multiple TSF entropy sources <assignable>names of entropy sources</assignable></h:b></selectable>
+                <selectable id="external-seed">TSF interface for obtaining entropy</selectable>
               </selectables>
-              for initialized seeding.
+              after initialization and reseeding.
             </title>
             <note role="application">
               <h:p>
                 For the 
                 selection in this requirement, the ST author selects "TSF noise source" if
-                a single noise source is used as input to the DRBG. The ST author selects "multiple TSF noise sources" if a seed is formed from a combination of two or more noise sources within the TOE boundary. If the TSF implements two or more separate DRBGs that are seeded in separate manners, this SFR should be iterated for each DRBG. If multiple distinct noise sources exist such that each DRBG only uses one of them, then each iteration would select "TSF noise source"; "multiple TSF noise sources" is only selected if a single DRBG uses multiple noise sources for its seed. The ST author selects "TSF interface for seeding" if noise source data is generated outside the TOE boundary.
+                a single entropy source is used as input to the DRBG. The ST author selects "multiple TSF entropy sources" if a seed is formed from a combination of two or more entropy sources within the TOE boundary. If the TSF implements two or more separate DRBGs that are seeded in separate manners, this SFR should be iterated for each DRBG. If multiple distinct entropy sources exist such that each DRBG only uses one of them, then each iteration would select "TSF entropy source"; "multiple TSF entropy sources" is only selected if a single DRBG uses multiple entropy sources for its seed. The ST author selects "TSF interface for obtaining entropy" if entropy source data is generated outside the TOE boundary.
               </h:p>
               <h:p>
-                If "TSF noise source" is selected, FCS_RBG.3 must be claimed.
+                If "TSF entropy source" is selected, FCS_RBG.3 must be claimed.
               </h:p>
               <h:p>
-                If "multiple TSF noise sources" is selected, FCS_RBG.4 and FCS_RBG.5 must be claimed. 
+                If "multiple TSF entropy sources" is selected, FCS_RBG.4 and FCS_RBG.5 must be claimed. 
               </h:p>
               <h:p>
-                If "TSF interface for seeding" is selected, FCS_RBG.2 must be claimed. 
+                If "TSF interface for obtaining entropy" is selected, FCS_RBG.2 must be claimed. 
               </h:p>
             </note>
             <aactivity level="element">
@@ -5155,19 +5015,19 @@ only AES-based implementations for CTR_DRBG are allowed.
           
           <f-element id="fel-rbg-init-seed-when">
             <title>
-              The TSF shall update the RBG state by <selectables>
+              The TSF shall update the DRBG state by <selectables>
                 <selectable>reseeding</selectable>
                 <selectable>uninstantiating and reinstantiating</selectable>
               </selectables> using a <selectables>
-                <selectable>TSF noise source <assignable>name of noise source</assignable></selectable>
-                <selectable>TSF interface for seeding</selectable></selectables>
+                <selectable>TSF entropy source <assignable>name of entropy source</assignable></selectable>
+                <selectable>TSF interface for obtaining entropy <assignable>name of the interface</assignable></selectable></selectables>
               in the following situations: <selectables linebreak="yes">
                 <selectable>never</selectable>
                 <selectable>on demand</selectable>
                 <selectable>on the condition: <assignable>condition</assignable></selectable>
                 <selectable>after <assignable>time</assignable></selectable>
               </selectables>
-              in accordance with <assignable>list of standards</assignable>.
+              in accordance with <assignable>list of standards</assignable>
             </title>
             <aactivity level="element">              
               <TSS>
@@ -5184,15 +5044,16 @@ only AES-based implementations for CTR_DRBG are allowed.
           <depends on="external-seed"/>
           <f-element id="fe1-rbg-seed">
             <title>
-              The TSF shall be able to accept a minimum input of <assignable>minimum input length greater than zero</assignable>
-              from a TSF interface for the purpose of seeding.
+              The TSF shall be able to accept a minimum input of <assignable>sufficient input length to ensure 256 bits of entropy</assignable>
+              from a TSF interface for obtaining entropy.
             </title>
             <note role="application">
-              This requirement is claimed when a DRBG is seeded with entropy from one or more noise source that is outside the TOE
-              boundary. Typically the entropy produced by an environmental noise source is conditioned such that the input length has
+              This requirement is claimed when a DRBG is seeded with entropy from one or more entropy sources that are outside the TOE
+              boundary. Typically the entropy produced by an environmental entropy source is conditioned such that the input length has
               full entropy and is therefore  usable as the seed. However, if this is not the case, it should be noted what the minimum
-              entropy rate of the noise source is so that the TSF can collect a sufficiently large sample of noise data to be
-              conditioned into a seed value.
+              entropy rate of the entropy source is so that the TSF can collect a sufficiently large sample of entropy data to be
+              conditioned into a seed value.<h:br/><h:br/>
+              This requirement is claimed if "TSF interface for obtaining entropy" is selected in <xref to="fel-rbg-init-seed-how"/>. 
             </note>
             <aactivity>
               <h:p>
@@ -5210,14 +5071,19 @@ only AES-based implementations for CTR_DRBG are allowed.
           <depends on="internal-seed"/>
           <f-element id="fel-rbg-seed-int-sing">
             <title>
-              The TSF shall be able to seed the RBG using a [<h:i>TSF software-based noise source</h:i>] <assignable>name of noise source</assignable>
-              with a minimum of <assignable>number of bits</assignable> bits of min-entropy.
+              The TSF shall be able to seed the DRBG using a <selectables onlyone="yes">
+                <selectable>TSF software-based entropy source</selectable>
+                <selectable>TSF hardware-based entropy source</selectable></selectables>  <assignable>name of entropy source</assignable>
+              with [<h:i>a minimum of <selectables>
+                <selectable>256</selectable>
+                <selectable>384</selectable>
+              </selectables></h:i>] bits of min-entropy.
             </title>        
-            <note role="application">This SFR is claimed when the ST author claims "TSF noise source..." in FCS_RBG.1.2. Since this PP defines the TOE as software, it does not have any hardware components and therefore would only claim a software-based noise source here. If the TOE obtains seed material from a hardware component, this is specified using FCS_RBG.2. Min-entropy should be expressed as a ratio of entropy bits to sampled bits so that the total amount of data needed to ensure full entropy is known, as well as the conditioning function by which that data is reduced in size to the seed.</note>
+            <note role="application">This SFR is claimed when the ST author claims "TSF entropy source..." in FCS_RBG.1.2. Since this PP defines the TOE as software, it does not have any hardware components and therefore would only claim a software-based entropy source here. If the TOE obtains seed material from a hardware component, this is specified using FCS_RBG.2. Min-entropy should be expressed as a ratio of entropy bits to sampled bits so that the total amount of data needed to ensure full entropy is known, as well as the conditioning function by which that data is reduced in size to the seed.</note>
             
             <aactivity>
               <h:p>
-                The evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it identifies, for each DRBG function implemented by the TOE, the TSF noise source used to seed the TOE's DRBG. The evaluator shall verify that this includes the amount of sampled data and the min-entropy rate of the sampled data such that it can be determined that sufficient entropy can be made available for the highest strength keys that the TSF can generate (e.g., 256 bits). If the seed data cannot be assumed to have full entropy (e.g., the min-entropy of the sampled bits is less than 1), the evaluator shall ensure that the entropy documentation describes the method by which the TOE estimates the amount of entropy that has been accumulated to ensure that sufficient data is collected and any conditioning that the TSF applies to the output data to create a seed of sufficient size with full entropy.
+                The evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it identifies, for each DRBG function implemented by the TOE, the TSF entropy source used to seed the TOE's DRBG. The evaluator shall verify that this includes the amount of sampled data and the min-entropy rate of the sampled data such that it can be determined that sufficient entropy can be made available for the highest strength keys that the TSF can generate (e.g., 256 bits). If the seed data cannot be assumed to have full entropy (e.g., the min-entropy of the sampled bits is less than 1), the evaluator shall ensure that the entropy documentation describes the method by which the TOE estimates the amount of entropy that has been accumulated to ensure that sufficient data is collected and any conditioning that the TSF applies to the output data to create a seed of sufficient size with full entropy.
               </h:p>
               <TSS/>
               <Guidance/>
@@ -5231,14 +5097,17 @@ only AES-based implementations for CTR_DRBG are allowed.
           <depends on="internal-seeds"/>
           <f-element id="fel-rbg-seed-int-mult">
             <title>
-              The TSF shall be able to seed the RBG using [<h:i><assignable>number</assignable> TSF software-based noise sources]</h:i>.
+              The TSF shall be able to seed the DRBG using <selectables>
+                <selectable><assignable>number</assignable> TSF software-based entropy source(s)</selectable>
+                <selectable><assignable>number</assignable> TSF hardware-based entropy source(s)</selectable>
+              </selectables>.
             </title>
             <note role="application">
-              This SFR is claimed when the ST author claims "multiple TSF noise sources..." in FCS_RBG.1.2. Since this PP defines the TOE as software, it does not have any hardware components and therefore would only claim software-based noise sources here. If the TOE obtains seed material from any hardware components, this is specified using FCS_RBG.2. FCS_RBG.5 defines the mechanism by which all sources are combined to ensure sufficient minimum entropy.
+              This SFR is claimed when the ST author claims "multiple TSF entropy sources..." in FCS_RBG.1.2. Since this PP defines the TOE as software, it does not have any hardware components and therefore would only claim software-based entropy sources here. If the TOE obtains seed material from any hardware components, this is specified using FCS_RBG.2. FCS_RBG.5 defines the mechanism by which all sources are combined to ensure sufficient minimum entropy.
             </note>
             <aactivity>
               <h:p>
-                The evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it identifies, for each DRBG function implemented by the TOE, each TSF noise source used to seed the TOE's DRBG. The evaluator shall verify that this includes the amount of sampled data and the min-entropy rate of the sampled data from each data source.
+                The evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it identifies, for each DRBG function implemented by the TOE, each TSF entropy source used to seed the TOE's DRBG. The evaluator shall verify that this includes the amount of sampled data and the min-entropy rate of the sampled data from each data source.
               </h:p>
               <TSS/>
               <Guidance/>
@@ -5248,19 +5117,21 @@ only AES-based implementations for CTR_DRBG are allowed.
           <audit-event/>
         </f-component>
         
-        <f-component cc-id="fcs_rbg.5" name="Random Bit Generation (Combining Noise Sources)" status="sel-based">
+        <f-component cc-id="fcs_rbg.5" name="Random Bit Generation (Combining Entropy Sources)" status="sel-based">
           <depends on="internal-seeds"/>
           <f-element id="fel-rbg-comb">
             <title>
               The TSF shall <assignable>combining operation</assignable> <selectables>
-                <selectable>output from TSF noise source(s)</selectable>
-                <selectable>input from TSF interface(s) for seeding</selectable></selectables>
-              to create the entropy input into the derivation function as defined in <assignable>list of standards</assignable>, resulting
-              in a minimum of <assignable>number of bits</assignable> bits of min-entropy.              
+                <selectable>output from TSF entropy source(s)</selectable>
+                <selectable>input from TSF interface(s) for obtaining entropy</selectable></selectables>
+              resulting in a minimum of [<h:i><selectables>
+                <selectable>256</selectable>
+                <selectable>384</selectable>
+              </selectables></h:i>] bits of min-entropy to create the entropy input into the derivation function as defined in <assignable>list of standards</assignable>.         
             </title>        
             <aactivity>
               <h:p>
-                Using the entropy sources specified in FCS_RBG.4, the evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it describes the method by which the various entropy sources are combined into a single seed. This should include an estimation of the rate at which each noise source outputs data and whether this is dependent on any system-specific factors so that each source's relative contribution to the overall entropy is understood. The evaluator shall verify that the resulting combination of sampled data and the min-entropy rate of the sampled data is described in sufficient detail to determine that sufficient entropy can be made available for the highest strength keys that the TSF can generate (e.g., 256 bits). If the seed data cannot be assumed to have full entropy (e.g., the min-entropy of the sampled bits is less than 1), the evaluator shall ensure that the entropy documentation describes the method by which the TOE estimates the amount of entropy that has been accumulated to ensure that sufficient data is collected and any conditioning that the TSF applies to the output data to create a seed of sufficient size with full entropy.
+                Using the entropy sources specified in FCS_RBG.4, the evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it describes the method by which the various entropy sources are combined into a single seed. This should include an estimation of the rate at which each entropy source outputs data and whether this is dependent on any system-specific factors so that each source's relative contribution to the overall entropy is understood. The evaluator shall verify that the resulting combination of sampled data and the min-entropy rate of the sampled data is described in sufficient detail to determine that sufficient entropy can be made available for the highest strength keys that the TSF can generate (e.g., 256 bits). If the seed data cannot be assumed to have full entropy (e.g., the min-entropy of the sampled bits is less than 1), the evaluator shall ensure that the entropy documentation describes the method by which the TOE estimates the amount of entropy that has been accumulated to ensure that sufficient data is collected and any conditioning that the TSF applies to the output data to create a seed of sufficient size with full entropy.
               </h:p>
               <TSS/>
               <Guidance/>
@@ -5278,17 +5149,16 @@ only AES-based implementations for CTR_DRBG are allowed.
                 <selectable>software</selectable>
                 <selectable><assignable>other interface type</assignable></selectable>
               </selectables> 
-              interface to make the RBG output, as specified in FCS_RBG.1 Random bit generation (RBG),
+              interface to make the output, as specified in FCS_RBG.1 Random bit generation (RBG),
               available as a service to entities outside of the TOE.
             </title>        
-            <note role="application">This SFR is defined for the case where an operating system includes a mechanism for e.g. an application or a virtualization system running on the operating system to obtain random bits from the TOE, whether those bits are generated by the TSF or the TSF provides an interface for the third party to access a hardware interface on the platform.</note>
-          <aactivity>              
-            <TSS>
-              The evaluator shall verify that the TSS identifies the interface that the TSF makes available for calling applications to obtain DRBG output. 
-            </TSS>
-            <Guidance>The evaluator shall verify that the guidance documentation includes an API specification for the random bit generation service such that it is clear how a calling application is able to obtain DRBG output from the TSF.</Guidance>
-            <Tests>The evaluator shall invoke the API specified by the guidance documentation to determine that the TSF provides DRBG output upon proper invocation of the API.</Tests>
-          </aactivity>
+            <aactivity>              
+              <TSS>
+                The evaluator shall verify that the TSS identifies the interface that the TSF makes available for calling applications to obtain output. 
+              </TSS>
+              <Guidance>The evaluator shall verify that the guidance documentation includes an API specification for the random bit generation service such that it is clear how a calling application is able to obtain output from the TSF.</Guidance>
+              <Tests>The evaluator shall invoke the API specified by the guidance documentation to determine that the TSF provides output upon proper invocation of the API.</Tests>
+            </aactivity>
           </f-element>
           <audit-event/>
         </f-component>
@@ -10510,14 +10380,14 @@ The evaluator shall also perform the following tests:
       </h:p>
       <h:p>If implemented, the design
       description will include a description of how third-party applications can add entropy to the
-      RBG. A description of any RBG state saving between power-off and power-on will be included.
+      DRBG. A description of any DRBG state saving between power-off and power-on will be included.
       </h:p>
     </section>
     <section id="entropyjustification" title="Entropy Justification">
       <h:p>
       There should be a technical
       argument for where the unpredictability in the source comes from and why there is confidence
-      in the entropy source delivering sufficient entropy for the uses made of the RBG output (by
+      in the entropy source delivering sufficient entropy for the uses made of the DRBG output (by
       this particular OS). This argument will include a description of the expected min-entropy
       rate (i.e. the minimum entropy (in bits) per bit or byte of source data) and explain that
       sufficient entropy is going into the OS randomizer seeding process. This discussion will be
