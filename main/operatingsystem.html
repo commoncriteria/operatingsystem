@@ -713,13 +713,6 @@ The following sections list Common Criteria and technology terms used in this do
 	Data that establishes the identity of a user, e.g. a cryptographic key or
 	password.
       </td></tr>
-<tr><td><div id="Critical_Security_Parameters">Critical Security Parameters (CSP)</div></td><td>
-	Information that is either user or system defined and
-	is used to operate a cryptographic module in processing encryption functions including
-	cryptographic keys and authentication data, such as passwords, the disclosure or modification
-	of which can compromise the security of a cryptographic module or the security of the
-	information protected by the module.
-      </td></tr>
 <tr><td><div id="Data_At_Rest_Protection">Data At Rest Protection</div></td><td>
 	Countermeasures that prevent attackers, even those with physical access,
 	from extracting data from non-volatile storage.
@@ -1651,29 +1644,28 @@ The following sections list Common Criteria and technology terms used in this do
 		
 <div class="comp" id="FCS_CKM.6"><h4>FCS_CKM.6 Timing and Event of Cryptographic Key Destruction</h4>
 	 
-          <div class="element"><div class="reqid" id="FCS_CKM.6.1"><a href="#FCS_CKM.6.1" class="abbr">FCS_CKM.6.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall destroy [<i>all plaintext keying material and critical security
-              parameters (CSPs)</i>] when 
-              [<b>selection</b>: <span class="selectable-content" id="_s_60">no longer needed</span>, <span class="selectable-content" id="_s_61">[<b>assignment</b>: 
+  <div class="element"><div class="reqid" id="FCS_CKM.6.1"><a href="#FCS_CKM.6.1" class="abbr">FCS_CKM.6.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall destroy [<i>all plaintext keying material and keying material</i>] when 
+      [<b>selection</b>: <span class="selectable-content" id="_s_60">no longer needed</span>, <span class="selectable-content" id="_s_61">[<b>assignment</b>: 
      <span class="assignable-content">other circumstances for destruction</span>]</span>].
-            </div></div>
-  
-  <div class="element"><div class="reqid" id="FCS_CKM.6.2"><a href="#FCS_CKM.6.2" class="abbr">FCS_CKM.6.2</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall destroy <b>plaintext</b> keying material <b>and critical security parameters</b> by 
-      implementing key destruction in accordance with the following rules: [<i><ul>
-        <li>For volatile memory, the destruction shall be executed by a single direct overwrite consisting of [<b>selection</b>: <span class="selectable-content" id="_s_62">a pseudo-random pattern using a <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> (as specified in <a href="#FCS_RBG.1">FCS_RBG.1</a>)</span>, <span class="selectable-content" id="_s_63">zeroes</span>]</li>
-        <li>For non-volatile EEPROM, the destruction shall be executed by a single direct overwrite consisting of a pseudo-random pattern using a 
-          <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> (as specified in <a href="#FCS_RBG.1">FCS_RBG.1</a>), followed by a read-verify.</li>
-        <li>For non-volatile flash memory, that is not wear-leveled, the destruction shall be executed by[<b>selection</b>: <span class="selectable-content" id="_s_64">a single direct overwrite consisting of zeros followed by a read-verify</span>, <span class="selectable-content" id="_s_65">a block erase that erases the reference to memory that stores data as well as the data itself</span>]
+    </div></div>
+  <div class="element"><div class="reqid" id="FCS_CKM.6.2"><a href="#FCS_CKM.6.2" class="abbr">FCS_CKM.6.2</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall destroy <b>plaintext</b> cryptographic keys and keying material specified by <a href="#FCS_CKM.6.1">FCS_CKM.6.1</a> in accordance with a specified cryptographic key destruction method
+      
+      [<i>in accordance with the following rules: <ul>
+        <li>For volatile memory, the destruction shall be executed by a single direct overwrite consisting of [<b>selection</b>: <span class="selectable-content" id="_s_62">a pseudo-random pattern using the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> or platform <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> (as specified in <a href="#FCS_RBG.1">FCS_RBG.1</a>)</span>, <span class="selectable-content" id="_s_63">zeroes</span>]</li>
+        <li>For non-volatile EEPROM, the destruction shall be executed by a single direct overwrite consisting of a pseudo-random pattern using the 
+          <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> or platform <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> (as specified in <a href="#FCS_RBG.1">FCS_RBG.1</a>), followed by a read-verify.</li>
+        <li>For non-volatile flash memory, that is not wear-leveled, the destruction shall be executed [<b>selection</b>: <span class="selectable-content" id="_s_64">by a single direct overwrite consisting of zeroes followed by a read-verify</span>, <span class="selectable-content" id="_s_65">by a block erase that erases the reference to memory that stores data as well as the data itself</span>]
         </li>
-        <li>For non-volatile flash memory that is wear-leveled, the destruction shall be executed by[<b>selection</b>: <span class="selectable-content" id="_s_66">a single direct overwrite consisting of zeros</span>, <span class="selectable-content" id="_s_67">a block erase</span>]</li>
+        <li>For non-volatile flash memory that is wear-leveled, the destruction shall be executed by a[<b>selection</b>: <span class="selectable-content" id="_s_66">single direct overwrite consisting of zeroes</span>, <span class="selectable-content" id="_s_67">block erase</span>]</li>
         <li>For non-volatile memory other than EEPROM and flash, the destruction shall be executed by a single direct overwrite with a random pattern that 
-          is changed before each write.</li></ul></i>]
+          is changed before each write</li></ul></i>]that meets the following: [<i>no standard</i>].
     <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
       <p>
       For the purposes of this requirement, keying material refers to authentication data, passwords, secret/private symmetric keys, private asymmetric keys, data used to derive keys, values derived from passwords, etc. “Plaintext keying material” may refer to a <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> that is used to encrypt other keying material. Destruction of encrypted keying material may be accomplished by destroying the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> used to encrypt it. If different mechanisms are used for destroying different keying material, all relevant claims should be selected and the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> should identify which keying material is destroyed by which mechanism. 
       </p><p>
-        Key storage areas in non-volatile storage can be overwritten with any value that renders the keys unrecoverable. The value used can be all zeroes, all ones, or any other pattern or combination of values significantly different than the value of the key itself. When ‘a value that does not contain any <abbr class="dyn-abbr"><a href="#abbr_CSP">CSP</a></abbr>’ is chosen, it means that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> uses some other specified data not drawn from a source that may contain keying material or reveal information about it or any other <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>-protected data. In other words, the data used for overwriting is carefully selected and not taken from a general ‘pool’ that might contain current or residual data that itself requires confidentiality protection. If multiple copies exist, all copies must be destroyed. 
+        Key storage areas in non-volatile storage can be overwritten with any value that renders the keys unrecoverable. The value used can be all zeroes, all ones, or any other pattern or combination of values significantly different than the value of the key itself. When ‘a value that does not contain any keying material’ is chosen, it means that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> uses some other specified data not drawn from a source that may contain keying material or reveal information about it or any other <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>-protected data. In other words, the data used for overwriting is carefully selected and not taken from a general ‘pool’ that might contain current or residual data that itself requires confidentiality protection. If multiple copies exist, all copies must be destroyed. 
       </p><p>
         Since this is a software-only <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the hardware controllers that manage non-volatile storage media are necessarily outside the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> boundary. Thus, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> developer is likely to have little control over—or insight into—the functioning of these storage devices. The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> must make a “best-effort” to destroy disused cryptographic keys by invoking the appropriate hardware interfaces—recognizing that the specific actions taken by the hardware are out of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s control. But in cases where the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> has insight into the non-volatile storage technologies used by the hardware, or where the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> can specify a preference or method for destroying keys, the destruction should be executed by a single, direct overwrite consisting of pseudorandom data or a new key, by a repeating pattern of any static value, or by a block erase.
       </p>
@@ -1685,7 +1677,7 @@ The following sections list Common Criteria and technology terms used in this do
       
     <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">
         <p>
-          The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> identifies all plaintext keying material and CSPs stored by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the type of memory in which it is stored, and when and how the keying material is erased. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> uses one or more KEKs to protect stored keying material, the evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes the destruction of that keying material, either directly or by destruction of the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> used to encrypt it.</p><p>
+          The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> identifies all plaintext keys and keying material stored by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the type of memory in which it is stored, and when and how the keying material is erased. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> uses one or more KEKs to protect stored keying material, the evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes the destruction of that keying material, either directly or by destruction of the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> used to encrypt it.</p><p>
             If different types of memory are used to store the materials to be protected, the evaluator shall check to ensure that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes the clearing procedure in terms of the memory in which the data are stored (for example, "secret keys stored on flash are cleared by overwriting once with zeros, while secret keys stored on the internal persistent storage device are cleared by overwriting one time with a random pattern that is changed before each write"). For block erases, the evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> identifies the block erase command that is used and shall verify that the command used also addresses any copies of the plaintext key material that may be created, e.g. in order to optimize the use of Flash memory.
           </p>    
       </div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">	      
@@ -9471,7 +9463,6 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selectio
 <tr><td><span class="term" id="abbr_CN"><abbr class="dyn-abbr"><a href="#abbr_CN">CN</a></abbr></span></td><td><span id="long_abbr_CN">Common Names</span></td></tr>
 <tr><td><span class="term" id="abbr_cPP" data-plural="cPPs"><abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr></span></td><td><span id="long_abbr_cPP">Collaborative Protection Profile</span></td></tr>
 <tr><td><span class="term" id="abbr_CRL"><abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr></span></td><td><span id="long_abbr_CRL">Certificate Revocation List</span></td></tr>
-<tr><td><span class="term" id="abbr_CSP"><abbr class="dyn-abbr"><a href="#abbr_CSP">CSP</a></abbr></span></td><td><span id="long_abbr_CSP">Critical Security Parameters</span></td></tr>
 <tr><td><span class="term" id="abbr_DEK" data-plural="DEKs"><abbr class="dyn-abbr"><a href="#abbr_DEK">DEK</a></abbr></span></td><td><span id="long_abbr_DEK">Data Encryption Key</span></td></tr>
 <tr><td><span class="term" id="abbr_DEP"><abbr class="dyn-abbr"><a href="#abbr_DEP">DEP</a></abbr></span></td><td><span id="long_abbr_DEP">Data Execution Prevention</span></td></tr>
 <tr><td><span class="term" id="abbr_DES"><abbr class="dyn-abbr"><a href="#abbr_DES">DES</a></abbr></span></td><td><span id="long_abbr_DES">Data Encryption Standard</span></td></tr>
