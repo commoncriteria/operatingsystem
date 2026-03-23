@@ -1595,7 +1595,7 @@ The following sections list Common Criteria and technology terms used in this do
                 <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes how the key is used as part of the key chain/hierarchy.
               </div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">
                 The evaluator shall verify that the AGD instructs the administrator how to configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to
-                use the <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> to generate symmetric keys for all uses identified in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
+                use the <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> to generate symmetric keys for all uses identified in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>.
               </div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
                 The following tests are conditional based upon the selections made in the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr>.
                 The evaluator shall perform the following test or witness respective tests 
@@ -1608,8 +1608,8 @@ The following sections list Common Criteria and technology terms used in this do
                 To test the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>’s ability to generate symmetric cryptographic keys using a 
                 random bit generator, the evaluator shall configure the symmetric cryptographic 
                 key generation capability for each claimed key size. The evaluator shall use the
-                description of the <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> interface to verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> requests and receives an
-                amount of <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> output greater than or equal to the requested key size.
+                description of the <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> interface to verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> requests and receives an
+                amount of <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> output greater than or equal to the requested key size.
               </div></div></div></div></div>
         
         <div class="comp" id="FCS_CKM.2"><h4>FCS_CKM.2 Cryptographic Key Distribution</h4><div class="statustag"><i><b>This is an implementation-based component.
@@ -2036,7 +2036,7 @@ The following sections list Common Criteria and technology terms used in this do
                 <li>Derive the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> from a Password Authentication Factor according to <a href="#FCS_CKM_EXT.8.1">FCS_CKM_EXT.8.1</a><b>
               </b> and </li>
               </ul>
-              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_92">Generate the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> using an <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> that meets this profile (as specified in
+              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_92">Generate the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> using a <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> that meets this profile (as specified in
               <a href="#FCS_RBG.1">FCS_RBG.1</a>)</span></li><li style=""><span class="selectable-content" id="_s_93">Generate the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> using a key generation scheme that meets this profile
               (as specified in FCS_CKM.1)</span></li><li style=""><span class="selectable-content" id="_s_94">Combine the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> from other KEKs in a way that preserves the effective
               entropy of each factor by [<b>selection</b>: <span class="selectable-content" id="_s_95">using an <abbr class="dyn-abbr"><a href="#abbr_XOR">XOR</a></abbr> operation</span>, <span class="selectable-content" id="_s_96">concatenating the keys and using a KDF (as described in SP
@@ -2047,7 +2047,7 @@ The following sections list Common Criteria and technology terms used in this do
     </span><span class="note">
             <p> The conditioning of passwords is performed in accordance with <a href="#FCS_CKM_EXT.8.1">FCS_CKM_EXT.8.1</a>.</p>
             <p>It is expected that key generation derived from
-              conditioning, using an <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> or generation scheme, and through combination, will each be
+              conditioning, using a <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> or generation scheme, and through combination, will each be
               necessary to meet the requirements set out in this document. 
               </p>
               <p>
@@ -2073,9 +2073,9 @@ The following sections list Common Criteria and technology terms used in this do
                 conditioning used to derive KEKs. This description must include the size and storage
                 location of salts. This activity may be performed in combination with that for
                 <a href="#FCS_CKM_EXT.8.1">FCS_CKM_EXT.8.1</a>.<br/><br/> (conditional) If the symmetric <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> is generated
-                by an <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr>, the evaluator shall review the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to determine that it describes how the
+                by a <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr>, the evaluator shall review the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to determine that it describes how the
                 functionality described by <a href="#FCS_RBG.1">FCS_RBG.1</a> is invoked. The evaluator uses the description
-                of the <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> functionality in <a href="#FCS_RBG.1">FCS_RBG.1</a> or documentation available for the operational
+                of the <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> functionality in <a href="#FCS_RBG.1">FCS_RBG.1</a> or documentation available for the operational
                 environment to determine that the key size being requested is greater than or equal
                 to the key size and mode to be used for the encryption/decryption of the data.<br/><br/>
                 (conditional) If the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> is generated according to an asymmetric key scheme, the
@@ -2595,7 +2595,7 @@ The following sections list Common Criteria and technology terms used in this do
                   <tr>
                     <td valign="top"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr>-GCM </td>
                     <td valign="top"><abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> in GCM mode with non-repeating IVs using 
-                      [<b>selection:</b> deterministic, <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr>-based] IV construction; 
+                      [<b>selection:</b> deterministic, <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr>-based] IV construction; 
                       the tag must be of length [<b>selection:</b> 96, 104, 112, 120, or 128] bits.</td>
                     <td valign="top">256 bits</td>
                     <td valign="top">
@@ -4302,8 +4302,6 @@ The following sections list Common Criteria and technology terms used in this do
                 </ul></span>
               </div></div></div></div></div>
 
-
-        
         
         <div class="comp" id="FCS_RBG.1"><h4>FCS_RBG.1 Random Bit Generation (RBG)</h4>
           <div class="element"><div class="reqid" id="FCS_RBG.1.1"><a href="#FCS_RBG.1.1" class="abbr">FCS_RBG.1.1</a></div><div class="reqdesc">
@@ -4318,7 +4316,7 @@ The following sections list Common Criteria and technology terms used in this do
                   
     [<b>selection</b>: 
     <span class="selectable-content">List of standards</span>]
-                  after initialization with a seed.<p></p><p></p><a onclick="showTarget('fcs-rbg-1-sels')" href="#fcs-rbg-1-sels" class="fcs-rbg-1-sels-ref">Table  <span class="counter">15</span></a> provides the allowable choices for
+                  after initialization.<p></p><p></p><a onclick="showTarget('fcs-rbg-1-sels')" href="#fcs-rbg-1-sels" class="fcs-rbg-1-sels-ref">Table  <span class="counter">15</span></a> provides the allowable choices for
                     completion of the selection operations of <a href="#FCS_RBG.1">FCS_RBG.1</a>.
                           
             <table><caption><span class="ctr" data-myid="fcs-rbg-1-sels" data-counter-type="ct-Table" id="fcs-rbg-1-sels">Table <span class="counter">15</span></span>: Allowable choices for <a href="#FCS_RBG.1.1">FCS_RBG.1.1</a></caption>
@@ -4351,37 +4349,38 @@ The following sections list Common Criteria and technology terms used in this do
               The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author will select the function used and include the specific underlying cryptographic primitives used in the requirement or in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr>.              
             </span></div></div></div>
           <div class="element"><div class="reqid" id="FCS_RBG.1.2"><a href="#FCS_RBG.1.2" class="abbr">FCS_RBG.1.2</a></div><div class="reqdesc">
-              The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall use a [<b>selection</b>: <span class="selectable-content" id="internal-seed"><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> noise source [<b>assignment</b>: 
-     <span class="assignable-content">name of noise source</span>]</span>, <span class="selectable-content" id="internal-seeds"><b>multiple <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> noise sources [<b>assignment</b>: 
-     <span class="assignable-content">names of noise sources</span>]</b></span>, <span class="selectable-content" id="external-seed"><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> interface for seeding</span>]
-              for initialized seeding.
+              The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall use a [<b>selection</b>: <span class="selectable-content" id="internal-seed"><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> entropy source [<b>assignment</b>: 
+     <span class="assignable-content">name of entropy source</span>]</span>, <span class="selectable-content" id="internal-seeds"><b>multiple <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> entropy sources [<b>assignment</b>: 
+     <span class="assignable-content">names of entropy sources</span>]</b></span>, <span class="selectable-content" id="external-seed"><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> interface for obtaining entropy</span>]
+              after initialization and reseeding.
             <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
               <p>
                 For the 
                 selection in this requirement, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects "<abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> noise source" if
-                a single noise source is used as input to the <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr>. The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects "multiple <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> noise sources" if a seed is formed from a combination of two or more noise sources within the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> boundary. If the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> implements two or more separate DRBGs that are seeded in separate manners, this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> should be iterated for each <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr>. If multiple distinct noise sources exist such that each <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> only uses one of them, then each iteration would select "<abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> noise source"; "multiple <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> noise sources" is only selected if a single <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> uses multiple noise sources for its seed. The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects "<abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> interface for seeding" if noise source data is generated outside the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> boundary.
+                a single entropy source is used as input to the <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr>. The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects "multiple <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> entropy sources" if a seed is formed from a combination of two or more entropy sources within the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> boundary. If the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> implements two or more separate DRBGs that are seeded in separate manners, this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> should be iterated for each <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr>. If multiple distinct entropy sources exist such that each <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> only uses one of them, then each iteration would select "<abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> entropy source"; "multiple <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> entropy sources" is only selected if a single <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> uses multiple entropy sources for its seed. The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects "<abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> interface for obtaining entropy" if entropy source data is generated outside the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> boundary.
               </p>
               <p>
-                If "<abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> noise source" is selected, <a href="#FCS_RBG.3">FCS_RBG.3</a> must be claimed.
+                If "<abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> entropy source" is selected, <a href="#FCS_RBG.3">FCS_RBG.3</a> must be claimed.
               </p>
               <p>
-                If "multiple <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> noise sources" is selected, <a href="#FCS_RBG.4">FCS_RBG.4</a> and <a href="#FCS_RBG.5">FCS_RBG.5</a> must be claimed. 
+                If "multiple <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> entropy sources" is selected, <a href="#FCS_RBG.4">FCS_RBG.4</a> and <a href="#FCS_RBG.5">FCS_RBG.5</a> must be claimed. 
               </p>
               <p>
-                If "<abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> interface for seeding" is selected, <a href="#FCS_RBG.2">FCS_RBG.2</a> must be claimed. 
+                If "<abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> interface for obtaining entropy" is selected, <a href="#FCS_RBG.2">FCS_RBG.2</a> must be claimed. 
               </p>
             </span></div></div></div>
           
           <div class="element"><div class="reqid" id="FCS_RBG.1.3"><a href="#FCS_RBG.1.3" class="abbr">FCS_RBG.1.3</a></div><div class="reqdesc">
-              The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall update the <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> state by [<b>selection</b>: <span class="selectable-content" id="_s_301">reseeding</span>, <span class="selectable-content" id="_s_302">uninstantiating and reinstantiating</span>] using a [<b>selection</b>: <span class="selectable-content" id="_s_303"><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> noise source [<b>assignment</b>: 
-     <span class="assignable-content">name of noise source</span>]</span>, <span class="selectable-content" id="_s_304"><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> interface for seeding</span>]
+              The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall update the <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> state by [<b>selection</b>: <span class="selectable-content" id="_s_301">reseeding</span>, <span class="selectable-content" id="_s_302">uninstantiating and reinstantiating</span>] using a [<b>selection</b>: <span class="selectable-content" id="_s_303"><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> entropy source [<b>assignment</b>: 
+     <span class="assignable-content">name of entropy source</span>]</span>, <span class="selectable-content" id="_s_304"><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> interface for obtaining entropy [<b>assignment</b>: 
+     <span class="assignable-content">name of the interface</span>]</span>]
               in the following situations: [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_305">never</span></li><li style=""><span class="selectable-content" id="_s_306">on demand</span></li><li style=""><span class="selectable-content" id="_s_307">on the condition: [<b>assignment</b>: 
      <span class="assignable-content">condition</span>]</span></li><li style=""><span class="selectable-content" id="_s_308">after [<b>assignment</b>: 
      <span class="assignable-content">time</span>]</span></li></ul>]
               in accordance with [<b>assignment</b>: 
-     <span class="assignable-content">list of standards</span>].
+     <span class="assignable-content">list of standards</span>]
             </div></div>
           
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="element-activity-header"><a href="#FCS_RBG.1.1">FCS_RBG.1.1</a></div>
@@ -4461,16 +4460,17 @@ The following sections list Common Criteria and technology terms used in this do
           
           <div class="element"><div class="reqid" id="FCS_RBG.2.1"><a href="#FCS_RBG.2.1" class="abbr">FCS_RBG.2.1</a></div><div class="reqdesc">
               The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be able to accept a minimum input of [<b>assignment</b>: 
-     <span class="assignable-content">minimum input length greater than zero</span>]
-              from a <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> interface for the purpose of seeding.
+     <span class="assignable-content">sufficient input length to ensure 256 bits of entropy</span>]
+              from a <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> interface for obtaining entropy.
             <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-              This requirement is claimed when a <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> is seeded with entropy from one or more noise source that is outside the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>
-              boundary. Typically the entropy produced by an environmental noise source is conditioned such that the input length has
+              This requirement is claimed when a <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> is seeded with entropy from one or more entropy sources that are outside the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>
+              boundary. Typically the entropy produced by an environmental entropy source is conditioned such that the input length has
               full entropy and is therefore  usable as the seed. However, if this is not the case, it should be noted what the minimum
-              entropy rate of the noise source is so that the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> can collect a sufficiently large sample of noise data to be
-              conditioned into a seed value.
+              entropy rate of the entropy source is so that the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> can collect a sufficiently large sample of entropy data to be
+              conditioned into a seed value.<br/><br/>
+              This requirement is claimed if "<abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> interface for obtaining entropy" is selected in <a href="#FCS_RBG.1.2">FCS_RBG.1.2</a>. 
             </span></div></div></div>
           
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_RBG.2">FCS_RBG.2</a></div>
@@ -4490,17 +4490,16 @@ The following sections list Common Criteria and technology terms used in this do
       </i></b></div>
           
           <div class="element"><div class="reqid" id="FCS_RBG.3.1"><a href="#FCS_RBG.3.1" class="abbr">FCS_RBG.3.1</a></div><div class="reqdesc">
-              The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be able to seed the <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> using a [<i><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> software-based noise source</i>] [<b>assignment</b>: 
-     <span class="assignable-content">name of noise source</span>]
-              with a minimum of [<b>assignment</b>: 
-     <span class="assignable-content">number of bits</span>] bits of min-entropy.
+              The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be able to seed the <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> using a [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_309"><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> software-based entropy source</span>, <span class="selectable-content" id="_s_310"><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> hardware-based entropy source</span>]  [<b>assignment</b>: 
+     <span class="assignable-content">name of entropy source</span>]
+              with [<i>a minimum of [<b>selection</b>: <span class="selectable-content" id="_s_311">256</span>, <span class="selectable-content" id="_s_312">384</span>]</i>] bits of min-entropy.
             <div class="appnote"><span class="note-header">Application
       Note:
-    </span><span class="note">This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is claimed when the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author claims "<abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> noise source..." in <a href="#FCS_RBG.1.2">FCS_RBG.1.2</a>. Since this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> defines the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> as software, it does not have any hardware components and therefore would only claim a software-based noise source here. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> obtains seed material from a hardware component, this is specified using <a href="#FCS_RBG.2">FCS_RBG.2</a>. Min-entropy should be expressed as a ratio of entropy bits to sampled bits so that the total amount of data needed to ensure full entropy is known, as well as the conditioning function by which that data is reduced in size to the seed.</span></div></div></div>
+    </span><span class="note">This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is claimed when the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author claims "<abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> entropy source..." in <a href="#FCS_RBG.1.2">FCS_RBG.1.2</a>. Since this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> defines the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> as software, it does not have any hardware components and therefore would only claim a software-based entropy source here. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> obtains seed material from a hardware component, this is specified using <a href="#FCS_RBG.2">FCS_RBG.2</a>. Min-entropy should be expressed as a ratio of entropy bits to sampled bits so that the total amount of data needed to ensure full entropy is known, as well as the conditioning function by which that data is reduced in size to the seed.</span></div></div></div>
           
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_RBG.3">FCS_RBG.3</a></div>
               <p>
-                The evaluator shall examine the entropy documentation required by <a href="#FCS_RBG.1.2">FCS_RBG.1.2</a> to verify that it identifies, for each <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> function implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> noise source used to seed the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr>. The evaluator shall verify that this includes the amount of sampled data and the min-entropy rate of the sampled data such that it can be determined that sufficient entropy can be made available for the highest strength keys that the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> can generate (e.g., 256 bits). If the seed data cannot be assumed to have full entropy (e.g., the min-entropy of the sampled bits is less than 1), the evaluator shall ensure that the entropy documentation describes the method by which the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> estimates the amount of entropy that has been accumulated to ensure that sufficient data is collected and any conditioning that the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> applies to the output data to create a seed of sufficient size with full entropy.
+                The evaluator shall examine the entropy documentation required by <a href="#FCS_RBG.1.2">FCS_RBG.1.2</a> to verify that it identifies, for each <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> function implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> entropy source used to seed the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr>. The evaluator shall verify that this includes the amount of sampled data and the min-entropy rate of the sampled data such that it can be determined that sufficient entropy can be made available for the highest strength keys that the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> can generate (e.g., 256 bits). If the seed data cannot be assumed to have full entropy (e.g., the min-entropy of the sampled bits is less than 1), the evaluator shall ensure that the entropy documentation describes the method by which the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> estimates the amount of entropy that has been accumulated to ensure that sufficient data is collected and any conditioning that the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> applies to the output data to create a seed of sufficient size with full entropy.
               </p>
               
               
@@ -4515,17 +4514,18 @@ The following sections list Common Criteria and technology terms used in this do
       </i></b></div>
           
           <div class="element"><div class="reqid" id="FCS_RBG.4.1"><a href="#FCS_RBG.4.1" class="abbr">FCS_RBG.4.1</a></div><div class="reqdesc">
-              The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be able to seed the <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> using [<i>[<b>assignment</b>: 
-     <span class="assignable-content">number</span>] <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> software-based noise sources]</i>.
+              The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be able to seed the <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> using [<b>selection</b>: <span class="selectable-content" id="_s_313">[<b>assignment</b>: 
+     <span class="assignable-content">number</span>] <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> software-based entropy source(s)</span>, <span class="selectable-content" id="_s_314">[<b>assignment</b>: 
+     <span class="assignable-content">number</span>] <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> hardware-based entropy source(s)</span>].
             <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-              This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is claimed when the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author claims "multiple <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> noise sources..." in <a href="#FCS_RBG.1.2">FCS_RBG.1.2</a>. Since this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> defines the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> as software, it does not have any hardware components and therefore would only claim software-based noise sources here. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> obtains seed material from any hardware components, this is specified using <a href="#FCS_RBG.2">FCS_RBG.2</a>. <a href="#FCS_RBG.5">FCS_RBG.5</a> defines the mechanism by which all sources are combined to ensure sufficient minimum entropy.
+              This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is claimed when the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author claims "multiple <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> entropy sources..." in <a href="#FCS_RBG.1.2">FCS_RBG.1.2</a>. Since this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> defines the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> as software, it does not have any hardware components and therefore would only claim software-based entropy sources here. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> obtains seed material from any hardware components, this is specified using <a href="#FCS_RBG.2">FCS_RBG.2</a>. <a href="#FCS_RBG.5">FCS_RBG.5</a> defines the mechanism by which all sources are combined to ensure sufficient minimum entropy.
             </span></div></div></div>
           
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_RBG.4">FCS_RBG.4</a></div>
               <p>
-                The evaluator shall examine the entropy documentation required by <a href="#FCS_RBG.1.2">FCS_RBG.1.2</a> to verify that it identifies, for each <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> function implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, each <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> noise source used to seed the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr>. The evaluator shall verify that this includes the amount of sampled data and the min-entropy rate of the sampled data from each data source.
+                The evaluator shall examine the entropy documentation required by <a href="#FCS_RBG.1.2">FCS_RBG.1.2</a> to verify that it identifies, for each <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> function implemented by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, each <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> entropy source used to seed the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr>. The evaluator shall verify that this includes the amount of sampled data and the min-entropy rate of the sampled data from each data source.
               </p>
               
               
@@ -4535,22 +4535,20 @@ The following sections list Common Criteria and technology terms used in this do
 			There are no additional Guidance evaluation activities for this component.<br/></div><div class="eacategory">Tests</div><div class="ea">
 			There are no test activities for this component.<br/></div></div></div></div>
         
-        <div class="comp" id="FCS_RBG.5"><h4>FCS_RBG.5 Random Bit Generation (Combining Noise Sources)</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
+        <div class="comp" id="FCS_RBG.5"><h4>FCS_RBG.5 Random Bit Generation (Combining Entropy Sources)</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
 	  <a href="#FCS_RBG.1.2">FCS_RBG.1.2</a>.
       </i></b></div>
           
           <div class="element"><div class="reqid" id="FCS_RBG.5.1"><a href="#FCS_RBG.5.1" class="abbr">FCS_RBG.5.1</a></div><div class="reqdesc">
               The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>assignment</b>: 
-     <span class="assignable-content">combining operation</span>] [<b>selection</b>: <span class="selectable-content" id="_s_309">output from <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> noise source(s)</span>, <span class="selectable-content" id="_s_310">input from <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> interface(s) for seeding</span>]
-              to create the entropy input into the derivation function as defined in [<b>assignment</b>: 
-     <span class="assignable-content">list of standards</span>], resulting
-              in a minimum of [<b>assignment</b>: 
-     <span class="assignable-content">number of bits</span>] bits of min-entropy.              
+     <span class="assignable-content">combining operation</span>] [<b>selection</b>: <span class="selectable-content" id="_s_315">output from <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> entropy source(s)</span>, <span class="selectable-content" id="_s_316">input from <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> interface(s) for obtaining entropy</span>]
+              resulting in a minimum of [<i>[<b>selection</b>: <span class="selectable-content" id="_s_317">256</span>, <span class="selectable-content" id="_s_318">384</span>]</i>] bits of min-entropy to create the entropy input into the derivation function as defined in [<b>assignment</b>: 
+     <span class="assignable-content">list of standards</span>].         
             </div></div>
           
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_RBG.5">FCS_RBG.5</a></div>
               <p>
-                Using the entropy sources specified in <a href="#FCS_RBG.4">FCS_RBG.4</a>, the evaluator shall examine the entropy documentation required by <a href="#FCS_RBG.1.2">FCS_RBG.1.2</a> to verify that it describes the method by which the various entropy sources are combined into a single seed. This should include an estimation of the rate at which each noise source outputs data and whether this is dependent on any system-specific factors so that each source's relative contribution to the overall entropy is understood. The evaluator shall verify that the resulting combination of sampled data and the min-entropy rate of the sampled data is described in sufficient detail to determine that sufficient entropy can be made available for the highest strength keys that the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> can generate (e.g., 256 bits). If the seed data cannot be assumed to have full entropy (e.g., the min-entropy of the sampled bits is less than 1), the evaluator shall ensure that the entropy documentation describes the method by which the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> estimates the amount of entropy that has been accumulated to ensure that sufficient data is collected and any conditioning that the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> applies to the output data to create a seed of sufficient size with full entropy.
+                Using the entropy sources specified in <a href="#FCS_RBG.4">FCS_RBG.4</a>, the evaluator shall examine the entropy documentation required by <a href="#FCS_RBG.1.2">FCS_RBG.1.2</a> to verify that it describes the method by which the various entropy sources are combined into a single seed. This should include an estimation of the rate at which each entropy source outputs data and whether this is dependent on any system-specific factors so that each source's relative contribution to the overall entropy is understood. The evaluator shall verify that the resulting combination of sampled data and the min-entropy rate of the sampled data is described in sufficient detail to determine that sufficient entropy can be made available for the highest strength keys that the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> can generate (e.g., 256 bits). If the seed data cannot be assumed to have full entropy (e.g., the min-entropy of the sampled bits is less than 1), the evaluator shall ensure that the entropy documentation describes the method by which the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> estimates the amount of entropy that has been accumulated to ensure that sufficient data is collected and any conditioning that the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> applies to the output data to create a seed of sufficient size with full entropy.
               </p>
               
               
@@ -4562,21 +4560,19 @@ The following sections list Common Criteria and technology terms used in this do
         
         <div class="comp" id="FCS_RBG.6"><h4>FCS_RBG.6 Random Bit Generation Service</h4><div class="statustag"><i><b>This is an optional component. However, applied modules or packages might redefine it as mandatory.</b></i></div>
           <div class="element"><div class="reqid" id="FCS_RBG.6.1"><a href="#FCS_RBG.6.1" class="abbr">FCS_RBG.6.1</a></div><div class="reqdesc">
-              The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall provide a [<b>selection</b>: <span class="selectable-content" id="_s_311">hardware</span>, <span class="selectable-content" id="_s_312">software</span>, <span class="selectable-content" id="_s_313">[<b>assignment</b>: 
+              The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall provide a [<b>selection</b>: <span class="selectable-content" id="_s_319">hardware</span>, <span class="selectable-content" id="_s_320">software</span>, <span class="selectable-content" id="_s_321">[<b>assignment</b>: 
      <span class="assignable-content">other interface type</span>]</span>] 
-              interface to make the <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> output, as specified in <a href="#FCS_RBG.1">FCS_RBG.1</a> Random bit generation (<abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr>),
+              interface to make the output, as specified in <a href="#FCS_RBG.1">FCS_RBG.1</a> Random bit generation (<abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr>),
               available as a service to entities outside of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.
-            <div class="appnote"><span class="note-header">Application
-      Note:
-    </span><span class="note">This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is defined for the case where an operating system includes a mechanism for e.g. an application or a virtualization system running on the operating system to obtain random bits from the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, whether those bits are generated by the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> or the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> provides an interface for the third party to access a hardware interface on the platform.</span></div></div></div>
+            </div></div>
           
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_RBG.6">FCS_RBG.6</a></div>              
-            
-            
-            
-          <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">
-              The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> identifies the interface that the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> makes available for calling applications to obtain <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> output. 
-            </div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">The evaluator shall verify that the guidance documentation includes an <abbr class="dyn-abbr"><a href="#abbr_API">API</a></abbr> specification for the random bit generation service such that it is clear how a calling application is able to obtain <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> output from the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">The evaluator shall invoke the <abbr class="dyn-abbr"><a href="#abbr_API">API</a></abbr> specified by the guidance documentation to determine that the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> provides <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> output upon proper invocation of the <abbr class="dyn-abbr"><a href="#abbr_API">API</a></abbr>.</div></div></div></div></div>
+              
+              
+              
+            <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">
+                The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> identifies the interface that the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> makes available for calling applications to obtain output. 
+              </div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">The evaluator shall verify that the guidance documentation includes an <abbr class="dyn-abbr"><a href="#abbr_API">API</a></abbr> specification for the random bit generation service such that it is clear how a calling application is able to obtain output from the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">The evaluator shall invoke the <abbr class="dyn-abbr"><a href="#abbr_API">API</a></abbr> specified by the guidance documentation to determine that the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> provides output upon proper invocation of the <abbr class="dyn-abbr"><a href="#abbr_API">API</a></abbr>.</div></div></div></div></div>
 
         
 
@@ -4596,7 +4592,7 @@ The following sections list Common Criteria and technology terms used in this do
 
           
           <div class="element"><div class="reqid" id="FCS_STG_EXT.1.1"><a href="#FCS_STG_EXT.1.1" class="abbr">FCS_STG_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall provide [<b>selection</b>: <span class="selectable-content" id="s-mutable-hardware">mutable hardware</span>, <span class="selectable-content" id="s-software-store">software-based</span>]
-              secure key storage for asymmetric private keys and [<b>selection</b>: <span class="selectable-content" id="_s_316">symmetric keys</span>, <span class="selectable-content" id="_s_317">persistent secrets</span>, <span class="selectable-content" id="_s_318">no other keys</span>].<div class="appnote"><span class="note-header">Application
+              secure key storage for asymmetric private keys and [<b>selection</b>: <span class="selectable-content" id="_s_324">symmetric keys</span>, <span class="selectable-content" id="_s_325">persistent secrets</span>, <span class="selectable-content" id="_s_326">no other keys</span>].<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">A hardware keystore can be exposed to the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> through a variety
               of interfaces, including embedded on the motherboard, <abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr>, microSD, and Bluetooth. <br/><br/>
@@ -4617,23 +4613,23 @@ The following sections list Common Criteria and technology terms used in this do
           
           <div class="element"><div class="reqid" id="FCS_STG_EXT.1.2"><a href="#FCS_STG_EXT.1.2" class="abbr">FCS_STG_EXT.1.2</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be capable of importing keys or secrets into the secure key storage
               upon request of the administrator and 
-              [<b>selection</b>: <span class="selectable-content" id="import-user">the user</span>, <span class="selectable-content" id="_s_320">applications running on the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></span>, <span class="selectable-content" id="_s_321">no other subjects</span>]
+              [<b>selection</b>: <span class="selectable-content" id="import-user">the user</span>, <span class="selectable-content" id="_s_328">applications running on the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></span>, <span class="selectable-content" id="_s_329">no other subjects</span>]
               . </div></div>
           
           <div class="element"><div class="reqid" id="FCS_STG_EXT.1.3"><a href="#FCS_STG_EXT.1.3" class="abbr">FCS_STG_EXT.1.3</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be capable of destroying keys or secrets in the secure key storage
               upon request of the administrator and 
-              [<b>selection</b>: <span class="selectable-content" id="_s_322">the user</span>, <span class="selectable-content" id="_s_323">no other subjects</span>]. </div></div>
+              [<b>selection</b>: <span class="selectable-content" id="_s_330">the user</span>, <span class="selectable-content" id="_s_331">no other subjects</span>]. </div></div>
           
           <div class="element"><div class="reqid" id="FCS_STG_EXT.1.4"><a href="#FCS_STG_EXT.1.4" class="abbr">FCS_STG_EXT.1.4</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall have the capability to allow only the application that imported the
               key or secret the use of the key or secret. Exceptions may only be explicitly
-              authorized by [<b>selection</b>: <span class="selectable-content" id="_s_324">the user</span>, <span class="selectable-content" id="_s_325">the administrator</span>, <span class="selectable-content" id="_s_326">a common application developer</span>]. <div class="appnote"><span class="note-header">Application
+              authorized by [<b>selection</b>: <span class="selectable-content" id="_s_332">the user</span>, <span class="selectable-content" id="_s_333">the administrator</span>, <span class="selectable-content" id="_s_334">a common application developer</span>]. <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> selects <a href="#import-user">the user</a> or <a href="#s-import-admin" class="dynref" data-format=""></a>, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must also select <a href="#mf-sharedKeys">34</a>
               in <a href="#FMT_SMF_EXT.1.1">FMT_SMF_EXT.1.1</a>.</span></div></div></div>
           
           <div class="element"><div class="reqid" id="FCS_STG_EXT.1.5"><a href="#FCS_STG_EXT.1.5" class="abbr">FCS_STG_EXT.1.5</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall allow only the application that imported the key or secret to
               request that the key or secret be destroyed. Exceptions may only be explicitly
-              authorized by [<b>selection</b>: <span class="selectable-content" id="s-killkey-user">the user</span>, <span class="selectable-content" id="s-killkey-admin">the administrator</span>, <span class="selectable-content" id="_s_329">a common application developer</span>]. <div class="appnote"><span class="note-header">Application
+              authorized by [<b>selection</b>: <span class="selectable-content" id="s-killkey-user">the user</span>, <span class="selectable-content" id="s-killkey-admin">the administrator</span>, <span class="selectable-content" id="_s_337">a common application developer</span>]. <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">If the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> selects <a href="#s-killkey-user">the user</a> or <a href="#s-killkey-admin">the administrator</a>, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author must also select function <a href="#mf-keyWipeRules">35</a> in <a href="#FMT_SMF_EXT.1.1">FMT_SMF_EXT.1.1</a>.</span></div><div class="validationguidelines_label">Validation Guidelines:</div><p></p><b><a href="#r-killkey-user-mf">Rule #4</a></b><p></p><b><a href="#r-killkey-admin-mf">Rule #5</a></b></div></div>
           
@@ -4730,9 +4726,9 @@ The following sections list Common Criteria and technology terms used in this do
 
           <div class="element"><div class="reqid" id="FCS_STG_EXT.2.1"><a href="#FCS_STG_EXT.2.1" class="abbr">FCS_STG_EXT.2.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall encrypt all <abbr class="dyn-abbr"><a href="#abbr_DEK">DEKs</a></abbr>, KEKs, [<b>assignment</b>: 
      <span class="assignable-content">any long-term trusted channel
-              key material</span>] and [<b>selection</b>: <span class="selectable-content" id="s-all-software-key-store">all software-based key storage</span>, <span class="selectable-content" id="_s_333">no other keys</span>]
-              by KEKs that are [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_334">Protected by the <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr> with [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_335">encryption by a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr></span></li><li style=""><span class="selectable-content" id="_s_336">encryption by a <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> chaining from a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr></span></li><li style=""><span class="selectable-content" id="_s_337">encryption by a <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> that is derived from a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr></span></li></ul>]</span></li><li style=""><span class="selectable-content" id="_s_338">Protected by the <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr> and the password with [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_339">encryption by a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr> and the password-derived <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr></span></li><li style=""><span class="selectable-content" id="_s_340">encryption by a <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> chaining to a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr> and the password-derived or
-              biometric-unlocked <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr></span></li><li style=""><span class="selectable-content" id="_s_341">encryption by a <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> that is derived from a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr> and the
+              key material</span>] and [<b>selection</b>: <span class="selectable-content" id="s-all-software-key-store">all software-based key storage</span>, <span class="selectable-content" id="_s_341">no other keys</span>]
+              by KEKs that are [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_342">Protected by the <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr> with [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_343">encryption by a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr></span></li><li style=""><span class="selectable-content" id="_s_344">encryption by a <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> chaining from a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr></span></li><li style=""><span class="selectable-content" id="_s_345">encryption by a <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> that is derived from a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr></span></li></ul>]</span></li><li style=""><span class="selectable-content" id="_s_346">Protected by the <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr> and the password with [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_347">encryption by a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr> and the password-derived <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr></span></li><li style=""><span class="selectable-content" id="_s_348">encryption by a <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> chaining to a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr> and the password-derived or
+              biometric-unlocked <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr></span></li><li style=""><span class="selectable-content" id="_s_349">encryption by a <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> that is derived from a <abbr class="dyn-abbr"><a href="#abbr_REK">REK</a></abbr> and the
               password-derived or biometric-unlocked <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr></span></li></ul>]</span></li></ul>]
               .<div class="appnote"><span class="note-header">Application
       Note:
@@ -4755,8 +4751,8 @@ The following sections list Common Criteria and technology terms used in this do
               </span></div><div class="validationguidelines_label">Validation Guidelines:</div><p></p><b><a href="#r-store">Rule #3</a></b></div></div>
           <div class="element"><div class="reqid" id="FCS_STG_EXT.2.2"><a href="#FCS_STG_EXT.2.2" class="abbr">FCS_STG_EXT.2.2</a></div><div class="reqdesc"><abbr class="dyn-abbr"><a href="#abbr_DEK">DEKs</a></abbr>, KEKs, [<b>assignment</b>: 
      <span class="assignable-content">any long-term trusted channel key material</span>]
-              and [<b>selection</b>: <span class="selectable-content" id="_s_342">all software-based key storage</span>, <span class="selectable-content" id="_s_343">no other keys</span>]
-              shall be encrypted using one of the following methods: [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_344">using a SP800-56B key establishment scheme</span></li><li style=""><span class="selectable-content" id="_s_345">using <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> in the [<b>selection</b>: <span class="selectable-content" id="_s_346">Key Wrap (KW) mode</span>, <span class="selectable-content" id="_s_347">Key Wrap with Padding (KWP) mode</span>, <span class="selectable-content" id="_s_348">GCM</span>, <span class="selectable-content" id="_s_349">CCM</span>, <span class="selectable-content" id="_s_350">CBC mode</span>]</span></li></ul>]
+              and [<b>selection</b>: <span class="selectable-content" id="_s_350">all software-based key storage</span>, <span class="selectable-content" id="_s_351">no other keys</span>]
+              shall be encrypted using one of the following methods: [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_352">using a SP800-56B key establishment scheme</span></li><li style=""><span class="selectable-content" id="_s_353">using <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> in the [<b>selection</b>: <span class="selectable-content" id="_s_354">Key Wrap (KW) mode</span>, <span class="selectable-content" id="_s_355">Key Wrap with Padding (KWP) mode</span>, <span class="selectable-content" id="_s_356">GCM</span>, <span class="selectable-content" id="_s_357">CCM</span>, <span class="selectable-content" id="_s_358">CBC mode</span>]</span></li></ul>]
               . <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects which key encryption schemes are used by
@@ -4927,10 +4923,10 @@ The following sections list Common Criteria and technology terms used in this do
           
           
           <div class="element"><div class="reqid" id="FDP_IFC_EXT.1.1"><a href="#FDP_IFC_EXT.1.1" class="abbr">FDP_IFC_EXT.1.1</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall
-	    [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_351">provide an interface which allows a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client to protect all <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic using IPsec</span></li><li style=""><span class="selectable-content" id="s-provides-vpnclient">provide a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client that can protect all <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic using IPsec</span></li></ul>]
+	    [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_359">provide an interface which allows a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client to protect all <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic using IPsec</span></li><li style=""><span class="selectable-content" id="s-provides-vpnclient">provide a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client that can protect all <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic using IPsec</span></li></ul>]
 	    with the exception of <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic required to establish the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> connection
 	    and
-	    [<b>selection</b>: <span class="selectable-content" id="_s_353">signed updates directly from the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor</span>, <span class="selectable-content" id="_s_354">no other traffic</span>]
+	    [<b>selection</b>: <span class="selectable-content" id="_s_361">signed updates directly from the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor</span>, <span class="selectable-content" id="_s_362">no other traffic</span>]
 	   .
             <div class="appnote"><span class="note-header">Application
       Note:
@@ -5033,7 +5029,7 @@ The following sections list Common Criteria and technology terms used in this do
                 <li>Obtain network access</li>
               </ul>
             </span></div></div></div>
-          <div class="element"><div class="reqid" id="FDP_ACF_EXT.2.2"><a href="#FDP_ACF_EXT.2.2" class="abbr">FDP_ACF_EXT.2.2</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall provide an access control policy that prevents [<b>selection</b>: <span class="selectable-content" id="s-fdp-app">application</span>, <span class="selectable-content" id="fdp_group">groups of applications</span>] from accessing [<b>selection</b>: <span class="selectable-content" id="_s_357">all</span>, <span class="selectable-content" id="s-private">private</span>] data stored by other [<b>selection</b>: <span class="selectable-content" id="_s_359">application</span>, <span class="selectable-content" id="_s_360">groups of applications</span>]. Exceptions may only be explicitly authorized for such sharing by [<b>selection</b>: <span class="selectable-content" id="s-acl-user">the user</span>, <span class="selectable-content" id="s-acl-admin">the administrator</span>, <span class="selectable-content" id="s-acl-devel">a common application developer</span>, <span class="selectable-content" id="_s_364">no one</span>]. <div class="appnote"><span class="note-header">Application
+          <div class="element"><div class="reqid" id="FDP_ACF_EXT.2.2"><a href="#FDP_ACF_EXT.2.2" class="abbr">FDP_ACF_EXT.2.2</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall provide an access control policy that prevents [<b>selection</b>: <span class="selectable-content" id="s-fdp-app">application</span>, <span class="selectable-content" id="fdp_group">groups of applications</span>] from accessing [<b>selection</b>: <span class="selectable-content" id="_s_365">all</span>, <span class="selectable-content" id="s-private">private</span>] data stored by other [<b>selection</b>: <span class="selectable-content" id="_s_367">application</span>, <span class="selectable-content" id="_s_368">groups of applications</span>]. Exceptions may only be explicitly authorized for such sharing by [<b>selection</b>: <span class="selectable-content" id="s-acl-user">the user</span>, <span class="selectable-content" id="s-acl-admin">the administrator</span>, <span class="selectable-content" id="s-acl-devel">a common application developer</span>, <span class="selectable-content" id="_s_372">no one</span>]. <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">Application groups may be designated Enterprise or Personal.
               Applications installed by the user default to being in the Personal application group
@@ -5145,11 +5141,11 @@ The following sections list Common Criteria and technology terms used in this do
           
           
           
-          <div class="element"><div class="reqid" id="FDP_ACF_EXT.3.1"><a href="#FDP_ACF_EXT.3.1" class="abbr">FDP_ACF_EXT.3.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall provide a separate [<b>selection</b>: <span class="selectable-content" id="_s_367">address book</span>, <span class="selectable-content" id="_s_368">calendar</span>, <span class="selectable-content" id="_s_369">keystore</span>, <span class="selectable-content" id="_s_370">account credential database, [<b>assignment</b>: 
+          <div class="element"><div class="reqid" id="FDP_ACF_EXT.3.1"><a href="#FDP_ACF_EXT.3.1" class="abbr">FDP_ACF_EXT.3.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall provide a separate [<b>selection</b>: <span class="selectable-content" id="_s_375">address book</span>, <span class="selectable-content" id="_s_376">calendar</span>, <span class="selectable-content" id="_s_377">keystore</span>, <span class="selectable-content" id="_s_378">account credential database, [<b>assignment</b>: 
      <span class="assignable-content">list of additional
                     resources</span>]</span>] for each application group and only allow applications within that
               process group to access the resource. Exceptions may only be explicitly authorized for
-              such sharing by [<b>selection</b>: <span class="selectable-content" id="_s_371">the user</span>, <span class="selectable-content" id="_s_372">the administrator</span>, <span class="selectable-content" id="_s_373">no one</span>]. <div class="appnote"><span class="note-header">Application
+              such sharing by [<b>selection</b>: <span class="selectable-content" id="_s_379">the user</span>, <span class="selectable-content" id="_s_380">the administrator</span>, <span class="selectable-content" id="_s_381">no one</span>]. <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">If <a href="#fdp_group">groups of applications</a> is selected in <a href="#FDP_ACF_EXT.2.2">FDP_ACF_EXT.2.2</a>, 
               <a href="#FDP_ACF_EXT.3">FDP_ACF_EXT.3</a> must be included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>. </span></div></div></div>
@@ -5170,25 +5166,25 @@ The following sections list Common Criteria and technology terms used in this do
                 as described in Appendix A.3: Implementation-based Requirements.
                </b></i></div>
         
-          <div class="element"><div class="reqid" id="FDP_UPC_EXT.1.1/APPS"><a href="#FDP_UPC_EXT.1.1/APPS" class="abbr">FDP_UPC_EXT.1.1/APPS</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall provide a means for non-TSF applications executing on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to use [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_374">Mutually authenticated <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as conforming to the <a href="https://www.niap-ccevs.org/static_html/protection-profile/439/-439-/index.html">Functional Package for Transport Layer Security (TLS),
+          <div class="element"><div class="reqid" id="FDP_UPC_EXT.1.1/APPS"><a href="#FDP_UPC_EXT.1.1/APPS" class="abbr">FDP_UPC_EXT.1.1/APPS</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall provide a means for non-TSF applications executing on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to use [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_382">Mutually authenticated <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as conforming to the <a href="https://www.niap-ccevs.org/static_html/protection-profile/439/-439-/index.html">Functional Package for Transport Layer Security (TLS),
         version 
         2.1</a> as a client
-    	  	    </span></li><li style=""><span class="selectable-content" id="_s_375"><abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr></span></li></ul>]
-      	        and [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_376">Mutually authenticated <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as conforming to the <a href="https://www.niap-ccevs.org/static_html/protection-profile/439/-439-/index.html">Functional Package for Transport Layer Security (TLS),
+    	  	    </span></li><li style=""><span class="selectable-content" id="_s_383"><abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr></span></li></ul>]
+      	        and [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_384">Mutually authenticated <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as conforming to the <a href="https://www.niap-ccevs.org/static_html/protection-profile/439/-439-/index.html">Functional Package for Transport Layer Security (TLS),
         version 
         2.1</a> as a server
-    	  	    </span></li><li style=""><span class="selectable-content" id="_s_377"><abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as conforming to the <a href="https://www.niap-ccevs.org/static_html/protection-profile/439/-439-/index.html">Functional Package for Transport Layer Security (TLS),
+    	  	    </span></li><li style=""><span class="selectable-content" id="_s_385"><abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> as conforming to the <a href="https://www.niap-ccevs.org/static_html/protection-profile/439/-439-/index.html">Functional Package for Transport Layer Security (TLS),
         version 
         2.1</a> as a
-    	  	        [<b>selection</b>: <span class="selectable-content" id="_s_378">client</span>, <span class="selectable-content" id="_s_379">server</span>]</span></li><li style=""><span class="selectable-content" id="_s_380"><abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as conforming to the <a href="https://www.niap-ccevs.org/static_html/protection-profile/439/-439-/index.html">Functional Package for Transport Layer Security (TLS),
+    	  	        [<b>selection</b>: <span class="selectable-content" id="_s_386">client</span>, <span class="selectable-content" id="_s_387">server</span>]</span></li><li style=""><span class="selectable-content" id="_s_388"><abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as conforming to the <a href="https://www.niap-ccevs.org/static_html/protection-profile/439/-439-/index.html">Functional Package for Transport Layer Security (TLS),
         version 
         2.1</a> as a
-    	  	    [<b>selection</b>: <span class="selectable-content" id="_s_381">client</span>, <span class="selectable-content" id="_s_382">server</span>]</span></li><li style=""><span class="selectable-content" id="s-upc-ipsec">IPsec as defined in the <a href="https://www.niap-ccevs.org/protectionprofiles/487">PP-Module for Virtual Private Network (VPN) Clients,
+    	  	    [<b>selection</b>: <span class="selectable-content" id="_s_389">client</span>, <span class="selectable-content" id="_s_390">server</span>]</span></li><li style=""><span class="selectable-content" id="s-upc-ipsec">IPsec as defined in the <a href="https://www.niap-ccevs.org/protectionprofiles/487">PP-Module for Virtual Private Network (VPN) Clients,
         version 
-        3.0</a></span></li><li style=""><span class="selectable-content" id="_s_384">SSH as conforming to the <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH),
+        3.0</a></span></li><li style=""><span class="selectable-content" id="_s_392">SSH as conforming to the <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH),
         version 
         2.0</a> as a
-      	          [<b>selection</b>: <span class="selectable-content" id="_s_385">client</span>, <span class="selectable-content" id="_s_386">server</span>]</span></li><li style=""><span class="selectable-content" id="_s_387">no other protocols</span></li></ul>] to provide a protected communication channel between the non-TSF
+      	          [<b>selection</b>: <span class="selectable-content" id="_s_393">client</span>, <span class="selectable-content" id="_s_394">server</span>]</span></li><li style=""><span class="selectable-content" id="_s_395">no other protocols</span></li></ul>] to provide a protected communication channel between the non-TSF
               application and another <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr> product that is logically distinct from other communication
               channels, provides assured identification of its end points, protects channel data
               from disclosure, and detects modification of the channel data. <div class="appnote"><span class="note-header">Application
@@ -5249,14 +5245,14 @@ The following sections list Common Criteria and technology terms used in this do
         <div class="comp" id="FIA_AFL.1"><h4>FIA_AFL.1 Authentication Failure Handling</h4>
           <div class="element"><div class="reqid" id="FIA_AFL.1.1"><a href="#FIA_AFL.1.1" class="abbr">FIA_AFL.1.1</a></div><div class="reqdesc">
             The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall detect when
-            [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_388">[<b>assignment</b>: 
-     <span class="assignable-content">positive integer number</span>]</span></li><li style=""><span class="selectable-content" id="_s_389">an administrator configurable positive integer within [<b>assignment</b>: 
+            [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_396">[<b>assignment</b>: 
+     <span class="assignable-content">positive integer number</span>]</span></li><li style=""><span class="selectable-content" id="_s_397">an administrator configurable positive integer within [<b>assignment</b>: 
      <span class="assignable-content">range of acceptable values</span>]</span></li></ul>]
             unsuccessful authentication attempts occur related to
 	    <b>
 	      events with
-            [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_390">authentication based on user name and password</span></li><li style=""><span class="selectable-content" id="_s_391">authentication based on user name and a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr> that
-	      releases an asymmetric key stored in <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>-protected storage</span></li><li style=""><span class="selectable-content" id="_s_392">authentication based on X.509 certificates</span></li><li style=""><span class="selectable-content" id="_s_393">authentication based on biometric in accordance with the <a href="https://biometricitc.github.io/v1.1/1.1PRE/MOD-BIO-v1.1.pdf">Biometric Enrollment and Verification, version 1.1</a></span></li><li style=""><span class="selectable-content" id="_s_394">hybrid</span></li></ul>].
+            [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_398">authentication based on user name and password</span></li><li style=""><span class="selectable-content" id="_s_399">authentication based on user name and a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr> that
+	      releases an asymmetric key stored in <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>-protected storage</span></li><li style=""><span class="selectable-content" id="_s_400">authentication based on X.509 certificates</span></li><li style=""><span class="selectable-content" id="_s_401">authentication based on biometric in accordance with the <a href="https://biometricitc.github.io/v1.1/1.1PRE/MOD-BIO-v1.1.pdf">Biometric Enrollment and Verification, version 1.1</a></span></li><li style=""><span class="selectable-content" id="_s_402">hybrid</span></li></ul>].
 	    </b>
 	    <div class="appnote"><span class="note-header">Application
       Note:
@@ -5267,7 +5263,7 @@ The following sections list Common Criteria and technology terms used in this do
 	      When the defined number of unsuccessful authentication attempts <b>for an
 	      account</b> has been [<i>met</i>], The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall:
 	      <b>
-	      [<b>selection</b>: <span class="selectable-content" id="_s_395">Account Lockout</span>, <span class="selectable-content" id="_s_396">Account Disablement</span>, <span class="selectable-content" id="_s_397">Mandatory Credential Reset</span>, <span class="selectable-content" id="_s_398">Wipe Sensitive Data</span>, <span class="selectable-content" id="_s_399">[<b>assignment</b>: 
+	      [<b>selection</b>: <span class="selectable-content" id="_s_403">Account Lockout</span>, <span class="selectable-content" id="_s_404">Account Disablement</span>, <span class="selectable-content" id="_s_405">Mandatory Credential Reset</span>, <span class="selectable-content" id="_s_406">Wipe Sensitive Data</span>, <span class="selectable-content" id="_s_407">[<b>assignment</b>: 
      <span class="assignable-content">list of actions</span>]</span>]
 	      </b>.
             <div class="appnote"><span class="note-header">Application
@@ -5414,7 +5410,7 @@ The following sections list Common Criteria and technology terms used in this do
 	      <b>[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-pass">authentication based on username and password</span></li><li style=""><span class="selectable-content" id="s-pin">authentication based on username and a <abbr class="dyn-abbr"><a href="#abbr_PIN">PIN</a></abbr> that releases an asymmetric key stored
 		in <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>-protected storage</span></li><li style=""><span class="selectable-content" id="s-otp">combination of authentication based on user name, password, and time-based one-time password</span></li><li style=""><span class="selectable-content" id="s-x509-auth">authentication based on X.509 certificates</span></li><li style=""><span class="selectable-content" id="s-uau-ssh">for use in SSH only, SSH public key-based authentication as specified by the <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH),
         version 
-        2.0</a></span></li></ul>] </b> and [<b>selection</b>: <span class="selectable-content" id="uau_biometric"> biometric in accordance with the <a href="https://biometricitc.github.io/v1.1/1.1PRE/MOD-BIO-v1.1.pdf">Biometric Enrollment and Verification, version 1.1</a></span>, <span class="selectable-content" id="uau_hybr"> hybrid</span>, <span class="selectable-content" id="_s_407">no other mechanism</span>]	      
+        2.0</a></span></li></ul>] </b> and [<b>selection</b>: <span class="selectable-content" id="uau_biometric"> biometric in accordance with the <a href="https://biometricitc.github.io/v1.1/1.1PRE/MOD-BIO-v1.1.pdf">Biometric Enrollment and Verification, version 1.1</a></span>, <span class="selectable-content" id="uau_hybr"> hybrid</span>, <span class="selectable-content" id="_s_415">no other mechanism</span>]	      
 	      to support user authentication.
             <div class="appnote"><span class="note-header">Application
       Note:
@@ -5647,8 +5643,8 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
 <tr id="mf-screenlock"><td>2</td><td style="text-align:left">
                      Configure screen/session locking policy: 
               <ul>
-                <li>Enable/disable [<b>selection</b>: <span class="selectable-content" id="_s_408">screen lock</span>, <span class="selectable-content" id="_s_409">session timeout</span>, <span class="selectable-content" id="_s_410">both</span>]</li>
-                <li>Configure [<b>selection</b>: <span class="selectable-content" id="_s_411">screen lock</span>, <span class="selectable-content" id="_s_412">session</span>, <span class="selectable-content" id="_s_413">both</span>] inactivity timeout</li>
+                <li>Enable/disable [<b>selection</b>: <span class="selectable-content" id="_s_416">screen lock</span>, <span class="selectable-content" id="_s_417">session timeout</span>, <span class="selectable-content" id="_s_418">both</span>]</li>
+                <li>Configure [<b>selection</b>: <span class="selectable-content" id="_s_419">screen lock</span>, <span class="selectable-content" id="_s_420">session</span>, <span class="selectable-content" id="_s_421">both</span>] inactivity timeout</li>
                 <li>Configure number of authentication failures</li>
               </ul>
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td></tr>
@@ -5659,7 +5655,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
               </ul>
               <div class="indent">
                 [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-vpn-per-app">on a per-app basis</span></li><li style=""><span class="selectable-content" id="s-vpn-per-appgroup">on a per-group of applications processes
-              basis</span></li><li style=""><span class="selectable-content" id="_s_416">no other method</span></li></ul>]
+              basis</span></li><li style=""><span class="selectable-content" id="_s_424">no other method</span></li></ul>]
               </div>
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-radios"><td>4</td><td style="text-align:left">
@@ -5675,7 +5671,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
               </ul>
               <div class="indent">
                 [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-audiovisual-per-app">on a per-app basis</span></li><li style=""><span class="selectable-content" id="s-audiovisual-per-appgroup">on a per-group of applications
-              processes basis</span></li><li style=""><span class="selectable-content" id="_s_419">no other method</span></li></ul>]
+              processes basis</span></li><li style=""><span class="selectable-content" id="_s_427">no other method</span></li></ul>]
               </div>
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-lockState"><td>6</td><td style="text-align:left">
@@ -5700,7 +5696,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
                      Import keys or secrets into the secure key storage </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-keyWipe"><td>10</td><td style="text-align:left">
                     
-                     Destroy imported keys or secrets and [<b>selection</b>: <span class="selectable-content" id="_s_423">no other keys or secrets</span>, <span class="selectable-content" id="_s_424">[<b>assignment</b>: 
+                     Destroy imported keys or secrets and [<b>selection</b>: <span class="selectable-content" id="_s_431">no other keys or secrets</span>, <span class="selectable-content" id="_s_432">[<b>assignment</b>: 
      <span class="assignable-content">list of other categories of
                     keys or secrets</span>]</span>]
               in the secure key storage </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
@@ -5709,7 +5705,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
                      Import X.509v3 certificates into the Trust Anchor Database </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-certWipe"><td>12</td><td style="text-align:left">
                     
-                     Remove imported X.509v3 certificates and [<b>selection</b>: <span class="selectable-content" id="_s_425">no other X.509v3 certificates</span>, <span class="selectable-content" id="_s_426">[<b>assignment</b>: 
+                     Remove imported X.509v3 certificates and [<b>selection</b>: <span class="selectable-content" id="_s_433">no other X.509v3 certificates</span>, <span class="selectable-content" id="_s_434">[<b>assignment</b>: 
      <span class="assignable-content">list of other categories of X.509v3
                     certificates</span>]</span>]
               in the Trust Anchor Database </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
@@ -5730,8 +5726,8 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
                      Remove Enterprise applications </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-notifications"><td>18</td><td style="text-align:left">
                     
-                     Enable/disable display notification in the locked state of: [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_427">email notifications</span></li><li style=""><span class="selectable-content" id="_s_428">calendar appointments</span></li><li style=""><span class="selectable-content" id="_s_429">contact associated with phone call notification</span></li><li style=""><span class="selectable-content" id="_s_430">text message notification</span></li><li style=""><span class="selectable-content" id="_s_431">[<b>assignment</b>: 
-     <span class="assignable-content">other application-based notifications</span>]</span></li><li style=""><span class="selectable-content" id="_s_432">all notifications</span></li></ul>]
+                     Enable/disable display notification in the locked state of: [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_435">email notifications</span></li><li style=""><span class="selectable-content" id="_s_436">calendar appointments</span></li><li style=""><span class="selectable-content" id="_s_437">contact associated with phone call notification</span></li><li style=""><span class="selectable-content" id="_s_438">text message notification</span></li><li style=""><span class="selectable-content" id="_s_439">[<b>assignment</b>: 
+     <span class="assignable-content">other application-based notifications</span>]</span></li><li style=""><span class="selectable-content" id="_s_440">all notifications</span></li></ul>]
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-dar"><td>19</td><td style="text-align:left">
                     
@@ -5745,11 +5741,11 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
                 <li>Across device</li>
               </ul>
               <div class="indent">
-                [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="mf-location-per_app">on a per-app basis</span></li><li style=""><span class="selectable-content" id="_s_434">on a per-group of applications processes basis</span></li><li style=""><span class="selectable-content" id="_s_435">no other method</span></li></ul>]
+                [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="mf-location-per_app">on a per-app basis</span></li><li style=""><span class="selectable-content" id="_s_442">on a per-group of applications processes basis</span></li><li style=""><span class="selectable-content" id="_s_443">no other method</span></li></ul>]
               </div>
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-authFactors"><td>22</td><td style="text-align:left">
-                     Enable/disable the use of [<b>selection</b>: <span class="selectable-content" id="_s_436">Biometric Authentication Factor</span>, <span class="selectable-content" id="_s_437">Hybrid Authentication Factor</span>]
+                     Enable/disable the use of [<b>selection</b>: <span class="selectable-content" id="_s_444">Biometric Authentication Factor</span>, <span class="selectable-content" id="_s_445">Hybrid Authentication Factor</span>]
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-certInvalid"><td>23</td><td style="text-align:left">
                      Configure whether to allow or disallow establishment of [<b>assignment</b>: 
@@ -5774,7 +5770,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
 <tr id="mf-wipeEntData"><td>28</td><td style="text-align:left">
                      Wipe Enterprise data </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-appCert"><td>29</td><td style="text-align:left">
-                     Approve [<b>selection</b>: <span class="selectable-content" id="_s_438">import</span>, <span class="selectable-content" id="_s_439">removal</span>] by
+                     Approve [<b>selection</b>: <span class="selectable-content" id="_s_446">import</span>, <span class="selectable-content" id="_s_447">removal</span>] by
               applications of X.509v3 certificates in the Trust Anchor Database </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-certValidity"><td>30</td><td style="text-align:left">
                      Configure whether to allow or disallow establishment of a trusted channel
@@ -5786,7 +5782,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
 <tr id="mf-auditLogs"><td>32</td><td style="text-align:left">
                      Read audit logs kept by the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-digSign"><td>33</td><td style="text-align:left">
-                     Configure [<b>selection</b>: <span class="selectable-content" id="_s_440">certificate</span>, <span class="selectable-content" id="_s_441">public-key</span>] used to
+                     Configure [<b>selection</b>: <span class="selectable-content" id="_s_448">certificate</span>, <span class="selectable-content" id="_s_449">public-key</span>] used to
               validate digital signature on applications </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-sharedKeys"><td>34</td><td style="text-align:left">
                      Approve exceptions for shared use of keys or secrets by multiple
@@ -5801,18 +5797,18 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
 <tr id="mf-integ"><td>38</td><td style="text-align:left">
                      Retrieve <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>-software integrity verification values </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-USB"><td>39</td><td style="text-align:left">
-                     Enable/disable [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-usbstore"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> mass storage mode</span></li><li style=""><span class="selectable-content" id="_s_443"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> data transfer without user authentication</span></li><li style=""><span class="selectable-content" id="_s_444"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> data transfer without authentication of the connecting
+                     Enable/disable [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-usbstore"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> mass storage mode</span></li><li style=""><span class="selectable-content" id="_s_451"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> data transfer without user authentication</span></li><li style=""><span class="selectable-content" id="_s_452"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> data transfer without authentication of the connecting
                   system</span></li></ul>]
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-backup"><td>40</td><td style="text-align:left">
                      Enable/disable backup of [<b>selection</b>: <span class="selectable-content" id="s-backup-all-apps">all applications</span>, <span class="selectable-content" id="s-backup-sel-apps">selected applications</span>, <span class="selectable-content" id="s-backup-sel-grps">selected groups of applications</span>, <span class="selectable-content" id="s-backup-cfg">configuration data</span>]
-              to [<b>selection</b>: <span class="selectable-content" id="_s_449">locally connected system</span>, <span class="selectable-content" id="_s_450">remote system</span>]
+              to [<b>selection</b>: <span class="selectable-content" id="_s_457">locally connected system</span>, <span class="selectable-content" id="_s_458">remote system</span>]
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-hotspot"><td>41</td><td style="text-align:left">
-                     Enable/disable [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_451">Hotspot functionality authenticated by [<b>selection</b>: <span class="selectable-content" id="_s_452">pre-shared key</span>, <span class="selectable-content" id="_s_453">passcode</span>, <span class="selectable-content" id="_s_454">no authentication</span>]</span></li><li style=""><span class="selectable-content" id="s-tether"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> tethering authenticated by [<b>selection</b>: <span class="selectable-content" id="_s_456">pre-shared key</span>, <span class="selectable-content" id="_s_457">passcode</span>, <span class="selectable-content" id="_s_458">no authentication</span>]</span></li></ul>]
+                     Enable/disable [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_459">Hotspot functionality authenticated by [<b>selection</b>: <span class="selectable-content" id="_s_460">pre-shared key</span>, <span class="selectable-content" id="_s_461">passcode</span>, <span class="selectable-content" id="_s_462">no authentication</span>]</span></li><li style=""><span class="selectable-content" id="s-tether"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> tethering authenticated by [<b>selection</b>: <span class="selectable-content" id="_s_464">pre-shared key</span>, <span class="selectable-content" id="_s_465">passcode</span>, <span class="selectable-content" id="_s_466">no authentication</span>]</span></li></ul>]
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-dataSharing"><td>42</td><td style="text-align:left">
-                     Approve exceptions for sharing data between [<b>selection</b>: <span class="selectable-content" id="_s_459">applications</span>, <span class="selectable-content" id="_s_460">groups of applications</span>]</td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
+                     Approve exceptions for sharing data between [<b>selection</b>: <span class="selectable-content" id="_s_467">applications</span>, <span class="selectable-content" id="_s_468">groups of applications</span>]</td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-appGroups"><td>43</td><td style="text-align:left">
                      Place applications into application groups based on [<b>assignment</b>: 
      <span class="assignable-content">enterprise
@@ -5825,7 +5821,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
                 <li>Across device</li>
               </ul>
               <div class="indent">
-                [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_461">on a per-app basis</span></li><li style=""><span class="selectable-content" id="_s_462">on a per-group of applications processes basis</span></li><li style=""><span class="selectable-content" id="_s_463">no other method</span></li></ul>]
+                [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_469">on a per-app basis</span></li><li style=""><span class="selectable-content" id="_s_470">on a per-group of applications processes basis</span></li><li style=""><span class="selectable-content" id="_s_471">no other method</span></li></ul>]
               </div>
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-bioRevoke"><td>46</td><td style="text-align:left">
@@ -5833,7 +5829,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
 <tr id="mf-auditCapacity"><td>47</td><td style="text-align:left">
                      Configure local audit storage capacity
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
-<tr id="mf-lockout"><td>48</td><td style="text-align:left">  Configure lockout policy for unsuccessful authentication attempts through [<b>selection</b>: <span class="selectable-content" id="_s_464">timeouts between attempts</span>, <span class="selectable-content" id="_s_465">limiting number of attempts during a time period</span>]
+<tr id="mf-lockout"><td>48</td><td style="text-align:left">  Configure lockout policy for unsuccessful authentication attempts through [<b>selection</b>: <span class="selectable-content" id="_s_472">timeouts between attempts</span>, <span class="selectable-content" id="_s_473">limiting number of attempts during a time period</span>]
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-hostFirewall"><td>49</td><td style="text-align:left"> Configure host-based firewall</td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-directoryServer"><td>50</td><td style="text-align:left"> Configure name/address of directory server with which to bind</td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
@@ -6927,7 +6923,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
           
           
           <div class="element"><div class="reqid" id="FPT_ASLR_EXT.1.1"><a href="#FPT_ASLR_EXT.1.1" class="abbr">FPT_ASLR_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall always randomize process address space memory locations with
-	    [<b>selection</b>: <span class="selectable-content" id="_s_466">8</span>, <span class="selectable-content" id="_s_467">[<b>assignment</b>: 
+	    [<b>selection</b>: <span class="selectable-content" id="_s_474">8</span>, <span class="selectable-content" id="_s_475">[<b>assignment</b>: 
      <span class="assignable-content">number greater than 8</span>]</span>]
 	    bits of entropy except for
                 [<b>assignment</b>: 
@@ -6966,10 +6962,10 @@ This test can also be completed on the same hardware and rebooting between appli
           
           
           
-          <div class="element"><div class="reqid" id="FMT_SMF_EXT.2.1"><a href="#FMT_SMF_EXT.2.1" class="abbr">FMT_SMF_EXT.2.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall offer [<b>selection</b>: <span class="selectable-content" id="s-smf-wipe-sen">wipe of sensitive data</span>, <span class="selectable-content" id="s-smf-ext-2-rem-ent-app">remove Enterprise applications</span>, <span class="selectable-content" id="_s_470">remove all device-stored Enterprise resource data</span>, <span class="selectable-content" id="_s_471">remove Enterprise secondary authentication data</span>, <span class="selectable-content" id="_s_472">[<b>assignment</b>: 
+          <div class="element"><div class="reqid" id="FMT_SMF_EXT.2.1"><a href="#FMT_SMF_EXT.2.1" class="abbr">FMT_SMF_EXT.2.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall offer [<b>selection</b>: <span class="selectable-content" id="s-smf-wipe-sen">wipe of sensitive data</span>, <span class="selectable-content" id="s-smf-ext-2-rem-ent-app">remove Enterprise applications</span>, <span class="selectable-content" id="_s_478">remove all device-stored Enterprise resource data</span>, <span class="selectable-content" id="_s_479">remove Enterprise secondary authentication data</span>, <span class="selectable-content" id="_s_480">[<b>assignment</b>: 
      <span class="assignable-content">list other available remediation
-                  actions</span>]</span>] upon unenrollment and [<b>selection</b>: <span class="selectable-content" id="_s_473">[<b>assignment</b>: 
-     <span class="assignable-content">other administrator-configured triggers</span>]</span>, <span class="selectable-content" id="_s_474"> no other triggers</span>].<div class="appnote"><span class="note-header">Application
+                  actions</span>]</span>] upon unenrollment and [<b>selection</b>: <span class="selectable-content" id="_s_481">[<b>assignment</b>: 
+     <span class="assignable-content">other administrator-configured triggers</span>]</span>, <span class="selectable-content" id="_s_482"> no other triggers</span>].<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note"> <p>Unenrollment may consist of removing the <abbr class="dyn-abbr"><a href="#abbr_MDM">MDM</a></abbr> agent or
               removing the administrator's policies. The functions in the selection are remediation
@@ -7185,7 +7181,7 @@ This test can also be completed on the same hardware and rebooting between appli
 	  
 	  
           <div class="element"><div class="reqid" id="FPT_SBOP_EXT.1.1"><a href="#FPT_SBOP_EXT.1.1" class="abbr">FPT_SBOP_EXT.1.1</a></div><div class="reqdesc">
-The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selection</b>: <span class="selectable-content" id="_s_475">employ stack-based buffer overflow protections</span>, <span class="selectable-content" id="_s_476">not store parameters or variables in the same data structures as control flow values</span>].
+The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selection</b>: <span class="selectable-content" id="_s_483">employ stack-based buffer overflow protections</span>, <span class="selectable-content" id="_s_484">not store parameters or variables in the same data structures as control flow values</span>].
 <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -7349,8 +7345,8 @@ The evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_T
         <div class="comp" id="FPT_TST.1"><h4>FPT_TST.1 TSF Self-Testing</h4>
           <div class="element"><div class="reqid" id="FPT_TST.1.1"><a href="#FPT_TST.1.1" class="abbr">FPT_TST.1.1</a></div><div class="reqdesc">
               The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall run a suite of the following self-tests [<i>during initial start-up, 
-                [<b>selection</b>: <span class="selectable-content" id="_s_482">periodically during normal operation</span>, <span class="selectable-content" id="_s_483">at the request of the authorized user</span>, <span class="selectable-content" id="_s_484">at the conditions [<b>assignment</b>: 
-     <span class="assignable-content">conditions under which self-test should occur</span>]</span>, <span class="selectable-content" id="_s_485">at no other time</span>]</i>]
+                [<b>selection</b>: <span class="selectable-content" id="_s_490">periodically during normal operation</span>, <span class="selectable-content" id="_s_491">at the request of the authorized user</span>, <span class="selectable-content" id="_s_492">at the conditions [<b>assignment</b>: 
+     <span class="assignable-content">conditions under which self-test should occur</span>]</span>, <span class="selectable-content" id="_s_493">at no other time</span>]</i>]
               to demonstrate the correct operation of [<i><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> specified in <a href="#FCS_RBG.1">FCS_RBG.1</a></i>]: [<b>assignment</b>: 
      <span class="assignable-content"><abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> health tests</span>]. 
             </div></div>
@@ -7416,10 +7412,10 @@ The evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_T
           
           
           <div class="element"><div class="reqid" id="FPT_TST_EXT.1.1"><a href="#FPT_TST_EXT.1.1" class="abbr">FPT_TST_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall verify the integrity of the bootchain up through the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> kernel and
-              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-verify-all-code">all executable code stored in mutable media</span></li><li style=""><span class="selectable-content" id="_s_487">[<b>assignment</b>: 
-     <span class="assignable-content">list of other executable code</span>]</span></li><li style=""><span class="selectable-content" id="_s_488">no other executable code</span></li></ul>]
+              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-verify-all-code">all executable code stored in mutable media</span></li><li style=""><span class="selectable-content" id="_s_495">[<b>assignment</b>: 
+     <span class="assignable-content">list of other executable code</span>]</span></li><li style=""><span class="selectable-content" id="_s_496">no other executable code</span></li></ul>]
 	      prior to its execution through the use of
-              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_489">a digital signature using a hardware-protected asymmetric key</span></li><li style=""><span class="selectable-content" id="s-boot-x509">a digital signature using an X.509 certificate with hardware-based protection</span></li><li style=""><span class="selectable-content" id="_s_491">a hardware-protected hash</span></li></ul>].
+              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_497">a digital signature using a hardware-protected asymmetric key</span></li><li style=""><span class="selectable-content" id="s-boot-x509">a digital signature using an X.509 certificate with hardware-based protection</span></li><li style=""><span class="selectable-content" id="_s_499">a hardware-protected hash</span></li></ul>].
             <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -7531,7 +7527,7 @@ The evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_T
 			</span></div></div></div>
           <div class="element"><div class="reqid" id="FPT_TUD_EXT.1.2"><a href="#FPT_TUD_EXT.1.2" class="abbr">FPT_TUD_EXT.1.2</a></div><div class="reqdesc">
               The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall 
-		[<b>selection</b>: <span class="selectable-content" id="_s_492">cryptographically verify</span>, <span class="selectable-content" id="_s_493">invoke platform-provided functionality to cryptographically verify</span>]
+		[<b>selection</b>: <span class="selectable-content" id="_s_500">cryptographically verify</span>, <span class="selectable-content" id="_s_501">invoke platform-provided functionality to cryptographically verify</span>]
               updates to itself using a digital
               signature prior to installation using schemes specified in FCS_COP.1<b>/SigVer</b>.
 	    <div class="appnote"><span class="note-header">Application
@@ -7762,13 +7758,13 @@ The evaluator shall also ensure that the <abbr class="dyn-abbr"><a href="#abbr_T
         2.1</a></i>] as a 
                   [<b>selection</b>: <span class="selectable-content" id="itc_mtls-client">client</span>, <span class="selectable-content" id="itc_mtls-server">server</span>]</span></li><li style=""><span class="selectable-content" id="itc_mdtls">Mutually authenticated <abbr class="dyn-abbr"><a href="#abbr_DTLS">DTLS</a></abbr> as defined in the <a href="https://www.niap-ccevs.org/static_html/protection-profile/439/-439-/index.html">Functional Package for Transport Layer Security (TLS),
         version 
-        2.1</a>[<b>selection</b>: <span class="selectable-content" id="itc_mdtls-client">client</span>, <span class="selectable-content" id="itc_mdtls-server">server</span>]</span></li><li style=""><span class="selectable-content" id="itc_https"><abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr></span></li><li style=""><span class="selectable-content" id="_s_513">no other protocols</span></li></ul>]
+        2.1</a>[<b>selection</b>: <span class="selectable-content" id="itc_mdtls-client">client</span>, <span class="selectable-content" id="itc_mdtls-server">server</span>]</span></li><li style=""><span class="selectable-content" id="itc_https"><abbr class="dyn-abbr"><a href="#abbr_HTTPS">HTTPS</a></abbr></span></li><li style=""><span class="selectable-content" id="_s_521">no other protocols</span></li></ul>]
 		    to provide a trusted communication channel between itself and
 		    authorized <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr> entities supporting the following capabilities:
-		    [<b>selection</b>: <span class="selectable-content" id="_s_514">audit server</span>, <span class="selectable-content" id="_s_515">authentication server</span>, <span class="selectable-content" id="itc_management_server">management server</span>, <span class="selectable-content" id="_s_517">[<b>assignment</b>: 
-     <span class="assignable-content">other capabilities</span>]</span>] using [<b>selection</b>: <span class="selectable-content" id="_s_518">certificates as defined in <a href="https://www.niap-ccevs.org/protectionprofiles/511">Functional Package for X.509,
+		    [<b>selection</b>: <span class="selectable-content" id="_s_522">audit server</span>, <span class="selectable-content" id="_s_523">authentication server</span>, <span class="selectable-content" id="itc_management_server">management server</span>, <span class="selectable-content" id="_s_525">[<b>assignment</b>: 
+     <span class="assignable-content">other capabilities</span>]</span>] using [<b>selection</b>: <span class="selectable-content" id="_s_526">certificates as defined in <a href="https://www.niap-ccevs.org/protectionprofiles/511">Functional Package for X.509,
         version 
-        1.0</a></span>, <span class="selectable-content" id="_s_519">SSH host keys as defined in <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH),
+        1.0</a></span>, <span class="selectable-content" id="_s_527">SSH host keys as defined in <a href="https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm">Functional Package for Secure Shell (SSH),
         version 
         2.0</a></span>] 
       	     
@@ -7863,10 +7859,10 @@ channel protocol selected in
 		</p>
 	      </span></div></div></div>
             <div class="element"><div class="reqid" id="FTP_TRP.1.2"><a href="#FTP_TRP.1.2" class="abbr">FTP_TRP.1.2</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall permit
-                [<b>selection</b>: <span class="selectable-content" id="_s_526">the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></span>, <span class="selectable-content" id="_s_527">local users</span>, <span class="selectable-content" id="_s_528">remote users</span>]
+                [<b>selection</b>: <span class="selectable-content" id="_s_534">the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></span>, <span class="selectable-content" id="_s_535">local users</span>, <span class="selectable-content" id="_s_536">remote users</span>]
                 to initiate communication via the trusted path.
               </div></div>
-            <div class="element"><div class="reqid" id="FTP_TRP.1.3"><a href="#FTP_TRP.1.3" class="abbr">FTP_TRP.1.3</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall require use of the trusted path for [<b>selection</b>: <span class="selectable-content" id="_s_529">initial user authentication</span>, <span class="selectable-content" id="_s_530"><i>[all remote administrative actions]</i></span>]           
+            <div class="element"><div class="reqid" id="FTP_TRP.1.3"><a href="#FTP_TRP.1.3" class="abbr">FTP_TRP.1.3</a></div><div class="reqdesc"> The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall require use of the trusted path for [<b>selection</b>: <span class="selectable-content" id="_s_537">initial user authentication</span>, <span class="selectable-content" id="_s_538"><i>[all remote administrative actions]</i></span>]           
               <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -8622,7 +8618,7 @@ The evaluator shall also perform the following tests:
                   <li>Derive the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> from a Password Authentication Factor according to
                     FCS_COP.1.1 and </li>
                 </ul>
-                [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_99">Generate the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> using an <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> that meets this profile (as specified in
+                [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_99">Generate the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> using a <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> that meets this profile (as specified in
                 <a href="#FCS_RBG.1">FCS_RBG.1</a>)</span></li><li style=""><span class="selectable-content" id="_s_100">Generate the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> using a key generation scheme that meets this profile
                 (as specified in FCS_CKM.1)</span></li><li style=""><span class="selectable-content" id="_s_101">Combine the <abbr class="dyn-abbr"><a href="#abbr_KEK">KEK</a></abbr> from other KEKs in a way that preserves the effective
                 entropy of each factor by [<b>selection</b>: <span class="selectable-content" id="_s_102">using an <abbr class="dyn-abbr"><a href="#abbr_XOR">XOR</a></abbr> operation</span>, <span class="selectable-content" id="_s_103">concatenating the keys and using a KDF (as described in SP
@@ -8718,9 +8714,9 @@ The evaluator shall also perform the following tests:
      <span class="assignable-content">list
                 of other subjects</span>]. <h4 id="ext-comp-FCS_STG_EXT.1.3">FCS_STG_EXT.1.3</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall be capable of destroying keys or secrets in the secure key storage
               upon request of the administrator and 
-              [<b>selection</b>: <span class="selectable-content" id="_s_322">the user</span>, <span class="selectable-content" id="_s_323">no other subjects</span>]. <h4 id="ext-comp-FCS_STG_EXT.1.4">FCS_STG_EXT.1.4</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall have the capability to allow only the application that imported the
+              [<b>selection</b>: <span class="selectable-content" id="_s_330">the user</span>, <span class="selectable-content" id="_s_331">no other subjects</span>]. <h4 id="ext-comp-FCS_STG_EXT.1.4">FCS_STG_EXT.1.4</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall have the capability to allow only the application that imported the
               key or secret the use of the key or secret. Exceptions may only be explicitly
-              authorized by [<b>selection</b>: <span class="selectable-content" id="_s_324">the user</span>, <span class="selectable-content" id="_s_325">the administrator</span>, <span class="selectable-content" id="_s_326">a common application developer</span>]. <h4 id="ext-comp-FCS_STG_EXT.1.5">FCS_STG_EXT.1.5</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall allow only the application that imported the key or secret to
+              authorized by [<b>selection</b>: <span class="selectable-content" id="_s_332">the user</span>, <span class="selectable-content" id="_s_333">the administrator</span>, <span class="selectable-content" id="_s_334">a common application developer</span>]. <h4 id="ext-comp-FCS_STG_EXT.1.5">FCS_STG_EXT.1.5</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall allow only the application that imported the key or secret to
                 request that the key or secret be destroyed. Exceptions may only be explicitly
                 authorized by [<b>assignment</b>: 
      <span class="assignable-content">list of subjects</span>].</div><h4>Management: FCS_STG_EXT.2</h4><p>There are no management activities foreseen.
@@ -8734,8 +8730,8 @@ The evaluator shall also perform the following tests:
                 are [<b>assignment</b>: 
      <span class="assignable-content">protection mechanism</span>]. <h4 id="ext-comp-FCS_STG_EXT.2.2">FCS_STG_EXT.2.2</h4><abbr class="dyn-abbr"><a href="#abbr_DEK">DEKs</a></abbr>, KEKs, [<b>assignment</b>: 
      <span class="assignable-content">any long-term trusted channel key material</span>]
-              and [<b>selection</b>: <span class="selectable-content" id="_s_342">all software-based key storage</span>, <span class="selectable-content" id="_s_343">no other keys</span>]
-              shall be encrypted using one of the following methods: [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_344">using a SP800-56B key establishment scheme</span></li><li style=""><span class="selectable-content" id="_s_345">using <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> in the [<b>selection</b>: <span class="selectable-content" id="_s_346">Key Wrap (KW) mode</span>, <span class="selectable-content" id="_s_347">Key Wrap with Padding (KWP) mode</span>, <span class="selectable-content" id="_s_348">GCM</span>, <span class="selectable-content" id="_s_349">CCM</span>, <span class="selectable-content" id="_s_350">CBC mode</span>]</span></li></ul>]
+              and [<b>selection</b>: <span class="selectable-content" id="_s_350">all software-based key storage</span>, <span class="selectable-content" id="_s_351">no other keys</span>]
+              shall be encrypted using one of the following methods: [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_352">using a SP800-56B key establishment scheme</span></li><li style=""><span class="selectable-content" id="_s_353">using <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> in the [<b>selection</b>: <span class="selectable-content" id="_s_354">Key Wrap (KW) mode</span>, <span class="selectable-content" id="_s_355">Key Wrap with Padding (KWP) mode</span>, <span class="selectable-content" id="_s_356">GCM</span>, <span class="selectable-content" id="_s_357">CCM</span>, <span class="selectable-content" id="_s_358">CBC mode</span>]</span></li></ul>]
               . </div></div><h3 id="ext-comp-FCS_STO_EXT" class="indexable" data-level="4">B.2.1.4 FCS_STO_EXT Storage of Sensitive Data</h3><div style="margin-left: 1em;"><h4>Family Behavior</h4><div>Components in this family describe the requirements for storing sensitive data (such as cryptographic
 	    keys). This is a new family defined for the FCS class.</div><h4>Component Leveling</h4><svg style="max-height: 30px;"><text x="4" fill="black" font-size="15" y="24">FCS_STO_EXT</text><rect x="2" y="11" width="150" height="16" fill="none" stroke="black"></rect><text x="234" fill="black" font-size="15" y="24">1</text><rect x="232" y="11" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="17" x2="231" y2="17" stroke="black"></line></svg><p><a href="#FCS_STO_EXT.1">FCS_STO_EXT.1</a>,
              Storage of Sensitive Data,
@@ -8776,7 +8772,7 @@ The evaluator shall also perform the following tests:
               accessible to an application. <h4 id="ext-comp-FDP_ACF_EXT.2.2">FDP_ACF_EXT.2.2</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall provide an access control policy that prevents
 	      [<b>assignment</b>: 
      <span class="assignable-content">list of subjects</span>] from accessing
-	      [<b>selection</b>: <span class="selectable-content" id="_s_365">all</span>, <span class="selectable-content" id="_s_366">private</span>] data stored by other [<b>assignment</b>: 
+	      [<b>selection</b>: <span class="selectable-content" id="_s_373">all</span>, <span class="selectable-content" id="_s_374">private</span>] data stored by other [<b>assignment</b>: 
      <span class="assignable-content">list of subjects</span>].
 		Exceptions may only be explicitly authorized for such sharing by
 		[<b>assignment</b>: 
@@ -8785,11 +8781,11 @@ The evaluator shall also perform the following tests:
               <li>Approving exceptions for sharing data between applications or groups of applications.</li>
             </ul>
           </p><h4>Audit: FDP_ACF_EXT.3</h4><p>There are no auditable events foreseen.</p><h4>FDP_ACF_EXT.3 Access Control for System Resources</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td><a href="#FDP_ACF_EXT.2">FDP_ACF_EXT.2</a> Access Control for System Services<br/>
-            <a href="#FMT_MOF_EXT.1.1">FMT_MOF_EXT.1.1</a> Management of Functions Behavior</td></tr></table><h4 id="ext-comp-FDP_ACF_EXT.3.1">FDP_ACF_EXT.3.1</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall provide a separate [<b>selection</b>: <span class="selectable-content" id="_s_367">address book</span>, <span class="selectable-content" id="_s_368">calendar</span>, <span class="selectable-content" id="_s_369">keystore</span>, <span class="selectable-content" id="_s_370">account credential database, [<b>assignment</b>: 
+            <a href="#FMT_MOF_EXT.1.1">FMT_MOF_EXT.1.1</a> Management of Functions Behavior</td></tr></table><h4 id="ext-comp-FDP_ACF_EXT.3.1">FDP_ACF_EXT.3.1</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall provide a separate [<b>selection</b>: <span class="selectable-content" id="_s_375">address book</span>, <span class="selectable-content" id="_s_376">calendar</span>, <span class="selectable-content" id="_s_377">keystore</span>, <span class="selectable-content" id="_s_378">account credential database, [<b>assignment</b>: 
      <span class="assignable-content">list of additional
                     resources</span>]</span>] for each application group and only allow applications within that
               process group to access the resource. Exceptions may only be explicitly authorized for
-              such sharing by [<b>selection</b>: <span class="selectable-content" id="_s_371">the user</span>, <span class="selectable-content" id="_s_372">the administrator</span>, <span class="selectable-content" id="_s_373">no one</span>]. </div></div><h3 id="ext-comp-FDP_IFC_EXT" class="indexable" data-level="4">B.2.2.2 FDP_IFC_EXT Information Flow Control</h3><div style="margin-left: 1em;"><h4>Family Behavior</h4><div>This family defines the ability of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to control information flows by ensuring that it is possible to
+              such sharing by [<b>selection</b>: <span class="selectable-content" id="_s_379">the user</span>, <span class="selectable-content" id="_s_380">the administrator</span>, <span class="selectable-content" id="_s_381">no one</span>]. </div></div><h3 id="ext-comp-FDP_IFC_EXT" class="indexable" data-level="4">B.2.2.2 FDP_IFC_EXT Information Flow Control</h3><div style="margin-left: 1em;"><h4>Family Behavior</h4><div>This family defines the ability of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to control information flows by ensuring that it is possible to
             use IPsec to encapsulate all traffic bound to or from the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. This family differs from FDP_IFC in <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr> Part
             2 by defining technology-specific details for the implementation of these functions.</div><h4>Component Leveling</h4><svg style="max-height: 30px;"><text x="4" fill="black" font-size="15" y="24">FDP_IFC_EXT</text><rect x="2" y="11" width="150" height="16" fill="none" stroke="black"></rect><text x="234" fill="black" font-size="15" y="24">1</text><rect x="232" y="11" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="17" x2="231" y2="17" stroke="black"></line></svg><p><a href="#FDP_IFC_EXT.1">FDP_IFC_EXT.1</a>,
              Information Flow Control,
@@ -8797,10 +8793,10 @@ The evaluator shall also perform the following tests:
             using IPsec.</p><h4>Management: FDP_IFC_EXT.1</h4><p>There are no management activities foreseen.</p><h4>Audit: FDP_IFC_EXT.1</h4><p>There are no auditable events foreseen.</p><h4>FDP_IFC_EXT.1 Information Flow Control</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td>
             <span class="no-link">FTP_ITC_EXT.1</span> Trusted Channel Communication
           </td></tr></table><h4 id="ext-comp-FDP_IFC_EXT.1.1">FDP_IFC_EXT.1.1</h4> The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> shall
-	    [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_351">provide an interface which allows a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client to protect all <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic using IPsec</span></li><li style=""><span class="selectable-content" id="s-provides-vpnclient">provide a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client that can protect all <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic using IPsec</span></li></ul>]
+	    [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_359">provide an interface which allows a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client to protect all <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic using IPsec</span></li><li style=""><span class="selectable-content" id="s-provides-vpnclient">provide a <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> client that can protect all <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic using IPsec</span></li></ul>]
 	    with the exception of <abbr class="dyn-abbr"><a href="#abbr_IP">IP</a></abbr> traffic required to establish the <abbr class="dyn-abbr"><a href="#abbr_VPN">VPN</a></abbr> connection
 	    and
-	    [<b>selection</b>: <span class="selectable-content" id="_s_353">signed updates directly from the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor</span>, <span class="selectable-content" id="_s_354">no other traffic</span>]
+	    [<b>selection</b>: <span class="selectable-content" id="_s_361">signed updates directly from the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> vendor</span>, <span class="selectable-content" id="_s_362">no other traffic</span>]
 	   .
             </div></div></span><span data-sortkey="Class FMT: Security Management"><h3 id="ext-comp-" class="indexable" data-level="3">B.2.3 Class FMT: Security Management</h3>This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> defines the following extended components as part of the
 	  class originally defined by <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr> Part 2:
@@ -8848,8 +8844,8 @@ The evaluator shall also perform the following tests:
 <tr id="mf-screenlock"><td>2</td><td style="text-align:left">
                      Configure screen/session locking policy: 
               <ul>
-                <li>Enable/disable [<b>selection</b>: <span class="selectable-content" id="_s_408">screen lock</span>, <span class="selectable-content" id="_s_409">session timeout</span>, <span class="selectable-content" id="_s_410">both</span>]</li>
-                <li>Configure [<b>selection</b>: <span class="selectable-content" id="_s_411">screen lock</span>, <span class="selectable-content" id="_s_412">session</span>, <span class="selectable-content" id="_s_413">both</span>] inactivity timeout</li>
+                <li>Enable/disable [<b>selection</b>: <span class="selectable-content" id="_s_416">screen lock</span>, <span class="selectable-content" id="_s_417">session timeout</span>, <span class="selectable-content" id="_s_418">both</span>]</li>
+                <li>Configure [<b>selection</b>: <span class="selectable-content" id="_s_419">screen lock</span>, <span class="selectable-content" id="_s_420">session</span>, <span class="selectable-content" id="_s_421">both</span>] inactivity timeout</li>
                 <li>Configure number of authentication failures</li>
               </ul>
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td></tr>
@@ -8860,7 +8856,7 @@ The evaluator shall also perform the following tests:
               </ul>
               <div class="indent">
                 [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-vpn-per-app">on a per-app basis</span></li><li style=""><span class="selectable-content" id="s-vpn-per-appgroup">on a per-group of applications processes
-              basis</span></li><li style=""><span class="selectable-content" id="_s_416">no other method</span></li></ul>]
+              basis</span></li><li style=""><span class="selectable-content" id="_s_424">no other method</span></li></ul>]
               </div>
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-radios"><td>4</td><td style="text-align:left">
@@ -8876,7 +8872,7 @@ The evaluator shall also perform the following tests:
               </ul>
               <div class="indent">
                 [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-audiovisual-per-app">on a per-app basis</span></li><li style=""><span class="selectable-content" id="s-audiovisual-per-appgroup">on a per-group of applications
-              processes basis</span></li><li style=""><span class="selectable-content" id="_s_419">no other method</span></li></ul>]
+              processes basis</span></li><li style=""><span class="selectable-content" id="_s_427">no other method</span></li></ul>]
               </div>
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-lockState"><td>6</td><td style="text-align:left">
@@ -8901,7 +8897,7 @@ The evaluator shall also perform the following tests:
                      Import keys or secrets into the secure key storage </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-keyWipe"><td>10</td><td style="text-align:left">
                     
-                     Destroy imported keys or secrets and [<b>selection</b>: <span class="selectable-content" id="_s_423">no other keys or secrets</span>, <span class="selectable-content" id="_s_424">[<b>assignment</b>: 
+                     Destroy imported keys or secrets and [<b>selection</b>: <span class="selectable-content" id="_s_431">no other keys or secrets</span>, <span class="selectable-content" id="_s_432">[<b>assignment</b>: 
      <span class="assignable-content">list of other categories of
                     keys or secrets</span>]</span>]
               in the secure key storage </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
@@ -8910,7 +8906,7 @@ The evaluator shall also perform the following tests:
                      Import X.509v3 certificates into the Trust Anchor Database </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-certWipe"><td>12</td><td style="text-align:left">
                     
-                     Remove imported X.509v3 certificates and [<b>selection</b>: <span class="selectable-content" id="_s_425">no other X.509v3 certificates</span>, <span class="selectable-content" id="_s_426">[<b>assignment</b>: 
+                     Remove imported X.509v3 certificates and [<b>selection</b>: <span class="selectable-content" id="_s_433">no other X.509v3 certificates</span>, <span class="selectable-content" id="_s_434">[<b>assignment</b>: 
      <span class="assignable-content">list of other categories of X.509v3
                     certificates</span>]</span>]
               in the Trust Anchor Database </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
@@ -8931,8 +8927,8 @@ The evaluator shall also perform the following tests:
                      Remove Enterprise applications </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-notifications"><td>18</td><td style="text-align:left">
                     
-                     Enable/disable display notification in the locked state of: [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_427">email notifications</span></li><li style=""><span class="selectable-content" id="_s_428">calendar appointments</span></li><li style=""><span class="selectable-content" id="_s_429">contact associated with phone call notification</span></li><li style=""><span class="selectable-content" id="_s_430">text message notification</span></li><li style=""><span class="selectable-content" id="_s_431">[<b>assignment</b>: 
-     <span class="assignable-content">other application-based notifications</span>]</span></li><li style=""><span class="selectable-content" id="_s_432">all notifications</span></li></ul>]
+                     Enable/disable display notification in the locked state of: [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_435">email notifications</span></li><li style=""><span class="selectable-content" id="_s_436">calendar appointments</span></li><li style=""><span class="selectable-content" id="_s_437">contact associated with phone call notification</span></li><li style=""><span class="selectable-content" id="_s_438">text message notification</span></li><li style=""><span class="selectable-content" id="_s_439">[<b>assignment</b>: 
+     <span class="assignable-content">other application-based notifications</span>]</span></li><li style=""><span class="selectable-content" id="_s_440">all notifications</span></li></ul>]
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-dar"><td>19</td><td style="text-align:left">
                     
@@ -8946,11 +8942,11 @@ The evaluator shall also perform the following tests:
                 <li>Across device</li>
               </ul>
               <div class="indent">
-                [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="mf-location-per_app">on a per-app basis</span></li><li style=""><span class="selectable-content" id="_s_434">on a per-group of applications processes basis</span></li><li style=""><span class="selectable-content" id="_s_435">no other method</span></li></ul>]
+                [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="mf-location-per_app">on a per-app basis</span></li><li style=""><span class="selectable-content" id="_s_442">on a per-group of applications processes basis</span></li><li style=""><span class="selectable-content" id="_s_443">no other method</span></li></ul>]
               </div>
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-authFactors"><td>22</td><td style="text-align:left">
-                     Enable/disable the use of [<b>selection</b>: <span class="selectable-content" id="_s_436">Biometric Authentication Factor</span>, <span class="selectable-content" id="_s_437">Hybrid Authentication Factor</span>]
+                     Enable/disable the use of [<b>selection</b>: <span class="selectable-content" id="_s_444">Biometric Authentication Factor</span>, <span class="selectable-content" id="_s_445">Hybrid Authentication Factor</span>]
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-certInvalid"><td>23</td><td style="text-align:left">
                      Configure whether to allow or disallow establishment of [<b>assignment</b>: 
@@ -8975,7 +8971,7 @@ The evaluator shall also perform the following tests:
 <tr id="mf-wipeEntData"><td>28</td><td style="text-align:left">
                      Wipe Enterprise data </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-appCert"><td>29</td><td style="text-align:left">
-                     Approve [<b>selection</b>: <span class="selectable-content" id="_s_438">import</span>, <span class="selectable-content" id="_s_439">removal</span>] by
+                     Approve [<b>selection</b>: <span class="selectable-content" id="_s_446">import</span>, <span class="selectable-content" id="_s_447">removal</span>] by
               applications of X.509v3 certificates in the Trust Anchor Database </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-certValidity"><td>30</td><td style="text-align:left">
                      Configure whether to allow or disallow establishment of a trusted channel
@@ -8987,7 +8983,7 @@ The evaluator shall also perform the following tests:
 <tr id="mf-auditLogs"><td>32</td><td style="text-align:left">
                      Read audit logs kept by the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-digSign"><td>33</td><td style="text-align:left">
-                     Configure [<b>selection</b>: <span class="selectable-content" id="_s_440">certificate</span>, <span class="selectable-content" id="_s_441">public-key</span>] used to
+                     Configure [<b>selection</b>: <span class="selectable-content" id="_s_448">certificate</span>, <span class="selectable-content" id="_s_449">public-key</span>] used to
               validate digital signature on applications </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-sharedKeys"><td>34</td><td style="text-align:left">
                      Approve exceptions for shared use of keys or secrets by multiple
@@ -9002,18 +8998,18 @@ The evaluator shall also perform the following tests:
 <tr id="mf-integ"><td>38</td><td style="text-align:left">
                      Retrieve <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>-software integrity verification values </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-USB"><td>39</td><td style="text-align:left">
-                     Enable/disable [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-usbstore"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> mass storage mode</span></li><li style=""><span class="selectable-content" id="_s_443"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> data transfer without user authentication</span></li><li style=""><span class="selectable-content" id="_s_444"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> data transfer without authentication of the connecting
+                     Enable/disable [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-usbstore"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> mass storage mode</span></li><li style=""><span class="selectable-content" id="_s_451"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> data transfer without user authentication</span></li><li style=""><span class="selectable-content" id="_s_452"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> data transfer without authentication of the connecting
                   system</span></li></ul>]
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-backup"><td>40</td><td style="text-align:left">
                      Enable/disable backup of [<b>selection</b>: <span class="selectable-content" id="s-backup-all-apps">all applications</span>, <span class="selectable-content" id="s-backup-sel-apps">selected applications</span>, <span class="selectable-content" id="s-backup-sel-grps">selected groups of applications</span>, <span class="selectable-content" id="s-backup-cfg">configuration data</span>]
-              to [<b>selection</b>: <span class="selectable-content" id="_s_449">locally connected system</span>, <span class="selectable-content" id="_s_450">remote system</span>]
+              to [<b>selection</b>: <span class="selectable-content" id="_s_457">locally connected system</span>, <span class="selectable-content" id="_s_458">remote system</span>]
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-hotspot"><td>41</td><td style="text-align:left">
-                     Enable/disable [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_451">Hotspot functionality authenticated by [<b>selection</b>: <span class="selectable-content" id="_s_452">pre-shared key</span>, <span class="selectable-content" id="_s_453">passcode</span>, <span class="selectable-content" id="_s_454">no authentication</span>]</span></li><li style=""><span class="selectable-content" id="s-tether"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> tethering authenticated by [<b>selection</b>: <span class="selectable-content" id="_s_456">pre-shared key</span>, <span class="selectable-content" id="_s_457">passcode</span>, <span class="selectable-content" id="_s_458">no authentication</span>]</span></li></ul>]
+                     Enable/disable [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_459">Hotspot functionality authenticated by [<b>selection</b>: <span class="selectable-content" id="_s_460">pre-shared key</span>, <span class="selectable-content" id="_s_461">passcode</span>, <span class="selectable-content" id="_s_462">no authentication</span>]</span></li><li style=""><span class="selectable-content" id="s-tether"><abbr class="dyn-abbr"><a href="#abbr_USB">USB</a></abbr> tethering authenticated by [<b>selection</b>: <span class="selectable-content" id="_s_464">pre-shared key</span>, <span class="selectable-content" id="_s_465">passcode</span>, <span class="selectable-content" id="_s_466">no authentication</span>]</span></li></ul>]
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-dataSharing"><td>42</td><td style="text-align:left">
-                     Approve exceptions for sharing data between [<b>selection</b>: <span class="selectable-content" id="_s_459">applications</span>, <span class="selectable-content" id="_s_460">groups of applications</span>]</td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
+                     Approve exceptions for sharing data between [<b>selection</b>: <span class="selectable-content" id="_s_467">applications</span>, <span class="selectable-content" id="_s_468">groups of applications</span>]</td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-appGroups"><td>43</td><td style="text-align:left">
                      Place applications into application groups based on [<b>assignment</b>: 
      <span class="assignable-content">enterprise
@@ -9026,7 +9022,7 @@ The evaluator shall also perform the following tests:
                 <li>Across device</li>
               </ul>
               <div class="indent">
-                [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_461">on a per-app basis</span></li><li style=""><span class="selectable-content" id="_s_462">on a per-group of applications processes basis</span></li><li style=""><span class="selectable-content" id="_s_463">no other method</span></li></ul>]
+                [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_469">on a per-app basis</span></li><li style=""><span class="selectable-content" id="_s_470">on a per-group of applications processes basis</span></li><li style=""><span class="selectable-content" id="_s_471">no other method</span></li></ul>]
               </div>
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-bioRevoke"><td>46</td><td style="text-align:left">
@@ -9034,7 +9030,7 @@ The evaluator shall also perform the following tests:
 <tr id="mf-auditCapacity"><td>47</td><td style="text-align:left">
                      Configure local audit storage capacity
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
-<tr id="mf-lockout"><td>48</td><td style="text-align:left">  Configure lockout policy for unsuccessful authentication attempts through [<b>selection</b>: <span class="selectable-content" id="_s_464">timeouts between attempts</span>, <span class="selectable-content" id="_s_465">limiting number of attempts during a time period</span>]
+<tr id="mf-lockout"><td>48</td><td style="text-align:left">  Configure lockout policy for unsuccessful authentication attempts through [<b>selection</b>: <span class="selectable-content" id="_s_472">timeouts between attempts</span>, <span class="selectable-content" id="_s_473">limiting number of attempts during a time period</span>]
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-hostFirewall"><td>49</td><td style="text-align:left"> Configure host-based firewall</td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
 <tr id="mf-directoryServer"><td>50</td><td style="text-align:left"> Configure name/address of directory server with which to bind</td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td></tr>
@@ -9097,7 +9093,7 @@ The evaluator shall also perform the following tests:
              Address Space Layout Randomization,
               defines the ability of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to use <abbr class="dyn-abbr"><a href="#abbr_ASLR">ASLR</a></abbr> as
             well as the objects that <abbr class="dyn-abbr"><a href="#abbr_ASLR">ASLR</a></abbr> is applied to.</p><h4>Management: FPT_ASLR_EXT.1</h4><p>There are no management functions foreseen.</p><h4>Audit: FPT_ASLR_EXT.1</h4><p>There are no auditable events foreseen.</p><h4>FPT_ASLR_EXT.1 Address Space Layout Randomization</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td>No dependencies.</td></tr></table><h4 id="ext-comp-FPT_ASLR_EXT.1.1">FPT_ASLR_EXT.1.1</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall always randomize process address space memory locations with
-	    [<b>selection</b>: <span class="selectable-content" id="_s_466">8</span>, <span class="selectable-content" id="_s_467">[<b>assignment</b>: 
+	    [<b>selection</b>: <span class="selectable-content" id="_s_474">8</span>, <span class="selectable-content" id="_s_475">[<b>assignment</b>: 
      <span class="assignable-content">number greater than 8</span>]</span>]
 	    bits of entropy except for
                 [<b>assignment</b>: 
@@ -9118,7 +9114,7 @@ The evaluator shall also perform the following tests:
               requires the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to be compiled using stack-based
 	    buffer overflow protections or to store data in such a manner that a stack-based buffer overflow cannot
 	    compromise the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.</p><h4>Management: FPT_SBOP_EXT.1</h4><p>There are no management activities foreseen.</p><h4>Audit: FPT_SBOP_EXT.1</h4><p>There are no auditable events foreseen.</p><h4>FPT_SBOP_EXT.1 Stack Buffer Overflow Protection</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td>No dependencies.</td></tr></table><h4 id="ext-comp-FPT_SBOP_EXT.1.1">FPT_SBOP_EXT.1.1</h4>
-The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selection</b>: <span class="selectable-content" id="_s_475">employ stack-based buffer overflow protections</span>, <span class="selectable-content" id="_s_476">not store parameters or variables in the same data structures as control flow values</span>].
+The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selection</b>: <span class="selectable-content" id="_s_483">employ stack-based buffer overflow protections</span>, <span class="selectable-content" id="_s_484">not store parameters or variables in the same data structures as control flow values</span>].
 </div></div><h3 id="ext-comp-FPT_SRP_EXT" class="indexable" data-level="4">B.2.4.5 FPT_SRP_EXT Software Restriction Policies</h3><div style="margin-left: 1em;"><h4>Family Behavior</h4><div>This family defines the ability of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to restrict the execution of software unless it meets defined
 	    criteria. This is a new family defined for the FPT class.</div><h4>Component Leveling</h4><svg style="max-height: 30px;"><text x="4" fill="black" font-size="15" y="24">FPT_SRP_EXT</text><rect x="2" y="11" width="150" height="16" fill="none" stroke="black"></rect><text x="234" fill="black" font-size="15" y="24">1</text><rect x="232" y="11" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="17" x2="231" y2="17" stroke="black"></line></svg><p><a href="#FPT_SRP_EXT.1">FPT_SRP_EXT.1</a>,
              Software Restriction Policies,
@@ -9142,10 +9138,10 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selectio
           <span class="no-link">FCS_COP.1</span> Cryptographic Operation<br/>
           <span class="no-link">FIA_X509_EXT.1</span> X.509 Certificate Validation
           </td></tr></table><h4 id="ext-comp-FPT_TST_EXT.1.1">FPT_TST_EXT.1.1</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall verify the integrity of the bootchain up through the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> kernel and
-              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-verify-all-code">all executable code stored in mutable media</span></li><li style=""><span class="selectable-content" id="_s_487">[<b>assignment</b>: 
-     <span class="assignable-content">list of other executable code</span>]</span></li><li style=""><span class="selectable-content" id="_s_488">no other executable code</span></li></ul>]
+              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="s-verify-all-code">all executable code stored in mutable media</span></li><li style=""><span class="selectable-content" id="_s_495">[<b>assignment</b>: 
+     <span class="assignable-content">list of other executable code</span>]</span></li><li style=""><span class="selectable-content" id="_s_496">no other executable code</span></li></ul>]
 	      prior to its execution through the use of
-              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_489">a digital signature using a hardware-protected asymmetric key</span></li><li style=""><span class="selectable-content" id="s-boot-x509">a digital signature using an X.509 certificate with hardware-based protection</span></li><li style=""><span class="selectable-content" id="_s_491">a hardware-protected hash</span></li></ul>].
+              [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_497">a digital signature using a hardware-protected asymmetric key</span></li><li style=""><span class="selectable-content" id="s-boot-x509">a digital signature using an X.509 certificate with hardware-based protection</span></li><li style=""><span class="selectable-content" id="_s_499">a hardware-protected hash</span></li></ul>].
             </div></div><h3 id="ext-comp-FPT_TUD_EXT" class="indexable" data-level="4">B.2.4.7 FPT_TUD_EXT Trusted Update</h3><div style="margin-left: 1em;"><h4>Family Behavior</h4><div>This family defines the ability of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to provide mechanisms for assuring the integrity of updates to
 	    the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> or to non-TOE components that rely on the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to function. This is a new family defined for
 	    the FPT class.</div><h4>Component Leveling</h4><svg style="max-height: 50px;"><text x="4" fill="black" font-size="15" y="44">FPT_TUD_EXT</text><rect x="2" y="31" width="150" height="16" fill="none" stroke="black"></rect><text x="234" fill="black" font-size="15" y="24">1</text><rect x="232" y="11" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="37" x2="231" y2="17" stroke="black"></line><text x="234" fill="black" font-size="15" y="44">2</text><rect x="232" y="31" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="37" x2="231" y2="37" stroke="black"></line></svg><p><a href="#FPT_TUD_EXT.1">FPT_TUD_EXT.1</a>,
@@ -9171,7 +9167,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selectio
                 software itself and shall use a digital signature scheme specified in FCS_COP.1 to validate the authenticity of the response.
               <h4 id="ext-comp-FPT_TUD_EXT.1.2">FPT_TUD_EXT.1.2</h4>
                 The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall 
-                [<b>selection</b>: <span class="selectable-content" id="_s_494">cryptographically verify</span>, <span class="selectable-content" id="_s_495">invoke platform-provided functionality to cryptographically verify</span>]
+                [<b>selection</b>: <span class="selectable-content" id="_s_502">cryptographically verify</span>, <span class="selectable-content" id="_s_503">invoke platform-provided functionality to cryptographically verify</span>]
                 updates to itself using a digital
                 signature prior to installation using schemes specified in FCS_COP.1.
               </div><h4>Management: FPT_TUD_EXT.2</h4><p>The following actions could be considered for the management functions in FMT:
@@ -9226,7 +9222,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selectio
       	        [<b>assignment</b>: 
      <span class="assignable-content">trusted protocol</span>], to provide a trusted communication channel between itself and authorized <abbr class="dyn-abbr"><a href="#abbr_IT">IT</a></abbr>
       	        entities supporting the following capabilities:
-      	        [<b>selection</b>: <span class="selectable-content" id="_s_520">audit server</span>, <span class="selectable-content" id="_s_521">authentication server</span>, <span class="selectable-content" id="_s_522">management server</span>, <span class="selectable-content" id="_s_523">[<b>assignment</b>: 
+      	        [<b>selection</b>: <span class="selectable-content" id="_s_528">audit server</span>, <span class="selectable-content" id="_s_529">authentication server</span>, <span class="selectable-content" id="_s_530">management server</span>, <span class="selectable-content" id="_s_531">[<b>assignment</b>: 
      <span class="assignable-content">other capabilities</span>]</span>] using [<b>assignment</b>: 
      <span class="assignable-content">peer authentication</span>] 
       	        that is logically distinct from other communication channels and provides assured identification of its end points and
@@ -9343,14 +9339,14 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selectio
       </p>
       <p>If implemented, the design
       description will include a description of how third-party applications can add entropy to the
-      <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr>. A description of any <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> state saving between power-off and power-on will be included.
+      <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr>. A description of any <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> state saving between power-off and power-on will be included.
       </p>
     
     <h2 class="indexable" data-level="2" id="entropyjustification">D.2 Entropy Justification</h2>
       <p>
       There should be a technical
       argument for where the unpredictability in the source comes from and why there is confidence
-      in the entropy source delivering sufficient entropy for the uses made of the <abbr class="dyn-abbr"><a href="#abbr_RBG">RBG</a></abbr> output (by
+      in the entropy source delivering sufficient entropy for the uses made of the <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> output (by
       this particular <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr>). This argument will include a description of the expected min-entropy
       rate (i.e. the minimum entropy (in bits) per bit or byte of source data) and explain that
       sufficient entropy is going into the <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> randomizer seeding process. This discussion will be
