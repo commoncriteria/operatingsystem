@@ -5050,7 +5050,7 @@ it manages may be physical or virtual.
             <note role="application">
               This requirement is claimed when a DRBG is seeded with entropy from one or more entropy sources that are outside the TOE
               boundary. Typically the entropy produced by an environmental entropy source is conditioned such that the input length has
-              full entropy and is therefore  usable as the seed. However, if this is not the case, it should be noted what the minimum
+              full entropy and is therefore usable as the seed. However, if this is not the case, it should be noted what the minimum
               entropy rate of the entropy source is so that the TSF can collect a sufficiently large sample of entropy data to be
               conditioned into a seed value.<h:br/><h:br/>
               This requirement is claimed if "TSF interface for obtaining entropy" is selected in <xref to="fel-rbg-init-seed-how"/>. 
@@ -5128,7 +5128,20 @@ it manages may be physical or virtual.
                 <selectable>256</selectable>
                 <selectable>384</selectable>
               </selectables></h:i>] bits of min-entropy to create the entropy input into the derivation function as defined in <assignable>list of standards</assignable>.         
-            </title>        
+            </title> 
+            <note role="application">
+              The ST author claims this requirement when a TOE combines two or more sources of entropy to
+              initialize or reseed a DRBG. Seeding a DRBG is the same as initializing a DRBG. The ST
+              author ensures that the assignment is completed with the number of bits of the combined entropy
+              sufficient to initialize or reseed a DRBG. Different entropy sources may contribute different amounts of entropy to the entropy pool over time, whether due to collection rate or to the relative strength of the entropy that is collected. When CTR_DRBG is selected in FCS_RBG.1 and the TSF uses no derivation function after acquiring the seed, then the minimum bits of entropy must be 384. If an amount of entropy greater than the minimum is collected, the ST author selects the minimum value.<h:p/>
+              One can apply NIST SP 800-90B (or AIS-31) statistical tests against internal entropy sources
+              (aka raw entropy) to confirm the min-entropy of the entropy sources either in aggregate or
+              individually. One should not apply NIST SP 800-90B (or AIS-31) statistical tests against
+              external entropy sources since the TOE is unable to enforce entropy requirements or conditioning
+              requirements against external sources of entropy. However, the TSS may include estimates for
+              min-entropy from external sources that contribute to the overall entropy requirements for 
+              the DRBG.
+            </note>
             <aactivity>
               <h:p>
                 Using the entropy sources specified in FCS_RBG.4, the evaluator shall examine the entropy documentation required by FCS_RBG.1.2 to verify that it describes the method by which the various entropy sources are combined into a single seed. This should include an estimation of the rate at which each entropy source outputs data and whether this is dependent on any system-specific factors so that each source's relative contribution to the overall entropy is understood. The evaluator shall verify that the resulting combination of sampled data and the min-entropy rate of the sampled data is described in sufficient detail to determine that sufficient entropy can be made available for the highest strength keys that the TSF can generate (e.g., 256 bits). If the seed data cannot be assumed to have full entropy (e.g., the min-entropy of the sampled bits is less than 1), the evaluator shall ensure that the entropy documentation describes the method by which the TOE estimates the amount of entropy that has been accumulated to ensure that sufficient data is collected and any conditioning that the TSF applies to the output data to create a seed of sufficient size with full entropy.
