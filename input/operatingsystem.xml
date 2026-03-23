@@ -177,13 +177,6 @@ it manages may be physical or virtual.
       </term>
       <term abbr='CRL' full="Certificate Revocation List"/>
       
-      <term full="Critical Security Parameters" abbr="CSP">
-	Information that is either user or system defined and
-	is used to operate a cryptographic module in processing encryption functions including
-	cryptographic keys and authentication data, such as passwords, the disclosure or modification
-	of which can compromise the security of a cryptographic module or the security of the
-	information protected by the module.
-      </term>
 
       <term full="Data At Rest Protection">
 	Countermeasures that prevent attackers, even those with physical access,
@@ -1896,42 +1889,41 @@ it manages may be physical or virtual.
 		
 <f-component cc-id="fcs_ckm.6" name="Timing and Event of Cryptographic Key Destruction">
 	 
-          <f-element id="fel-key-kill-when">
-            <title>The TSF shall destroy [<h:i>all plaintext keying material and critical security
-              parameters (CSPs)</h:i>] when 
-              <selectables>
-                <selectable>no longer needed</selectable>
-                <selectable><assignable>other circumstances for destruction</assignable></selectable>
-              </selectables>.
-            </title>
-          </f-element>
-  
-  <f-element id="fel-key-kill">
-    <title> The TSF shall destroy <h:b>plaintext</h:b> keying material <h:b>and critical security parameters</h:b> by 
-      implementing key destruction in accordance with the following rules: [<h:i><h:ul>
+  <f-element id="fel-key-kill-when">
+    <title>The TSF shall destroy [<h:i>all plaintext keying material and keying material</h:i>] when 
+      <selectables>
+        <selectable>no longer needed</selectable>
+        <selectable><assignable>other circumstances for destruction</assignable></selectable>
+      </selectables>.
+    </title>
+  </f-element>
+  <f-element id="fel-key-kill-how">
+    <title> The TSF shall destroy <h:b>plaintext</h:b> cryptographic keys and keying material specified by FCS_CKM.6.1 in accordance with a specified cryptographic key destruction method
+      
+      [<h:i>in accordance with the following rules: <h:ul>
         <h:li>For volatile memory, the destruction shall be executed by a single direct overwrite consisting of <selectables>
-          <selectable>a pseudo-random pattern using a TSF DRBG (as specified in FCS_RBG.1)</selectable>
+          <selectable>a pseudo-random pattern using the TSF or platform DRBG (as specified in FCS_RBG.1)</selectable>
           <selectable>zeroes</selectable>
         </selectables></h:li>
-        <h:li>For non-volatile EEPROM, the destruction shall be executed by a single direct overwrite consisting of a pseudo-random pattern using a 
-          TSF DRBG (as specified in FCS_RBG.1), followed by a read-verify.</h:li>
-        <h:li>For non-volatile flash memory, that is not wear-leveled, the destruction shall be executed by<selectables>
-          <selectable>a single direct overwrite consisting of zeros followed by a read-verify</selectable>
-          <selectable>a block erase that erases the reference to memory that stores data as well as the data itself</selectable>
+        <h:li>For non-volatile EEPROM, the destruction shall be executed by a single direct overwrite consisting of a pseudo-random pattern using the 
+          TSF or platform DRBG (as specified in FCS_RBG.1), followed by a read-verify.</h:li>
+        <h:li>For non-volatile flash memory, that is not wear-leveled, the destruction shall be executed <selectables>
+          <selectable>by a single direct overwrite consisting of zeroes followed by a read-verify</selectable>
+          <selectable>by a block erase that erases the reference to memory that stores data as well as the data itself</selectable>
         </selectables>
         </h:li>
-        <h:li>For non-volatile flash memory that is wear-leveled, the destruction shall be executed by<selectables>
-          <selectable>a single direct overwrite consisting of zeros</selectable>
-          <selectable>a block erase</selectable>
+        <h:li>For non-volatile flash memory that is wear-leveled, the destruction shall be executed by a<selectables>
+          <selectable>single direct overwrite consisting of zeroes</selectable>
+          <selectable>block erase</selectable>
         </selectables></h:li>
         <h:li>For non-volatile memory other than EEPROM and flash, the destruction shall be executed by a single direct overwrite with a random pattern that 
-          is changed before each write.</h:li></h:ul></h:i>]
+          is changed before each write</h:li></h:ul></h:i>]that meets the following: [<h:i>no standard</h:i>].
     </title>
     <note role="application">
       <h:p>
       For the purposes of this requirement, keying material refers to authentication data, passwords, secret/private symmetric keys, private asymmetric keys, data used to derive keys, values derived from passwords, etc. “Plaintext keying material” may refer to a KEK that is used to encrypt other keying material. Destruction of encrypted keying material may be accomplished by destroying the KEK used to encrypt it. If different mechanisms are used for destroying different keying material, all relevant claims should be selected and the TSS should identify which keying material is destroyed by which mechanism. 
       </h:p><h:p>
-        Key storage areas in non-volatile storage can be overwritten with any value that renders the keys unrecoverable. The value used can be all zeroes, all ones, or any other pattern or combination of values significantly different than the value of the key itself. When ‘a value that does not contain any CSP’ is chosen, it means that the TOE uses some other specified data not drawn from a source that may contain keying material or reveal information about it or any other TSF-protected data. In other words, the data used for overwriting is carefully selected and not taken from a general ‘pool’ that might contain current or residual data that itself requires confidentiality protection. If multiple copies exist, all copies must be destroyed. 
+        Key storage areas in non-volatile storage can be overwritten with any value that renders the keys unrecoverable. The value used can be all zeroes, all ones, or any other pattern or combination of values significantly different than the value of the key itself. When ‘a value that does not contain any keying material’ is chosen, it means that the TOE uses some other specified data not drawn from a source that may contain keying material or reveal information about it or any other TSF-protected data. In other words, the data used for overwriting is carefully selected and not taken from a general ‘pool’ that might contain current or residual data that itself requires confidentiality protection. If multiple copies exist, all copies must be destroyed. 
       </h:p><h:p>
         Since this is a software-only TOE, the hardware controllers that manage non-volatile storage media are necessarily outside the TOE boundary. Thus, the TOE developer is likely to have little control over—or insight into—the functioning of these storage devices. The TOE must make a “best-effort” to destroy disused cryptographic keys by invoking the appropriate hardware interfaces—recognizing that the specific actions taken by the hardware are out of the TOE’s control. But in cases where the TOE has insight into the non-volatile storage technologies used by the hardware, or where the TOE can specify a preference or method for destroying keys, the destruction should be executed by a single, direct overwrite consisting of pseudorandom data or a new key, by a repeating pattern of any static value, or by a block erase.
       </h:p>
@@ -1939,7 +1931,7 @@ it manages may be physical or virtual.
     <aactivity>
       <TSS>
         <h:p>
-          The evaluator shall verify that the TSS identifies all plaintext keying material and CSPs stored by the TOE, the type of memory in which it is stored, and when and how the keying material is erased. If the TOE uses one or more KEKs to protect stored keying material, the evaluator shall verify that the TSS describes the destruction of that keying material, either directly or by destruction of the KEK used to encrypt it.</h:p><h:p>
+          The evaluator shall verify that the TSS identifies all plaintext keys and keying material stored by the TOE, the type of memory in which it is stored, and when and how the keying material is erased. If the TOE uses one or more KEKs to protect stored keying material, the evaluator shall verify that the TSS describes the destruction of that keying material, either directly or by destruction of the KEK used to encrypt it.</h:p><h:p>
             If different types of memory are used to store the materials to be protected, the evaluator shall check to ensure that the TSS describes the clearing procedure in terms of the memory in which the data are stored (for example, "secret keys stored on flash are cleared by overwriting once with zeros, while secret keys stored on the internal persistent storage device are cleared by overwriting one time with a random pattern that is changed before each write"). For block erases, the evaluator shall also ensure that the TSS identifies the block erase command that is used and shall verify that the command used also addresses any copies of the plaintext key material that may be created, e.g. in order to optimize the use of Flash memory.
           </h:p>    
       </TSS>
