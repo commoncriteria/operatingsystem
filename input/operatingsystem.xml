@@ -6051,7 +6051,7 @@ it manages may be physical or virtual.
 	      releases an asymmetric key stored in OE-protected storage</selectable>
               <selectable>authentication based on X.509 certificates</selectable>
               <selectable>authentication based on biometric in accordance with the <xref to="mod-biometric"/></selectable>
-              <selectable>hybrid</selectable>
+              <selectable>hybrid authentication</selectable>
             </selectables>.
 	    </h:b>
 	    </title>
@@ -6076,7 +6076,7 @@ it manages may be physical or virtual.
           <f-element id="fel-bad-attempts">
             <title>
 	      When the defined number of unsuccessful authentication attempts <h:b>for an
-	      account</h:b> has been [<h:i>met</h:i>], The TSF shall:
+	      account</h:b> has been [<h:i>met</h:i>], the TSF shall:
 	      <h:b>
 	      <selectables>
 		<selectable>Account Lockout</selectable>
@@ -6113,7 +6113,7 @@ it manages may be physical or virtual.
                 </test>
                 <test>
                   [conditional, to be performed if "authentication based on X.509 certificates" is selected in                  
-                  FIA_AFL.1 and FIA_UAU.5]:The evaluator shall attempt to authenticate repeatedly to the system 
+                  FIA_AFL.1 and FIA_UAU.5]: The evaluator shall attempt to authenticate repeatedly to the system
                   using a known bad certificate.
                   Once the defined number of failed authentication attempts has been
                   reached the evaluator shall ensure that the account that was being used for testing
@@ -6121,8 +6121,8 @@ it manages may be physical or virtual.
                   an event has been logged to the security event log detailing that the account has had these actions applied.
                 </test>
                 <test>
-                  [conditional, to be performed if "authentication based on biometric in accordance with the <xref to="mod-biometric"/>" or "hybrid" is selected in                  
-                  FIA_AFL.1 and FIA_UAU.5]:The evaluator shall attempt to authenticate repeatedly to the system 
+                  [conditional, to be performed if "authentication based on biometric in accordance with the <xref to="mod-biometric"/>" or "hybrid authentication" is selected in
+                  FIA_AFL.1 and FIA_UAU.5]: The evaluator shall attempt to authenticate repeatedly to the system
                   using a known bad biometric authentication factor.
                   Once the defined number of failed authentication attempts has been
                   reached the evaluator shall ensure that the account that was being used for testing
@@ -6130,7 +6130,7 @@ it manages may be physical or virtual.
                   an event has been logged to the security event log detailing that the account has had these actions applied.
                 </test>
                 <test>
-                  [conditional, to be performed if "hybrid" is selected in                  
+                  [conditional, to be performed if "hybrid authentication" is selected in
                   FIA_AFL.1 and FIA_UAU.5]: <h:p>The evaluator shall attempt to authenticate repeatedly to the system 
                   using a known bad primary authentication factor (PIN, Password, certificate).
                   Once the defined number of failed authentication attempts has been
@@ -6226,7 +6226,7 @@ it manages may be physical or virtual.
 		<selectable id="s-uau-ssh">for use in SSH only, <snip>SSH public key-based authentication</snip> as specified by the <xref to="ssh"/></selectable>
 	      </selectables> </h:b> and <selectables>
                   <selectable id="uau_biometric"> biometric in accordance with the <xref to="mod-biometric"/></selectable>
-                  <selectable id="uau_hybr"> hybrid</selectable>
+                  <selectable id="uau_hybr"> hybrid authentication</selectable>
                   <selectable exclusive="yes">no other mechanism</selectable>
         </selectables>	      
 	      to support user authentication.
@@ -6336,7 +6336,7 @@ The TSF shall authenticate any user's claimed identity according to the
 		  interfaces (i.e. if there are times, for example, after a reboot,
 		  that only specific authentication mechanisms can be used).
 		  Rules regarding how the authentication factors interact in terms of
-		  unsuccessful authentication are covered in FIA_AFL.1. If multiple Biometric Authentication Factors are claimed in FIA_MBV_EXT.1.1 in the Biometric Enrollment and Verification, version 1.1, the interaction between the BAFs must be described. For example, whether the multiple BAFs can be enabled at the same time.
+		  unsuccessful authentication are covered in FIA_AFL.1. If multiple Biometric Authentication Factors are claimed in FIA_MBV_EXT.1.1 in the <xref to="uau_biometric"/>, the interaction between the BAFs must be described. For example, whether the multiple BAFs can be enabled at the same time.
 		</TSS>
 	      <Guidance>
 	      <h:p>
