@@ -461,7 +461,7 @@ it manages may be physical or virtual.
       The features enumerated below, if implemented by the TOE, require that additional SFRs be claimed in the ST.<h:br/>
       <implements>
         <feature id="bluetooth-support" title="Bluetooth Support">
-          <description>A conformant TOE may implement Bluetooth functionality. If so, it is necessary for the TOE to support specific cryptographic algorithms and key sizes to support Bluetooth communications. The TOE will also claim a PP-Configuration that includes the PP-Module for Bluetooth.<h:br/></description>
+          <description>A conformant TOE may implement Bluetooth functionality. If so, it is necessary for the TOE to support specific cryptographic algorithms and key sizes to support Bluetooth communications. The TOE will also claim a PP-Configuration that includes the <xref to="mod-bluetooth"/>.<h:br/></description>
         </feature>
         <feature id="key-encap-support" title="Key Encapsulation Support">
           <description>A conformant TOE is required to implement trusted communications. Depending on the specific protocols used and the supported connection parameters for these protocols, it may be necessary to implement a key encapsulation algorithm as part of key establishment.<h:br/></description>
@@ -470,10 +470,10 @@ it manages may be physical or virtual.
             <description>A conformant TOE is required to implement trusted communications. Depending on the specific protocols used and the supported connection parameters for these protocols, it may be necessary to implement one or more key agreement algorithms as part of key establishment.<h:br/></description>
           </feature>
         <feature id="wlan-support" title="WLAN Support">
-          <description>A conformant TOE may implement WLAN client functionality. If so, it is necessary to implement authenticated encryption and key wrapping in support of secure wireless communications. The TOE will also claim a PP-Configuration that includes the PP-Module for Wireless LAN Clients.<h:br/></description>
+          <description>A conformant TOE may implement WLAN client functionality. If so, it is necessary to implement authenticated encryption and key wrapping in support of secure wireless communications. The TOE will also claim a PP-Configuration that includes the <xref to="mod-wlanclient"/>.<h:br/></description>
         </feature>
         <feature id="mdm-management" title="Mobile Device Management Support">
-          <description>A conformant TOE may interface with a Mobile Device Management server for remote administration and security policies. This is either through an MDM Agent built into the TOE or a 3rd party MDM Agent application installed onto the TOE. If the TOE includes a built-in MDM Agent, the TOE will claim a PP-Configuration that includes the PP-Module for Mobile Device Management Agents.<h:br/></description>
+          <description>A conformant TOE may interface with a Mobile Device Management server for remote administration and security policies. This is either through an MDM Agent built into the TOE or a 3rd party MDM Agent application installed onto the TOE. If the TOE includes a built-in MDM Agent, the TOE will claim a PP-Configuration that includes the <xref to="mod-mdmagent"/>.<h:br/></description>
         </feature>
       </implements>			
     </section>
@@ -492,10 +492,10 @@ it manages may be physical or virtual.
         <cc-pt3-conf>extended</cc-pt3-conf>
         <cc-pp-conf/>
         <cc-pp-config-with>       
-          <Mod-cc-ref>PP-Module for Virtual Private Network (VPN) Clients, version 3.0</Mod-cc-ref>
+          <Mod-cc-ref>PP-Module for Virtual Private Network (VPN) Client, version 3.0</Mod-cc-ref>
           <Mod-cc-ref>PP-Module for Bluetooth, version 2.0</Mod-cc-ref>
-          <Mod-cc-ref>PP-Module for Mobile Device Management Agent, version 2.0</Mod-cc-ref>
-          <Mod-cc-ref>PP-Module for Wireless LAN Clients, version 2.0</Mod-cc-ref>
+          <Mod-cc-ref>PP-Module for MDM Agent, version 2.0</Mod-cc-ref>
+          <Mod-cc-ref>PP-Module for Wireless LAN Client, version 2.0</Mod-cc-ref>
           <Mod-cc-ref>cPP-Module for Biometric Enrolment and Verification, version 2.0</Mod-cc-ref>  
         </cc-pp-config-with>
         <cc-pkg-claim>
@@ -1369,7 +1369,7 @@ it manages may be physical or virtual.
               For RSA the choice of the modulus implies the resulting key sizes of the public and private keys generated using the specified standard methods. RSA key generation with modulus size 2048 bits is no longer permitted by CNSA.
 	      </h:p><h:p>
               For Finite Field Cryptography (FFC) DSA, ST authors should consult schemes for guidelines on use. FIPS PUB 186-5 does not approve DSA for digital signature generation but allows DSA for digital signature verification for legacy purposes. “FFC-ERB” or “FFC–RS” may be claimed only for generating private and public keys when “DH” is claimed in FCS_CKM_EXT.7.
-	      </h:p><h:p>For ECC selections, “P-256” may only be selected if the PP-Module for Bluetooth is included in the ST and P-256 may only be used specifically for Bluetooth functions.
+	      </h:p><h:p>For ECC selections, “P-256” may only be selected if the the <xref to="mod-bluetooth"/> is included in the ST and P-256 may only be used specifically for Bluetooth functions.
 	      </h:p><h:p>
               When generating ECC keys pairs for key agreement and if “ECDH” is claimed in FCS_CKM_EXT.7, then “ECC–ERB” or “ECC–RS” must be claimed. The sizes of the private key, which is a scalar, and the public key, which is a point on the elliptic curve, are determined by the choice of the curve.
 	      </h:p><h:p>
@@ -2152,7 +2152,7 @@ it manages may be physical or virtual.
             
             <note role="application">
               This SFR is claimed if the TSF supports key agreement schemes as a method of key establishment for trusted channels. This will generally apply to all conformant TOEs, except in the rare (but possible) case where only key encapsulation is used.<h:p/>
-              All of the above algorithms with the selectable parameters are CNSA compliant with the exception of P-256 ECDH. This may only be selected if the PP-Module for Bluetooth is included in the ST and P-256 may only be used specifically for Bluetooth functions.<h:p/>
+              All of the above algorithms with the selectable parameters are CNSA compliant with the exception of P-256 ECDH. This may only be selected if the the <xref to="mod-bluetooth"/> is included in the ST and P-256 may only be used specifically for Bluetooth functions.<h:p/>
           
             </note>
             <aactivity>
@@ -2892,7 +2892,7 @@ it manages may be physical or virtual.
               </selectables>
             </title>
             <note role="application">
-              The use of 256-bit keys for AES encryption is required by CNSA. 128-bit keys may only be used when the PP-Module for Bluetooth is claimed and only for the purpose of Bluetooth communications.
+              The use of 256-bit keys for AES encryption is required by CNSA. 128-bit keys may only be used when the the <xref to="mod-bluetooth"/> is claimed and only for the purpose of Bluetooth communications.
             </note>
             <aactivity>
               <TSS>
@@ -4810,8 +4810,7 @@ it manages may be physical or virtual.
 	    </rule>
 	    If <xref to="s-req-app-auth"/> is selected then
               "the server certificate is invalid [except when override is authorized in the case where valid revocation information is not available]" must be selected
-	    for FCS_TLSC_EXT.1.6 in the Package for
-            Transport Layer Security.
+	    for FCS_TLSC_EXT.1.6 in the <xref to="tls"/>.
 	    <rule id="r-override">
 	      <if><ref-id>s-req-app-auth</ref-id></if>
 	      <then><doc ref="tls"><ref-id>fcs_tlsc_ext.1.6_2</ref-id></doc></then>
@@ -5693,7 +5692,7 @@ it manages may be physical or virtual.
 	      </h:p>
 	      <h:p>
 		If the TSF implements a native VPN client, then the ST author must select 
-		<xref to="s-provides-vpnclient"/> and includes the PP-Module for VPN Client
+		<xref to="s-provides-vpnclient"/> and includes the <xref to="mod-vpnclient"/>
 		as part of the ST.
                 <!-- If the native VPN client is to be validated  -->
                 <!-- (<xref to="s-itc-ipsec"/> is selected in FTP_ITC_EXT.1.1  -->
@@ -9218,7 +9217,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
     	  	      <selectable id="s-dtls-client"><readable>client(DTLS)</readable>client</selectable>
     	  	      <selectable id="s-dtls-server"><readable>server(DTLS)</readable>server</selectable>
     	  	    </selectables></selectable>
-      	      <selectable id="s-itc-ipsec">IPsec as conforming to the PP-Module for Virtual Private Network (VPN) Clients</selectable>
+      	      <selectable id="s-itc-ipsec">IPsec as conforming to the <xref to="mod-vpnclient"/></selectable>
       	      </selectables>
       	        and <selectables linebreak='yes'>
       	          <selectable id="s-ftp_ssh"><snip>SSH</snip> as conforming to the <xref to="ssh"/> as a
