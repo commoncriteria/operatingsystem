@@ -172,7 +172,7 @@ it manages may be physical or virtual.
       <term abbr='CMS' full="Cryptographic Message Syntax"/>
       <term abbr='CN' full="Common Names"/>
       <term full="Credential">
-	Data that establishes the identity of a user, e.g. a cryptographic key or
+	Data that establishes the identity of a user, e.g., a cryptographic key or
 	password.
       </term>
       <term abbr='CRL' full="Certificate Revocation List"/>
@@ -1053,7 +1053,7 @@ it manages may be physical or virtual.
                       <selectable>User and Group management events (Successful and unsuccessful add, delete, modify, disable, enable, and credential change)</selectable>
                       <selectable>Audit and log data access events (Success/Failure)</selectable>
                       <selectable>Cryptographic verification of software (Success/Failure)</selectable>
-                      <selectable>Attempted application invocation with arguments (Success/Failure e.g. due to software restriction policy)</selectable>
+                      <selectable>Attempted application invocation with arguments (Success/Failure e.g., due to software restriction policy)</selectable>
                       <selectable>System reboot, restart, and shutdown events (Success/Failure)</selectable>
                       <selectable>Kernel module loading and unloading events (Success/Failure)</selectable>
                       <selectable>Administrator or root-level access events (Success/Failure)</selectable>
@@ -1566,7 +1566,7 @@ it manages may be physical or virtual.
 						<h:br/><h:i><h:b>Safe Primes Verification Test</h:b></h:i><h:br/>
 						For each supported safe primes group, use a known good implementation to generate
 						10 key pairs. For each set of 10, the evaluator shall modify three so they are 
-						incorrect. The remaining values are left unmodified (i.e. correct). To
+						incorrect. The remaining values are left unmodified (i.e., correct). To
 						determine correctness, the evaluator shall submit the key pairs to the public 
 						key validation (PKV) function of the TOE and shall confirm that the results
 						correspond as expected for the modified and unmodified values.<h:p/>
@@ -1929,7 +1929,7 @@ it manages may be physical or virtual.
       <TSS>
         <h:p>
           The evaluator shall verify that the TSS identifies all plaintext keys and keying material stored by the TOE, the type of memory in which it is stored, and when and how the keying material is erased. If the TOE uses one or more KEKs to protect stored keying material, the evaluator shall verify that the TSS describes the destruction of that keying material, either directly or by destruction of the KEK used to encrypt it.</h:p><h:p>
-            If different types of memory are used to store the materials to be protected, the evaluator shall check to ensure that the TSS describes the clearing procedure in terms of the memory in which the data are stored (for example, "secret keys stored on flash are cleared by overwriting once with zeros, while secret keys stored on the internal persistent storage device are cleared by overwriting one time with a random pattern that is changed before each write"). For block erases, the evaluator shall also ensure that the TSS identifies the block erase command that is used and shall verify that the command used also addresses any copies of the plaintext key material that may be created, e.g. in order to optimize the use of Flash memory.
+            If different types of memory are used to store the materials to be protected, the evaluator shall check to ensure that the TSS describes the clearing procedure in terms of the memory in which the data are stored (for example, "secret keys stored on flash are cleared by overwriting once with zeros, while secret keys stored on the internal persistent storage device are cleared by overwriting one time with a random pattern that is changed before each write"). For block erases, the evaluator shall also ensure that the TSS identifies the block erase command that is used and shall verify that the command used also addresses any copies of the plaintext key material that may be created, e.g., in order to optimize the use of Flash memory.
           </h:p>    
       </TSS>
       <Guidance>	      
@@ -2195,7 +2195,7 @@ it manages may be physical or virtual.
                   <h:li>RSA Private key format [Basic, Prime Factor, Chinese Remainder Theorem]</h:li>
                   <h:li>Modulo value [3072, 4096, 6144, 8192]</h:li>
                   <h:li>Role [initiator, responder]</h:li></h:ul><h:p/>
-                The evaluator shall generate a test group (i.e. set of tests) for each parameter
+                The evaluator shall generate a test group (i.e., set of tests) for each parameter
                 value of the above parameter type with the largest number of supported values.
                 For example, if the TOE supports all five Modulo values, then the evaluator 
                 shall generate five test groups. Each of the above supported parameter values
@@ -4282,9 +4282,9 @@ it manages may be physical or virtual.
            <h:br/><h:b>Algorithm Functional Test</h:b><h:p/>
            For each supported combination of the above parameters, the evaluator shall generate four test cases
            consisting of signed messages and keys, such that<h:ul>
-             <h:li>One test case is unmodified (i.e. correct)</h:li>
-             <h:li>For one test case modify the message, i.e. the message is different</h:li>
-             <h:li>For one test case modify the signature, i.e. signature is different</h:li>
+             <h:li>One test case is unmodified (i.e., correct)</h:li>
+             <h:li>For one test case modify the message, i.e., the message is different</h:li>
+             <h:li>For one test case modify the signature, i.e., signature is different</h:li>
              <h:li>For one test case modify the signature header so that it is a valid header for a different
                LMS parameter set.</h:li></h:ul><h:p/>
            The TOE must correctly verify the unmodified test case and fail to verify the modified test cases.<h:p/>
@@ -4316,9 +4316,9 @@ it manages may be physical or virtual.
            <h:br/><h:b>XMSS Digital Signature Verification Test</h:b><h:p/>
            For each supported combination of the above parameters, the evaluator shall generate four test
            cases consisting of signed messages and keys, such that<h:ul>
-             <h:li>One test case is unmodified (i.e. correct)</h:li>
-             <h:li>For one test case modify the message, i.e. the message is different</h:li>
-             <h:li>For one test case modify the signature, i.e. signature is different</h:li>
+             <h:li>One test case is unmodified (i.e., correct)</h:li>
+             <h:li>For one test case modify the message, i.e., the message is different</h:li>
+             <h:li>For one test case modify the signature, i.e., signature is different</h:li>
              <h:li>For one test case modify the signature header so that it is a valid header 
                for a different XMSS parameter set</h:li></h:ul><h:p/>
            The evaluator shall verify the correctness of the implementation by verifying that the TOE
@@ -5036,9 +5036,9 @@ it manages may be physical or virtual.
               </selectables> bits of min-entropy</h:i>] from a TSF interface for obtaining entropy.
             </title>
             <note role="application">
-              <h:p>This SFR is claimed if "TSF interface for obtaining entropy" is selected in <xref to="fel-rbg-init-seed-how"/>, i.e. the TOE's entropy source is outside the TOE boundary.
+              <h:p>This SFR is claimed if "TSF interface for obtaining entropy" is selected in <xref to="fel-rbg-init-seed-how"/>, i.e., the TOE's entropy source is outside the TOE boundary.
               </h:p><h:p>
-                The ST author specifies 384 bits of entropy in the selection if the TOE uses an AES-CTR_DRBG and there is no derivation function, and 256 bits of entropy for all other DRBG implementations. If the environmental entropy source produces full entropy, the amount of entropy data collected is equal to the amount specified in the selection. If the entropy source does not assure full entropy (i.e. the ratio of min-entropy to collected data is less than 1:1), then the TSF must collect sufficient additional entropy data and perform a derivation function on it to reduce the collected data to a seed with the claimed min-entropy. In this case, the entropy documentation is expected to identify the min-entropy rate of the source data, how much data the TSF collects, and what derivation function is performed on this collected data to ensure that it has the claimed min-entropy.
+                The ST author specifies 384 bits of entropy in the selection if the TOE uses an AES-CTR_DRBG and there is no derivation function, and 256 bits of entropy for all other DRBG implementations. If the environmental entropy source produces full entropy, the amount of entropy data collected is equal to the amount specified in the selection. If the entropy source does not assure full entropy (i.e., the ratio of min-entropy to collected data is less than 1:1), then the TSF must collect sufficient additional entropy data and perform a derivation function on it to reduce the collected data to a seed with the claimed min-entropy. In this case, the entropy documentation is expected to identify the min-entropy rate of the source data, how much data the TSF collects, and what derivation function is performed on this collected data to ensure that it has the claimed min-entropy.
               </h:p>
               <h:p>
                 One should not apply NIST SP 800-90B (or AIS-31) statistical tests against
@@ -5072,9 +5072,9 @@ it manages may be physical or virtual.
             </title>        
             <note role="application">
               <h:p>
-                This SFR is claimed if "TSF entropy source..." is selected in <xref to="fel-rbg-init-seed-how"/>, i.e. the TOE has a single entropy source that is inside the TOE boundary. If the TOE obtains seed material from an environmental component, this is specified using FCS_RBG.2.
+                This SFR is claimed if "TSF entropy source..." is selected in <xref to="fel-rbg-init-seed-how"/>, i.e., the TOE has a single entropy source that is inside the TOE boundary. If the TOE obtains seed material from an environmental component, this is specified using FCS_RBG.2.
               </h:p><h:p>
-                The ST author specifies 384 bits of entropy in the selection if the TOE uses an AES-CTR_DRBG and there is no derivation function, and 256 bits of entropy for all other DRBG implementations. If the TSF entropy source produces full entropy, the amount of entropy data collected is equal to the amount specified in the selection. If the entropy source does not assure full entropy (i.e. the ratio of min-entropy to collected data is less than 1:1), then the TSF must collect sufficient additional entropy data and perform a derivation function on it to reduce the collected data to a seed with the claimed min-entropy. In this case, the entropy documentation is expected to identify the min-entropy rate of the source data, how much data the TSF collects, and what derivation function is performed on this collected data to ensure that it has the claimed min-entropy.
+                The ST author specifies 384 bits of entropy in the selection if the TOE uses an AES-CTR_DRBG and there is no derivation function, and 256 bits of entropy for all other DRBG implementations. If the TSF entropy source produces full entropy, the amount of entropy data collected is equal to the amount specified in the selection. If the entropy source does not assure full entropy (i.e., the ratio of min-entropy to collected data is less than 1:1), then the TSF must collect sufficient additional entropy data and perform a derivation function on it to reduce the collected data to a seed with the claimed min-entropy. In this case, the entropy documentation is expected to identify the min-entropy rate of the source data, how much data the TSF collects, and what derivation function is performed on this collected data to ensure that it has the claimed min-entropy.
               </h:p><h:p>
                 One can apply NIST SP 800-90B (or AIS-31) statistical tests against internal entropy sources
                 (aka raw entropy) to confirm the min-entropy of the entropy source. 
@@ -5100,7 +5100,7 @@ it manages may be physical or virtual.
             </title>
             <note role="application">
               <h:p>
-                This SFR is claimed if "multiple TSF entropy sources..." is selected in <xref to="fel-rbg-init-seed-how"/>, i.e. the TSF performs some sort of operation to combine data from multiple distinct sources into a value that is used to derive a seed. Since this PP defines the TOE as software, it does not have any hardware components and therefore would only claim software-based entropy sources here. If the TOE obtains seed material from any hardware components, this is specified using FCS_RBG.2. FCS_RBG.5 defines the mechanism by which all sources are combined to ensure sufficient minimum entropy.
+                This SFR is claimed if "multiple TSF entropy sources..." is selected in <xref to="fel-rbg-init-seed-how"/>, i.e., the TSF performs some sort of operation to combine data from multiple distinct sources into a value that is used to derive a seed. Since this PP defines the TOE as software, it does not have any hardware components and therefore would only claim software-based entropy sources here. If the TOE obtains seed material from any hardware components, this is specified using FCS_RBG.2. FCS_RBG.5 defines the mechanism by which all sources are combined to ensure sufficient minimum entropy.
               </h:p>
             </note>
             <aactivity>
@@ -5129,10 +5129,10 @@ it manages may be physical or virtual.
             </title> 
             <note role="application">
               <h:p>
-                This SFR is claimed if "multiple TSF entropy sources..." is selected in <xref to="fel-rbg-init-seed-how"/>, i.e. the TSF performs some sort of operation to combine data from multiple distinct sources into a value that is used to derive a seed.
+                This SFR is claimed if "multiple TSF entropy sources..." is selected in <xref to="fel-rbg-init-seed-how"/>, i.e., the TSF performs some sort of operation to combine data from multiple distinct sources into a value that is used to derive a seed.
               </h:p>
               <h:p>
-                The ST author specifies 384 bits of entropy in the selection if the TOE uses an AES-CTR_DRBG and there is no derivation function, and 256 bits of entropy for all other DRBG implementations. If the environmental entropy source produces full entropy, the amount of entropy data collected is equal to the amount specified in the selection. If the entropy source does not assure full entropy (i.e. the ratio of min-entropy to collected data is less than 1:1), then the TSF must collect sufficient additional entropy data and perform a derivation function on it to reduce the collected data to a seed with the claimed min-entropy. In this case, the entropy documentation is expected to identify the min-entropy rate of the source data, how much data the TSF collects, and what derivation function is performed on this collected data to ensure that it has the claimed min-entropy.
+                The ST author specifies 384 bits of entropy in the selection if the TOE uses an AES-CTR_DRBG and there is no derivation function, and 256 bits of entropy for all other DRBG implementations. If the environmental entropy source produces full entropy, the amount of entropy data collected is equal to the amount specified in the selection. If the entropy source does not assure full entropy (i.e., the ratio of min-entropy to collected data is less than 1:1), then the TSF must collect sufficient additional entropy data and perform a derivation function on it to reduce the collected data to a seed with the claimed min-entropy. In this case, the entropy documentation is expected to identify the min-entropy rate of the source data, how much data the TSF collects, and what derivation function is performed on this collected data to ensure that it has the claimed min-entropy.
               </h:p>
               <h:p>
                 One can apply NIST SP 800-90B (or AIS-31) statistical tests against internal entropy sources
@@ -5748,7 +5748,7 @@ it manages may be physical or virtual.
 		  </step>
 		  <step>
                   The evaluator shall perform a ping on the TOE host on the local network and verify that no packets sent are captured with the sniffer.
-		  The evaluator shall attempt to send packets to the TOE outside the VPN tunnel (i.e. not through the VPN gateway), including from the local network, and verify that the TOE discards them.
+		  The evaluator shall attempt to send packets to the TOE outside the VPN tunnel (i.e., not through the VPN gateway), including from the local network, and verify that the TOE discards them.
 		  </step>
 	      </steplist></test></testlist>
 	      </Tests>
@@ -6248,10 +6248,10 @@ it manages may be physical or virtual.
 	        If "authentication based on X.509 certificates" is claimed, the TOE must claim conformance to <xref to="X509"/>.
 	      </h:p>
         <h:p>
-        The TSF may optionally implement a Biometric Authentication Factor. A hybrid authentication factor is where a user has to submit a combination of primary authentication factor (e.g. username and password) and biometric sample where both have to pass and if either fails the user is not made aware of which factor failed.</h:p>
+        The TSF may optionally implement a Biometric Authentication Factor. A hybrid authentication factor is where a user has to submit a combination of primary authentication factor (e.g., username and password) and biometric sample where both have to pass and if either fails the user is not made aware of which factor failed.</h:p>
         <h:p>If <xref to="uau_biometric"/> or <xref to="uau_hybr"/> is selected, then the TSF must be validated against requirements from the <xref to="mod-biometric"/>.</h:p>
         <h:p>If <xref to="uau_hybr"/> is selected, <xref to="uau_biometric"/> does not need to be selected, but should be
-        selected if the biometric authentication can be used independent of the hybrid authentication, i.e. without having to enter a PIN/password.</h:p>
+        selected if the biometric authentication can be used independent of the hybrid authentication, i.e., without having to enter a PIN/password.</h:p>
 	    </note>
             <aactivity>
 	      <Tests>
@@ -6336,12 +6336,12 @@ The TSF shall authenticate any user's claimed identity according to the
 		  the rules as to how each authentication mechanism specified in
 		  FIA_UAU.5.1 is implemented and used.
 		  Example rules are how the authentication mechanism authenticates the user
-		  (i.e. how does the TSF verify that the correct password or authentication
+		  (i.e., how does the TSF verify that the correct password or authentication
 		  factor is used),
 		  the result of a successful authentication
-		  (i.e. is the user input used to derive or unlock a key) and which
+		  (i.e., is the user input used to derive or unlock a key) and which
 		  authentication mechanism can be used at which authentication factor
-		  interfaces (i.e. if there are times, for example, after a reboot,
+		  interfaces (i.e., if there are times, for example, after a reboot,
 		  that only specific authentication mechanisms can be used).
 		  Rules regarding how the authentication factors interact in terms of
 		  unsuccessful authentication are covered in FIA_AFL.1. If multiple Biometric Authentication Factors are claimed in FIA_MBV_EXT.1.1 in the Biometric Enrollment and Verification, version 1.1, the interaction between the BAFs must be described. For example, whether the multiple BAFs can be enabled at the same time.
@@ -6490,7 +6490,7 @@ The evaluator shall then remove trust in one of the CA certificates, and show th
 <test> The evaluator shall demonstrate that validating an expired certificate results in the function failing.</test>
 <test> [Conditional, to be performed for use cases identified in exceptions that cannot be configured to allow revocation checking]
 The evaluator shall test that the OS can properly handle revoked certificates - conditional on whether CRL, OCSP, OCSP stapling, or OCSP multi-stapling is selected; if multiple methods are selected, then a test will be performed for each method.
-The evaluator shall test revocation of the node certificate and revocation of the intermediate CA certificate (i.e. the intermediate CA certificate should be revoked by the root CA).
+The evaluator shall test revocation of the node certificate and revocation of the intermediate CA certificate (i.e., the intermediate CA certificate should be revoked by the root CA).
 If OCSP stapling per RFC 6066 is the only supported revocation method, testing revocation of the intermediate CA certificate is omitted.
 The evaluator shall ensure that a valid certificate is used, and that the validation function succeeds.
 The evaluator then attempts the test with a certificate that has been revoked (for each method chosen in the selection) to ensure when the certificate is no longer valid that the validation function fails.
@@ -6891,7 +6891,7 @@ the node certificate to be tested, two Intermediate CAs, and the
                 perform the enable/disable function for each radio.<h:br /><h:br />
               </Guidance>
               <Tests> The evaluator shall ensure that minimal signal leakage enters the RF
-                shielded enclosure (i.e. Faraday bag, Faraday box, RF shielded room) by
+                shielded enclosure (i.e., Faraday bag, Faraday box, RF shielded room) by
                 performing the following steps:<h:br /><h:br /> Step 1: Place the antenna of
                 the spectrum analyzer inside the RF shielded enclosure.<h:br /><h:br /> Step
                 2: Enable "Max Hold" on the spectrum analyzer and perform a spectrum sweep of
@@ -6986,7 +6986,7 @@ the node certificate to be tested, two Intermediate CAs, and the
                   <test>The evaluator shall exercise the TSF configuration as the
                     administrator and, if not restricted to the administrator, the user, to
                 enable and disable the state of each audio or visual collection devices
-                    (e.g. camera, microphone) listed by the ST author. For each collection
+                    (e.g., camera, microphone) listed by the ST author. For each collection
                 device, the evaluator shall disable the device and then attempt to use its
                 functionality. The evaluator shall reboot the TOE and verify that disabled
                 collection devices may not be used during or early in the boot process.
@@ -7077,7 +7077,7 @@ the node certificate to be tested, two Intermediate CAs, and the
               ". </h:li>
                 <h:li>If the administrator can specify a allowlist of allowed applications,
               the ST author selects "<xref to="mf-appInstallRules-specify" />". The ST author
-              should list any application characteristics (e.g. name, version, or developer)
+              should list any application characteristics (e.g., name, version, or developer)
               based on which the allowlist can be formed.</h:li>
                 <h:li>If the administrator can prevent the user from installing additional
               applications, the ST author selects "<xref to="mf-appInstallRules-deny" />". </h:li>
@@ -7479,7 +7479,7 @@ the node certificate to be tested, two Intermediate CAs, and the
                 confirm that the BAF cannot be used to authenticate. </test>
                   <test>[conditional] If <xref to="uau_hybr" /> is selected the evaluator
                 shall verify that the TSS describes the procedure to enable/disable the hybrid
-                (e.g. username, password, and biometric credential) authentication. The evaluator shall
+                (e.g., username, password, and biometric credential) authentication. The evaluator shall
                 configure the TOE to allow hybrid authentication to authenticate and confirm
                 that successful authentication can be achieved using the hybrid
                 authentication. The evaluator shall configure the TOE to disable the use of
@@ -8018,7 +8018,7 @@ the node certificate to be tested, two Intermediate CAs, and the
                     that no traffic leaves the device. </test>
                   <test>The evaluator shall verify that the TOE has network connectivity and
                 that the VPN is established. The evaluator shall disable network
-                    connectivity (i.e. Airplane Mode) and verify that the VPN disconnects. The
+                    connectivity (i.e., Airplane Mode) and verify that the VPN disconnects. The
                 evaluator shall re-establish network connectivity and verify that the VPN
                 automatically reconnects. </test>
                 </testlist>
@@ -8385,7 +8385,7 @@ This test can also be completed on the same hardware and rebooting between appli
         <!--           network interface from within the OS.  -->
         <!-- 	  The evaluator shall ensure that the WiFi connection is terminated and that the OS -->
         <!-- 	  does not list any wireless network as accessible. -->
-        <!-- 	  The evaluator shall run a wireless sniffer (e.g. Kismet, aircrack) and ensure that -->
+        <!-- 	  The evaluator shall run a wireless sniffer (e.g., Kismet, aircrack) and ensure that -->
         <!-- 	  no signals, attributable to the test platform, are detected. -->
         <!-- 	</test> -->
         <!--         <test> The evaluator shall attempt to pair, and connect, a Bluetooth device to the OS and ensure that the OS successfully connects to the device.</test> -->
@@ -8394,7 +8394,7 @@ This test can also be completed on the same hardware and rebooting between appli
         <!--           disable the Bluetooth interface within the OS.  -->
         <!-- 	  The evaluator shall ensure that the Bluetooth connection is terminated and that -->
         <!-- 	  the OS does not list any devices as accessible. -->
-        <!-- 	  The evaluator shall run a Bluetooth sniffer (e.g. UberTooth, Wireshark) -->
+        <!-- 	  The evaluator shall run a Bluetooth sniffer (e.g., UberTooth, Wireshark) -->
         <!-- 	  and ensure that no signals, attributable to the test platform, are detected. -->
         <!-- 	</test> -->
         <!--         <test> The evaluator shall attempt to pair, and connect, a NFC device to the OS and ensure that the OS successfully connects to the device.</test> -->
@@ -8536,7 +8536,7 @@ The TSF shall <selectables>
 </title>
 
             <note role="application">
-Many OSes store control flow values (i.e. return addresses) in stack data structures that also contain parameters and variables.
+Many OSes store control flow values (i.e., return addresses) in stack data structures that also contain parameters and variables.
 For these OSes, it is expected that most of the OS, to include the kernel, libraries, and application software from the OS vendor be compiled with stack-based buffer overflow protection enabled.
 OSes that store parameters and variables separately from control flow values do not need additional stack protections.
             </note>
@@ -8824,7 +8824,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
               procedures, including a description of the entire bootchain, for the TSF.
               The evaluator shall ensure that the OS cryptographically verifies each
 	      piece of software it loads in the bootchain to include bootloaders and the kernel.
-	      Software loaded for execution directly by the platform (e.g. first-stage bootloaders) is out of scope.
+	      Software loaded for execution directly by the platform (e.g., first-stage bootloaders) is out of scope.
 	      For each additional category of executable code verified before
               execution, the evaluator shall verify that the description in the TSS describes how that
               software is cryptographically verified.
@@ -8850,7 +8850,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
                   OS properly boots.
                 </test>
                 <test>
-                  The evaluator shall modify a TSF executable that is part of the bootchain verified by the TSF (i.e. Not the first-stage bootloader)
+                  The evaluator shall modify a TSF executable that is part of the bootchain verified by the TSF (i.e., Not the first-stage bootloader)
 		  and attempt to boot.
 		  The evaluator shall ensure that an integrity violation is triggered and the OS does not boot
 		  (Care must be taken so that the integrity
@@ -8937,7 +8937,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 	      <h:p>For the following tests, the evaluator shall initiate the download of an update and
 	        capture the update prior to installation.
 	        The download could originate from the vendor's website, an enterprise-hosted
-	        update repository, or another system (e.g. network peer).
+	        update repository, or another system (e.g., network peer).
 	        All update mechanisms supported by the TOE must be evaluated.  However, this only includes
 	        those mechanisms for which the TSF is providing a trusted installation and update functionality.
 	        It does not include user or administrator-driven download and installation of arbitrary files.</h:p>
@@ -9352,7 +9352,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 
       	    </note>
       	    <aactivity>
-      	      <TSS>The evaluator shall examine the TSS to verify that it describes all trusted channels implemented by the TOE and what the purpose is for each channel. The evaluator shall also check to verify that the ST claims conformance to any functional packages or PP-Modules that are needed to implement these protocols (e.g. if the TOE implements TLS, both the <xref to="tls"/> and <xref to="X509"/> shall be included in the ST conformance claims).</TSS>
+      	      <TSS>The evaluator shall examine the TSS to verify that it describes all trusted channels implemented by the TOE and what the purpose is for each channel. The evaluator shall also check to verify that the ST claims conformance to any functional packages or PP-Modules that are needed to implement these protocols (e.g., if the TOE implements TLS, both the <xref to="tls"/> and <xref to="X509"/> shall be included in the ST conformance claims).</TSS>
       	      <Guidance>For each trusted channel, the evaluator shall verify that the operational guidance provides instructions on how to establish the trusted channel with a remote entity and how to specify any configuration options that are related to this.</Guidance>
 	      <Tests>
 	         The evaluator shall configure the OS to communicate with another trusted IT product as identified in the third selection.
@@ -10400,7 +10400,7 @@ The evaluator shall also perform the following tests:
       argument for where the unpredictability in the source comes from and why there is confidence
       in the entropy source delivering sufficient entropy for the uses made of the DRBG output (by
       this particular OS). This argument will include a description of the expected min-entropy
-      rate (i.e. the minimum entropy (in bits) per bit or byte of source data) and explain that
+      rate (i.e., the minimum entropy (in bits) per bit or byte of source data) and explain that
       sufficient entropy is going into the OS randomizer seeding process. This discussion will be
       part of a justification for why the entropy source can be relied upon to produce bits with
       entropy.
