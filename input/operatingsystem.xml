@@ -108,7 +108,7 @@
     </module>
     <module id="mod-mdmagent">
       <git>
-	<url>https://github.com/commoncriteria/mdmagent</url>
+	<url>https://github.com/commoncriteria/mdm-agent</url>
 	<branch>master</branch>
       </git>
       <url><![CDATA[https://www.niap-ccevs.org/protectionprofiles/441]]></url>
@@ -121,8 +121,8 @@
       <url><![CDATA[https://www.niap-ccevs.org/protectionprofiles/463]]></url>
     </module>
     
-     <module id="mod-biometric" version="1.1" name="Biometric Enrollment and Verification" product="Biometric Devices" short="BMcPP">
-       <url>https://biometricitc.github.io/v1.1/1.1PRE/MOD-BIO-v1.1.pdf</url>
+     <module id="mod-biometric" version="2.0" name="Biometric Enrollment and Verification" product="Biometric Devices" short="BMcPP">
+       <url>https://biometricitc.github.io/v2.0/release/MOD-BIO-v2.0.pdf</url>
      </module>
 </modules> 
   
@@ -167,10 +167,10 @@ it manages may be physical or virtual.
       <!-- <term full="Biometric Authentication Factor" abbr="BAF" plural="BAFs"> Authentication factor, which uses -->
       <!--   biometric sample, matched to a biometric authentication template to help establish -->
       <!--   identity.</term> -->
-      <term abbr='CESG' full="Communications-Electronics Security Group"/>
+      <term abbr='BYOD' full="Bring Your Own Device"/>
       <term abbr='CMC' full="Certificate Management over CMS"/>
       <term abbr='CMS' full="Cryptographic Message Syntax"/>
-      <term abbr='CN' full="Common Names"/>
+      
       <term full="Credential">
 	Data that establishes the identity of a user, e.g., a cryptographic key or
 	password.
@@ -242,7 +242,7 @@ it manages may be physical or virtual.
       <term abbr='NIAP'  full="National Information Assurance Partnership"/>
       <term abbr='NIST'  full="National Institute of Standards and Technology"/>
       <term abbr='OCSP'  full="Online Certificate Status Protocol"/>
-      <term abbr='OID'   full="Object Identifier"/>
+   
       <term abbr='OMB'   full="Office of Management and Budget"/>
       <term abbr="OS"    full="Operating System">
 	Software that manages physical and logical resources and provides services
@@ -279,7 +279,7 @@ it manages may be physical or virtual.
 	Sensitive data must minimally include credentials and keys. Sensitive data shall
 	be identified in the OS's TSS by the ST author. 
       </term>
-      <term abbr='SIP' full="Session Initiation Protocol"/>
+    
       <term abbr='SWID' full="Software Identification"/>
       <term abbr='TLS' full="Transport Layer Security"/>
       <term abbr='URI' full="Uniform Resource Identifier"/>
@@ -296,6 +296,7 @@ it manages may be physical or virtual.
       <term abbr='XOR' full="Exclusive Or"/>
     </tech-terms>    
     <sec:Compliant_Targets_of_Evaluation>
+      
       Compliant TOEs will implement security functionality in the following general areas:
       <h:ul>
         <h:li>Accountability: ensuring that information exists to discover unintentional issues with the configuration and operation of the TOE so that the root cause can be determined.</h:li>
@@ -355,10 +356,8 @@ it manages may be physical or virtual.
         <usecase title="Cloud Systems" id="cloudsystems">
           <description>
 	    <h:p>
-	      The OS provides a platform for providing cloud services running on
-              physical or virtual hardware.  An OS is typically part of offerings
-              identified as Infrastructure as a Service (IaaS), Software as a Service (SaaS),
-              and Platform as a Service (PaaS).
+	      The OS runs on physical or virtual hardware infrastrcture in a cloud environment. It may be accessible in the cloud for general purpose use as a Platform as a Service (PaaS). It may also (along with its underlying infrastructure) comprise a "trusted platform" for cloud Software as a Service (SaaS) applications. In the latter scenario, the operating system itself is not accessed or administered directly by end users, but the TOE would still support all required security functions because of the potential for the same OS to be used as a cloud platfrom. 
+	    </h:p><h:p>Guidance for the general approach for cloud evaluations can be found at <xref to="bibCCitC"/>
 	    </h:p>
 	    <h:p>
 			This use case typically involves the use
@@ -383,7 +382,7 @@ it manages may be physical or virtual.
             </config>
           </usage>
           <usage id="usage-x509-noplatform" title="No Platform-Provided Functionality Claims Permitted">
-            <description>Because the TOE boundary is the entire operating system, there is no "platform" that exists outside the logical boundary of the TOE that the TSF could access. Therefore, the ST author shall not claim platform-provided functionality for any of the functions specified in the FP. In other words, any applicable SFRs 
+            <description>The ST author shall not claim platform-provided functionality for any of the functions specified in the Functional Package. In other words, any applicable SFRs 
               shall include the claim to implement or provide the functionality, rather than rely on a platform. These may include one or more of the following examples, depending on the TOE, but apply to any requirements where such a selection exists:
               <h:ul>
                 <h:li>FIA_CMCC_EXT.1</h:li>
@@ -589,8 +588,8 @@ it manages may be physical or virtual.
           <rationale>FIA_AFL.1 helps mitigate the threat of a network attack by preventing an unprivileged user from logging into a network interface by brute force guessing the credential.</rationale>
           <addressed-by>FIA_UAU.5</addressed-by>
           <rationale>FIA_UAU.5 helps mitigate the threat of a network attack by providing specified authentication mechanisms for network user authentication.</rationale>
-          <addressed-by>FMT_MOF_EXT.1</addressed-by>
-          <rationale>FMT_MOF_EXT.1 helps mitigate the threat of a network attack by limiting the management functions that are available to a given user.</rationale>
+          <addressed-by>FMT_MOF.1</addressed-by>
+          <rationale>FMT_MOF.1 helps mitigate the threat of a network attack by limiting the management functions that are available to a given user.</rationale>
           <addressed-by>FMT_SMF_EXT.1</addressed-by>
           <rationale>FMT_SMF_EXT.1 helps mitigate the threat of a network attack by limiting the management functions that are available to a given user.</rationale>
           <addressed-by>FPT_ACF_EXT.1</addressed-by>
@@ -861,8 +860,8 @@ it manages may be physical or virtual.
           <rationale>FIA_AFL.1 helps mitigate the threat of a local attack by preventing an unprivileged user from gaining access to the TSF by brute force guessing the credential.</rationale>
           <addressed-by>FIA_UAU.5</addressed-by>
           <rationale>FIA_UAU.5 helps mitigate the threat of a local attack by providing specified authentication mechanisms for user authentication.</rationale>
-          <addressed-by>FMT_MOF_EXT.1</addressed-by>
-          <rationale>FMT_MOF_EXT.1 helps mitigate the threat of a local attack by limiting the management functions that are available to a given user.</rationale>
+          <addressed-by>FMT_MOF.1</addressed-by>
+          <rationale>FMT_MOF.1 helps mitigate the threat of a local attack by limiting the management functions that are available to a given user.</rationale>
           <addressed-by>FMT_SMF_EXT.1</addressed-by>
           <rationale>FMT_SMF_EXT.1 helps mitigate the threat of a local attack by limiting the management functions that are available to a given user.</rationale>
           <addressed-by>FPT_ACF_EXT.1</addressed-by>
@@ -916,8 +915,8 @@ it manages may be physical or virtual.
           <rationale>FIA_AFL.1 helps mitigate the threat by preventing an unprivileged user from gaining access to the TSF by brute force guessing the credential in a limited time window.</rationale>
           <addressed-by>FIA_UAU.5</addressed-by>
           <rationale>FIA_UAU.5 helps mitigate the threat by providing specified authentication mechanisms for user authentication to prevent unauthorized access to the TOE.</rationale>
-          <addressed-by>FMT_MOF_EXT.1</addressed-by>
-          <rationale>FMT_MOF_EXT.1 helps mitigate the threat by limiting the management functions that are available to a given user which minimizes the impact of compromise should illicit access be gained.</rationale>
+          <addressed-by>FMT_MOF.1</addressed-by>
+          <rationale>FMT_MOF.1 helps mitigate the threat by limiting the management functions that are available to a given user which minimizes the impact of compromise should illicit access be gained.</rationale>
           <addressed-by>FMT_SMF_EXT.1</addressed-by>
           <rationale>FMT_SMF_EXT.1 helps mitigate the threat by limiting the management functions that are available to a given user which minimizes the impact of compromise should illicit access be gained.</rationale>
           <addressed-by>FPT_ACF_EXT.1</addressed-by>
@@ -1156,8 +1155,8 @@ it manages may be physical or virtual.
                     administrative guidance) to be recorded.</test>
                   <h:br />
                   <test>[conditional] If the TSF supports specification of more complex audit
-                pre-selection criteria (e.g., multiple attributes, logical expressions using
-                attributes) then the evaluator shall devise tests showing that this capability
+                    pre-selection criteria (e.g., multiple attributes, logical expressions using
+                    attributes)] The evaluator shall devise tests showing that this capability
                     is correctly implemented. The evaluator shall also, in the test plan, provide a
                 short narrative justifying the set of tests as representative and sufficient to
                 exercise the capability.</test>
@@ -1857,7 +1856,7 @@ it manages may be physical or virtual.
                 protocols that invoke key distribution.
               </TSS>
               <Guidance>
-                The evaluator shall verify that the AGD guidance instructs the administrator
+                The evaluator shall verify that the operational guidance instructs the administrator
                 how to configure the TOE to use the selected key distribution methods.
               </Guidance>
               <Tests>
@@ -2045,262 +2044,7 @@ it manages may be physical or virtual.
           <fam-behavior>This family defines requirements for management of cryptographic keys using mechanisms beyond what are specified in CC Part 2.
           </fam-behavior>
         </ext-comp-def>
-        <f-component id="sfr-fcs-ckm-ext-7" cc-id="fcs_ckm_ext.7" name="Cryptographic Key Agreement" status="feat-based">
-          <depends on="bluetooth-support"/>
-          <depends on="key-agreement-support"/>
-                    
-          <consistency-rationale/>
-          <comp-lev>requires that cryptographic key agreement be performed in accordance with specified standards.</comp-lev>
-          <management/>
-          <audit>
-            The following actions should be auditable if FAU_GEN Security audit data generation is
-            included in the PP, PP-Module, functional package or ST:<h:br/><h:ul>
-              <h:li>minimal: Success and failure of the activity;</h:li>
-              <h:li>basic: The object attribute(s), and object value(s) excluding any sensitive information.</h:li>
-            </h:ul>
-          </audit>
-          <dependencies><h:br/>
-            <h:br/>[FDP_ITC.1 Import of user data without security attributes, or
-            <h:br/>FDP_ITC.2 Import of user data with security attributes, or 
-            <h:br/>FCS_CKM.1/AKG Cryptographic Key Generation - Asymmetric Key, or
-            <h:br/>FCS_CKM.1/SKG Cryptographic Key Generation - Symmetric Key, or
-            <h:br/>FCS_CKM.5 Cryptographic key derivation, or
-            <h:br/>FCS_CKM_EXT.8 Password-based key derivation],
-            <h:br/>[FCS_CKM.2 Cryptographic key distribution, or
-            <h:br/>FCS_COP.1 Cryptographic operation]
-            <h:br/>FCS_CKM.6 Timing and event of cryptographic key destruction
-            <h:br/>FCS_COP.1 Cryptographic operation 
-          </dependencies>
-          
-          
-          <f-element id="fcs-ckm-ext-7e1">
-            <title>
-              The TSF shall derive shared cryptographic keys with input from multiple parties in accordance 
-              with specified cryptographic key agreement algorithms  
-              <selectables>
-                <tabularize id="fcs-ckm-ext-7-sels" 
-                  title="Allowable choices for FCS_CKM_EXT.7">
-                  <textcol>Identifier</textcol>
-                  <selectcol>Cryptographic algorithm</selectcol>
-                  <reqtext>and specified cryptographic parameters</reqtext>
-                  <selectcol>Cryptographic parameters</selectcol>
-                  <reqtext>that meet the following:</reqtext>
-                  <selectcol>List of standards</selectcol>
-                  <reqtext>.<h:p/><h:p/><xref to="fcs-ckm-ext-7-sels"/> provides the allowable choices for
-                    completion of the selection operations of FCS_CKM_EXT.7.</reqtext>
-                </tabularize>
-                
-                <selectable id="sel-fcs-ckm-kat-kas2">
-                  <col>KAS2</col>
-                  <col>RSA</col>
-                  <col>Modulus size <selectables>
-                    <selectable>3072</selectable>
-                    <selectable>4096</selectable>
-                    <selectable>6144</selectable>
-                    <selectable>8192</selectable>
-                  </selectables> bits</col>
-                  <col>NIST SP 800-56B Revision 2 (Section 8.3) [KAS2]</col>
-                </selectable>
-                
-                <selectable id="sel-fcs-ckm-kat-dh">
-                  <col>DH</col>
-                  <col>Finite Field Cryptography Diffie-Hellman</col>
-                  <col>Static domain parameters approved for <selectables>
-                    <selectable>IKE Groups <selectables>
-                      <selectable id="sel-kat-ffc-modp3072">MODP-3072</selectable>
-                      <selectable id="sel-kat-ffc-modp4096">MODP-4096</selectable>
-                      <selectable id="sel-kat-ffc-modp6144">MODP-6144</selectable>
-                      <selectable id="sel-kat-ffc-modp8192">MODP-8192</selectable>
-                    </selectables></selectable>
-                    <selectable>TLS Groups <selectables>
-                      <selectable id="sel-kat-ffc-ffdhe3072">ffdhe3072</selectable>
-                      <selectable id="sel-kat-ffc-ffdhe4096">ffdhe4096</selectable>
-                      <selectable id="sel-kat-ffc-ffdhe6144">ffdhe6144</selectable>
-                      <selectable id="sel-kat-ffc-ffdhe8192">ffdhe8192</selectable>
-                    </selectables></selectable></selectables>
-                  </col>
-                  <col>
-                    NIST SP 800-56A Revision 3 (Section 5.7.1.1) [DH]<h:p/>
-                    <selectables>
-                      <selectable>RFC 3526 [IKE groups]</selectable>
-                      <selectable>RFC 7919 [TLS groups]</selectable></selectables>
-                  </col>
-                </selectable>
-                
-                <selectable id="sel-fcs-ckm-kat-ecdh">
-                  <col>ECDH</col>
-                  <col>Elliptic Curve Diffie-Hellman</col>
-                  <col>Elliptic Curve <selectables>
-                    <selectable id="sel-exp-kat-ecdh-P256">P-256</selectable>
-                    <selectable id="sel-exp-kat-ecdh-P384">P-384</selectable>
-                    <selectable id="sel-exp-kat-ecdh-P521">P-521</selectable></selectables>
-                  </col>
-                  <col>
-                    NIST SP 800-56A Revision 3 (Section 5.7.1.2) [ECDH]<h:p/>
-                    NIST SP 800-186 (Section 3.2.1) [NIST Curves]
-                  </col>
-                </selectable>
-              </selectables>
-            </title>
-            
-            <ext-comp-def-title>
-              <title>The TSF shall derive shared cryptographic keys with input from multiple parties in accordance 
-                with specified cryptographic key agreement algorithms <assignable>cryptographic algorithm</assignable>
-                and specified cryptographic parameters <assignable>cryptographic parameters</assignable> that meet the
-                following: <assignable>list of standards</assignable></title>
-            </ext-comp-def-title>
-            
-            <note role="application">
-              This SFR is claimed if the TSF supports key agreement schemes as a method of key establishment for trusted channels. This will generally apply to all conformant TOEs, except in the rare (but possible) case where only key encapsulation is used.<h:p/>
-              All of the above algorithms with the selectable parameters are CNSA compliant with the exception of P-256 ECDH. This may only be selected if the the <xref to="mod-bluetooth"/> is included in the ST and P-256 may only be used specifically for Bluetooth functions.<h:p/>
-          
-            </note>
-            <aactivity>
-              <TSS>
-                The evaluator shall ensure that the TSS documents that the security strength of the
-                material contributed by the TOE is sufficient for the security strength of the key and the
-                agreement method. If support for P-256 is claimed, the evaluator shall examine the TSS to verify that it is only used for Bluetooth functions.
-              </TSS>
-              <Guidance>There are no guidance EAs for this component.</Guidance>
-              <Tests>
-                The following tests are conditional based upon the selections made in the SFR.
-                The evaluator shall perform the following test or witness respective tests
-                executed by the developer. The tests must be executed on a platform that is as 
-                close as practically possible to the operational platform (but which may be 
-                instrumented in terms of, for example, use of a debug mode). Where the test is 
-                not carried out on the TOE itself, the test platform shall be identified and the 
-                differences between test environment and TOE execution environment shall be 
-                described.<h:p/>
-                
-                <!-- KAS2 -->
-                <h:br/><h:b>KAS2</h:b><h:p/>
-                <h:table border="1">
-                  <h:tr class="header" bgcolor="#cccccc">
-                    <h:td valign="top">Identifier</h:td>
-                    <h:td valign="top">Cryptographic Algorithm</h:td>
-                    <h:td valign="top">Cryptographic Parameters</h:td>
-                    <h:td valign="top">List of Standards</h:td>
-                  </h:tr>
-                  <h:tr>
-                    <h:td valign="top">KAS2</h:td>
-                    <h:td valign="top">RSA</h:td>
-                    <h:td valign="top">Modulus Size [<h:b>selection:</h:b> 3072, 4096,
-                      6144, 8192] bits</h:td>
-                    <h:td valign="top">NIST SP 800-56B Revision 2 (Section 8.3) [KAS2]</h:td>
-                  </h:tr>
-                </h:table><h:p/>						
-                To test the TOE’s implementation of the of the KAS2 RSA Key Agreement scheme, the evaluator
-                shall perform the Algorithm Functional Test and Validation Test using the 
-                following input parameters:<h:ul>
-                  <h:li>RSA Private key format [Basic, Prime Factor, Chinese Remainder Theorem]</h:li>
-                  <h:li>Modulo value [3072, 4096, 6144, 8192]</h:li>
-                  <h:li>Role [initiator, responder]</h:li></h:ul><h:p/>
-                The evaluator shall generate a test group (i.e., set of tests) for each parameter
-                value of the above parameter type with the largest number of supported values.
-                For example, if the TOE supports all five Modulo values, then the evaluator 
-                shall generate five test groups. Each of the above supported parameter values
-                must be included in at least one test group.<h:p/>
-                Regardless of how many parameter values are supported, there must be at least two 
-                test groups.<h:p/>
-                Half of the test groups are designated as Algorithm Functional Tests (AFT) and the 
-                remainder are designated as Validation Tests (VAT). If there is an odd number of 
-                groups, then the extra group is designated randomly as either AFT or VAT.<h:p/>
-                <h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
-                For each test group designated as AFT, the evaluator shall generate 10 test 
-                cases using random data (except for a fixed public exponent, if supported). 
-                The resulting shared secrets shall be compared with those generated by a 
-                known-good implementation using the same inputs.<h:p/>
-                <h:br/><h:i><h:b>Validation Test</h:b></h:i><h:br/>
-                For each test group designated as VAT, the evaluator shall generate 25 test cases are
-                using random data (except for a fixed public exponent, if supported). Of the 25
-                test cases:<h:ul>
-                  <h:li>Two test cases must have a shared secret with a leading nibble of 0s,</h:li>
-                  <h:li>Two test cases have modified derived key material,</h:li>
-                  <h:li>Two test cases have modified tags, if key confirmation is supported,</h:li>
-                  <h:li>Two test cases have modified MACs, if key confirmation is supported, and</h:li>
-                  <h:li>The remaining test cases are not modified.</h:li></h:ul><h:p/>
-                To determine correctness, the evaluator shall confirm that the resulting 25 shared 
-                secrets correspond as expected for both the modified and unmodified values.<h:p/>
-                
-                <!-- FFC Diffie-Hellman Key Agreement -->
-                <h:br/><h:b>FFC Diffie-Hellman Key Agreement</h:b><h:p/>
-                <h:table border="1">
-                  <h:tr class="header" bgcolor="#cccccc">
-                    <h:td valign="top">Identifier</h:td>
-                    <h:td valign="top">Cryptographic Algorithm</h:td>
-                    <h:td valign="top">Cryptographic Parameters</h:td>
-                    <h:td valign="top">List of Standards</h:td>
-                  </h:tr>
-                  <h:tr>
-                    <h:td valign="top">DH</h:td>
-                    <h:td valign="top">Finite Field Cryptography Diffie-Hellman</h:td>
-                    <h:td valign="top">Static domain parameters approved for [<h:b>selection:</h:b>
-                      IKE groups [<h:b>selection:</h:b> MODP-3072, MODP-4096,
-                      MODP-6144, MODP-8192], TLS groups [<h:b>selection:</h:b> 
-                      ffdhe3072, ffdhe4096, ffdhe6144, ffdhe8192]]</h:td>
-                    <h:td valign="top">NIST SP 800-56A Revision 3 (Section 5.7.1.1) [DH]<h:p/>
-                      [<h:b>selection:</h:b> RFC 3526 [IKE Groups], RFC 7919 [TLS Groups]]</h:td>
-                  </h:tr>
-                </h:table><h:p/>						
-                To test the TOE’s implementation of FFC Diffie-Hellman Key Agreement, the evaluator shall
-                perform the Algorithm Functional Test and Validation Test using the following 
-                input parameters:<h:ul>
-                  <h:li>Domain Parameter Group [MODP-3072, MODP-4096, MODP-6144, MODP-8192, 
-                    ffdhe3072, ffdhe4096, ffdhe6144, ffdhe8192]</h:li></h:ul><h:p/>
-                <h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
-                For each supported domain parameter group, the evaluator shall generate 10 test
-                cases by generating the initiator and responder secret keys using random data,
-                calculating the responder public key, and creating the shared secret. The 
-                resulting shared secrets shall be compared with those generated by a known-good 
-                implementation using the same inputs.<h:p/>
-                <h:br/><h:i><h:b>Validation Test</h:b></h:i><h:br/>
-                For each supported combination of the above parameters the evaluator shall
-                generate 15 Diffie Hellman initiator/responder key pairs using the key generation
-                function of a known-good implementation. For each set of key pairs, the 
-                evaluator shall modify five initiator private key values. The remaining key
-                values are left unchanged (i.e., correct). To determine correctness, the 
-                evaluator shall confirm that the 15 shared secrets correspond as expected for 
-                both the modified and unmodified inputs.<h:p/>
-                
-                <!-- Elliptic Curve Diffie-Hellman Key Agreement -->
-                <h:br/><h:b>Elliptic Curve Diffie-Hellman Key Agreement</h:b><h:p/>
-                <h:table border="1">
-                  <h:tr class="header" bgcolor="#cccccc">
-                    <h:td valign="top">Identifier</h:td>
-                    <h:td valign="top">Cryptographic Algorithm</h:td>
-                    <h:td valign="top">Cryptographic Parameters</h:td>
-                    <h:td valign="top">List of Standards</h:td>
-                  </h:tr>
-                  <h:tr>
-                    <h:td valign="top">ECDH</h:td>
-                    <h:td valign="top">Elliptic Curve Diffie-Hellman</h:td>
-                    <h:td valign="top">Elliptic Curve [<h:b>selection:</h:b> P-256, P-384, P-521</h:td>
-                    <h:td valign="top">NIST SP 800-56A Revision 3 (Section 5.7.1.2) [ECDH]<h:p/>
-                      NIST SP 800-186 (Section 3.2.1) [NIST Curves]</h:td>
-                  </h:tr>
-                </h:table><h:p/>						
-                To test the TOE’s implementation of Elliptic Curve Diffie-Hellman Key Agreement,
-                the evaluator shall perform the Algorithm Functional Test and Validation Test 
-                using the following input parameters:<h:ul>
-                  <h:li>Elliptic Curve [P-256, P-384, P-521]</h:li></h:ul><h:p/>
-                <h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
-                For each supported Elliptic Curve the evaluator shall generate 10 test cases by
-                generating the initiator and responder secret keys using random data, calculating 
-                the responder public key, and creating the shared secret. The resulting shared 
-                secrets shall be compared with those generated by a known-good implementation using
-                the same inputs.<h:p/>
-                <h:br/><h:i><h:b>Validation Test</h:b></h:i><h:br/>
-                For each supported Elliptic Curve the evaluator shall generate 15 Diffie Hellman
-                initiator/responder key pairs using the key generation function of a known-good 
-                implementation. For each set of key pairs, the evaluator shall modify five 
-                initiator private key values. The remaining key values are left unchanged (i.e.,
-                correct). To determine correctness, the evaluator shall confirm that the 15 
-                shared secrets correspond as expected for the modified and unmodified values.<h:p/>
-              </Tests>
-            </aactivity>
-          </f-element>
-          <audit-event/>
-        </f-component>
+    
 
         <f-component cc-id="fcs_ckm_ext.3" name="Cryptographic Key Generation" status="feat-based">
         <depends on="mdm-management"/>
@@ -2717,16 +2461,16 @@ it manages may be physical or virtual.
                 If different types of memory are used to store the data to be protected, the evaluator shall check to ensure that the TSS describes the clearing procedure in terms of the memory in which the data are stored (for example, data stored on flash are cleared by overwriting once with zeros, while data stored on the internal persistent storage device are cleared by overwriting three times with a random pattern that is changed before each write). <h:br/><h:br/>
               </TSS>
               <Guidance>
-                The evaluator shall verify that the AGD guidance describes how to enable encryption, if it is not enabled by default. Additionally the evaluator shall verify that the AGD guidance describes how to initiate the wipe command.<h:br/><h:br/>
+                The evaluator shall verify that the operational guidance describes how to enable encryption, if it is not enabled by default. Additionally the evaluator shall verify that the operational guidance describes how to initiate the wipe command.<h:br/><h:br/>
               </Guidance>
               <Tests> 
                 <testlist>
                   <test>The evaluator shall perform one of the following tests. The test before and after the wipe command shall be identical. This test shall be repeated for each type of memory used to store the data to be protected. <h:br/><h:br/>
                   <testlist>
                     <test><h:b>For File-based Methods:</h:b><h:br/>
-                      The evaluator shall enable encryption according to the AGD guidance. The evaluator shall create a user data (sensitive data) file, for example, by using an application. The evaluator shall use a tool provided by the developer to examine this data stored in memory (for example, by examining a decrypted file). The evaluator shall initiate the wipe command according to the AGD guidance provided for FMT_SMF_EXT.1. The evaluator shall use a tool provided by the developer to examine the same data location in memory to verify that the data has been wiped according to the method described in the TSS (for example, the files are still encrypted and cannot be accessed). </test>
+                      The evaluator shall enable encryption according to the operational guidance. The evaluator shall create a user data (sensitive data) file, for example, by using an application. The evaluator shall use a tool provided by the developer to examine this data stored in memory (for example, by examining a decrypted file). The evaluator shall initiate the wipe command according to the operational guidance provided for FMT_SMF_EXT.1. The evaluator shall use a tool provided by the developer to examine the same data location in memory to verify that the data has been wiped according to the method described in the TSS (for example, the files are still encrypted and cannot be accessed). </test>
                     <test><h:b>For Volume-based Methods:</h:b><h:br/>
-                      The evaluator shall enable encryption according to the AGD guidance. The evaluator shall create a unique data string, for example, by using an application. The evaluator shall use a tool provided by the developer to search decrypted data for the unique string. The evaluator shall initiate the wipe command according to the AGD guidance provided for FMT_SMF_EXT.1. The evaluator shall use a tool provided by the developer to search for the same unique string in decrypted memory to verify that the data has been wiped according to the method described in the TSS (for example, the files are still encrypted and cannot be accessed).</test>
+                      The evaluator shall enable encryption according to the operational guidance. The evaluator shall create a unique data string, for example, by using an application. The evaluator shall use a tool provided by the developer to search decrypted data for the unique string. The evaluator shall initiate the wipe command according to the operational guidance provided for FMT_SMF_EXT.1. The evaluator shall use a tool provided by the developer to search for the same unique string in decrypted memory to verify that the data has been wiped according to the method described in the TSS (for example, the files are still encrypted and cannot be accessed).</test>
                   </testlist>               
                   </test>
                   <test>
@@ -2739,6 +2483,263 @@ it manages may be physical or virtual.
 	  <audit-event>
 	    <audit-event-descr><selectables onlyone="yes"><selectable>Failure of the wipe</selectable><selectable>none</selectable></selectables></audit-event-descr>
 	  </audit-event>
+        </f-component>
+        
+        <f-component id="sfr-fcs-ckm-ext-7" cc-id="fcs_ckm_ext.7" name="Cryptographic Key Agreement" status="feat-based">
+          <depends on="bluetooth-support"/>
+          <depends on="key-agreement-support"/>
+          
+          <consistency-rationale/>
+          <comp-lev>requires that cryptographic key agreement be performed in accordance with specified standards.</comp-lev>
+          <management/>
+          <audit>
+            The following actions should be auditable if FAU_GEN Security audit data generation is
+            included in the PP, PP-Module, functional package or ST:<h:br/><h:ul>
+              <h:li>minimal: Success and failure of the activity;</h:li>
+              <h:li>basic: The object attribute(s), and object value(s) excluding any sensitive information.</h:li>
+            </h:ul>
+          </audit>
+          <dependencies><h:br/>
+            <h:br/>[FDP_ITC.1 Import of user data without security attributes, or
+            <h:br/>FDP_ITC.2 Import of user data with security attributes, or 
+            <h:br/>FCS_CKM.1/AKG Cryptographic Key Generation - Asymmetric Key, or
+            <h:br/>FCS_CKM.1/SKG Cryptographic Key Generation - Symmetric Key, or
+            <h:br/>FCS_CKM.5 Cryptographic key derivation, or
+            <h:br/>FCS_CKM_EXT.8 Password-based key derivation],
+            <h:br/>[FCS_CKM.2 Cryptographic key distribution, or
+            <h:br/>FCS_COP.1 Cryptographic operation]
+            <h:br/>FCS_CKM.6 Timing and event of cryptographic key destruction
+            <h:br/>FCS_COP.1 Cryptographic operation 
+          </dependencies>
+          
+          
+          <f-element id="fcs-ckm-ext-7e1">
+            <title>
+              The TSF shall derive shared cryptographic keys with input from multiple parties in accordance 
+              with specified cryptographic key agreement algorithms  
+              <selectables>
+                <tabularize id="fcs-ckm-ext-7-sels" 
+                  title="Allowable choices for FCS_CKM_EXT.7">
+                  <textcol>Identifier</textcol>
+                  <selectcol>Cryptographic algorithm</selectcol>
+                  <reqtext>and specified cryptographic parameters</reqtext>
+                  <selectcol>Cryptographic parameters</selectcol>
+                  <reqtext>that meet the following:</reqtext>
+                  <selectcol>List of standards</selectcol>
+                  <reqtext>.<h:p/><h:p/><xref to="fcs-ckm-ext-7-sels"/> provides the allowable choices for
+                    completion of the selection operations of FCS_CKM_EXT.7.</reqtext>
+                </tabularize>
+                
+                <selectable id="sel-fcs-ckm-kat-kas2">
+                  <col>KAS2</col>
+                  <col>RSA</col>
+                  <col>Modulus size <selectables>
+                    <selectable>3072</selectable>
+                    <selectable>4096</selectable>
+                    <selectable>6144</selectable>
+                    <selectable>8192</selectable>
+                  </selectables> bits</col>
+                  <col>NIST SP 800-56B Revision 2 (Section 8.3) [KAS2]</col>
+                </selectable>
+                
+                <selectable id="sel-fcs-ckm-kat-dh">
+                  <col>DH</col>
+                  <col>Finite Field Cryptography Diffie-Hellman</col>
+                  <col>Static domain parameters approved for <selectables>
+                    <selectable>IKE Groups <selectables>
+                      <selectable id="sel-kat-ffc-modp3072">MODP-3072</selectable>
+                      <selectable id="sel-kat-ffc-modp4096">MODP-4096</selectable>
+                      <selectable id="sel-kat-ffc-modp6144">MODP-6144</selectable>
+                      <selectable id="sel-kat-ffc-modp8192">MODP-8192</selectable>
+                    </selectables></selectable>
+                    <selectable>TLS Groups <selectables>
+                      <selectable id="sel-kat-ffc-ffdhe3072">ffdhe3072</selectable>
+                      <selectable id="sel-kat-ffc-ffdhe4096">ffdhe4096</selectable>
+                      <selectable id="sel-kat-ffc-ffdhe6144">ffdhe6144</selectable>
+                      <selectable id="sel-kat-ffc-ffdhe8192">ffdhe8192</selectable>
+                    </selectables></selectable></selectables>
+                  </col>
+                  <col>
+                    NIST SP 800-56A Revision 3 (Section 5.7.1.1) [DH]<h:p/>
+                    <selectables>
+                      <selectable>RFC 3526 [IKE groups]</selectable>
+                      <selectable>RFC 7919 [TLS groups]</selectable></selectables>
+                  </col>
+                </selectable>
+                
+                <selectable id="sel-fcs-ckm-kat-ecdh">
+                  <col>ECDH</col>
+                  <col>Elliptic Curve Diffie-Hellman</col>
+                  <col>Elliptic Curve <selectables>
+                    <selectable id="sel-exp-kat-ecdh-P256">P-256</selectable>
+                    <selectable id="sel-exp-kat-ecdh-P384">P-384</selectable>
+                    <selectable id="sel-exp-kat-ecdh-P521">P-521</selectable></selectables>
+                  </col>
+                  <col>
+                    NIST SP 800-56A Revision 3 (Section 5.7.1.2) [ECDH]<h:p/>
+                    NIST SP 800-186 (Section 3.2.1) [NIST Curves]
+                  </col>
+                </selectable>
+              </selectables>
+            </title>
+            
+            <ext-comp-def-title>
+              <title>The TSF shall derive shared cryptographic keys with input from multiple parties in accordance 
+                with specified cryptographic key agreement algorithms <assignable>cryptographic algorithm</assignable>
+                and specified cryptographic parameters <assignable>cryptographic parameters</assignable> that meet the
+                following: <assignable>list of standards</assignable></title>
+            </ext-comp-def-title>
+            
+            <note role="application">
+              This SFR is claimed if the TSF supports key agreement schemes as a method of key establishment for trusted channels. This will generally apply to all conformant TOEs, except in the rare (but possible) case where only key encapsulation is used.<h:p/>
+              All of the above algorithms with the selectable parameters are CNSA compliant with the exception of P-256 ECDH. This may only be selected if the the <xref to="mod-bluetooth"/> is included in the ST and P-256 may only be used specifically for Bluetooth functions.<h:p/>
+              
+            </note>
+            <aactivity>
+              <TSS>
+                The evaluator shall ensure that the TSS documents that the security strength of the
+                material contributed by the TOE is sufficient for the security strength of the key and the
+                agreement method. If support for P-256 is claimed, the evaluator shall examine the TSS to verify that it is only used for Bluetooth functions.
+              </TSS>
+              <Guidance>There are no guidance EAs for this component.</Guidance>
+              <Tests>
+                The following tests are conditional based upon the selections made in the SFR.
+                The evaluator shall perform the following test or witness respective tests
+                executed by the developer. The tests must be executed on a platform that is as 
+                close as practically possible to the operational platform (but which may be 
+                instrumented in terms of, for example, use of a debug mode). Where the test is 
+                not carried out on the TOE itself, the test platform shall be identified and the 
+                differences between test environment and TOE execution environment shall be 
+                described.<h:p/>
+                
+                <!-- KAS2 -->
+                <h:br/><h:b>KAS2</h:b><h:p/>
+                <h:table border="1">
+                  <h:tr class="header" bgcolor="#cccccc">
+                    <h:td valign="top">Identifier</h:td>
+                    <h:td valign="top">Cryptographic Algorithm</h:td>
+                    <h:td valign="top">Cryptographic Parameters</h:td>
+                    <h:td valign="top">List of Standards</h:td>
+                  </h:tr>
+                  <h:tr>
+                    <h:td valign="top">KAS2</h:td>
+                    <h:td valign="top">RSA</h:td>
+                    <h:td valign="top">Modulus Size [<h:b>selection:</h:b> 3072, 4096,
+                      6144, 8192] bits</h:td>
+                    <h:td valign="top">NIST SP 800-56B Revision 2 (Section 8.3) [KAS2]</h:td>
+                  </h:tr>
+                </h:table><h:p/>						
+                To test the TOE’s implementation of the of the KAS2 RSA Key Agreement scheme, the evaluator
+                shall perform the Algorithm Functional Test and Validation Test using the 
+                following input parameters:<h:ul>
+                  <h:li>RSA Private key format [Basic, Prime Factor, Chinese Remainder Theorem]</h:li>
+                  <h:li>Modulo value [3072, 4096, 6144, 8192]</h:li>
+                  <h:li>Role [initiator, responder]</h:li></h:ul><h:p/>
+                The evaluator shall generate a test group (i.e., set of tests) for each parameter
+                value of the above parameter type with the largest number of supported values.
+                For example, if the TOE supports all five Modulo values, then the evaluator 
+                shall generate five test groups. Each of the above supported parameter values
+                must be included in at least one test group.<h:p/>
+                Regardless of how many parameter values are supported, there must be at least two 
+                test groups.<h:p/>
+                Half of the test groups are designated as Algorithm Functional Tests (AFT) and the 
+                remainder are designated as Validation Tests (VAT). If there is an odd number of 
+                groups, then the extra group is designated randomly as either AFT or VAT.<h:p/>
+                <h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
+                For each test group designated as AFT, the evaluator shall generate 10 test 
+                cases using random data (except for a fixed public exponent, if supported). 
+                The resulting shared secrets shall be compared with those generated by a 
+                known-good implementation using the same inputs.<h:p/>
+                <h:br/><h:i><h:b>Validation Test</h:b></h:i><h:br/>
+                For each test group designated as VAT, the evaluator shall generate 25 test cases are
+                using random data (except for a fixed public exponent, if supported). Of the 25
+                test cases:<h:ul>
+                  <h:li>Two test cases must have a shared secret with a leading nibble of 0s,</h:li>
+                  <h:li>Two test cases have modified derived key material,</h:li>
+                  <h:li>Two test cases have modified tags, if key confirmation is supported,</h:li>
+                  <h:li>Two test cases have modified MACs, if key confirmation is supported, and</h:li>
+                  <h:li>The remaining test cases are not modified.</h:li></h:ul><h:p/>
+                To determine correctness, the evaluator shall confirm that the resulting 25 shared 
+                secrets correspond as expected for both the modified and unmodified values.<h:p/>
+                
+                <!-- FFC Diffie-Hellman Key Agreement -->
+                <h:br/><h:b>FFC Diffie-Hellman Key Agreement</h:b><h:p/>
+                <h:table border="1">
+                  <h:tr class="header" bgcolor="#cccccc">
+                    <h:td valign="top">Identifier</h:td>
+                    <h:td valign="top">Cryptographic Algorithm</h:td>
+                    <h:td valign="top">Cryptographic Parameters</h:td>
+                    <h:td valign="top">List of Standards</h:td>
+                  </h:tr>
+                  <h:tr>
+                    <h:td valign="top">DH</h:td>
+                    <h:td valign="top">Finite Field Cryptography Diffie-Hellman</h:td>
+                    <h:td valign="top">Static domain parameters approved for [<h:b>selection:</h:b>
+                      IKE groups [<h:b>selection:</h:b> MODP-3072, MODP-4096,
+                      MODP-6144, MODP-8192], TLS groups [<h:b>selection:</h:b> 
+                      ffdhe3072, ffdhe4096, ffdhe6144, ffdhe8192]]</h:td>
+                    <h:td valign="top">NIST SP 800-56A Revision 3 (Section 5.7.1.1) [DH]<h:p/>
+                      [<h:b>selection:</h:b> RFC 3526 [IKE Groups], RFC 7919 [TLS Groups]]</h:td>
+                  </h:tr>
+                </h:table><h:p/>						
+                To test the TOE’s implementation of FFC Diffie-Hellman Key Agreement, the evaluator shall
+                perform the Algorithm Functional Test and Validation Test using the following 
+                input parameters:<h:ul>
+                  <h:li>Domain Parameter Group [MODP-3072, MODP-4096, MODP-6144, MODP-8192, 
+                    ffdhe3072, ffdhe4096, ffdhe6144, ffdhe8192]</h:li></h:ul><h:p/>
+                <h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
+                For each supported domain parameter group, the evaluator shall generate 10 test
+                cases by generating the initiator and responder secret keys using random data,
+                calculating the responder public key, and creating the shared secret. The 
+                resulting shared secrets shall be compared with those generated by a known-good 
+                implementation using the same inputs.<h:p/>
+                <h:br/><h:i><h:b>Validation Test</h:b></h:i><h:br/>
+                For each supported combination of the above parameters the evaluator shall
+                generate 15 Diffie Hellman initiator/responder key pairs using the key generation
+                function of a known-good implementation. For each set of key pairs, the 
+                evaluator shall modify five initiator private key values. The remaining key
+                values are left unchanged (i.e., correct). To determine correctness, the 
+                evaluator shall confirm that the 15 shared secrets correspond as expected for 
+                both the modified and unmodified inputs.<h:p/>
+                
+                <!-- Elliptic Curve Diffie-Hellman Key Agreement -->
+                <h:br/><h:b>Elliptic Curve Diffie-Hellman Key Agreement</h:b><h:p/>
+                <h:table border="1">
+                  <h:tr class="header" bgcolor="#cccccc">
+                    <h:td valign="top">Identifier</h:td>
+                    <h:td valign="top">Cryptographic Algorithm</h:td>
+                    <h:td valign="top">Cryptographic Parameters</h:td>
+                    <h:td valign="top">List of Standards</h:td>
+                  </h:tr>
+                  <h:tr>
+                    <h:td valign="top">ECDH</h:td>
+                    <h:td valign="top">Elliptic Curve Diffie-Hellman</h:td>
+                    <h:td valign="top">Elliptic Curve [<h:b>selection:</h:b> P-256, P-384, P-521</h:td>
+                    <h:td valign="top">NIST SP 800-56A Revision 3 (Section 5.7.1.2) [ECDH]<h:p/>
+                      NIST SP 800-186 (Section 3.2.1) [NIST Curves]</h:td>
+                  </h:tr>
+                </h:table><h:p/>						
+                To test the TOE’s implementation of Elliptic Curve Diffie-Hellman Key Agreement,
+                the evaluator shall perform the Algorithm Functional Test and Validation Test 
+                using the following input parameters:<h:ul>
+                  <h:li>Elliptic Curve [P-256, P-384, P-521]</h:li></h:ul><h:p/>
+                <h:br/><h:i><h:b>Algorithm Functional Test</h:b></h:i><h:br/>
+                For each supported Elliptic Curve the evaluator shall generate 10 test cases by
+                generating the initiator and responder secret keys using random data, calculating 
+                the responder public key, and creating the shared secret. The resulting shared 
+                secrets shall be compared with those generated by a known-good implementation using
+                the same inputs.<h:p/>
+                <h:br/><h:i><h:b>Validation Test</h:b></h:i><h:br/>
+                For each supported Elliptic Curve the evaluator shall generate 15 Diffie Hellman
+                initiator/responder key pairs using the key generation function of a known-good 
+                implementation. For each set of key pairs, the evaluator shall modify five 
+                initiator private key values. The remaining key values are left unchanged (i.e.,
+                correct). To determine correctness, the evaluator shall confirm that the 15 
+                shared secrets correspond as expected for the modified and unmodified values.<h:p/>
+              </Tests>
+            </aactivity>
+          </f-element>
+          <audit-event/>
         </f-component>
 
         <f-component id="sfr-fcs-ckm-ext-8" cc-id="fcs_ckm_ext.8" name="Password-Based Key Derivation" status="feat-based">   
@@ -4804,6 +4805,7 @@ it manages may be physical or virtual.
 
 	    If <xref to="s-not-estab"/> is selected then "the server certificate is invalid [with no TLS-specific exceptions]" must be selected
             for FCS_TLSC_EXT.1.6 in the <xref to="tls"/>.
+              <!-- 
 	    <rule id="r-not-estab">
 	      <if><ref-id>s-not-estab</ref-id></if>
 	      <then><doc ref="tls"><ref-id>s-tlsc-no-excep</ref-id></doc></then>
@@ -4815,7 +4817,8 @@ it manages may be physical or virtual.
 	      <if><ref-id>s-req-app-auth</ref-id></if>
 	      <then><doc ref="tls"><ref-id>fcs_tlsc_ext.1.6_2</ref-id></doc></then>
 	    </rule>
-	    If <xref to="s-no-other-action"/> is selected then "the server certificate is invalid" with either selection can be
+	    -->
+	    If <xref to="s-no-other-action"/> is selected, then "the server certificate is invalid" with either selection can be
             made in FCS_TLSC_EXT.1.6.<h:br/><h:br/>
 	    FMT_SMF_EXT.1 Function <xref to="mf-certInvalid"/> configures whether to allow or disallow the establishment of a
               trusted channel if the peer certificate is deemed invalid. </note>
@@ -5222,13 +5225,17 @@ it manages may be physical or virtual.
                 storage for asymmetric private keys and <assignable>list of secrets</assignable> .</title>
             </ext-comp-def-title>
 
-            <note role="application">A hardware keystore can be exposed to the TSF through a variety
+            <note role="application">
+              <h:p>
+              A hardware keystore can be exposed to the TSF through a variety
               of interfaces, including embedded on the motherboard, USB, microSD, and Bluetooth. <h:br /><h:br />
               Immutable hardware is considered outside of this requirement and will be covered
               elsewhere. <h:br /><h:br /> If the secure key storage is implemented in software that
               is protected as required by FCS_STG_EXT.2, the ST author must select <xref
                 to="s-software-store" />. If <xref to="s-software-store" /> is selected, the ST
-              author must select <xref to="s-all-software-key-store" /> in FCS_STG_EXT.2.1. <rule
+                author must select <xref to="s-all-software-key-store" /> in FCS_STG_EXT.2.1.</h:p> 
+              <!--
+              <rule
                 id="r-store">
                 <if>
                   <ref-id>s-software-store</ref-id>
@@ -5237,7 +5244,7 @@ it manages may be physical or virtual.
                   <ref-id>s-all-software-key-store</ref-id>
                 </then>
               </rule>
-		<h:br /><h:br />
+		<h:br /><h:br /> -->
               Support for secure key storage for all symmetric keys and persistent secrets will be
               required in future revisions. </note>
           </f-element>
@@ -5271,11 +5278,11 @@ it manages may be physical or virtual.
             <title>The TSF shall have the capability to allow only the application that imported the
               key or secret the use of the key or secret. Exceptions may only be explicitly
               authorized by <selectables>
-                <selectable>the user</selectable>
-                <selectable>the administrator</selectable>
+                <selectable id="s-import-user">the user</selectable>
+                <selectable id="s-import-admin">the administrator</selectable>
                 <selectable>a common application developer</selectable>
               </selectables>. </title>
-            <note role="application">If the ST selects <xref to="import-user" /> or <xref
+            <note role="application">If the ST selects <xref to="s-import-user" /> or <xref
                 to="s-import-admin" />, the ST author must also select <xref to="mf-sharedKeys" />
               in FMT_SMF_EXT.1.1.</note>
           </f-element>
@@ -5308,14 +5315,14 @@ it manages may be physical or virtual.
               selection of "mutable hardware" or "software-based". <h:br /><h:br />
               </TSS>
                 <Guidance>
-              The evaluator shall review the AGD guidance to determine that it describes the steps
+              The evaluator shall review the operational guidance to determine that it describes the steps
               needed to import or destroy keys or secrets.<h:br /><h:br />
               </Guidance>
                 <Tests>
               The evaluator shall test the functionality of each security function: <testlist>
                   <test>The evaluator shall import keys or secrets of each supported type according
               to
-                    the AGD guidance. The evaluator shall write, or the developer shall provide
+                    the operational guidance. The evaluator shall write, or the developer shall provide
               access to, an application that generates a key or secret of each supported type and
               calls the import functions. The evaluator shall verify that no errors occur
                     during import.</test>
@@ -5351,7 +5358,7 @@ it manages may be physical or virtual.
               API documentation) not authorizing sharing. </test>
                   <h:br />
                   <test>The evaluator shall destroy keys or secrets of each supported type according
-              to the AGD guidance. The evaluator shall write, or the developer shall provide access
+              to the operational guidance. The evaluator shall write, or the developer shall provide access
               to, an application that destroys an imported key or secret. <h:br /><h:br /> The
               evaluator shall repeat this test with the application-imported keys or secrets and a
               different application’s imported keys or secrets. The evaluator shall verify that the
@@ -5759,7 +5766,7 @@ it manages may be physical or virtual.
 	  </h:ul>
 	  </management>
 	  <audit>There are no auditable events foreseen.</audit>
-	  <dependencies>FMT_MOF_EXT.1.1 Management of Functions Behavior</dependencies>
+	  <dependencies>FMT_MOF.1 Management of Security Functions Behavior</dependencies>
 	  
 	  
           <f-element id="fel-restrict-sys-service">
@@ -5915,7 +5922,7 @@ it manages may be physical or virtual.
           </management>
           <audit>There are no auditable events foreseen.</audit>
           <dependencies>FDP_ACF_EXT.2 Access Control for System Services<h:br/>
-            FMT_MOF_EXT.1.1 Management of Functions Behavior</dependencies>
+            FMT_MOF.1 Management of Security Functions Behavior</dependencies>
           
           <f-element id="fel-per-app-resources">
             <title>The TSF shall provide a separate <selectables>
@@ -6094,16 +6101,16 @@ it manages may be physical or virtual.
 	      <Tests>
               <testlist>
                 <test>
-                  [conditional, to be performed if "authentication based on user name and password" is selected in FIA_AFL.1
-                  and FIA_UAU.5]: The evaluator shall attempt to authenticate repeatedly to the system with a
+                  [conditional] If "authentication based on user name and password" is selected in FIA_AFL.1
+                  and FIA_UAU.5, the evaluator shall attempt to authenticate repeatedly to the system with a
                   known bad password. Once the defined number of failed authentication attempts has been
                   reached the evaluator shall ensure that the account that was being used for testing
                   has had the actions detailed in the assignment list above applied to it. The evaluator shall ensure that
                   an event has been logged to the security event log detailing that the account has had these actions applied.
                 </test>
                 <test>
-                  [conditional, to be performed if "authentication based on user name and a PIN that releases an                  
-                  asymmetric key stored in OE-protected storage" is selected in FIA_AFL.1 and FIA_UAU.5]: The 
+                  [conditional] If "authentication based on user name and a PIN that releases an                  
+                  asymmetric key stored in OE-protected storage" is selected in FIA_AFL.1 and FIA_UAU.5, the 
                   evaluator shall attempt to authenticate repeatedly to the system with a
                   known bad PIN. Once the defined number of failed authentication attempts has been
                   reached the evaluator shall ensure that the account that was being used for testing
@@ -6111,8 +6118,8 @@ it manages may be physical or virtual.
                   an event has been logged to the security event log detailing that the account has had these actions applied.
                 </test>
                 <test>
-                  [conditional, to be performed if "authentication based on X.509 certificates" is selected in                  
-                  FIA_AFL.1 and FIA_UAU.5]:The evaluator shall attempt to authenticate repeatedly to the system 
+                  [conditional] If "authentication based on X.509 certificates" is selected in                  
+                  FIA_AFL.1 and FIA_UAU.5, the evaluator shall attempt to authenticate repeatedly to the system 
                   using a known bad certificate.
                   Once the defined number of failed authentication attempts has been
                   reached the evaluator shall ensure that the account that was being used for testing
@@ -6120,8 +6127,8 @@ it manages may be physical or virtual.
                   an event has been logged to the security event log detailing that the account has had these actions applied.
                 </test>
                 <test>
-                  [conditional, to be performed if "authentication based on biometric in accordance with the <xref to="mod-biometric"/>" or "hybrid" is selected in                  
-                  FIA_AFL.1 and FIA_UAU.5]:The evaluator shall attempt to authenticate repeatedly to the system 
+                  [conditional] If "authentication based on biometric in accordance with the <xref to="mod-biometric"/>" or "hybrid" is selected in            
+                  FIA_AFL.1 and FIA_UAU.5, the evaluator shall attempt to authenticate repeatedly to the system 
                   using a known bad biometric authentication factor.
                   Once the defined number of failed authentication attempts has been
                   reached the evaluator shall ensure that the account that was being used for testing
@@ -6129,8 +6136,8 @@ it manages may be physical or virtual.
                   an event has been logged to the security event log detailing that the account has had these actions applied.
                 </test>
                 <test>
-                  [conditional, to be performed if "hybrid" is selected in                  
-                  FIA_AFL.1 and FIA_UAU.5]: <h:p>The evaluator shall attempt to authenticate repeatedly to the system 
+                  [conditional] If "hybrid" is selected in                  
+                  FIA_AFL.1 and FIA_UAU.5, <h:p>the evaluator shall attempt to authenticate repeatedly to the system 
                   using a known bad primary authentication factor (PIN, Password, certificate).
                   Once the defined number of failed authentication attempts has been
                   reached the evaluator shall ensure that the account that was being used for testing
@@ -6178,10 +6185,10 @@ it manages may be physical or virtual.
               <Tests><h:p>The Evaluation Activities for any selected requirements related to device
                 authentication must be separately performed for the secondary authentication
                 mechanism (in addition to activities performed for the primary authentication
-                mechanism). The requirements are: FCS_STG_EXT.2, FMT_SMF_EXT.1/FMT_MOF_EXT.1
+                mechanism). The requirements are: FCS_STG_EXT.2, FMT_SMF_EXT.1/FMT_MOF.1
                 #1, #2, #8, #21, and #36.</h:p> 
-                <h:p>Additionally, FIA_AFL_EXT.1 must be
-                met, except that in FIA_AFL_EXT.1.2 the separate test is performed with the text
+                <h:p>Additionally, FIA_AFL.1 must be
+                met, except that in FIA_AFL.1.2 the separate test is performed with the text
                 "wipe of all sensitive data" changed to "wipe of all Enterprise application data and
                 all Enterprise shared resource data."</h:p>
                 </Tests>
@@ -6341,7 +6348,7 @@ The TSF shall authenticate any user's claimed identity according to the
 	      <h:p>
 		The evaluator shall verify that
 		configuration guidance for each authentication mechanism is
-		addressed in the AGD guidance.
+		addressed in the operational guidance.
 	      </h:p>
 	      </Guidance>
 	      <Tests>
@@ -6622,12 +6629,13 @@ the node certificate to be tested, two Intermediate CAs, and the
       </section>
       
       <section title="Class FMT: Security Management" id="fmt">
+     <!--
         <ext-comp-def fam-id="FMT_MOF_EXT" title="Management of Functions Behavior">
           <fam-behavior>This family defines the administrative privileges required to modify the behavior of the security
-            functions that are defined specifically for operating systems.</fam-behavior>
-	</ext-comp-def>
-        <f-component cc-id="fmt_mof_ext.1" name="Management of Functions Behavior">
-          
+            functions that are defined specifically for operating systems.</fam-behavior> 
+	</ext-comp-def> -->
+        <f-component cc-id="fmt_mof.1" name="Management of Security Functions Behavior">
+          <!-- 
           <comp-lev> requires the TSF to define a set of
             management functions for the TOE and the privileges that are required to administer them.</comp-lev>
           <management>The following actions could be considered for the management functions in FMT:
@@ -6645,11 +6653,11 @@ the node certificate to be tested, two Intermediate CAs, and the
           <dependencies>
             <no-link>FMT_SMF_EXT.1</no-link> Specification of Management Functions
           </dependencies>
-          
+          -->
 	  <f-element id="fel-man-sec-func">
 	    <title>
-	      The TSF shall restrict the ability to perform the function indicated in the "Administrator" column in 
-              FMT_SMF_EXT.1.1 to the administrator.
+	      The TSF shall restrict the ability to [<h:i>perform</h:i>] the functions [<h:i>indicated with an M in the "Administrator" column in 
+	        FMT_SMF_EXT.1.1</h:i>] to the [<h:i>administrator</h:i>].
 	    </title>
 	    <note role="application">
         The functions with an "M" in the "Administrator" column must be restricted
@@ -6755,8 +6763,8 @@ the node certificate to be tested, two Intermediate CAs, and the
             <text>
                     <!-- <ctr id="screenlock" pre="" ctr-type="function">.</ctr>--> Configure screen/session locking policy: 
               <h:ul>
-                <h:li>Enable/disable <selectables><selectable>screen lock</selectable><selectable>session timeout</selectable><selectable>both</selectable></selectables></h:li>
-                <h:li>Configure <selectables><selectable>screen lock</selectable><selectable>session</selectable><selectable>both</selectable></selectables> inactivity timeout</h:li>
+                <h:li>Enable/disable <selectables><selectable>screen lock</selectable><selectable>session</selectable></selectables> inactivity timeout</h:li>
+                <h:li>Configure <selectables><selectable>screen lock</selectable><selectable>session</selectable></selectables> inactivity timeout value</h:li>
                 <h:li>Configure number of authentication failures</h:li>
               </h:ul>
             </text>
@@ -6776,7 +6784,7 @@ the node certificate to be tested, two Intermediate CAs, and the
                   <h:li>Screen-lock and/or Session timeout enabled/disabled</h:li>
                   <h:li>Screen lock and/or Session timeout</h:li>
                   <h:li>Number of authentication failures (may be combined with test for
-                FIA_AFL_EXT.1)</h:li>
+                FIA_AFL.1)</h:li>
                 </h:ul>
               </Tests>
             </aactivity>
@@ -6878,14 +6886,17 @@ the node certificate to be tested, two Intermediate CAs, and the
                 used
                 as part of the initialization of the device.
               </TSS>
-              <Guidance> The evaluator shall confirm that the AGD guidance describes how to
+              <Guidance> The evaluator shall confirm that the operational guidance describes how to
                 perform the enable/disable function for each radio.<h:br /><h:br />
               </Guidance>
               <Tests> The evaluator shall ensure that minimal signal leakage enters the RF
                 shielded enclosure (i.e., Faraday bag, Faraday box, RF shielded room) by
-                performing the following steps:<h:br /><h:br /> Step 1: Place the antenna of
-                the spectrum analyzer inside the RF shielded enclosure.<h:br /><h:br /> Step
-                2: Enable "Max Hold" on the spectrum analyzer and perform a spectrum sweep of
+                performing the following tests: 
+                <testlist><test>
+                <h:ol type="1">
+                <h:li>Place the antenna of
+                the spectrum analyzer inside the RF shielded enclosure.</h:li>
+                <h:li>Enable "Max Hold" on the spectrum analyzer and perform a spectrum sweep of
                 the frequency range between 300 MHz – 6000 MHz, in I kHz steps (this range
                 should encompass 802.11, 802.15, GSM, UMTS, and LTE). This range will not
                 address NFC 13.56.MHz, another test should be set up with similar constraints
@@ -6894,35 +6905,47 @@ the node certificate to be tested, two Intermediate CAs, and the
                 the test for Function <xref to="mf-radios" />. The evaluator shall exercise
                 the TSF configuration as the administrator and, if not restricted to the
                 administrator, the user, to enable and disable the state of each radio (e.g.
-                Wi-Fi, cellular, NFC, Bluetooth). Additionally, the evaluator shall repeat the
-                steps below, booting into any auxiliary boot mode supported by the device. For
-                each radio, the evaluator shall:<h:br /><h:br /> Step 1: Place the antenna of
-                the spectrum analyzer inside the RF shielded enclosure. Configure the spectrum
-                analyzer to sweep desired frequency range for the radio to be tested (based on
-                range provided in the TSS). The ambient noise floor shall be set to -110 dBm.
-                Place the TOE into the RF shielded enclosure to isolate them from all other RF
-                traffic. <h:br /><h:br /> Step 2: The evaluator shall create a baseline of the
-                expected behavior of RF signals. The evaluator shall power on the device,
-                ensure the radio in question is enabled, power off the device, enable "Max
-                Hold" on the spectrum analyzer and power on the device. The evaluator shall
-                wait 2 minutes at each Authentication Factor interface prior to entering the
-                necessary password to complete the boot process, waiting 5 minutes after the
-                device is fully booted. The evaluator shall observe that RF spikes are present
-                at the expected uplink channel frequency. The evaluator shall clear the "Max
-                Hold" on the spectrum analyzer. <h:br /><h:br /> Step 3: The evaluator shall
-                verify the absence of RF activity for the uplink channel when the radio in
-                question is disabled. The evaluator shall complete the following test five
-                times. The evaluator shall power on the device, ensure the radio in question
-                is disabled, power off the device, enable "Max Hold" on the spectrum analyzer
-                and power on the device. The evaluator shall wait 2 minutes at each
-                Authentication Factor interface prior to entering the necessary password to
-                complete the boot process, waiting 5 minutes after the device is fully booted.
-                The evaluator shall clear the "Max Hold" on the spectrum analyzer. If the
-                radios are used for device initialization, then a spike of RF activity for the
-                uplink channel can be observed initially at device boot. However, if a spike
-                of RF activity for the uplink channel of the specific radio frequency band is
-                observed after the device is fully booted or at an Authentication Factor
-                interface it is deemed that the radio is enabled. </Tests>
+                Wi-Fi, cellular, NFC, Bluetooth). </h:li>
+                </h:ol>
+                </test>
+                <test>
+                  The evaluator shall repeat the
+                  steps below, booting into any auxiliary boot mode supported by the device. For
+                  each radio, the evaluator shall:
+                  <h:ol type="1">
+                    <h:li>Place the antenna of
+                      the spectrum analyzer inside the RF shielded enclosure. Configure the spectrum
+                      analyzer to sweep desired frequency range for the radio to be tested (based on
+                      range provided in the TSS). The ambient noise floor shall be set to -110 dBm.
+                      Place the TOE into the RF shielded enclosure to isolate them from all other RF
+                      traffic.</h:li>
+                    <h:li>The evaluator shall create a baseline of the
+                      expected behavior of RF signals. The evaluator shall power on the device,
+                      ensure the radio in question is enabled, power off the device, enable "Max
+                      Hold" on the spectrum analyzer and power on the device. The evaluator shall
+                      wait 2 minutes at each Authentication Factor interface prior to entering the
+                      necessary password to complete the boot process, waiting 5 minutes after the
+                      device is fully booted. The evaluator shall observe that RF spikes are present
+                      at the expected uplink channel frequency. The evaluator shall clear the "Max
+                      Hold" on the spectrum analyzer.</h:li>
+                    <h:li>The evaluator shall
+                      verify the absence of RF activity for the uplink channel when the radio in
+                      question is disabled. The evaluator shall complete the following test five
+                      times. The evaluator shall power on the device, ensure the radio in question
+                      is disabled, power off the device, enable "Max Hold" on the spectrum analyzer
+                      and power on the device. The evaluator shall wait 2 minutes at each
+                      Authentication Factor interface prior to entering the necessary password to
+                      complete the boot process, waiting 5 minutes after the device is fully booted.
+                      The evaluator shall clear the "Max Hold" on the spectrum analyzer. If the
+                      radios are used for device initialization, then a spike of RF activity for the
+                      uplink channel can be observed initially at device boot. However, if a spike
+                      of RF activity for the uplink channel of the specific radio frequency band is
+                      observed after the device is fully booted or at an Authentication Factor
+                      interface it is deemed that the radio is enabled. </h:li>
+                  </h:ol>
+                </test>
+                </testlist>
+              </Tests>
             </aactivity>
           </management-function>
           <management-function id="mf-audioVisual">
@@ -6970,7 +6993,7 @@ the node certificate to be tested, two Intermediate CAs, and the
                 an
                 indication of if it can be enabled/disabled along with what role can do so.
                 The
-                evaluator shall confirm that the AGD guidance describes how to perform the
+                evaluator shall confirm that the operational guidance describes how to perform the
                 enable/disable function.
               </TSS>
               <Tests>The evaluator shall perform the following tests: <testlist>
@@ -7064,10 +7087,9 @@ the node certificate to be tested, two Intermediate CAs, and the
               author must state if application allowlist is applied device-wide or if it can
               be specified to apply to either the Enterprise or Personal applications. <h:ul>
                 <h:li>If the administrator can restrict the sources from which applications
-              can be installed, the ST author selects "<xref to="mf-appInstallRules-restrict" />
-              ". </h:li>
+              can be installed, the ST author selects "<xref to="mf-appInstallRules-restrict" />." </h:li>
                 <h:li>If the administrator can specify a allowlist of allowed applications,
-              the ST author selects "<xref to="mf-appInstallRules-specify" />". The ST author
+              the ST author selects "<xref to="mf-appInstallRules-specify" />." The ST author
               should list any application characteristics (e.g., name, version, or developer)
               based on which the allowlist can be formed.</h:li>
                 <h:li>If the administrator can prevent the user from installing additional
@@ -7082,17 +7104,17 @@ the node certificate to be tested, two Intermediate CAs, and the
                 which the allowlist may be based. </TSS>
               <Tests> The evaluator shall exercise the TSF configuration as the administrator
                 to restrict particular applications, sources of applications, or application
-                installation according to the AGD guidance. The evaluator shall attempt to
+                installation according to the operational guidance. The evaluator shall attempt to
                 install unauthorized applications and ensure that this is not possible. The
                 evaluator shall, in conjunction, perform the following specific tests: <testlist>
-                  <test>[conditional] The evaluator shall attempt to connect to an
-                    unauthorized repository in order to install applications. </test>
-                  <test>[conditional] The evaluator shall attempt to install two applications
+                  <test>[conditional] If "<xref to="mf-appInstallRules-restrict"/>" is selected, the evaluator shall attempt to connect to an
+                    unauthorized repository in order to install applications and verify that applications from this repository cannot be installed. </test>
+                  <test>[conditional] If "<xref to="mf-appInstallRules-specify"/>" is selected, the evaluator shall attempt to install two applications
                 (one allowlisted, and one not) from a known allowed repository and verify
                     that the application not on the allowlist is rejected. The evaluator shall
                 also attempt to side-load executables or installation packages via USB
-                connections to determine that the white list is still adhered to
-                  </test>
+                connections to determine that the allowlist is still adhered to.</test>
+                <test>[conditional] If "<xref to="mf-appInstallRules-deny"/>" is selected, the evaluator shall install an application with installation of applications configured to be allowed. The evaluator shall then uninstall the application, configure the TOE to deny installation of applications, and verify that the same application cannot be reinstalled.</test>
                 </testlist>
               </Tests>
             </aactivity>
@@ -7142,7 +7164,7 @@ the node certificate to be tested, two Intermediate CAs, and the
             <O ref="AO" />
             <aactivity>
               <Guidance>The evaluator shall
-                review the AGD guidance to determine that it describes the steps needed to
+                review the operational guidance to determine that it describes the steps needed to
                 import,
                 modify, or remove certificates in the Trust Anchor database, and that the
                 users
@@ -7150,7 +7172,7 @@ the node certificate to be tested, two Intermediate CAs, and the
                 both administrators and users) are identified.
               </Guidance>
               <Tests>
-                The evaluator shall import certificates according to the AGD guidance as the
+                The evaluator shall import certificates according to the operational guidance as the
                 user or as the administrator, as determined by the administrative guidance.
                 The evaluator shall verify that no errors occur during import. The evaluator
                 should perform an action requiring use of the X.509v3 certificate to provide
@@ -7210,11 +7232,12 @@ the node certificate to be tested, two Intermediate CAs, and the
               <TSS>The evaluator shall
                 examine the TSS to ensure that it contains a description of each management
                 function that will be enforced by the enterprise once the device is enrolled.
+              </TSS><Guidance>
                 The
-                evaluator shall examine the AGD guidance to determine that this same
-                information
+                evaluator shall examine the operational guidance to determine that the same
+                information from the TSS
                 is present.
-              </TSS>
+              </Guidance>
               <Tests>
                 The evaluator shall verify that user approval is required to enroll the
                 device into management.
@@ -7235,9 +7258,13 @@ the node certificate to be tested, two Intermediate CAs, and the
                 verify that the TSS includes an indication of what applications (e.g.,
                 user-installed applications, Administrator-installed applications, or
                 Enterprise
-                applications) can be removed along with what role can do so. The evaluator
+                applications) can be removed along with what role can do so. 
+                
+              </TSS>
+              <Guidance>
+                The evaluator
                 shall
-                examine the AGD guidance to determine that it details, for each type of
+                examine the operational guidance to determine that it details, for each type of
                 application that can be removed, the procedures necessary to remove those
                 applications and their associated data. For the purposes of this Evaluation
                 Activity, "associated data" refers to data that are created by the app during
@@ -7247,7 +7274,7 @@ the node certificate to be tested, two Intermediate CAs, and the
                 does
                 not, on the other hand, refer to data such as word processing documents (for a
                 word processing app) or photos (for a photo or camera app).
-              </TSS>
+              </Guidance>
               <Tests>
                 The evaluator shall attempt to remove applications according to the AGD
                 guidance and verify that the TOE no longer permits users to access those
@@ -7274,7 +7301,7 @@ the node certificate to be tested, two Intermediate CAs, and the
             <aactivity>
               <Tests>The evaluator shall attempt to update the TSF system software following
                 the
-                procedures in the AGD guidance and verify that updates correctly install and
+                procedures in the operational guidance and verify that updates correctly install and
                 that the version numbers of the system software increase.
               </Tests>
             </aactivity>
@@ -7294,7 +7321,7 @@ the node certificate to be tested, two Intermediate CAs, and the
               with a new installation during an application update. --> </app-note>
             <aactivity>
               <Tests>The evaluator shall attempt to install an application following the
-                procedures in the AGD guidance and verify that the application is installed
+                procedures in the operational guidance and verify that the application is installed
                 and
                 available on the TOE.</Tests>
             </aactivity>
@@ -7347,11 +7374,11 @@ the node certificate to be tested, two Intermediate CAs, and the
               configuration of these notifications (function <xref to="mf-notifications" />)
               must be included in the selection. </app-note>
             <aactivity>
-              <Guidance>The evaluator shall examine the AGD Guidance to determine that it
+              <Guidance>The evaluator shall examine the operational guidance to determine that it
                 specifies, for at least each category of information selected for Function <xref
                   to="mf-notifications" />, how to enable and disable display information for
                 that type of information in the locked state. </Guidance>
-              <Tests>For each category of information listed in the AGD guidance, the
+              <Tests>For each category of information listed in the operational guidance, the
                 evaluator
                 shall verify that when that TSF is configured to limit the information
                 according
@@ -7372,7 +7399,7 @@ the node certificate to be tested, two Intermediate CAs, and the
               <Tests>
                 The evaluator shall exercise the TSF configuration as the administrator and,
                 if not restricted to the administrator, the user, to enable system-wide
-                data-at-rest protection according to the AGD guidance. The evaluator shall
+                data-at-rest protection according to the operational guidance. The evaluator shall
                 ensure that all Evaluation Activities for DAR (FDP_DAR) are conducted with the
                 device in this configuration.
               </Tests>
@@ -7393,7 +7420,7 @@ the node certificate to be tested, two Intermediate CAs, and the
               <Tests>
                 The evaluator shall exercise the TSF configuration as the administrator and,
                 if not restricted to the administrator, the user, to enable removable media’s
-                data-at-rest protection according to the AGD guidance. The evaluator shall
+                data-at-rest protection according to the operational guidance. The evaluator shall
                 ensure that all Evaluation Activities for DAR (FDP_DAR) are conducted with the
                 device in this configuration.
               </Tests>
@@ -7454,8 +7481,7 @@ the node certificate to be tested, two Intermediate CAs, and the
               must be selected and the user or admin must have the option to disable the use
               of it. </app-note>
             <aactivity>
-              <Tests> The evaluator shall verify that the TSS states if the TOE supports a BAF
-                or hybrid authentication. If the TOE does not include a BAF or hybrid
+              <Tests>If the TOE does not include a BAF or hybrid
                 authentication this test is implicitly met.<testlist>
                   <test>[conditional] If <xref to="uau_biometric" /> is selected in
                 FIA_UAU.5.1, for each BAF claimed in FIA_MBV_EXT.1.1 in the <xref
@@ -7521,12 +7547,13 @@ the node certificate to be tested, two Intermediate CAs, and the
               <TSS>
                 The evaluator shall verify that the TSS includes a list of each externally
                 accessible hardware port and an indication of if data transfer over that port
-                can
-                be enabled/disabled. AGD guidance will describe how to perform the
-                enable/disable function.</TSS>
+                can be enabled/disabled.</TSS>
+              <Guidance>
+                For each externally accessible hardware port for which data transfer can be enabled or disabled, the evaluator shall verify that the operational guidance provides instructions for how to perform this function.
+              </Guidance>
               <Tests>The evaluator shall exercise the TSF configuration to enable and disable
                 data transfer capabilities over each externally accessible hardware ports
-                (e.g.
+                (e.g.,
                 USB, SD card, HDMI) listed by the ST author. The evaluator shall use test
                 equipment for the particular interface to ensure that while the TOE may
                 continue to
@@ -7582,12 +7609,12 @@ the node certificate to be tested, two Intermediate CAs, and the
               hint, or remote authentication feature, is supported. </app-note>
             <aactivity>
               <Guidance>The
-                evaluator shall examine the AGD guidance to determine that it describes how to
+                evaluator shall examine the operational guidance to determine that it describes how to
                 enable and disable any "Forgot Password", password hint, or remote
                 authentication
                 (to bypass local authentication mechanisms) capability.
               </Guidance>
-              <Tests>For each mechanism listed in the AGD guidance that provides a "Forgot
+              <Tests>For each mechanism listed in the operational guidance that provides a "Forgot
                 Password" feature or other means where the local authentication process can be
                 bypassed, the evaluator shall disable the feature and ensure that they are not
                 able to bypass the local authentication process.</Tests>
@@ -7683,7 +7710,7 @@ the node certificate to be tested, two Intermediate CAs, and the
               <TSS>The
                 evaluator shall ensure that the TSS describes which cellular protocols can be
                 disabled.</TSS>
-              <Guidance>The evaluator shall confirm that the AGD guidance describes the
+              <Guidance>The evaluator shall confirm that the operational guidance describes the
                 procedure for disabling each cellular protocol identified in the TSS.
               </Guidance>
               <Tests>The evaluator shall attempt to disable each cellular protocol according
@@ -7744,7 +7771,9 @@ the node certificate to be tested, two Intermediate CAs, and the
               did not import the key or secret </text>
             <app-note> Function <xref to="mf-keyWipeRules" /> should be included in the
               selection if <xref to="s-killkey-user" /> or <xref to="s-killkey-admin" /> is
-              selected in FCS_STG_EXT.1.5. <rule id="r-killkey-user-mf">
+              selected in FCS_STG_EXT.1.5. 
+              <!--
+              <rule id="r-killkey-user-mf">
                 <if>
                   <ref-id>s-killkey-user</ref-id>
                 </if>
@@ -7760,7 +7789,7 @@ the node certificate to be tested, two Intermediate CAs, and the
                 <then>
                   <ref-id>mf-keyWipeRules</ref-id>
                 </then>
-              </rule>
+              </rule> -->
             </app-note>
             <aactivity>
               <TSS>The
@@ -7818,9 +7847,9 @@ the node certificate to be tested, two Intermediate CAs, and the
             <text>
                     <!-- <ctr id="USB" pre="" ctr-type="function">.</ctr>--> Enable/disable <selectables
                 linebreak="yes">
-                <selectable id="s-usbstore">USB mass storage mode</selectable>
-                <selectable>USB data transfer without user authentication</selectable>
-                <selectable>USB data transfer without authentication of the connecting
+                <selectable id="s-usb-store">USB mass storage mode</selectable>
+                <selectable id="s-usb-userauth">USB data transfer without user authentication</selectable>
+                <selectable id="s-usb-systemauth">USB data transfer without authentication of the connecting
                   system</selectable>
               </selectables>
             </text>
@@ -7831,16 +7860,16 @@ the node certificate to be tested, two Intermediate CAs, and the
                 can be managed over USB.</TSS>
               <Tests>The evaluator shall perform the following tests based on the selections
                 made in the table: <testlist>
-                  <test>[conditional] The evaluator shall disable USB mass storage mode,
+                  <test>[conditional] If "<xref to="s-usb-store"/>" is selected, the evaluator shall disable USB mass storage mode,
                     attach the device to a computer, and verify that the computer cannot mount
                 the TOE as a drive. The evaluator shall reboot the TOE and repeat this test
                 with other supported auxiliary boot modes. </test>
-                  <test>[conditional] The evaluator shall disable USB data transfer without
+                  <test>[conditional] If "<xref to="s-usb-userauth"/>" is selected, the evaluator shall disable USB data transfer without
                 user authentication, attach the device to a computer, and verify that the
                     TOE requires user authentication before the computer can access TOE data.
                 The evaluator shall reboot the TOE and repeat this test with other supported
                 auxiliary boot modes. </test>
-                  <test>[conditional] The evaluator shall disable USB data transfer without
+                  <test>[conditional] If "<xref to="s-usb-systemauth"/>" is selected, the evaluator shall disable USB data transfer without
                 connecting system authentication, attach the device to a computer, and
                     verify that the TOE requires connecting system authentication before the
                 computer can access TOE data. The evaluator shall then connect the TOE to
@@ -7872,7 +7901,34 @@ the node certificate to be tested, two Intermediate CAs, and the
                 groups of
                 applications backup can be enabled/disabled.</TSS>
 
-              <Tests> If <xref to="s-backup-all-apps" /> is selected, the evaluator shall
+              <Tests> 
+                The evaluator shall perform the following tests:
+                <testlist>
+                  <test>[conditional] If <xref to="s-backup-all-apps" /> is selected, the evaluator shall
+                    disable each selected backup location in turn and verify that the TOE cannot
+                    complete a backup. The evaluator shall then enable each selected backup
+                    location in turn and verify that the TOE can perform a backup.</test>
+                  <test>[conditional] If <xref to="s-backup-all-apps" /> is selected, the evaluator shall
+                    disable each selected backup location in turn and verify that the TOE cannot
+                    complete a backup. The evaluator shall then enable each selected backup
+                    location in turn and verify that the TOE can perform a backup.</test>
+                  <test>[conditional] If <xref to="s-backup-sel-apps" /> is selected, the evaluator shall disable
+                    each selected backup location in turn and verify that for the selected
+                    application the TOE prevents backup from occurring. The evaluator shall then
+                    enable each selected backup location in turn and verify that for the selected
+                    application the TOE can perform a backup. </test>
+                  <test>[conditional] If <xref to="s-backup-sel-grps" /> is selected, the evaluator shall disable each
+                    selected backup location in turn and verify that for a group of applications
+                    the TOE prevents the backup from occurring. The evaluator shall then enable
+                    each selected backup location in turn and verify for the group of application
+                    the TOE can perform a backup.</test>
+                    <test>[conditional] If <xref to="s-backup-cfg" />
+                    is selected, the evaluator shall disable each selected backup location in turn
+                    and verify that the TOE prevents the backup of configuration data from
+                    occurring. The evaluator shall then enable each selected backup location in
+                    turn and verify that the TOE can perform a backup of configuration data.</test>
+                </testlist>
+                If <xref to="s-backup-all-apps" /> is selected, the evaluator shall
                 disable each selected backup location in turn and verify that the TOE cannot
                 complete a backup. The evaluator shall then enable each selected backup
                 location in turn and verify that the TOE can perform a backup. <h:br /><h:br />
@@ -7896,12 +7952,12 @@ the node certificate to be tested, two Intermediate CAs, and the
             <text>
                     <!-- <ctr id="hotspot" pre="" ctr-type="function">.</ctr>--> Enable/disable <selectables
                 linebreak="yes">
-                <selectable>Hotspot functionality authenticated by <selectables>
+                <selectable id="s-hotspot">Hotspot functionality authenticated by <selectables>
                     <selectable>pre-shared key</selectable>
                     <selectable>passcode</selectable>
                     <selectable exclusive="yes">no authentication</selectable>
                   </selectables></selectable>
-                <selectable id="s-tether"><snip>USB tethering</snip> authenticated by <selectables>
+                <selectable id="s-usbtether"><snip>USB tethering</snip> authenticated by <selectables>
                     <selectable>pre-shared key</selectable>
                     <selectable>passcode</selectable>
                     <selectable exclusive="yes">no authentication</selectable>
@@ -7918,12 +7974,12 @@ the node certificate to be tested, two Intermediate CAs, and the
                 functionality and USB tethering to include any authentication for these.</TSS>
               <Tests>The evaluator shall perform the following tests based on the selections
                 in Function <xref to="mf-hotspot" />. <testlist>
-                  <test>[conditional] The evaluator shall enable hotspot functionality with
-                each of the of the support authentication methods. The evaluator shall
+                  <test>[conditional] If "<xref to="s-hotspot"/>" is selected, the evaluator shall enable hotspot functionality with
+                each of the of the supported authentication methods. The evaluator shall
                     connect to the hotspot with another device and verify that the hotspot
                 functionality requires the configured authentication method. </test>
-                  <test>[conditional] The evaluator shall enable USB tethering functionality
-                with each of the of the support authentication methods. The evaluator shall
+                  <test>[conditional] If "<xref to="s-usbtether"/>" is selected, the evaluator shall enable USB tethering functionality
+                with each of the of the supported authentication methods. The evaluator shall
                 connect to the TOE over USB with another device and verify that the
                     tethering functionality requires the configured authentication method.
                   </test>
@@ -7937,10 +7993,10 @@ the node certificate to be tested, two Intermediate CAs, and the
                 <selectable>groups of applications</selectable>
               </selectables></text>
             <app-note> Functions <xref to="mf-dataSharing" /> and <xref
-                to="mf-appGroups" /> correspond to FDP_ACF_EXT.2.2 and should be included if FDP_ACF_EXT.2.2 is included in the ST.</app-note>
+                to="mf-appGroups" /> correspond to FDP_ACF_EXT.2.2 and should be included if FDP_ACF_EXT.2 is included in the ST.</app-note>
             <aactivity>
               <Tests>The test of this function is performed in conjunction with
-                FDP_ACF_EXT.1.2.</Tests>
+                FDP_ACF_EXT.2.2.</Tests>
             </aactivity>
           </management-function>
           <management-function id="mf-appGroups">
@@ -8086,7 +8142,7 @@ the node certificate to be tested, two Intermediate CAs, and the
           The ST should indicate which of the optional management functions are implemented in the TOE.
           This can be done by copying the above table into the ST and adjusting the "Administrator"
           and "User" columns to "M" according to which capabilities are present or not present,
-          and for which privilege level. The Application Note for FMT_MOF_EXT.1 explains
+          and for which privilege level. The Application Note for FMT_MOF.1 explains
           how to indicate Administrator or User capability.
 	      </h:p>
 	      <h:p>
@@ -8460,7 +8516,7 @@ This test can also be completed on the same hardware and rebooting between appli
               <Guidance>There are no guidance evaluation activities for this component.</Guidance>
 	      <Tests>The evaluator shall perform the following tests:
 	      <testlist>
-                <test>
+                <test id="untrusted-service-unavailable">
 		  The evaluator shall perform this test with a test device that does not have a trust relationship with the TOE.
 		  While the service is not in active use by an application on the TOE, the
                   evaluator shall attempt to discover a service associated with a "protected"
@@ -8473,9 +8529,8 @@ This test can also be completed on the same hardware and rebooting between appli
 		  The evaluator shall verify that this attempt fails due to the unavailability of the service and
                   profile.
 		</test>
-                <test>The evaluator shall repeat Test 1 with a device that currently has a trusted
-                device relationship with the TOE and verify that the same behavior is exhibited.
-                </test>
+	        <test>The evaluator shall repeat <xref to="untrusted-service-unavailable"/> with a device that currently has a trusted
+                device relationship with the TOE and verify that the same behavior is exhibited.</test>
               </testlist>
               </Tests>
             </aactivity>
@@ -8532,16 +8587,14 @@ For these OSes, it is expected that most of the OS, to include the kernel, libra
 OSes that store parameters and variables separately from control flow values do not need additional stack protections.
             </note>
             <aactivity>
-              <TSS>The evaluator shall examine the TSS to verify that it describes how stack-based buffer overflow protection is implemented, or how the TOE is designed in such a way that these protections are not explicitly needed.</TSS>
+              <TSS>The evaluator shall examine the TSS to verify that it describes how stack-based buffer overflow protection is implemented, or how the TOE is designed in such a way that these protections are not explicitly needed. For stack-based OSes, the evaluator shall determine that the TSS contains a description of stack-based buffer overflow protections used by the OS. These are referred to by a variety of terms. These include, but are not limited to, tagging, stack cookie, stack guard, and stack canaries. The TSS must include a rationale for any binaries that are not protected in this manner.
+              </TSS>
               <Guidance/>
 	      <Tests>
-<h:p>For stack-based OSes, the evaluator shall determine that the TSS contains a description of stack-based buffer overflow protections used by the OS.
-These are referred to by a variety of terms. These include, but are not limited to, tagging, stack cookie, stack guard, and stack canaries.
-The TSS must include a rationale for any binaries that are not protected in this manner.
-The evaluator shall also preform the following test:
+<h:p>The evaluator shall preform the following test:
             <testlist>
                 <test>
-                  [Conditional: if stack-based overflow detection can be determined by inventorying]: The evaluator shall inventory the kernel, libraries, and application binaries
+                  [conditional] If stack-based overflow detection can be determined by inventorying, the evaluator shall inventory the kernel, libraries, and application binaries
                   to determine those that do not implement stack-based buffer overflow protections. This list should
                   match up with the list provided in the TSS.
                 </test>
@@ -8676,6 +8729,27 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
 	  <audit-event/>
         </f-component>
         
+        <f-component cc-id="fpt_stm.1" name="Reliable Time Stamps">
+          <f-element id="fel-timestamp">
+            <title>The TSF shall be able to <refinement>obtain</refinement> reliable time stamps <refinement>from a primary time source for its own use</refinement>. </title>
+            <note role="application">In the context of this SFR, a primary time source is that which can be synchronized with a time source that is considered to be authoritative in the context of the overall organization deploying the TOE. Specifically, primary time sources include connectivity to an external NTP server, connectivity to a cellular carrier network, or in the case of a TOE that runs on a virtualization system, a hypercall to the virtualization system's host platform (as this platform could feasibly have its own connectivity to a primary time source). A primary time source does not include the hardware clock on the TOE platform if it is localized only to that system.</note>
+            <aactivity>
+              <TSS>The evaluator shall examine the TSS to ensure that it lists each security
+                function that makes use of time, and that it identifies the primary time source that can be considered to be reliable. The evaluator shall examine the TSS to verify that it describes the TOE's ability to obtain time data from an NTP server, a cellular carrier network, or a hypercall to the TOE's hardware platform if running on a virtualization system.  
+                <h:br/><h:br/></TSS>
+              <Guidance>If this functionality is configurable, the evaluator shall examines the operational guidance to ensure it describes how
+                to set the time directly or how to configure the TOE's primary time source.<h:br/><h:br/></Guidance>
+              <Tests>
+                <testlist>
+                  <test>If the time is configurable, the evaluator shall follow the operational guidance to set the time. The evaluator
+                    shall then use an available interface to observe that the time was set
+                    correctly. If the primary time source is configurable, the evaluator shall deliberately set the time to an incorrect value, verify the incorrect time setting is applied, configure the TOE to connect to the primary time source, and verify that the time is subsequently synchronized to the expected time.</test>
+                </testlist>
+              </Tests>
+            </aactivity>
+          </f-element>
+          <audit-event/>
+        </f-component>
         
         <f-component cc-id="fpt_tst.1" name="TSF Self-Testing">
           <f-element id="fel-tsf-self-test">
@@ -8731,27 +8805,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
           <fam-behavior>This family defines the ability of the TOE to provide a mechanism that can be used to verify its integrity
             when started.</fam-behavior>
 	</ext-comp-def>
-        <f-component cc-id="fpt_stm.1" name="Reliable Time Stamps">
-          <f-element id="fel-timestamp">
-            <title>The TSF shall be able to <refinement>obtain</refinement> reliable time stamps <refinement>from a primary time source for its own use</refinement>. </title>
-            <note role="application">In the context of this SFR, a primary time source is that which can be synchronized with a time source that is considered to be authoritative in the context of the overall organization deploying the TOE. Specifically, primary time sources include connectivity to an external NTP server, connectivity to a cellular carrier network, or in the case of a TOE that runs on a virtualization system, a hypercall to the virtualization system's host platform (as this platform could feasibly have its own connectivity to a primary time source). A primary time source does not include the hardware clock on the TOE platform if it is localized only to that system.</note>
-            <aactivity>
-              <TSS>The evaluator shall examine the TSS to ensure that it lists each security
-                function that makes use of time, and that it identifies the primary time source that can be considered to be reliable. The evaluator shall examine the TSS to verify that it describes the TOE's ability to obtain time data from an NTP server, a cellular carrier network, or a hypercall to the TOE's hardware platform if running on a virtualization system.  
-                <h:br/><h:br/></TSS>
-              <Guidance>If this functionality is configurable, the evaluator shall examines the operational guidance to ensure it describes how
-                to set the time directly or how to configure the TOE's primary time source.<h:br/><h:br/></Guidance>
-              <Tests>
-                <testlist>
-                  <test>If the time is configurable, the evaluator shall follow the operational guidance to set the time. The evaluator
-                        shall then use an available interface to observe that the time was set
-                        correctly. If the primary time source is configurable, the evaluator shall deliberately set the time to an incorrect value, verify the incorrect time setting is applied, configure the TOE to connect to the primary time source, and verify that the time is subsequently synchronized to the expected time.</test>
-                </testlist>
-              </Tests>
-            </aactivity>
-          </f-element>
-          <audit-event/>
-        </f-component>
+     
         <f-component cc-id="fpt_tst_ext.1" name="Boot Integrity">
           
           <comp-lev> defines the mechanisms that the TSF uses to assert its own integrity at
@@ -9230,7 +9284,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
     	  	          <selectable id="itc_mtls-client"><readable>client(mutual TLS)</readable>client</selectable>
     	  	          <selectable id="itc_mtls-server"><readable>server(mutual TLS)</readable>server</selectable>
                   </selectables></selectable>
-                  <selectable id="itc_mdtls"><snip>Mutually authenticated DTLS</snip> as defined in the <xref to="tls"/>
+      	          <selectable id="itc_mdtls"><snip>Mutually authenticated DTLS</snip> in accordance with the [<h:i><xref to="tls"/></h:i>] as a 
                   <selectables>
     	  	          <selectable id="itc_mdtls-client"><readable>client(mutual TLS)</readable>client</selectable>
     	  	          <selectable id="itc_mdtls-server"><readable>server(mutual TLS)</readable>server</selectable>
@@ -9425,11 +9479,12 @@ FTP_ITC_EXT.1.1 as part of the TSF.
               </note>
               <aactivity>
 		<TSS>
-                The evaluator shall examine the TSS to determine that the methods of remote or local OS administration
-                are indicated, along with how those communications are protected. [Conditional: if "remote" is selected
-                in FTP_TRP.1.1], the evaluator shall also confirm that all protocols listed in the TSS in support of OS
+                <h:p>The evaluator shall examine the TSS to determine that the methods of remote or local OS administration
+                  are indicated, along with how those communications are protected.</h:p>
+		  <h:p>
+                [conditional] If "remote" is selected in FTP_TRP.1.1, the evaluator shall confirm that all protocols listed in the TSS in support of OS
                 administration are consistent with those specified in the requirement, and are included in the requirements
-                in the ST.
+                in the ST.</h:p>
 		</TSS>
 		<Guidance>
 		            The evaluator shall confirm that the operational guidance contains instructions for establishing the remote
@@ -9445,16 +9500,16 @@ The evaluator shall also perform the following tests:
                     as described in the operational guidance and ensuring that communication is successful.
                   </test>
                   <test>
-                    [Conditional: if "remote" is selected in FTP_TRP.1.1]: For each method of remote administration supported,
+                    [conditional] If "remote" is selected in FTP_TRP.1.1, for each method of remote administration supported,
                     the evaluator shall follow the operational guidance to ensure that there is no available interface that can be
                     used by a remote user to establish a remote administrative sessions without invoking the trusted path.
                   </test>
                   <test>
-                    [Conditional: if “remote” is selected in FTP_TRP.1.1]: The evaluator shall ensure, for each method of remote
+                    [Conditional] If “remote” is selected in FTP_TRP.1.1, the evaluator shall ensure, for each method of remote
                     administration, the channel data is not sent in plaintext.
                   </test>
                   <test>
-                    [Conditional: if “remote” is selected in FTP_TRP.1.1]: The evaluator shall ensure, for each method of remote
+                    [Conditional] If “remote” is selected in FTP_TRP.1.1, the evaluator shall ensure, for each method of remote
                     administration, modification of the channel data is detected by the OS.
                   </test>
                 </testlist>
@@ -9497,7 +9552,7 @@ The evaluator shall also perform the following tests:
       with the PP.
       </h:p>
       The TOE Security Assurance Requirements are identified in <xref to="sartable"/>.<h:br/><h:br/> 
-      <ctr id="sartable" ctr-type="Table">: Security Assurance Requirements</ctr>
+      <h:b><ctr id="sartable" ctr-type="Table">: Security Assurance Requirements</ctr></h:b>
       <h:table>
         <h:tr class="header">
           <h:td>Assurance Class</h:td><h:td>Assurance Components</h:td>
@@ -9795,7 +9850,7 @@ The evaluator shall also perform the following tests:
               <aactivity>The evaluator shall check the ST to ensure that it contains
               an identifier (such as a product name/version number) that specifically identifies the
               version that meets the requirements of the ST. Further, the
-              evaluator shall check the AGD guidance and OS samples received for
+              evaluator shall check the operational guidance and OS samples received for
               testing to ensure that the version number is consistent with that in the ST. If the vendor maintains a web site advertising the OS, the evaluator shall examine the information on the web site to
               ensure that the information in the ST is sufficient to distinguish
               the product.</aactivity>
@@ -9831,7 +9886,7 @@ The evaluator shall also perform the following tests:
 		  The "evaluation evidence required by the SARs" in this PP is limited to the
               information in the ST coupled with the guidance provided to
               administrators and users under the AGD requirements. By ensuring that the OS is specifically identified and that this identification is
-              consistent in the ST and in the AGD guidance (as done in the
+              consistent in the ST and in the operational guidance (as done in the
               evaluation activity for ALC_CMC.1), the evaluator implicitly confirms the information
               required by this component. Life-cycle support is targeted aspects of the developer&apos;s
               life-cycle and instructions to providers of applications for the developer&apos;s devices,
@@ -10303,7 +10358,7 @@ The evaluator shall also perform the following tests:
 	<h:tr>
 	<h:td>FMT_SMR.1 - Security roles</h:td>
 	<h:td>
-	  FMT_MOF_EXT.1 specifies role-based management functions that implicitly defines
+	  FMT_MOF.1 specifies role-based management functions that implicitly defines
 	  user and privileged accounts;
 	  therefore, it is duplicative to include separate role requirements.
 	</h:td>
@@ -10311,14 +10366,14 @@ The evaluator shall also perform the following tests:
 	<h:tr>
 	<h:td>FTA_SSL.1 - TSF-initiated session locking</h:td>
 	<h:td>
- 	  FMT_MOF_EXT.1 defines requirements for managing session locking;
+ 	  FMT_MOF.1 defines requirements for managing session locking;
 	  therefore, it is duplicative to include a separate session locking requirement.
 	</h:td>
 	</h:tr>
 	<h:tr>
 	<h:td>FTA_SSL.2 - User-initiated locking</h:td>
 	<h:td>
-	  FMT_MOF_EXT.1 defines requirements for user-initiated session locking;
+	  FMT_MOF.1 defines requirements for user-initiated session locking;
 	  therefore, it is duplicative to include a separate session locking requirement.
 	</h:td>
 	</h:tr>
@@ -10458,6 +10513,10 @@ The evaluator shall also perform the following tests:
       <description>
         <h:a href="https://www.commoncriteriaportal.org/files/ccfiles/CCMB-2025-001-v1_2-Errata_Interpretation_CC_CEM_2022.pdf">Errata and Interpretation for CC:2022 (Release 1) and CEM:2022 (Release 1), Version 1.2</h:a>
       </description>
+    </entry>
+    <entry id="bibCCitC">
+      <tag>CCitC</tag>
+      <description><h:a href="https://commoncriteriaportal.org/files/ccfiles/CCiTC_Guidance_For_Cloud_Evals_v1.1a.pdf">CC in the Cloud Guidance for Cloud Evaluations, Version 1.1a</h:a></description>
     </entry>
     <entry id="bibOMB">
       <tag>OMB</tag>
