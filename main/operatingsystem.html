@@ -638,7 +638,7 @@ function showTarget(id){
 	     <ul>
 	     <li>Added compatibility with <abbr class="dyn-abbr"><a href="#abbr_MDM">MDM</a></abbr> Agent, Bluetooth, and <abbr class="dyn-abbr"><a href="#abbr_TLS">TLS</a></abbr> Modules.</li>
 	     <li>Two factor authentication.</li>
-	     <li>Aligned with CNSA.</li>
+	     <li>Aligned with <abbr class="dyn-abbr"><a href="#abbr_CNSA">CNSA</a></abbr>.</li>
 	     </ul>
       </td></tr>
 <tr><td>5.0</td><td>2026-03-20</td><td>
@@ -845,12 +845,12 @@ The following sections list Common Criteria and technology terms used in this do
           </span></dd><dt id="cloudsystems"> [USE CASE 3] Cloud Systems</dt><dd><span class="description">
 	    <p>
 	      The <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> runs on physical or virtual hardware infrastrcture in a cloud environment. It may be accessible in the cloud for general purpose use as a Platform as a Service (PaaS). It may also (along with its underlying infrastructure) comprise a "trusted platform" for cloud Software as a Service (SaaS) applications. In the latter scenario, the operating system itself is not accessed or administered directly by end users, but the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> would still support all required security functions because of the potential for the same <abbr class="dyn-abbr"><a href="#abbr_OS">OS</a></abbr> to be used as a cloud platfrom. 
-	    </p><p>Guidance for the general approach for cloud evaluations can be found at <a href="#bibCCitC">[CCitC]</a>
+	    </p><p>Guidance for the general approach for cloud evaluations can be found at <a href="#bibCCitC">[CCitC]</a>.
 	    </p>
 	    <p>
 			This use case typically involves the use
-			of virtualization technology which should be evaluated against the
-			<i>Protection Profile for Server Virtualization</i>.
+			of virtualization technology to run the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> on virtualized hardware rather than a particular machine. The virtualization system on which the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> runs in this scenario should be evaluated against the
+			<i>Protection Profile for Virtualization</i>.
 	    </p>
 	  </span></dd></dl>
     
@@ -870,7 +870,7 @@ The following sections list Common Criteria and technology terms used in this do
                 <li>FIA_X509_EXT.3</li>
               </ul>
             </span><p></p></dd><dd><b>Limitations on Signature Algorithms in FIA_X509_EXT.1.1</b><p></p><span class="description">
-              The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> must utilize appropriate cryptographic algorithms that conform to CNSA standards. Thus, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> shall utilize no other algorithms outside of those specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 8603 for certificate validation and <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> signature validation (if claimed). If <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> is claimed, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall only claim support for algorithms that use <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384 and either 3072-bit RSA or greater, or <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> P-384. In all cases, the assignment that allows the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author to specify additional algorithms shall not be selected.
+              The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> must utilize appropriate cryptographic algorithms that conform to <abbr class="dyn-abbr"><a href="#abbr_CNSA">CNSA</a></abbr> standards. Thus, the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> shall utilize no other algorithms outside of those specified in <abbr class="dyn-abbr"><a href="#abbr_RFC">RFC</a></abbr> 8603 for certificate validation and <abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> signature validation (if claimed). If <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr> is claimed, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall only claim support for algorithms that use <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384 and either 3072-bit RSA or greater, or <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> P-384. In all cases, the assignment that allows the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author to specify additional algorithms shall not be selected.
             </span><p></p></dd><dd><b>Required Extension Processing for FIA_X509_EXT.1.2</b><p></p><span class="description">
               The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author shall select the options to process the basicConstraints and extendedKeyUsage extensions. Other extensions may be selected as appropriate without restriction.
             </span><p></p></dd><dd><b><abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_OCSP">OCSP</a></abbr>-based Revocation Required for FIA_X509_EXT.1.3 </b><p></p><span class="description">
@@ -1270,7 +1270,7 @@ The following sections list Common Criteria and technology terms used in this do
       Note:
     </span><span class="note">
 <p>
-              For RSA the choice of the modulus implies the resulting key sizes of the public and private keys generated using the specified standard methods. RSA key generation with modulus size 2048 bits is no longer permitted by CNSA.
+              For RSA the choice of the modulus implies the resulting key sizes of the public and private keys generated using the specified standard methods. RSA key generation with modulus size 2048 bits is no longer permitted by <abbr class="dyn-abbr"><a href="#abbr_CNSA">CNSA</a></abbr>.
 	      </p><p>
               For Finite Field Cryptography (FFC) DSA, <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> authors should consult schemes for guidelines on use. <abbr class="dyn-abbr"><a href="#abbr_FIPS">FIPS</a></abbr> PUB 186-5 does not approve DSA for digital signature generation but allows DSA for digital signature verification for legacy purposes. “FFC-ERB” or “FFC–RS” may be claimed only for generating private and public keys when “DH” is claimed in <a href="#FCS_CKM_EXT.7">FCS_CKM_EXT.7</a>.
 	      </p><p>For ECC selections, “P-256” may only be selected if the the <a href="https://www.niap-ccevs.org/protectionprofiles/425">PP-Module for Bluetooth,
@@ -2217,7 +2217,7 @@ The following sections list Common Criteria and technology terms used in this do
       Note:
     </span><span class="note">
               This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is claimed if the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> supports key agreement schemes as a method of key establishment for trusted channels. This will generally apply to all conformant <abbr class="dyn-abbr"><a href="#abbr_TOE">TOEs</a></abbr>, except in the rare (but possible) case where only key encapsulation is used.<p></p>
-              All of the above algorithms with the selectable parameters are CNSA compliant with the exception of P-256 ECDH. This may only be selected if the the <a href="https://www.niap-ccevs.org/protectionprofiles/425">PP-Module for Bluetooth,
+              All of the above algorithms with the selectable parameters are <abbr class="dyn-abbr"><a href="#abbr_CNSA">CNSA</a></abbr> compliant with the exception of P-256 ECDH. This may only be selected if the the <a href="https://www.niap-ccevs.org/protectionprofiles/425">PP-Module for Bluetooth,
         version 
         2.0</a> is included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> and P-256 may only be used specifically for Bluetooth functions.<p></p>
               
@@ -2397,7 +2397,7 @@ The following sections list Common Criteria and technology terms used in this do
               <abbr class="dyn-abbr"><a href="#abbr_NIST">NIST</a></abbr> recommends that the randomly generated portion of the salt have length of at least 128 bits 
               and must be derived from Random Bit Generation.<p></p>
               
-              For CNSA compliance, only <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384 or <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512 may be used.
+              For <abbr class="dyn-abbr"><a href="#abbr_CNSA">CNSA</a></abbr> compliance, only <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-384 or <abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-512 may be used.
             </span></div></div></div>
           
         <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_CKM_EXT.8">FCS_CKM_EXT.8</a></div>
@@ -2497,7 +2497,7 @@ The following sections list Common Criteria and technology terms used in this do
               </table><div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-              The use of 256-bit keys for <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> encryption is required by CNSA. 128-bit keys may only be used when the the <a href="https://www.niap-ccevs.org/protectionprofiles/425">PP-Module for Bluetooth,
+              The use of 256-bit keys for <abbr class="dyn-abbr"><a href="#abbr_AES">AES</a></abbr> encryption is required by <abbr class="dyn-abbr"><a href="#abbr_CNSA">CNSA</a></abbr>. 128-bit keys may only be used when the the <a href="https://www.niap-ccevs.org/protectionprofiles/425">PP-Module for Bluetooth,
         version 
         2.0</a> is claimed and only for the purpose of Bluetooth communications.
             </span></div></div></div>
@@ -2643,7 +2643,7 @@ The following sections list Common Criteria and technology terms used in this do
       Note:
     </span><span class="note">
 	      <p>
-	        In accordance with CNSA:<ul>
+	        In accordance with <abbr class="dyn-abbr"><a href="#abbr_CNSA">CNSA</a></abbr>:<ul>
 	          <li><abbr class="dyn-abbr"><a href="#abbr_SHA">SHA</a></abbr>-1 hash is no longer permitted to be used as a hash function, </li>
 	          <li>SHA3 hashes may be used only for internal hardware functionality such as
 	            boot integrity checks, and</li>
@@ -2824,7 +2824,7 @@ The following sections list Common Criteria and technology terms used in this do
                 algorithm used for <a href="#FCS_COP.1/Hash">FCS_COP.1/Hash</a>.
               </p>
               <p>
-                In accordance with CNSA, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-256 may be used only as a PRF or MAC step in a key derivation function.
+                In accordance with <abbr class="dyn-abbr"><a href="#abbr_CNSA">CNSA</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_HMAC">HMAC</a></abbr>-SHA-256 may be used only as a PRF or MAC step in a key derivation function.
               </p>
             </span></div></div></div>
           
@@ -4139,7 +4139,7 @@ The following sections list Common Criteria and technology terms used in this do
               </table><div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-              In accordance with CNSA, SHAKE is permitted to be used only as a component of LMS or XMSS. 
+              In accordance with <abbr class="dyn-abbr"><a href="#abbr_CNSA">CNSA</a></abbr>, SHAKE is permitted to be used only as a component of LMS or XMSS. 
               Therefore this component is claimed only if LMS or XMSS is claimed in <a href="#FCS_COP.1/SigVer">FCS_COP.1/SigVer</a>.
             </span></div></div></div>
           
@@ -5641,17 +5641,17 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
 <tr id="mf-pwd"><td>1</td><td style="text-align:left">
                      Configure password policy:
                 <ul>
-                  <li>Minimum password length</li>
-                  <li>Minimum password complexity</li>
-                  <li>Maximum password lifetime</li>
+                  <li>minimum password length</li>
+                  <li>minimum password complexity</li>
+                  <li>maximum password lifetime</li>
                 </ul>
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td></tr>
 <tr id="mf-screenlock"><td>2</td><td style="text-align:left">
                      Configure screen/session locking policy: 
               <ul>
-                <li>Enable/disable [<b>selection</b>: <span class="selectable-content" id="_s_405">screen lock</span>, <span class="selectable-content" id="_s_406">session</span>] inactivity timeout</li>
-                <li>Configure [<b>selection</b>: <span class="selectable-content" id="_s_407">screen lock</span>, <span class="selectable-content" id="_s_408">session</span>] inactivity timeout value</li>
-                <li>Configure number of authentication failures</li>
+                <li>enable/disable [<b>selection</b>: <span class="selectable-content" id="_s_405">screen lock</span>, <span class="selectable-content" id="_s_406">session</span>] inactivity timeout</li>
+                <li>[<b>selection</b>: <span class="selectable-content" id="_s_407">screen lock</span>, <span class="selectable-content" id="_s_408">session</span>] inactivity timeout value</li>
+                <li>number of authentication failures to trigger lockout</li>
               </ul>
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td></tr>
 <tr id="mf-vpn"><td>3</td><td style="text-align:left">
@@ -5941,7 +5941,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
               based on which the allowlist can be formed.</li>
                 <li>If the administrator can prevent the user from installing additional
               applications, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects "<a href="#mf-appInstallRules-deny">denying installation of
-              applications</a>". </li>
+              applications</a>." </li>
               </ul>
             </p><p> In the future, function <a href="#mf-certWipe">12</a> may require
               destruction or disabling of any default trusted CA certificates, excepting those
@@ -6179,9 +6179,9 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
                 and perform positive and negative tests, with at least two values set for each
                 variable setting, for each of the following: <br/>
               <ul>
-                  <li>Minimum password length</li>
-                  <li>Minimum password complexity</li>
-                  <li>Maximum password lifetime</li>
+                  <li>minimum password length</li>
+                  <li>minimum password complexity</li>
+                  <li>maximum password lifetime</li>
                 </ul>
               </div>
             <br/></div><div class="management_function_ea"><b>Function <a href="#mf-screenlock">2</a></b><br/>
@@ -6193,9 +6193,9 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
                 The evaluator shall perform positive and negative tests, with at least two
                 values set for each variable setting, for each of the following: <br/>
               <ul>
-                  <li>Screen-lock and/or Session timeout enabled/disabled</li>
-                  <li>Screen lock and/or Session timeout</li>
-                  <li>Number of authentication failures (may be combined with test for
+                  <li>screen-lock and/or session timeout enabled/disabled</li>
+                  <li>screen lock and/or session timeout value</li>
+                  <li>number of authentication failures to trigger lockout (may be combined with test for
                 <a href="#FIA_AFL.1">FIA_AFL.1</a>)</li>
                 </ul>
               </div>
@@ -6382,7 +6382,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
                 connections to determine that the allowlist is still adhered to.</li>
                 <li class="test-"><a id="_t_53" class="defined" href="#_t_53">Test FMT_SMF_EXT.1:11</a>:
       [conditional] If "<a href="#mf-appInstallRules-deny">denying installation of
-              applications</a>" is selected, the evaluator shall install an application with installation of applications configured to be allowed. The evaluator shall then uninstall the application, configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to deny installation of applications, and verify that the same application cannot be reinstalled.</li>
+              applications</a>" is selected, the evaluator shall enable the ability to install applications. The evaluator shall then install an application and observe that this completes successfully. The evaluator shall then uninstall the application, configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to deny installation of applications, and verify that the same application cannot be reinstalled.</li>
                 </ul></span>
               </div>
             <br/></div><div class="management_function_ea"><b>Functions <a href="#mf-keyStorage">9</a>/<a href="#mf-keyWipe">10</a></b><br/>
@@ -6782,23 +6782,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate
                     occurring. The evaluator shall then enable each selected backup location in
                     turn and verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> can perform a backup of configuration data.</li>
                 </ul></span>
-                If <a href="#s-backup-all-apps">all applications</a> is selected, the evaluator shall
-                disable each selected backup location in turn and verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> cannot
-                complete a backup. The evaluator shall then enable each selected backup
-                location in turn and verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> can perform a backup. <br/><br/>
-                If <a href="#s-backup-sel-apps">selected applications</a> is selected, the evaluator shall disable
-                each selected backup location in turn and verify that for the selected
-                application the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> prevents backup from occurring. The evaluator shall then
-                enable each selected backup location in turn and verify that for the selected
-                application the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> can perform a backup. <br/><br/> If <a href="#s-backup-sel-grps">selected groups of applications</a> is selected, the evaluator shall disable each
-                selected backup location in turn and verify that for a group of applications
-                the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> prevents the backup from occurring. The evaluator shall then enable
-                each selected backup location in turn and verify for the group of application
-                the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> can perform a backup. <br/><br/> If <a href="#s-backup-cfg">configuration data</a>
-                is selected, the evaluator shall disable each selected backup location in turn
-                and verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> prevents the backup of configuration data from
-                occurring. The evaluator shall then enable each selected backup location in
-                turn and verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> can perform a backup of configuration data. </div>
+             </div>
             <br/></div><div class="management_function_ea"><b>Function <a href="#mf-hotspot">41</a> [CONDITIONAL] </b><br/>
               <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"> The
                 evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> includes a description of Hotspot
@@ -8000,11 +7984,11 @@ The evaluator shall also perform the following tests:
 <tr><td><a href="#FPT_ASLR_EXT.1">FPT_ASLR_EXT.1</a></td><td>helps mitigate the threat of a network attack by limiting the ability to modify the behavior of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> via memory overflow.</td></tr>
 <tr><td><a href="#FPT_FLS.1">FPT_FLS.1</a></td><td><a href="#FPT_FLS.1">FPT_FLS.1</a> helps mitigate the threat of a network attack by ensuring that a malfunctioning <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> function cannot be used to generate potentially insecure keys.</td></tr>
 <tr><td><a href="#FPT_SBOP_EXT.1">FPT_SBOP_EXT.1</a></td><td>helps mitigate the threat of a network attack by limiting the ability to modify the behavior of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> via stack overflow.</td></tr>
+<tr><td><a href="#FPT_STM.1">FPT_STM.1</a></td><td><a href="#FPT_STM.1">FPT_STM.1</a> helps mitigate the threat of malicious activity by providing reliable time stamps for the audit trail.</td></tr>
 <tr><td><a href="#FPT_TST.1">FPT_TST.1</a></td><td><a href="#FPT_TST.1">FPT_TST.1</a> helps mitigate the threat of a network attack by implementing a mechanism to detect when the <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> may be failing to generate secure cryptographic keys.</td></tr>
 <tr><td><a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a></td><td><a href="#FTP_ITC_EXT.1">FTP_ITC_EXT.1</a> helps mitigate the threat of a network attack by requiring the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to implement trusted protocols for network communication.</td></tr>
 <tr><td><a href="#FTP_TRP.1">FTP_TRP.1</a></td><td><a href="#FTP_TRP.1">FTP_TRP.1</a> helps mitigate the threat of a network attack by requiring the use of a trusted path for any remote administration that can be performed on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.</td></tr>
 <tr><td><a href="#FCS_RBG.6">FCS_RBG.6</a> (optional)</td><td><a href="#FCS_RBG.6">FCS_RBG.6</a> helps mitigate the threat of a network attack by providing a secure <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> service for third-party applications running on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> which may use this service to generate their own cryptographic keys for trusted communications.</td></tr>
-<tr><td><a href="#FPT_STM.1">FPT_STM.1</a></td><td><a href="#FPT_STM.1">FPT_STM.1</a> helps mitigate the threat of malicious activity by providing reliable time stamps for the audit trail.</td></tr>
 <tr><td><a href="#FPT_W^X_EXT.1">FPT_W^X_EXT.1</a> (optional)</td><td><a href="#FPT_W^X_EXT.1">FPT_W^X_EXT.1</a> helps mitigate the threat of a network attack by enforcing data execution prevention so that an external interface cannot attempt to write data to executable memory.</td></tr>
 <tr><td><a href="#FTA_TAB.1">FTA_TAB.1</a> (optional)</td><td><a href="#FTA_TAB.1">FTA_TAB.1</a> helps mitigate the threat of a network attack by providing actionable consequences for misuse of the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr>.</td></tr>
 <tr><td><a href="#FPT_BLT_EXT.1">FPT_BLT_EXT.1</a> (objective)</td><td><a href="#FPT_BLT_EXT.1">FPT_BLT_EXT.1</a> helps mitigate the threat of a network attack by enforcing least functionality of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s Bluetooth interface.</td></tr>
@@ -8035,7 +8019,7 @@ The evaluator shall also perform the following tests:
 <tr><td><a href="#FCS_RBG.6">FCS_RBG.6</a> (optional)</td><td><a href="#FCS_RBG.6">FCS_RBG.6</a> helps mitigate the threat of network eavesdropping by providing a secure <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> service for third-party applications running on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> which may use this service to generate their own cryptographic keys for trusted communications.</td></tr>
 <tr><td><a href="#FPT_BLT_EXT.1">FPT_BLT_EXT.1</a> (objective)</td><td><a href="#FPT_BLT_EXT.1">FPT_BLT_EXT.1</a> helps mitigate the threat of network eavesdropping by enforcing least functionality of the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s Bluetooth interface.</td></tr>
 <tr><td><a href="#FCS_CKM.2">FCS_CKM.2</a> (implementation-dependent)</td><td><a href="#FCS_CKM.2">FCS_CKM.2</a> helps mitigate the threat of network eavesdropping by enforcing the use of a cryptographic algorithm to protect key data that is distributed in transit to a third party for use in trusted communications.</td></tr>
-<tr><td><a href="#FCS_CKM_EXT.7">FCS_CKM_EXT.7</a> (implementation-based)</td><td><a href="#FCS_CKM_EXT.7">FCS_CKM_EXT.7</a> helps mitigate the threat of network eavesdropping by ensuring that a third party cannot obtain the key used by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to communicate securely with a remote entity.</td></tr>
+<tr><td><a href="#FCS_CKM_EXT.7">FCS_CKM_EXT.7</a> (implementation-dependent)</td><td><a href="#FCS_CKM_EXT.7">FCS_CKM_EXT.7</a> helps mitigate the threat of network eavesdropping by ensuring that a third party cannot obtain the key used by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to communicate securely with a remote entity.</td></tr>
 <tr><td><a href="#FCS_COP.1/KeyEncap">FCS_COP.1/KeyEncap</a> (selection-based)</td><td><a href="#FCS_COP.1/KeyWrap">FCS_COP.1/KeyWrap</a> helps mitigate the threat of network eavesdrop by using a key encapsulation algorithm to protect data in transit</td></tr>
 <tr><td><a href="#FCS_COP.1/KeyWrap">FCS_COP.1/KeyWrap</a> (selection-based)</td><td><a href="#FCS_COP.1/KeyWrap">FCS_COP.1/KeyWrap</a> helps mitigate the threat of network eavesdrop by using a key wrap algorithm to protect data in transit.</td></tr>
 <tr><td><a href="#FCS_RBG.2">FCS_RBG.2</a> (selection-based)</td><td><a href="#FCS_RBG.2">FCS_RBG.2</a> helps mitigate the threat of network eavesdropping by ensuring that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s <abbr class="dyn-abbr"><a href="#abbr_DRBG">DRBG</a></abbr> is seeded with sufficient entropy to ensure the generation of strong cryptographic keys.</td></tr>
@@ -8104,7 +8088,7 @@ The evaluator shall also perform the following tests:
       with the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>.
       </p>
       The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> Security Assurance Requirements are identified in <a onclick="showTarget('sartable')" href="#sartable" class="sartable-ref">Table <span class="counter">18</span></a>.<br/><br/> 
-      <b><span class="ctr" data-myid="sartable" data-counter-type="ct-Table" id="sartable">Table <span class="counter">18</span>: Security Assurance Requirements</span></b>
+      <center><b><span class="ctr" data-myid="sartable" data-counter-type="ct-Table" id="sartable">Table <span class="counter">18</span>: Security Assurance Requirements</span></b></center>
       <table>
         <tr class="header">
           <td>Assurance Class</td><td>Assurance Components</td>
@@ -8883,17 +8867,17 @@ The evaluator shall also perform the following tests:
 <tr id="mf-pwd"><td>1</td><td style="text-align:left">
                      Configure password policy:
                 <ul>
-                  <li>Minimum password length</li>
-                  <li>Minimum password complexity</li>
-                  <li>Maximum password lifetime</li>
+                  <li>minimum password length</li>
+                  <li>minimum password complexity</li>
+                  <li>maximum password lifetime</li>
                 </ul>
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td></tr>
 <tr id="mf-screenlock"><td>2</td><td style="text-align:left">
                      Configure screen/session locking policy: 
               <ul>
-                <li>Enable/disable [<b>selection</b>: <span class="selectable-content" id="_s_405">screen lock</span>, <span class="selectable-content" id="_s_406">session</span>] inactivity timeout</li>
-                <li>Configure [<b>selection</b>: <span class="selectable-content" id="_s_407">screen lock</span>, <span class="selectable-content" id="_s_408">session</span>] inactivity timeout value</li>
-                <li>Configure number of authentication failures</li>
+                <li>enable/disable [<b>selection</b>: <span class="selectable-content" id="_s_405">screen lock</span>, <span class="selectable-content" id="_s_406">session</span>] inactivity timeout</li>
+                <li>[<b>selection</b>: <span class="selectable-content" id="_s_407">screen lock</span>, <span class="selectable-content" id="_s_408">session</span>] inactivity timeout value</li>
+                <li>number of authentication failures to trigger lockout</li>
               </ul>
             </td><td><div class="tooltipped">O<span class="tooltiptext">Optional/Conditional</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td><td><div class="tooltipped">M<span class="tooltiptext">Mandatory</span></div></td></tr>
 <tr id="mf-vpn"><td>3</td><td style="text-align:left">
@@ -9470,6 +9454,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selectio
 <tr><td><span class="term" id="abbr_CEM"><abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr></span></td><td><span id="long_abbr_CEM">Common Evaluation Methodology</span></td></tr>
 <tr><td><span class="term" id="abbr_CMC"><abbr class="dyn-abbr"><a href="#abbr_CMC">CMC</a></abbr></span></td><td><span id="long_abbr_CMC">Certificate Management over <abbr class="dyn-abbr"><a href="#abbr_CMS">CMS</a></abbr></span></td></tr>
 <tr><td><span class="term" id="abbr_CMS"><abbr class="dyn-abbr"><a href="#abbr_CMS">CMS</a></abbr></span></td><td><span id="long_abbr_CMS">Cryptographic Message Syntax</span></td></tr>
+<tr><td><span class="term" id="abbr_CNSA"><abbr class="dyn-abbr"><a href="#abbr_CNSA">CNSA</a></abbr></span></td><td><span id="long_abbr_CNSA">Commercial National Security Algorithm Suite</span></td></tr>
 <tr><td><span class="term" id="abbr_cPP" data-plural="cPPs"><abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr></span></td><td><span id="long_abbr_cPP">Collaborative Protection Profile</span></td></tr>
 <tr><td><span class="term" id="abbr_CRL"><abbr class="dyn-abbr"><a href="#abbr_CRL">CRL</a></abbr></span></td><td><span id="long_abbr_CRL">Certificate Revocation List</span></td></tr>
 <tr><td><span class="term" id="abbr_DEK" data-plural="DEKs"><abbr class="dyn-abbr"><a href="#abbr_DEK">DEK</a></abbr></span></td><td><span id="long_abbr_DEK">Data Encryption Key</span></td></tr>
@@ -9540,7 +9525,7 @@ The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall [<b>selectio
           </ul></span></td></tr><tr><td><span id="bibCEM">[<abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr>]</span></td><td><span class="description">Common Methodology for Information Technology Security Evaluation - <ul>
             <li><a href="http://www.commoncriteriaportal.org/files/ccfiles/CEM2022R1.pdf">
                  Evaluation methodology</a>, CCMB-2022-11-006, <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022, Revision 1, November 2022.</li>
-          </ul></span></td></tr><tr><td><span id="bibCCitC">[CCitC]</span></td><td><span class="description"><a href="https://commoncriteriaportal.org/files/ccfiles/CCiTC_Guidance_For_Cloud_Evals_v1.1a.pdf">CC in the Cloud Guidance for Cloud Evaluations, Version 1.1a</a></span></td></tr><tr><td><span id="bibCCerrata">[Errata]</span></td><td><span class="description">
-        <a href="https://www.commoncriteriaportal.org/files/ccfiles/CCMB-2025-001-v1_2-Errata_Interpretation_CC_CEM_2022.pdf">Errata and Interpretation for CC:2022 (Release 1) and CEM:2022 (Release 1), Version 1.2</a>
+          </ul></span></td></tr><tr><td><span id="bibCCitC">[CCitC]</span></td><td><span class="description"><a href="https://commoncriteriaportal.org/files/ccfiles/CCiTC_Guidance_For_Cloud_Evals_v1.1a.pdf">CC in the Cloud Guidance for Cloud Evaluations</a>, Version 1.1a</span></td></tr><tr><td><span id="bibCCerrata">[Errata]</span></td><td><span class="description">
+        <a href="https://www.commoncriteriaportal.org/files/ccfiles/CCMB-2025-001-v1_2-Errata_Interpretation_CC_CEM_2022.pdf">Errata and Interpretation for CC:2022 (Release 1) and CEM:2022 (Release 1)</a>, Version 1.2
       </span></td></tr><tr><td><span id="bibOMB">[<abbr class="dyn-abbr"><a href="#abbr_OMB">OMB</a></abbr>]</span></td><td><span class="description">
         <a href="http://www.whitehouse.gov/sites/default/files/omb/memoranda/fy2006/m06-19.pdf">Reporting Incidents Involving Personally Identifiable Information and Incorporating the Cost for Security in Agency Information Technology Investments</a>, <abbr class="dyn-abbr"><a href="#abbr_OMB">OMB</a></abbr> M-06-19, July 12, 2006. </span></td></tr></table></body></html>
