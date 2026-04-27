@@ -170,7 +170,7 @@ it manages may be physical or virtual.
       <term abbr='BYOD' full="Bring Your Own Device"/>
       <term abbr='CMC' full="Certificate Management over CMS"/>
       <term abbr='CMS' full="Cryptographic Message Syntax"/>
-      
+      <term abbr='CNSA' full="Commercial National Security Algorithm Suite"/>
       <term full="Credential">
 	Data that establishes the identity of a user, e.g., a cryptographic key or
 	password.
@@ -357,12 +357,12 @@ it manages may be physical or virtual.
           <description>
 	    <h:p>
 	      The OS runs on physical or virtual hardware infrastrcture in a cloud environment. It may be accessible in the cloud for general purpose use as a Platform as a Service (PaaS). It may also (along with its underlying infrastructure) comprise a "trusted platform" for cloud Software as a Service (SaaS) applications. In the latter scenario, the operating system itself is not accessed or administered directly by end users, but the TOE would still support all required security functions because of the potential for the same OS to be used as a cloud platfrom. 
-	    </h:p><h:p>Guidance for the general approach for cloud evaluations can be found at <xref to="bibCCitC"/>
+	    </h:p><h:p>Guidance for the general approach for cloud evaluations can be found at <xref to="bibCCitC"/>.
 	    </h:p>
 	    <h:p>
 			This use case typically involves the use
-			of virtualization technology which should be evaluated against the
-			<h:i>Protection Profile for Server Virtualization</h:i>.
+			of virtualization technology to run the TOE on virtualized hardware rather than a particular machine. The virtualization system on which the TOE runs in this scenario should be evaluated against the
+			<h:i>Protection Profile for Virtualization</h:i>.
 	    </h:p>
 	  </description>
         </usecase>
@@ -600,6 +600,9 @@ it manages may be physical or virtual.
           <rationale>FPT_FLS.1 helps mitigate the threat of a network attack by ensuring that a malfunctioning DRBG function cannot be used to generate potentially insecure keys.</rationale>
           <addressed-by>FPT_SBOP_EXT.1</addressed-by>
           <rationale>helps mitigate the threat of a network attack by limiting the ability to modify the behavior of the TSF via stack overflow.</rationale>
+          <addressed-by>FPT_STM.1</addressed-by>
+          <rationale>FPT_STM.1 helps mitigate the threat of malicious activity by providing reliable time stamps for the audit trail.</rationale>
+          
           <addressed-by>FPT_TST.1</addressed-by>
           <rationale>FPT_TST.1 helps mitigate the threat of a network attack by implementing a mechanism to detect when the DRBG may be failing to generate secure cryptographic keys.</rationale>
           <addressed-by>FTP_ITC_EXT.1</addressed-by>
@@ -610,8 +613,6 @@ it manages may be physical or virtual.
           
           <addressed-by>FCS_RBG.6 (optional)</addressed-by>
           <rationale>FCS_RBG.6 helps mitigate the threat of a network attack by providing a secure DRBG service for third-party applications running on the TOE which may use this service to generate their own cryptographic keys for trusted communications.</rationale>
-          <addressed-by>FPT_STM.1</addressed-by>
-          <rationale>FPT_STM.1 helps mitigate the threat of malicious activity by providing reliable time stamps for the audit trail.</rationale>
           <addressed-by>FPT_W^X_EXT.1 (optional)</addressed-by>
           <rationale>FPT_W^X_EXT.1 helps mitigate the threat of a network attack by enforcing data execution prevention so that an external interface cannot attempt to write data to executable memory.</rationale>
           <addressed-by>FTA_TAB.1 (optional)</addressed-by>
@@ -756,7 +757,7 @@ it manages may be physical or virtual.
           
           <addressed-by>FCS_CKM.2 (implementation-dependent)</addressed-by>
           <rationale>FCS_CKM.2 helps mitigate the threat of network eavesdropping by enforcing the use of a cryptographic algorithm to protect key data that is distributed in transit to a third party for use in trusted communications.</rationale>
-          <addressed-by>FCS_CKM_EXT.7 (implementation-based)</addressed-by>
+          <addressed-by>FCS_CKM_EXT.7 (implementation-dependent)</addressed-by>
           <rationale>FCS_CKM_EXT.7 helps mitigate the threat of network eavesdropping by ensuring that a third party cannot obtain the key used by the TOE to communicate securely with a remote entity.</rationale>
      
           
@@ -6732,9 +6733,9 @@ the node certificate to be tested, two Intermediate CAs, and the
             <text>
                     <!-- <ctr id="pwd" pre="" ctr-type="function">.</ctr>--> Configure password policy:
                 <h:ul>
-                  <h:li>Minimum password length</h:li>
-                  <h:li>Minimum password complexity</h:li>
-                  <h:li>Maximum password lifetime</h:li>
+                  <h:li>minimum password length</h:li>
+                  <h:li>minimum password complexity</h:li>
+                  <h:li>maximum password lifetime</h:li>
                 </h:ul>
             </text>
             <O ref="U" />
@@ -6752,9 +6753,9 @@ the node certificate to be tested, two Intermediate CAs, and the
                 and perform positive and negative tests, with at least two values set for each
                 variable setting, for each of the following: <h:br />
               <h:ul>
-                  <h:li>Minimum password length</h:li>
-                  <h:li>Minimum password complexity</h:li>
-                  <h:li>Maximum password lifetime</h:li>
+                  <h:li>minimum password length</h:li>
+                  <h:li>minimum password complexity</h:li>
+                  <h:li>maximum password lifetime</h:li>
                 </h:ul>
               </Tests>
             </aactivity>
@@ -6763,9 +6764,9 @@ the node certificate to be tested, two Intermediate CAs, and the
             <text>
                     <!-- <ctr id="screenlock" pre="" ctr-type="function">.</ctr>--> Configure screen/session locking policy: 
               <h:ul>
-                <h:li>Enable/disable <selectables><selectable>screen lock</selectable><selectable>session</selectable></selectables> inactivity timeout</h:li>
-                <h:li>Configure <selectables><selectable>screen lock</selectable><selectable>session</selectable></selectables> inactivity timeout value</h:li>
-                <h:li>Configure number of authentication failures</h:li>
+                <h:li>enable/disable <selectables><selectable>screen lock</selectable><selectable>session</selectable></selectables> inactivity timeout</h:li>
+                <h:li><selectables><selectable>screen lock</selectable><selectable>session</selectable></selectables> inactivity timeout value</h:li>
+                <h:li>number of authentication failures to trigger lockout</h:li>
               </h:ul>
             </text>
             <O ref="U" />
@@ -6781,9 +6782,9 @@ the node certificate to be tested, two Intermediate CAs, and the
                 The evaluator shall perform positive and negative tests, with at least two
                 values set for each variable setting, for each of the following: <h:br />
               <h:ul>
-                  <h:li>Screen-lock and/or Session timeout enabled/disabled</h:li>
-                  <h:li>Screen lock and/or Session timeout</h:li>
-                  <h:li>Number of authentication failures (may be combined with test for
+                  <h:li>screen-lock and/or session timeout enabled/disabled</h:li>
+                  <h:li>screen lock and/or session timeout value</h:li>
+                  <h:li>number of authentication failures to trigger lockout (may be combined with test for
                 FIA_AFL.1)</h:li>
                 </h:ul>
               </Tests>
@@ -7093,7 +7094,7 @@ the node certificate to be tested, two Intermediate CAs, and the
               should list any application characteristics (e.g., name, version, or developer)
               based on which the allowlist can be formed.</h:li>
                 <h:li>If the administrator can prevent the user from installing additional
-              applications, the ST author selects "<xref to="mf-appInstallRules-deny" />". </h:li>
+              applications, the ST author selects "<xref to="mf-appInstallRules-deny" />." </h:li>
               </h:ul>
             </app-note>
             <aactivity>
@@ -7114,7 +7115,7 @@ the node certificate to be tested, two Intermediate CAs, and the
                     that the application not on the allowlist is rejected. The evaluator shall
                 also attempt to side-load executables or installation packages via USB
                 connections to determine that the allowlist is still adhered to.</test>
-                <test>[conditional] If "<xref to="mf-appInstallRules-deny"/>" is selected, the evaluator shall install an application with installation of applications configured to be allowed. The evaluator shall then uninstall the application, configure the TOE to deny installation of applications, and verify that the same application cannot be reinstalled.</test>
+                <test>[conditional] If "<xref to="mf-appInstallRules-deny"/>" is selected, the evaluator shall enable the ability to install applications. The evaluator shall then install an application and observe that this completes successfully. The evaluator shall then uninstall the application, configure the TOE to deny installation of applications, and verify that the same application cannot be reinstalled.</test>
                 </testlist>
               </Tests>
             </aactivity>
@@ -7928,24 +7929,7 @@ the node certificate to be tested, two Intermediate CAs, and the
                     occurring. The evaluator shall then enable each selected backup location in
                     turn and verify that the TOE can perform a backup of configuration data.</test>
                 </testlist>
-                If <xref to="s-backup-all-apps" /> is selected, the evaluator shall
-                disable each selected backup location in turn and verify that the TOE cannot
-                complete a backup. The evaluator shall then enable each selected backup
-                location in turn and verify that the TOE can perform a backup. <h:br /><h:br />
-                If <xref to="s-backup-sel-apps" /> is selected, the evaluator shall disable
-                each selected backup location in turn and verify that for the selected
-                application the TOE prevents backup from occurring. The evaluator shall then
-                enable each selected backup location in turn and verify that for the selected
-                application the TOE can perform a backup. <h:br /><h:br /> If <xref
-                  to="s-backup-sel-grps" /> is selected, the evaluator shall disable each
-                selected backup location in turn and verify that for a group of applications
-                the TOE prevents the backup from occurring. The evaluator shall then enable
-                each selected backup location in turn and verify for the group of application
-                the TOE can perform a backup. <h:br /><h:br /> If <xref to="s-backup-cfg" />
-                is selected, the evaluator shall disable each selected backup location in turn
-                and verify that the TOE prevents the backup of configuration data from
-                occurring. The evaluator shall then enable each selected backup location in
-                turn and verify that the TOE can perform a backup of configuration data. </Tests>
+             </Tests>
             </aactivity>
           </management-function>
           <management-function id="mf-hotspot">
@@ -9552,7 +9536,7 @@ The evaluator shall also perform the following tests:
       with the PP.
       </h:p>
       The TOE Security Assurance Requirements are identified in <xref to="sartable"/>.<h:br/><h:br/> 
-      <h:b><ctr id="sartable" ctr-type="Table">: Security Assurance Requirements</ctr></h:b>
+      <h:center><h:b><ctr id="sartable" ctr-type="Table">: Security Assurance Requirements</ctr></h:b></h:center>
       <h:table>
         <h:tr class="header">
           <h:td>Assurance Class</h:td><h:td>Assurance Components</h:td>
@@ -10511,12 +10495,12 @@ The evaluator shall also perform the following tests:
     <entry id="bibCCerrata">
       <tag>Errata</tag>
       <description>
-        <h:a href="https://www.commoncriteriaportal.org/files/ccfiles/CCMB-2025-001-v1_2-Errata_Interpretation_CC_CEM_2022.pdf">Errata and Interpretation for CC:2022 (Release 1) and CEM:2022 (Release 1), Version 1.2</h:a>
+        <h:a href="https://www.commoncriteriaportal.org/files/ccfiles/CCMB-2025-001-v1_2-Errata_Interpretation_CC_CEM_2022.pdf">Errata and Interpretation for CC:2022 (Release 1) and CEM:2022 (Release 1)</h:a>, Version 1.2
       </description>
     </entry>
     <entry id="bibCCitC">
       <tag>CCitC</tag>
-      <description><h:a href="https://commoncriteriaportal.org/files/ccfiles/CCiTC_Guidance_For_Cloud_Evals_v1.1a.pdf">CC in the Cloud Guidance for Cloud Evaluations, Version 1.1a</h:a></description>
+      <description><h:a href="https://commoncriteriaportal.org/files/ccfiles/CCiTC_Guidance_For_Cloud_Evals_v1.1a.pdf">CC in the Cloud Guidance for Cloud Evaluations</h:a>, Version 1.1a</description>
     </entry>
     <entry id="bibOMB">
       <tag>OMB</tag>
