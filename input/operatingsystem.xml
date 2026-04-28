@@ -4754,8 +4754,9 @@ it manages may be physical or virtual.
         </ext-comp-def>
         
         
-        <f-component cc-id="fcs_https_ext.1" name="HTTPS Protocol" status="feat-based">
-        <depends on="mdm-management"/>
+        <f-component cc-id="fcs_https_ext.1" name="HTTPS Protocol" status="sel-based">
+          <depends on-sel="upc_https"/>
+          <depends on-sel="itc_https"/>
           
           <comp-lev> requires the TSF to implement the HTTPS protocol in accordance with the specified standard, using TLS, and notifying the application if invalid.</comp-lev>
           <management>The following actions could be considered for the management functions in FMT:
@@ -5960,7 +5961,7 @@ it manages may be physical or virtual.
             <title>The TSF shall provide a means for non-TSF applications executing on the TOE to use <selectables linebreak='yes'>
                 <selectable>Mutually authenticated TLS as conforming to the <xref to="tls"/> as a client
     	  	    </selectable>
-              <selectable>HTTPS</selectable>
+              <selectable id="upc_https">HTTPS</selectable>
       	      </selectables>
       	        and <selectables linebreak='yes'>
                 <selectable>Mutually authenticated TLS as conforming to the <xref to="tls"/> as a server
@@ -5993,6 +5994,9 @@ it manages may be physical or virtual.
               It should also be noted that some applications are part of the TSF, and FTP_ITC_EXT.1 requires that TSF applications be protected by at least one of the protocols in first selection in FTP_ITC_EXT.1. It is not required to have two different implementations of a protocol, or two different protocols, to satisfy both this requirement (for non-TSF apps) and FTP_ITC_EXT.1 (for TSF apps), as long as the services specified are provided. </h:p>
               <h:p> 
               The ST author must list which trusted channel protocols are implemented by the TOE for use by non-TSF apps.</h:p>
+              <h:p>
+              If <xref to="upc_https"/> is selected, FCS_HTTPS_EXT.1 must be included in the ST. 
+              </h:p>
               <h:p> 
               If ST author selects <xref to="s-upc-ipsec"/>, the TSF must be validated against the <xref to="mod-vpnclient"/>. 
               </h:p>
