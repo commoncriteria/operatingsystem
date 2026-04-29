@@ -183,7 +183,7 @@ it manages may be physical or virtual.
 	from extracting data from non-volatile storage.
 	Common techniques include data encryption and wiping.
       </term>
-      <term full="Data Encryption Key" abbr="DEK" plural="DEKs">A key used to encrypt data-at-rest.</term>
+      <term full="Data Encryption Key" abbr="DEK" plural="DEKs">A key used to encrypt sensitive data.</term>
       <term full="Data Execution Prevention" abbr="DEP">
 	An anti-exploitation feature of modern operating systems executing on
 	modern computer hardware, which enforces a non-execute permission on pages of memory.
@@ -5466,7 +5466,7 @@ it manages may be physical or virtual.
               </note>
             <aactivity>
               <TSS>The evaluator shall review the TSS to determine that the TSS includes key
-                hierarchy description of the protection of each DEK for data-at-rest, of
+                hierarchy description of the protection of each DEK for sensitive data, of
                 software-based key storage, of long-term trusted channel keys, and of KEK related to
                 the protection of the DEKs, long-term trusted channel keys, and software-based key
                 storage. This description must include a diagram illustrating the key hierarchy
@@ -6987,7 +6987,7 @@ the node certificate to be tested, two Intermediate CAs, and the
               device must be effective as soon as the TOE has power. Disablement must also
               apply when the TOE is booted into auxiliary boot modes, for example, associated
               with updates or backup. If the TOE supports states in which security management
-              policy is inaccessible, for example, due to data-at-rest protection, it is
+              policy is inaccessible, for example, due to sensitive data protection, it is
               acceptable to meet this requirement by ensuring that these devices are disabled
               by default while in these states. That these devices are disabled during
               auxiliary boot modes does not imply that the device (particularly the cellular
@@ -7395,20 +7395,18 @@ the node certificate to be tested, two Intermediate CAs, and the
           <management-function id="mf-dar">
             <text>
                     <!-- 20. -->
-                    <!-- <ctr id="dar" pre="" ctr-type="function">.</ctr>--> Enable data-at-rest protection </text>
+                    <!-- <ctr id="dar" pre="" ctr-type="function">.</ctr>--> Enable sensitive data protection </text>
             <O ref="U" />
             <O ref="A" />
             <M ref="AM" />
             <O ref="AO" />
             <app-note> Function <xref to="mf-dar" /> must be included in the selection if
-              data-at-rest protection is not natively enabled. </app-note>
+              sensitive data protection is not natively enabled. </app-note>
             <aactivity>
               <Tests>
                 The evaluator shall exercise the TSF configuration as the administrator and,
                 if not restricted to the administrator, the user, to enable system-wide
-                data-at-rest protection according to the operational guidance. The evaluator shall
-                ensure that all Evaluation Activities for DAR (FDP_DAR) are conducted with the
-                device in this configuration.
+                sensitive data protection according to the operational guidance.
               </Tests>
             </aactivity>
           </management-function>
@@ -7416,7 +7414,7 @@ the node certificate to be tested, two Intermediate CAs, and the
           <management-function id="mf-rmediaDar">
             <text>
                     <!-- 21. -->
-                    <!-- <ctr id="rmediaDar" pre="" ctr-type="function">.</ctr>--> Enable removable media’s data-at-rest protection </text>
+                    <!-- <ctr id="rmediaDar" pre="" ctr-type="function">.</ctr>--> Enable removable media’s sensitive data protection </text>
             <O ref="U" />
             <O ref="A" />
             <M ref="AM" />
@@ -7427,9 +7425,7 @@ the node certificate to be tested, two Intermediate CAs, and the
               <Tests>
                 The evaluator shall exercise the TSF configuration as the administrator and,
                 if not restricted to the administrator, the user, to enable removable media’s
-                data-at-rest protection according to the operational guidance. The evaluator shall
-                ensure that all Evaluation Activities for DAR (FDP_DAR) are conducted with the
-                device in this configuration.
+                sensitive data protection according to the operational guidance.
               </Tests>
             </aactivity>
           </management-function>
@@ -7545,7 +7541,7 @@ the node certificate to be tested, two Intermediate CAs, and the
               or administrator. Disablement of data transfer over an external port must be
               effective during and after boot into the normal operative mode of the device. If
               the TOE supports states in which configured security management policy is
-              inaccessible, for example, due to data-at-rest protection, it is acceptable to
+              inaccessible, for example, due to sensitive data protection, it is acceptable to
               meet this requirement by ensuring that data transfer is disabled by default
               while in these states. Each of the ports may be enabled or disabled separately.
               The configuration policy need not disable all ports together. In the case of
