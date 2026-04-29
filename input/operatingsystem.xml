@@ -883,6 +883,8 @@ it manages may be physical or virtual.
           <addressed-by>FTA_TAB.1 (optional)</addressed-by>
           <rationale>FTA_TAB.1 helps mitigate the threat of a local attack by providing actionable consequences for misuse of the TSF.</rationale>
           
+          <addressed-by>FPT_NOT_EXT.2 (objective)</addressed-by>
+          <rationale>FPT_NOT_EXT.2 helps mitigate the threat of a local attack by enforcing remote attestation to ensure that the TSF has not been compromised.</rationale>
           <addressed-by>FPT_SRP_EXT.1 (objective)</addressed-by>
           <rationale>FPT_SRP_EXT.1 helps mitigate the threat of a local attack by preventing the execution of unknown or untrusted software.</rationale>
           
@@ -8520,6 +8522,84 @@ This test can also be completed on the same hardware and rebooting between appli
 	        <test>The evaluator shall repeat <xref to="untrusted-service-unavailable"/> with a device that currently has a trusted
                 device relationship with the TOE and verify that the same behavior is exhibited.</test>
               </testlist>
+              </Tests>
+            </aactivity>
+          </f-element>
+          <audit-event/>
+        </f-component>
+
+        <ext-comp-def fam-id="FPT_NOT_EXT" title="Self-Test Notification">
+          <fam-behavior>This family defines requirements for generation of notifications in response to completed self-tests. 
+          </fam-behavior>
+        </ext-comp-def>
+
+        <f-component cc-id="fpt_not_ext.2" name="Software Integrity Verification" status="objective">
+          
+          <comp-lev> requires the TSF to generate and sign software integrity verification values.</comp-lev>
+          <management>The following actions could be considered for the management functions in FMT:
+            <h:ul>
+              <h:li>Retrieval of TSF software integrity verification values.</h:li>
+            </h:ul>
+          </management>
+          <audit>There are no auditable events foreseen.
+          </audit>
+          <dependencies>FCS_COP.1 Cryptographic Operation</dependencies>
+          
+          <f-element id="fel-selftest-notify">
+            <title>The TSF shall <selectables>
+                <selectable>audit</selectable>
+                <selectable>provide the administrator with</selectable>
+              </selectables> TSF-software integrity verification values.</title>
+            <note role="application">These notifications are typically called remote attestation and
+              these integrity values are typically called measurements. The integrity values are
+              calculated from hashes of critical memory and values, including executable code. The
+              ST author must select whether these values are logged as a part of FAU_GEN.1.1 or are
+              provided to the administrator. </note>
+            <aactivity level="element">
+              <TSS>The evaluator shall verify that the TSS describes which critical memory is
+                measured for these integrity values and how the measurement is performed (including
+                which TOE software generates these values, how that software accesses
+                the critical memory, and which algorithms are used). <h:br/><h:br/>
+              </TSS>
+              <Guidance> If the integrity values are provided to the administrator, the evaluator
+                shall verify that the AGD guidance contains instructions for retrieving these values
+                and information for interpreting them. For example, if multiple measurements are
+                taken, what those measurements are and how changes to those values relate to changes
+                in the device state. <h:br/><h:br/>
+              </Guidance>
+              <Tests>
+                <h:b>Evaluation Activity Note:</h:b> The following test may require the developer
+                to provide access to a test platform that provides the evaluator with tools that are
+                typically not found on consumer Mobile Device products. <h:br/><h:br/> The
+                evaluator shall repeat the following test for each measurement: <testlist>
+                  <test>The evaluator shall boot the device in an approved state and record the
+                    measurement taken<!-- (either from the log or by using the administrative guidance
+                    to retrieve the value via an MDM agent)-->. The evaluator shall modify the critical
+                    memory or value that is measured. The evaluator shall boot the device and verify
+                    that the measurement changed. </test>
+                </testlist>
+              </Tests>
+            </aactivity>
+          </f-element>
+          
+          <f-element id="fel-sign-integrity">
+            <title>The TSF shall cryptographically sign all integrity verification values.</title>
+            <note role="application">The intent of this requirement is to provide assurance to the
+              administrator that the responses provided are from the TOE and have not been modified
+              or spoofed by a man-in-the-middle such as a network-based adversary or a malicious MDM
+              Agent. </note>
+            <aactivity level="element">
+              <TSS>The evaluator shall verify that the TSS describes which key the TSF uses to sign
+                the responses to queries and the certificate used to prove ownership of the key, and
+                the method of associating the certificate with a particular device manufacturer and
+                model.<h:br/><h:br/></TSS>
+              <Guidance>There are no guidance evaluation activities for this component.<h:br/><h:br/></Guidance>
+              <Tests>The evaluator shall perform the following test: <testlist>
+                  <test>The evaluator shall write, or the developer shall provide, a management
+                    application that queries either the audit logs or the measurements. The
+                    evaluator shall verify that the responses to these queries are signed and verify
+                    the signatures against the TOE’s certificate.</test>
+                </testlist>
               </Tests>
             </aactivity>
           </f-element>
