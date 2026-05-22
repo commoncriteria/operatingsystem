@@ -4986,30 +4986,35 @@ it manages may be physical or virtual.
               keys.
               </h:p>
             </note>
-            <aactivity>
+            <aactivity level="component">
               <TSS>
                 The evaluator shall review the TSS to determine that the TSS includes key
-                hierarchy description of the protection of each DEK for sensitive data, of
-                software-based key storage, of long-term trusted channel keys, and of KEK related to
-                the protection of the DEKs, long-term trusted channel keys, and software-based key
-                storage. This description must include a diagram illustrating the key hierarchy
-                implemented by the TOE in order to demonstrate that the implementation meets
-                FCS_STG_EXT.2. The description shall indicate how the functionality described by
-                FCS_RBG.1 is invoked to generate DEKs (FCS_CKM_EXT.2), the key size (FCS_CKM_EXT.2
-                and FCS_CKM_EXT.3) for each key, how each KEK is formed (generated, derived, or
-                combined according to FCS_CKM_EXT.3), the integrity protection method for each
-                encrypted key (FCS_STG_EXT.3), and the IV generation for each key encrypted by the
-                same KEK (FCS_IV_EXT.1). More detail for each task follows the corresponding
-                requirement.
+					hierarchy description of the protection of each DEK for sensitive data, of
+					software-based key storage, of long-term trusted channel keys, and of KEK related to
+					the protection of the DEKs, long-term trusted channel keys, and software-based key
+					storage. This description must include a diagram illustrating the key hierarchy
+					implemented by the TOE in order to demonstrate that the implementation meets
+					FCS_STG_EXT.2. The description shall indicate how the functionality described by
+					FCS_RBG.1 is invoked to generate DEKs (FCS_CKM_EXT.2), the key size (FCS_CKM_EXT.2
+					and FCS_CKM_EXT.3) for each key, how each KEK is formed (generated, derived, or
+					combined according to FCS_CKM_EXT.3), the integrity protection method for each
+					encrypted key (FCS_STG_EXT.3), and the IV generation for each key encrypted by the
+					same KEK (FCS_IV_EXT.1). More detail for each task follows the corresponding
+					requirement.
                 <h:br/>
                 <h:br/>
                 The evaluator shall also ensure that the documentation
-                of the product's encryption key management is detailed enough that, after reading,
-                the product's key management hierarchy is clear and that it meets the requirements
-                to ensure the keys are adequately protected. The evaluator shall ensure that the
-                documentation includes both an essay and one or more diagrams. Note that this may
-                also be documented as separate proprietary evidence rather than being included in
-                the TSS.
+					of the product's encryption key management is detailed enough that, after reading,
+					the product's key management hierarchy is clear and that it meets the requirements
+					to ensure the keys are adequately protected. The evaluator shall ensure that the
+					documentation includes both an essay and one or more diagrams. Note that this may
+					also be documented as separate proprietary evidence rather than being included in
+					the TSS.
+                <h:br/>
+                <h:br/>
+                The evaluator shall examine the key hierarchy description in the TSS section to
+	                verify that each DEK and software-stored key is encrypted according to
+	                FCS_STG_EXT.2.
                 <h:br/>
                 <h:br/>
               </TSS>
@@ -5036,17 +5041,6 @@ it manages may be physical or virtual.
               the TOE. This requirement refers only to KEKs as defined this PP and does not refer to
               those KEKs specified in other standards. The ST author must assign the same Long-term
               trusted channel key material assigned in FCS_STG_EXT.2.1.</note>
-            <aactivity>
-              <TSS>
-                The evaluator shall examine the key hierarchy description in the TSS section to
-                verify that each DEK and software-stored key is encrypted according to
-                FCS_STG_EXT.2.
-                <h:br/>
-                <h:br/>
-              </TSS>
-              <Guidance>There are no guidance evaluation activities for this component.<h:br/><h:br/></Guidance>
-              <Tests>There are no test evaluation activities for this component.</Tests>
-            </aactivity>
           </f-element>
           <audit-event/>
         </f-component>
