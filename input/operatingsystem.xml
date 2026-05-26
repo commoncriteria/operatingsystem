@@ -1068,11 +1068,18 @@ it manages may be physical or virtual.
               </h:ol>
             </title>
             <note role="application">For each functional package referenced in item d, the ST author is expected to include the corresponding selection if the TOE includes that functional package claim. If the TOE claims any SFRs in these functional packages for which a corresponding auditable event is defined, the ST must include those auditable events.</note>
-            <aactivity>
+            <aactivity level="component">
               <TSS>The evaluator shall examine the TSS to verify that it describes any mechanisms the TSF uses to generate audit data for security-relevant audit events. If multiple separate mechanisms are used, the evaluator shall verify that the TSS identifies the events that are logged via each mechanism.</TSS>
               <Guidance>
                 The evaluator shall examine the operational guidance to verify that it includes information on how security-relevant audit events are logged and what the format for the audit records are. The evaluator shall also verify that the operational guidance includes sample audit records for each security-relevant event so that it is clear to the reader how the TSF identifies those events in the audit data.
-              </Guidance>
+                <h:p>
+                  The evaluator shall check the administrative guide and ensure
+                  that it provides a format
+                  for audit data. Each audit data format type must be covered,
+                  along with a brief description of each field. The evaluator shall
+                  ensure that the fields contains the information required.
+                </h:p>
+			  </Guidance>
               <Tests>
                 <h:p>
                   The evaluator shall test the OS&apos;s ability to correctly generate
@@ -1106,17 +1113,6 @@ it manages may be physical or virtual.
               functional components are provided, then no additional audit-relevant information
               is required.
             </note>
-            <aactivity>
-              <Guidance>
-                <h:p>
-                  The evaluator shall check the administrative guide and ensure
-                  that it provides a format
-                  for audit data. Each audit data format type must be covered,
-                  along with a brief description of each field. The evaluator shall
-                  ensure that the fields contains the information required.
-                </h:p>
-              </Guidance>
-            </aactivity>
           </f-element>
           <audit-event/>
         </f-component>
@@ -6069,7 +6065,7 @@ it manages may be physical or virtual.
         <note role="application">
           Selections in FIA_AFL.1 and FIA_UAU.5 must be consistent.
             </note>
-            <aactivity>
+            <aactivity level="component">
               <TSS>The evaluator shall examine the TSS to verify that it defines the mechanism by which excessive authentication failures are checked (i.e, whether it is a fixed or configurable value) and the actions that are taken against that account when the failure threshold has been reached.</TSS>
               <Guidance>The evaluator shall examine the operational guidance to verify that it identifies either the fixed number of successive authentication failures that triggers a response to occur, or if this is a configurable value, the mechanism by which the value is configured. The evaluator shall also examine the operational guidance to verify that it describes the behavior that occurs when the failure threshold is met. If this behavior is configurable, the evaluator shall verify that the operational guidance provides instructions for how to set each response as claimed in FIA_AFL.1.2.</Guidance>
 	      <Tests>
@@ -6081,30 +6077,8 @@ it manages may be physical or virtual.
 		  
 		  Note that the authentication attempts and
 		  lockouts must also be logged as specified in FAU_GEN.1.
-	      </Tests>
-	    </aactivity>
-          </f-element>
-          <f-element id="fel-bad-attempts">
-            <title>
-	      When the defined number of unsuccessful authentication attempts <h:b>for an
-	      account</h:b> has been [<h:i>met</h:i>], The TSF shall:
-	      <h:b>
-	      <selectables>
-		<selectable>Account Lockout</selectable>
-		<selectable>Account Disablement</selectable>
-		<selectable>Mandatory Credential Reset</selectable>
-    <selectable>Wipe Sensitive Data</selectable>
-		<selectable><assignable>list of actions</assignable></selectable>
-	      </selectables>
-	      </h:b>.
-            </title>
-            <note role="application">
-            	The action to be taken will be populated in the assignment of the ST and defined
-            	in the administrator guidance.
-            </note>
-            <aactivity>
-	      <Tests>
-              <testlist>
+
+			<testlist>
                 <test>
                   [conditional] If "authentication based on user name and password" is selected in FIA_AFL.1
                   and FIA_UAU.5, the evaluator shall attempt to authenticate repeatedly to the system with a
@@ -6157,8 +6131,27 @@ it manages may be physical or virtual.
                   an event has been logged to the security event log detailing that the account has had these actions applied.</h:p>
                 </test>
               </testlist>
-              </Tests>
+	      </Tests>
 	    </aactivity>
+          </f-element>
+          <f-element id="fel-bad-attempts">
+            <title>
+	      When the defined number of unsuccessful authentication attempts <h:b>for an
+	      account</h:b> has been [<h:i>met</h:i>], The TSF shall:
+	      <h:b>
+	      <selectables>
+		<selectable>Account Lockout</selectable>
+		<selectable>Account Disablement</selectable>
+		<selectable>Mandatory Credential Reset</selectable>
+    <selectable>Wipe Sensitive Data</selectable>
+		<selectable><assignable>list of actions</assignable></selectable>
+	      </selectables>
+	      </h:b>.
+            </title>
+            <note role="application">
+            	The action to be taken will be populated in the assignment of the ST and defined
+            	in the administrator guidance.
+            </note>
           </f-element>
           <audit-event/>
         </f-component>
@@ -6256,7 +6249,7 @@ it manages may be physical or virtual.
         <h:p>If <xref to="uau_hybr"/> is selected, <xref to="uau_biometric"/> does not need to be selected, but should be
         selected if the biometric authentication can be used independent of the hybrid authentication, i.e., without having to enter a PIN/password.</h:p>
 	    </note>
-            <aactivity>
+            <aactivity level="component">
 	      <Tests>
 		<h:div>
 		  <depends on="s-pass"/>
@@ -6321,19 +6314,20 @@ it manages may be physical or virtual.
 		<h:p>
 		  Authentication mechanisms related to <xref to="s-x509-auth"/> are tested under FIA_X509_EXT.1 as defined in the <xref to="X509"/> and <xref to="s-uau-ssh"/> are tested in the <xref to="ssh"/>. Biometric authentication mechanisms are tested in the <xref to="mod-biometric"/>.
 		</h:p>
-              </Tests>
-	    </aactivity>
-          </f-element>
-           <f-element id="fel-auth-how">
-            <title>
-The TSF shall authenticate any user's claimed identity according to the
-              <assignable>
-              	rules describing how the multiple authentication
-		mechanisms provide authentication
-              </assignable>.
-            </title>
 
-              <aactivity>
+		    <!-- <testlist> -->
+                <!--   <test>For each -->
+                <!-- 	authentication mechanism selected, the evaluator shall enable that -->
+                <!-- 	mechanism and verify that it can be used to authenticate the user at -->
+                <!-- 	the specified authentication factor interfaces. </test> -->
+                <!-- 	<test> -->
+	      <h:p>
+		  For each authentication mechanism rule, the evaluator shall ensure that
+		  the authentication mechanism(s) behave as documented in the TSS.
+	      </h:p>
+                <!-- 	</test> -->
+                <!-- </testlist> -->
+              </Tests>
 		<TSS>
 		  The evaluator shall ensure that the TSS describes
 		  the rules as to how each authentication mechanism specified in
@@ -6356,22 +6350,16 @@ The TSF shall authenticate any user's claimed identity according to the
 		addressed in the operational guidance.
 	      </h:p>
 	      </Guidance>
-	      <Tests>
-
-                <!-- <testlist> -->
-                <!--   <test>For each -->
-                <!-- 	authentication mechanism selected, the evaluator shall enable that -->
-                <!-- 	mechanism and verify that it can be used to authenticate the user at -->
-                <!-- 	the specified authentication factor interfaces. </test> -->
-                <!-- 	<test> -->
-	      <h:p>
-		  For each authentication mechanism rule, the evaluator shall ensure that
-		  the authentication mechanism(s) behave as documented in the TSS.
-	      </h:p>
-                <!-- 	</test> -->
-                <!-- </testlist> -->
-	      </Tests>
-          </aactivity>
+	    </aactivity>
+          </f-element>
+           <f-element id="fel-auth-how">
+            <title>
+The TSF shall authenticate any user's claimed identity according to the
+              <assignable>
+              	rules describing how the multiple authentication
+		mechanisms provide authentication
+              </assignable>.
+            </title>
           </f-element>
           <audit-event/>
         </f-component>
@@ -8194,7 +8182,7 @@ The OS can enroll in such account management and enable the overall information 
               </h:ul>
 	     .
             </title>
-            <aactivity>
+            <aactivity level="component">
 	      <TSS>
 	      The evaluator shall confirm that the TSS specifies the locations of kernel drivers/modules, security
 	      audit logs, shared libraries, system executables, and system configuration files.  Every
@@ -8215,6 +8203,16 @@ The OS can enroll in such account management and enable the overall information 
                 <test>The evaluator shall attempt to modify all system configuration files.</test>
                 <test>The evaluator shall attempt to modify any additional components selected.</test>
               </testlist>
+
+			The evaluator shall create an unprivileged user account.
+	      Using this account, the evaluator shall ensure that the following tests result in a negative
+              outcome (i.e., the action results in the OS denying the evaluator permission to
+              complete the action):
+              <testlist>
+                <test>The evaluator shall attempt to read security audit logs generated by the auditing subsystem</test>
+                <test>The evaluator shall attempt to read system-wide credential repositories</test>
+                <test>The evaluator shall attempt to read any other object specified in the assignment</test>
+              </testlist>
 	      </Tests>
             </aactivity>
           </f-element>
@@ -8230,19 +8228,6 @@ The OS can enroll in such account management and enable the overall information 
             <note role="application">
 	      "Credential repositories" refer, in this case, to structures containing cryptographic keys or passwords.
 	    </note>
-            <aactivity>
-	      <Tests>
-	      The evaluator shall create an unprivileged user account.
-	      Using this account, the evaluator shall ensure that the following tests result in a negative
-              outcome (i.e., the action results in the OS denying the evaluator permission to
-              complete the action):
-              <testlist>
-                <test>The evaluator shall attempt to read security audit logs generated by the auditing subsystem</test>
-                <test>The evaluator shall attempt to read system-wide credential repositories</test>
-                <test>The evaluator shall attempt to read any other object specified in the assignment</test>
-              </testlist>
-	      </Tests>
-            </aactivity>
           </f-element>
           <audit-event>
             <audit-event-descr>Unauthorized attempts to perform operations against sensitive data</audit-event-descr>
