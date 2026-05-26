@@ -6250,6 +6250,28 @@ it manages may be physical or virtual.
         selected if the biometric authentication can be used independent of the hybrid authentication, i.e., without having to enter a PIN/password.</h:p>
 	    </note>
             <aactivity level="component">
+			<TSS>
+			  The evaluator shall ensure that the TSS describes
+			  the rules as to how each authentication mechanism specified in
+			  FIA_UAU.5.1 is implemented and used.
+			  Example rules are how the authentication mechanism authenticates the user
+			  (i.e., how does the TSF verify that the correct password or authentication
+			  factor is used),
+			  the result of a successful authentication
+			  (i.e., is the user input used to derive or unlock a key) and which
+			  authentication mechanism can be used at which authentication factor
+			  interfaces (i.e., if there are times, for example, after a reboot,
+			  that only specific authentication mechanisms can be used).
+			  Rules regarding how the authentication factors interact in terms of
+			  unsuccessful authentication are covered in FIA_AFL.1. If multiple Biometric Authentication Factors are claimed in FIA_MBV_EXT.1.1 in the Biometric Enrollment and Verification, version 1.1, the interaction between the BAFs must be described. For example, whether the multiple BAFs can be enabled at the same time.
+			</TSS>
+		      <Guidance>
+		      <h:p>
+			The evaluator shall verify that
+			configuration guidance for each authentication mechanism is
+			addressed in the operational guidance.
+		      </h:p>
+		      </Guidance>
 	      <Tests>
 		<h:div>
 		  <depends on="s-pass"/>
@@ -6328,28 +6350,6 @@ it manages may be physical or virtual.
                 <!-- 	</test> -->
                 <!-- </testlist> -->
               </Tests>
-		<TSS>
-		  The evaluator shall ensure that the TSS describes
-		  the rules as to how each authentication mechanism specified in
-		  FIA_UAU.5.1 is implemented and used.
-		  Example rules are how the authentication mechanism authenticates the user
-		  (i.e., how does the TSF verify that the correct password or authentication
-		  factor is used),
-		  the result of a successful authentication
-		  (i.e., is the user input used to derive or unlock a key) and which
-		  authentication mechanism can be used at which authentication factor
-		  interfaces (i.e., if there are times, for example, after a reboot,
-		  that only specific authentication mechanisms can be used).
-		  Rules regarding how the authentication factors interact in terms of
-		  unsuccessful authentication are covered in FIA_AFL.1. If multiple Biometric Authentication Factors are claimed in FIA_MBV_EXT.1.1 in the Biometric Enrollment and Verification, version 1.1, the interaction between the BAFs must be described. For example, whether the multiple BAFs can be enabled at the same time.
-		</TSS>
-	      <Guidance>
-	      <h:p>
-		The evaluator shall verify that
-		configuration guidance for each authentication mechanism is
-		addressed in the operational guidance.
-	      </h:p>
-	      </Guidance>
 	    </aactivity>
           </f-element>
            <f-element id="fel-auth-how">
