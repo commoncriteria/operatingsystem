@@ -6273,7 +6273,8 @@ it manages may be physical or virtual.
 		      </h:p>
 		      </Guidance>
 	      <Tests>
-		  <testlist ref="s-pass">
+		  <testlist>
+      <depends on="s-pass"/>
                     <test>
 		      The evaluator shall attempt to authenticate to the OS using
 		      the known user name and password. The evaluator shall ensure
@@ -6285,12 +6286,13 @@ it manages may be physical or virtual.
 		      will ensure that the authentication attempt is unsuccessful.
                     </test>
 		  </testlist>
-		  <testlist ref="s-pin">
-        The evaluator shall examine the TSS for guidance on supported
-        protected storage and will then configure the TOE or OE to establish a PIN
-        which enables release of the asymmetric key from the protected storage (such as a TPM, a hardware token, or
-        isolated execution environment) with which the
-        OS can interface.  The evaluator shall then conduct the following tests:
+		  <testlist>
+      		  <depends on="s-pin"/>
+		  The evaluator shall examine the TSS for guidance on supported
+		  protected storage and will then configure the TOE or OE to establish a PIN
+		  which enables release of the asymmetric key from the protected storage (such as a TPM, a hardware token, or
+		  isolated execution environment) with which the
+		  OS can interface.  The evaluator shall then conduct the following tests:
 		    <test>
 		      The evaluator shall attempt to  authenticate to the OS using the known user name and PIN.
 		      The evaluator shall ensure that the authentication attempt is successful.
@@ -6301,10 +6303,11 @@ it manages may be physical or virtual.
 		      unsuccessful.
 		    </test>
 		  </testlist>
-		  <testlist ref="s-otp">
-          The evaluator shall configure the OS to authentication to authenticate to the OS using
-        a username, password, and one-time password mechanism.
-        The evaluator shall then perform the following tests.
+		  <testlist>
+      <depends on="s-otp"/>
+		  The evaluator shall configure the OS to authentication to authenticate to the OS using
+		  a username, password, and one-time password mechanism.
+		  The evaluator shall then perform the following tests.
 		    <test>
 	  	      The evaluator shall attempt to authenticate using a valid username, valid password, and valid one-time password.
 		      The evaluator shall ensure that the authentication attempt is successful.
@@ -6322,6 +6325,7 @@ it manages may be physical or virtual.
 		      The evaluator shall ensure that the authentication attempt fails.
 		    </test>
 		  </testlist>
+
 		<h:p>
 		  Authentication mechanisms related to <xref to="s-x509-auth"/> are tested under FIA_X509_EXT.1 as defined in the <xref to="X509"/> and <xref to="s-uau-ssh"/> are tested in the <xref to="ssh"/>. Biometric authentication mechanisms are tested in the <xref to="mod-biometric"/>.
 		</h:p>
