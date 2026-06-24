@@ -462,7 +462,7 @@
           <audit-table id="at-mdf-addnl" table="tab-at-mdf-addnl" title="Auditable Events for PP_MDF Additional SFRs"/>
         </section>
         
-        <sec:mdf_mod_fcs title="Class FCS: Cryptographic Suport">
+        <section id="mdf_mod_fcs" title="Class FCS: Cryptographic Suport">
           <ext-comp-def fam-id="FCS_STG_EXT" title="Cryptographic Key Storage">
             <mod-def> This family is defined in both the MDF and the MDM base PPs. This PP-Module augments the extended family by adding
               one additional component, FCS_STG_EXT.4 as an additional SFR for MDF. This new component and its impact on the extended 
@@ -504,8 +504,8 @@
             </f-element>
             <audit-event table="tab-at-mdf-addnl"/>
           </f-component>
-        </sec:mdf_mod_fcs>
-        <sec:mdf_mod_ftp title="Class FTP: Trusted Path/Channels">
+        </section>
+        <section id="mdf_mod_ftp" title="Class FTP: Trusted Path/Channels">
           <f-component cc-id="ftp_itc_ext.1" name="Trusted Channel Communication" iteration="MDFCHANNEL">
             <consistency-rationale> The base PP includes FTP_ITC_EXT.1 to define the secure protocols used for trusted channel communications. This PP-Module iterates the SFR to specify a subset of these protocols that may be used for MDM agent communications in particular. </consistency-rationale>
             <f-element id="mut-chan-type">
@@ -691,7 +691,7 @@
               <audit-event-info>No additional information.</audit-event-info>
             </audit-event>
           </f-component>
-        </sec:mdf_mod_ftp>
+        </section>
       </additional-sfrs>
       <con-toe> When this PP-Module is used to extend PP_MDF, the TOE type for
         the overall TOE is still a mobile device. The TOE boundary is simply extended to include the
@@ -856,7 +856,7 @@
           <audit-table id="at-mdm-addnl" table="tab-at-mdm-addnl" title="Auditable Events for PP_MDM Additional SFRs"/>
         </section>
         
-        <sec:mdm_mod_fcs title="Class FCS: Cryptographic Suport">
+        <section id="mdm_mod_fcs" title="Class FCS: Cryptographic Suport">
           <f-component cc-id="fcs_stg_ext.1" name="Cryptographic Key Storage" iteration="MDMKEYS">
             <!-- Removed notnew=y from f-component -->
             <consistency-rationale> The base PP requires the TOE to define a
@@ -889,7 +889,7 @@
             </f-element>
             <audit-event table="tab-at-mdm-addnl"/>
           </f-component>
-        </sec:mdm_mod_fcs>
+        </section>
 
       </additional-sfrs>
       <con-toe> When this PP-Module is used to extend the MDM
@@ -1019,7 +1019,7 @@
         
         
         
-        <sec:gpos_add_ftp title="Class FTP: Trusted Path/Channels">
+        <section id="gpos_add_ftp" title="Class FTP: Trusted Path/Channels">
           <f-component cc-id="ftp_itc_ext.1" name="Trusted Channel Communication" iteration="OSCHANNEL">
             <consistency-rationale> The base PP includes FTP_ITC_EXT.1 to define the secure protocols used for trusted channel communications. 
               This PP-Module iterates the SFR to specify a subset of these protocols that may be used for MDM agent communications in particular. </consistency-rationale>
@@ -1184,7 +1184,7 @@
               <audit-event-info>No additional information.</audit-event-info>
             </audit-event>
           </f-component>
-        </sec:gpos_add_ftp>
+        </section>
       </additional-sfrs>
       <con-toe> When this PP-Module is used to extend PP_GPOS, the TOE type for
         the overall TOE is still a GPOS. The TOE boundary is simply extended to include the
@@ -1276,7 +1276,7 @@
       
       
       <!-- Audit table for mandatory requirements  -->
-      <sec:ss-audit-table title="Auditable Events for Mandatory SFRs">
+      <section id="ss-audit-table" title="Auditable Events for Mandatory SFRs">
         <h:p>
           The auditable events specified in this PP-Module are included in an ST 
           if the incorporating PP, cPP, or PP-Module supports audit event reporting through FAU_GEN.1,
@@ -1285,7 +1285,7 @@
         <audit-table id="at-man-audit" table="mandatory">
           <h:div class="table-caption"><ctr ctr-type="Table" id="atref-mandatory">: Auditable Events for Mandatory SFRs</ctr></h:div>
         </audit-table>
-      </sec:ss-audit-table>
+      </section>
       
       <sec:man_fau title="Class FAU: Security Audit">
         <ext-comp-def fam-id="FAU_ALT_EXT" title="MDM Alerts">
