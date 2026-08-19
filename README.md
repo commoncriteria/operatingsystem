@@ -2,40 +2,13 @@ Protection Profile for General Purpose Operating System
 ===============
 ![Build](https://github.com/commoncriteria/operatingsystem/workflows/Build/badge.svg)
 [![GitHub issues Open](https://img.shields.io/github/issues/commoncriteria/operatingsystem.svg?maxAge=2592000)](https://github.com/commoncriteria/operatingsystem/issues) 
-![license](https://img.shields.io/badge/license-Unlicensed-blue.svg)
+[![TDs](https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/tdtest/tds.svg)](https://github.com/commoncriteria/operatingsystem/blob/gh-pages/tdtest/TDValidationReport.txt)
 
 This repository hosts the draft version of the Protection Profile for a General Purpose Operating System based on the 
 [Essential Security Requirements (ESR)](https://commoncriteria.github.io/pp/operatingsystem/operatingsystem-esr.html) for this technology class of 
 products. This repository is used to facilitate collaboration and development on the draft document. 
 See the [release](#Release-Version) section if you are looking for the officially released version for evaluations. 
 A list of products that have passed evaluation against this Protection Profile can be found [here](https://www.niap-ccevs.org/Profile/Info.cfm?id=400).
-
-= Protection Profile for Operating Systems
-
-[cols="1,1,1,1,1,1,1,1"]
-|===
-8+|operatingsystem 
-
-| https://github.com/commoncriteria/operatingsystem/tree/tdtest[tdtest] 
-a| https://commoncriteria.github.io/operatingsystem/tdtest/operatingsystem-release.html[📄]
-a|[link=https://github.com/commoncriteria/operatingsystem/blob/gh-pages/tdtest/ValidationReport.txt]
-image::https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/tdtest/validation.svg[Validation]
-a|[link=https://github.com/commoncriteria/operatingsystem/blob/gh-pages/tdtest/SanityChecksOutput.md]
-image::https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/tdtest/warnings.svg[SanityChecks]
-a|[link=https://github.com/commoncriteria/operatingsystem/blob/gh-pages/tdtest/SpellCheckReport.txt]
-image::https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/tdtest/spell-badge.svg[SpellCheck]
-a|[link=https://github.com/commoncriteria/operatingsystem/blob/gh-pages/tdtest/TDValidationReport.txt]
-image::https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/tdtest/tds.svg[TDs]
-a|image::https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/tdtest/transforms.svg[transforms,150]
-a| 
-https://commoncriteria.github.io/operatingsystem/tdtest/operatingsystem-release-linkable.html[operatingsystem-release-linkable.html] +
-https://commoncriteria.github.io/operatingsystem/tdtest/operatingsystem-release.html[operatingsystem-release.html] +
-https://commoncriteria.github.io/operatingsystem/tdtest/operatingsystem.html[operatingsystem.html] +
-https://commoncriteria.github.io/operatingsystem/tdtest/operatingsystem-paged.pdf[operatingsystem-paged.pdf] +
-|===
-
-
-
 
 ## Draft Version
 
