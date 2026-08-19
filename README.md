@@ -10,6 +10,31 @@ products. This repository is used to facilitate collaboration and development on
 See the [release](#Release-Version) section if you are looking for the officially released version for evaluations. 
 A list of products that have passed evaluation against this Protection Profile can be found [here](https://www.niap-ccevs.org/Profile/Info.cfm?id=400).
 
+[cols="1,1,1,1,1,1,1,1"]
+|===
+8+|operatingsystem 
+
+| https://github.com/commoncriteria/operatingsystem/tree/tdtest[tdtest] 
+a| https://commoncriteria.github.io/operatingsystem/tdtest/operatingsystem-release.html[📄]
+a|[link=https://github.com/commoncriteria/operatingsystem/blob/gh-pages/tdtest/ValidationReport.txt]
+image::https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/tdtest/validation.svg[Validation]
+a|[link=https://github.com/commoncriteria/operatingsystem/blob/gh-pages/tdtest/SanityChecksOutput.md]
+image::https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/tdtest/warnings.svg[SanityChecks]
+a|[link=https://github.com/commoncriteria/operatingsystem/blob/gh-pages/tdtest/SpellCheckReport.txt]
+image::https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/tdtest/spell-badge.svg[SpellCheck]
+a|[link=https://github.com/commoncriteria/operatingsystem/blob/gh-pages/tdtest/TDValidationReport.txt]
+image::https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/tdtest/tds.svg[TDs]
+a|image::https://raw.githubusercontent.com/commoncriteria/operatingsystem/gh-pages/tdtest/transforms.svg[transforms,150]
+a| 
+https://commoncriteria.github.io/operatingsystem/tdtest/operatingsystem-release-linkable.html[operatingsystem-release-linkable.html] +
+https://commoncriteria.github.io/operatingsystem/tdtest/operatingsystem-release.html[operatingsystem-release.html] +
+https://commoncriteria.github.io/operatingsystem/tdtest/operatingsystem.html[operatingsystem.html] +
+https://commoncriteria.github.io/operatingsystem/tdtest/operatingsystem-paged.pdf[operatingsystem-paged.pdf] +
+|===
+
+
+
+
 ## Draft Version
 
 * [Protection Profile for General Purpose Operating System](https://commoncriteria.github.io/pp/operatingsystem/operatingsystem-release.html) (html)
