@@ -68,63 +68,6 @@
     </entry>
      </RevisionHistory>
 
-  <include-pkg id="ssh">
-    <git>
-      <url>https://github.com/commoncriteria/ssh</url>
-      <branch>release-2.0</branch>
-    </git>
-    <url>https://www.niap-ccevs.org/static_html/protection-profile/459/459/pkg_ssh_v1.0.htm</url>
-    <depends on="s-ftp_ssh" also="s-uau-ssh"/>
-  </include-pkg>
-  <include-pkg id="tls">
-    <git>
-      <url>https://github.com/commoncriteria/tls</url>
-      <branch>master</branch>
-    </git>
-    <url>https://www.niap-ccevs.org/static_html/protection-profile/439/-439-/index.html</url>
-  </include-pkg>
-  <include-pkg id="X509">
-    <git>
-      <url>https://github.com/commoncriteria/X509</url>
-      <branch>master</branch>
-    </git>
-    <url><![CDATA[https://www.niap-ccevs.org/protectionprofiles/511]]></url>
-  </include-pkg>
-  <modules>
-    <module id="mod-vpnclient">
-      <git>
-	<url>https://github.com/commoncriteria/vpnclient</url>
-        <branch>master</branch>
-      </git>
-      <url><![CDATA[https://www.niap-ccevs.org/protectionprofiles/487]]></url>
-      <depends on="s-provides-vpnclient"/>
-    </module>
-    <module id="mod-bluetooth">
-      <git>
-	<url>https://github.com/commoncriteria/bluetooth</url>
-	<branch>master</branch>
-      </git>
-      <url><![CDATA[https://www.niap-ccevs.org/protectionprofiles/425]]></url>
-    </module>
-    <module id="mod-mdmagent">
-      <git>
-	<url>https://github.com/commoncriteria/mdm-agent</url>
-	<branch>master</branch>
-      </git>
-      <url><![CDATA[https://www.niap-ccevs.org/protectionprofiles/441]]></url>
-    </module>
-    <module id="mod-wlanclient">
-      <git>
-	<url>https://github.com/commoncriteria/wlanclient</url>
-	<branch>master</branch>
-      </git>
-      <url><![CDATA[https://www.niap-ccevs.org/protectionprofiles/463]]></url>
-    </module>
-    
-     <module id="mod-biometric" version="2.0" name="Biometric Enrollment and Verification" product="Biometric Devices" short="BMcPP">
-       <url>https://biometricitc.github.io/v2.0/release/MOD-BIO-v2.0.pdf</url>
-     </module>
-</modules> 
   
   <pp-preferences>
      <audit-events-in-sfrs/>    
@@ -460,7 +403,7 @@ it manages may be physical or virtual.
       The features enumerated below, if implemented by the TOE, require that additional SFRs be claimed in the ST.<h:br/>
       <implements>
         <feature id="bluetooth-support" title="Bluetooth Support">
-          <description>A conformant TOE may implement Bluetooth functionality. If so, it is necessary for the TOE to support specific cryptographic algorithms and key sizes to support Bluetooth communications. The TOE will also claim a PP-Configuration that includes the <xref to="mod-bluetooth"/>.<h:br/></description>
+          <description>A conformant TOE may implement Bluetooth functionality. If so, it is necessary for the TOE to support specific cryptographic algorithms and key sizes to support Bluetooth communications. The TOE will also claim a PP-Configuration that includes the <xref to="bluetooth"/>.<h:br/></description>
         </feature>
         <feature id="key-encap-support" title="Key Encapsulation Support">
           <description>A conformant TOE is required to implement trusted communications. Depending on the specific protocols used and the supported connection parameters for these protocols, it may be necessary to implement a key encapsulation algorithm as part of key establishment.<h:br/></description>
@@ -469,10 +412,10 @@ it manages may be physical or virtual.
             <description>A conformant TOE is required to implement trusted communications. Depending on the specific protocols used and the supported connection parameters for these protocols, it may be necessary to implement one or more key agreement algorithms as part of key establishment.<h:br/></description>
           </feature>
         <feature id="wlan-support" title="WLAN Support">
-          <description>A conformant TOE may implement WLAN client functionality. If so, it is necessary to implement authenticated encryption and key wrapping in support of secure wireless communications. The TOE will also claim a PP-Configuration that includes the <xref to="mod-wlanclient"/>.<h:br/></description>
+          <description>A conformant TOE may implement WLAN client functionality. If so, it is necessary to implement authenticated encryption and key wrapping in support of secure wireless communications. The TOE will also claim a PP-Configuration that includes the <xref to="wlanclient"/>.<h:br/></description>
         </feature>
         <feature id="mdm-management" title="Mobile Device Management Support">
-          <description>A conformant TOE may interface with a Mobile Device Management server for remote administration and security policies. This is either through an MDM Agent built into the TOE or a 3rd party MDM Agent application installed onto the TOE. If the TOE includes a built-in MDM Agent, the TOE will claim a PP-Configuration that includes the <xref to="mod-mdmagent"/>.<h:br/></description>
+          <description>A conformant TOE may interface with a Mobile Device Management server for remote administration and security policies. This is either through an MDM Agent built into the TOE or a 3rd party MDM Agent application installed onto the TOE. If the TOE includes a built-in MDM Agent, the TOE will claim a PP-Configuration that includes the <xref to="mdm-agent"/>.<h:br/></description>
         </feature>
       </implements>			
     </section>
@@ -491,19 +434,92 @@ it manages may be physical or virtual.
         <cc-pt3-conf>extended</cc-pt3-conf>
         <cc-pp-conf/>
         <cc-pp-config-with>       
-          <Mod-cc-ref>PP-Module for Virtual Private Network (VPN) Client, version 3.0</Mod-cc-ref>
-          <Mod-cc-ref>PP-Module for Bluetooth, version 2.0</Mod-cc-ref>
-          <Mod-cc-ref>PP-Module for MDM Agent, version 2.0</Mod-cc-ref>
-          <Mod-cc-ref>PP-Module for Wireless LAN Client, version 2.0</Mod-cc-ref>
-          <Mod-cc-ref>cPP-Module for Biometric Enrolment and Verification, version 2.0</Mod-cc-ref>  
+        <Mod-cc-ref>
+			<!-- PP-Module for VPN Client, Version 3.0 -->
+			<cc-doc-ref id="vpnclient">
+				<git>
+					<url>https://github.com/commoncriteria/vpnclient</url>
+					<branch>release-3.0</branch>
+				</git>
+				<url>https://www.niap-ccevs.org/protectionprofiles/522</url>
+			</cc-doc-ref>		
+		</Mod-cc-ref>
+        <Mod-cc-ref>
+			<!-- PP-Module for Bluetooth, version 2.0 -->
+			<cc-doc-ref id="bluetooth">
+				<git>
+					<url>https://github.com/commoncriteria/bluetooth</url>
+					<branch>master</branch>
+				</git>
+				<url>https://www.niap-ccevs.org/protectionprofiles/425</url>
+			</cc-doc-ref>
+		</Mod-cc-ref>
+        <Mod-cc-ref>
+			<!-- PP-Module for Mobile Device Management Agent, version 2.0 -->
+			<cc-doc-ref id="mdm-agent">
+				<git>
+					<url>https://github.com/commoncriteria/mdm-agent</url>
+					<branch>master</branch>
+				</git>
+				<url>https://www.niap-ccevs.org/protectionprofiles/441</url>
+			</cc-doc-ref>
+		</Mod-cc-ref>
+        <Mod-cc-ref>
+			<!-- cPP-Module for Wireless LAN Clients, version 2.0 -->
+			<cc-doc-ref id="wlanclient">
+				<git>
+					<url>https://github.com/commoncriteria/wlanclient</url>
+					<branch>master</branch>
+				</git>
+				<url>https://www.niap-ccevs.org/protectionprofiles/463</url>
+			</cc-doc-ref>
+		</Mod-cc-ref>
+        <Mod-cc-ref>
+			<!-- cPP-Module for Biometric Enrolment and Verification, version 2.0 -->
+			<cc-doc-ref id="biometrics" 
+				name="cPP-Module for Biometric Enrollment and Verification" 
+				version="2.0"
+				short = "Biometric cPP"
+				product="Biometric Device" 
+				plural="Biometric Devices"
+				doctype="PP-Module">
+				<url>https://www.niap-ccevs.org/protectionprofiles/476</url>
+			</cc-doc-ref>	
+		</Mod-cc-ref>
         </cc-pp-config-with>
         <cc-pkg-claim>
-          <FP-cc-ref conf="conformant">Functional Package for Transport Layer Security Version 2.1</FP-cc-ref>
-          <FP-cc-ref conf="conformant">Functional Package for Secure Shell Version 2.0</FP-cc-ref>
-          <FP-cc-ref conf="conformant">Functional Package for X.509 Version 1.0</FP-cc-ref>
-           <!-- <AP-cc-ref conf="conformant">Assurance Package for Flaw Remediation Version 1.0</AP-cc-ref> -->
+			<FP-cc-ref conf="conformant">
+				<cc-doc-ref id="ssh">
+					<git>
+						<url>https://github.com/commoncriteria/ssh</url>
+						<branch>release-2.0</branch>
+					</git>
+					<url>https://www.niap-ccevs.org/protectionprofiles/515</url>
+					<depends on="s-ftp_ssh" also="s-uau-ssh"/>
+				</cc-doc-ref>
+			</FP-cc-ref>
+			<FP-cc-ref conf="conformant">
+				<cc-doc-ref id="tls">
+					<git>
+						<url>https://github.com/commoncriteria/tls</url>
+						<branch>release-2.1</branch>
+					</git>
+					<url>https://www.niap-ccevs.org/protectionprofiles/465</url>
+					<depends on="fcs-eap-ext-1"/>
+				</cc-doc-ref>
+			</FP-cc-ref>
+			<FP-cc-ref conf="conformant">
+				<cc-doc-ref id="X509">
+					<git>
+						<url>https://github.com/commoncriteria/X509</url>
+						<branch>release-1.0</branch>
+					</git>
+					<url>https://www.niap-ccevs.org/protectionprofiles/511</url>
+				</cc-doc-ref>
+			</FP-cc-ref>
         </cc-pkg-claim>
       </CClaimsInfo>	
+	  
       <!-- 
       <cclaims>  
         <cclaim name="Conformance Statement">  
@@ -1367,7 +1383,7 @@ it manages may be physical or virtual.
               For RSA the choice of the modulus implies the resulting key sizes of the public and private keys generated using the specified standard methods. RSA key generation with modulus size 2048 bits is no longer permitted by CNSA.
 	      </h:p><h:p>
               For Finite Field Cryptography (FFC) DSA, ST authors should consult schemes for guidelines on use. FIPS PUB 186-5 does not approve DSA for digital signature generation but allows DSA for digital signature verification for legacy purposes. “FFC-ERB” or “FFC–RS” may be claimed only for generating private and public keys when “DH” is claimed in FCS_CKM_EXT.7.
-	      </h:p><h:p>For ECC selections, “P-256” may only be selected if the the <xref to="mod-bluetooth"/> is included in the ST and P-256 may only be used specifically for Bluetooth functions.
+	      </h:p><h:p>For ECC selections, “P-256” may only be selected if the the <xref to="bluetooth"/> is included in the ST and P-256 may only be used specifically for Bluetooth functions.
 	      </h:p><h:p>
               When generating ECC keys pairs for key agreement and if “ECDH” is claimed in FCS_CKM_EXT.7, then “ECC–ERB” or “ECC–RS” must be claimed. The sizes of the private key, which is a scalar, and the public key, which is a point on the elliptic curve, are determined by the choice of the curve.
 	      </h:p><h:p>
@@ -2591,7 +2607,7 @@ it manages may be physical or virtual.
             
             <note role="application">
               This SFR is claimed if the TSF supports key agreement schemes as a method of key establishment for trusted channels. This will generally apply to all conformant TOEs, except in the rare (but possible) case where only key encapsulation is used.<h:p/>
-              All of the above algorithms with the selectable parameters are CNSA compliant with the exception of P-256 ECDH. This may only be selected if the the <xref to="mod-bluetooth"/> is included in the ST and P-256 may only be used specifically for Bluetooth functions.<h:p/>
+              All of the above algorithms with the selectable parameters are CNSA compliant with the exception of P-256 ECDH. This may only be selected if the the <xref to="bluetooth"/> is included in the ST and P-256 may only be used specifically for Bluetooth functions.<h:p/>
               
             </note>
             <aactivity>
@@ -2893,7 +2909,7 @@ it manages may be physical or virtual.
               </selectables>
             </title>
             <note role="application">
-              The use of 256-bit keys for AES encryption is required by CNSA. 128-bit keys may only be used when the the <xref to="mod-bluetooth"/> is claimed and only for the purpose of Bluetooth communications.
+              The use of 256-bit keys for AES encryption is required by CNSA. 128-bit keys may only be used when the the <xref to="bluetooth"/> is claimed and only for the purpose of Bluetooth communications.
             </note>
             <aactivity>
               <TSS>
@@ -4627,9 +4643,9 @@ it manages may be physical or virtual.
             <!--
             <rule id="r-wlan-aes">
               <or>
-                <and><not><ref-id>mod-wlanclient</ref-id></not></and>
+                <and><not><ref-id>wlanclient</ref-id></not></and>
                 <and>
-                  <ref-id>mod-wlanclient</ref-id>
+                  <ref-id>wlanclient</ref-id>
                   <or><ref-id>s-aes-ccmp</ref-id><ref-id>s-aes-gcmp</ref-id></or>
                 </and>
               </or>
@@ -5895,7 +5911,7 @@ it manages may be physical or virtual.
               </h:p>
               <h:p>
                 If the TSF implements a native VPN client, then the ST author must select 
-                <xref to="s-provides-vpnclient"/> and includes the <xref to="mod-vpnclient"/>
+                <xref to="s-provides-vpnclient"/> and includes the <xref to="vpnclient"/>
                 as part of the ST.
                 <!-- If the native VPN client is to be validated  -->
                 <!-- (<xref to="s-itc-ipsec"/> is selected in FTP_ITC_EXT.1.1  -->
@@ -5973,7 +5989,7 @@ it manages may be physical or virtual.
     	  	      <selectable ><readable>client(DTLS)</readable>client</selectable>
     	  	      <selectable ><readable>server(DTLS)</readable>server</selectable>
     	  	    </selectables></selectable>
-      	      <selectable id="s-upc-ipsec">IPsec as defined in the <xref to="mod-vpnclient"/></selectable>
+      	      <selectable id="s-upc-ipsec">IPsec as defined in the <xref to="vpnclient"/></selectable>
       	          <selectable><snip>SSH</snip> as conforming to the <xref to="ssh"/> as a
       	          <selectables>
       	          <selectable ><readable>client(SSH)</readable>client</selectable>
@@ -5994,7 +6010,7 @@ it manages may be physical or virtual.
               If <xref to="upc_https"/> is selected, FCS_HTTPS_EXT.1 must be included in the ST. 
               </h:p>
               <h:p> 
-              If ST author selects <xref to="s-upc-ipsec"/>, the TSF must be validated against the <xref to="mod-vpnclient"/>. 
+              If ST author selects <xref to="s-upc-ipsec"/>, the TSF must be validated against the <xref to="vpnclient"/>. 
               </h:p>
             </note>
           </f-element>
@@ -6057,7 +6073,7 @@ it manages may be physical or virtual.
               <selectable>authentication based on user name and a PIN that
 	      releases an asymmetric key stored in OE-protected storage</selectable>
               <selectable>authentication based on X.509 certificates</selectable>
-              <selectable>authentication based on biometric in accordance with the <xref to="mod-biometric"/></selectable>
+              <selectable>authentication based on biometric in accordance with the <xref to="biometrics"/></selectable>
               <selectable>hybrid</selectable>
             </selectables>.
 	    </h:b>
@@ -6106,7 +6122,7 @@ it manages may be physical or virtual.
                   an event has been logged to the security event log detailing that the account has had these actions applied.
                 </test>
                 <test>
-                  [conditional] If "authentication based on biometric in accordance with the <xref to="mod-biometric"/>" or "hybrid" is selected in            
+                  [conditional] If "authentication based on biometric in accordance with the <xref to="biometrics"/>" or "hybrid" is selected in            
                   FIA_AFL.1 and FIA_UAU.5, the evaluator shall attempt to authenticate repeatedly to the system 
                   using a known bad biometric authentication factor.
                   Once the defined number of failed authentication attempts has been
@@ -6229,7 +6245,7 @@ it manages may be physical or virtual.
 		<selectable id="s-x509-auth">authentication based on X.509 certificates</selectable>
 		<selectable id="s-uau-ssh">for use in SSH only, <snip>SSH public key-based authentication</snip> as specified by the <xref to="ssh"/></selectable>
 	      </selectables> </h:b> and <selectables>
-                  <selectable id="uau_biometric"> biometric in accordance with the <xref to="mod-biometric"/></selectable>
+                  <selectable id="uau_biometric"> biometric in accordance with the <xref to="biometrics"/></selectable>
                   <selectable id="uau_hybr"> hybrid</selectable>
                   <selectable exclusive="yes">no other mechanism</selectable>
         </selectables>	      
@@ -6245,7 +6261,7 @@ it manages may be physical or virtual.
 	      </h:p>
         <h:p>
         The TSF may optionally implement a Biometric Authentication Factor. A hybrid authentication factor is where a user has to submit a combination of primary authentication factor (e.g., username and password) and biometric sample where both have to pass and if either fails the user is not made aware of which factor failed.</h:p>
-        <h:p>If <xref to="uau_biometric"/> or <xref to="uau_hybr"/> is selected, then the TSF must be validated against requirements from the <xref to="mod-biometric"/>.</h:p>
+        <h:p>If <xref to="uau_biometric"/> or <xref to="uau_hybr"/> is selected, then the TSF must be validated against requirements from the <xref to="biometrics"/>.</h:p>
         <h:p>If <xref to="uau_hybr"/> is selected, <xref to="uau_biometric"/> does not need to be selected, but should be
         selected if the biometric authentication can be used independent of the hybrid authentication, i.e., without having to enter a PIN/password.</h:p>
 	    </note>
@@ -6334,7 +6350,7 @@ it manages may be physical or virtual.
 		</h:div>
 
 		<h:p>
-		  Authentication mechanisms related to <xref to="s-x509-auth"/> are tested under FIA_X509_EXT.1 as defined in the <xref to="X509"/> and <xref to="s-uau-ssh"/> are tested in the <xref to="ssh"/>. Biometric authentication mechanisms are tested in the <xref to="mod-biometric"/>.
+		  Authentication mechanisms related to <xref to="s-x509-auth"/> are tested under FIA_X509_EXT.1 as defined in the <xref to="X509"/> and <xref to="s-uau-ssh"/> are tested in the <xref to="ssh"/>. Biometric authentication mechanisms are tested in the <xref to="biometrics"/>.
 		</h:p>
 
 		    <!-- <testlist> -->
@@ -6808,7 +6824,7 @@ the node certificate to be tested, two Intermediate CAs, and the
               enable/disable applies.</app-note>
             <app-note> Function <_ /> addresses enabling and disabling the IPsec VPN only. The
               configuration of the VPN Client itself (with information such as VPN Gateway,
-              certificates, and algorithms) is addressed by the <xref to="mod-vpnclient" />.
+              certificates, and algorithms) is addressed by the <xref to="vpnclient" />.
               The administrator options should only be listed if the administrator can
               remotely enable/disable the VPN connection. 
               <h:p> Function <xref to="mf-vpn" />
@@ -7465,7 +7481,7 @@ the node certificate to be tested, two Intermediate CAs, and the
               FIA_UAU.5.1. If <xref to="uau_biometric" /> is selected in FIA_UAU.5.1,
               "Biometric Authentication Factor" must be selected and the user or admin must
               have the option to disable the use of it. If multiple BAFs are claimed in
-              FIA_MBV_EXT.1.1 in the <xref to="mod-biometric" />, this applies to all
+              FIA_MBV_EXT.1.1 in the <xref to="biometrics" />, this applies to all
               different modalities. If <xref to="uau_hybr" /> is selected in FIA_UAU.5.1 it
               must be selected and the user or admin must have the option to disable the use
               of it. </app-note>
@@ -7474,7 +7490,7 @@ the node certificate to be tested, two Intermediate CAs, and the
                 authentication this test is implicitly met.<testlist>
                   <test>[conditional] If <xref to="uau_biometric" /> is selected in
                 FIA_UAU.5.1, for each BAF claimed in FIA_MBV_EXT.1.1 in the <xref
-                      to="mod-biometric" /> the evaluator shall verify that the TSS describes
+                      to="biometrics" /> the evaluator shall verify that the TSS describes
                 the procedure to enable/disable the BAF.<!--If the TOE includes
                   multiple BAFs, the evaluator shall verify that the TSS describes how to
                   enable/disable each BAF, specifically if the different modalities can be
@@ -8017,7 +8033,7 @@ the node certificate to be tested, two Intermediate CAs, and the
               to connect, all data leaving the device uses the VPN when the VPN is connected
               and no data leaves that device when the VPN is disconnected. The configuration
               of the VPN Client itself (with information such as VPN Gateway, certificates,
-              and algorithms) is addressed by the <xref to="mod-vpnclient" />. </app-note>
+              and algorithms) is addressed by the <xref to="vpnclient" />. </app-note>
             <aactivity>
               <TSS>The evaluator shall verify that the TSS contains guidance to configure the
                 VPN as Always-On.
@@ -9315,7 +9331,7 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
     	  	      <selectable id="s-dtls-client"><readable>client(DTLS)</readable>client</selectable>
     	  	      <selectable id="s-dtls-server"><readable>server(DTLS)</readable>server</selectable>
     	  	    </selectables></selectable>
-      	      <selectable id="s-itc-ipsec">IPsec as conforming to the <xref to="mod-vpnclient"/></selectable>
+      	      <selectable id="s-itc-ipsec">IPsec as conforming to the <xref to="vpnclient"/></selectable>
       	      </selectables>
       	        and <selectables linebreak='yes'>
       	          <selectable id="s-ftp_ssh"><snip>SSH</snip> as conforming to the <xref to="ssh"/> as a
@@ -9427,9 +9443,9 @@ The evaluator shall also ensure that the TSS includes a description of the safeg
       	      <!--
       	      <rule id="r-bluetooth-ccm">
       	        <or>
-      	          <and><not><ref-id>mod-bluetooth</ref-id></not></and>
+      	          <and><not><ref-id>bluetooth</ref-id></not></and>
       	          <and>
-      	            <ref-id>mod-bluetooth</ref-id>
+      	            <ref-id>bluetooth</ref-id>
       	            <or>
       	              <and><not><ref-id>p-256-keygen</ref-id></not><not><ref-id>s-aes-ccm</ref-id></not><not><ref-id>s-128</ref-id></not></and>
       	              <and><ref-id>p-256-keygen</ref-id><ref-id>s-aes-ccm</ref-id><ref-id>s-128</ref-id></and>
