@@ -1,5 +1,5 @@
-compilation error: file transforms/xsl/boilerplates.xsl line 113 element apply-template
-xsltStylePreCompute: unknown xsl:apply-template
+* Error: Detected dangling id-reference to fcs-eap-ext-1 from attribute
+        on/PP[1]""/sec:Conformance_Claims[1]""/CClaimsInfo[1]""/cc-pkg-claim[1]""/FP-cc-ref[2]""/cc-doc-ref[1]""/depends[1]""/on[1]""
 * Error: Detected multiple elements with an id of 'sel-exp-skg-256'.
 * Error: Detected multiple elements with an id of 'sel-exp-skg-256'.
 * Error: Detected multiple elements with an id of 'fel-sign-how'.

@@ -26,6 +26,7 @@
   <pp-preferences>
 <!--        <pp-pref name="display-audit-with-sfrs">0</pp-pref> -->
     <audit-events-in-sfrs/>
+   <using-cc2022/> 
   </pp-preferences>
 
 	
@@ -209,29 +210,16 @@
 	<sec:Use_Cases>
 		The following use cases are distinct and may be combined for any given TOE. They include 
 		<h:ul>
-			<h:li>the TOE as a relying party verifying the identity of entities using certificates 
-				obtained from an external CA</h:li> 
-			<h:li>the TOE asserting an identity in a certificate provided by an external CA and
-				providing identity verification (authentication) to external relying parties</h:li> 
-			<h:li>the TOE acting as the sole relying party of entities issued certificates using an 
-				embedded CA</h:li> 
+			<h:li>the TOE as a relying party verifying the identity of entities using certificates obtained from an external CA</h:li> 
+			<h:li>the TOE asserting an identity in a certificate provided by an external CA and providing identity verification (authentication) to external relying parties</h:li> 
+			<h:li>the TOE acting as the sole relying party of entities issued certificates using an embedded CA</h:li> 
 		</h:ul>
-		Combining the verify and subject use cases also includes authentication and verification 
-		between internal entities. Combining all three use cases allows external CAs to be used for
-		both internal and external entities, but an internal embedded CA is only to be used for
-		internal relying parties.<h:br/><h:br/>
-		Note: A TOE that provides general Certification Authority functionality for external entities 
-		should be validated against the Certification Authority Protection Profile instead of
-		this FP. 
+		Combining the verify and subject use cases also includes authentication and verification between internal entities. Combining all three use cases allows external CAs to be used for both internal and external entities, but an internal embedded CA is only to be used for internal relying parties.<h:br/><h:br/>
+		Note: A TOE that provides general Certification Authority functionality for external entities should be validated against the Certification Authority Protection Profile instead of this FP. 
 		<h:br/><h:br/>
-		Note: TOEs that provide certification authority functionality as an embedded CA in support 
-		of TLS inspection should use the SSL/TLS Inspection Proxy (STIP) Protection Profile module
-		instead of this FP. The ‘provide’ functionality in this FP is a generalization of the security 
-		requirements of the embedded CA functionality for STIP PP module, but this FP does not include
-		the proxy and TLS processing requirements from the STIP PP module.
+		Note: TOEs that provide certification authority functionality as an embedded CA in support of TLS inspection should use the SSL/TLS Inspection Proxy (STIP) Protection Profile module instead of this FP. The ‘provide’ functionality in this FP is a generalization of the security requirements of the embedded CA functionality for STIP PP module, but this FP does not include the proxy and TLS processing requirements from the STIP PP module.
 		<h:br/><h:br/>
-		The following diagrams show each TOE use case (within the red box) with respect to its role 
-		in an overall system.
+		The following diagrams show each TOE use case (within the red box) with respect to its role in an overall system.
 		<usecases>
 			<usecase id="usecase1" title="TOE as a Relying Party">
 				<description>
@@ -256,17 +244,6 @@
 <!-- 2.0 Conformance Claims	-->
 <!--			-->
 <sec:Conformance_Claims boilerplate="no">
-   <CClaimsInfo cc-version="cc-2022r1" cc-errata="v1.1" cc-approach="direct-rationale">
-      <cc-st-conf>exact</cc-st-conf> 
-      <cc-pt2-conf>extended</cc-pt2-conf>
-      <cc-pt3-conf>conformant</cc-pt3-conf>
-      <cc-pp-conf/>
-      <cc-pp-config-with/>       
-      <cc-pkg-claim/>
-    </CClaimsInfo>	
-
-<!--
-
 	<cclaims>
 		<cclaim name="Conformance Statement">
 			<description>An ST must claim exact conformance to this FP.
@@ -291,7 +268,6 @@
 			</description>
 		</cclaim>
 	</cclaims>
--->
 </sec:Conformance_Claims>
 
 <!-- 				-->
@@ -318,7 +294,7 @@
 	<!-- 			-->
 	<!-- 3.1.2 FDP: User Data Protection -->
 	<!--			-->
-	<sec:fdp title="Class FDP: User Data Protection">
+	<sec:fdp title="User Data Protection (FDP)">
 		
 		<ext-comp-def fam-id="FDP_CER_EXT" title="Certificate Generation and Issuance">
 			<fam-behavior>Components in this family define requirements for the TOE’s ability to generate and issue certificates.</fam-behavior>
@@ -418,7 +394,7 @@
 									<selectable>dNSName</selectable>
 									<selectable>directoryName</selectable>
 									<selectable>uniformResourceIdentifier</selectable>
-									<selectable>IPAddress</selectable>
+									<selectable>iPAddress</selectable>
 									<selectable> <assignable>other name</assignable></selectable>
 								</selectables></selectable>
 							<selectable>basicConstraints is populated with <selectables>
@@ -471,7 +447,7 @@
 					usages "serverAuth" or "clientAuth" are claimed only when "digitalSignature," "keyEncipherment," or "keyAgreement" are supported
 					according to the supported TLS function's version and ciphersuite capabilities.
 					</h:p><h:p>
-						If “subjectAltName” is claimed as a supported extension, the ST author claims all RFC 5280 name types supported and designates any other standard name types in the assignment, indicating the formatting and normalization standard used for each supported name type. Standards used to refine or provide alternate normalization for RFC 5280 name types are claimed via the assignment.
+						If “subjectAlternateName” is claimed as a supported extension, the ST author claims all RFC 5280 name types supported and designates any other standard name types in the assignment, indicating the formatting and normalization standard used for each supported name type. Standards used to refine or provide alternate normalization for RFC 5280 name types are claimed via the assignment.
 					</h:p>
 				</note>
 			</f-element>
@@ -518,7 +494,7 @@
 							<selectable>dNSName</selectable>
 							<selectable>directoryName</selectable>
 							<selectable>uniformResourceIdentifier</selectable>
-							<selectable>IPAddress</selectable>
+							<selectable>iPAddress</selectable>
 							<selectable> <assignable>other name type</assignable></selectable>							
 						</selectables></selectable></selectables>
 						of the issued certificate is determined by <selectables linebreak="yes">
@@ -586,7 +562,7 @@
 						The evaluator shall further examine the TSS to ensure that it describes how the TSF updates and enforces each 
 						certificate profile based on the configuration of the CA and inputs provided by the supported function.
 						</h:p><h:p>
-							For each subject DN or subjectAltName name type supported, the evaluator shall verify that the ST indicates the normalization standard used for the name type and the method used for ensuring the name populated in the certificate is appropriately normalized.	
+							For each subject DN or subjectAlternateName name type supported, the evaluator shall verify that the ST indicates the normalization standard used for the name type and the method used for ensuring the name populated in the certificate is appropriately normalized.	
 						</h:p>
 					</TSS>
 					<Guidance>
@@ -606,7 +582,7 @@
                             	[conditional] If “subjectName” is claimed and standard certificate requests are supported that allow a general DN to be input, the  evaluator shall send the TSF a certificate request that includes a DN with an RDN component containing multiple elements and verify that TSF rejects the request.
                             </test>
 							<test>
-								[conditional] If “subjectAltName” is claimed, and standard certificate requests are supported that allow multiple SAN entries, then for each name type supported, the evaluator shall send the TSF a certificate request with multiple SAN entries of the indicated name type, where the first entry is valid and the second entry is invalid. The evaluator shall confirm that the TSF issues a certificate containing only the first entry.
+								[conditional] If “subjectAlternateName” is claimed, and standard certificate requests are supported that allow multiple SAN entries, then for each name type supported, the evaluator shall send the TSF a certificate request with multiple SAN entries of the indicated name type, where the first entry is valid and the second entry is invalid. The evaluator shall confirm that the TSF issues a certificate containing only the first entry.
 								Note: the method to create an invalid entry depends on the validation methods claimed.
 							</test>							
 						</testlist>
@@ -623,7 +599,7 @@
 		
 		
 		<f-component name="Leaf Certificate Profiles" cc-id="fdp_cer_ext.1" id="fdp-cer-ext-1-ecd" status="invisible">
-<!--			<depends on="toe-uses-embedded-ca" also="toe-requests-certs" and="toe-requests-certs-from-embedded-ca"/> -->
+			<depends on="toe-uses-embedded-ca" also="toe-requests-certs" and="toe-requests-certs-from-embedded-ca"/>
 			
 			<comp-lev> requires the TSF to implement a TOE-trusted certificate profile function that conforms to profiles when acting as a CA.</comp-lev>
 			<management>No specific management functions are identified.</management>
@@ -711,7 +687,7 @@
 										<selectable>dNSName</selectable>
 										<selectable>directoryName</selectable>
 										<selectable>uniformResourceIdentifier</selectable>
-										<selectable>IPAddress</selectable>
+										<selectable>iPAddress</selectable>
 										<selectable> <assignable>other name</assignable></selectable>
 									</selectables></selectable>
 									<selectable>basicConstraints is populated with CA flag equal to false</selectable>
@@ -775,7 +751,7 @@
 								<selectable>dNSName</selectable>
 								<selectable>directoryName</selectable>
 								<selectable>uniformResourceIdentifier</selectable>
-								<selectable>IPAddress</selectable>
+								<selectable>iPAddress</selectable>
 								<selectable> <assignable>other name type</assignable></selectable>							
 							</selectables></selectable></selectables>
 							of the issued certificate is determined by <selectables linebreak="yes">
@@ -1269,7 +1245,7 @@
 	<!-- 			-->
 	<!-- 3.1.1 FIA: Identification and Authentication -->
 	<!--			-->
-	<sec:fia title="Class FIA: Identification and Authentication">
+	<sec:fia title="Identification and Authentication (FIA)">
 		
 		<ext-comp-def fam-id="FIA_CMCC_EXT" title="CMC Client Certificate Enrollment">
 			<fam-behavior>Components in this family define requirements for the TOE to generate CMC requests.</fam-behavior>
@@ -1625,7 +1601,7 @@
 							in accordance with <no-link>FCS_HTTPS_EXT.1</no-link>.
 						</h:p>	
 						<h:p>When HTTPS is claimed, the certificate used to authenticate the session meets the requirements in this FP for a
-							TLS client certificate and has the same subjectName and subjectAltName as the certificate being renewed; if
+							TLS client certificate and has the same subjectName and subjectAlternateName as the certificate being renewed; if
 							the TSF does not possess such a certificate, this option is not claimed.
 						</h:p>
 				</note>
@@ -2378,7 +2354,7 @@
 							<h:li>keyUsage</h:li>
 							and <selectables linebreak="yes">
 								<selectable>basicConstraints</selectable>
-								<selectable>authorityInfoAccess</selectable>
+								<selectable>authorityInformationAccess</selectable>
 								<selectable>cRLDistributionPoints</selectable>
 								<selectable>certificatePolicies</selectable>
 								<selectable>policyMapping</selectable>
@@ -2387,7 +2363,7 @@
 									<selectable>dNSName</selectable>
 									<selectable>directoryName</selectable>
 									<selectable>uniformResourceIdentifier</selectable>
-									<selectable>IPAddress</selectable>
+									<selectable>iPAddress</selectable>
 									<selectable> <assignable>other name types</assignable></selectable>
 								</selectables></selectable>
 								<selectable>extendedKeyUsage</selectable>
@@ -2721,7 +2697,7 @@
 									method of certification path context processing claimed.</h:p>											
 							</test>
 							<test>
-								The evaluator shall establish a certificate with an empty subject field and not containing a subjectAltName extension, but which is otherwise valid and trusted by the TSF. The evaluator shall demonstrate that the TSF rejects the certificate.
+								The evaluator shall establish a certificate with an empty subject field and not containing a subjectAlternateName extension, but which is otherwise valid and trusted by the TSF. The evaluator shall demonstrate that the TSF rejects the certificate.
 							</test>
 							<test>
 								[conditional]: If certificates with non-empty subject fields are validated and if either name constraints processing is supported or one or more reference ID checking rules are included in trust store context rules, then for each RDN supported, the evaluator shall configure the TOE to enforce a rule on the RDN value, establish a value for the RDN that matches the rule, and perform the following steps: <h:ul>
@@ -2903,7 +2879,7 @@
 							<selectable>dNSName</selectable>
 							<selectable>directoryName</selectable>
 							<selectable>uniformResourceIdentifier</selectable>
-							<selectable>IPAddress</selectable>
+							<selectable>iPAddress</selectable>
 							<selectable> <assignable>other SAN types</assignable></selectable>
 						</selectables>
 						</selectable>
